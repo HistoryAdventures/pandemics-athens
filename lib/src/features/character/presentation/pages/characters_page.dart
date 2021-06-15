@@ -14,20 +14,20 @@ class CharacrterPage extends StatefulWidget {
 }
 
 class _CharacrterPageState extends State<CharacrterPage> {
-  List<PhotoHero> listCharacters = [
-    const PhotoHero(
+  List<CharacterModel> listCharacters = [
+    const CharacterModel(
       photo: "assets/characters/character_1.png",
       name: "Pericles",
     ),
-    const PhotoHero(
+    const CharacterModel(
       photo: "assets/characters/character_2.png",
       name: "thucidides",
     ),
-    const PhotoHero(
+    const CharacterModel(
       photo: "assets/characters/character_3.png",
       name: "socrates and plato",
     ),
-    const PhotoHero(
+    const CharacterModel(
       photo: "assets/characters/character_4.png",
       name: "Aristophanes and Sophocles",
     ),
@@ -64,9 +64,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
             Positioned(
               left: 100,
               right: 100,
-              //alignment: Alignment.topCenter,
               child: Container(
-                //width: constraints.maxWidth,
                 height: constraints.maxHeight * 0.1,
                 margin: EdgeInsets.only(top: constraints.maxHeight * 0.1),
                 child: Column(
@@ -80,7 +78,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     Expanded(
                       child: AutoSizeText(
                         "Key people in Athens 5th century BCE".toLowerCase(),
-                        // maxLines: 1,
                         style: DefaultTheme.standard.textTheme.subtitle2,
                       ),
                     )
@@ -99,7 +96,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: listCharacters
-                          .map((photo) => PhotoHero(
+                          .map((photo) => CharacterModel(
                                 name: photo.name,
                                 photo: photo.photo,
                                 onTap: () {
@@ -112,8 +109,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
                                           Animation<double>
                                               secondaryAnimation) {
                                         return CharacterInfoPage(
-                                          photoHero: photo,
-                                        );
+                                            photoHero: photo,
+                                            listCharacters: listCharacters);
                                       },
                                       transitionsBuilder: (BuildContext context,
                                           Animation<double> animation,

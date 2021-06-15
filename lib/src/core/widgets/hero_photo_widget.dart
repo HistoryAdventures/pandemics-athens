@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PhotoHero extends StatelessWidget {
-  const PhotoHero({required this.photo, this.onTap, required this.name});
+class CharacterModel extends StatelessWidget {
+  const CharacterModel({required this.photo, this.onTap, required this.name});
   final String photo;
   final VoidCallback? onTap;
   final String name;

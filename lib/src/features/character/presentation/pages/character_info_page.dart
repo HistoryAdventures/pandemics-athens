@@ -7,22 +7,25 @@ import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 
 class CharacterInfoPage extends StatefulWidget {
-  final PhotoHero photoHero;
-  CharacterInfoPage({required this.photoHero});
+  final CharacterModel photoHero;
+  final List<CharacterModel> listCharacters;
+  const CharacterInfoPage(
+      {required this.photoHero, required this.listCharacters});
 
   @override
   _CharacterInfoPageState createState() => _CharacterInfoPageState();
 }
 
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
-  String _selectedItem = 'demokratia';
-  List<String> listCharacters = [
-    "Pericles",
-    'thucidides',
-    'Phidias',
-    'socrates and plato',
-    'Aristophanes and Sophocles'
-  ];
+  late String _selectedItem;
+  late String _selectedImg;
+  @override
+  void initState() {
+    _selectedItem = widget.photoHero.name;
+    _selectedImg = widget.photoHero.photo;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +64,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         flex: 1,
                         child: Container(
                           height: constraints.maxHeight,
-                          child: PhotoHero(
-                            name: widget.photoHero.name,
-                            photo: widget.photoHero.photo,
+                          child: CharacterModel(
+                            name: _selectedItem,
+                            photo: _selectedImg,
                             onTap: () {
                               Navigator.of(context).pop();
                             },
@@ -94,7 +97,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       ),
                                     ),
                                     Flexible(
-                                      child: AutoSizeText(widget.photoHero.name,
+                                      child: AutoSizeText(_selectedItem,
                                           style: DefaultTheme
                                               .standard.textTheme.headline2),
                                     ),
@@ -135,15 +138,17 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 flex: 1,
                                 child: Container(
                                     width: constraints.maxWidth,
-                                    child: SingleChildScrollView(
+                                    child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: listCharacters
-                                            .map((chatacter) => yearsWidget(
-                                                name: chatacter,
-                                                selected: chatacter))
-                                            .toList(),
-                                      ),
+                                      shrinkWrap: true,
+                                      itemCount: widget.listCharacters.length,
+                                      itemBuilder: (contex, index) {
+                                        var data = widget.listCharacters[index];
+                                        return yearsWidget(
+                                            name: data.name,
+                                            image: data.photo,
+                                            selected: data.name);
+                                      },
                                     )),
                               )
                             ],
@@ -161,18 +166,19 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     );
   }
 
-  void chandeState(String? selctedItem) {
+  void chandeState(String? selctedItem, String? image) {
     setState(() {
       _selectedItem = selctedItem!;
+      _selectedImg = image!;
     });
   }
 
-  Widget yearsWidget({String? name, String? selected}) {
+  Widget yearsWidget({String? name, String? selected, String? image}) {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(
             onPressed: () {
-              chandeState(selected);
+              chandeState(selected, image);
             },
             child: AutoSizeText(name!.toUpperCase(),
                 style: _selectedItem == selected
