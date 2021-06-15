@@ -5,13 +5,11 @@ import '../theme.dart';
 import 'widgets.dart';
 
 class ArrowLeftTextWidget extends StatelessWidget {
-  final String iconImage;
   final String textTitle;
   final String textSubTitle;
   final Function() onTap;
   const ArrowLeftTextWidget(
-      {required this.iconImage,
-      required this.textSubTitle,
+      {required this.textSubTitle,
       required this.textTitle,
       required this.onTap});
 
@@ -25,10 +23,10 @@ class ArrowLeftTextWidget extends StatelessWidget {
           child: Clickable(
               onPressed: onTap,
               child: Container(
-                  margin: const EdgeInsets.only(left: 24),
+                  margin: const EdgeInsets.only(right: 24),
                   height: 30,
                   width: 30,
-                  child: Image.asset(iconImage))),
+                  child: Image.asset('assets/icons/arrow_back.png'))),
         ),
         Flexible(
           child: Column(

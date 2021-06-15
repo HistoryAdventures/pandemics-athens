@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 
 import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
@@ -45,7 +47,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 50, top: 50),
+                  padding: EdgeInsets.only(
+                      right: constraints.maxWidth * 0.03,
+                      top: constraints.maxWidth * 0.03),
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.menu),
@@ -54,10 +58,10 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 ),
               ),
               Align(
-                alignment: Alignment.center,
                 child: Container(
                   margin: const EdgeInsets.only(
-                      top: 100, bottom: 100, left: 150, right: 100),
+                    bottom: 80,
+                  ),
                   child: Row(
                     children: [
                       Expanded(
@@ -75,7 +79,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 50),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 50,
+                              vertical: constraints.maxHeight * 0.1),
                           decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.5)),
                           padding: const EdgeInsets.all(24),
@@ -83,23 +89,29 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: AutoSizeText(
-                                        "Chapter 1 / Plague & Political Instability"
-                                            .toUpperCase(),
-                                        style: DefaultTheme
-                                            .standard.textTheme.subtitle2,
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: AutoSizeText(_selectedItem,
+                                child: Container(
+                                  // padding: const EdgeInsets.only(bottom: 10),
+                                  height: 70,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          "Chapter 1 / Plague & Political Instability"
+                                              .toUpperCase(),
+                                          maxLines: 1,
                                           style: DefaultTheme
-                                              .standard.textTheme.headline2),
-                                    ),
-                                  ],
+                                              .standard.textTheme.subtitle2,
+                                        ),
+                                      ),
+                                      Flexible(
+                                        child: AutoSizeText(_selectedItem,
+                                            style: DefaultTheme
+                                                .standard.textTheme.headline2),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -114,7 +126,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                               color: AppColors.grey,
                                               width: 1.2))),
                                   child: ListView(shrinkWrap: true, children: [
-                                    Padding(
+                                    Container(
                                       padding: const EdgeInsets.all(10),
                                       child: RichText(
                                           text: TextSpan(children: [
@@ -134,28 +146,32 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
-                                child: SizedBox(
-                                    width: constraints.maxWidth,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      itemCount: widget.listCharacters.length,
-                                      itemBuilder: (contex, index) {
-                                        final data =
-                                            widget.listCharacters[index];
-                                        return yearsWidget(
-                                            name: data.name,
-                                            image: data.photo,
-                                            selected: data.name);
-                                      },
-                                    )),
+                                child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                        children: widget.listCharacters
+                                            .map((data) => yearsWidget(
+                                                name: data.name,
+                                                image: data.photo,
+                                                selected: data.name))
+                                            .toList())),
                               )
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10, left: 24),
+                  child: ArrowLeftTextWidget(
+                      textSubTitle: 'key people',
+                      textTitle: 'Athens, 5th century BC',
+                      onTap: () {}),
                 ),
               ),
             ],
@@ -176,14 +192,16 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(
-            onPressed: () {
-              chandeState(selected, image);
-            },
-            child: AutoSizeText(name!.toUpperCase(),
-                style: _selectedItem == selected
-                    ? DefaultTheme.standard.textTheme.bodyText1
-                    : DefaultTheme.standard.textTheme.bodyText1
-                        ?.copyWith(color: AppColors.grey))));
+          onPressed: () {
+            chandeState(selected, image);
+          },
+          child: AutoSizeText(name!.toUpperCase(),
+              maxLines: 1,
+              style: _selectedItem == selected
+                  ? DefaultTheme.standard.textTheme.bodyText1
+                  : DefaultTheme.standard.textTheme.bodyText1
+                      ?.copyWith(color: AppColors.grey)),
+        ));
   }
 }
 

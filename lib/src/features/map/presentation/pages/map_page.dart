@@ -127,7 +127,6 @@ class _MapPageState extends State<MapPage> {
                   children: [
                     Expanded(
                       child: ArrowLeftTextWidget(
-                          iconImage: 'assets/icons/arrow_back.png',
                           textSubTitle: 'chapter 1',
                           textTitle: 'nikos story',
                           onTap: () {
@@ -159,7 +158,6 @@ class _MapPageState extends State<MapPage> {
                     ),
                     Expanded(
                       child: ArrowRightTextWidget(
-                          iconImage: "assets/icons/arrow_forward.png",
                           textSubTitle: 'key people',
                           textTitle: 'Athens, 5th century BC',
                           onTap: () {

@@ -5,13 +5,11 @@ import '../theme.dart';
 import 'widgets.dart';
 
 class ArrowRightTextWidget extends StatelessWidget {
-  final String iconImage;
   final String textTitle;
   final String textSubTitle;
   final Function() onTap;
   const ArrowRightTextWidget(
-      {required this.iconImage,
-      required this.textSubTitle,
+      {required this.textSubTitle,
       required this.textTitle,
       required this.onTap});
 
@@ -50,7 +48,7 @@ class ArrowRightTextWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 24),
                     height: 30,
                     width: 30,
-                    child: Image.asset(iconImage))),
+                    child: Image.asset("assets/icons/arrow_forward.png"))),
           ),
         ],
       ),
