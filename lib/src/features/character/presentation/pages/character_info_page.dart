@@ -36,7 +36,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
               Container(
                 height: constraints.maxHeight,
                 width: constraints.maxWidth,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
                             "assets/image_back/characters_page_back.png"),
@@ -48,7 +48,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   padding: const EdgeInsets.only(right: 50, top: 50),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.menu),
+                    icon: const Icon(Icons.menu),
                     iconSize: 30,
                   ),
                 ),
@@ -56,13 +56,12 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       top: 100, bottom: 100, left: 150, right: 100),
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 1,
-                        child: Container(
+                        child: SizedBox(
                           height: constraints.maxHeight,
                           child: CharacterModel(
                             name: _selectedItem,
@@ -76,15 +75,14 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 50),
+                          margin: const EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.5)),
-                          padding: EdgeInsets.all(24),
+                          padding: const EdgeInsets.all(24),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                flex: 1,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -105,15 +103,16 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
-                                flex: 6,
+                                flex: 4,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
                                           top: BorderSide(
-                                              color: AppColors.grey, width: 1),
+                                              color: AppColors.grey,
+                                              width: 1.2),
                                           bottom: BorderSide(
                                               color: AppColors.grey,
-                                              width: 1))),
+                                              width: 1.2))),
                                   child: ListView(shrinkWrap: true, children: [
                                     Padding(
                                       padding: const EdgeInsets.all(10),
@@ -135,15 +134,15 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
-                                child: Container(
+                                child: SizedBox(
                                     width: constraints.maxWidth,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       shrinkWrap: true,
                                       itemCount: widget.listCharacters.length,
                                       itemBuilder: (contex, index) {
-                                        var data = widget.listCharacters[index];
+                                        final data =
+                                            widget.listCharacters[index];
                                         return yearsWidget(
                                             name: data.name,
                                             image: data.photo,
