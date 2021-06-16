@@ -15,7 +15,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  var _selectedItem = 400;
+  int _selectedItem = 400;
   final _scrollController = ScrollController();
 
   @override
