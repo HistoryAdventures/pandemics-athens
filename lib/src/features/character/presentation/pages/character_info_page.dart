@@ -1,11 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/theme.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
-
 import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 

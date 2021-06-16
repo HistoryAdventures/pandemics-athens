@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 import 'package:history_of_adventures/src/features/character/presentation/pages/character_info_page.dart';
+import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../core/widgets/hero_photo_widget.dart';
@@ -137,42 +140,42 @@ class _CharacrterPageState extends State<CharacrterPage> {
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                height: constraints.maxHeight * 0.15,
-                margin: const EdgeInsets.only(bottom: 14, left: 24),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 24),
-                      height: 30,
-                      width: 30,
-                      child: Clickable(
-                          onPressed: () {},
-                          child: Image.asset('assets/icons/arrow_back.png')),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: AutoSizeText(
-                              'Athens, 5th century BC'.toUpperCase(),
-                              style: DefaultTheme.standard.textTheme.caption
-                                  ?.copyWith(fontSize: 14),
-                            ),
-                          ),
-                          Flexible(
-                            child: AutoSizeText(
-                              'event timeline'.toUpperCase(),
-                              style: DefaultTheme.standard.textTheme.headline2
-                                  ?.copyWith(fontSize: 26),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                padding: const EdgeInsets.only(bottom: 10, left: 24),
+                child: ArrowLeftTextWidget(
+                    textSubTitle: 'event timeline',
+                    textTitle: 'Athens, 5th century BC',
+                    onTap: () {
+                      // _scrollController.animateTo(
+                      //     _scrollController.position.maxScrollExtent,
+                      //     duration: const Duration(milliseconds: 50),
+                      //     curve: Curves.easeIn);
+                      Navigator.of(context).push(PageRouteBuilder(
+                          transitionDuration: const Duration(seconds: 1),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            var begin = Offset(1.0, 0.0);
+                            var end = Offset.zero;
+                            var curve = Curves.easeInBack;
+
+                            var tween = Tween(begin: begin, end: end);
+                            var curvedAnimation = CurvedAnimation(
+                              parent: animation,
+                              curve: curve,
+                            );
+                            return Align(
+                              child: SlideTransition(
+                                position: animation.drive(tween),
+                                //opacity: animation,
+                                child: child,
+                              ),
+                            );
+                          },
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return MapPage();
+                          }));
+                    }),
               ),
             ),
           ],

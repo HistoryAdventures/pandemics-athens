@@ -7,7 +7,6 @@ import 'package:history_of_adventures/src/core/widgets/animated_widgets/transfor
 import 'package:history_of_adventures/src/core/widgets/background_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
-import 'package:history_of_adventures/src/features/leanding/presentation/pages/leanding_page.dart';
 
 class PandemicInfoPage extends StatefulWidget {
   const PandemicInfoPage({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class _PandemicInfoPageState extends State<PandemicInfoPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [

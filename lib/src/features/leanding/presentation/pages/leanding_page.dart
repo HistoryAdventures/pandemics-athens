@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/blob_animation.dart';
+import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -134,7 +137,34 @@ class _LeandingPageState extends State<LeandingPage> {
                 color: AppColors.blackB,
                 iconSize: 40,
                 icon: const Icon(Icons.south),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                      transitionDuration: const Duration(seconds: 1),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        var begin = Offset(0.0, 1.0);
+                        var end = Offset.zero;
+                        var curve = Curves.easeInBack;
+
+                        var tween = Tween(begin: begin, end: end);
+                        var curvedAnimation = CurvedAnimation(
+                          parent: animation,
+                          curve: curve,
+                        );
+                        return Align(
+                          child: SlideTransition(
+                            position: animation.drive(tween),
+                            //opacity: animation,
+                            child: child,
+                          ),
+                        );
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secondaryAnimation) {
+                        return const MapPage();
+                      }));
+                },
               ),
             ),
             Positioned(

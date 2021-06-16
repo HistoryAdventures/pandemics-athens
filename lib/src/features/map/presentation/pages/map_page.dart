@@ -1,11 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/theme.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/character/presentation/pages/characters_page.dart';
+import 'package:history_of_adventures/src/features/leanding/presentation/pages/leanding_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -140,9 +142,35 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: 'chapter 1',
                           textTitle: 'nikos story',
                           onTap: () {
-                            _scrollController.animateTo(0,
-                                duration: const Duration(milliseconds: 50),
-                                curve: Curves.easeIn);
+                            // _scrollController.animateTo(0,
+                            //     duration: const Duration(milliseconds: 50),
+                            //     curve: Curves.easeIn);
+                            Navigator.of(context).push(PageRouteBuilder(
+                                transitionDuration: const Duration(seconds: 1),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  var begin = Offset(-1.0, 0.0);
+                                  var end = Offset.zero;
+                                  var curve = Curves.easeInBack;
+
+                                  var tween = Tween(begin: begin, end: end);
+                                  var curvedAnimation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: curve,
+                                  );
+                                  return Align(
+                                    child: SlideTransition(
+                                      position: animation.drive(tween),
+                                      //opacity: animation,
+                                      child: child,
+                                    ),
+                                  );
+                                },
+                                pageBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secondaryAnimation) {
+                                  return const LeandingPage();
+                                }));
                           }),
                     ),
                     Expanded(
@@ -172,10 +200,36 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: 'key people',
                           textTitle: 'Athens, 5th century BC',
                           onTap: () {
-                            _scrollController.animateTo(
-                                _scrollController.position.maxScrollExtent,
-                                duration: const Duration(milliseconds: 50),
-                                curve: Curves.easeIn);
+                            // _scrollController.animateTo(
+                            //     _scrollController.position.maxScrollExtent,
+                            //     duration: const Duration(milliseconds: 50),
+                            //     curve: Curves.easeIn);
+                            Navigator.of(context).push(PageRouteBuilder(
+                                transitionDuration: const Duration(seconds: 1),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  var begin = Offset(-1.0, 0.0);
+                                  var end = Offset.zero;
+                                  var curve = Curves.easeInBack;
+
+                                  var tween = Tween(begin: begin, end: end);
+                                  var curvedAnimation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: curve,
+                                  );
+                                  return Align(
+                                    child: SlideTransition(
+                                      position: animation.drive(tween),
+                                      //opacity: animation,
+                                      child: child,
+                                    ),
+                                  );
+                                },
+                                pageBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secondaryAnimation) {
+                                  return const CharacrterPage();
+                                }));
                           }),
                     ),
                   ],
