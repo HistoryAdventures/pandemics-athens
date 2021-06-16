@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 
@@ -40,16 +41,13 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 width: constraints.maxWidth,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(
-                            "assets/image_back/characters_page_back.png"),
+                        image: AssetImage(AssetsPath.charactersBackgroundImage),
                         fit: BoxFit.cover)),
               ),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      right: constraints.maxWidth * 0.03,
-                      top: constraints.maxWidth * 0.03),
+                  padding: const EdgeInsets.only(right: 10, top: 10),
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.menu),
@@ -88,34 +86,29 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Container(
-                                  // padding: const EdgeInsets.only(bottom: 10),
-                                  height: 70,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: AutoSizeText(
-                                          "Chapter 1 / Plague & Political Instability"
-                                              .toUpperCase(),
-                                          maxLines: 1,
+                              SizedBox(
+                                height: 70,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        "Chapter 1 / Plague & Political Instability"
+                                            .toUpperCase(),
+                                        maxLines: 1,
+                                        style: DefaultTheme
+                                            .standard.textTheme.subtitle2,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(_selectedItem,
                                           style: DefaultTheme
-                                              .standard.textTheme.subtitle2,
-                                        ),
-                                      ),
-                                      Flexible(
-                                        child: AutoSizeText(_selectedItem,
-                                            style: DefaultTheme
-                                                .standard.textTheme.headline2),
-                                      ),
-                                    ],
-                                  ),
+                                              .standard.textTheme.headline2),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Expanded(
-                                flex: 4,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
@@ -145,7 +138,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                   ]),
                                 ),
                               ),
-                              Expanded(
+                              SizedBox(
+                                height: 30,
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -198,8 +192,10 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
               style: _selectedItem == selected
-                  ? DefaultTheme.standard.textTheme.bodyText1
-                  : DefaultTheme.standard.textTheme.bodyText1
+                  ? Theme.of(context).textTheme.bodyText1
+                  : Theme.of(context)
+                      .textTheme
+                      .bodyText1
                       ?.copyWith(color: AppColors.grey)),
         ));
   }

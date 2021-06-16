@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
@@ -39,12 +40,13 @@ class _MapPageState extends State<MapPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/image_back/map.png'),
+                      image: AssetImage(AssetsPath.mapImage),
                       fit: BoxFit.cover)),
             ),
             Positioned(
                 top: size.height * 0.09,
                 right: 0,
+                bottom: 150,
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   height: constraints.maxHeight * 0.6,
@@ -67,7 +69,8 @@ class _MapPageState extends State<MapPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
+                                SizedBox(
+                                  height: 50,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -76,15 +79,19 @@ class _MapPageState extends State<MapPage> {
                                         child: AutoSizeText(
                                           "plague & political Instability"
                                               .toUpperCase(),
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline2,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2,
                                         ),
                                       ),
                                       Flexible(
                                         child: AutoSizeText(
                                             "Chapter 1 / Plague & Political Instability",
-                                            style: DefaultTheme
-                                                .standard.textTheme.subtitle2),
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2),
                                       ),
                                     ],
                                   ),
@@ -97,14 +104,16 @@ class _MapPageState extends State<MapPage> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                          text: '415, Battle of Thermopylae\n',
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline3,
-                                        ),
+                                            text:
+                                                '415, Battle of Thermopylae\n',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline3),
                                         TextSpan(
                                           text: text,
-                                          style: DefaultTheme
-                                              .standard.textTheme.bodyText1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
                                         ),
                                       ])),
                                     )
@@ -126,6 +135,7 @@ class _MapPageState extends State<MapPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
+                      flex: 2,
                       child: ArrowLeftTextWidget(
                           textSubTitle: 'chapter 1',
                           textTitle: 'nikos story',
@@ -157,6 +167,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: ArrowRightTextWidget(
                           textSubTitle: 'key people',
                           textTitle: 'Athens, 5th century BC',

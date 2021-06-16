@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/features/character/presentation/pages/character_info_page.dart';
 
 import '../../../../core/theme.dart';
@@ -16,19 +17,19 @@ class CharacrterPage extends StatefulWidget {
 class _CharacrterPageState extends State<CharacrterPage> {
   List<CharacterModel> listCharacters = [
     const CharacterModel(
-      photo: "assets/characters/character_1.png",
+      photo: AssetsPath.periclesImage,
       name: "Pericles",
     ),
     const CharacterModel(
-      photo: "assets/characters/character_2.png",
+      photo: AssetsPath.thucididesImage,
       name: "thucidides",
     ),
     const CharacterModel(
-      photo: "assets/characters/character_3.png",
+      photo: AssetsPath.socratesImage,
       name: "socrates and plato",
     ),
     const CharacterModel(
-      photo: "assets/characters/character_4.png",
+      photo: AssetsPath.aristophanesImage,
       name: "Aristophanes and Sophocles",
     ),
   ];
@@ -46,7 +47,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
         width: constraints.maxWidth,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/image_back/characters_page_back.png"),
+              image: AssetImage(AssetsPath.charactersBackgroundImage),
               fit: BoxFit.cover),
         ),
         child: Stack(

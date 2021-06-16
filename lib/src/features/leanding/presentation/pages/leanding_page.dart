@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/blob_animation.dart';
 
 class LeandingPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _LeandingPageState extends State<LeandingPage> {
               decoration: const BoxDecoration(
                   color: Colors.grey,
                   image: DecorationImage(
-                      image: AssetImage('assets/image_back/image_back.png'),
+                      image: AssetImage(AssetsPath.leandingBackgroundImage),
                       fit: BoxFit.cover)),
             ),
             const Positioned(
@@ -41,7 +42,7 @@ class _LeandingPageState extends State<LeandingPage> {
               child: SizedBox(
                   height: 150,
                   width: 150,
-                  child: Image.asset('assets/image_back/blob_white_1.png')),
+                  child: Image.asset(AssetsPath.blobWhiteImage1)),
             ),
             Positioned(
               bottom: -150,
@@ -58,7 +59,7 @@ class _LeandingPageState extends State<LeandingPage> {
               child: SizedBox(
                   height: 150,
                   width: 150,
-                  child: Image.asset('assets/image_back/blob_white_2.png')),
+                  child: Image.asset(AssetsPath.blobWhiteImage2)),
             ),
             Positioned(
               top: 10,
@@ -76,7 +77,7 @@ class _LeandingPageState extends State<LeandingPage> {
               child: SizedBox(
                   height: constraints.maxHeight * 0.2,
                   width: constraints.maxWidth * 0.2,
-                  child: Image.asset('assets/image_back/blob_black.png')),
+                  child: Image.asset(AssetsPath.blobBlackImage)),
             ),
             Positioned(
               bottom: 100,
@@ -85,7 +86,7 @@ class _LeandingPageState extends State<LeandingPage> {
               child: SizedBox(
                   height: 50,
                   width: 50,
-                  child: Image.asset('assets/image_back/blob_white_2.png')),
+                  child: Image.asset(AssetsPath.blobWhiteImage1)),
             ),
             Align(
               alignment: Alignment.centerLeft,
@@ -102,13 +103,13 @@ class _LeandingPageState extends State<LeandingPage> {
                     Flexible(
                       child: AutoSizeText(
                         "History Adventures".toUpperCase(),
-                        style: DefaultTheme.standard.textTheme.overline,
+                        style: Theme.of(context).textTheme.overline,
                       ),
                     ),
                     Flexible(
                       child: AutoSizeText(
                         "World Of Characters".toUpperCase(),
-                        style: DefaultTheme.standard.textTheme.overline,
+                        style: Theme.of(context).textTheme.overline,
                       ),
                     ),
                     Flexible(
@@ -119,7 +120,7 @@ class _LeandingPageState extends State<LeandingPage> {
                                     color: AppColors.red, width: 8))),
                         child: AutoSizeText(
                           " global pandemic",
-                          style: DefaultTheme.standard.textTheme.caption,
+                          style: Theme.of(context).textTheme.caption,
                         ),
                       ),
                     )

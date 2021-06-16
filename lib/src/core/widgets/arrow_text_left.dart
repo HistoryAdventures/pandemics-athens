@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 import '../theme.dart';
 import 'widgets.dart';
@@ -26,7 +27,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 24),
                   height: 30,
                   width: 30,
-                  child: Image.asset('assets/icons/arrow_back.png'))),
+                  child: Image.asset(AssetsPath.arrowBackImage))),
         ),
         Flexible(
           child: Column(
@@ -36,13 +37,15 @@ class ArrowLeftTextWidget extends StatelessWidget {
               AutoSizeText(
                 textTitle.toUpperCase(),
                 maxLines: 1,
-                style: DefaultTheme.standard.textTheme.caption
-                    ?.copyWith(fontSize: 14),
+                style:
+                    Theme.of(context).textTheme.caption?.copyWith(fontSize: 14),
               ),
               AutoSizeText(
                 textSubTitle.toUpperCase(),
                 maxLines: 1,
-                style: DefaultTheme.standard.textTheme.headline2
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
                     ?.copyWith(fontSize: 26),
               )
             ],
