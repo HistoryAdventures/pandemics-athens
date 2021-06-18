@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -16,6 +17,9 @@ class PandemicInfoPage extends StatefulWidget {
 }
 
 class _PandemicInfoPageState extends State<PandemicInfoPage> {
+  /// Localizations object
+  late AppLocalizations locals;
+
   String _selectedItem = "Pericles";
   List<CharacterModel> listCharacters = [
     const CharacterModel(
@@ -35,6 +39,7 @@ class _PandemicInfoPageState extends State<PandemicInfoPage> {
       name: "Aristophanes and Sophocles",
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -76,8 +81,7 @@ class _PandemicInfoPageState extends State<PandemicInfoPage> {
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
-                                    "Chapter 1 / Plague & Political Instability"
-                                        .toUpperCase(),
+                                    locals.chapter1Name.toUpperCase(),
                                     maxLines: 1,
                                     style: DefaultTheme
                                         .standard.textTheme.subtitle2,
@@ -170,6 +174,12 @@ class _PandemicInfoPageState extends State<PandemicInfoPage> {
                       .bodyText1
                       ?.copyWith(color: AppColors.grey)),
         ));
+  }
+
+  @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
   }
 }
 

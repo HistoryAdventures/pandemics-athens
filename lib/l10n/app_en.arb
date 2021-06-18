@@ -3,8 +3,8 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "vazgen": "Vazgen",
-    "@vazgen": {
-      "description": "Vazgen's name"
+    "chapter1Name": "chapter1Name",
+    "@chapter1Name": {
+      "description": "Chapter 1 / Plague & Political Instability"
     }
 }
