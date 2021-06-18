@@ -7,32 +7,46 @@ import 'font_weight.dart';
 /// History of Adventures Text Style Definitions
 class AppTextStyle {
   static const _baseTextStyle = TextStyle(
-    fontFamily: AppFontFamily.openSans,
+      fontFamily: AppFontFamily.openSans,
+      color: AppColors.blackB,
+      fontStyle: FontStyle.normal);
+
+  static const _titleTextStyleItalic = TextStyle(
+      fontFamily: AppFontFamily.openSans,
+      color: AppColors.blackB,
+      fontStyle: FontStyle.italic);
+
+  static const _titleTextStyleBold = TextStyle(
+    fontFamily: AppFontFamily.bebasNeue,
     color: AppColors.blackB,
-    fontWeight: AppFontWeight.regular,
+  );
+
+  static const _titleTextStyleLora = TextStyle(
+    fontFamily: AppFontFamily.bebasNeue,
+    color: AppColors.blackB,
   );
 
   /// Headline 1 Text Style
   static TextStyle get headline1 {
     return _baseTextStyle.copyWith(
-      fontSize: 56,
-      fontWeight: AppFontWeight.medium,
+      fontSize: 24,
+      //fontWeight: AppFontWeight.medium,
     );
   }
 
   /// Headline 2 Text Style
   static TextStyle get headline2 {
-    return _baseTextStyle.copyWith(
-      fontSize: 30,
-      fontWeight: AppFontWeight.regular,
+    return _titleTextStyleBold.copyWith(
+      fontSize: 36,
+      // fontWeight: AppFontWeight.regular,
     );
   }
 
   /// Headline 3 Text Style
   static TextStyle get headline3 {
     return _baseTextStyle.copyWith(
-      fontSize: 24,
-      fontWeight: AppFontWeight.regular,
+      fontSize: 18,
+      fontWeight: AppFontWeight.bold,
     );
   }
 
@@ -48,7 +62,7 @@ class AppTextStyle {
   static TextStyle get headline5 {
     return _baseTextStyle.copyWith(
       fontSize: 22,
-      fontWeight: AppFontWeight.medium,
+      //fontWeight: AppFontWeight.medium,
     );
   }
 
@@ -56,7 +70,7 @@ class AppTextStyle {
   static TextStyle get headline6 {
     return _baseTextStyle.copyWith(
       fontSize: 22,
-      fontWeight: AppFontWeight.bold,
+      //fontWeight: AppFontWeight.bold,
     );
   }
 
@@ -64,15 +78,15 @@ class AppTextStyle {
   static TextStyle get subtitle1 {
     return _baseTextStyle.copyWith(
       fontSize: 16,
-      fontWeight: AppFontWeight.bold,
+      //fontWeight: AppFontWeight.bold,
     );
   }
 
   /// Subtitle 2 Text Style
   static TextStyle get subtitle2 {
-    return _baseTextStyle.copyWith(
-      fontSize: 14,
-      fontWeight: AppFontWeight.bold,
+    return _titleTextStyleItalic.copyWith(
+      fontSize: 24,
+      //fontWeight: AppFontWeight.bold,
     );
   }
 
@@ -80,31 +94,31 @@ class AppTextStyle {
   static TextStyle get bodyText1 {
     return _baseTextStyle.copyWith(
       fontSize: 18,
-      fontWeight: AppFontWeight.medium,
+      //fontWeight: AppFontWeight.medium,
     );
   }
 
   /// Body Text 2 Text Style (the default)
   static TextStyle get bodyText2 {
-    return _baseTextStyle.copyWith(
+    return _titleTextStyleLora.copyWith(
       fontSize: 16,
-      fontWeight: AppFontWeight.regular,
+      //fontWeight: AppFontWeight.regular,
     );
   }
 
   /// Caption Text Style
   static TextStyle get caption {
-    return _baseTextStyle.copyWith(
-      fontSize: 14,
-      fontWeight: AppFontWeight.regular,
+    return _titleTextStyleItalic.copyWith(
+      fontSize: 60,
+      //fontWeight: AppFontWeight.regular,
     );
   }
 
   /// Overline Text Style
   static TextStyle get overline {
-    return _baseTextStyle.copyWith(
-      fontSize: 16,
-      fontWeight: AppFontWeight.regular,
+    return _titleTextStyleBold.copyWith(
+      fontSize: 120,
+      //fontWeight: AppFontWeight.regular,
     );
   }
 
@@ -112,7 +126,7 @@ class AppTextStyle {
   static TextStyle get button {
     return _baseTextStyle.copyWith(
       fontSize: 18,
-      fontWeight: AppFontWeight.medium,
+      //fontWeight: AppFontWeight.medium,
     );
   }
 }

@@ -12,17 +12,25 @@ environment:
 dependencies:
   # Flutter widget that automatically resizes text to fit perfectly within its bounds.
   auto_size_text: 3.0.0-nullsafety.0
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
+  
+  #A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
+  equatable: ^2.0.2
 
   flutter:
     sdk: flutter
+  #Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. 
+  #Built to be used with the bloc state management package.
+  flutter_bloc: ^7.0.1
 
   flutter_localizations:
     sdk: flutter
   # A simple widget for animating a set of images with full custom controls as an alternative to using a GIF file.
   image_sequence_animator: ^2.0.0
+  
   # Contains code to deal with internationalized/localized messages,
   # date and number formatting and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
@@ -36,6 +44,8 @@ dependencies:
 
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
+  
+
 
 dev_dependencies:
   # A build system for Dart code generation and modular compilation.
@@ -55,7 +65,10 @@ flutter:
   generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/blob/
+    - assets/characters/
+    - assets/icons/
+    - assets/image_back/
 
   fonts:
     - family: BebasNeue
