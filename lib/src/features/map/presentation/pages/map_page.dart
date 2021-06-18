@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/character/presentation/pages/characters_page.dart';
-import 'package:history_of_adventures/src/features/leanding/presentation/pages/leanding_page.dart';
+
+import '../../../../core/colors.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/arrow_text_left.dart';
+import '../../../../core/widgets/arrow_text_right.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../../character/presentation/pages/characters_page.dart';
+import '../../../leanding/presentation/pages/leanding_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -149,15 +149,11 @@ class _MapPageState extends State<MapPage> {
                                 transitionDuration: const Duration(seconds: 1),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
-                                  var begin = Offset(-1.0, 0.0);
-                                  var end = Offset.zero;
-                                  var curve = Curves.easeInBack;
+                                  const begin = Offset(-1.0, 0.0);
 
-                                  var tween = Tween(begin: begin, end: end);
-                                  var curvedAnimation = CurvedAnimation(
-                                    parent: animation,
-                                    curve: curve,
-                                  );
+                                  final tween =
+                                      Tween(begin: begin, end: Offset.zero);
+
                                   return Align(
                                     child: SlideTransition(
                                       position: animation.drive(tween),
@@ -208,15 +204,11 @@ class _MapPageState extends State<MapPage> {
                                 transitionDuration: const Duration(seconds: 1),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
-                                  var begin = Offset(-1.0, 0.0);
-                                  var end = Offset.zero;
-                                  var curve = Curves.easeInBack;
+                                  const begin = Offset(-1.0, 0.0);
 
-                                  var tween = Tween(begin: begin, end: end);
-                                  var curvedAnimation = CurvedAnimation(
-                                    parent: animation,
-                                    curve: curve,
-                                  );
+                                  final tween =
+                                      Tween(begin: begin, end: Offset.zero);
+
                                   return Align(
                                     child: SlideTransition(
                                       position: animation.drive(tween),

@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import '../../../../core/colors.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/arrow_text_left.dart';
+import '../../../../core/widgets/hero_photo_widget.dart';
+import '../../../../core/widgets/widgets.dart';
 
 class CharacterInfoPage extends StatefulWidget {
   final CharacterModel photoHero;

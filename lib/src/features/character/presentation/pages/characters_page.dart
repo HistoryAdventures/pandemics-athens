@@ -1,14 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
-import 'package:history_of_adventures/src/features/character/presentation/pages/character_info_page.dart';
-import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart';
 
 import '../../../../core/theme.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../map/presentation/pages/map_page.dart';
+import 'character_info_page.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -153,15 +152,11 @@ class _CharacrterPageState extends State<CharacrterPage> {
                           transitionDuration: const Duration(seconds: 1),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
-                            var begin = Offset(1.0, 0.0);
-                            var end = Offset.zero;
-                            var curve = Curves.easeInBack;
+                            const begin = Offset(1.0, 0.0);
+                            const end = Offset.zero;
 
-                            var tween = Tween(begin: begin, end: end);
-                            var curvedAnimation = CurvedAnimation(
-                              parent: animation,
-                              curve: curve,
-                            );
+                            final tween = Tween(begin: begin, end: end);
+
                             return Align(
                               child: SlideTransition(
                                 position: animation.drive(tween),
@@ -173,7 +168,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                           pageBuilder: (BuildContext context,
                               Animation<double> animation,
                               Animation<double> secondaryAnimation) {
-                            return MapPage();
+                            return const MapPage();
                           }));
                     }),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/widgets/app_tooltip.dart';
+
+import '../colors.dart';
+import 'app_tooltip.dart';
 
 /// {@template tooltip_mode}
 /// The tooltip mode which determines when the tooltip is visible

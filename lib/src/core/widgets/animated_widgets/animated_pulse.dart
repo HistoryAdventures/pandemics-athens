@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+
+import '../../colors.dart';
 
 /// Default duration for a single pulse animation.
 const defaultPulseDuration = Duration(milliseconds: 1600);
@@ -88,7 +89,7 @@ class PulsePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Rect.fromLTRB(0.0, 0.0, size.width, size.height);
-    final color = AppColors.blueDeep;
+    const color = AppColors.blueDeep;
     final circleSize = rect.width / 2;
     final area = circleSize * circleSize;
     final radius = sqrt(area * _animation.value * 3);

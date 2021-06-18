@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/blob_animation.dart';
+
+import '../utils/assets_path.dart';
+import 'animated_widgets/blob_animation.dart';
 
 class Background extends StatefulWidget {
   const Background({Key? key}) : super(key: key);

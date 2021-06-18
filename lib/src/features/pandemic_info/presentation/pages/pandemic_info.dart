@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/theme.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/transform_page.dart';
-import 'package:history_of_adventures/src/core/widgets/background_widget.dart';
-import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
-import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
+import '../../../../core/colors.dart';
+import '../../../../core/theme.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/animated_widgets/transform_page.dart';
+import '../../../../core/widgets/background_widget.dart';
+import '../../../../core/widgets/clickable_widget.dart';
+import '../../../../core/widgets/hero_photo_widget.dart';
 
 class PandemicInfoPage extends StatefulWidget {
   const PandemicInfoPage({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/animtion_transform.dart';
+
+import 'animtion_transform.dart';
 
 class TransformPage extends StatefulWidget {
   const TransformPage({Key? key}) : super(key: key);

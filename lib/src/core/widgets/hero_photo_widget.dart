@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+
+import '../colors.dart';
 
 class CharacterModel extends StatelessWidget {
   const CharacterModel({required this.photo, this.onTap, required this.name});

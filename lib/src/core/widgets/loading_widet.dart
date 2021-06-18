@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+
+import '../colors.dart';
 
 /// {@template app_circular_progress_indicator}
 /// Circular progress indicator
