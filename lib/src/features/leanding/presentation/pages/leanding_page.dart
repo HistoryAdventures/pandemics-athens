@@ -7,6 +7,7 @@ import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/blob_animation.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -16,6 +17,13 @@ class LeandingPage extends StatefulWidget {
 }
 
 class _LeandingPageState extends State<LeandingPage> {
+  late AppLocalizations locales;
+  @override
+  void didChangeDependencies() {
+    locales = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(
@@ -101,17 +109,17 @@ class _LeandingPageState extends State<LeandingPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Flexible(
-                        child: AutoSizeText('Spencer Striker, PHD',
+                        child: AutoSizeText(locales.spencerStrikerName,
                             style: DefaultTheme.standard.textTheme.headline1)),
                     Flexible(
                       child: AutoSizeText(
-                        "History Adventures".toUpperCase(),
+                        locales.historyAdventures.toUpperCase(),
                         style: Theme.of(context).textTheme.overline,
                       ),
                     ),
                     Flexible(
                       child: AutoSizeText(
-                        "World Of Characters".toUpperCase(),
+                        locales.worldOfCharacters.toUpperCase(),
                         style: Theme.of(context).textTheme.overline,
                       ),
                     ),
@@ -122,7 +130,7 @@ class _LeandingPageState extends State<LeandingPage> {
                                 left: BorderSide(
                                     color: AppColors.red, width: 8))),
                         child: AutoSizeText(
-                          " global pandemic",
+                          locales.globalPandemicName,
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),

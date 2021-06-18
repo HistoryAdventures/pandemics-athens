@@ -5,6 +5,7 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 class CharacterInfoPage extends StatefulWidget {
   final CharacterModel photoHero;
@@ -19,6 +20,13 @@ class CharacterInfoPage extends StatefulWidget {
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late String _selectedItem;
   late String _selectedImg;
+  late AppLocalizations locale;
+  @override
+  void didChangeDependencies() {
+    locale = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
+
   @override
   void initState() {
     _selectedItem = widget.photoHero.name;
@@ -90,8 +98,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                   children: [
                                     Flexible(
                                       child: AutoSizeText(
-                                        "Chapter 1 / Plague & Political Instability"
-                                            .toUpperCase(),
+                                        locale.chapter1Name.toUpperCase(),
                                         maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
@@ -123,13 +130,13 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                          text: '415, Battle of Thermopylae\n',
+                                          text: locale.battleOfThermopylae,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline3,
                                         ),
                                         TextSpan(
-                                          text: text,
+                                          text: locale.bodyText,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1,
@@ -165,8 +172,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 10, left: 24),
                   child: ArrowLeftTextWidget(
-                      textSubTitle: 'key people',
-                      textTitle: 'Athens, 5th century BC',
+                      textSubTitle: locale.keyPeople,
+                      textTitle: locale.athens5thCentury,
                       onTap: () {}),
                 ),
               ),
@@ -203,16 +210,3 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
         ));
   }
 }
-
-const String text = '''
-    
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.''';

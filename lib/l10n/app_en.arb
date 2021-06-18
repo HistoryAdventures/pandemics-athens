@@ -3,8 +3,77 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "chapter1Name": "chapter1Name",
+    "spencerStrikerName": "Spencer Striker, PHD",
+    "@spencerStrikerName": {
+      "description": "Spencer Striker, PHD"
+    },
+    "worldOfCharactersName": "World Of Characters",
+    "@worldOfCharactersName": {
+      "description": "World Of Characters"
+    },
+    "globalPandemicName": " global pandemic",
+    "@globalPandemicName": {
+      "description": " global pandemic"
+    },
+    "chapter1Name": "Chapter 1 / Plague & Political Instability",
     "@chapter1Name": {
       "description": "Chapter 1 / Plague & Political Instability"
+    },
+    "battleOfThermopylae": "415, Battle of Thermopylae\n",
+    "@battleOfThermopylae": {
+      "description": "415, Battle of Thermopylae\n"
+    },
+    "chapter1": "chapter 1",
+    "@chapter1": {
+      "description": "chapter 1"
+    },
+    "keyPeople": "key people",
+    "@keyPeople": {
+      "description": "key people"
+    },
+    "athens5thCentury": "Athens, 5th century BC",
+    "@Athens5thCentury": {
+      "description": "Athens, 5th century BC"
+    },
+    "nikosStory": "nikos story",
+    "@nikosStory": {
+      "description": "nikos story"
+    },
+    "historyAdventures": "History Adventures",
+    "@historyAdventures": {
+      "description": "History Adventures"
+    },
+    "worldOfCharacters": "World Of Characters",
+    "@worldOfCharacters": {
+      "description": "World Of Characters"
+    },
+    "namePericles": "Pericles",
+    "@namePericles": {
+      "description": "Pericles"
+    },
+    "thucididesName": "thucidides",
+    "@thucididesName": {
+      "thucidides": "thucidides"
+    },
+    "socratesAndPlatoName": "socrates and plato",
+    "@socratesAndPlatoName": {
+      "description": "socrates and plato"
+    },
+    "aristophanesAndSophocles": "Aristophanes and Sophocles",
+    "@aristophanesAndSophocles": {
+      "description": "Aristophanes and Sophocles"
+    },
+    "keyPeopleAthens5thCenturyBCE": "Key people in Athens 5th century BCE",
+    "@keyPeopleAthens5thCenturyBCE": {
+      "description": "Key people in Athens 5th century BCE"
+    },
+    "eventTimeline": "event timeline",
+    "@eventTimeline": {
+      "description": "event timeline"
+    },
+    "bodyText": "In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured. In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured",
+    "@bodyText": {
+      "description": "event timeline"
     }
 }
+

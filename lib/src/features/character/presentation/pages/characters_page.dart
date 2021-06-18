@@ -8,6 +8,7 @@ import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../map/presentation/pages/map_page.dart';
 import 'character_info_page.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -17,24 +18,14 @@ class CharacrterPage extends StatefulWidget {
 }
 
 class _CharacrterPageState extends State<CharacrterPage> {
-  List<CharacterModel> listCharacters = [
-    const CharacterModel(
-      photo: AssetsPath.periclesImage,
-      name: "Pericles",
-    ),
-    const CharacterModel(
-      photo: AssetsPath.thucididesImage,
-      name: "thucidides",
-    ),
-    const CharacterModel(
-      photo: AssetsPath.socratesImage,
-      name: "socrates and plato",
-    ),
-    const CharacterModel(
-      photo: AssetsPath.aristophanesImage,
-      name: "Aristophanes and Sophocles",
-    ),
-  ];
+  late AppLocalizations locale;
+
+  @override
+  void didChangeDependencies() {
+    locale = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +34,24 @@ class _CharacrterPageState extends State<CharacrterPage> {
   }
 
   Widget _body() {
+    final List<CharacterModel> listCharacters = [
+      CharacterModel(
+        photo: AssetsPath.periclesImage,
+        name: locale.namePericles,
+      ),
+      CharacterModel(
+        photo: AssetsPath.thucididesImage,
+        name: locale.thucididesName,
+      ),
+      CharacterModel(
+        photo: AssetsPath.socratesImage,
+        name: locale.socratesAndPlatoName,
+      ),
+      CharacterModel(
+        photo: AssetsPath.aristophanesImage,
+        name: locale.aristophanesAndSophocles,
+      ),
+    ];
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         height: constraints.maxHeight,
@@ -74,13 +83,13 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        "Athens, 5th Century BC".toUpperCase(),
+                        locale.athens5thCentury.toUpperCase(),
                         style: DefaultTheme.standard.textTheme.headline2,
                       ),
                     ),
                     Expanded(
                       child: AutoSizeText(
-                        "Key people in Athens 5th century BCE".toLowerCase(),
+                        locale.keyPeopleAthens5thCenturyBCE.toLowerCase(),
                         style: DefaultTheme.standard.textTheme.subtitle2,
                       ),
                     )
@@ -141,8 +150,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
               child: Container(
                 padding: const EdgeInsets.only(bottom: 10, left: 24),
                 child: ArrowLeftTextWidget(
-                    textSubTitle: 'event timeline',
-                    textTitle: 'Athens, 5th century BC',
+                    textSubTitle: locale.eventTimeline,
+                    textTitle: locale.athens5thCentury,
                     onTap: () {
                       // _scrollController.animateTo(
                       //     _scrollController.position.maxScrollExtent,

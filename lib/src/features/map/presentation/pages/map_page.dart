@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
@@ -19,6 +19,12 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   int _selectedItem = 400;
   final _scrollController = ScrollController();
+  late AppLocalizations locals;
+  @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -79,8 +85,7 @@ class _MapPageState extends State<MapPage> {
                                     children: [
                                       Flexible(
                                         child: AutoSizeText(
-                                          "plague & political Instability"
-                                              .toUpperCase(),
+                                          locals.chapter1Name.toUpperCase(),
                                           maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
@@ -88,8 +93,7 @@ class _MapPageState extends State<MapPage> {
                                         ),
                                       ),
                                       Flexible(
-                                        child: AutoSizeText(
-                                            "Chapter 1 / Plague & Political Instability",
+                                        child: AutoSizeText(locals.chapter1Name,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -106,13 +110,12 @@ class _MapPageState extends State<MapPage> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text:
-                                                '415, Battle of Thermopylae\n',
+                                            text: locals.battleOfThermopylae,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline3),
                                         TextSpan(
-                                          text: text,
+                                          text: locals.bodyText,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1,
@@ -139,8 +142,8 @@ class _MapPageState extends State<MapPage> {
                     Expanded(
                       flex: 2,
                       child: ArrowLeftTextWidget(
-                          textSubTitle: 'chapter 1',
-                          textTitle: 'nikos story',
+                          textSubTitle: locals.chapter1,
+                          textTitle: locals.nikosStory,
                           onTap: () {
                             // _scrollController.animateTo(0,
                             //     duration: const Duration(milliseconds: 50),
@@ -193,8 +196,8 @@ class _MapPageState extends State<MapPage> {
                     Expanded(
                       flex: 2,
                       child: ArrowRightTextWidget(
-                          textSubTitle: 'key people',
-                          textTitle: 'Athens, 5th century BC',
+                          textSubTitle: locals.keyPeople,
+                          textTitle: locals.athens5thCentury,
                           onTap: () {
                             // _scrollController.animateTo(
                             //     _scrollController.position.maxScrollExtent,
@@ -261,16 +264,3 @@ class _MapPageState extends State<MapPage> {
             )));
   }
 }
-
-const String text = '''
-    
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.''';
