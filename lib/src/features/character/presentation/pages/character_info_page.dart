@@ -1,11 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/theme.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
-
 import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 
@@ -96,14 +93,16 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         "Chapter 1 / Plague & Political Instability"
                                             .toUpperCase(),
                                         maxLines: 1,
-                                        style: DefaultTheme
-                                            .standard.textTheme.subtitle2,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2,
                                       ),
                                     ),
                                     Flexible(
                                       child: AutoSizeText(_selectedItem,
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline2),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2),
                                     ),
                                   ],
                                 ),
@@ -125,13 +124,15 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                           text: TextSpan(children: [
                                         TextSpan(
                                           text: '415, Battle of Thermopylae\n',
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline3,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3,
                                         ),
                                         TextSpan(
                                           text: text,
-                                          style: DefaultTheme
-                                              .standard.textTheme.bodyText1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
                                         ),
                                       ])),
                                     )
@@ -144,10 +145,11 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
                                         children: widget.listCharacters
-                                            .map((data) => yearsWidget(
-                                                name: data.name,
-                                                image: data.photo,
-                                                selected: data.name))
+                                            .map((data) =>
+                                                charactersNameListWidget(
+                                                    name: data.name,
+                                                    image: data.photo,
+                                                    selected: data.name))
                                             .toList())),
                               )
                             ],
@@ -182,7 +184,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     });
   }
 
-  Widget yearsWidget({String? name, String? selected, String? image}) {
+  Widget charactersNameListWidget(
+      {String? name, String? selected, String? image}) {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(
