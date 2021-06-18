@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'src/core/router.gr.dart';
+import 'package:history_of_adventures/router.gr.dart';
 import 'src/core/theme.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
       theme: DefaultTheme.standard,
