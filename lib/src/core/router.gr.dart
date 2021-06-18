@@ -6,18 +6,14 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
-import 'package:history_of_adventures/src/core/widgets/hero_photo_widget.dart'
-    as _i8;
-import 'package:history_of_adventures/src/features/character/presentation/pages/character_info_page.dart'
+
+import '../features/character/presentation/pages/character_info_page.dart'
     as _i5;
-import 'package:history_of_adventures/src/features/character/presentation/pages/characters_page.dart'
-    as _i4;
-import 'package:history_of_adventures/src/features/leanding/presentation/pages/leanding_page.dart'
-    as _i3;
-import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart'
-    as _i7;
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/pandemic_info.dart'
-    as _i6;
+import '../features/character/presentation/pages/characters_page.dart' as _i4;
+import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
+import '../features/map/presentation/pages/map_page.dart' as _i7;
+import '../features/pandemic_info/presentation/pages/pandemic_info.dart' as _i6;
+import 'widgets/widgets.dart' as _i8;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -25,33 +21,53 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    LeandingPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+    LeandingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i3.LeandingPage();
-        }),
-    CharacrterPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    CharacrterPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i4.CharacrterPage();
-        }),
-    CharacterInfoPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    CharacterInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<CharacterInfoPageRouteArgs>();
           return _i5.CharacterInfoPage(
               photoHero: args.photoHero, listCharacters: args.listCharacters);
-        }),
-    PandemicInfoPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    PandemicInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i6.PandemicInfoPage();
-        }),
-    MapPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideTop,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    MapPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i7.MapPage();
-        })
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false)
   };
 
   @override

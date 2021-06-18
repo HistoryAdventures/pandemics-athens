@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -8,7 +10,7 @@ import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../map/presentation/pages/map_page.dart';
 import 'character_info_page.dart';
-import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:auto_route/auto_route.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -112,33 +114,9 @@ class _CharacrterPageState extends State<CharacrterPage> {
                                 name: photo.name,
                                 photo: photo.photo,
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                      transitionDuration:
-                                          const Duration(milliseconds: 1500),
-                                      pageBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double>
-                                              secondaryAnimation) {
-                                        return CharacterInfoPage(
-                                            photoHero: photo,
-                                            listCharacters: listCharacters);
-                                      },
-                                      transitionsBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return Align(
-                                          child: FadeTransition(
-                                            opacity: animation.drive(
-                                                Tween<double>(
-                                                    begin: 0.0, end: 1.0)),
-                                            child: child,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  );
+                                  context.router.push(CharacterInfoPageRoute(
+                                      photoHero: photo,
+                                      listCharacters: listCharacters));
                                 },
                               ))
                           .toList()),
@@ -153,32 +131,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textSubTitle: locale.eventTimeline,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
-                      // _scrollController.animateTo(
-                      //     _scrollController.position.maxScrollExtent,
-                      //     duration: const Duration(milliseconds: 50),
-                      //     curve: Curves.easeIn);
-                      Navigator.of(context).push(PageRouteBuilder(
-                          transitionDuration: const Duration(seconds: 1),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0);
-                            const end = Offset.zero;
-
-                            final tween = Tween(begin: begin, end: end);
-
-                            return Align(
-                              child: SlideTransition(
-                                position: animation.drive(tween),
-                                //opacity: animation,
-                                child: child,
-                              ),
-                            );
-                          },
-                          pageBuilder: (BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation) {
-                            return const MapPage();
-                          }));
+                      context.router.pop();
                     }),
               ),
             ),

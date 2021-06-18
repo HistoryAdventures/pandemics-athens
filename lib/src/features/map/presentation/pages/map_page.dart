@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
@@ -8,6 +9,7 @@ import '../../../../core/widgets/arrow_text_right.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../character/presentation/pages/characters_page.dart';
 import '../../../leanding/presentation/pages/leanding_page.dart';
+import 'package:auto_route/auto_route.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -145,31 +147,7 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.chapter1,
                           textTitle: locals.nikosStory,
                           onTap: () {
-                            // _scrollController.animateTo(0,
-                            //     duration: const Duration(milliseconds: 50),
-                            //     curve: Curves.easeIn);
-                            Navigator.of(context).push(PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  const begin = Offset(-1.0, 0.0);
-
-                                  final tween =
-                                      Tween(begin: begin, end: Offset.zero);
-
-                                  return Align(
-                                    child: SlideTransition(
-                                      position: animation.drive(tween),
-                                      //opacity: animation,
-                                      child: child,
-                                    ),
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation) {
-                                  return const LeandingPage();
-                                }));
+                            context.router.pop();
                           }),
                     ),
                     Expanded(
@@ -199,32 +177,7 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.keyPeople,
                           textTitle: locals.athens5thCentury,
                           onTap: () {
-                            // _scrollController.animateTo(
-                            //     _scrollController.position.maxScrollExtent,
-                            //     duration: const Duration(milliseconds: 50),
-                            //     curve: Curves.easeIn);
-                            Navigator.of(context).push(PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  const begin = Offset(-1.0, 0.0);
-
-                                  final tween =
-                                      Tween(begin: begin, end: Offset.zero);
-
-                                  return Align(
-                                    child: SlideTransition(
-                                      position: animation.drive(tween),
-                                      //opacity: animation,
-                                      child: child,
-                                    ),
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation) {
-                                  return const CharacrterPage();
-                                }));
+                            context.router.push(const CharacrterPageRoute());
                           }),
                     ),
                   ],
