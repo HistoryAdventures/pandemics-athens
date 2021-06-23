@@ -1,15 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../../../character/presentation/pages/characters_page.dart';
-import '../../../leanding/presentation/pages/leanding_page.dart';
-import 'package:auto_route/auto_route.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -106,25 +105,29 @@ class _MapPageState extends State<MapPage> {
                                 ),
                                 Flexible(
                                   flex: 3,
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: locals.battleOfThermopylae,
+                                  child: Scrollbar(
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 30),
+                                        child: RichText(
+                                            text: TextSpan(children: [
+                                          TextSpan(
+                                              text: locals.battleOfThermopylae,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline3),
+                                          TextSpan(
+                                            text: locals.bodyText,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline3),
-                                        TextSpan(
-                                          text: locals.bodyText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
-                                        ),
-                                      ])),
-                                    )
-                                  ]),
+                                                .bodyText1,
+                                          ),
+                                        ])),
+                                      )
+                                    ]),
+                                  ),
                                 ),
                               ],
                             ),
@@ -153,22 +156,19 @@ class _MapPageState extends State<MapPage> {
                     Expanded(
                       flex: 4,
                       child: Container(
+                        // color: Colors.blue,
                         alignment: Alignment.bottomCenter,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
-                        child: Scrollbar(
-                          isAlwaysShown: true,
-                          controller: _scrollController,
-                          child: ListView.builder(
-                              controller: _scrollController,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 50,
-                              itemBuilder: (context, index) {
-                                return yearsWidget(
-                                    index: index, selected: 400 + index);
-                              }),
-                        ),
+                        child: ListView.builder(
+                            controller: _scrollController,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 50,
+                            itemBuilder: (context, index) {
+                              return yearsWidget(
+                                  index: index, selected: 400 + index);
+                            }),
                       ),
                     ),
                     Expanded(
@@ -198,7 +198,9 @@ class _MapPageState extends State<MapPage> {
 
   Widget yearsWidget({int? index, int? selected}) {
     return Container(
+        //padding: const EdgeInsets.only(),
         alignment: Alignment.center,
+        // color: Colors.red,
         margin: const EdgeInsets.only(
           left: 30,
         ),

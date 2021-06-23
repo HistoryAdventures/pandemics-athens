@@ -48,13 +48,9 @@ dependencies:
 
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
-
- 
-
-
-
   
-
+  #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
+  video_player: ^2.1.6
 
 dev_dependencies:
   # AutoRoute is a declartive routing solution, where everything needed for navigation is automatically generated for you.
@@ -82,6 +78,8 @@ flutter:
     - assets/icons/
     - assets/image_back/
     - assets/viruses/
+    - assets/images_quiz/
+    - assets/video/
 
   fonts:
     - family: BebasNeue

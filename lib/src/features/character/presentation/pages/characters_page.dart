@@ -1,16 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../../../map/presentation/pages/map_page.dart';
-import 'character_info_page.dart';
-import 'package:auto_route/auto_route.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -80,18 +79,21 @@ class _CharacrterPageState extends State<CharacrterPage> {
               right: 100,
               child: Container(
                 height: constraints.maxHeight * 0.1,
+                width: constraints.maxWidth * 0.1,
                 margin: EdgeInsets.only(top: constraints.maxHeight * 0.1),
                 child: Column(
                   children: [
                     Expanded(
                       child: AutoSizeText(
                         locale.athens5thCentury.toUpperCase(),
+                        maxLines: 1,
                         style: DefaultTheme.standard.textTheme.headline2,
                       ),
                     ),
                     Expanded(
                       child: AutoSizeText(
                         locale.keyPeopleAthens5thCenturyBCE.toLowerCase(),
+                        maxLines: 1,
                         style: DefaultTheme.standard.textTheme.subtitle2,
                       ),
                     )
@@ -132,6 +134,18 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textTitle: locale.athens5thCentury,
                     onTap: () {
                       context.router.pop();
+                    }),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: const EdgeInsets.only(bottom: 10, left: 24),
+                child: ArrowRightTextWidget(
+                    textSubTitle: locale.quiz,
+                    textTitle: locale.athens5thCentury,
+                    onTap: () {
+                      context.router.push(QuizPageRoute());
                     }),
               ),
             ),

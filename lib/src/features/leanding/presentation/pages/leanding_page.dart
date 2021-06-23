@@ -2,8 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart';
-
+import 'package:video_player/video_player.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
@@ -25,21 +24,67 @@ class _LeandingPageState extends State<LeandingPage> {
     super.didChangeDependencies();
   }
 
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/video/video_back.mp4');
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _initializeVideoPlayerFuture = _controller.initialize();
+    _controller.setLooping(true);
+    //_controller.initialize().then((_) => setState(() {}));
+    _controller.play();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(
       builder: (context, constraints) {
         return Stack(
           children: [
-            Container(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  image: DecorationImage(
-                      image: AssetImage(AssetsPath.leandingBackgroundImage),
-                      fit: BoxFit.cover)),
+            // Container(
+            //   width: constraints.maxWidth,
+            //   height: constraints.maxHeight,
+            //   decoration: const BoxDecoration(
+            //       color: Colors.grey,
+            //       image: DecorationImage(
+            //           image: AssetImage(AssetsPath.leandingBackgroundImage),
+            //           fit: BoxFit.cover)),
+            // ),
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: FutureBuilder(
+                    future: _initializeVideoPlayerFuture,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot) {
+                      return VideoPlayer(_controller);
+                    },
+                  ),
+                ),
+              ),
             ),
+            // Container(
+            //   // height: constraints.maxHeight,
+            //   // width: constraints.maxWidth,
+            //   child: Image.asset(
+            //     'assets/image_back/image_back.png',
+            //   ),
+            // ),
             const Positioned(
               top: 10,
               left: 10,
@@ -132,6 +177,7 @@ class _LeandingPageState extends State<LeandingPage> {
                                     color: AppColors.red, width: 8))),
                         child: AutoSizeText(
                           locales.globalPandemicName,
+                          maxLines: 1,
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
@@ -148,29 +194,6 @@ class _LeandingPageState extends State<LeandingPage> {
                 icon: const Icon(Icons.south),
                 onPressed: () {
                   context.router.push(const MapPageRoute());
-
-                  // Navigator.of(context).push(PageRouteBuilder(
-                  //     transitionDuration: const Duration(seconds: 1),
-                  //     transitionsBuilder:
-                  //         (context, animation, secondaryAnimation, child) {
-                  //       const begin = Offset(0.0, 1.0);
-                  //       const end = Offset.zero;
-
-                  //       final tween = Tween(begin: begin, end: end);
-
-                  //       return Align(
-                  //         child: SlideTransition(
-                  //           position: animation.drive(tween),
-                  //           //opacity: animation,
-                  //           child: child,
-                  //         ),
-                  //       );
-                  // },
-                  // pageBuilder: (BuildContext context,
-                  //     Animation<double> animation,
-                  //     Animation<double> secondaryAnimation) {
-                  //   return const MapPage();
-                  // }));
                 },
               ),
             ),
