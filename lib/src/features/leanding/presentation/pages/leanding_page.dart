@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widget.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -53,103 +54,24 @@ class _LeandingPageState extends State<LeandingPage> {
       builder: (context, constraints) {
         return Stack(
           children: [
-            // Container(
-            //   width: constraints.maxWidth,
-            //   height: constraints.maxHeight,
-            //   decoration: const BoxDecoration(
-            //       color: Colors.grey,
-            //       image: DecorationImage(
-            //           image: AssetImage(AssetsPath.leandingBackgroundImage),
-            //           fit: BoxFit.cover)),
-            // ),
-            SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: _controller.value.size.width,
-                  height: _controller.value.size.height,
-                  child: FutureBuilder(
-                    future: _initializeVideoPlayerFuture,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<dynamic> snapshot) {
-                      return VideoPlayer(_controller);
-                    },
-                  ),
-                ),
-              ),
-            ),
-            // Container(
-            //   // height: constraints.maxHeight,
-            //   // width: constraints.maxWidth,
-            //   child: Image.asset(
-            //     'assets/image_back/image_back.png',
-            //   ),
-            // ),
-            const Positioned(
-              top: 10,
-              left: 10,
-              child: BlobAnimation(
-                width: 100,
-                height: 100,
-              ),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 500,
-              child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(AssetsPath.blobWhiteImage1)),
-            ),
-            Positioned(
-              bottom: -150,
-              left: 300,
-              child: BlobAnimation(
-                height: constraints.maxHeight * 0.35,
-                width: constraints.maxWidth * 0.35,
-              ),
-            ),
-            Positioned(
-              bottom: 100,
-              right: 200,
-              top: 10,
-              child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(AssetsPath.blobWhiteImage2)),
-            ),
+            BackgroundWidget(),
             Positioned(
               top: 10,
-              right: 10,
+              right: constraints.maxWidth * 0.1,
               bottom: 10,
               child: BlobAnimation(
                 height: constraints.maxHeight * 0.35,
                 width: constraints.maxWidth * 0.35,
               ),
-            ),
-            Positioned(
-              bottom: 100,
-              right: constraints.maxHeight * 0.2,
-              top: 100,
-              child: SizedBox(
-                  height: constraints.maxHeight * 0.2,
-                  width: constraints.maxWidth * 0.2,
-                  child: Image.asset(AssetsPath.blobBlackImage)),
-            ),
-            Positioned(
-              bottom: 100,
-              right: 40,
-              top: 100,
-              child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(AssetsPath.blobWhiteImage1)),
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 50, horizontal: 60),
+                padding: EdgeInsets.only(
+                  top: 50,
+                  bottom: 50,
+                  left: constraints.maxWidth * 0.2,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -193,7 +115,7 @@ class _LeandingPageState extends State<LeandingPage> {
                 iconSize: 40,
                 icon: const Icon(Icons.south),
                 onPressed: () {
-                  context.router.push(const MapPageRoute());
+                  context.router.push(const GlossaryPageRoute());
                 },
               ),
             ),

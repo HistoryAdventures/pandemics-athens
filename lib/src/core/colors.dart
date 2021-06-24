@@ -36,7 +36,29 @@ abstract class AppColors {
 
   /// Deep grey
   static const Color greyDeep = Color(0xff2E2E2E);
-  
+
   // Transparent
   static const Color transpatent = Colors.transparent;
+
+  static const LinearGradient linearGradient1 = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color(0xffFFE55B),
+        Color(0xffFF9B25),
+        Color(0xffE05E00),
+        Color(0xffD13200)
+      ]);
+  static const LinearGradient linearGradient2 =
+      LinearGradient(colors: [greyDeep, greyDeep]);
+
+  static const LinearGradient linearGradientForBackground =
+      LinearGradient(colors: [
+    Color.fromRGBO(255, 255, 255, 0.1),
+    Color.fromRGBO(255, 255, 255, 0.7),
+    Color.fromRGBO(255, 255, 255, 0.7),
+    Color.fromRGBO(255, 255, 255, 0.7),
+    Color.fromRGBO(255, 255, 255, 0.7),
+    Color.fromRGBO(255, 255, 255, 0.28)
+  ]);
 }

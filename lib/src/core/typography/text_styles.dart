@@ -61,7 +61,7 @@ class AppTextStyle {
   /// Headline 5 Text Style
   static TextStyle get headline5 {
     return _baseTextStyle.copyWith(
-      fontSize: 22,
+      fontSize: 36,
       //fontWeight: AppFontWeight.medium,
     );
   }

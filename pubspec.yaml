@@ -80,6 +80,8 @@ flutter:
     - assets/viruses/
     - assets/images_quiz/
     - assets/video/
+    - assets/paralax_images/
+    - assets/background/
 
   fonts:
     - family: BebasNeue

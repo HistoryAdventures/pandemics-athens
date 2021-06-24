@@ -78,6 +78,19 @@
     "quiz": "quiz",
     "@eventTimeline": {
       "description": "quiz"
+    },
+    "glosssary": "glosssary",
+    "@eventTimeline": {
+      "description": "glosssary"
+    },
+    "sovereignty": "Sovereignty",
+    "@eventTimeline": {
+      "description": "Sovereignty"
+    },
+    "sovereigntyText": "Sovereignty refers to the full right and power of a given governing body over itself, without any interference from external bodies. Broadly speaking, it refers to a state’s supreme authority and it can have different sources. ",
+    "@eventTimeline": {
+      "description": "Sovereignty"
     }
+    
 }
 

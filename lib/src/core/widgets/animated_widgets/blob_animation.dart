@@ -28,7 +28,7 @@ class _BlobAnimationState extends State<BlobAnimation> {
   Widget build(BuildContext context) {
     if (_fullPathsOffline == null) {
       _fullPathsOffline = [];
-      for (int i = 0; i < 149; i++) {
+      for (int i = 0; i < 60; i++) {
         String _value = i.toString();
         while (_value.length < 4) {
           _value = "0$_value";
@@ -46,10 +46,9 @@ class _BlobAnimationState extends State<BlobAnimation> {
         0,
         4,
         "png",
-        40,
+        60,
         key: const Key("offline"),
         fullPaths: _fullPathsOffline,
-        // onReadyToPlay: onOfflineReadyToPlay,
         onPlaying: onOfflinePlaying,
         isBoomerang: true,
       ),
