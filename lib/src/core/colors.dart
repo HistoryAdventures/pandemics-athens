@@ -39,6 +39,8 @@ abstract class AppColors {
 
   // Transparent
   static const Color transpatent = Colors.transparent;
+  static const Color akaroaDeep = Color(0xffD8C2AB);
+  static const Color akaroa = Color(0xffdeccb8);
 
   static const LinearGradient linearGradient1 = LinearGradient(
       begin: Alignment.topLeft,

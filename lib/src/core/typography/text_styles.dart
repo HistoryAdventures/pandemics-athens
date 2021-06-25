@@ -22,7 +22,7 @@ class AppTextStyle {
   );
 
   static const _titleTextStyleLora = TextStyle(
-    fontFamily: AppFontFamily.bebasNeue,
+    fontFamily: AppFontFamily.lora,
     color: AppColors.blackB,
   );
 
@@ -69,7 +69,7 @@ class AppTextStyle {
   /// Headline 6 Text Style
   static TextStyle get headline6 {
     return _baseTextStyle.copyWith(
-      fontSize: 22,
+      fontSize: 10,
       //fontWeight: AppFontWeight.bold,
     );
   }
@@ -125,7 +125,7 @@ class AppTextStyle {
   /// Button Text Style
   static TextStyle get button {
     return _baseTextStyle.copyWith(
-      fontSize: 18,
+      fontSize: 12,
       //fontWeight: AppFontWeight.medium,
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
@@ -14,9 +16,9 @@ class GlossaryPage extends StatefulWidget {
 }
 
 class _GlossaryPageState extends State<GlossaryPage> {
-  String _selectedtItem = 'All';
+  String _selectedtItem = 'SOSovereighty';
   List<String> category = [
-    'ALHistogram Obscura',
+    'SOSovereighty',
     'SPHistogram Obscura',
     'SEHistogram Obscura',
     'AUHistogram Obscura',
@@ -58,6 +60,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
+        var diagonal = sqrt((constraints.maxHeight * constraints.maxHeight) +
+            (constraints.maxWidth * constraints.maxWidth));
         return Stack(
           children: [
             const BackgroundWidget(),
@@ -68,7 +72,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 iconSize: 40,
                 icon: const Icon(Icons.south),
                 onPressed: () {
-                  context.router.push(GlossaryPageRoute());
+                  context.router.push(const ParalaxHistoryPageRoute());
                 },
               ),
             ),
@@ -105,65 +109,65 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 )),
             Align(
               child: Container(
-                width: constraints.maxWidth * 0.5,
+                margin: EdgeInsets.symmetric(
+                    horizontal: constraints.maxWidth * 0.1),
+                width: constraints.maxWidth * 0.9,
                 height: constraints.maxHeight * 0.4,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: AppColors.linearGradientForBackground),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: constraints.maxWidth * 0.05),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Flexible(
-                                    child: AutoSizeText(
-                                  locales.sovereignty,
-                                  style: Theme.of(context).textTheme.headline5,
-                                )),
-                              ),
-                              Flexible(
-                                  child: AutoSizeText(
-                                locales.sovereigntyText,
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ))
-                            ],
-                          ),
+                decoration: const BoxDecoration(
+                    gradient: AppColors.linearGradientForBackground),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Container(
+                        padding:
+                            EdgeInsets.only(left: constraints.maxWidth * 0.05),
+                        width: constraints.maxWidth * 0.4,
+                        height: constraints.maxHeight * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                                child: AutoSizeText(
+                              locales.sovereignty,
+                              maxLines: 1,
+                              style: Theme.of(context).textTheme.headline5,
+                            )),
+                            Flexible(
+                                child: AutoSizeText(
+                              locales.sovereigntyText,
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ))
+                          ],
                         ),
                       ),
-                      Container(
-                        // flex: 2,
-                        child: Container(
-                          height: constraints.maxHeight * 0.4,
-                          width: constraints.maxHeight * 0.4,
-                          child: GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                                    maxCrossAxisExtent:
-                                        constraints.maxHeight * 0.4 / 5,
-                                    childAspectRatio: 1,
-                                    crossAxisSpacing: 1,
-                                    mainAxisSpacing: 1),
-                            itemCount: 25,
-                            itemBuilder: (context, index) {
-                              return gridViewCard(
-                                  name: category[index],
-                                  category: category[index]);
-                            },
-                          ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        height: constraints.maxHeight * 0.5,
+                        width: constraints.maxHeight * 0.5,
+                        child: GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent:
+                                      constraints.maxHeight * 0.5 / 5,
+                                  crossAxisSpacing: 1,
+                                  mainAxisSpacing: 1),
+                          itemCount: 25,
+                          itemBuilder: (context, index) {
+                            return gridViewCard(
+                                height: constraints.maxHeight * 0.4,
+                                width: constraints.maxHeight * 0.4,
+                                name: category[index],
+                                category: category[index]);
+                          },
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -173,52 +177,54 @@ class _GlossaryPageState extends State<GlossaryPage> {
     );
   }
 
-  void selectedItem({required String cardTitele}) {
+  void selectedItem({
+    required String cardTitele,
+  }) {
     setState(() {
       _selectedtItem = cardTitele;
     });
   }
 
-  Widget gridViewCard({required String name, required String category}) {
+  Widget gridViewCard(
+      {required String name,
+      required String category,
+      required double height,
+      required double width}) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       onTap: () {
         selectedItem(cardTitele: name);
-        //print(name);
       },
       child: Container(
-        alignment: Alignment.center,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.3),
             gradient: _selectedtItem == name
                 ? AppColors.linearGradient1
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),
-        child: SizedBox(
-          //height: 50,
-          child: Column(
-            children: [
-              Flexible(
-                child: AutoSizeText(category.substring(0, 2),
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2
-                        ?.copyWith(color: AppColors.white)),
-              ),
-              Flexible(
-                child: AutoSizeText(
-                  category.substring(2),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Flexible(
+              child: AutoSizeText(category.substring(0, 2),
+                  maxLines: 1,
                   style: Theme.of(context)
                       .textTheme
-                      .button
-                      ?.copyWith(color: AppColors.white),
-                ),
-              ),
-            ],
-          ),
+                      .headline2
+                      ?.copyWith(color: AppColors.white)),
+            ),
+            Flexible(
+              child: AutoSizeText(category.substring(2).toUpperCase(),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: AppColors.white)),
+            ),
+          ],
         ),
       ),
     );

@@ -14,10 +14,11 @@ import '../features/glossary/presentation/pages/glossary_page.dart' as _i10;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
 import '../features/pandemic_info/presentation/pages/pandemic_info.dart' as _i6;
+import '../features/panorama/prezentation/pages/panaroma_page.dart' as _i11;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
     as _i9;
 import '../features/quiz/presentation/pages/quiz_page.dart' as _i8;
-import 'widgets/hero_photo_widget.dart' as _i11;
+import 'widgets/hero_photo_widget.dart' as _i12;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -98,6 +99,15 @@ class FlutterRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 800,
         opaque: true,
+        barrierDismissible: false),
+    PanaromaPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i11.PanaromaPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        durationInMilliseconds: 800,
+        opaque: true,
         barrierDismissible: false)
   };
 
@@ -113,7 +123,9 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
-        _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page')
+        _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
+        _i1.RouteConfig(PanaromaPageRoute.name, path: '/panaroma-page'),
+        _i1.RouteConfig(PandemicInfoPageRoute.name, path: '/pandemic-info-page')
       ];
 }
 
@@ -132,8 +144,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i11.CharacterModel photoHero,
-      required List<_i11.CharacterModel> listCharacters})
+      {required _i12.CharacterModel photoHero,
+      required List<_i12.CharacterModel> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -146,9 +158,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i11.CharacterModel photoHero;
+  final _i12.CharacterModel photoHero;
 
-  final List<_i11.CharacterModel> listCharacters;
+  final List<_i12.CharacterModel> listCharacters;
 }
 
 class PandemicInfoPageRoute extends _i1.PageRouteInfo {
@@ -179,4 +191,10 @@ class GlossaryPageRoute extends _i1.PageRouteInfo {
   const GlossaryPageRoute() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageRoute';
+}
+
+class PanaromaPageRoute extends _i1.PageRouteInfo {
+  const PanaromaPageRoute() : super(name, path: '/panaroma-page');
+
+  static const String name = 'PanaromaPageRoute';
 }
