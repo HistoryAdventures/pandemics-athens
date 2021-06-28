@@ -33,19 +33,25 @@ class ArrowLeftTextWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              AutoSizeText(
-                textTitle.toUpperCase(),
-                maxLines: 1,
-                style:
-                    Theme.of(context).textTheme.caption?.copyWith(fontSize: 14),
+              Flexible(
+                child: AutoSizeText(
+                  textTitle.toUpperCase(),
+                  maxLines: 1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .caption
+                      ?.copyWith(fontSize: 14),
+                ),
               ),
-              AutoSizeText(
-                textSubTitle.toUpperCase(),
-                maxLines: 1,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline2
-                    ?.copyWith(fontSize: 26),
+              Flexible(
+                child: AutoSizeText(
+                  textSubTitle.toUpperCase(),
+                  maxLines: 1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      ?.copyWith(fontSize: 26),
+                ),
               )
             ],
           ),

@@ -21,7 +21,7 @@ class _DraggableAdvancedWidgetState extends State<DraggableAdvancedWidget> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Container(
+        body: SizedBox(
           // color: Colors.black,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -100,7 +100,7 @@ class _DraggableAdvancedWidgetState extends State<DraggableAdvancedWidget> {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 24,
             fontWeight: FontWeight.bold,

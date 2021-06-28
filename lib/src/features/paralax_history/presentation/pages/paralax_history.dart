@@ -3,10 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/panorama/prezentation/pages/panaroma_page.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_left.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_right.dart';
 
@@ -213,7 +210,7 @@ class ParallaxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: top,
-      child: Container(
+      child: SizedBox(
         height: height,
         width: width,
         child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),

@@ -17,7 +17,7 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             questionData[index].question as String,
             style: Theme.of(context).textTheme.caption,
@@ -52,7 +52,7 @@ class QuizImage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             questionData[index].question as String,
             style: Theme.of(context).textTheme.caption,

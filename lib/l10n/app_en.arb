@@ -23,9 +23,9 @@
     "@battleOfThermopylae": {
       "description": "415, Battle of Thermopylae\n"
     },
-    "chapter1": "chapter 1",
+    "chapter1": "Chapter 1",
     "@chapter1": {
-      "description": "chapter 1"
+      "description": "Chapter 1"
     },
     "keyPeople": "key people",
     "@keyPeople": {
@@ -110,7 +110,88 @@
     "panaromaInfoDialogText": "Would it not do more harm than good to let this man live? Nikos reasoned with himself. While his teacher had been clear that “to do no harm” meant to do no harm to the man’s physical body, Nikos found himself more compelled by the condition of the dying man’s spirit. He would do as Calyx asked.“Would you like to say goodbye to your wife?” Nikos whispered.“No, do it before she returns,” Calyx confirmed. Nikos couldn’t look at what he was doing as he held the flailing man under the bath water. Moments after the aristocrat's movement stopped, Eleni walked in to see her husband dead in the bath.“He succumbed to his condition. There was nothing I could do.” Nikos hoped the widow believed him. Eleni just nodded and Nikos left the woman to mourn her husband.",
     "@todoNoHarm": {
       "panaromaInfoDialogText": "panaromaInfoDialogText"
+    },
+    "chapter1Pathogenprofile": "Chapter 1 / Pathogen Profile",
+    "@todoNoHarm": {
+      "chapter1Pathogenprofile": "chapter1Pathogenprofile"
+    },
+    "whereDidItComeFrom": "where did it come from?",
+    "@whereDidItComeFrom": {
+      "whereDidItComeFrom": "whereDidItComeFrom"
+    },
+    "whereDidItComeFromBodyText": "“Rising in lands of Aegypt, traversing reaches of air and floating fields of foam...” – Lucretius’ poem de rerum natura (a later, 1st century Roman/Latin poem gives an account of the plague and its symptoms, which might be quite good to use here to illustrate the map etc) \n\nThe Athenian hegemony in the 5th century BC, there power and influence in the Greek world, was based on their naval power. Much as the Spartan armies on land were a match for almost anyone, at sea, the Athenian navy was just as formidable.\n\n“It first began, it is said, in the parts of Ethiopia above Egypt, and thence descended into Egypt and Libya... Suddenly falling upon Athens, it first attacked the population in Piraeus – which was the occasion of the rumours that the Peloponnesians had poisoned the reservoirs – and afterwards appeared in the upper city, when the deaths became much more frequent...” (Thucydides, History of the Peloponnesian War).\n\nTo read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative...\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, and became the ideal environment for disease to spread.",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "pathogenProfile": "pathogen profile",
+    "@pathogenProfile": {
+      "pathogenProfile": "pathogen profile"
+    },
+    "whatDidItDo": "what did it do?",
+    "@whatDidItDo": {
+      "whatDidItDo": "whatDidItDo"
+    },
+    "pathogenProfileText": "Within just two years of the Peloponnesian War beginning in 431 BC, the city was gripped by a plague that devastated the population. In a city that prided itself on its democracy – the basic equality of its citizens – it soon became apparent that there was nothing more democratic than the disease that was striking through the polis. Rich or poor, man or woman, slave or free, it hardly mattered; no one was safe from this pestilence.\n\nHistorians are fortunate to have the vivid account of the plague that is preserved in Thucydides’ historical narrative and some archaeological remains to try to piece together what happened in the four brief years that the city suffered from the plague. For example, archaeologists have uncovered mass burial pits in Athens, a grim reminder of how deadly this plague was. The use of modern DNA testing on the teeth recovered from these long-dead victims of the disease led a team of researchers to claim that the plague was an outbreak of Typhoid fever. However, another team of scientists later challenged these results...\n\nIt remains unlikely historians will ever know exactly what the awful disease that fell upon Athens at this time really was. Nevertheless, by exploring what is known of the origins and symptoms of the plague, we can begin to build a case for and against a line-up of suspects...",
+    "@pathogenProfileText": {
+      "pathogenProfileText": "pathogenProfileText"
+    },
+    "bodyIntro": "intro",
+    "@bodyIntro": {
+      "bodyIntro": "bodyIntro"
+    },
+    "bodyHead": "head",
+    "@bodyHead": {
+      "bodyHead": "bodyHead"
+    },
+    "bodyThroat": "throat",
+    "@bodyThroat": {
+      "bodyThroat": "bodyThroat"
+    },
+    "bodyCheast": "chest",
+    "@bodyCheast": {
+      "bodyCheast": "bodyCheast"
+    },
+    "bodySkin": "skin",
+    "@bodySkin": {
+      "bodySkin": "bodySkin"
+    },
+    "bodyStomach": "stomach",
+    "@bodyStomach": {
+      "bodyStomach": "bodyStomach"
+    },
+    "bodyhands": "hands",
+    "@bodyhands": {
+      "bodyhands": "bodyhands"
+    },
+    "whatWasIt": "what was it?",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "introVirus": "intro",
+    "@introVirus": {
+      "introVirus": "introVirus"
+    },
+    "bubonicPlague": "bubonic plague",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "typhus": "typhus",
+    "@typhus": {
+      "typhus": "typhus"
+    },
+    "typhiod": "typhiod",
+    "@typhiod": {
+      "typhiod": "typhiod"
+    },
+    "smallpox": "smallpox",
+    "@smallpox": {
+      "smallpox": "smallpox"
+    },
+    "ebola": "ebola",
+    "@ebola": {
+      "ebola": "ebola"
     }
     
     
 }
+

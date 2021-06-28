@@ -130,7 +130,7 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
             flex: 3,
             child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 controller: _pageController,
                 itemCount: quizes.length,
@@ -153,7 +153,6 @@ class _QuizPageState extends State<QuizPage> {
                   }
                 })),
         Expanded(
-          flex: 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -162,13 +161,15 @@ class _QuizPageState extends State<QuizPage> {
                 child: IconButton(
                     onPressed: () {
                       _pageController.previousPage(
-                          duration: Duration(seconds: 1), curve: Curves.easeIn);
-                      if (mounted)
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.easeIn);
+                      if (mounted) {
                         setState(() {
                           questionindex--;
                         });
+                      }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_upward,
                       color: Colors.black,
                     )),
@@ -178,13 +179,15 @@ class _QuizPageState extends State<QuizPage> {
                 child: IconButton(
                     onPressed: () {
                       _pageController.nextPage(
-                          duration: Duration(seconds: 1), curve: Curves.easeIn);
-                      if (mounted)
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.easeIn);
+                      if (mounted) {
                         setState(() {
                           questionindex++;
                         });
+                      }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_downward,
                       color: Colors.black,
                     )),
@@ -193,20 +196,19 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         Expanded(
-            flex: 1,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  child: Text("Cheak Answers"),
-                  onPressed: () {
-                    print(_countResult);
-                    print(rightAnswers.length * 100 / quizes.length);
-                  },
-                ),
-                Text("Score::$_countResult%")
-              ],
-            ))
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                //print(_countResult);
+                //print(rightAnswers.length * 100 / quizes.length);
+              },
+              child: const Text("Cheak Answers"),
+            ),
+            Text("Score::$_countResult%")
+          ],
+        ))
       ],
     );
   }

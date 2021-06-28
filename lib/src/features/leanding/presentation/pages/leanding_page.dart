@@ -7,7 +7,6 @@ import 'package:video_player/video_player.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
-import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/blob_animation.dart';
 
 class LeandingPage extends StatefulWidget {
@@ -54,7 +53,7 @@ class _LeandingPageState extends State<LeandingPage> {
       builder: (context, constraints) {
         return Stack(
           children: [
-            BackgroundWidget(),
+            const BackgroundWidget(),
             Positioned(
               top: 10,
               right: constraints.maxWidth * 0.1,

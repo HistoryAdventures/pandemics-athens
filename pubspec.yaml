@@ -89,6 +89,12 @@ flutter:
     - assets/video/
     - assets/paralax_images/
     - assets/background/
+    - assets/man_body/
+    - assets/ebola/
+    - assets/plague/
+    - assets/smallpox/
+    - assets/typhus/
+    - assets/typoid/
     - assets/panorama_image2.png
 
   fonts:

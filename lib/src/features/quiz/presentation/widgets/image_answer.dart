@@ -14,25 +14,24 @@ class ImageAnswer extends StatelessWidget {
     return InkWell(
       onTap: () => onChangeAnswer(isCorrect),
       child: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.symmetric(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(
           horizontal: 50,
           vertical: 5,
         ),
         width: double.infinity,
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black, blurRadius: 10, offset: Offset(1, 1)),
+          boxShadow: const [
+            BoxShadow(blurRadius: 10, offset: Offset(1, 1)),
           ],
           borderRadius: BorderRadius.circular(30),
-          gradient: LinearGradient(colors: [
+          gradient: const LinearGradient(colors: [
             Color(0xFF5337ff),
             Color(0xFF8131ff),
             Color(0xFFbd27ff),
           ]),
         ),
-        child: Container(
+        child: SizedBox(
           height: 100,
           width: 100,
           child: Image.asset(

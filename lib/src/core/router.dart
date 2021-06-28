@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:history_of_adventures/src/features/glossary/presentation/pages/glossary_page.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/body_info_page.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/pathogen_profile_page.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/virus_loc_page.dart';
 import 'package:history_of_adventures/src/features/panorama/prezentation/pages/panaroma_page.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/pages/paralax_history.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/pages/quiz_page.dart';
@@ -7,7 +10,7 @@ import '../features/character/presentation/pages/character_info_page.dart';
 import '../features/character/presentation/pages/characters_page.dart';
 import '../features/leanding/presentation/pages/leanding_page.dart';
 import '../features/map/presentation/pages/map_page.dart';
-import '../features/pandemic_info/presentation/pages/pandemic_info.dart';
+import '../features/pandemic_info/presentation/pages/viruses_info_page.dart';
 
 @CustomAutoRouter(
     transitionsBuilder: TransitionsBuilders.slideBottom,
@@ -16,12 +19,16 @@ import '../features/pandemic_info/presentation/pages/pandemic_info.dart';
       AutoRoute(page: LeandingPage, initial: true),
       AutoRoute(page: CharacrterPage),
       AutoRoute(page: CharacterInfoPage),
-      AutoRoute(page: PandemicInfoPage),
+      AutoRoute(page: VirusesInfoPage),
       AutoRoute(page: MapPage),
       AutoRoute(page: QuizPage),
       AutoRoute(page: ParalaxHistoryPage),
       AutoRoute(page: GlossaryPage),
       AutoRoute(page: PanaromaPage),
-      AutoRoute(page: PandemicInfoPage)
+      AutoRoute(
+        page: PathogenProfilePage,
+      ),
+      AutoRoute(page: BodyInfoPage),
+      AutoRoute(page: VirusLocationPage)
     ])
 class $FlutterRouter {}

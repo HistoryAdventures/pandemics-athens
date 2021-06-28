@@ -92,7 +92,7 @@ class PulsePainter extends CustomPainter {
     final area = circleSize * circleSize;
     final radius1 = sqrt(area * _animation.value * 3);
     final radius2 = sqrt(area * _animation.value * 5);
-    final opacity = (1.0 - (_animation.value).clamp(0.0, 1.0));
+    final opacity = 1.0 - (_animation.value).clamp(0.0, 1.0);
     final paint1 = Paint()
       ..color = Colors.white
       ..strokeWidth = 3

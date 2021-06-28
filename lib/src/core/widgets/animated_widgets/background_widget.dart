@@ -63,38 +63,13 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                 ),
               ),
             ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(AssetsPath.blobWhiteImage1)),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 500,
-              child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(AssetsPath.blobWhiteImage1)),
-            ),
-            Positioned(
-              bottom: 100,
-              left: 300,
-              top: 100,
-              child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(AssetsPath.blobWhiteImage2)),
-            ),
-            Positioned(
-              bottom: 100,
-              left: 40,
-              child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(AssetsPath.blobWhiteImage1)),
+            Container(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(AssetsPath.spheresBackImage),
+                      fit: BoxFit.cover)),
             ),
           ],
         );

@@ -145,7 +145,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textSubTitle: locale.quiz,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
-                      context.router.push(QuizPageRoute());
+                      context.router.push(const QuizPageRoute());
                     }),
               ),
             ),

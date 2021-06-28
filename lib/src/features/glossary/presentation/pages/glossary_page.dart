@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
@@ -60,8 +58,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
-        var diagonal = sqrt((constraints.maxHeight * constraints.maxHeight) +
-            (constraints.maxWidth * constraints.maxWidth));
+        // final diagonal = sqrt((constraints.maxHeight * constraints.maxHeight) +
+        //     (constraints.maxWidth * constraints.maxWidth));
         return Stack(
           children: [
             const BackgroundWidget(),
@@ -112,12 +110,11 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 margin: EdgeInsets.symmetric(
                     horizontal: constraints.maxWidth * 0.1),
                 width: constraints.maxWidth * 0.9,
-                height: constraints.maxHeight * 0.4,
+                height: constraints.maxHeight * 0.5,
                 decoration: const BoxDecoration(
                     gradient: AppColors.linearGradientForBackground),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Flexible(
                       child: Container(
@@ -133,11 +130,13 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                 child: AutoSizeText(
                               locales.sovereignty,
                               maxLines: 1,
+                              minFontSize: 5,
                               style: Theme.of(context).textTheme.headline5,
                             )),
                             Flexible(
                                 child: AutoSizeText(
                               locales.sovereigntyText,
+                              minFontSize: 5,
                               style: Theme.of(context).textTheme.bodyText1,
                             ))
                           ],
@@ -145,11 +144,11 @@ class _GlossaryPageState extends State<GlossaryPage> {
                       ),
                     ),
                     Flexible(
-                      child: Container(
+                      child: SizedBox(
                         height: constraints.maxHeight * 0.5,
                         width: constraints.maxHeight * 0.5,
                         child: GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
                                   maxCrossAxisExtent:
@@ -159,8 +158,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
                           itemCount: 25,
                           itemBuilder: (context, index) {
                             return gridViewCard(
-                                height: constraints.maxHeight * 0.4,
-                                width: constraints.maxHeight * 0.4,
                                 name: category[index],
                                 category: category[index]);
                           },
@@ -185,19 +182,16 @@ class _GlossaryPageState extends State<GlossaryPage> {
     });
   }
 
-  Widget gridViewCard(
-      {required String name,
-      required String category,
-      required double height,
-      required double width}) {
+  Widget gridViewCard({
+    required String name,
+    required String category,
+  }) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       onTap: () {
         selectedItem(cardTitele: name);
       },
       child: Container(
-        height: height,
-        width: width,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.3),
             gradient: _selectedtItem == name
@@ -205,11 +199,11 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Flexible(
               child: AutoSizeText(category.substring(0, 2),
                   maxLines: 1,
+                  minFontSize: 5,
                   style: Theme.of(context)
                       .textTheme
                       .headline2
@@ -217,7 +211,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
             ),
             Flexible(
               child: AutoSizeText(category.substring(2).toUpperCase(),
-                  maxLines: 2,
+                  maxLines: category.allMatches(" ").length == 1 ? 1 : 2,
+                  minFontSize: 5,
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme

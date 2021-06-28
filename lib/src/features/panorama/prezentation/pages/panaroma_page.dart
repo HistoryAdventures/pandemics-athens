@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:auto_route/auto_route.dart';
@@ -26,18 +28,16 @@ class _PanaromaPageState extends State<PanaromaPage>
   bool isLoading = false;
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
-  var begin = Offset(0.0, -1.0);
-  var end = Offset.zero;
-  var curve = Curves.easeInBack;
-  var backgroundplayer = AudioPlayer();
-  var openInfoPlayer = AudioPlayer();
-  var backgroundSound;
-  var openInfoSoundFirst;
+  final begin = const Offset(0.0, -1.0);
+  final end = Offset.zero;
+  final curve = Curves.easeInBack;
+  final backgroundplayer = AudioPlayer();
+  final openInfoPlayer = AudioPlayer();
+  dynamic backgroundSound;
+  dynamic openInfoSoundFirst;
   int infoListIndex = 0;
   List<InfoDialogModel> infoList = [
     InfoDialogModel(
-      title: "locals.globalPandemicName",
-      image: "assets/info_image1.jpg",
       latitude: -15.0,
       longitude: 55.0,
       width: 90,
@@ -70,7 +70,7 @@ class _PanaromaPageState extends State<PanaromaPage>
   ];
 
   void openLoading() {
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       setState(() {
         isLoading = true;
         isSoundOn = true;
@@ -79,30 +79,17 @@ class _PanaromaPageState extends State<PanaromaPage>
     });
   }
 
-  void setSounds() async {
-    backgroundSound =
-        await backgroundplayer.setAsset('assets/Luis_Ambience.m4a');
-    openInfoSoundFirst =
-        await openInfoPlayer.setAsset('assets/Luis_NativesWeak.m4a');
-    await backgroundplayer.setLoopMode(LoopMode.one);
-  }
-
-  double _lon = 0;
-  double _lat = 0;
-  double _tilt = 0;
-  int _panoId = 0;
-
-  // void onViewChanged(longitude, latitude, tilt) {
-  //   setState(() {
-  //     _lon = longitude;
-  //     _lat = latitude;
-  //     _tilt = tilt;
-
-  //   });
+  // void setSounds() async {
+  //   backgroundSound =
+  //       await backgroundplayer.setAsset('assets/Luis_Ambience.m4a');
+  //   openInfoSoundFirst =
+  //       await openInfoPlayer.setAsset('assets/Luis_NativesWeak.m4a');
+  //   await backgroundplayer.setLoopMode(LoopMode.one);
   // }
+
   @override
   void initState() {
-    setSounds();
+    // setSounds();
     openLoading();
     super.initState();
   }
@@ -115,15 +102,6 @@ class _PanaromaPageState extends State<PanaromaPage>
 
   @override
   Widget build(BuildContext context) {
-    var begin = Offset(0.0, -1.0);
-    var end = Offset.zero;
-    var curve = Curves.easeInBack;
-
-    var tween = Tween(begin: begin, end: end);
-    // var curvedAnimation = CurvedAnimation(
-    //   parent: animation,
-    //   curve: curve,
-    // );
     return Scaffold(
       body: (isLoading || isSoundOn)
           ? _body()
@@ -132,9 +110,9 @@ class _PanaromaPageState extends State<PanaromaPage>
               color: Colors.black,
               child: Center(
                 child: PulsingWidget(
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   tween: Tween(end: 0.25, begin: 1.5),
-                  child: Text(
+                  child: const Text(
                     "Loading...",
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
@@ -151,7 +129,6 @@ class _PanaromaPageState extends State<PanaromaPage>
           //sanimSpeed: 0.0,
           //sensorControl: SensorControl.Orientation,
           // onViewChanged: onViewChanged,
-          child: Image.asset('assets/panorama_image2.png'),
           hotspots: infoList.map((info) {
             return Hotspot(
               height: info.height,
@@ -159,9 +136,9 @@ class _PanaromaPageState extends State<PanaromaPage>
               latitude: info.latitude,
               longitude: info.longitude,
               widget: hotspotButton(
-                  icon: AnimatedPulse(
+                  icon: const AnimatedPulse(
                     pulseDuration: Duration(seconds: 3),
-                    child: Container(
+                    child: SizedBox(
                       height: 30,
                       width: 30,
                     ),
@@ -169,7 +146,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                   onPressed: () {
                     setState(() {
                       openInfoPlayer.play();
-                      print("object");
+                      //print("object");
                     });
                     showGeneralDialog(
                         context: context,
@@ -186,7 +163,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                             child: SlideTransition(
                               position: animation.drive(tween),
                               //opacity: animation,
-                              child: Container(
+                              child: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: MediaQuery.of(context).size.width * 0.3,
                                 child: Scaffold(
@@ -236,15 +213,16 @@ class _PanaromaPageState extends State<PanaromaPage>
                             ),
                           );
                         },
-                        transitionDuration: Duration(milliseconds: 200),
+                        transitionDuration: const Duration(milliseconds: 200),
                         barrierDismissible: true,
                         barrierLabel: '',
                         pageBuilder: (context, animation1, animation2) {
-                          return null!;
+                          return Container();
                         });
                   }),
             );
           }).toList(),
+          child: Image.asset('assets/panorama_image2.png'),
         ),
         GestureDetector(
           onTap: isSoundOn
@@ -261,7 +239,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                   });
                 },
           child: Container(
-              margin: EdgeInsets.only(left: 50, top: 50),
+              margin: const EdgeInsets.only(left: 50, top: 50),
               child: Icon(
                 isSoundOn ? Icons.volume_up : Icons.volume_mute,
                 size: 40,
@@ -279,6 +257,15 @@ class _PanaromaPageState extends State<PanaromaPage>
                   context.router.pop();
                 }),
           ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Clickable(
+            onPressed: () {
+              context.router.push(const PathogenProfilePageRoute());
+            },
+            child: Image.asset(AssetsPath.arrowDounImage),
+          ),
         )
       ],
     );
@@ -290,36 +277,34 @@ class _PanaromaPageState extends State<PanaromaPage>
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Clickable(
-            child: icon,
-            onPressed: () {
-              onPressed();
-            }),
-        text != null
-            ? Container(
-                padding: EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                    //color: Colors.black38,
-                    borderRadius: BorderRadius.all(Radius.circular(4))),
-                child: Center(child: Text(text)),
-              )
-            : Container(),
+          onPressed: () {
+            onPressed();
+          },
+          child: icon,
+        ),
+        if (text != null)
+          Container(
+            padding: const EdgeInsets.all(4.0),
+            decoration: const BoxDecoration(
+                //color: Colors.black38,
+                borderRadius: BorderRadius.all(Radius.circular(4))),
+            child: Center(child: Text(text)),
+          )
+        else
+          Container(),
       ],
     );
   }
 }
 
 class InfoDialogModel {
-  String image;
-  String title;
   double latitude;
   double longitude;
   double height;
   double width;
 
   InfoDialogModel(
-      {required this.image,
-      required this.title,
-      required this.latitude,
+      {required this.latitude,
       required this.longitude,
       required this.height,
       required this.width});

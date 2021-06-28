@@ -39,7 +39,6 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
@@ -53,7 +52,7 @@ class _MapPageState extends State<MapPage> {
                       fit: BoxFit.cover)),
             ),
             Positioned(
-                top: size.height * 0.09,
+                top: constraints.maxHeight * 0.09,
                 right: 0,
                 bottom: 150,
                 child: Container(
