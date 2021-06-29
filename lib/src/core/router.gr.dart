@@ -162,7 +162,7 @@ class FlutterRouter extends _i1.RootStackRouter {
             path: '/pathogen-profile-page'),
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
-            path: '/viruslocation-page')
+            path: '/virus-location-page')
       ];
 }
 
@@ -250,7 +250,7 @@ class BodyInfoPageRoute extends _i1.PageRouteInfo {
 }
 
 class VirusLocationPageRoute extends _i1.PageRouteInfo {
-  const VirusLocationPageRoute() : super(name, path: '/viruslocation-page');
+  const VirusLocationPageRoute() : super(name, path: '/virus-location-page');
 
-  static const String name = 'ViruslocationPageRoute';
+  static const String name = 'VirusLocationPageRoute';
 }

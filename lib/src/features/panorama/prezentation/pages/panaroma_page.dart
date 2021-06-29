@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
@@ -158,57 +159,142 @@ class _PanaromaPageState extends State<PanaromaPage>
                           const begin = Offset(-1.0, -1.0);
                           const end = Offset.zero;
                           final tween = Tween(begin: begin, end: end);
-                          return Align(
-                            alignment: Alignment.centerLeft,
-                            child: SlideTransition(
-                              position: animation.drive(tween),
-                              //opacity: animation,
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                height: MediaQuery.of(context).size.width * 0.3,
-                                child: Scaffold(
-                                    backgroundColor:
-                                        AppColors.blackG.withOpacity(0.75),
-                                    body: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, left: 20, right: 20),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+
+                          return LayoutBuilder(
+                            builder: (context, constraints) => Align(
+                              child: SlideTransition(
+                                position: animation.drive(tween),
+                                child: Container(
+                                  width: constraints.maxWidth,
+                                  height: constraints.maxHeight,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: constraints.maxWidth * 0.15,
+                                      vertical: constraints.maxHeight * 0.2),
+                                  child: Scaffold(
+                                      backgroundColor:
+                                          AppColors.white.withOpacity(0.75),
+                                      body: Container(
+                                        margin: const EdgeInsets.all(24),
+                                        // height: constraints.maxHeight * 0.6,
+                                        // width: constraints.maxWidth * 0.6,
+                                        child: Row(
                                           children: [
-                                            Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        openInfoPlayer.stop();
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      });
-                                                    },
-                                                    child: const Icon(
-                                                      Icons.close,
-                                                      size: 30,
-                                                      color: Colors.white,
-                                                    ))),
                                             Expanded(
-                                              flex: 2,
-                                              child: ListView(
-                                                children: [
-                                                  Text(
-                                                    locals
-                                                        .panaromaInfoDialogText,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText2
-                                                        ?.copyWith(
-                                                            color: AppColors
-                                                                .white),
-                                                  )
-                                                ],
+                                                child: SizedBox(
+                                              height: constraints.maxHeight,
+                                              child: Image.asset(
+                                                'assets/image_back/image_71.png',
+                                                fit: BoxFit.cover,
                                               ),
-                                            ),
+                                            )),
+                                            Expanded(
+                                                flex: 2,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 4,
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Flexible(
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      locals
+                                                                          .chapter1Name
+                                                                          .toUpperCase(),
+                                                                      maxLines:
+                                                                          1,
+                                                                      minFontSize:
+                                                                          5,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .headline2,
+                                                                    ),
+                                                                  ),
+                                                                  Flexible(
+                                                                    child: AutoSizeText(
+                                                                        locals
+                                                                            .chapter1Name,
+                                                                        minFontSize:
+                                                                            5,
+                                                                        maxLines:
+                                                                            1,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .subtitle2),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: IconButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  icon: Icon(Icons
+                                                                      .clear)),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Flexible(
+                                                        flex: 3,
+                                                        child: Scrollbar(
+                                                          child: ListView(
+                                                              shrinkWrap: true,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 8.0,
+                                                                      right:
+                                                                          30),
+                                                                  child:
+                                                                      RichText(
+                                                                          text: TextSpan(
+                                                                              children: [
+                                                                        TextSpan(
+                                                                            text:
+                                                                                locals.battleOfThermopylae,
+                                                                            style: Theme.of(context).textTheme.headline3),
+                                                                        TextSpan(
+                                                                          text:
+                                                                              locals.bodyText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyText1,
+                                                                        ),
+                                                                      ])),
+                                                                )
+                                                              ]),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
                                           ],
-                                        ))),
+                                        ),
+                                      )),
+                                ),
                               ),
                             ),
                           );
@@ -223,6 +309,33 @@ class _PanaromaPageState extends State<PanaromaPage>
             );
           }).toList(),
           child: Image.asset('assets/panorama_image2.png'),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.06,
+                top: MediaQuery.of(context).size.height * 0.25,
+                bottom: MediaQuery.of(context).size.height * 0.25,
+                right: MediaQuery.of(context).size.width * 0.4),
+            child: Scaffold(
+                backgroundColor: AppColors.blackG.withOpacity(0.75),
+                body: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: ListView(
+                      children: [
+                        Text(
+                          locals.panaromaInfoDialogText,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.white),
+                        )
+                      ],
+                    ))),
+          ),
         ),
         GestureDetector(
           onTap: isSoundOn
