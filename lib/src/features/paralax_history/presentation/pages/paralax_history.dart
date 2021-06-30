@@ -93,14 +93,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _paralaxTextOpasyty1 = 0;
         }
-        if (_scrollController.offset > rateTen &&
+        if (_scrollController.offset > rateTen - 500 &&
             _scrollController.offset < rateTen + 1000) {
           _paralaxTextOpasyty2 = 1;
         } else {
           _paralaxTextOpasyty2 = 0;
         }
-        if (_scrollController.offset > rateTen + 2000 &&
-            _scrollController.offset < rateTen + 3300) {
+        if (_scrollController.offset > rateTen + 1400 &&
+            _scrollController.offset < rateTen + 3000) {
           _paralaxTextOpasyty3 = 1;
           setState(() {
             _visibility = false;
@@ -108,14 +108,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _paralaxTextOpasyty3 = 0;
         }
-        if (_scrollController.offset > rateTen + 5100 &&
-            _scrollController.offset < rateTen + 5700) {
+        if (_scrollController.offset > rateTen + 4800 &&
+            _scrollController.offset < rateTen + 5400) {
           _paralaxTextOpasyty4 = 1;
         } else {
           _paralaxTextOpasyty4 = 0;
         }
-        if (_scrollController.offset > rateTen + 8000 &&
-            _scrollController.offset < rateTen + 8700) {
+        if (_scrollController.offset > rateTen + 7400 &&
+            _scrollController.offset < rateTen + 8000) {
           _paralaxTextOpasyty5 = 1;
         } else {
           _paralaxTextOpasyty5 = 0;
