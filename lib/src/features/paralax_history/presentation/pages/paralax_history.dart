@@ -35,7 +35,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _paralaxTextOpasyty3 = 0;
   double _paralaxTextOpasyty4 = 0;
   double _paralaxTextOpasyty5 = 0;
-  double _paralaxTextOpasyty6 = 0;
   bool _visibility = true;
 
   String? asset;
@@ -490,7 +489,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       alignment: Alignment.bottomCenter,
                       child: Clickable(
                         onPressed: () {
-                          context.router.push(const LearnmorePageRoute());
+                          //context.router.push(const LearnmorePageRoute());
                         },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 30),
@@ -555,6 +554,37 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                         ),
                       ))),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.volume_up),
+                      ),
+                      Clickable(
+                        onPressed: () {
+                          context.router.pop();
+                        },
+                        child: Column(
+                          children: [
+                            const Icon(
+                              Icons.arrow_upward_sharp,
+                              color: AppColors.black54,
+                            ),
+                            AutoSizeText("BOOK INTO"),
+                          ],
+                        ),
+                      ),
+                      IconButton(onPressed: () {}, icon: Icon(Icons.apps))
+                    ],
+                  ),
+                ),
+              )
             ]);
           }),
         ),

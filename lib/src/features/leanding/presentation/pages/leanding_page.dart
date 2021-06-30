@@ -54,57 +54,54 @@ class _LeandingPageState extends State<LeandingPage> {
         return Stack(
           children: [
             const BackgroundWidget(),
-            Positioned(
-              top: 10,
-              right: constraints.maxWidth * 0.1,
-              bottom: 10,
-              child: BlobAnimation(
-                height: constraints.maxHeight * 0.35,
-                width: constraints.maxWidth * 0.35,
-              ),
-            ),
             Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                padding: EdgeInsets.only(
-                  top: 50,
-                  bottom: 50,
-                  left: constraints.maxWidth * 0.2,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                        child: AutoSizeText(locales.spencerStrikerName,
-                            style: DefaultTheme.standard.textTheme.headline1)),
-                    Flexible(
-                      child: AutoSizeText(
-                        locales.historyAdventures.toUpperCase(),
-                        style: Theme.of(context).textTheme.overline,
-                      ),
-                    ),
-                    Flexible(
-                      child: AutoSizeText(
-                        locales.worldOfCharacters.toUpperCase(),
-                        style: Theme.of(context).textTheme.overline,
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
-                                left: BorderSide(
-                                    color: AppColors.red, width: 8))),
-                        child: AutoSizeText(
-                          locales.globalPandemicName,
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.caption,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                            child: AutoSizeText(locales.spencerStrikerName,
+                                style:
+                                    DefaultTheme.standard.textTheme.headline1)),
+                        Flexible(
+                          child: AutoSizeText(
+                            locales.historyAdventures.toUpperCase(),
+                            style: Theme.of(context).textTheme.overline,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
+                        Flexible(
+                          child: AutoSizeText(
+                            locales.worldOfCharacters.toUpperCase(),
+                            style: Theme.of(context).textTheme.overline,
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    left: BorderSide(
+                                        color: AppColors.red, width: 8))),
+                            child: AutoSizeText(
+                              locales.globalPandemicName,
+                              maxLines: 1,
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Flexible(
+                    child: BlobAnimation(
+                      height: constraints.maxHeight * 0.35,
+                      width: constraints.maxWidth * 0.35,
+                    ),
+                  ),
+                ],
               ),
             ),
             Align(
