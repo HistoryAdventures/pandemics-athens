@@ -171,8 +171,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                                       horizontal: constraints.maxWidth * 0.15,
                                       vertical: constraints.maxHeight * 0.2),
                                   child: Scaffold(
-                                      backgroundColor:
-                                          AppColors.white.withOpacity(0.75),
+                                      backgroundColor: AppColors.white,
                                       body: Container(
                                         margin: const EdgeInsets.all(24),
                                         // height: constraints.maxHeight * 0.6,
@@ -205,7 +204,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                                                                   .start,
                                                           children: [
                                                             Expanded(
-                                                              flex: 4,
+                                                              flex: 3,
                                                               child: Column(
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
@@ -243,14 +242,14 @@ class _PanaromaPageState extends State<PanaromaPage>
                                                               ),
                                                             ),
                                                             Expanded(
-                                                              child: IconButton(
+                                                              child: Clickable(
                                                                   onPressed:
                                                                       () {
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
                                                                   },
-                                                                  icon: Icon(Icons
+                                                                  child: Icon(Icons
                                                                       .clear)),
                                                             )
                                                           ],

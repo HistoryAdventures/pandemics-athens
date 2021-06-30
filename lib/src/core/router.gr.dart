@@ -22,10 +22,12 @@ import '../features/pandemic_info/presentation/pages/virus_loc_page.dart'
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
 import '../features/panorama/prezentation/pages/panaroma_page.dart' as _i11;
+import '../features/paralax_history/presentation/pages/learn_more_page.dart'
+    as _i15;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
     as _i9;
 import '../features/quiz/presentation/pages/quiz_page.dart' as _i8;
-import 'widgets/widgets.dart' as _i15;
+import 'widgets/widgets.dart' as _i16;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -38,7 +40,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.LeandingPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -47,7 +49,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.CharacrterPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -58,7 +60,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i5.CharacterInfoPage(
               photoHero: args.photoHero, listCharacters: args.listCharacters);
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -67,7 +69,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i6.VirusesInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -85,7 +87,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i8.QuizPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -112,7 +114,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i11.PanaromaPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -130,7 +132,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i13.BodyInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false),
@@ -139,7 +141,16 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i14.VirusLocationPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 800,
+        opaque: true,
+        barrierDismissible: false),
+    LearnmorePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i15.LearnmorePage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 800,
         opaque: true,
         barrierDismissible: false)
@@ -147,27 +158,27 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
-        _i1.RouteConfig(ParalaxHistoryPageRoute.name,
-            path: '/paralax-history-page'),
+        _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaPageRoute.name, path: '/panaroma-page'),
         _i1.RouteConfig(PathogenProfilePageRoute.name,
             path: '/pathogen-profile-page'),
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
-            path: '/virus-location-page')
+            path: '/virus-location-page'),
+        _i1.RouteConfig(LearnmorePageRoute.name, path: '/learnmore-page')
       ];
 }
 
 class LeandingPageRoute extends _i1.PageRouteInfo {
-  const LeandingPageRoute() : super(name, path: '/');
+  const LeandingPageRoute() : super(name, path: '/leanding-page');
 
   static const String name = 'LeandingPageRoute';
 }
@@ -181,8 +192,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i15.CharacterModel photoHero,
-      required List<_i15.CharacterModel> listCharacters})
+      {required _i16.CharacterModel photoHero,
+      required List<_i16.CharacterModel> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -195,9 +206,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i15.CharacterModel photoHero;
+  final _i16.CharacterModel photoHero;
 
-  final List<_i15.CharacterModel> listCharacters;
+  final List<_i16.CharacterModel> listCharacters;
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
@@ -219,7 +230,7 @@ class QuizPageRoute extends _i1.PageRouteInfo {
 }
 
 class ParalaxHistoryPageRoute extends _i1.PageRouteInfo {
-  const ParalaxHistoryPageRoute() : super(name, path: '/paralax-history-page');
+  const ParalaxHistoryPageRoute() : super(name, path: 'paralax-history-page');
 
   static const String name = 'ParalaxHistoryPageRoute';
 }
@@ -253,4 +264,10 @@ class VirusLocationPageRoute extends _i1.PageRouteInfo {
   const VirusLocationPageRoute() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageRoute';
+}
+
+class LearnmorePageRoute extends _i1.PageRouteInfo {
+  const LearnmorePageRoute() : super(name, path: '/learnmore-page');
+
+  static const String name = 'LearnmorePageRoute';
 }

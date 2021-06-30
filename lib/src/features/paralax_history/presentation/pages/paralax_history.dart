@@ -5,6 +5,8 @@ import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_left.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_right.dart';
 
@@ -28,6 +30,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double rateTen;
   double _topTextOpasyty = 0;
   double _bottomFieldOpasity = 0;
+  double _paralaxTextOpasyty1 = 0;
+  double _paralaxTextOpasyty2 = 0;
+  double _paralaxTextOpasyty3 = 0;
+  double _paralaxTextOpasyty4 = 0;
+  double _paralaxTextOpasyty5 = 0;
+  double _paralaxTextOpasyty6 = 0;
+  bool _visibility = true;
+
   String? asset;
   double? top;
   late AppLocalizations locals;
@@ -36,18 +46,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final ScrollController _scrollController = ScrollController();
   @override
   void didChangeDependencies() {
-    print('did change did');
     locals = AppLocalizations.of(context)!;
     rateOne = MediaQuery.of(context).size.height * 0.35;
     rateTwo = MediaQuery.of(context).size.height * 0.98;
     rateThree = MediaQuery.of(context).size.height * 1.4;
-    rateFour = MediaQuery.of(context).size.height * 2;
-    rateFive = MediaQuery.of(context).size.height * 2.4;
-    rateSix = MediaQuery.of(context).size.height * 2.6;
-    rateSeven = MediaQuery.of(context).size.height * 3;
-    rateEight = MediaQuery.of(context).size.height * 3;
-    rateNine = MediaQuery.of(context).size.height * 3.6;
-    rateTen = MediaQuery.of(context).size.height * 4.4;
+    rateFour = MediaQuery.of(context).size.height * 1.3;
+    rateFive = MediaQuery.of(context).size.height * 2.6;
+    rateSix = MediaQuery.of(context).size.height * 3;
+    rateSeven = MediaQuery.of(context).size.height * 3.8;
+    rateEight = MediaQuery.of(context).size.height * 3.8;
+    rateNine = MediaQuery.of(context).size.height * 4.8;
+    rateTen = MediaQuery.of(context).size.height * 5.8;
     super.didChangeDependencies();
   }
 
@@ -70,6 +79,48 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _topTextOpasyty = 1;
         }
+        if (_scrollController.offset <=
+                _scrollController.position.maxScrollExtent &&
+            _scrollController.offset >=
+                _scrollController.position.maxScrollExtent - 100) {
+          _bottomFieldOpasity = 1;
+        } else {
+          _bottomFieldOpasity = 0;
+        }
+        if (_scrollController.offset > rateFour &&
+            _scrollController.offset < rateFour + 500) {
+          _paralaxTextOpasyty1 = 1;
+        } else {
+          _paralaxTextOpasyty1 = 0;
+        }
+        if (_scrollController.offset > rateTen &&
+            _scrollController.offset < rateTen + 1000) {
+          _paralaxTextOpasyty2 = 1;
+        } else {
+          _paralaxTextOpasyty2 = 0;
+        }
+        if (_scrollController.offset > rateTen + 2000 &&
+            _scrollController.offset < rateTen + 3300) {
+          _paralaxTextOpasyty3 = 1;
+          setState(() {
+            _visibility = false;
+          });
+        } else {
+          _paralaxTextOpasyty3 = 0;
+        }
+        if (_scrollController.offset > rateTen + 5100 &&
+            _scrollController.offset < rateTen + 5700) {
+          _paralaxTextOpasyty4 = 1;
+        } else {
+          _paralaxTextOpasyty4 = 0;
+        }
+        if (_scrollController.offset > rateTen + 8000 &&
+            _scrollController.offset < rateTen + 8700) {
+          _paralaxTextOpasyty5 = 1;
+        } else {
+          _paralaxTextOpasyty5 = 0;
+        }
+        print(_scrollController.offset);
       });
     });
 
@@ -97,7 +148,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 rateSeven -= v.scrollDelta! / 2;
                 rateSix -= v.scrollDelta! / 2;
                 rateFive -= v.scrollDelta! / 1.6;
-                rateFour -= v.scrollDelta! / 1.5;
+                rateFour -= v.scrollDelta! / 2.5;
                 rateThree -= v.scrollDelta! / 0.85;
                 rateTwo -= v.scrollDelta! / 1;
                 rateOne -= v.scrollDelta! / 1.5;
@@ -108,12 +159,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           },
           child: LayoutBuilder(builder: (context, constraints) {
             return Stack(children: <Widget>[
-              Container(
-                height: constraints.maxHeight,
-                width: constraints.maxWidth,
-                child: Image.asset(
-                  'assets/paralax_images/cloudsBG.png',
-                  fit: BoxFit.cover,
+              Visibility(
+                visible: _visibility,
+                child: SizedBox(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth,
+                  child: Image.asset(
+                    'assets/paralax_images/cloudsBG.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               ParallaxWidget(
@@ -132,6 +186,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 asset: "parallax2",
               ),
               ParallaxWidget(
+                paralaxText: locals.paralaxText1,
                 width: MediaQuery.of(context).size.width,
                 boxFit: BoxFit.contain,
                 image: 'assets/paralax_images/cloudsBG.png',
@@ -168,6 +223,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               ParallaxWidget(
                   width: MediaQuery.of(context).size.width / 2,
                   top: rateEight,
+                  left: 120,
+                  // color: Colors.red,
                   asset: "parallax9",
                   boxFit: BoxFit.contain),
               ParallaxWidget(
@@ -180,8 +237,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   top: rateTen,
                   asset: "parallax11",
                   boxFit: BoxFit.contain),
-              Align(
-                alignment: Alignment.centerLeft,
+              Positioned(
+                top: constraints.maxHeight * 0.3,
+                left: constraints.maxWidth * 0.01,
                 child: Container(
                   width: constraints.maxWidth * 0.4,
                   padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
@@ -227,63 +285,276 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   ),
                 ),
               ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _paralaxTextOpasyty1,
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: constraints.maxWidth * 0.05,
+                        bottom: constraints.maxHeight * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Scaffold(
+                        backgroundColor: AppColors.blackG.withOpacity(0.75),
+                        body: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText1,
+                              minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            ))),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _paralaxTextOpasyty2,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        right: constraints.maxWidth * 0.05,
+                        bottom: constraints.maxHeight * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Scaffold(
+                        backgroundColor: AppColors.blackG.withOpacity(0.75),
+                        body: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText1,
+                              minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            ))),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _paralaxTextOpasyty3,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: constraints.maxWidth * 0.05,
+                        bottom: constraints.maxHeight * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Scaffold(
+                        backgroundColor: AppColors.blackG.withOpacity(0.75),
+                        body: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText3,
+                              minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            ))),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _paralaxTextOpasyty4,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        right: constraints.maxWidth * 0.05,
+                        bottom: constraints.maxHeight * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Scaffold(
+                        backgroundColor: AppColors.blackG.withOpacity(0.75),
+                        body: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText4,
+                              minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            ))),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _paralaxTextOpasyty5,
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: constraints.maxWidth * 0.05,
+                        bottom: constraints.maxHeight * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Scaffold(
+                        backgroundColor: AppColors.blackG.withOpacity(0.75),
+                        body: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText5,
+                              minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            ))),
+                  ),
+                ),
+              ),
               ListView(
+                  physics: ClampingScrollPhysics(),
                   padding: EdgeInsets.zero,
                   controller: _scrollController,
                   children: <Widget>[
                     Container(
-                      height: 10000,
+                      height: constraints.maxHeight * 12.5,
                       color: Colors.transparent,
                     )
                   ]),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 100,
-                  decoration:
-                      BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: ArrowLeftWidget(
-                            textSubTitle: locals.stickToTheOath,
-                            textTitle: '',
-                            onTap: () {
-                              context.router.push(const MapPageRoute());
-                            }),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: AutoSizeText(
-                              locals.whatNikosDo,
-                              maxLines: 1,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.normal),
-                            )),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: ArrowRightWidget(
-                            textSubTitle: locals.helpTheSenator,
-                            textTitle: '',
-                            onTap: () {
-                              context.router.push(const PanaromaPageRoute());
-                            }),
-                      ),
-                    ],
+                child: AnimatedOpacity(
+                  duration: const Duration(microseconds: 1000),
+                  opacity: _bottomFieldOpasity,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    height: 100,
+                    decoration:
+                        BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: ArrowLeftWidget(
+                              textSubTitle: locals.stickToTheOath,
+                              textTitle: '',
+                              onTap: () {
+                                context.router.push(const MapPageRoute());
+                              }),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                              alignment: Alignment.center,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: AutoSizeText(
+                                locals.whatNikosDo,
+                                maxLines: 1,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.normal),
+                              )),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: ArrowRightWidget(
+                              textSubTitle: locals.helpTheSenator,
+                              textTitle: '',
+                              onTap: () {
+                                context.router.push(const PanaromaPageRoute());
+                              }),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              )
+              ),
+              AnimatedOpacity(
+                  duration: const Duration(milliseconds: 500),
+                  opacity: _paralaxTextOpasyty2,
+                  child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Clickable(
+                        onPressed: () {
+                          context.router.push(const LearnmorePageRoute());
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 30),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            color: AppColors.white,
+                          )),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 18.0, vertical: 5),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      AutoSizeText(
+                                        locals.learnMore.toUpperCase(),
+                                        minFontSize: 5,
+                                        maxLines: 1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2
+                                            ?.copyWith(
+                                                color: AppColors.white,
+                                                fontSize: 10),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AutoSizeText(
+                                            locals.athens5thCentury
+                                                .toUpperCase(),
+                                            minFontSize: 5,
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                                ?.copyWith(
+                                                    color: AppColors.white),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                            width: 10,
+                                            child: Icon(
+                                              Icons.arrow_forward,
+                                              color: AppColors.white,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ))),
             ]);
           }),
         ),
@@ -298,19 +569,26 @@ class ParallaxWidget extends StatelessWidget {
       required this.asset,
       required this.boxFit,
       required this.width,
-      this.image});
+      this.image,
+      this.left,
+      this.color,
+      this.paralaxText});
   final double top;
   final String? image;
+  final double? left;
+  final String? paralaxText;
   final String asset;
   final BoxFit boxFit;
   final double width;
-
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: top,
+      left: left ?? 0,
       child: Container(
         width: width,
+        color: color ?? AppColors.transpatent,
         child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),
       ),
     );
