@@ -14,26 +14,31 @@ class ArrowLeftWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Flexible(
-          child: Clickable(
-              onPressed: onTap,
-              child: Container(
-                  margin: const EdgeInsets.only(right: 14),
-                  height: 30,
-                  width: 30,
-                  child: Image.asset(AssetsPath.arrowBackImage))),
-        ),
-        Flexible(
-          child: AutoSizeText(
-            textSubTitle.toUpperCase(),
-            maxLines: 1,
-            style:
-                Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 24),
+    return Container(
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Clickable(
+                onPressed: onTap,
+                child: Container(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset(AssetsPath.arrowBackImage))),
           ),
-        )
-      ],
+          Expanded(
+            flex: 3,
+            child: AutoSizeText(
+              textSubTitle.toUpperCase(),
+              textAlign: TextAlign.end,
+              minFontSize: 5,
+              maxLines: 1,
+              style:
+                  Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 24),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

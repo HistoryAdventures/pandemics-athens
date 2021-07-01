@@ -3,7 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widget.dart';
-import 'package:video_player/video_player.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
@@ -22,29 +21,6 @@ class _LeandingPageState extends State<LeandingPage> {
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     super.didChangeDependencies();
-  }
-
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/video/video_back.mp4');
-
-    _controller.addListener(() {
-      setState(() {});
-    });
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
-    //_controller.initialize().then((_) => setState(() {}));
-    _controller.play();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override

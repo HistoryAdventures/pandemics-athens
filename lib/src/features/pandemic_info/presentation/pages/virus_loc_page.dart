@@ -94,25 +94,32 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: constraints.maxHeight * 0.1,
+                height: constraints.maxHeight * 0.15,
                 decoration: const BoxDecoration(
                   gradient: AppColors.linearGradientForBackground,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    ArrowLeftTextWidget(
-                        textSubTitle: locals.pathogenProfile,
-                        textTitle: locals.chapter1,
-                        onTap: () {
-                          context.router.pop();
-                        }),
-                    ArrowRightTextWidget(
-                        textSubTitle: locals.whatDidItDo,
-                        textTitle: locals.pathogenProfile,
-                        onTap: () {
-                          context.router.push(const BodyInfoPageRoute());
-                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12, bottom: 12),
+                      child: ArrowLeftTextWidget(
+                          textSubTitle: locals.pathogenProfile,
+                          textTitle: locals.chapter1,
+                          onTap: () {
+                            context.router.pop();
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12, bottom: 12),
+                      child: ArrowRightTextWidget(
+                          textSubTitle: locals.whatDidItDo,
+                          textTitle: locals.pathogenProfile,
+                          onTap: () {
+                            context.router.push(const BodyInfoPageRoute());
+                          }),
+                    ),
                   ],
                 ),
               ),

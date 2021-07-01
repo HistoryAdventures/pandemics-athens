@@ -63,6 +63,18 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                 ),
               ),
             ),
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                    child: Image.asset(
+                      "assets/background/white0000.png",
+                      fit: BoxFit.cover,
+                    )),
+              ),
+            ),
             Container(
               width: constraints.maxWidth,
               height: constraints.maxHeight,

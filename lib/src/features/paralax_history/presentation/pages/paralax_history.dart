@@ -16,7 +16,7 @@ class ParalaxHistoryPage extends StatefulWidget {
 }
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late double rateZero = 0;
   late double rateOne;
   late double rateTwo;
@@ -28,6 +28,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double rateEight;
   late double rateNine;
   late double rateTen;
+  late double _scrollrateZero = 0;
+  late double _scrollrateEleven;
+  late double _scrollrateTwelv;
+  late double _scrollrateThree;
+  late double _scrollrateFour;
+  late double _scrollrateFive;
+  late double _scrollrateSix;
+  late double _scrollrateSeven;
+  late double _scrollrateEight;
+  late double _scrollrateNine;
+  late double _scrollrateTen;
   double _topTextOpasyty = 0;
   double _bottomFieldOpasity = 0;
   double _paralaxTextOpasyty1 = 0;
@@ -36,7 +47,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _paralaxTextOpasyty4 = 0;
   double _paralaxTextOpasyty5 = 0;
   bool _visibility = true;
-
+  bool _lernMoreButtonVisibility = false;
   String? asset;
   double? top;
   late AppLocalizations locals;
@@ -56,6 +67,18 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateEight = MediaQuery.of(context).size.height * 3.8;
     rateNine = MediaQuery.of(context).size.height * 4.8;
     rateTen = MediaQuery.of(context).size.height * 5.8;
+    _scrollrateZero = 0;
+
+    _scrollrateSix = MediaQuery.of(context).size.height * 3;
+    _scrollrateSeven = MediaQuery.of(context).size.height * 3.8;
+    _scrollrateEight = MediaQuery.of(context).size.height * 3.8;
+    _scrollrateNine = MediaQuery.of(context).size.height * 4.8;
+    _scrollrateTen = MediaQuery.of(context).size.height * 5.8;
+    _scrollrateEleven = MediaQuery.of(context).size.height * 7.3;
+    _scrollrateTwelv = MediaQuery.of(context).size.height * 8.98;
+    _scrollrateThree = MediaQuery.of(context).size.height * 1.4;
+    _scrollrateFour = MediaQuery.of(context).size.height * 1.3;
+    _scrollrateFive = MediaQuery.of(context).size.height * 2.6;
     super.didChangeDependencies();
   }
 
@@ -92,14 +115,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _paralaxTextOpasyty1 = 0;
         }
-        if (_scrollController.offset > rateTen - 500 &&
-            _scrollController.offset < rateTen + 1000) {
+        if (_scrollController.offset > _scrollrateSix &&
+            _scrollController.offset < _scrollrateSeven) {
           _paralaxTextOpasyty2 = 1;
+          setState(() {
+            _lernMoreButtonVisibility = true;
+            _visibility = true;
+          });
         } else {
           _paralaxTextOpasyty2 = 0;
+          setState(() {
+            _lernMoreButtonVisibility = false;
+          });
         }
-        if (_scrollController.offset > rateTen + 1400 &&
-            _scrollController.offset < rateTen + 3000) {
+        if (_scrollController.offset > _scrollrateNine &&
+            _scrollController.offset < _scrollrateTen + 350) {
           _paralaxTextOpasyty3 = 1;
           setState(() {
             _visibility = false;
@@ -107,14 +137,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _paralaxTextOpasyty3 = 0;
         }
-        if (_scrollController.offset > rateTen + 4800 &&
-            _scrollController.offset < rateTen + 5400) {
+        if (_scrollController.offset > _scrollrateEleven &&
+            _scrollController.offset < _scrollrateEleven + 350) {
           _paralaxTextOpasyty4 = 1;
         } else {
           _paralaxTextOpasyty4 = 0;
         }
-        if (_scrollController.offset > rateTen + 7400 &&
-            _scrollController.offset < rateTen + 8000) {
+        if (_scrollController.offset > _scrollrateTwelv &&
+            _scrollController.offset < _scrollrateTwelv + 200) {
           _paralaxTextOpasyty5 = 1;
         } else {
           _paralaxTextOpasyty5 = 0;
@@ -223,7 +253,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   width: MediaQuery.of(context).size.width / 2,
                   top: rateEight,
                   left: 120,
-                  // color: Colors.red,
                   asset: "parallax9",
                   boxFit: BoxFit.contain),
               ParallaxWidget(
@@ -244,7 +273,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
                   child: AnimatedOpacity(
                     opacity: _topTextOpasyty,
-                    duration: const Duration(milliseconds: 2000),
+                    duration: const Duration(milliseconds: 500),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -327,7 +356,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         body: Padding(
                             padding: const EdgeInsets.all(24),
                             child: AutoSizeText(
-                              locals.paralaxText1,
+                              locals.paralaxText2,
                               minFontSize: 5,
                               // maxLines: 20,
                               style: Theme.of(context)
@@ -435,8 +464,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   duration: const Duration(microseconds: 1000),
                   opacity: _bottomFieldOpasity,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    height: 100,
+                    // padding: const EdgeInsets.symmetric(horizontal: 20),
+                    height: constraints.maxHeight * 0.1,
                     decoration:
                         BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
                     child: Row(
@@ -444,29 +473,33 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       children: [
                         Expanded(
                           flex: 2,
-                          child: ArrowLeftWidget(
-                              textSubTitle: locals.stickToTheOath,
-                              textTitle: '',
-                              onTap: () {
-                                context.router.push(const MapPageRoute());
-                              }),
+                          child: Container(
+                            child: ArrowLeftWidget(
+                                textSubTitle: locals.stickToTheOath,
+                                textTitle: '',
+                                onTap: () {
+                                  context.router.push(const MapPageRoute());
+                                }),
+                          ),
                         ),
                         Expanded(
-                          flex: 4,
-                          child: Container(
-                              alignment: Alignment.center,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: AutoSizeText(
-                                locals.whatNikosDo,
-                                maxLines: 1,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.normal),
-                              )),
+                          flex: 3,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: AutoSizeText(
+                              locals.whatNikosDo,
+                              maxLines: 1,
+                              minFontSize: 5,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.normal),
+                            ),
+                          ),
                         ),
                         Expanded(
                           flex: 2,
@@ -474,7 +507,16 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               textSubTitle: locals.helpTheSenator,
                               textTitle: '',
                               onTap: () {
-                                context.router.push(const PanaromaPageRoute());
+                                ////????????
+                                context.router
+                                    .push(const PanaromaPageRoute())
+                                    .then((value) {
+                                  if (value == 1) {
+                                    initState();
+                                  } else {
+                                    print("object");
+                                  }
+                                });
                               }),
                         ),
                       ],
@@ -482,81 +524,84 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   ),
                 ),
               ),
-              AnimatedOpacity(
-                  duration: const Duration(milliseconds: 500),
-                  opacity: _paralaxTextOpasyty2,
-                  child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Clickable(
-                        onPressed: () {
-                          //context.router.push(const LearnmorePageRoute());
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 30),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                            color: AppColors.white,
-                          )),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 18.0, vertical: 5),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      AutoSizeText(
-                                        locals.learnMore.toUpperCase(),
-                                        minFontSize: 5,
-                                        maxLines: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2
-                                            ?.copyWith(
-                                                color: AppColors.white,
-                                                fontSize: 10),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          AutoSizeText(
-                                            locals.athens5thCentury
-                                                .toUpperCase(),
-                                            minFontSize: 5,
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                ?.copyWith(
-                                                    color: AppColors.white),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                            width: 10,
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color: AppColors.white,
+              Visibility(
+                visible: _lernMoreButtonVisibility,
+                child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 500),
+                    opacity: _paralaxTextOpasyty2,
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Clickable(
+                          onPressed: () {
+                            //context.router.push(const LearnmorePageRoute());
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 30),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                              color: AppColors.white,
+                            )),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18.0, vertical: 5),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        AutoSizeText(
+                                          locals.learnMore.toUpperCase(),
+                                          minFontSize: 5,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2
+                                              ?.copyWith(
+                                                  color: AppColors.white,
+                                                  fontSize: 10),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AutoSizeText(
+                                              locals.athens5thCentury
+                                                  .toUpperCase(),
+                                              minFontSize: 5,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2
+                                                  ?.copyWith(
+                                                      color: AppColors.white),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
+                                            SizedBox(
+                                              height: 10,
+                                              width: 10,
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: AppColors.white,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ))),
+                        ))),
+              ),
               Align(
                 alignment: Alignment.topCenter,
-                child: Padding(
+                child: Container(
                   padding: const EdgeInsets.all(24),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -571,6 +616,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           context.router.pop();
                         },
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             const Icon(
                               Icons.arrow_upward_sharp,

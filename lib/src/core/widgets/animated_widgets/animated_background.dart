@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_sequence_animator/image_sequence_animator.dart';
 
+////This widget We will delete in future;
+///
+//////Assets for this widgets deleted;
+
 class BackgroundAnimation extends StatefulWidget {
   final double height;
   final double width;

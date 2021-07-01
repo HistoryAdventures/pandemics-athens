@@ -14,23 +14,24 @@ class ArrowRightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Flexible(
+          Expanded(
+            flex: 3,
             child: AutoSizeText(
               textSubTitle.toUpperCase(),
               maxLines: 1,
+              minFontSize: 5,
               style:
                   Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 24),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Clickable(
                 onPressed: onTap,
                 child: Container(
-                    margin: const EdgeInsets.only(left: 14),
                     height: 30,
                     width: 30,
                     child: Image.asset(AssetsPath.arrowForwardImage))),

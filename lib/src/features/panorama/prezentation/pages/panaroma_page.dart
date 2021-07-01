@@ -366,17 +366,20 @@ class _PanaromaPageState extends State<PanaromaPage>
                 textSubTitle: locals.chapter1,
                 textTitle: locals.chapter1,
                 onTap: () {
-                  context.router.pop();
+                  context.router.pop(1);
                 }),
           ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Clickable(
-            onPressed: () {
-              context.router.push(const PathogenProfilePageRoute());
-            },
-            child: Image.asset(AssetsPath.arrowDounImage),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Clickable(
+              onPressed: () {
+                context.router.push(const PathogenProfilePageRoute());
+              },
+              child: Image.asset(AssetsPath.arrowDounImage),
+            ),
           ),
         )
       ],

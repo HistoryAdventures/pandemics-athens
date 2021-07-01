@@ -140,7 +140,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
             Align(
               alignment: Alignment.bottomRight,
               child: Container(
-                padding: const EdgeInsets.only(bottom: 10, left: 24),
+                padding: const EdgeInsets.only(bottom: 10, right: 24),
                 child: ArrowRightTextWidget(
                     textSubTitle: locale.quiz,
                     textTitle: locale.athens5thCentury,
