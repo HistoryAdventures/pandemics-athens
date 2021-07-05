@@ -28,6 +28,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double rateEight;
   late double rateNine;
   late double rateTen;
+
   late double _scrollrateZero = 0;
   late double _scrollrateEleven;
   late double _scrollrateTwelv;
@@ -39,6 +40,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double _scrollrateEight;
   late double _scrollrateNine;
   late double _scrollrateTen;
+
   double _topTextOpasyty = 0;
   double _bottomFieldOpasity = 0;
   double _paralaxTextOpasyty1 = 0;
@@ -46,13 +48,20 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _paralaxTextOpasyty3 = 0;
   double _paralaxTextOpasyty4 = 0;
   double _paralaxTextOpasyty5 = 0;
-  bool _visibility = true;
+
+  bool _backgroundVisibility = true;
   bool _lernMoreButtonVisibility = false;
-  String? asset;
-  double? top;
+
   late AppLocalizations locals;
   late Animation<double> animation;
   late AnimationController controller;
+
+  late Animation<Offset> animationTopPosition;
+  late AnimationController controllerTopPosition;
+
+  late Animation<Offset> animationBottomPosition;
+  late AnimationController controllerBottomPosition;
+
   final ScrollController _scrollController = ScrollController();
   @override
   void didChangeDependencies() {
@@ -67,8 +76,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateEight = MediaQuery.of(context).size.height * 3.8;
     rateNine = MediaQuery.of(context).size.height * 4.8;
     rateTen = MediaQuery.of(context).size.height * 5.8;
-    _scrollrateZero = 0;
 
+    _scrollrateZero = 0;
     _scrollrateSix = MediaQuery.of(context).size.height * 3;
     _scrollrateSeven = MediaQuery.of(context).size.height * 3.8;
     _scrollrateEight = MediaQuery.of(context).size.height * 3.8;
@@ -79,22 +88,47 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _scrollrateThree = MediaQuery.of(context).size.height * 1.4;
     _scrollrateFour = MediaQuery.of(context).size.height * 1.3;
     _scrollrateFive = MediaQuery.of(context).size.height * 2.6;
+
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
+    controllerTopPosition = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..forward();
+    animationTopPosition = Tween(
+      begin: const Offset(0.0, -5.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(CurvedAnimation(
+      parent: controllerTopPosition,
+      curve: Curves.easeInCubic,
+    ));
+
+    controllerBottomPosition = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..forward();
+    animationBottomPosition = Tween(
+      begin: const Offset(0.0, 1.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(CurvedAnimation(
+      parent: controllerBottomPosition,
+      curve: Curves.easeInCubic,
+    ));
+
     controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
     animation = Tween<double>(begin: 80, end: 50).animate(controller);
-    Future.delayed(const Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(seconds: 3), () {
       animation.addListener(() {
         setState(() {
           _topTextOpasyty = 1;
         });
       });
-      controller.forward();
 
+      controller.forward();
       _scrollController.addListener(() {
         if (_scrollController.offset > 10) {
           _topTextOpasyty = 0;
@@ -120,7 +154,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           _paralaxTextOpasyty2 = 1;
           setState(() {
             _lernMoreButtonVisibility = true;
-            _visibility = true;
+            _backgroundVisibility = true;
           });
         } else {
           _paralaxTextOpasyty2 = 0;
@@ -132,7 +166,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             _scrollController.offset < _scrollrateTen + 350) {
           _paralaxTextOpasyty3 = 1;
           setState(() {
-            _visibility = false;
+            _backgroundVisibility = false;
           });
         } else {
           _paralaxTextOpasyty3 = 0;
@@ -158,6 +192,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void dispose() {
+    controllerTopPosition.dispose();
+    controllerBottomPosition.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -189,7 +225,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           child: LayoutBuilder(builder: (context, constraints) {
             return Stack(children: <Widget>[
               Visibility(
-                visible: _visibility,
+                visible: _backgroundVisibility,
                 child: SizedBox(
                   height: constraints.maxHeight,
                   width: constraints.maxWidth,
@@ -205,9 +241,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 boxFit: BoxFit.contain,
                 top: rateZero,
                 asset: "parallax1",
+                animation: animationTopPosition,
               ),
               ParallaxWidget(
-                //height: MediaQuery.of(context).size.height,
+                animation: animationBottomPosition,
                 width: MediaQuery.of(context).size.width,
                 boxFit: BoxFit.contain,
                 image: 'assets/paralax_images/cloudsBG.png',
@@ -215,6 +252,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 asset: "parallax2",
               ),
               ParallaxWidget(
+                animation: animationBottomPosition,
                 paralaxText: locals.paralaxText1,
                 width: MediaQuery.of(context).size.width,
                 boxFit: BoxFit.contain,
@@ -223,44 +261,52 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 asset: "parallax3",
               ),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   boxFit: BoxFit.contain,
                   top: rateThree,
                   asset: "parallax4"),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   boxFit: BoxFit.cover,
                   top: rateFour,
                   asset: "parallax5"),
               ParallaxWidget(
+                animation: animationBottomPosition,
                 width: MediaQuery.of(context).size.width,
                 top: rateFive,
                 asset: "parallax6",
                 boxFit: BoxFit.contain,
               ),
               ParallaxWidget(
+                animation: animationBottomPosition,
                 width: MediaQuery.of(context).size.width,
                 top: rateSix,
                 asset: "parallax7",
                 boxFit: BoxFit.cover,
               ),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width / 2.2,
                   top: rateSeven,
                   asset: "parallax8",
                   boxFit: BoxFit.contain),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width / 2,
                   top: rateEight,
                   left: 120,
                   asset: "parallax9",
                   boxFit: BoxFit.contain),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   top: rateNine,
                   asset: "parallax10",
                   boxFit: BoxFit.contain),
               ParallaxWidget(
+                  animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   top: rateTen,
                   asset: "parallax11",
@@ -273,7 +319,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
                   child: AnimatedOpacity(
                     opacity: _topTextOpasyty,
-                    duration: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 1500),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -640,15 +686,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 }
 
 class ParallaxWidget extends StatelessWidget {
-  const ParallaxWidget(
-      {required this.top,
-      required this.asset,
-      required this.boxFit,
-      required this.width,
-      this.image,
-      this.left,
-      this.color,
-      this.paralaxText});
   final double top;
   final String? image;
   final double? left;
@@ -657,15 +694,29 @@ class ParallaxWidget extends StatelessWidget {
   final BoxFit boxFit;
   final double width;
   final Color? color;
+  final Animation<Offset>? animation;
+  const ParallaxWidget(
+      {required this.top,
+      required this.asset,
+      required this.boxFit,
+      required this.width,
+      this.image,
+      this.left,
+      this.color,
+      this.animation,
+      this.paralaxText});
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: top,
       left: left ?? 0,
-      child: Container(
-        width: width,
-        color: color ?? AppColors.transpatent,
-        child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),
+      child: SlideTransition(
+        position: animation!,
+        child: Container(
+          width: width,
+          color: color ?? AppColors.transpatent,
+          child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),
+        ),
       ),
     );
   }

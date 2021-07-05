@@ -20,10 +20,13 @@ class BodyInfoPage extends StatefulWidget {
   _BodyInfoPageState createState() => _BodyInfoPageState();
 }
 
-class _BodyInfoPageState extends State<BodyInfoPage> {
+class _BodyInfoPageState extends State<BodyInfoPage>
+    with SingleTickerProviderStateMixin {
   late String _selectedItem;
   late String _selectedImg;
   late AppLocalizations locale;
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void didChangeDependencies() {
@@ -35,6 +38,9 @@ class _BodyInfoPageState extends State<BodyInfoPage> {
   void initState() {
     _selectedItem = "intro";
     _selectedImg = AssetsPath.manfillImage;
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = Tween<double>(begin: 80, end: 50).animate(controller);
     super.initState();
   }
 
@@ -97,12 +103,46 @@ class _BodyInfoPageState extends State<BodyInfoPage> {
                       Expanded(
                         child: SizedBox(
                           height: constraints.maxHeight,
-                          child: CharacterModel(
-                            name: _selectedItem,
-                            photo: _selectedImg,
-                            onTap: () {
-                              // Navigator.of(context).pop();
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
                             },
+                            child: CharacterModel(
+                              key: ValueKey(_selectedItem),
+                              name: _selectedItem,
+                              photo: _selectedImg,
+                              height: constraints.maxHeight,
+                              width: constraints.maxWidth,
+                              onTapStomach: () {
+                                setState(() {
+                                  _selectedImg = AssetsPath.manstomachImage;
+                                });
+                              },
+                              onTapHends: () {
+                                setState(() {
+                                  _selectedImg = AssetsPath.manhandsImage;
+                                });
+                              },
+                              onTapChest: () {
+                                setState(() {
+                                  _selectedImg = AssetsPath.manChestImage;
+                                });
+                              },
+                              onTapThroat: () {
+                                setState(() {
+                                  _selectedImg = AssetsPath.manthroatImage;
+                                });
+                              },
+                              onTapHead: () {
+                                setState(() {
+                                  _selectedImg = AssetsPath.manheadImage;
+                                });
+                              },
+                            ),
                           ),
                         ),
                       ),

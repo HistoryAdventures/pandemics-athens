@@ -58,8 +58,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
-        // final diagonal = sqrt((constraints.maxHeight * constraints.maxHeight) +
-        //     (constraints.maxWidth * constraints.maxWidth));
         return Stack(
           children: [
             const BackgroundWidget(),
@@ -211,7 +209,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
             ),
             Flexible(
               child: AutoSizeText(category.substring(2).toUpperCase(),
-                  maxLines: category.allMatches(" ").length == 1 ? 1 : 2,
+                  maxLines: category.split(" ").length == 1 ? 1 : 2,
                   minFontSize: 5,
                   textAlign: TextAlign.center,
                   style: Theme.of(context)

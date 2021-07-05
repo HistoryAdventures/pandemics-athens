@@ -14,18 +14,16 @@ import '../features/map/presentation/pages/map_page.dart';
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart';
 
 @CustomAutoRouter(routes: <AutoRoute>[
-  AutoRoute(page: LeandingPage, initial: true),
+  AutoRoute(page: LeandingPage),
   AutoRoute(page: CharacrterPage),
   AutoRoute(page: CharacterInfoPage),
   AutoRoute(page: VirusesInfoPage),
   AutoRoute(page: MapPage),
   AutoRoute(page: QuizPage),
-  AutoRoute(page: ParalaxHistoryPage),
+  AutoRoute(page: ParalaxHistoryPage, initial: true),
   AutoRoute(page: GlossaryPage),
   AutoRoute(page: PanaromaPage),
-  AutoRoute(
-    page: PathogenProfilePage,
-  ),
+  AutoRoute(page: PathogenProfilePage),
   AutoRoute(page: BodyInfoPage),
   AutoRoute(page: VirusLocationPage),
   AutoRoute(page: LearnmorePage)
