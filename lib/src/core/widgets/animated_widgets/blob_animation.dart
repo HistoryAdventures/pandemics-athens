@@ -46,7 +46,7 @@ class _BlobAnimationState extends State<BlobAnimation> {
         0,
         4,
         "png",
-        60,
+        30,
         key: const Key("offline"),
         fullPaths: _fullPathsOffline,
         onPlaying: onOfflinePlaying,

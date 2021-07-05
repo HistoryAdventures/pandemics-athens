@@ -366,7 +366,7 @@ class _PanaromaPageState extends State<PanaromaPage>
                 textSubTitle: locals.chapter1,
                 textTitle: locals.chapter1,
                 onTap: () {
-                  context.router.pop(1);
+                  context.router.push(const ParalaxHistoryPageRoute());
                 }),
           ),
         ),

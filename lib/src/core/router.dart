@@ -13,19 +13,54 @@ import '../features/leanding/presentation/pages/leanding_page.dart';
 import '../features/map/presentation/pages/map_page.dart';
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart';
 
-@CustomAutoRouter(routes: <AutoRoute>[
-  AutoRoute(page: LeandingPage),
-  AutoRoute(page: CharacrterPage),
-  AutoRoute(page: CharacterInfoPage),
-  AutoRoute(page: VirusesInfoPage),
-  AutoRoute(page: MapPage),
-  AutoRoute(page: QuizPage),
-  AutoRoute(page: ParalaxHistoryPage, initial: true),
-  AutoRoute(page: GlossaryPage),
-  AutoRoute(page: PanaromaPage),
-  AutoRoute(page: PathogenProfilePage),
-  AutoRoute(page: BodyInfoPage),
-  AutoRoute(page: VirusLocationPage),
-  AutoRoute(page: LearnmorePage)
+@MaterialAutoRouter(routes: <AutoRoute>[
+  CustomRoute(
+      page: LeandingPage,
+      initial: true,
+      transitionsBuilder: TransitionsBuilders.slideBottom,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: CharacrterPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: CharacterInfoPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: VirusesInfoPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: MapPage,
+      transitionsBuilder: TransitionsBuilders.slideRight,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: QuizPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: ParalaxHistoryPage,
+      transitionsBuilder: TransitionsBuilders.slideBottom,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: GlossaryPage,
+      transitionsBuilder: TransitionsBuilders.slideBottom,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: PanaromaPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: PathogenProfilePage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: BodyInfoPage, transitionsBuilder: TransitionsBuilders.slideLeft),
+  CustomRoute(
+      page: VirusLocationPage,
+      transitionsBuilder: TransitionsBuilders.slideBottom),
+  CustomRoute(
+      page: LearnmorePage, transitionsBuilder: TransitionsBuilders.slideLeft)
 ])
 class $FlutterRouter {}
