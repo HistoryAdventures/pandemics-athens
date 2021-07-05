@@ -39,6 +39,9 @@ dependencies:
   # date and number formatting and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
 
+  just_audio: ^0.7.5
+
+
   # Render After Effects animations natively on Flutter.
   # This package is a pure Dart implementation of a Lottie player.
   lottie: ^1.0.1
@@ -48,12 +51,10 @@ dependencies:
 
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
-
- 
-
-
-
   
+  #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
+  video_player: ^2.1.6
+
 
 
 dev_dependencies:
@@ -68,6 +69,8 @@ dev_dependencies:
   # An opiniated, community-driven set of lint rules for Dart and Flutter projects. Like pedantic but stricter
   lint: ^1.5.3
 
+  
+
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -81,7 +84,17 @@ flutter:
     - assets/characters/
     - assets/icons/
     - assets/image_back/
-    - assets/viruses/
+    - assets/images_quiz/
+    - assets/video/
+    - assets/paralax_images/
+    - assets/background/
+    - assets/man_body/
+    - assets/ebola/
+    - assets/plague/
+    - assets/smallpox/
+    - assets/typhus/
+    - assets/typoid/
+    - assets/panorama_image2.png
 
   fonts:
     - family: BebasNeue

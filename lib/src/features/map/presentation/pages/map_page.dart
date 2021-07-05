@@ -1,13 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../../../character/presentation/pages/characters_page.dart';
-import '../../../leanding/presentation/pages/leanding_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -19,6 +20,12 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   int _selectedItem = 400;
   final _scrollController = ScrollController();
+  late AppLocalizations locals;
+  @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -32,7 +39,6 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
@@ -46,7 +52,7 @@ class _MapPageState extends State<MapPage> {
                       fit: BoxFit.cover)),
             ),
             Positioned(
-                top: size.height * 0.09,
+                top: constraints.maxHeight * 0.09,
                 right: 0,
                 bottom: 150,
                 child: Container(
@@ -79,8 +85,7 @@ class _MapPageState extends State<MapPage> {
                                     children: [
                                       Flexible(
                                         child: AutoSizeText(
-                                          "plague & political Instability"
-                                              .toUpperCase(),
+                                          locals.chapter1Name.toUpperCase(),
                                           maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
@@ -88,8 +93,7 @@ class _MapPageState extends State<MapPage> {
                                         ),
                                       ),
                                       Flexible(
-                                        child: AutoSizeText(
-                                            "Chapter 1 / Plague & Political Instability",
+                                        child: AutoSizeText(locals.chapter1Name,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -100,26 +104,29 @@ class _MapPageState extends State<MapPage> {
                                 ),
                                 Flexible(
                                   flex: 3,
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text:
-                                                '415, Battle of Thermopylae\n',
+                                  child: Scrollbar(
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 30),
+                                        child: RichText(
+                                            text: TextSpan(children: [
+                                          TextSpan(
+                                              text: locals.battleOfThermopylae,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline3),
+                                          TextSpan(
+                                            text: locals.bodyText,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline3),
-                                        TextSpan(
-                                          text: text,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
-                                        ),
-                                      ])),
-                                    )
-                                  ]),
+                                                .bodyText1,
+                                          ),
+                                        ])),
+                                      )
+                                    ]),
+                                  ),
                                 ),
                               ],
                             ),
@@ -139,89 +146,37 @@ class _MapPageState extends State<MapPage> {
                     Expanded(
                       flex: 2,
                       child: ArrowLeftTextWidget(
-                          textSubTitle: 'chapter 1',
-                          textTitle: 'nikos story',
+                          textSubTitle: locals.chapter1,
+                          textTitle: locals.nikosStory,
                           onTap: () {
-                            // _scrollController.animateTo(0,
-                            //     duration: const Duration(milliseconds: 50),
-                            //     curve: Curves.easeIn);
-                            Navigator.of(context).push(PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  const begin = Offset(-1.0, 0.0);
-
-                                  final tween =
-                                      Tween(begin: begin, end: Offset.zero);
-
-                                  return Align(
-                                    child: SlideTransition(
-                                      position: animation.drive(tween),
-                                      //opacity: animation,
-                                      child: child,
-                                    ),
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation) {
-                                  return const LeandingPage();
-                                }));
+                            context.router.pop();
                           }),
                     ),
                     Expanded(
                       flex: 4,
                       child: Container(
+                        // color: Colors.blue,
                         alignment: Alignment.bottomCenter,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
-                        child: Scrollbar(
-                          isAlwaysShown: true,
-                          controller: _scrollController,
-                          child: ListView.builder(
-                              controller: _scrollController,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 50,
-                              itemBuilder: (context, index) {
-                                return yearsWidget(
-                                    index: index, selected: 400 + index);
-                              }),
-                        ),
+                        child: ListView.builder(
+                            controller: _scrollController,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 50,
+                            itemBuilder: (context, index) {
+                              return yearsWidget(
+                                  index: index, selected: 400 + index);
+                            }),
                       ),
                     ),
                     Expanded(
                       flex: 2,
                       child: ArrowRightTextWidget(
-                          textSubTitle: 'key people',
-                          textTitle: 'Athens, 5th century BC',
+                          textSubTitle: locals.keyPeople,
+                          textTitle: locals.athens5thCentury,
                           onTap: () {
-                            // _scrollController.animateTo(
-                            //     _scrollController.position.maxScrollExtent,
-                            //     duration: const Duration(milliseconds: 50),
-                            //     curve: Curves.easeIn);
-                            Navigator.of(context).push(PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  const begin = Offset(-1.0, 0.0);
-
-                                  final tween =
-                                      Tween(begin: begin, end: Offset.zero);
-
-                                  return Align(
-                                    child: SlideTransition(
-                                      position: animation.drive(tween),
-                                      //opacity: animation,
-                                      child: child,
-                                    ),
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation) {
-                                  return const CharacrterPage();
-                                }));
+                            context.router.push(const CharacrterPageRoute());
                           }),
                     ),
                   ],
@@ -242,7 +197,9 @@ class _MapPageState extends State<MapPage> {
 
   Widget yearsWidget({int? index, int? selected}) {
     return Container(
+        //padding: const EdgeInsets.only(),
         alignment: Alignment.center,
+        // color: Colors.red,
         margin: const EdgeInsets.only(
           left: 30,
         ),
@@ -261,16 +218,3 @@ class _MapPageState extends State<MapPage> {
             )));
   }
 }
-
-const String text = '''
-    
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.
-In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.
-
-At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, 
-the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), 
-led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.''';

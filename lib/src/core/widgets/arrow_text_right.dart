@@ -19,28 +19,32 @@ class ArrowRightTextWidget extends StatelessWidget {
       //padding: const EdgeInsets.only(right: 10),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
+          Flexible(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AutoSizeText(
-                  textTitle.toUpperCase(),
-                  maxLines: 1,
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption
-                      ?.copyWith(fontSize: 14),
+                Flexible(
+                  child: AutoSizeText(
+                    textTitle.toUpperCase(),
+                    maxLines: 1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.copyWith(fontSize: 14),
+                  ),
                 ),
-                AutoSizeText(
-                  textSubTitle.toUpperCase(),
-                  maxLines: 1,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      ?.copyWith(fontSize: 26),
+                Flexible(
+                  child: AutoSizeText(
+                    textSubTitle.toUpperCase(),
+                    maxLines: 1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        ?.copyWith(fontSize: 26),
+                  ),
                 )
               ],
             ),
@@ -49,7 +53,7 @@ class ArrowRightTextWidget extends StatelessWidget {
             child: Clickable(
                 onPressed: onTap,
                 child: Container(
-                    margin: const EdgeInsets.only(right: 24),
+                    margin: const EdgeInsets.only(left: 24),
                     height: 30,
                     width: 30,
                     child: Image.asset(AssetsPath.arrowForwardImage))),

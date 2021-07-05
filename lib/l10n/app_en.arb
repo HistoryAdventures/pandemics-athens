@@ -3,8 +3,233 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "chapter1Name": "chapter1Name",
+    "spencerStrikerName": "Spencer Striker, PHD",
+    "@spencerStrikerName": {
+      "description": "Spencer Striker, PHD"
+    },
+    "worldOfCharactersName": "World Of Characters",
+    "@worldOfCharactersName": {
+      "description": "World Of Characters"
+    },
+    "globalPandemicName": " global pandemic",
+    "@globalPandemicName": {
+      "description": " global pandemic"
+    },
+    "chapter1Name": "Chapter 1 / Plague & Political Instability",
     "@chapter1Name": {
       "description": "Chapter 1 / Plague & Political Instability"
+    },
+    "battleOfThermopylae": "415, Battle of Thermopylae\n",
+    "@battleOfThermopylae": {
+      "description": "415, Battle of Thermopylae\n"
+    },
+    "chapter1": "Chapter 1",
+    "@chapter1": {
+      "description": "Chapter 1"
+    },
+    "keyPeople": "key people",
+    "@keyPeople": {
+      "description": "key people"
+    },
+    "athens5thCentury": "Athens, 5th century BC",
+    "@Athens5thCentury": {
+      "description": "Athens, 5th century BC"
+    },
+    "nikosStory": "nikos story",
+    "@nikosStory": {
+      "description": "nikos story"
+    },
+    "historyAdventures": "History Adventures",
+    "@historyAdventures": {
+      "description": "History Adventures"
+    },
+    "worldOfCharacters": "World Of Characters",
+    "@worldOfCharacters": {
+      "description": "World Of Characters"
+    },
+    "namePericles": "Pericles",
+    "@namePericles": {
+      "description": "Pericles"
+    },
+    "thucididesName": "thucidides",
+    "@thucididesName": {
+      "thucidides": "thucidides"
+    },
+    "socratesAndPlatoName": "socrates and plato",
+    "@socratesAndPlatoName": {
+      "description": "socrates and plato"
+    },
+    "aristophanesAndSophocles": "Aristophanes and Sophocles",
+    "@aristophanesAndSophocles": {
+      "description": "Aristophanes and Sophocles"
+    },
+    "keyPeopleAthens5thCenturyBCE": "Key people in Athens 5th century BCE",
+    "@keyPeopleAthens5thCenturyBCE": {
+      "description": "Key people in Athens 5th century BCE"
+    },
+    "eventTimeline": "event timeline",
+    "@eventTimeline": {
+      "description": "event timeline"
+    },
+    "bodyText": "In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured. In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured",
+    "@bodyText": {
+      "description": "event timeline"
+    },
+    "quiz": "quiz",
+    "@eventTimeline": {
+      "description": "quiz"
+    },
+    "glosssary": "glosssary",
+    "@eventTimeline": {
+      "description": "glosssary"
+    },
+    "sovereignty": "Sovereignty",
+    "@eventTimeline": {
+      "description": "Sovereignty"
+    },
+    "sovereigntyText": "Sovereignty refers to the full right and power of a given governing body over itself, without any interference from external bodies. Broadly speaking, it refers to a state’s supreme authority and it can have different sources. ",
+    "@eventTimeline": {
+      "description": "Sovereignty"
+    },
+    "whatNikosDo": "What should Nikos do?",
+    "@eventTimeline": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "helpTheSenator": "help the senator",
+    "@eventTimeline": {
+      "helpTheSenator": "helpTheSenator"
+    },
+    "stickToTheOath": "stick to the oath",
+    "@eventTimeline": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "todoNoHarm": "todo no harm",
+    "@todoNoHarm": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "panaromaInfoDialogText": "Would it not do more harm than good to let this man live? Nikos reasoned with himself. While his teacher had been clear that “to do no harm” meant to do no harm to the man’s physical body, Nikos found himself more compelled by the condition of the dying man’s spirit. He would do as Calyx asked.“Would you like to say goodbye to your wife?” Nikos whispered.“No, do it before she returns,” Calyx confirmed. Nikos couldn’t look at what he was doing as he held the flailing man under the bath water. Moments after the aristocrat's movement stopped, Eleni walked in to see her husband dead in the bath.“He succumbed to his condition. There was nothing I could do.” Nikos hoped the widow believed him. Eleni just nodded and Nikos left the woman to mourn her husband.",
+    "@todoNoHarm": {
+      "panaromaInfoDialogText": "panaromaInfoDialogText"
+    },
+    "chapter1Pathogenprofile": "Chapter 1 / Pathogen Profile",
+    "@todoNoHarm": {
+      "chapter1Pathogenprofile": "chapter1Pathogenprofile"
+    },
+    "whereDidItComeFrom": "where did it come from?",
+    "@whereDidItComeFrom": {
+      "whereDidItComeFrom": "whereDidItComeFrom"
+    },
+    "whereDidItComeFromBodyText": "“Rising in lands of Aegypt, traversing reaches of air and floating fields of foam...” – Lucretius’ poem de rerum natura (a later, 1st century Roman/Latin poem gives an account of the plague and its symptoms, which might be quite good to use here to illustrate the map etc) \n\nThe Athenian hegemony in the 5th century BC, there power and influence in the Greek world, was based on their naval power. Much as the Spartan armies on land were a match for almost anyone, at sea, the Athenian navy was just as formidable.\n\n“It first began, it is said, in the parts of Ethiopia above Egypt, and thence descended into Egypt and Libya... Suddenly falling upon Athens, it first attacked the population in Piraeus – which was the occasion of the rumours that the Peloponnesians had poisoned the reservoirs – and afterwards appeared in the upper city, when the deaths became much more frequent...” (Thucydides, History of the Peloponnesian War).\n\nTo read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative...\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, and became the ideal environment for disease to spread.",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "pathogenProfile": "pathogen profile",
+    "@pathogenProfile": {
+      "pathogenProfile": "pathogen profile"
+    },
+    "whatDidItDo": "what did it do?",
+    "@whatDidItDo": {
+      "whatDidItDo": "whatDidItDo"
+    },
+    "pathogenProfileText": "Within just two years of the Peloponnesian War beginning in 431 BC, the city was gripped by a plague that devastated the population. In a city that prided itself on its democracy – the basic equality of its citizens – it soon became apparent that there was nothing more democratic than the disease that was striking through the polis. Rich or poor, man or woman, slave or free, it hardly mattered; no one was safe from this pestilence.\n\nHistorians are fortunate to have the vivid account of the plague that is preserved in Thucydides’ historical narrative and some archaeological remains to try to piece together what happened in the four brief years that the city suffered from the plague. For example, archaeologists have uncovered mass burial pits in Athens, a grim reminder of how deadly this plague was. The use of modern DNA testing on the teeth recovered from these long-dead victims of the disease led a team of researchers to claim that the plague was an outbreak of Typhoid fever. However, another team of scientists later challenged these results...\n\nIt remains unlikely historians will ever know exactly what the awful disease that fell upon Athens at this time really was. Nevertheless, by exploring what is known of the origins and symptoms of the plague, we can begin to build a case for and against a line-up of suspects...",
+    "@pathogenProfileText": {
+      "pathogenProfileText": "pathogenProfileText"
+    },
+    "bodyIntro": "intro",
+    "@bodyIntro": {
+      "bodyIntro": "bodyIntro"
+    },
+    "bodyHead": "head",
+    "@bodyHead": {
+      "bodyHead": "bodyHead"
+    },
+    "bodyThroat": "throat",
+    "@bodyThroat": {
+      "bodyThroat": "bodyThroat"
+    },
+    "bodyCheast": "chest",
+    "@bodyCheast": {
+      "bodyCheast": "bodyCheast"
+    },
+    "bodySkin": "skin",
+    "@bodySkin": {
+      "bodySkin": "bodySkin"
+    },
+    "bodyStomach": "stomach",
+    "@bodyStomach": {
+      "bodyStomach": "bodyStomach"
+    },
+    "bodyhands": "hands",
+    "@bodyhands": {
+      "bodyhands": "bodyhands"
+    },
+    "whatWasIt": "what was it?",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "introVirus": "intro",
+    "@introVirus": {
+      "introVirus": "introVirus"
+    },
+    "bubonicPlague": "bubonic plague",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "typhus": "typhus",
+    "@typhus": {
+      "typhus": "typhus"
+    },
+    "typhiod": "typhiod",
+    "@typhiod": {
+      "typhiod": "typhiod"
+    },
+    "smallpox": "smallpox",
+    "@smallpox": {
+      "smallpox": "smallpox"
+    },
+    "ebola": "ebola",
+    "@ebola": {
+      "ebola": "ebola"
+    },
+    "athens429Bc": " athens, 429 bc",
+    "@athens429Bc": {
+      "athens429Bc": "athens429Bc"
+    },
+    "paralaxText1": " Nikos of Athens was tired. The pestilence that tormented his great city had taken its toll, not just on the bodies of those who died from the strange disease -- those poor, sad souls overtaken by the vicious heat that started at their head, inflamed their eyes, and eventually choked the victim in his own hot  blood -- but on the spirit of those it left behind. Bodies so putrid even the crows died from consuming their rotten flesh lined the streets. A man could only walk streets like that so many times before he started to go mad. Nikos was afraid he was about to reach that breaking point. But, the physician forced himself to persevere. He had made a promise before his master Hypocrites, as well as the gods, Asclepius and Apollo. He had promised to serve the sick of the City. He would not go back on his promise.",
+    "@paralaxText1": {
+      "paralaxText1": "paralaxText1"
+    },
+    "paralaxText2": "As Nikos made his way to the house of his patient, Calyx, he had to fight through an angry mob. Many blamed the pestilence on the Athenian elite. Why else would the gods have taken the general Pericles if not to give the city to invading Sparta? Others blamed it on the Spartans themselves and only blamed the Senate for not dealing with the Spartans sooner.  While the Spartans were no doubt ignoble brutes, it was clear the disease had not come from Sparta since the infection predated the arrival of their armies. It was equally clear to Nikos that the gods did not favor Sparta over his native Athens since the illness did not seem to discriminate.",
+    "@paralaxText2": {
+      "paralaxText2": "paralaxText2"
+    },
+    "paralaxText3": "But, really, who could expect more than superstitious fervor from the perioikoi  rabel who now fled into the city like rats since the beginning of the war? Of all the troubles the Spartans had given them, overcrowding had been one of the worst in Nikos’ mind. Nothing bread disease like crowds after all. The physician pushed himself through the rabel until he arrived at the door of his preferred patient. When Nikos arrived at the door, a slave girl unlocked the front gate just long enough for Nikos to slip in. The slave led Nikos through the open air courtyard that stretched through the center of the aristocrat’s home to the bedroom in the back. When Nikos arrived in the bedroom, he saw  Calyx was being attended by his wife, Eleni.  The patient himself was submerged in a tub of cold water, completely naked.",
+    "@paralaxText3": {
+      "paralaxText3": "paralaxText3"
+    },
+    "paralaxText4": "“I apologize for my husband’s indisposed state, doctor,” Eleni looked embarrassed. “But his body is so hot, he cannot bear to be out of the water, much less put on clothes.\n\n”“It is alright, Kyria. I am used to seeing patients in this state.” Nikos walked closer to Calyx and saw his body was covered in ulcers. As Nikos leaned down, the aristocrat groaned painfully.\n\n“Water, give me water,” he rasped. Constant thirst, along with incontinence of the bowels, was a sign the patient was well past his crisis. There was nothing Nikos could do to save him now.\n\n“If you please, could you go fetch your husband some clean water to drink.? We do not want him drinking from the bath,” Nikos told Eleni. The aristocrat’s wife seemed relieved to remove herself from the scene of her husband’s shame.\n\n",
+    "@paralaxText4": {
+      "paralaxText4": "paralaxText4"
+    },
+    "paralaxText5": "“Be honest with me,” Calyx croaked after his wife left. “Is there anything that can be done?\n\n”“No.” Nikos respected his patient enough to give him honesty.\n\n“Then, please, end my life now. I do not wish to waste away, leaving my body not even fit for carrion crows. Let my wife bury a man she recognizes,” Calyx pleaded. Nikos wanted nothing more than to honor his patient’s request. A noble man did not deserve this sort of ignoble death, but part of Nikos’ pledge to Apollo had been an oath to do no harm. He had been taught he could not so much as cut off the man’s ailing pustules with a knife, as cutting into the flesh constitutes bodily harm. How could Apollo ever forgive him for causing a man’s death?\n\n",
+    "@paralaxText5": {
+      "paralaxText5": "paralaxText5"
+    },
+    "learnMore": "learn more",
+    "@learnMore": {
+      "learnMore": "learnMore"
+    },
+    "backToChapter1": "back to chapter 1",
+    "@learnMore": {
+      "learnMore": "learnMore"
+    },
+    "keyPeopleOfTheCentury": "key people of the century",
+    "@keyPeopleOfTheCentury": {
+      "keyPeopleOfTheCentury": "keyPeopleOfTheCentury"
+    },
+    "backToChapter1": "back to chapter 1",
+    "@learnMore": {
+      "learnMore": "learnMore"
     }
 }
+

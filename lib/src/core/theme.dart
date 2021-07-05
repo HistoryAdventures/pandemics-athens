@@ -10,8 +10,9 @@ class DefaultTheme {
   /// Standard `ThemeData` for History of Adventures UI.
   static ThemeData get standard {
     return ThemeData(
-      scrollbarTheme: const ScrollbarThemeData()
-          .copyWith(thumbColor: MaterialStateProperty.all(AppColors.orange)),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStateProperty.all(AppColors.orange),
+      ),
       highlightColor: AppColors.orange,
       colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.blueDeep),
       appBarTheme: _appBarTheme,
