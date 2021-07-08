@@ -7,7 +7,6 @@ import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_left.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_right.dart';
@@ -65,8 +64,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-
-    print("object");
     super.didChangeDependencies();
   }
 
@@ -88,8 +85,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _scrollrateNine = height * 4.8;
     _scrollrateTen = height * 5.8;
     _scrollrateEleven = height * 7.3;
-    _scrollrateTwelv = height * 8;
-    
+    _scrollrateTwelv = height * 9;
+
     controllerTopPosition = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
@@ -187,6 +184,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void dispose() {
+    controller.stop();
+    controllerTopPosition.stop();
+    controllerBottomPosition.stop();
     controllerTopPosition.dispose();
     controllerBottomPosition.dispose();
     controller.dispose();
@@ -305,6 +305,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   top: rateTen,
+                  padding: 100,
                   asset: "parallax11",
                   boxFit: BoxFit.contain),
               Positioned(
@@ -496,7 +497,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   controller: _scrollController,
                   children: <Widget>[
                     Container(
-                      height: constraints.maxHeight * 12.8,
+                      height: constraints.maxHeight * 13.2,
                       color: Colors.transparent,
                     )
                   ]),
@@ -515,7 +516,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       children: [
                         Expanded(
                           flex: 2,
-                          child: Container(
+                          child: SizedBox(
                             child: ArrowLeftWidget(
                                 textSubTitle: locals.stickToTheOath,
                                 textTitle: '',
@@ -615,7 +616,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                                   ?.copyWith(
                                                       color: AppColors.white),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                               width: 10,
                                               child: Icon(
@@ -652,8 +653,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         },
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
+                          children: const [
+                            Icon(
                               Icons.arrow_upward_sharp,
                               color: AppColors.black54,
                             ),
@@ -661,7 +662,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ],
                         ),
                       ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.apps))
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
                     ],
                   ),
                 ),
@@ -683,6 +684,7 @@ class ParallaxWidget extends StatelessWidget {
   final BoxFit boxFit;
   final double width;
   final Color? color;
+  final double? padding;
   final Animation<Offset>? animation;
   const ParallaxWidget(
       {required this.top,
@@ -690,6 +692,7 @@ class ParallaxWidget extends StatelessWidget {
       required this.boxFit,
       required this.width,
       this.image,
+      this.padding,
       this.left,
       this.color,
       this.animation,
@@ -702,6 +705,7 @@ class ParallaxWidget extends StatelessWidget {
       child: SlideTransition(
         position: animation!,
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: padding ?? 0),
           width: width,
           color: color ?? AppColors.transpatent,
           child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),

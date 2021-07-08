@@ -39,18 +39,22 @@ class _CharacrterPageState extends State<CharacrterPage> {
       CharacterModel(
         photo: AssetsPath.periclesImage,
         name: locale.namePericles,
+        description: locale.periclesTextDescription,
       ),
       CharacterModel(
         photo: AssetsPath.thucididesImage,
         name: locale.thucididesName,
+        description: locale.thucydidesTextDescription,
       ),
       CharacterModel(
         photo: AssetsPath.socratesImage,
         name: locale.socratesAndPlatoName,
+        description: locale.socratesAndPlatoTextDescription,
       ),
       CharacterModel(
         photo: AssetsPath.aristophanesImage,
         name: locale.aristophanesAndSophocles,
+        description: locale.aristophanesAndSophoclesTextDescription,
       ),
     ];
     return LayoutBuilder(builder: (context, constraints) {
@@ -115,6 +119,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                           .map((photo) => CharacterModel(
                                 name: photo.name,
                                 photo: photo.photo,
+                                description: photo.description,
                                 onTap: () {
                                   context.router.push(CharacterInfoPageRoute(
                                       photoHero: photo,

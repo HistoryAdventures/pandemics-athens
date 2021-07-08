@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/body_widget.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -10,7 +11,6 @@ import '../../../../core/widgets/animated_widgets/background_widget.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
 import '../../../../core/widgets/clickable_widget.dart';
-import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/man_body_widget.dart';
 
 class BodyInfoPage extends StatefulWidget {
@@ -111,7 +111,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 child: child,
                               );
                             },
-                            child: CharacterModel(
+                            child: BodyModel(
                               key: ValueKey(_selectedItem),
                               name: _selectedItem,
                               photo: _selectedImg,
