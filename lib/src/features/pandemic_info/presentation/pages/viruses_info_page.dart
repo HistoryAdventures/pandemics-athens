@@ -27,7 +27,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
   }
 
   String _selectedItem = "intro";
-  Widget _selectedImg = const EbolaAnimation(height: 300, width: 300);
+  String _selectedImg = 'assets/virus_gif/virus1.gif';
 
   @override
   Widget build(BuildContext context) {
@@ -38,31 +38,30 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
     final List<VirusModel> listCharacters = [
       VirusModel(
         name: locals.introVirus,
-        widget: const EbolaAnimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus1.gif',
       ),
       VirusModel(
-        widget: const Plaguenimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus2.gif',
         name: locals.bubonicPlague,
       ),
       VirusModel(
-        widget: const TyphusAimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus2.gif',
         name: locals.typhus,
       ),
       VirusModel(
-        widget: const EbolaAnimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus1.gif',
         name: locals.typhiod,
       ),
       VirusModel(
-        widget: const EbolaAnimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus2.gif',
         name: locals.smallpox,
       ),
       VirusModel(
-        widget: const EbolaAnimation(height: 300, width: 300),
+        widget: 'assets/virus_gif/virus1.gif',
         name: locals.ebola,
       )
     ];
     final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -74,15 +73,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
               ),
               child: Row(
                 children: [
-                  Expanded(
-                    child: VirusModel(
-                      name: _selectedItem,
-                      widget: _selectedImg,
-                      onTap: () {
-                        // Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
+                  Expanded(child: Image.asset(_selectedImg)),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(
@@ -154,8 +145,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
                                 child: Row(
                                     children: listCharacters
                                         .map((data) => virusesNameListWidget(
-                                            name: data.name,
                                             image: data.widget,
+                                            name: data.name,
                                             selected: data.name))
                                         .toList())),
                           )
@@ -172,7 +163,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
     );
   }
 
-  void changeState(String? selctedItem, Widget? slectedImg) {
+  void changeState(String? selctedItem, String? slectedImg) {
     setState(() {
       _selectedItem = selctedItem!;
       _selectedImg = slectedImg!;
@@ -181,7 +172,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
   }
 
   Widget virusesNameListWidget(
-      {String? name, String? selected, Widget? image}) {
+      {String? name, String? selected, String? image}) {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(

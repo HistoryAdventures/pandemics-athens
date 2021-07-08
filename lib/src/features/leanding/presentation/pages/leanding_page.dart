@@ -128,25 +128,25 @@ class _LeandingPageState extends State<LeandingPage> {
                 onPressed: () {},
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                  height: constraints.maxHeight * 0.35,
-                  width: constraints.maxWidth * 0.35,
-                  child: isImageloaded == true
-                      ? GameWidget(
-                          backgroundBuilder: (context) => Container(
-                              decoration:
-                                  BoxDecoration(color: Colors.transparent)),
-                          game: MouseMovementGame(image: image))
-                      : Center(
-                          child: Text("Loading"),
-                        )),
-              // BlobAnimation(
-              //   height: constraints.maxHeight * 0.35,
-              //   width: constraints.maxWidth * 0.35,
-              // ),
-            ),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: Container(
+            //       height: constraints.maxHeight * 0.35,
+            //       width: constraints.maxWidth * 0.35,
+            //       child: isImageloaded == true
+            //           ? GameWidget(
+            //               backgroundBuilder: (context) => Container(
+            //                   decoration:
+            //                       BoxDecoration(color: Colors.transparent)),
+            //               game: MouseMovementGame(image: image))
+            //           : Center(
+            //               child: Text("Loading"),
+            //             )),
+            //   // BlobAnimation(
+            //   //   height: constraints.maxHeight * 0.35,
+            //   //   width: constraints.maxWidth * 0.35,
+            //   // ),
+            // ),
           ],
         );
       },

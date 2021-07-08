@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:history_of_adventures/src/features/glossary/presentation/pages/glossary_page.dart';
+import 'package:history_of_adventures/src/features/leanding/presentation/pages/moving_page.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/body_info_page.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/pathogen_profile_page.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/virus_loc_page.dart';
@@ -16,7 +17,7 @@ import '../features/pandemic_info/presentation/pages/viruses_info_page.dart';
 @MaterialAutoRouter(routes: <AutoRoute>[
   CustomRoute(
       page: LeandingPage,
-      initial: true,
+      // initial: true,
       transitionsBuilder: TransitionsBuilders.slideBottom,
       durationInMilliseconds: 1000),
   CustomRoute(
@@ -53,6 +54,11 @@ import '../features/pandemic_info/presentation/pages/viruses_info_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: PathogenProfilePage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: MovingPage,
+      initial: true,
       transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(

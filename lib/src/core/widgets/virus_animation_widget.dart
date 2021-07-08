@@ -4,7 +4,7 @@ import '../colors.dart';
 
 class VirusModel extends StatelessWidget {
   const VirusModel({required this.widget, this.onTap, required this.name});
-  final Widget widget;
+  final String widget;
   final VoidCallback? onTap;
   final String name;
   @override
@@ -18,7 +18,7 @@ class VirusModel extends StatelessWidget {
               focusColor: AppColors.transpatent,
               hoverColor: AppColors.transpatent,
               onTap: onTap,
-              child: widget)),
+              child: Image.asset(widget))),
     );
   }
 }

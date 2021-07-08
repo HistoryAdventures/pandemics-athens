@@ -96,10 +96,7 @@ flutter:
     - assets/background/
     - assets/man_body/
     - assets/ebola/
-    - assets/plague/
-    - assets/smallpox/
-    - assets/typhus/
-    - assets/typoid/
+    - assets/virus_gif/
     - assets/panorama_image2.png
     - assets/images/white0000.png
 
