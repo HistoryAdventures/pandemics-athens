@@ -10,7 +10,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-
   #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
   auto_route: ^2.2.0
 
@@ -20,21 +19,25 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
-  
+
+  dartz: ^0.10.0-nullsafety
+
   #A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
-  equatable: ^2.0.2
+  # equatable: ^2.0.3
 
   flutter:
     sdk: flutter
-  #Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. 
+  #Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
   #Built to be used with the bloc state management package.
   flutter_bloc: ^7.0.1
 
   flutter_localizations:
     sdk: flutter
+
+  freezed_annotation: ^0.14.2
   # A simple widget for animating a set of images with full custom controls as an alternative to using a GIF file.
   image_sequence_animator: ^2.0.0
-  
+
   # Contains code to deal with internationalized/localized messages,
   # date and number formatting and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
@@ -59,13 +62,16 @@ dependencies:
 
 dev_dependencies:
   # AutoRoute is a declartive routing solution, where everything needed for navigation is automatically generated for you.
-  auto_route_generator: ^2.1.0  
-
-  # A build system for Dart code generation and modular compilation.
+  auto_route_generator:
+    ^2.1.0
+    # A build system for Dart code generation and modular compilation.
   build_runner:
-
   flutter_test:
     sdk: flutter
+    
+  freezed: ^0.14.2
+  
+
   # An opiniated, community-driven set of lint rules for Dart and Flutter projects. Like pedantic but stricter
   lint: ^1.5.3
 
@@ -95,6 +101,8 @@ flutter:
     - assets/typhus/
     - assets/typoid/
     - assets/panorama_image2.png
+    # - assets/viruses/
+    - assets/document_view/
 
   fonts:
     - family: BebasNeue

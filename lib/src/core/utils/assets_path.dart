@@ -28,4 +28,5 @@ class AssetsPath {
   static const String manstomachImage = 'assets/man_body/stomach.png';
 
   static const String manthroatImage = 'assets/man_body/throat.png';
+  static const String document = 'assets/document_view/document.png';
 }
