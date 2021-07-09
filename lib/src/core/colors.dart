@@ -36,7 +36,7 @@ abstract class AppColors {
 
   /// Deep grey
   static const Color greyDeep = Color(0xff2E2E2E);
-  
+
   // Transparent
   static const Color transpatent = Colors.transparent;
 }

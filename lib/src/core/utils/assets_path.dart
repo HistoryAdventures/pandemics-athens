@@ -15,4 +15,5 @@ class AssetsPath {
   static const String blobWhiteImage1 = 'assets/image_back/blob_white_1.png';
   static const String blobWhiteImage2 = 'assets/image_back/blob_white_2.png';
   static const String blobBlackImage = 'assets/image_back/blob_black.png';
+  static const String document = 'assets/document_view/document.png';
 }

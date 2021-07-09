@@ -29,12 +29,13 @@ class KeyboardUtils {
 
   // Determine what to do when an image is pressed. This varies depending on input mode and platform.
   // Keyboard users will support ctrl/cmd modifiers, while Touch devices are optimized for single taps
-  static List<String> handleMultiSelectListClick(
-      {required String clicked,
-      required List<String> selected,
-      required List<String> all,
-      required bool touchMode,
-      bool allowSpanSelect = true}) {
+  static List<String> handleMultiSelectListClick({
+    required String clicked,
+    required List<String> selected,
+    required List<String> all,
+    required bool touchMode,
+    bool allowSpanSelect = true,
+  }) {
     selected = List.from(
         selected); // Clone list so we don't modify the original accidentally
     // ignore: prefer_final_locals
