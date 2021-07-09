@@ -65,7 +65,7 @@ class _LearnmorePageState extends State<LearnmorePage> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                   width: 10,
                                   child: Icon(

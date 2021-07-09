@@ -1,12 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widget.dart';
+import 'package:history_of_adventures/src/core/widgets/mouse_movement/mouse_muve.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/widgets/animated_widgets/blob_animation.dart';
+
+import 'package:flutter/services.dart';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
+import 'dart:typed_data';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -17,10 +25,34 @@ class LeandingPage extends StatefulWidget {
 
 class _LeandingPageState extends State<LeandingPage> {
   late AppLocalizations locales;
+  late ui.Image image;
+  bool isImageloaded = false;
   @override
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     super.didChangeDependencies();
+  }
+
+  Future<Null> init() async {
+    final ByteData data = await rootBundle.load('images/white0000.png');
+    image = await loadImage(Uint8List.view(data.buffer));
+  }
+
+  Future<ui.Image> loadImage(Uint8List img) async {
+    final Completer<ui.Image> completer = Completer();
+    ui.decodeImageFromList(img, (ui.Image img) {
+      setState(() {
+        isImageloaded = true;
+      });
+      return completer.complete(img);
+    });
+    return completer.future;
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
   }
 
   @override
@@ -71,12 +103,6 @@ class _LeandingPageState extends State<LeandingPage> {
                       ],
                     ),
                   ),
-                  Flexible(
-                    child: BlobAnimation(
-                      height: constraints.maxHeight * 0.35,
-                      width: constraints.maxWidth * 0.35,
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -102,6 +128,25 @@ class _LeandingPageState extends State<LeandingPage> {
                 onPressed: () {},
               ),
             ),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: Container(
+            //       height: constraints.maxHeight * 0.35,
+            //       width: constraints.maxWidth * 0.35,
+            //       child: isImageloaded == true
+            //           ? GameWidget(
+            //               backgroundBuilder: (context) => Container(
+            //                   decoration:
+            //                       BoxDecoration(color: Colors.transparent)),
+            //               game: MouseMovementGame(image: image))
+            //           : Center(
+            //               child: Text("Loading"),
+            //             )),
+            //   // BlobAnimation(
+            //   //   height: constraints.maxHeight * 0.35,
+            //   //   width: constraints.maxWidth * 0.35,
+            //   // ),
+            // ),
           ],
         );
       },

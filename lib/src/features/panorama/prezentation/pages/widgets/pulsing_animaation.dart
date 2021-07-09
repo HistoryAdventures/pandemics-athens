@@ -38,7 +38,7 @@ class AnimatedPulse extends StatefulWidget {
 class _AnimatedPulseState extends State<AnimatedPulse>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -60,10 +60,11 @@ class _AnimatedPulseState extends State<AnimatedPulse>
 
   @override
   void dispose() {
-    _timer.cancel();
     _controller
       ..removeStatusListener(_onAnimationStatusChanged)
       ..dispose();
+    _timer?.cancel();
+
     super.dispose();
   }
 

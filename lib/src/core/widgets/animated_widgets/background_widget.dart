@@ -1,7 +1,19 @@
+import 'dart:math';
+
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/mouse_movement/mouse_muve.dart';
 import 'package:video_player/video_player.dart';
+
+import '../widget_circle.dart';
+
+import 'package:flutter/services.dart';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
+import 'dart:typed_data';
 
 class BackgroundWidget extends StatefulWidget {
   const BackgroundWidget({Key? key}) : super(key: key);
@@ -10,34 +22,97 @@ class BackgroundWidget extends StatefulWidget {
   _BackgroundWidgetState createState() => _BackgroundWidgetState();
 }
 
-class _BackgroundWidgetState extends State<BackgroundWidget> {
+class _BackgroundWidgetState extends State<BackgroundWidget>
+    with SingleTickerProviderStateMixin {
   late AppLocalizations locales;
+  late AnimationController animatinController;
+  late Animation<double> animation;
+  late List<CircleWidgets> randomCircleList;
+  late ui.Image image;
   @override
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     super.didChangeDependencies();
   }
 
-  late VideoPlayerController _controller;
+  late VideoPlayerController _videoController;
   late Future<void> _initializeVideoPlayerFuture;
+  bool isVideoLoaded = false;
+  bool isImageloaded = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/video/video_back.mp4');
+    init();
 
-    _controller.addListener(() {
+    animatinController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3))
+          ..addStatusListener(_onAnimationStatusChanged)
+          ..forward();
+
+    animation = Tween<double>(begin: 0, end: 30).animate(animatinController);
+    randomCircleList = List<CircleWidgets>.generate(1000, (i) {
+      final random = Random();
+      final List<Color> listColors = [
+        Colors.grey,
+        Colors.black,
+        Colors.white,
+        Colors.grey.shade200,
+        Colors.grey.shade500,
+        Colors.grey.shade600,
+        Colors.grey.shade700,
+      ];
+      return CircleWidgets(
+        height: random.nextInt(15).toDouble(),
+        width: random.nextInt(15).toDouble(),
+        animation: animation,
+        color: listColors[random.nextInt(listColors.length)],
+        top: i.toDouble() * random.nextInt(20),
+        left: i.toDouble() * random.nextInt(50),
+        right: i.toDouble() * random.nextInt(50),
+        bottom: i.toDouble() * random.nextInt(50),
+      );
+    });
+    _videoController =
+        VideoPlayerController.asset('assets/video/video_back.mp4');
+    _initializeVideoPlayerFuture = _videoController.initialize().then((_) {
+      _videoController.setLooping(true);
+      _videoController.play();
+      _videoController.setVolume(0);
       setState(() {});
     });
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
-    //_controller.initialize().then((_) => setState(() {}));
-    _controller.play();
+  }
+
+  void _onAnimationStatusChanged(AnimationStatus status) {
+    if (!mounted) return;
+    if (status == AnimationStatus.completed) {
+      if (mounted) animatinController.reverse();
+    } else if (status == AnimationStatus.dismissed) {
+      if (mounted) animatinController.forward();
+    }
+  }
+
+  Future<Null> init() async {
+    final ByteData data = await rootBundle.load('images/white0000.png');
+    image = await loadImage(Uint8List.view(data.buffer));
+  }
+
+  Future<ui.Image> loadImage(Uint8List img) async {
+    final Completer<ui.Image> completer = Completer();
+    ui.decodeImageFromList(img, (ui.Image img) {
+      setState(() {
+        isImageloaded = true;
+      });
+      return completer.complete(img);
+    });
+    return completer.future;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _videoController.dispose();
+    animatinController.dispose();
+
     super.dispose();
   }
 
@@ -51,30 +126,34 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
               child: FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(
-                  width: _controller.value.size.width,
-                  height: _controller.value.size.height,
+                  width: _videoController.value.size.width,
+                  height: _videoController.value.size.height,
                   child: FutureBuilder(
                     future: _initializeVideoPlayerFuture,
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
-                      return VideoPlayer(_controller);
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return VideoPlayer(_videoController);
+                      }
+
+                      return Container();
                     },
                   ),
                 ),
               ),
             ),
-            SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight,
-                    child: Image.asset(
-                      "assets/background/white0000.png",
-                      fit: BoxFit.cover,
-                    )),
-              ),
+            Stack(
+              children: randomCircleList,
             ),
+            // SizedBox.expand(
+            //   child: FittedBox(
+            //     fit: BoxFit.cover,
+            //     child: SizedBox(
+            //         width: constraints.maxWidth,
+            //         height: constraints.maxHeight,
+            //         child: GameWidget(game: MouseMovementGame())),
+            //   ),
+            // ),
             Container(
               width: constraints.maxWidth,
               height: constraints.maxHeight,

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -5,7 +7,6 @@ import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_left.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_right.dart';
@@ -29,19 +30,16 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double rateNine;
   late double rateTen;
 
-  late double _scrollrateZero = 0;
   late double _scrollrateEleven;
   late double _scrollrateTwelv;
-  late double _scrollrateThree;
-  late double _scrollrateFour;
-  late double _scrollrateFive;
   late double _scrollrateSix;
   late double _scrollrateSeven;
-  late double _scrollrateEight;
+
   late double _scrollrateNine;
   late double _scrollrateTen;
 
   double _topTextOpasyty = 0;
+  final height = window.physicalSize.height / window.devicePixelRatio;
   double _bottomFieldOpasity = 0;
   double _paralaxTextOpasyty1 = 0;
   double _paralaxTextOpasyty2 = 0;
@@ -66,34 +64,29 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-    rateOne = MediaQuery.of(context).size.height * 0.35;
-    rateTwo = MediaQuery.of(context).size.height * 0.98;
-    rateThree = MediaQuery.of(context).size.height * 1.4;
-    rateFour = MediaQuery.of(context).size.height * 1.3;
-    rateFive = MediaQuery.of(context).size.height * 2.6;
-    rateSix = MediaQuery.of(context).size.height * 3;
-    rateSeven = MediaQuery.of(context).size.height * 3.8;
-    rateEight = MediaQuery.of(context).size.height * 3.8;
-    rateNine = MediaQuery.of(context).size.height * 4.8;
-    rateTen = MediaQuery.of(context).size.height * 5.8;
-
-    _scrollrateZero = 0;
-    _scrollrateSix = MediaQuery.of(context).size.height * 3;
-    _scrollrateSeven = MediaQuery.of(context).size.height * 3.8;
-    _scrollrateEight = MediaQuery.of(context).size.height * 3.8;
-    _scrollrateNine = MediaQuery.of(context).size.height * 4.8;
-    _scrollrateTen = MediaQuery.of(context).size.height * 5.8;
-    _scrollrateEleven = MediaQuery.of(context).size.height * 7.3;
-    _scrollrateTwelv = MediaQuery.of(context).size.height * 8.98;
-    _scrollrateThree = MediaQuery.of(context).size.height * 1.4;
-    _scrollrateFour = MediaQuery.of(context).size.height * 1.3;
-    _scrollrateFive = MediaQuery.of(context).size.height * 2.6;
-
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
+    rateOne = height * 0.35;
+    rateTwo = height * 0.98;
+    rateThree = height * 1.4;
+    rateFour = height * 1.3;
+    rateFive = height * 2.6;
+    rateSix = height * 3;
+    rateSeven = height * 3.8;
+    rateEight = height * 3.8;
+    rateNine = height * 4.8;
+    rateTen = height * 6;
+
+    _scrollrateSix = height * 3;
+    _scrollrateSeven = height * 3.8;
+    _scrollrateNine = height * 4.8;
+    _scrollrateTen = height * 5.8;
+    _scrollrateEleven = height * 7.3;
+    _scrollrateTwelv = height * 9;
+
     controllerTopPosition = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
@@ -183,7 +176,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _paralaxTextOpasyty5 = 0;
         }
-        print(_scrollController.offset);
       });
     });
 
@@ -192,6 +184,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void dispose() {
+    controller.stop();
+    controllerTopPosition.stop();
+    controllerBottomPosition.stop();
     controllerTopPosition.dispose();
     controllerBottomPosition.dispose();
     controller.dispose();
@@ -200,6 +195,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (constex, constraints) => Scaffold(
         body: NotificationListener(
@@ -222,8 +218,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             }
             return true;
           },
-          child: LayoutBuilder(builder: (context, constraints) {
-            return Stack(children: <Widget>[
+          child: Stack(
+            children: <Widget>[
               Visibility(
                 visible: _backgroundVisibility,
                 child: SizedBox(
@@ -309,6 +305,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   animation: animationBottomPosition,
                   width: MediaQuery.of(context).size.width,
                   top: rateTen,
+                  padding: 100,
                   asset: "parallax11",
                   boxFit: BoxFit.contain),
               Positioned(
@@ -495,12 +492,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               ListView(
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   padding: EdgeInsets.zero,
                   controller: _scrollController,
                   children: <Widget>[
                     Container(
-                      height: constraints.maxHeight * 12.5,
+                      height: constraints.maxHeight * 13.2,
                       color: Colors.transparent,
                     )
                   ]),
@@ -519,7 +516,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       children: [
                         Expanded(
                           flex: 2,
-                          child: Container(
+                          child: SizedBox(
                             child: ArrowLeftWidget(
                                 textSubTitle: locals.stickToTheOath,
                                 textTitle: '',
@@ -555,14 +552,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               onTap: () {
                                 ////????????
                                 context.router
-                                    .push(const PanaromaPageRoute())
-                                    .then((value) {
-                                  if (value == 1) {
-                                    initState();
-                                  } else {
-                                    print("object");
-                                  }
-                                });
+                                    .replace(const PanaromaPageRoute());
                               }),
                         ),
                       ],
@@ -626,7 +616,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                                   ?.copyWith(
                                                       color: AppColors.white),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                               width: 10,
                                               child: Icon(
@@ -663,8 +653,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         },
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
+                          children: const [
+                            Icon(
                               Icons.arrow_upward_sharp,
                               color: AppColors.black54,
                             ),
@@ -672,13 +662,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ],
                         ),
                       ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.apps))
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
                     ],
                   ),
                 ),
               )
-            ]);
-          }),
+            ],
+          ),
         ),
       ),
     );
@@ -694,6 +684,7 @@ class ParallaxWidget extends StatelessWidget {
   final BoxFit boxFit;
   final double width;
   final Color? color;
+  final double? padding;
   final Animation<Offset>? animation;
   const ParallaxWidget(
       {required this.top,
@@ -701,6 +692,7 @@ class ParallaxWidget extends StatelessWidget {
       required this.boxFit,
       required this.width,
       this.image,
+      this.padding,
       this.left,
       this.color,
       this.animation,
@@ -713,6 +705,7 @@ class ParallaxWidget extends StatelessWidget {
       child: SlideTransition(
         position: animation!,
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: padding ?? 0),
           width: width,
           color: color ?? AppColors.transpatent,
           child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),

@@ -14,14 +14,13 @@ class ArrowLeftWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Clickable(
                 onPressed: onTap,
-                child: Container(
+                child: SizedBox(
                     height: 30,
                     width: 30,
                     child: Image.asset(AssetsPath.arrowBackImage))),

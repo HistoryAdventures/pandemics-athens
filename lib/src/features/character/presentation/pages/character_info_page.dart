@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -21,6 +23,7 @@ class CharacterInfoPage extends StatefulWidget {
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late String _selectedItem;
   late String _selectedImg;
+  late String _infoText;
   late AppLocalizations locale;
   @override
   void didChangeDependencies() {
@@ -32,6 +35,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   void initState() {
     _selectedItem = widget.photoHero.name;
     _selectedImg = widget.photoHero.photo;
+    _infoText = widget.photoHero.description;
     super.initState();
   }
 
@@ -43,23 +47,22 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           return Stack(
             children: [
               Container(
-                height: constraints.maxHeight,
-                width: constraints.maxWidth,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(AssetsPath.charactersBackgroundImage),
-                        fit: BoxFit.cover)),
-              ),
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image:
+                              AssetImage(AssetsPath.charactersBackgroundImage),
+                          fit: BoxFit.cover))),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10, top: 10),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.menu),
-                    iconSize: 30,
-                  ),
-                ),
+                    padding: const EdgeInsets.only(right: 10, top: 10),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.menu),
+                      iconSize: 30,
+                    )),
               ),
               Align(
                 child: Container(
@@ -69,17 +72,27 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: SizedBox(
-                          height: constraints.maxHeight,
-                          child: CharacterModel(
-                            name: _selectedItem,
-                            photo: _selectedImg,
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ),
-                      ),
+                          child: SizedBox(
+                              height: constraints.maxHeight,
+                              child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 500),
+                                  transitionBuilder: (child, animation) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  child: CharacterModel(
+                                      key: ValueKey(_selectedImg),
+                                      name: _selectedItem,
+                                      photo: _selectedImg,
+                                      description: _infoText,
+                                      onTap: () {
+                                        Navigator.of(context).pop();
+                                        window.history.go(-1);
+
+                                        //window.history.back();
+                                      })))),
                       Expanded(
                         flex: 3,
                         child: Container(
@@ -137,7 +150,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                               .headline3,
                                         ),
                                         TextSpan(
-                                          text: locale.bodyText,
+                                          text: _infoText,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1,
@@ -157,6 +170,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                                 charactersNameListWidget(
                                                     name: data.name,
                                                     image: data.photo,
+                                                    text: data.description,
                                                     selected: data.name))
                                             .toList())),
                               )
@@ -185,20 +199,22 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     );
   }
 
-  void chandeState(String? selctedItem, String? image) {
+  void chandeState(
+      String? selctedItem, String? image, String? textDescription) {
     setState(() {
       _selectedItem = selctedItem!;
       _selectedImg = image!;
+      _infoText = textDescription!;
     });
   }
 
   Widget charactersNameListWidget(
-      {String? name, String? selected, String? image}) {
+      {String? name, String? selected, String? image, String? text}) {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(
           onPressed: () {
-            chandeState(selected, image);
+            chandeState(selected, image, text);
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
