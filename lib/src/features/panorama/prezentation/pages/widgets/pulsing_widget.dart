@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class PulsingWidget extends StatefulWidget {
   final Tween<double>? tween;
-  final Widget? child;
+  final Widget child;
   final Duration? duration;
 
-  const PulsingWidget(
-      {required this.child, required this.duration, required this.tween})
-      : assert(child != null);
+  const PulsingWidget({
+    required this.child,
+    required this.duration,
+    required this.tween,
+  });
   @override
   _PulsingWidget createState() => _PulsingWidget();
 }

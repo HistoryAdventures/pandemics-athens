@@ -1,19 +1,16 @@
+import 'dart:async';
 import 'dart:math';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/mouse_movement/mouse_muve.dart';
 import 'package:video_player/video_player.dart';
 
 import '../widget_circle.dart';
-
-import 'package:flutter/services.dart';
-import 'dart:ui' as ui;
-import 'package:flutter/services.dart' show rootBundle;
-import 'dart:async';
-import 'dart:typed_data';
 
 class BackgroundWidget extends StatefulWidget {
   const BackgroundWidget({Key? key}) : super(key: key);

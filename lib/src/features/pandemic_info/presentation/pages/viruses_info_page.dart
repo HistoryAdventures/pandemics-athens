@@ -1,14 +1,14 @@
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/virus_animation_widget.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/ebola_animated_widget.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/plague_animated_widget.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/typhus_animated_widget.dart';
+
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/widgets/clickable_widget.dart';
+import 'gif_contrrol.dart';
 
 class VirusesInfoPage extends StatefulWidget {
   const VirusesInfoPage({Key? key}) : super(key: key);
@@ -17,24 +17,56 @@ class VirusesInfoPage extends StatefulWidget {
   _VirusesInfoPageState createState() => _VirusesInfoPageState();
 }
 
-class _VirusesInfoPageState extends State<VirusesInfoPage> {
+class _VirusesInfoPageState extends State<VirusesInfoPage>
+    with SingleTickerProviderStateMixin {
   /// Localizations object
   late AppLocalizations locals;
+  late GifController controller;
+
+  List<int> frames = [151, 151];
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
   }
 
+  // Map<String, MemoryImage?> images = {};
+  // Future<void> loadData() async {
+  //   List<String> gifData = [
+  //     'assets/virus_gif/virus1.gif',
+  //     'assets/virus_gif/virus2.gif'
+  //   ];
+  //   for (var item in gifData) {
+  //     final ByteData data = await rootBundle.load(item);
+
+  //     images[item] = MemoryImage(Uint8List.view(data.buffer));
+  //   }
+  //   if (mounted) {
+  //     setState(() {});
+  //   }
+  // }
+
   String _selectedItem = "intro";
   String _selectedImg = 'assets/virus_gif/virus1.gif';
 
   @override
-  Widget build(BuildContext context) {
-    return _body();
+  void initState() {
+    super.initState();
+    // scheduleMicrotask(() async =>  loadData());
+    controller = GifController(vsync: this);
+
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      controller.repeat(
+        min: 0,
+        max: 150,
+        period: const Duration(seconds: 4),
+        reverse: true,
+      );
+    });
   }
 
-  Widget _body() {
+  @override
+  Widget build(BuildContext context) {
     final List<VirusModel> listCharacters = [
       VirusModel(
         name: locals.introVirus,
@@ -45,7 +77,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
         name: locals.bubonicPlague,
       ),
       VirusModel(
-        widget: 'assets/virus_gif/virus2.gif',
+        widget: 'assets/virus_gif/virus3.gif',
         name: locals.typhus,
       ),
       VirusModel(
@@ -73,7 +105,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage> {
               ),
               child: Row(
                 children: [
-                  Expanded(child: Image.asset(_selectedImg)),
+                  Expanded(
+                      child: GifImage(
+                    image: AssetImage(_selectedImg),
+                    controller: controller,
+                  )),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(

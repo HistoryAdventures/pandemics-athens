@@ -105,7 +105,7 @@ flutter:
     - assets/ebola/
     - assets/virus_gif/
     - assets/panorama_image2.png
-    # - assets/viruses/
+    - assets/imgs/
     - assets/document_view/
     - assets/images/white0000.png
 

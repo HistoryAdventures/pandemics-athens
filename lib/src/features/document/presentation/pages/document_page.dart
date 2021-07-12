@@ -84,7 +84,7 @@ class _DocumentPageState extends State<DocumentPage>
     );
 
     _transformationController.addListener(() {
-      print(_transformationController.value);
+      debugPrint('${_transformationController.value}');
     });
   }
 

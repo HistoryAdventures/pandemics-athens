@@ -1,22 +1,20 @@
+import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
-import 'package:auto_route/auto_route.dart';
-
-import 'dart:ui' as ui;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'dart:async';
-import 'dart:typed_data';
-
 import 'package:history_of_adventures/src/core/widgets/mouse_movement/mouse_muve.dart';
 
 import 'leanding_page.dart';
 
 class MovingPage extends StatefulWidget {
-  MovingPage({Key? key}) : super(key: key);
+  const MovingPage({Key? key}) : super(key: key);
 
   @override
   _MovingPageState createState() => _MovingPageState();
@@ -24,6 +22,7 @@ class MovingPage extends StatefulWidget {
 
 class _MovingPageState extends State<MovingPage> {
   late ui.Image image;
+  
   bool isImageloaded = false;
   Future<Null> init() async {
     final ByteData data = await rootBundle.load('images/white0000.png');
@@ -33,9 +32,11 @@ class _MovingPageState extends State<MovingPage> {
   Future<ui.Image> loadImage(Uint8List img) async {
     final Completer<ui.Image> completer = Completer();
     ui.decodeImageFromList(img, (ui.Image img) {
-      setState(() {
-        isImageloaded = true;
-      });
+      if (mounted) {
+        setState(() {
+          isImageloaded = true;
+        });
+      }
       return completer.complete(img);
     });
     return completer.future;
@@ -53,14 +54,14 @@ class _MovingPageState extends State<MovingPage> {
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
-            Container(
+            SizedBox(
                 height: constraints.maxHeight,
                 width: constraints.maxWidth,
                 child: isImageloaded == true
                     ? GameWidget(
-                        backgroundBuilder: (context) => LeandingPage(),
+                        backgroundBuilder: (context) => const LeandingPage(),
                         game: MouseMovementGame(image: image))
-                    : Center(
+                    : const Center(
                         child: Text("Loading"),
                       )),
             Align(

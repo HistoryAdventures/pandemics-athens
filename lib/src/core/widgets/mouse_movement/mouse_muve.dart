@@ -1,19 +1,14 @@
+import 'dart:ui' as ui;
+
 import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
-import 'package:flutter/services.dart' show rootBundle;
-import 'dart:async';
-import 'dart:typed_data';
 
 class MouseMovementGame extends BaseGame with MouseMovementDetector {
   static const speed = 100;
   static final Paint _blue = BasicPalette.blue.paint();
-  static final Paint _white = BasicPalette.white.paint();
   static final Vector2 objSize = Vector2.all(300);
 
   Vector2 position = Vector2(0, 0);

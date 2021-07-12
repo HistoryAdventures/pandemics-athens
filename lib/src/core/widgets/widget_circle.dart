@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 class CircleWidgets extends StatelessWidget {
   final double top;
@@ -31,13 +32,23 @@ class CircleWidgets extends StatelessWidget {
         animation: animation,
         builder: (context, child) {
           return Transform.translate(
-              child: child, offset: Offset(animation.value, animation.value));
+            offset: Offset(animation.value, animation.value),
+            child: child,
+          );
         },
         child: Container(
           decoration: BoxDecoration(
-              //borderRadius: BorderRadius.circular(15),
-              color: color,
-              shape: BoxShape.circle),
+            //borderRadius: BorderRadius.circular(15),
+            color: color,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 4.5,
+                spreadRadius: 4.5,
+                color: AppColors.grey.withOpacity(0.4),
+              ),
+            ],
+          ),
           height: height,
           width: width,
         ),

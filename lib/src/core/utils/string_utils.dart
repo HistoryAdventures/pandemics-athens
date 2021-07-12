@@ -15,7 +15,7 @@ class StringUtils {
 
   // Measures text using an off-screen canvas. It's not fast, but not overly slow either. Use with (mild) caution :)
   static Size measure(String text, TextStyle style,
-      {int maxLines: 1,
+      {int maxLines = 1,
       TextDirection direction = TextDirection.ltr,
       double maxWidth = double.infinity}) {
     final TextPainter textPainter = TextPainter(
