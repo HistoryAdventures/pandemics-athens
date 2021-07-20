@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/dead_socrates/presentation/widgets/show_dialog.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -97,62 +98,14 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                         Widget child) {
                                       return LayoutBuilder(
                                           builder: (context, constraints) =>
-                                              Align(
-                                                child: FadeTransition(
-                                                  //position: widget.animation.drive(widget.tween),
-                                                  opacity: animation,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(
-                                                        horizontal: constraints
-                                                                .maxWidth *
-                                                            0.2,
-                                                        vertical: constraints
-                                                                .maxHeight *
-                                                            0.15),
-                                                    child: Scaffold(
-                                                      backgroundColor:
-                                                          AppColors.white,
-                                                      body: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(14),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Flexible(
-                                                              flex: 3,
-                                                              child:
-                                                                  Image.asset(
-                                                                _selectedImg,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                            ),
-                                                            Flexible(
-                                                              child:
-                                                                  SingleChildScrollView(
-                                                                child: Text(
-                                                                  _selectedText,
-                                                                  // maxLines: 4,
-
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .subtitle1,
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ));
+                                              ShowDialog(
+                                                  selectedImg: _selectedImg,
+                                                  selectedText: _selectedText,
+                                                  animation: animation,
+                                                  size: Size(
+                                                    constraints.maxWidth,
+                                                    constraints.maxHeight,
+                                                  )));
                                     },
                                     transitionDuration:
                                         const Duration(milliseconds: 200),

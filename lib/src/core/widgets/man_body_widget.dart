@@ -7,10 +7,12 @@ class ManBodyModel extends StatelessWidget {
   final String name;
   final String descriptiion;
   const ManBodyModel(
-      {required this.photo,
+      {Key? key,
+      required this.photo,
       this.onTap,
       required this.name,
-      required this.descriptiion});
+      required this.descriptiion})
+      : super(key: key);
   final String photo;
   @override
   Widget build(BuildContext context) {

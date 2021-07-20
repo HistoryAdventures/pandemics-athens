@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../colors.dart';
 
-class BodyModel extends StatelessWidget {
+class BodyOnTapsModel extends StatelessWidget {
   final String photo;
   final VoidCallback? onTapHead;
   final VoidCallback? onTapThroat;
@@ -15,7 +15,7 @@ class BodyModel extends StatelessWidget {
   final double? width;
   final VoidCallback? onTapHends;
 
-  const BodyModel(
+  const BodyOnTapsModel(
       {Key? key,
       required this.photo,
       required this.name,

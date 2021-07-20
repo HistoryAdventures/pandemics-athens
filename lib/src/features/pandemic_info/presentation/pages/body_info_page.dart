@@ -9,7 +9,7 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/background_widget.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
-import '../../../../core/widgets/body_widget.dart';
+import '../../../../core/widgets/body_ontap_widget.dart';
 import '../../../../core/widgets/clickable_widget.dart';
 import '../../../../core/widgets/man_body_widget.dart';
 
@@ -124,7 +124,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 child: child,
                               );
                             },
-                            child: BodyModel(
+                            child: BodyOnTapsModel(
                               key: ValueKey(_selectedItem),
                               name: _selectedItem,
                               photo: _selectedImg,
