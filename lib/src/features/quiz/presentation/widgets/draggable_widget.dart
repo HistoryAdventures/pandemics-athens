@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.dart';
+
+import '../../data/model/quiz_model.dart';
 
 class DraggableWidget extends StatelessWidget {
   final AnswerText animal;

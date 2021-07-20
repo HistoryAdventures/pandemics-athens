@@ -1,15 +1,16 @@
 import 'dart:ui';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_left.dart';
-import 'package:history_of_adventures/src/features/paralax_history/presentation/widgets/arrow_right.dart';
+
+import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../widgets/arrow_left.dart';
+import '../widgets/arrow_right.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
   @override
@@ -330,6 +331,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           child: AutoSizeText(
                             locals.todoNoHarm.toUpperCase(),
                             maxLines: 1,
+                            minFontSize: 8,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
@@ -344,6 +346,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           child: AutoSizeText(
                             locals.athens429Bc,
                             maxLines: 1,
+                            minFontSize: 8,
                             style:
                                 Theme.of(context).textTheme.bodyText2?.copyWith(
                                       fontSize: 80,
@@ -362,25 +365,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(
-                    margin: EdgeInsets.only(
-                        left: constraints.maxWidth * 0.05,
-                        bottom: constraints.maxHeight * 0.05),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Scaffold(
-                        backgroundColor: AppColors.blackG.withOpacity(0.75),
-                        body: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText1,
-                              minFontSize: 5,
-                              // maxLines: 20,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                      color: AppColors.blackG.withOpacity(0.75),
+                      margin: EdgeInsets.only(
+                          left: constraints.maxWidth * 0.05,
+                          bottom: constraints.maxHeight * 0.05),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: AutoSizeText(
+                            locals.paralaxText1,
+                            minFontSize: 5,
+                            // maxLines: 20,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          ))),
                 ),
               ),
               AnimatedOpacity(
@@ -389,25 +389,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Container(
-                    margin: EdgeInsets.only(
-                        right: constraints.maxWidth * 0.05,
-                        bottom: constraints.maxHeight * 0.05),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Scaffold(
-                        backgroundColor: AppColors.blackG.withOpacity(0.75),
-                        body: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText2,
-                              minFontSize: 5,
-                              // maxLines: 20,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                      color: AppColors.blackG.withOpacity(0.75),
+                      margin: EdgeInsets.only(
+                          right: constraints.maxWidth * 0.05,
+                          bottom: constraints.maxHeight * 0.05),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: AutoSizeText(
+                            locals.paralaxText2,
+                            minFontSize: 5,
+                            // maxLines: 20,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          ))),
                 ),
               ),
               AnimatedOpacity(
@@ -416,25 +413,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.only(
-                        left: constraints.maxWidth * 0.05,
-                        bottom: constraints.maxHeight * 0.05),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Scaffold(
-                        backgroundColor: AppColors.blackG.withOpacity(0.75),
-                        body: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText3,
-                              minFontSize: 5,
-                              // maxLines: 20,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                      color: AppColors.blackG.withOpacity(0.75),
+                      margin: EdgeInsets.only(
+                          left: constraints.maxWidth * 0.05,
+                          bottom: constraints.maxHeight * 0.05),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: AutoSizeText(
+                            locals.paralaxText3,
+                            minFontSize: 5,
+                            // maxLines: 20,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          ))),
                 ),
               ),
               AnimatedOpacity(
@@ -443,25 +437,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: Container(
-                    margin: EdgeInsets.only(
-                        right: constraints.maxWidth * 0.05,
-                        bottom: constraints.maxHeight * 0.05),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Scaffold(
-                        backgroundColor: AppColors.blackG.withOpacity(0.75),
-                        body: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText4,
-                              minFontSize: 5,
-                              // maxLines: 20,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                      color: AppColors.blackG.withOpacity(0.75),
+                      margin: EdgeInsets.only(
+                          right: constraints.maxWidth * 0.05,
+                          bottom: constraints.maxHeight * 0.05),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: AutoSizeText(
+                            locals.paralaxText4,
+                            minFontSize: 5,
+                            // maxLines: 20,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          ))),
                 ),
               ),
               AnimatedOpacity(
@@ -470,24 +461,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(
+                    color: AppColors.blackG.withOpacity(0.75),
                     margin: EdgeInsets.only(
                         left: constraints.maxWidth * 0.05,
                         bottom: constraints.maxHeight * 0.05),
                     width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Scaffold(
-                        backgroundColor: AppColors.blackG.withOpacity(0.75),
-                        body: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText5,
-                              minFontSize: 5,
-                              // maxLines: 20,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
+                    child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: AutoSizeText(
+                          locals.paralaxText5,
+                          minFontSize: 5,
+                          // maxLines: 20,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.white),
+                        )),
                   ),
                 ),
               ),
@@ -518,10 +507,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           flex: 2,
                           child: SizedBox(
                             child: ArrowLeftWidget(
+                                arrowColor: Colors.black,
                                 textSubTitle: locals.stickToTheOath,
                                 textTitle: '',
                                 onTap: () {
-                                  context.router.push(const MapPageRoute());
+                                  context.router
+                                      .push(const PanaromaLeftPageRoute());
                                 }),
                           ),
                         ),
@@ -549,10 +540,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           child: ArrowRightWidget(
                               textSubTitle: locals.helpTheSenator,
                               textTitle: '',
+                              arrowColor: Colors.black,
                               onTap: () {
                                 ////????????
                                 context.router
-                                    .replace(const PanaromaPageRoute());
+                                    .replace(const PanaromaRightPageRoute());
                               }),
                         ),
                       ],
@@ -569,14 +561,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         alignment: Alignment.bottomCenter,
                         child: Clickable(
                           onPressed: () {
-                            //context.router.push(const LearnmorePageRoute());
+                            context.router.push(const MapPageRoute());
                           },
                           child: Container(
                             margin: const EdgeInsets.only(bottom: 30),
                             decoration: BoxDecoration(
+                                color: AppColors.blackG.withOpacity(0.75),
                                 border: Border.all(
-                              color: AppColors.white,
-                            )),
+                                  color: AppColors.white,
+                                )),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

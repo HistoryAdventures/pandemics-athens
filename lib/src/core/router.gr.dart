@@ -10,24 +10,36 @@ import 'package:flutter/material.dart' as _i2;
 import '../features/character/presentation/pages/character_info_page.dart'
     as _i5;
 import '../features/character/presentation/pages/characters_page.dart' as _i4;
+import '../features/dead_socrates/presentation/pages/dead_of_socrates.dart'
+    as _i20;
+import '../features/dead_socrates/presentation/pages/end_of_war_page.dart'
+    as _i21;
+import '../features/document/presentation/pages/document_page.dart' as _i19;
 import '../features/glossary/presentation/pages/glossary_page.dart' as _i10;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
+import '../features/panarama_left/presentation/pages/panaroma_left_page.dart'
+    as _i11;
 import '../features/pandemic_info/presentation/pages/body_info_page.dart'
-    as _i13;
+    as _i17;
 import '../features/pandemic_info/presentation/pages/pathogen_profile_page.dart'
-    as _i12;
+    as _i13;
 import '../features/pandemic_info/presentation/pages/virus_loc_page.dart'
-    as _i14;
+    as _i18;
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
-import '../features/panorama/prezentation/pages/panaroma_page.dart' as _i11;
-import '../features/paralax_history/presentation/pages/learn_more_page.dart'
-    as _i15;
+import '../features/panorama_right/prezentation/pages/panaroma_right_page.dart'
+    as _i12;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
     as _i9;
+import '../features/practice_medicine/presentation/pages/keep_going_page.dart'
+    as _i14;
+import '../features/practice_medicine/presentation/pages/practice_medicine_page.dart'
+    as _i16;
+import '../features/practice_medicine/presentation/pages/quit_medicine_page.dart'
+    as _i15;
 import '../features/quiz/presentation/pages/quiz_page.dart' as _i8;
-import 'widgets/widgets.dart' as _i16;
+import 'widgets/widgets.dart' as _i22;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -40,7 +52,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.LeandingPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideTop,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -49,7 +61,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.CharacrterPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -69,7 +81,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i6.VirusesInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -109,46 +121,108 @@ class FlutterRouter extends _i1.RootStackRouter {
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
-    PanaromaPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    PanaromaLeftPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i11.PanaromaPage();
+          return _i11.PanaromaLeftPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    PanaromaRightPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i12.PanaromaRightPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
     PathogenProfilePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i12.PathogenProfilePage();
+          return const _i13.PathogenProfilePage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    KeepGoingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<KeepGoingPageRouteArgs>(
+              orElse: () => const KeepGoingPageRouteArgs());
+          return _i14.KeepGoingPage(key: args.key);
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    QuitMedicinePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<QuitMedicinePageRouteArgs>(
+              orElse: () => const QuitMedicinePageRouteArgs());
+          return _i15.QuitMedicinePage(key: args.key);
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    PracticeMedicineRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<PracticeMedicineRouteArgs>(
+              orElse: () => const PracticeMedicineRouteArgs());
+          return _i16.PracticeMedicine(key: args.key);
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
     BodyInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i13.BodyInfoPage();
+          return const _i17.BodyInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         opaque: true,
         barrierDismissible: false),
     VirusLocationPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i14.VirusLocationPage();
+          return const _i18.VirusLocationPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        opaque: true,
+        barrierDismissible: false),
+    DocumentPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i19.DocumentPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        opaque: true,
+        barrierDismissible: false),
+    DeadOfSocratesPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<DeadOfSocratesPageRouteArgs>(
+              orElse: () => const DeadOfSocratesPageRouteArgs());
+          return _i20.DeadOfSocratesPage(key: args.key);
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         opaque: true,
         barrierDismissible: false),
-    LearnmorePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    EndOfWarPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i15.LearnmorePage();
+        builder: (data) {
+          final args = data.argsAs<EndOfWarPageRouteArgs>(
+              orElse: () => const EndOfWarPageRouteArgs());
+          return _i21.EndOfWarPage(key: args.key);
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         opaque: true,
         barrierDismissible: false)
   };
@@ -165,13 +239,23 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
-        _i1.RouteConfig(PanaromaPageRoute.name, path: '/panaroma-page'),
+        _i1.RouteConfig(PanaromaLeftPageRoute.name,
+            path: '/panaroma-left-page'),
+        _i1.RouteConfig(PanaromaRightPageRoute.name,
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PathogenProfilePageRoute.name,
             path: '/pathogen-profile-page'),
+        _i1.RouteConfig(KeepGoingPageRoute.name, path: '/keep-going-page'),
+        _i1.RouteConfig(QuitMedicinePageRoute.name,
+            path: '/quit-medicine-page'),
+        _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
-        _i1.RouteConfig(LearnmorePageRoute.name, path: '/learnmore-page')
+        _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
+        _i1.RouteConfig(DeadOfSocratesPageRoute.name,
+            path: '/dead-of-socrates-page'),
+        _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page')
       ];
 }
 
@@ -190,8 +274,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i16.CharacterModel photoHero,
-      required List<_i16.CharacterModel> listCharacters})
+      {required _i22.CharacterModel photoHero,
+      required List<_i22.CharacterModel> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -204,9 +288,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i16.CharacterModel photoHero;
+  final _i22.CharacterModel photoHero;
 
-  final List<_i16.CharacterModel> listCharacters;
+  final List<_i22.CharacterModel> listCharacters;
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
@@ -239,10 +323,16 @@ class GlossaryPageRoute extends _i1.PageRouteInfo {
   static const String name = 'GlossaryPageRoute';
 }
 
-class PanaromaPageRoute extends _i1.PageRouteInfo {
-  const PanaromaPageRoute() : super(name, path: '/panaroma-page');
+class PanaromaLeftPageRoute extends _i1.PageRouteInfo {
+  const PanaromaLeftPageRoute() : super(name, path: '/panaroma-left-page');
 
-  static const String name = 'PanaromaPageRoute';
+  static const String name = 'PanaromaLeftPageRoute';
+}
+
+class PanaromaRightPageRoute extends _i1.PageRouteInfo {
+  const PanaromaRightPageRoute() : super(name, path: '/panaroma-right-page');
+
+  static const String name = 'PanaromaRightPageRoute';
 }
 
 class PathogenProfilePageRoute extends _i1.PageRouteInfo {
@@ -250,6 +340,52 @@ class PathogenProfilePageRoute extends _i1.PageRouteInfo {
       : super(name, path: '/pathogen-profile-page');
 
   static const String name = 'PathogenProfilePageRoute';
+}
+
+class KeepGoingPageRoute extends _i1.PageRouteInfo<KeepGoingPageRouteArgs> {
+  KeepGoingPageRoute({_i2.Key? key})
+      : super(name,
+            path: '/keep-going-page', args: KeepGoingPageRouteArgs(key: key));
+
+  static const String name = 'KeepGoingPageRoute';
+}
+
+class KeepGoingPageRouteArgs {
+  const KeepGoingPageRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class QuitMedicinePageRoute
+    extends _i1.PageRouteInfo<QuitMedicinePageRouteArgs> {
+  QuitMedicinePageRoute({_i2.Key? key})
+      : super(name,
+            path: '/quit-medicine-page',
+            args: QuitMedicinePageRouteArgs(key: key));
+
+  static const String name = 'QuitMedicinePageRoute';
+}
+
+class QuitMedicinePageRouteArgs {
+  const QuitMedicinePageRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class PracticeMedicineRoute
+    extends _i1.PageRouteInfo<PracticeMedicineRouteArgs> {
+  PracticeMedicineRoute({_i2.Key? key})
+      : super(name,
+            path: '/practice-medicine',
+            args: PracticeMedicineRouteArgs(key: key));
+
+  static const String name = 'PracticeMedicineRoute';
+}
+
+class PracticeMedicineRouteArgs {
+  const PracticeMedicineRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
@@ -264,8 +400,38 @@ class VirusLocationPageRoute extends _i1.PageRouteInfo {
   static const String name = 'VirusLocationPageRoute';
 }
 
-class LearnmorePageRoute extends _i1.PageRouteInfo {
-  const LearnmorePageRoute() : super(name, path: '/learnmore-page');
+class DocumentPageRoute extends _i1.PageRouteInfo {
+  const DocumentPageRoute() : super(name, path: '/document-page');
 
-  static const String name = 'LearnmorePageRoute';
+  static const String name = 'DocumentPageRoute';
+}
+
+class DeadOfSocratesPageRoute
+    extends _i1.PageRouteInfo<DeadOfSocratesPageRouteArgs> {
+  DeadOfSocratesPageRoute({_i2.Key? key})
+      : super(name,
+            path: '/dead-of-socrates-page',
+            args: DeadOfSocratesPageRouteArgs(key: key));
+
+  static const String name = 'DeadOfSocratesPageRoute';
+}
+
+class DeadOfSocratesPageRouteArgs {
+  const DeadOfSocratesPageRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class EndOfWarPageRoute extends _i1.PageRouteInfo<EndOfWarPageRouteArgs> {
+  EndOfWarPageRoute({_i2.Key? key})
+      : super(name,
+            path: '/end-of-war-page', args: EndOfWarPageRouteArgs(key: key));
+
+  static const String name = 'EndOfWarPageRoute';
+}
+
+class EndOfWarPageRouteArgs {
+  const EndOfWarPageRouteArgs({this.key});
+
+  final _i2.Key? key;
 }

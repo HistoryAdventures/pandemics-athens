@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/body_widget.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -10,6 +9,7 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/background_widget.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
+import '../../../../core/widgets/body_widget.dart';
 import '../../../../core/widgets/clickable_widget.dart';
 import '../../../../core/widgets/man_body_widget.dart';
 
@@ -24,6 +24,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     with SingleTickerProviderStateMixin {
   late String _selectedItem;
   late String _selectedImg;
+  late String _selectedText;
   late AppLocalizations locale;
   late Animation<double> animation;
   late AnimationController controller;
@@ -31,13 +32,14 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
+    _selectedText = locale.intrBodyText;
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
     _selectedItem = "intro";
-    _selectedImg = AssetsPath.manfillImage;
+    _selectedImg = AssetsPath.manIntroImage;
     controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
     animation = Tween<double>(begin: 80, end: 50).animate(controller);
@@ -52,28 +54,39 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   Widget _body() {
     final List<ManBodyModel> listCharacters = [
       ManBodyModel(
-        photo: AssetsPath.manfillImage,
+        photo: AssetsPath.manIntroImage,
         name: locale.bodyIntro,
+        descriptiion: locale.intrBodyText,
       ),
       ManBodyModel(
         photo: AssetsPath.manheadImage,
         name: locale.bodyHead,
+        descriptiion: locale.headText,
       ),
       ManBodyModel(
         photo: AssetsPath.manthroatImage,
         name: locale.bodyThroat,
+        descriptiion: locale.throatText,
       ),
       ManBodyModel(
         photo: AssetsPath.manChestImage,
         name: locale.bodyCheast,
+        descriptiion: locale.chestText,
+      ),
+      ManBodyModel(
+        photo: AssetsPath.manfillImage,
+        name: locale.skin,
+        descriptiion: locale.skinText,
       ),
       ManBodyModel(
         photo: AssetsPath.manstomachImage,
         name: locale.bodyStomach,
+        descriptiion: locale.stomachText,
       ),
       ManBodyModel(
         photo: AssetsPath.manhandsImage,
         name: locale.bodyhands,
+        descriptiion: locale.hendsText,
       ),
     ];
     return Scaffold(
@@ -118,29 +131,28 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                               height: constraints.maxHeight,
                               width: constraints.maxWidth,
                               onTapStomach: () {
-                                setState(() {
-                                  _selectedImg = AssetsPath.manstomachImage;
-                                });
+                                chandeState(
+                                    locale.bodyStomach,
+                                    AssetsPath.manstomachImage,
+                                    locale.stomachText);
                               },
                               onTapHends: () {
-                                setState(() {
-                                  _selectedImg = AssetsPath.manhandsImage;
-                                });
+                                chandeState(locale.bodyhands,
+                                    AssetsPath.manhandsImage, locale.hendsText);
                               },
                               onTapChest: () {
-                                setState(() {
-                                  _selectedImg = AssetsPath.manChestImage;
-                                });
+                                chandeState(locale.bodyCheast,
+                                    AssetsPath.manChestImage, locale.chestText);
                               },
                               onTapThroat: () {
-                                setState(() {
-                                  _selectedImg = AssetsPath.manthroatImage;
-                                });
+                                chandeState(
+                                    locale.bodyThroat,
+                                    AssetsPath.manthroatImage,
+                                    locale.throatText);
                               },
                               onTapHead: () {
-                                setState(() {
-                                  _selectedImg = AssetsPath.manheadImage;
-                                });
+                                chandeState(locale.bodyHead,
+                                    AssetsPath.manheadImage, locale.headText);
                               },
                             ),
                           ),
@@ -202,7 +214,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                               .headline3,
                                         ),
                                         TextSpan(
-                                          text: locale.bodyText,
+                                          text: _selectedText,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1,
@@ -220,6 +232,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                         children: listCharacters
                                             .map((data) => bodiesNameListWidget(
                                                 name: data.name,
+                                                text: data.descriptiion,
                                                 image: data.photo,
                                                 selected: data.name))
                                             .toList())),
@@ -263,19 +276,21 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     );
   }
 
-  void chandeState(String? selctedItem, String? image) {
+  void chandeState(String? selctedItem, String? image, String? text) {
     setState(() {
       _selectedItem = selctedItem!;
       _selectedImg = image!;
+      _selectedText = text!;
     });
   }
 
-  Widget bodiesNameListWidget({String? name, String? selected, String? image}) {
+  Widget bodiesNameListWidget(
+      {String? name, String? selected, String? image, String? text}) {
     return Container(
         margin: const EdgeInsets.only(left: 30),
         child: Clickable(
           onPressed: () {
-            chandeState(selected, image);
+            chandeState(selected, image, text);
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,

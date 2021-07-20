@@ -63,4 +63,16 @@ abstract class AppColors {
     Color.fromRGBO(255, 255, 255, 0.7),
     Color.fromRGBO(255, 255, 255, 0.28)
   ]);
+
+  static const LinearGradient linearGradientForBackgroundDocument =
+      LinearGradient(
+    colors: [
+      Color.fromRGBO(255, 255, 255, 0.8),
+      Color.fromRGBO(255, 255, 255, 0.8),
+      // Color.fromRGBO(255, 255, 255, 0.5),
+
+      //radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4)
+    ],
+    end: Alignment.bottomLeft,
+  );
 }

@@ -10,6 +10,8 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  animated_particles:
+    path: packages/animated_particles
   #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
   auto_route: ^2.2.0
 
@@ -22,13 +24,6 @@ dependencies:
 
   dartz: ^0.10.0-nullsafety
 
-    
-  dashbook: ^0.1.0
-  flame: ^1.0.0-releasecandidate.12
-  forge2d: ^0.7.2
-  flame_forge2d: null
-
-  
   #A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
   # equatable: ^2.0.3
 
@@ -51,7 +46,6 @@ dependencies:
 
   just_audio: ^0.7.5
 
-
   # Render After Effects animations natively on Flutter.
   # This package is a pure Dart implementation of a Lottie player.
   lottie: ^1.0.1
@@ -61,11 +55,9 @@ dependencies:
 
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
-  
+
   #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
   video_player: ^2.1.6
-
-
 
 dev_dependencies:
   # AutoRoute is a declartive routing solution, where everything needed for navigation is automatically generated for you.
@@ -75,14 +67,11 @@ dev_dependencies:
   build_runner:
   flutter_test:
     sdk: flutter
-    
+
   freezed: ^0.14.2
-  
 
   # An opiniated, community-driven set of lint rules for Dart and Flutter projects. Like pedantic but stricter
   lint: ^1.5.3
-
-  
 
 # The following section is specific to Flutter.
 flutter:
@@ -102,12 +91,17 @@ flutter:
     - assets/paralax_images/
     - assets/background/
     - assets/man_body/
-    - assets/ebola/
     - assets/virus_gif/
     - assets/panorama_image2.png
     - assets/imgs/
     - assets/document_view/
     - assets/images/white0000.png
+    - assets/panarama_image/
+    - assets/practice_medicine/
+    - assets/map_images/
+    - assets/dead_socrates/
+    - assets/end_war/
+    - packages/animated_particles/assets/imgs/
 
   fonts:
     - family: BebasNeue

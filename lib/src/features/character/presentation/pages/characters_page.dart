@@ -2,9 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_right.dart';
 
+import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
@@ -142,18 +141,18 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     }),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                padding: const EdgeInsets.only(bottom: 10, right: 24),
-                child: ArrowRightTextWidget(
-                    textSubTitle: locale.quiz,
-                    textTitle: locale.athens5thCentury,
-                    onTap: () {
-                      context.router.push(const QuizPageRoute());
-                    }),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.bottomRight,
+            //   child: Container(
+            //     padding: const EdgeInsets.only(bottom: 10, right: 24),
+            //     child: ArrowRightTextWidget(
+            //         textSubTitle: locale.quiz,
+            //         textTitle: locale.athens5thCentury,
+            //         onTap: () {
+            //           context.router.push(const QuizPageRoute());
+            //         }),
+            //   ),
+            // ),
           ],
         ),
       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets/answer.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets/image_answer.dart';
+
+import 'answer.dart';
+import 'image_answer.dart';
 
 class Quiz extends StatelessWidget {
   final int index;
@@ -28,8 +29,7 @@ class Quiz extends StatelessWidget {
             .map((val) => Answer(
                   title: val['answer'] as String,
                   onChangeAnswer: onChangeAnswer,
-                  isCorrect:
-                      val.containsKey('isCorrect') as bool ? true : false,
+                  isCorrect: val.containsKey('isCorrect') as bool,
                 ))
             .toList(),
       ],
@@ -63,8 +63,7 @@ class QuizImage extends StatelessWidget {
             .map((val) => ImageAnswer(
                   title: val['answer'] as String,
                   onChangeAnswer: onChangeAnswer,
-                  isCorrect:
-                      (val.containsKey('isCorrect') as bool) ? true : false,
+                  isCorrect: val.containsKey('isCorrect') as bool,
                 ))
             .toList(),
       ],

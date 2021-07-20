@@ -1,17 +1,14 @@
-import 'dart:async';
-import 'dart:typed_data';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widget.dart';
 
 import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/animated_widgets/background_widget.dart';
+import '../../../pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -23,10 +20,10 @@ class LeandingPage extends StatefulWidget {
 class _LeandingPageState extends State<LeandingPage>
     with SingleTickerProviderStateMixin {
   late AppLocalizations locales;
-  ImageProvider? image;
+  late GifController controller;
+
   bool isImageloaded = false;
-  late AnimationController controller;
-  Offset offset = Offset(0, 0);
+  Offset offset = const Offset(0, 0);
 
   @override
   void didChangeDependencies() {
@@ -34,44 +31,55 @@ class _LeandingPageState extends State<LeandingPage>
     super.didChangeDependencies();
   }
 
-  Future<Null> init() async {
-    final ByteData data = await rootBundle.load('images/white0000.png');
-    image = MemoryImage(Uint8List.view(data.buffer));
-    setState(() {});
-  }
+  Future<void> init() async {
+    controller = GifController(vsync: this);
 
-  // Future<ui.Image> loadImage(Uint8List img) async {
-  //   final Completer<ui.Image> completer = Completer();
-  //   ui.decodeImageFromList(img, (ui.Image img) {
-  //     setState(() {
-  //       isImageloaded = true;
-  //     });
-  //     return completer.complete(img);
-  //   });
-  //   return completer.future;
-  // }
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      controller.repeat(
+        min: 0,
+        max: 150,
+        period: const Duration(seconds: 4),
+        reverse: true,
+      );
+    });
+    final loadedAllAssets = await loadAll();
+    if (loadedAllAssets == true) {
+      setState(() {
+        isImageloaded = true;
+      });
+    } else {
+      setState(() {
+        isImageloaded = false;
+      });
+    }
+  }
 
   @override
   void initState() {
     init();
     super.initState();
-    controller = AnimationController(vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (isImageloaded == false) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(body: LayoutBuilder(
       builder: (context, constraints) {
-        if (image == null) {
-          return const Center(
-            child: Text('Loading'),
-          );
-        }
         return MouseRegion(
-          onHover: (e) => setState(() => offset = e.position),
+          onHover: (e) => setState(() {
+            offset = e.position;
+          }),
           child: Stack(
             children: [
-              const BackgroundWidget(),
+              BackgroundWidget(
+                offset: offset,
+              ),
               Align(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -83,6 +91,7 @@ class _LeandingPageState extends State<LeandingPage>
                         children: [
                           Flexible(
                               child: AutoSizeText(locales.spencerStrikerName,
+                                  maxLines: 1,
                                   style: DefaultTheme
                                       .standard.textTheme.headline1)),
                           Flexible(
@@ -106,11 +115,25 @@ class _LeandingPageState extends State<LeandingPage>
                               child: AutoSizeText(
                                 locales.globalPandemicName,
                                 maxLines: 1,
+                                minFontSize: 10,
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ),
                           )
                         ],
+                      ),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        height: constraints.maxHeight * 0.35,
+                        width: constraints.maxWidth * 0.35,
+                        child: Transform.translate(
+                          offset: Offset(offset.dx * 0.1, 0),
+                          child: GifImage(
+                            image: const AssetImage(AssetsPath.gifVirus),
+                            controller: controller,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -137,26 +160,6 @@ class _LeandingPageState extends State<LeandingPage>
                   ),
                   onPressed: () {},
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: SizedBox(
-                  height: constraints.maxHeight * 0.35,
-                  width: constraints.maxWidth * 0.35,
-                  child: Transform.rotate(
-                    angle: -offset.direction,
-                    alignment: Alignment.center,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(image: image!),
-                      ),
-                    ),
-                  ),
-                ),
-                //   // BlobAnimation(
-                //   //   height: constraints.maxHeight * 0.35,
-                //   //   width: constraints.maxWidth * 0.35,
-                //   // ),
               ),
             ],
           ),
