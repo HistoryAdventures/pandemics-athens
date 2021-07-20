@@ -107,7 +107,7 @@ class AssetsPath {
 
   static const String aristophanesImage = "assets/characters/character_4.png";
   static const String mapImage = 'assets/image_back/map.png';
-  static const String blobWhiteImage1 = 'images/white0000.png';
+
   static const String spheresBackImage = 'assets/image_back/spheres.png';
   static const String scrollIcon = 'assets/icons/scroll.png';
   static const String manChestImage = 'assets/man_body/chest.png';

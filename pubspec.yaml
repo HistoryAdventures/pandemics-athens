@@ -82,20 +82,15 @@ flutter:
   generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/blob/
     - assets/characters/
     - assets/icons/
     - assets/image_back/
     - assets/images_quiz/
-    - assets/video/
     - assets/paralax_images/
-    - assets/background/
     - assets/man_body/
     - assets/virus_gif/
     - assets/panorama_image2.png
-    - assets/imgs/
     - assets/document_view/
-    - assets/images/white0000.png
     - assets/panarama_image/
     - assets/practice_medicine/
     - assets/map_images/
@@ -106,13 +101,13 @@ flutter:
   fonts:
     - family: BebasNeue
       fonts:
-        - asset: assets/fonts/BebasNeue-Regular.ttf
+        - asset: fonts/BebasNeue-Regular.ttf
 
     - family: OpenSans
       fonts:
-        - asset: assets/fonts/OpenSans-Italic.ttf
-        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: fonts/OpenSans-Italic.ttf
+        - asset: fonts/OpenSans-Regular.ttf
 
     - family: Lora
       fonts:
-        - asset: assets/fonts/Lora.ttf
+        - asset: fonts/Lora.ttf
