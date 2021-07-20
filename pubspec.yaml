@@ -10,8 +10,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  animated_particles:
-    path: packages/animated_particles
   #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
   auto_route: ^2.2.0
 
@@ -96,7 +94,8 @@ flutter:
     - assets/map_images/
     - assets/dead_socrates/
     - assets/end_war/
-    - packages/animated_particles/assets/imgs/
+    - assets/imgs/
+    # - animated_particles/assets/imgs/
 
   fonts:
     - family: BebasNeue

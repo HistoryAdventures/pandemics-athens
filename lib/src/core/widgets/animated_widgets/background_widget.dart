@@ -1,7 +1,6 @@
-
-import 'package:animated_particles/animated_particles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/animated_background/animated_particles.dart';
 
 import '../../utils/assets_path.dart';
 
