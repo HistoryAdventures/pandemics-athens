@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets/draggable_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.dart';
+
+import '../../data/model/quiz_model.dart';
+import 'draggable_widget.dart';
 
 class DraggableAdvancedWidget extends StatefulWidget {
   @override

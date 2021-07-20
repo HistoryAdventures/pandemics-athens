@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets/item.dart';
-import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.dart';
 
+import '../../data/model/quiz_model.dart';
 import '../widgets/draggable_advanced_widget.dart';
+import '../widgets/item.dart';
 
 class QuizPage extends StatefulWidget {
   @override

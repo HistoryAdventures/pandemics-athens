@@ -33,7 +33,7 @@ class StringUtils {
     if (maxItems != null && maxItems < items.length) {
       items.length = maxItems;
     }
-    for (String item in items) {
+    for (final String item in items) {
       final double m = measure(item, style).width;
       if (m > l) l = m;
     }

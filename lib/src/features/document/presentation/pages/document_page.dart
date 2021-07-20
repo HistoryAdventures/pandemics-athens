@@ -1,8 +1,14 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/arrow_text_right.dart';
+import '../../../../core/widgets/clickable_widget.dart';
+import '../models/document.dart';
+import '../widgets/points.dart';
 
 class DocumentPage extends StatefulWidget {
   const DocumentPage({Key? key}) : super(key: key);
@@ -17,6 +23,17 @@ class _DocumentPageState extends State<DocumentPage>
       TransformationController();
   Animation<Matrix4>? _animationReset;
   late final AnimationController _controllerReset;
+  late AppLocalizations locale;
+
+  late String _selectedItem;
+
+  late String _infoText;
+  bool isItemSelected1 = false;
+  bool isItemSelected2 = false;
+  bool isItemSelected3 = false;
+  bool isItemSelected4 = false;
+
+  late List<DocumentModel> documentList;
   double scale = 0.9;
   void _onAnimateReset() {
     _transformationController.value = _animationReset!.value;
@@ -76,6 +93,47 @@ class _DocumentPageState extends State<DocumentPage>
   }
 
   @override
+  void didChangeDependencies() {
+    locale = AppLocalizations.of(context)!;
+    _selectedItem = locale.documentIntro;
+    _infoText = locale.documentIntroText;
+    documentList = [
+      DocumentModel(
+        left: 0,
+        top: 0,
+        name: locale.documentIntro,
+        text: locale.documentIntroText,
+      ),
+      DocumentModel(
+          left: 0,
+          top: 0,
+          name: locale.documentTranscription,
+          text: locale.documentTranscriptionText),
+      DocumentModel(
+          top: MediaQuery.of(context).size.height * 0.15,
+          left: MediaQuery.of(context).size.width * 0.38,
+          name: locale.document1,
+          text: locale.document1Text),
+      DocumentModel(
+          top: MediaQuery.of(context).size.height * 0.38,
+          left: MediaQuery.of(context).size.width * 0.45,
+          name: locale.document2,
+          text: locale.document2Text),
+      DocumentModel(
+          top: MediaQuery.of(context).size.height * 0.62,
+          left: MediaQuery.of(context).size.width * 0.37,
+          name: locale.document3,
+          text: locale.document3Text),
+      DocumentModel(
+          top: MediaQuery.of(context).size.height * 0.68,
+          left: MediaQuery.of(context).size.width * 0.55,
+          name: locale.document4,
+          text: locale.document4Text),
+    ];
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     super.initState();
     _controllerReset = AnimationController(
@@ -98,9 +156,11 @@ class _DocumentPageState extends State<DocumentPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         backgroundColor: AppColors.greyDeep,
         floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton(
               backgroundColor: AppColors.white,
@@ -121,23 +181,228 @@ class _DocumentPageState extends State<DocumentPage>
           builder: (BuildContext context, BoxConstraints constraints) {
             return Stack(
               children: [
-                InteractiveViewer(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  transformationController: _transformationController,
-                  onInteractionStart: _onInteractionStart,
-                  boundaryMargin: const EdgeInsets.all(double.infinity),
-                  minScale: 0.25,
-                  maxScale: 3,
-                  constrained: false,
-                  child: SizedBox(
-                    height: constraints.maxHeight - 150,
-                    width: constraints.maxWidth,
-                    child: Image.asset(AssetsPath.document),
+                Row(
+                  children: [
+                    Expanded(
+                      child: InteractiveViewer(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        transformationController: _transformationController,
+                        onInteractionStart: _onInteractionStart,
+                        boundaryMargin: const EdgeInsets.all(double.infinity),
+                        minScale: 0.25,
+                        maxScale: 3,
+                        constrained: false,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          height: constraints.maxHeight,
+                          width: constraints.maxWidth,
+                          decoration: const BoxDecoration(
+                              // color: Colors.red,
+                              image: DecorationImage(
+                                  //alignment: Alignment.centerLeft,
+                                  image: AssetImage(AssetsPath.document))),
+                          child: SizedBox(
+                            child: Stack(
+                                children:
+                                    documentList.sublist(2, 6).map((data) {
+                              return Positioned(
+                                top: data.top,
+                                left: data.left,
+                                child: Clickable(
+                                  onPressed: () {
+                                    chandeState(data.name, data.text);
+                                  },
+                                  child: PointWidget(
+                                    color: _selectedItem == data.name
+                                        ? AppColors.orange
+                                        : Colors.black,
+                                    text: data.name.substring(1),
+                                  ),
+                                ),
+                              );
+                            }).toList()),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: LayoutBuilder(builder: (context, constraines) {
+                        return Container(
+                            decoration: const BoxDecoration(
+                                gradient: AppColors
+                                    .linearGradientForBackgroundDocument),
+                            child: Stack(children: [
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Container(
+                                  height: constraines.maxHeight,
+                                  padding: const EdgeInsets.all(24),
+                                  child: Column(
+                                    children: [
+                                      Flexible(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {},
+                                              icon: const Icon(Icons.volume_up),
+                                            ),
+                                            IconButton(
+                                                onPressed: () {},
+                                                icon: const Icon(Icons.menu))
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 6,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                AutoSizeText(
+                                                  locale
+                                                      .chapter1MedicalToolsKnowledge,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2,
+                                                ),
+                                                AutoSizeText(
+                                                  locale
+                                                      .sourceAnalysisHippocraticOath,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2,
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              flex: 6,
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  border: Border(
+                                                    top: BorderSide(
+                                                        color: AppColors.grey,
+                                                        width: 1.2),
+                                                    bottom: BorderSide(
+                                                        color: AppColors.grey,
+                                                        width: 1.2),
+                                                  ),
+                                                ),
+                                                child: SingleChildScrollView(
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text: '$_selectedItem\n'
+                                                          .toUpperCase(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                    TextSpan(
+                                                      text: _infoText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                      children: documentList
+                                                          .map((data) =>
+                                                              documentInfoListWidgets(
+                                                                  name:
+                                                                      data.name,
+                                                                  text:
+                                                                      data.text,
+                                                                  selected: data
+                                                                      .name))
+                                                          .toList())),
+                                            ),
+                                            const SizedBox(
+                                              height: 60,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ]));
+                      }),
+                    )
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10, right: 24),
+                    child: ArrowRightTextWidget(
+                        textSubTitle: locale.medicalToolsKnowledge,
+                        textTitle: locale.chapter1,
+                        onTap: () {
+                          context.router.pop();
+                        }),
                   ),
                 ),
               ],
             );
           },
+        ),
+      ),
+    );
+  }
+
+  void chandeState(String? selctedItem, String? textDescription) {
+    setState(() {
+      _selectedItem = selctedItem!;
+      _infoText = textDescription!;
+    });
+  }
+
+  Widget documentInfoListWidgets(
+      {String? name,
+      String? selected,
+      String? image,
+      String? text,
+      bool? color}) {
+    return SizedBox(
+      child: Padding(
+        padding: const EdgeInsets.only(right: 30),
+        child: Clickable(
+          onPressed: () {
+            chandeState(selected, text);
+          },
+          child: AutoSizeText(name!.toUpperCase(),
+              maxLines: 1,
+              maxFontSize: 15,
+              minFontSize: 5,
+              style: _selectedItem == selected
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: AppColors.orange)
+                  : Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: AppColors.blackG)),
         ),
       ),
     );

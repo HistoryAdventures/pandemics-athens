@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -89,7 +87,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       description: _infoText,
                                       onTap: () {
                                         Navigator.of(context).pop();
-                                        window.history.go(-1);
+                                        // window.history.go(-1);
 
                                         //window.history.back();
                                       })))),
