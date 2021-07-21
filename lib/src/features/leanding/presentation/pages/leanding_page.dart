@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/loading_widget.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -24,6 +25,11 @@ class _LeandingPageState extends State<LeandingPage>
 
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
+  List<String> contentImages = [
+    AssetsPath.gifBackground,
+    AssetsPath.gifVirus,
+    AssetsPath.spheresBackImage
+  ];
 
   @override
   void didChangeDependencies() {
@@ -42,8 +48,9 @@ class _LeandingPageState extends State<LeandingPage>
         reverse: true,
       );
     });
-    final loadedAllAssets = await loadAll();
-    if (loadedAllAssets == true) {
+
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
       setState(() {
         isImageloaded = true;
       });
@@ -63,11 +70,7 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   Widget build(BuildContext context) {
     if (isImageloaded == false) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return const LoadingWidget();
     }
     return Scaffold(body: LayoutBuilder(
       builder: (context, constraints) {
@@ -151,12 +154,12 @@ class _LeandingPageState extends State<LeandingPage>
                 ),
               ),
               Positioned(
-                top: 60,
-                right: 60,
+                top: constraints.maxHeight * 0.06,
+                right: constraints.maxWidth * 0.06,
                 child: IconButton(
                   icon: const Icon(
                     Icons.menu,
-                    size: 45,
+                    size: 35,
                   ),
                   onPressed: () {},
                 ),

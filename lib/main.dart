@@ -5,6 +5,7 @@ import 'src/core/router.gr.dart';
 import 'src/core/theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

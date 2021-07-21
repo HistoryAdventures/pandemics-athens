@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/loading_widget.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -18,14 +21,53 @@ class PracticeMedicine extends StatefulWidget {
 
 class _PracticeMedicineState extends State<PracticeMedicine> {
   late AppLocalizations locals;
+
+  bool isImageloaded = false;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
+  Offset offset = const Offset(0, 0);
+  List<String> contentImages = [
+    AssetsPath.medicine,
+    AssetsPath.quitMedicine,
+    AssetsPath.keepGoing,
+    AssetsPath.deadOfSocrates1,
+    AssetsPath.deadOfSocrates2,
+    AssetsPath.deadOfSocrates3,
+    AssetsPath.endOfWar1,
+    AssetsPath.endOfWar2,
+    AssetsPath.endOfWar3,
+  ];
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
   }
 
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
+      setState(() {
+        isImageloaded = true;
+      });
+    } else {
+      setState(() {
+        isImageloaded = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (isImageloaded == false) {
+      return const LoadingWidget();
+    }
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
@@ -59,7 +101,8 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                             textTitle: '',
                             textColor: AppColors.white,
                             onTap: () {
-                              context.router.push(QuitMedicinePageRoute());
+                              context.router
+                                  .push(const QuitMedicinePageRoute());
                             }),
                       ),
                     ),
@@ -91,43 +134,39 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                           arrowColor: AppColors.white,
                           onTap: () {
                             ////????????
-                            context.router.push(KeepGoingPageRoute());
+                            context.router.push(const KeepGoingPageRoute());
                           }),
                     ),
                   ],
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.volume_up, color: AppColors.white),
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          context.router.pop();
-                        },
-                        icon: const Icon(
-                          Icons.arrow_upward_sharp,
-                          size: 30,
-                          color: AppColors.white,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.apps,
-                          color: AppColors.white,
-                        ))
-                  ],
-                ),
-              ),
+            SoundAndMenuWidget(
+              color: AppColors.white,
+              widget: IconButton(
+                  onPressed: () {
+                    context.router.pop();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_upward_sharp,
+                    size: 30,
+                    color: AppColors.white,
+                  )),
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
             ),
             Align(
               alignment: Alignment.topCenter,

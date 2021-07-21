@@ -150,10 +150,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     KeepGoingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<KeepGoingPageRouteArgs>(
-              orElse: () => const KeepGoingPageRouteArgs());
-          return _i14.KeepGoingPage(key: args.key);
+        builder: (_) {
+          return const _i14.KeepGoingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
@@ -161,10 +159,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     QuitMedicinePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<QuitMedicinePageRouteArgs>(
-              orElse: () => const QuitMedicinePageRouteArgs());
-          return _i15.QuitMedicinePage(key: args.key);
+        builder: (_) {
+          return const _i15.QuitMedicinePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
@@ -172,10 +168,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     PracticeMedicineRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<PracticeMedicineRouteArgs>(
-              orElse: () => const PracticeMedicineRouteArgs());
-          return _i16.PracticeMedicine(key: args.key);
+        builder: (_) {
+          return const _i16.PracticeMedicine();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
@@ -207,22 +201,18 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     DeadOfSocratesPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageRouteArgs>(
-              orElse: () => const DeadOfSocratesPageRouteArgs());
-          return _i20.DeadOfSocratesPage(key: args.key);
+        builder: (_) {
+          return const _i20.DeadOfSocratesPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         opaque: true,
         barrierDismissible: false),
     EndOfWarPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<EndOfWarPageRouteArgs>(
-              orElse: () => const EndOfWarPageRouteArgs());
-          return _i21.EndOfWarPage(key: args.key);
+        builder: (_) {
+          return const _i21.EndOfWarPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         opaque: true,
         barrierDismissible: false)
   };
@@ -342,50 +332,22 @@ class PathogenProfilePageRoute extends _i1.PageRouteInfo {
   static const String name = 'PathogenProfilePageRoute';
 }
 
-class KeepGoingPageRoute extends _i1.PageRouteInfo<KeepGoingPageRouteArgs> {
-  KeepGoingPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/keep-going-page', args: KeepGoingPageRouteArgs(key: key));
+class KeepGoingPageRoute extends _i1.PageRouteInfo {
+  const KeepGoingPageRoute() : super(name, path: '/keep-going-page');
 
   static const String name = 'KeepGoingPageRoute';
 }
 
-class KeepGoingPageRouteArgs {
-  const KeepGoingPageRouteArgs({this.key});
-
-  final _i2.Key? key;
-}
-
-class QuitMedicinePageRoute
-    extends _i1.PageRouteInfo<QuitMedicinePageRouteArgs> {
-  QuitMedicinePageRoute({_i2.Key? key})
-      : super(name,
-            path: '/quit-medicine-page',
-            args: QuitMedicinePageRouteArgs(key: key));
+class QuitMedicinePageRoute extends _i1.PageRouteInfo {
+  const QuitMedicinePageRoute() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageRoute';
 }
 
-class QuitMedicinePageRouteArgs {
-  const QuitMedicinePageRouteArgs({this.key});
-
-  final _i2.Key? key;
-}
-
-class PracticeMedicineRoute
-    extends _i1.PageRouteInfo<PracticeMedicineRouteArgs> {
-  PracticeMedicineRoute({_i2.Key? key})
-      : super(name,
-            path: '/practice-medicine',
-            args: PracticeMedicineRouteArgs(key: key));
+class PracticeMedicineRoute extends _i1.PageRouteInfo {
+  const PracticeMedicineRoute() : super(name, path: '/practice-medicine');
 
   static const String name = 'PracticeMedicineRoute';
-}
-
-class PracticeMedicineRouteArgs {
-  const PracticeMedicineRouteArgs({this.key});
-
-  final _i2.Key? key;
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
@@ -406,32 +368,14 @@ class DocumentPageRoute extends _i1.PageRouteInfo {
   static const String name = 'DocumentPageRoute';
 }
 
-class DeadOfSocratesPageRoute
-    extends _i1.PageRouteInfo<DeadOfSocratesPageRouteArgs> {
-  DeadOfSocratesPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/dead-of-socrates-page',
-            args: DeadOfSocratesPageRouteArgs(key: key));
+class DeadOfSocratesPageRoute extends _i1.PageRouteInfo {
+  const DeadOfSocratesPageRoute() : super(name, path: '/dead-of-socrates-page');
 
   static const String name = 'DeadOfSocratesPageRoute';
 }
 
-class DeadOfSocratesPageRouteArgs {
-  const DeadOfSocratesPageRouteArgs({this.key});
-
-  final _i2.Key? key;
-}
-
-class EndOfWarPageRoute extends _i1.PageRouteInfo<EndOfWarPageRouteArgs> {
-  EndOfWarPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/end-of-war-page', args: EndOfWarPageRouteArgs(key: key));
+class EndOfWarPageRoute extends _i1.PageRouteInfo {
+  const EndOfWarPageRoute() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageRoute';
-}
-
-class EndOfWarPageRouteArgs {
-  const EndOfWarPageRouteArgs({this.key});
-
-  final _i2.Key? key;
 }

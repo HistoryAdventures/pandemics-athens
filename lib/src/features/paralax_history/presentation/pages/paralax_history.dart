@@ -5,6 +5,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -50,6 +52,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   bool _backgroundVisibility = true;
   bool _lernMoreButtonVisibility = false;
+
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
   late Animation<double> animation;
@@ -628,38 +633,38 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                         ))),
               ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.volume_up),
+              SoundAndMenuWidget(
+                widget: Clickable(
+                  onPressed: () {
+                    context.router.pop();
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.arrow_upward_sharp,
+                        color: AppColors.black54,
                       ),
-                      Clickable(
-                        onPressed: () {
-                          context.router.pop();
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(
-                              Icons.arrow_upward_sharp,
-                              color: AppColors.black54,
-                            ),
-                            AutoSizeText("BOOK INTO"),
-                          ],
-                        ),
-                      ),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
+                      AutoSizeText("BOOK INTO"),
                     ],
                   ),
                 ),
-              )
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {},
+              ),
             ],
           ),
         ),

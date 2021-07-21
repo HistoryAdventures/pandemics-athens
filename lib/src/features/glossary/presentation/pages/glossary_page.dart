@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -21,6 +23,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late String _selectedtText;
   late List<GlossaryModel> category;
   late AppLocalizations locales;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   @override
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
@@ -145,31 +149,31 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.volume_up),
-                    ),
-                    Clickable(
-                      onPressed: () {
-                        context.router.pop();
-                      },
-                      child: const Icon(
-                        Icons.arrow_upward_sharp,
-                        color: Colors.black,
-                      ),
-                    ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
-                  ],
+            SoundAndMenuWidget(
+              widget: Clickable(
+                onPressed: () {
+                  context.router.pop();
+                },
+                child: const Icon(
+                  Icons.arrow_upward_sharp,
+                  color: Colors.black,
                 ),
               ),
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -197,10 +201,10 @@ class _GlossaryPageState extends State<GlossaryPage> {
                             style: Theme.of(context).textTheme.headline2,
                           ),
                         ),
-                        const Flexible(
+                        Flexible(
                           child: Icon(
                             Icons.south,
-                            size: 30,
+                            size: constraints.maxHeight * 0.04,
                             color: Colors.black,
                           ),
                         ),

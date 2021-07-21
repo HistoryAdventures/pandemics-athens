@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -24,6 +25,18 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
     with TickerProviderStateMixin {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
+  List<String> contentImages = [
+    AssetsPath.panaramaBackgroundImage,
+    AssetsPath.panaramaImage6,
+    AssetsPath.panaramaImage7,
+    AssetsPath.panaramaImage8,
+    AssetsPath.panaramaImage9,
+    AssetsPath.panaramaImage10,
+    AssetsPath.document
+  ];
+
+  bool isImageloaded = false;
+
   @override
   void didChangeDependencies() {
     precacheImage(const AssetImage('assets/panorama_image2.png'), context);
@@ -83,26 +96,28 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
     super.didChangeDependencies();
   }
 
-  bool isLoading = false;
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
-  final begin = const Offset(0.0, -1.0);
-  final end = Offset.zero;
-  final curve = Curves.easeInBack;
   final backgroundplayer = AudioPlayer();
   final openInfoPlayer = AudioPlayer();
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
 
-  void openLoading() {
-    Future.delayed(const Duration(seconds: 5), () {
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
       setState(() {
-        isLoading = true;
+        isImageloaded = true;
         isSoundOn = true;
         backgroundplayer.play();
       });
-    });
+    } else {
+      setState(() {
+        isSoundOn = false;
+        isImageloaded = false;
+      });
+    }
   }
 
   // void setSounds() async {
@@ -115,7 +130,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   @override
   void initState() {
-    openLoading();
+    init();
     super.initState();
   }
 
@@ -128,7 +143,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (isLoading || isSoundOn)
+      body: (isImageloaded || isSoundOn)
           ? _body()
           : Scaffold(
               body: Container(
@@ -233,28 +248,6 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                     ))),
           ),
         ),
-        GestureDetector(
-          onTap: isSoundOn
-              ? () {
-                  setState(() {
-                    isSoundOn = !isSoundOn;
-                    backgroundplayer.pause();
-                  });
-                }
-              : () {
-                  setState(() {
-                    isSoundOn = !isSoundOn;
-                    backgroundplayer.play();
-                  });
-                },
-          child: Container(
-              margin: const EdgeInsets.only(left: 50, top: 50),
-              child: Icon(
-                isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                size: 40,
-                color: Colors.white,
-              )),
-        ),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
@@ -280,6 +273,24 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                   context.router.pop();
                 }),
           ),
+        ),
+        SoundAndMenuWidget(
+          color: AppColors.white,
+          icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+          onTapVolume: isSoundOn
+              ? () {
+                  setState(() {
+                    isSoundOn = !isSoundOn;
+                    backgroundplayer.pause();
+                  });
+                }
+              : () {
+                  setState(() {
+                    isSoundOn = !isSoundOn;
+                    backgroundplayer.play();
+                  });
+                },
+          onTapMenu: () {},
         ),
       ],
     );

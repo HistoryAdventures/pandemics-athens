@@ -123,6 +123,8 @@ class AssetsPath {
   static const String manthroatImage = 'assets/man_body/throat.png';
   static const String document = 'assets/document_view/document.png';
 
+  static const String panaramaBackgroundImage = 'assets/panorama_image2.png';
+
   static const String panaramaImage1 =
       'assets/panarama_image/panaram_image_1.png';
   static const String panaramaImage2 =
@@ -226,9 +228,9 @@ Future<void> loadImage(ImageProvider provider) {
   return completer.future;
 }
 
-Future<bool> loadAll() async {
-  for (int i = 0; i < AssetsPath.assetsList.length; i++) {
-    await getBytesFromAsset(AssetsPath.assetsList[i]);
+Future<bool> loadContent(List<String> context) async {
+  for (int i = 0; i < context.length; i++) {
+    await getBytesFromAsset(context[i]);
   }
 
   return true;

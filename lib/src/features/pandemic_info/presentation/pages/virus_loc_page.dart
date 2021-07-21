@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -18,6 +20,8 @@ class VirusLocationPage extends StatefulWidget {
 
 class _VirusLocationPageState extends State<VirusLocationPage> {
   late AppLocalizations locals;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -41,10 +45,26 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
             Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(0, 1),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                      BoxShadow(
+                          offset: Offset(1, 0),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                      BoxShadow(
+                          offset: Offset(1, -1),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                    ],
+                  ),
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   height: constraints.maxHeight * 0.6,
                   width: constraints.maxWidth * 0.6,
-                  color: Colors.white.withOpacity(0.5),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
@@ -93,10 +113,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: AppColors.linearGradientForBackground,
-                ),
+              child: SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -126,7 +143,24 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   ],
                 ),
               ),
-            )
+            ),
+            SoundAndMenuWidget(
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
+            ),
           ],
         );
       }),

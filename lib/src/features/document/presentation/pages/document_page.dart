@@ -28,10 +28,6 @@ class _DocumentPageState extends State<DocumentPage>
   late String _selectedItem;
 
   late String _infoText;
-  bool isItemSelected1 = false;
-  bool isItemSelected2 = false;
-  bool isItemSelected3 = false;
-  bool isItemSelected4 = false;
 
   late List<DocumentModel> documentList;
   double scale = 0.9;

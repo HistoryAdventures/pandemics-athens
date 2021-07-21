@@ -89,6 +89,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       page: DeadOfSocratesPage,
       transitionsBuilder: TransitionsBuilders.slideBottom),
   CustomRoute(
-      page: EndOfWarPage, transitionsBuilder: TransitionsBuilders.slideBottom),
+      page: EndOfWarPage, transitionsBuilder: TransitionsBuilders.slideRight),
 ])
 class $FlutterRouter {}

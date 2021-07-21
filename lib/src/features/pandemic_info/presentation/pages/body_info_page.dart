@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/loading_widget.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -28,31 +31,47 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   late AppLocalizations locale;
   late Animation<double> animation;
   late AnimationController controller;
+  late List<ManBodyModel> listCharacters;
+
+  List<String> contentImages = [
+    AssetsPath.manIntroImage,
+    AssetsPath.manheadImage,
+    AssetsPath.manthroatImage,
+    AssetsPath.manChestImage,
+    AssetsPath.manfillImage,
+    AssetsPath.manstomachImage,
+    AssetsPath.manhandsImage,
+    AssetsPath.gifVirus,
+    AssetsPath.gifTyphus,
+    AssetsPath.gifSmallpox,
+    AssetsPath.gifTyphoid,
+    AssetsPath.gifEbola,
+    AssetsPath.gifBubonic,
+  ];
+
+  bool isImageloaded = false;
+  bool isSoundOn = false;
+
+  final backgroundplayer = AudioPlayer();
+
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
+      setState(() {
+        isImageloaded = true;
+      });
+    } else {
+      setState(() {
+        isImageloaded = false;
+      });
+    }
+  }
 
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
     _selectedText = locale.intrBodyText;
-    super.didChangeDependencies();
-  }
-
-  @override
-  void initState() {
-    _selectedItem = "intro";
-    _selectedImg = AssetsPath.manIntroImage;
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = Tween<double>(begin: 80, end: 50).animate(controller);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _body();
-  }
-
-  Widget _body() {
-    final List<ManBodyModel> listCharacters = [
+    listCharacters = [
       ManBodyModel(
         photo: AssetsPath.manIntroImage,
         name: locale.bodyIntro,
@@ -89,23 +108,32 @@ class _BodyInfoPageState extends State<BodyInfoPage>
         descriptiion: locale.hendsText,
       ),
     ];
+    super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    init();
+    _selectedItem = "intro";
+    _selectedImg = AssetsPath.manIntroImage;
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = Tween<double>(begin: 80, end: 50).animate(controller);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isImageloaded == false) {
+      return const LoadingWidget();
+    }
+
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Stack(
             children: [
               const BackgroundWidget(),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10, top: 10),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.menu),
-                    iconSize: 30,
-                  ),
-                ),
-              ),
               Align(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -166,14 +194,16 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                               vertical: constraints.maxHeight * 0.1),
                           decoration: BoxDecoration(
                               color: AppColors.white.withOpacity(0.5)),
-                          padding: const EdgeInsets.all(24),
+                          padding:
+                              EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 70,
+                              Flexible(
+                                flex: 2,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Flexible(
                                       child: AutoSizeText(
@@ -187,6 +217,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                     ),
                                     Flexible(
                                       child: AutoSizeText(_selectedItem,
+                                          maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline2),
@@ -195,15 +226,19 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 ),
                               ),
                               Expanded(
+                                flex: 6,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
-                                    top: BorderSide(
-                                        color: AppColors.grey, width: 1.2),
-                                  )),
+                                          top: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2),
+                                          bottom: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2))),
                                   child: ListView(shrinkWrap: true, children: [
                                     Container(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.only(right: 10),
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
@@ -224,8 +259,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                   ]),
                                 ),
                               ),
-                              SizedBox(
-                                height: 30,
+                              Flexible(
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -257,6 +291,23 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       }),
                 ),
               ),
+              SoundAndMenuWidget(
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {},
+              ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
@@ -287,7 +338,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   Widget bodiesNameListWidget(
       {String? name, String? selected, String? image, String? text}) {
     return Container(
-        margin: const EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
             chandeState(selected, image, text);

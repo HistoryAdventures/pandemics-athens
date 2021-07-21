@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -23,6 +25,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late String _selectedImg;
   late String _infoText;
   late AppLocalizations locale;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -53,20 +57,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                               AssetImage(AssetsPath.charactersBackgroundImage),
                           fit: BoxFit.cover))),
               Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                    padding: const EdgeInsets.only(right: 10, top: 10),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.menu),
-                      iconSize: 30,
-                    )),
-              ),
-              Align(
                 child: Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 80,
-                  ),
+                  margin: EdgeInsets.only(
+                      bottom: 80, top: constraints.maxHeight * 0.18),
                   child: Row(
                     children: [
                       Expanded(
@@ -96,17 +89,19 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         child: Container(
                           margin: EdgeInsets.symmetric(
                               horizontal: 50,
-                              vertical: constraints.maxHeight * 0.1),
+                              vertical: constraints.maxHeight * 0.05),
                           decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.5)),
-                          padding: const EdgeInsets.all(24),
+                          padding:
+                              EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 70,
+                              Flexible(
+                                flex: 2,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Flexible(
                                       child: AutoSizeText(
@@ -127,6 +122,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
+                                flex: 6,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
@@ -158,8 +154,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                   ]),
                                 ),
                               ),
-                              SizedBox(
-                                height: 30,
+                              Flexible(
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -190,6 +185,23 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                       onTap: () {}),
                 ),
               ),
+              SoundAndMenuWidget(
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {},
+              ),
             ],
           );
         },
@@ -209,7 +221,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   Widget charactersNameListWidget(
       {String? name, String? selected, String? image, String? text}) {
     return Container(
-        margin: const EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
             chandeState(selected, image, text);

@@ -59,25 +59,23 @@ class _DialogWidgetState extends State<DialogWidget> {
       String? image,
       String? text,
       String? imageText}) {
-    return SizedBox(
-      child: Padding(
-        padding: const EdgeInsets.only(right: 30),
-        child: Clickable(
-          onPressed: () {
-            chandeState(selected, image, text, imageText);
-          },
-          child: Text(name!.toUpperCase(),
-              maxLines: 1,
-              style: _selectedItem == selected
-                  ? Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.grey)),
-        ),
+    return Container(
+      margin: const EdgeInsets.only(right: 30),
+      child: Clickable(
+        onPressed: () {
+          chandeState(selected, image, text, imageText);
+        },
+        child: AutoSizeText(name!.toUpperCase(),
+            maxLines: 1,
+            style: _selectedItem == selected
+                ? Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.orange)
+                : Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.grey)),
       ),
     );
   }
@@ -96,7 +94,7 @@ class _DialogWidgetState extends State<DialogWidget> {
           child: Scaffold(
               backgroundColor: AppColors.white,
               body: Container(
-                margin: const EdgeInsets.all(24),
+                padding: EdgeInsets.all(widget.constraints.maxHeight * 0.024),
                 child: Row(
                   children: [
                     Expanded(
@@ -172,8 +170,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              SizedBox(
-                                  height: widget.constraints.maxHeight * 0.09,
+                              Flexible(
+                                  flex: 2,
                                   child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -183,6 +181,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                         Expanded(
                                           flex: 3,
                                           child: Column(
+                                            mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -191,7 +190,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                   AppLocalizations.of(context)!
                                                       .chapter1Name
                                                       .toUpperCase(),
-                                                  maxLines: 2,
+                                                  maxLines: 1,
                                                   minFontSize: 10,
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -203,7 +202,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                     widget.locals
                                                         .plaguePoliticalInstability,
                                                     minFontSize: 13,
-                                                    maxLines: 2,
+                                                    maxLines: 1,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),
@@ -219,7 +218,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                 child: const Icon(Icons.clear)))
                                       ])),
                               Expanded(
-                                flex: 10,
+                                flex: 6,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
@@ -252,10 +251,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                                   ]),
                                 ),
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: SizedBox(
-                                  height: 30,
+                              Flexible(
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
                                   child: Row(
                                       children: widget.listDialogInfo
                                           .map((data) =>

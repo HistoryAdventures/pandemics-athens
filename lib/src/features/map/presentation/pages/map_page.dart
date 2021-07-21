@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/loading_widget.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -26,10 +29,56 @@ class _MapPageState extends State<MapPage> {
   final _scrollController = ScrollController();
   late AppLocalizations locals;
   late List<MapInfoModel> mapInfoList;
+
+  bool isImageloaded = false;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
+
+  List<String> contentImages = [
+    AssetsPath.mapImage495,
+    AssetsPath.mapImage490,
+    AssetsPath.mapImage480,
+    AssetsPath.mapImage479,
+    AssetsPath.mapImage477,
+    AssetsPath.mapImage471,
+    AssetsPath.mapImage469,
+    AssetsPath.mapImage462,
+    AssetsPath.mapImage458,
+    AssetsPath.mapImage457,
+    AssetsPath.mapImage454,
+    AssetsPath.mapImage451,
+    AssetsPath.mapImage450,
+    AssetsPath.mapImage446,
+    AssetsPath.mapImage443,
+    AssetsPath.mapImage441,
+    AssetsPath.mapImage438,
+    AssetsPath.mapImage431,
+    AssetsPath.mapImage430,
+    AssetsPath.mapImage427,
+    AssetsPath.mapImage421,
+    AssetsPath.mapImage416,
+    AssetsPath.mapImage415,
+    AssetsPath.mapImage414,
+    AssetsPath.mapImage413,
+    AssetsPath.mapImage399,
+    AssetsPath.periclesImage,
+    AssetsPath.thucididesImage,
+    AssetsPath.socratesImage,
+    AssetsPath.aristophanesImage,
+    AssetsPath.charactersBackgroundImage,
+    AssetsPath.mapImage
+  ];
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     mapInfoList = [
+      MapInfoModel(
+          imageDescription: '',
+          image: '',
+          text: locals.y508bodyText,
+          title: locals.y508,
+          year: locals.y508),
       MapInfoModel(
           imageDescription: locals.y495imageText,
           image: AssetsPath.mapImage495,
@@ -201,8 +250,22 @@ class _MapPageState extends State<MapPage> {
     super.didChangeDependencies();
   }
 
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
+      setState(() {
+        isImageloaded = true;
+      });
+    } else {
+      setState(() {
+        isImageloaded = false;
+      });
+    }
+  }
+
   @override
   void initState() {
+    init();
     super.initState();
   }
 
@@ -213,6 +276,9 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (isImageloaded == false) {
+      return const LoadingWidget();
+    }
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
@@ -228,116 +294,199 @@ class _MapPageState extends State<MapPage> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(0, 1),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                      BoxShadow(
+                          offset: Offset(1, 0),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                      BoxShadow(
+                          offset: Offset(1, -1),
+                          color: AppColors.grey,
+                          blurRadius: 5),
+                    ],
+                  ),
                   padding: const EdgeInsets.all(24),
                   margin: EdgeInsets.only(
-                      left: 50, top: constraints.maxHeight * 0.15),
+                      left: 50, top: constraints.maxHeight * 0.18),
                   height: constraints.maxHeight * 0.5,
                   width: constraints.maxWidth * 0.5,
-                  color: AppColors.white,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: constraints.maxHeight,
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500),
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                            child: Container(
-                              key: ValueKey(_selectedImage),
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(_selectedImage),
-                                fit: BoxFit.cover,
-                              )),
-                              child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Clickable(
-                                  onPressed: () {},
+                  child: _selectedImage != ''
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: constraints.maxHeight,
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 500),
+                                  transitionBuilder: (child, animation) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: child,
+                                    );
+                                  },
                                   child: Container(
-                                    color: Colors.black,
-                                    child: const Icon(
-                                      Icons.add,
-                                      color: Colors.white,
+                                    key: ValueKey(_selectedImage),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: AssetImage(_selectedImage),
+                                      fit: BoxFit.cover,
+                                    )),
+                                    child: Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Clickable(
+                                        onPressed: () {},
+                                        child: Container(
+                                          color: Colors.black,
+                                          child: const Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
+                            Expanded(
+                                child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Flexible(
-                                    child: AutoSizeText(
-                                        locals.chapter1Athens5thCentury,
-                                        maxLines: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: AutoSizeText(
+                                              locals.chapter1Athens5thCentury,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2),
+                                        ),
+                                        Flexible(
+                                          child: AutoSizeText(
+                                            locals.timelineOfMainEvents
+                                                .toUpperCase(),
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Flexible(
-                                    child: AutoSizeText(
-                                      locals.timelineOfMainEvents.toUpperCase(),
-                                      maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
+                                    flex: 3,
+                                    child: Scrollbar(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, right: 30),
+                                          child: RichText(
+                                              text: TextSpan(children: [
+                                            TextSpan(
+                                                text: "$_selectedTitle\n",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline3),
+                                            TextSpan(
+                                              text: _selectedBody,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ])),
+                                        )
+                                      ]),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                            Flexible(
-                              flex: 3,
-                              child: Scrollbar(
-                                child: ListView(shrinkWrap: true, children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, right: 30),
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                          text: "$_selectedTitle\n",
+                            )),
+                          ],
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: AutoSizeText(
+                                          locals.chapter1Athens5thCentury,
+                                          maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline3),
-                                      TextSpan(
-                                        text: _selectedBody,
+                                              .subtitle2),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        locals.timelineOfMainEvents
+                                            .toUpperCase(),
+                                        maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1,
+                                            .headline2,
                                       ),
-                                    ])),
-                                  )
-                                ]),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              Flexible(
+                                flex: 3,
+                                child: Scrollbar(
+                                  child: ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, right: 30),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: "$_selectedTitle\n",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline3),
+                                        TextSpan(
+                                          text: _selectedBody,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
+                                        ),
+                                      ])),
+                                    )
+                                  ]),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )),
-                    ],
-                  ),
                 )),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 height: 80,
-                decoration:
-                    BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
+                decoration: BoxDecoration(boxShadow: const [
+                  BoxShadow(
+                      offset: Offset(1, -1),
+                      color: AppColors.grey,
+                      blurRadius: 5),
+                ], color: AppColors.white.withOpacity(0.9)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -384,7 +533,24 @@ class _MapPageState extends State<MapPage> {
                   ],
                 ),
               ),
-            )
+            ),
+            SoundAndMenuWidget(
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
+            ),
           ],
         );
       }),

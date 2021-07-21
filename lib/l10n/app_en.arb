@@ -63,6 +63,12 @@
     "@aristophanesAndSophocles": {
       "description": "Aristophanes and Sophocles"
     },
+    
+    "phidias": "Phidias",
+    "@phidias ": {
+      "description": "Phidias"
+    },
+
     "keyPeopleAthens5thCenturyBCE": "Key people in Athens 5th century BCE",
     "@keyPeopleAthens5thCenturyBCE": {
       "description": "Key people in Athens 5th century BCE"
@@ -415,6 +421,16 @@
     "@quitMedicine": {
       "quitMedicine": "quitMedicine"
     },
+
+    "y508": "c.508",
+    "@y508": {
+      "y508": "508"
+    },
+    "y508bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
+    "@y508bodyText": {
+      "y508bodyText": "508bodyText"
+    },
+
     "y495": "c.495",
     "@y495": {
       "y495": "495"
@@ -1210,7 +1226,26 @@
     "theAfterlifeOfClassicalAthensTextImage": "‘The Parthenon’ Frederic Edwin Church (1871), Met Museum. Although the city’s defeat in the Peloponnesian War brought an end to its golden age, the city has retained its allure throughout the ages.",
     "@theAfterlifeOfClassicalAthensTextImage": {
       "theAfterlifeOfClassicalAthensTextImage": "theAfterlifeOfClassicalAthensTextImage"
+    },
+    "plagueAndPersecution": "Plague and persecution",
+    "@plagueAndPersecution": {
+      "plagueAndPersecution": "plagueAndPersecution"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "deathOfSocrates": " death of socrates",
+    "@deathOfSocrates": {
+      "deathOfSocrates": "deathOfSocrates"
     }
-
 }
 

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -30,7 +31,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   final backgroundplayer = AudioPlayer();
   final openInfoPlayer = AudioPlayer();
 
-  bool isLoading = false;
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
   String image = 'assets/panorama_image2.png';
@@ -38,6 +38,17 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
+
+  bool isImageloaded = false;
+
+  List<String> contentImages = [
+    AssetsPath.panaramaBackgroundImage,
+    AssetsPath.panaramaImage1,
+    AssetsPath.panaramaImage2,
+    AssetsPath.panaramaImage3,
+    AssetsPath.panaramaImage4,
+    AssetsPath.panaramaImage5,
+  ];
 
   @override
   void didChangeDependencies() {
@@ -97,14 +108,20 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
     super.didChangeDependencies();
   }
 
-  void openLoading() {
-    Future.delayed(const Duration(seconds: 5), () {
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
       setState(() {
-        isLoading = true;
+        isImageloaded = true;
         isSoundOn = true;
         backgroundplayer.play();
       });
-    });
+    } else {
+      setState(() {
+        isSoundOn = false;
+        isImageloaded = false;
+      });
+    }
   }
 
   // void setSounds() async {
@@ -117,8 +134,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
 
   @override
   void initState() {
-    openLoading();
-    loadImage(AssetImage(image));
+    init();
     super.initState();
   }
 
@@ -131,7 +147,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (isLoading || isSoundOn)
+      body: (isImageloaded || isSoundOn)
           ? _body()
           : Scaffold(
               body: Container(
@@ -233,8 +249,10 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                     ))),
           ),
         ),
-        GestureDetector(
-          onTap: isSoundOn
+        SoundAndMenuWidget(
+          color: AppColors.white,
+          icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+          onTapVolume: isSoundOn
               ? () {
                   setState(() {
                     isSoundOn = !isSoundOn;
@@ -247,13 +265,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                     backgroundplayer.play();
                   });
                 },
-          child: Container(
-              margin: const EdgeInsets.only(left: 50, top: 50),
-              child: Icon(
-                isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                size: 40,
-                color: Colors.white,
-              )),
+          onTapMenu: () {},
         ),
         Align(
           alignment: Alignment.bottomLeft,
@@ -277,8 +289,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                 context.router.push(const PathogenProfilePageRoute());
               },
               child: SizedBox(
-                  height: 30,
-                  width: 30,
+                  height: 20,
+                  width: 20,
                   child: Image.asset(
                     AssetsPath.arrowDounImage,
                     color: AppColors.white,

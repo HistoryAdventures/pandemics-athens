@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
@@ -35,6 +37,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   late String _selectedItem;
   late String _selectedText;
   late List<String> _selectedImg;
+
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
 
   @override
   void didChangeDependencies() {
@@ -102,136 +107,159 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          const BackgroundWidget(),
-          Align(
-            child: Container(
-              margin: const EdgeInsets.only(
-                bottom: 80,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    transitionBuilder: (child, animation) => FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    ),
-                    child: Container(
-                      key: ValueKey(_selectedImg),
-                      child: VirusModel(
-                        constraints: size,
-                        gifController: controller,
-                        description: _selectedText,
-                        name: _selectedItem,
-                        widgets: _selectedImg,
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            const BackgroundWidget(),
+            Align(
+              child: Container(
+                margin: const EdgeInsets.only(
+                  bottom: 80,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      transitionBuilder: (child, animation) => FadeTransition(
+                        opacity: animation,
+                        child: child,
                       ),
-                    ),
-                  )),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          right: 50,
-                          top: size.height * 0.1,
-                          bottom: size.height * 0.1),
-                      decoration: BoxDecoration(
-                          color: AppColors.white.withOpacity(0.5)),
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 70,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: AutoSizeText(
-                                    locals.chapter1Name.toUpperCase(),
-                                    maxLines: 1,
-                                    style: DefaultTheme
-                                        .standard.textTheme.subtitle2,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: AutoSizeText(_selectedItem,
+                      child: Container(
+                        key: ValueKey(_selectedImg),
+                        child: VirusModel(
+                          constraints:
+                              Size(constraints.maxWidth, constraints.maxHeight),
+                          gifController: controller,
+                          description: _selectedText,
+                          name: _selectedItem,
+                          widgets: _selectedImg,
+                        ),
+                      ),
+                    )),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            right: 50,
+                            top: constraints.maxHeight * 0.1,
+                            bottom: constraints.maxHeight * 0.1),
+                        decoration: BoxDecoration(
+                            color: AppColors.white.withOpacity(0.5)),
+                        padding: EdgeInsets.all(constraints.maxHeight * 0.024),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      locals.chapter1Name.toUpperCase(),
+                                      maxLines: 1,
                                       style: DefaultTheme
-                                          .standard.textTheme.headline2),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                      top: BorderSide(
-                                          color: AppColors.grey, width: 1.2),
-                                      bottom: BorderSide(
-                                          color: AppColors.grey, width: 1.2))),
-                              child: Scrollbar(
-                                isAlwaysShown: true,
-                                child: ListView(shrinkWrap: true, children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                        text: '$_selectedItem\n'.toUpperCase(),
+                                          .standard.textTheme.subtitle2,
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: AutoSizeText(_selectedItem,
+                                        maxLines: 1,
                                         style: DefaultTheme
-                                            .standard.textTheme.headline3,
-                                      ),
-                                      TextSpan(
-                                        text: _selectedText,
-                                        style: DefaultTheme
-                                            .standard.textTheme.bodyText1,
-                                      ),
-                                    ])),
-                                  )
-                                ]),
+                                            .standard.textTheme.headline2),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                            child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                    children: listCharacters
-                                        .map((data) => virusesNameListWidget(
-                                            image: data.widgets,
-                                            name: data.name,
-                                            text: data.description,
-                                            selected: data.name))
-                                        .toList())),
-                          )
-                        ],
+                            Expanded(
+                              flex: 6,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        top: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                        bottom: BorderSide(
+                                            color: AppColors.grey,
+                                            width: 1.2))),
+                                child: Scrollbar(
+                                  isAlwaysShown: true,
+                                  child: ListView(shrinkWrap: true, children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                          text:
+                                              '$_selectedItem\n'.toUpperCase(),
+                                          style: DefaultTheme
+                                              .standard.textTheme.headline3,
+                                        ),
+                                        TextSpan(
+                                          text: _selectedText,
+                                          style: DefaultTheme
+                                              .standard.textTheme.bodyText1,
+                                        ),
+                                      ])),
+                                    )
+                                  ]),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                      children: listCharacters
+                                          .map((data) => virusesNameListWidget(
+                                              image: data.widgets,
+                                              name: data.name,
+                                              text: data.description,
+                                              selected: data.name))
+                                          .toList())),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: ArrowLeftTextWidget(
-                  textSubTitle: locals.pathogenProfile,
-                  textTitle: locals.whatDidItDo,
-                  onTap: () {
-                    context.router.pop();
-                  }),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: ArrowLeftTextWidget(
+                    textSubTitle: locals.pathogenProfile,
+                    textTitle: locals.whatDidItDo,
+                    onTap: () {
+                      context.router.pop();
+                    }),
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+            SoundAndMenuWidget(
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   void changeState(
@@ -247,7 +275,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   Widget virusesNameListWidget(
       {String? name, String? selected, List<String>? image, String? text}) {
     return Container(
-        margin: const EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
             changeState(selected, image, text);

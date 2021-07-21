@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -17,6 +19,8 @@ class KeepGoingPage extends StatefulWidget {
 
 class _KeepGoingPageState extends State<KeepGoingPage> {
   late AppLocalizations locals;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -53,27 +57,23 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                     }),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.volume_up, color: AppColors.white),
-                    ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.apps,
-                          color: AppColors.white,
-                        ))
-                  ],
-                ),
-              ),
+            SoundAndMenuWidget(
+              color: AppColors.white,
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -106,7 +106,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                 padding: const EdgeInsets.all(24),
                 child: IconButton(
                     onPressed: () {
-                      context.router.push(DeadOfSocratesPageRoute());
+                      context.router.push(const DeadOfSocratesPageRoute());
                     },
                     icon: const Icon(
                       Icons.south,

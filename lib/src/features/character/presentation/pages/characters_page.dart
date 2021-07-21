@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
@@ -19,6 +21,9 @@ class CharacrterPage extends StatefulWidget {
 
 class _CharacrterPageState extends State<CharacrterPage> {
   late AppLocalizations locale;
+
+  final backgroundplayer = AudioPlayer();
+  bool isSoundOn = false;
 
   @override
   void didChangeDependencies() {
@@ -55,6 +60,11 @@ class _CharacrterPageState extends State<CharacrterPage> {
         name: locale.aristophanesAndSophocles,
         description: locale.aristophanesAndSophoclesTextDescription,
       ),
+      // CharacterModel(
+      //   photo: AssetsPath.aristophanesImage,
+      //   name: locale.phidias,
+      //   description: locale.phidiasTextDescription,
+      // ),
     ];
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
@@ -67,16 +77,23 @@ class _CharacrterPageState extends State<CharacrterPage> {
         ),
         child: Stack(
           children: [
-            Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50, right: 50),
-                  child: IconButton(
-                    icon: const Icon(Icons.menu),
-                    iconSize: 30,
-                    onPressed: () {},
-                  ),
-                )),
+            SoundAndMenuWidget(
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
+            ),
             Positioned(
               left: 100,
               right: 100,

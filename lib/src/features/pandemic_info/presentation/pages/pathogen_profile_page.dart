@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -26,6 +28,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   late AppLocalizations locals;
   Offset offset = const Offset(0, 0);
   late GifController controller;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
 
   @override
   void didChangeDependencies() {
@@ -166,7 +170,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                 alignment: Alignment.bottomCenter,
                 child: Clickable(
                   onPressed: () {
-                    context.router.push(PracticeMedicineRoute());
+                    context.router.push(const PracticeMedicineRoute());
                   },
                   child: Container(
                       height: 50,
@@ -175,32 +179,32 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                       child: Image.asset(AssetsPath.scrollIcon)),
                 ),
               ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.volume_up),
-                      ),
-                      Clickable(
-                        onPressed: () {
-                          context.router.pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_upward_sharp,
-                          color: Colors.black,
-                        ),
-                      ),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
-                    ],
+              SoundAndMenuWidget(
+                widget: Clickable(
+                  onPressed: () {
+                    context.router.pop();
+                  },
+                  child: const Icon(
+                    Icons.arrow_upward_sharp,
+                    color: Colors.black,
                   ),
                 ),
-              )
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {},
+              ),
             ],
           ),
         );
