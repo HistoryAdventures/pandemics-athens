@@ -13,18 +13,27 @@ class PointWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: PulsePainter(color),
-      child: SizedBox(
-        height: 30,
-        width: 30,
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(color: Colors.white),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        CustomPaint(
+          painter: PulsePainter(color),
+          child: SizedBox(
+            height: 30,
+            width: 30,
+            child: Center(
+              child: Text(
+                text,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
           ),
         ),
-      ),
+        SizedBox(
+            height: 12,
+            width: 15,
+            child: Image.asset('assets/document_view/pointer_button_icon.png')),
+      ],
     );
   }
 }
