@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
-const _defaultFadeInDuration = Duration(milliseconds: 500);
+const _defaultFadeInDuration = Times.medium;
 
 /// {@template animated_fade_in}
 /// Widget that applies a fade in transition to its child.

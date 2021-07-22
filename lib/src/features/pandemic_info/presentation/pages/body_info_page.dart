@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -109,8 +110,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     init();
     _selectedItem = "intro";
     _selectedImg = AssetsPath.manIntroImage;
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+    controller = AnimationController(duration: Times.slower, vsync: this);
     animation = Tween<double>(begin: 80, end: 50).animate(controller);
     super.initState();
   }
@@ -138,7 +138,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                         child: SizedBox(
                           height: constraints.maxHeight,
                           child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500),
+                            duration: Times.medium,
                             transitionBuilder: (child, animation) {
                               return FadeTransition(
                                 opacity: animation,

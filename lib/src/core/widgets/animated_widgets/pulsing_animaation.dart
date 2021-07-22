@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 //import 'package:photobooth_ui/photobooth_ui.dart';
 
 /// Default duration for a single pulse animation.
-const defaultPulseDuration = Duration(milliseconds: 1600);
+const defaultPulseDuration = Times.slowest;
 
 /// Default duration for the time between pulse animations.
-const defaultTimeBetweenPulses = Duration(milliseconds: 800);
+const defaultTimeBetweenPulses = Times.slow;
 
 /// {@template animated_pulse}
 /// Widget that applies a pulse animation to its child.

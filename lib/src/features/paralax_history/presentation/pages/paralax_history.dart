@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -117,8 +118,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       curve: Curves.easeInCubic,
     ));
 
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+    controller = AnimationController(duration: Times.slower, vsync: this);
     animation = Tween<double>(begin: 80, end: 50).animate(controller);
     Future.delayed(const Duration(seconds: 3), () {
       animation.addListener(() {
@@ -334,7 +334,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
                   child: AnimatedOpacity(
                     opacity: _topTextOpasyty,
-                    duration: const Duration(milliseconds: 1500),
+                    duration: Times.medium,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -377,7 +377,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Times.medium,
                 opacity: _paralaxTextOpasyty1,
                 child: Align(
                   alignment: Alignment.bottomLeft,
@@ -401,7 +401,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Times.medium,
                 opacity: _paralaxTextOpasyty2,
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -425,7 +425,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Times.medium,
                 opacity: _paralaxTextOpasyty3,
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -449,7 +449,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Times.medium,
                 opacity: _paralaxTextOpasyty4,
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -473,7 +473,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Times.medium,
                 opacity: _paralaxTextOpasyty5,
                 child: Align(
                   alignment: Alignment.bottomLeft,
@@ -510,7 +510,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               Align(
                 alignment: Alignment.bottomCenter,
                 child: AnimatedOpacity(
-                  duration: const Duration(microseconds: 1000),
+                  duration: Times.slower,
                   opacity: _bottomFieldOpasity,
                   child: Container(
                     // padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -529,7 +529,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 textTitle: '',
                                 onTap: () {
                                   context.router
-                                      .push(const PanaromaLeftPageRoute());
+                                      .replace(const PanaromaLeftPageRoute());
                                 }),
                           ),
                         ),
@@ -572,7 +572,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               Visibility(
                 visible: _lernMoreButtonVisibility,
                 child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 500),
+                    duration: Times.medium,
                     opacity: _paralaxTextOpasyty2,
                     child: Align(
                         alignment: Alignment.bottomCenter,

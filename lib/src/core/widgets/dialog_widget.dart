@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../features/panarama_left/presentation/models/dialog_model.dart';
 import '../colors.dart';
@@ -102,7 +103,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                         child: SizedBox(
                       height: widget.constraints.maxHeight,
                       child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 500),
+                        duration: Times.medium,
                         transitionBuilder: (child, animation) {
                           return FadeTransition(
                             opacity: animation,
@@ -137,8 +138,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                   constraints: constraints,
                                                 ));
                                       },
-                                      transitionDuration:
-                                          const Duration(milliseconds: 200),
+                                      transitionDuration: Times.fast,
                                       barrierDismissible: true,
                                       barrierLabel: '',
                                       pageBuilder:

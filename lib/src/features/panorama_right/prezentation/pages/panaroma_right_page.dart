@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -142,23 +143,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (isImageloaded || isSoundOn)
-          ? _body()
-          : Scaffold(
-              body: Container(
-              color: Colors.black,
-              child: Center(
-                child: PulsingWidget(
-                  duration: const Duration(milliseconds: 500),
-                  tween: Tween(end: 0.25, begin: 1.5),
-                  child: const Text(
-                    "Loading...",
-                    style: TextStyle(fontSize: 30, color: Colors.white),
-                  ),
-                ),
-              ),
-            )),
-    );
+        body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
   }
 
   Widget _body() {
@@ -191,21 +176,17 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                             Animation<double> animation,
                             Animation<double> secondaryAnimation,
                             Widget child) {
-                          const begin = Offset(-1.0, -1.0);
-                          const end = Offset.zero;
-                          final tween = Tween(begin: begin, end: end);
-
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
                                     animation: animation,
-                                    tween: tween,
+                                    tween: Offsets.tween,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
                                     locals: locals,
                                     listDialogInfo: infoList,
                                   ));
                         },
-                        transitionDuration: const Duration(milliseconds: 200),
+                        transitionDuration: Times.fast,
                         barrierDismissible: true,
                         barrierLabel: '',
                         pageBuilder: (context, animation1, animation2) {

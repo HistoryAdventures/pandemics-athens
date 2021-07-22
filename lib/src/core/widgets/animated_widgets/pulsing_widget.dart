@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 class PulsingWidget extends StatefulWidget {
   final Tween<double>? tween;
@@ -26,7 +27,7 @@ class _PulsingWidget extends State<PulsingWidget>
   void initState() {
     super.initState();
     _tween = widget.tween ?? Tween(begin: 0.25, end: 1.0);
-    _duration = widget.duration ?? const Duration(milliseconds: 1500);
+    _duration = widget.duration ?? Times.slowest;
     _animationController = AnimationController(
       vsync: this,
       duration: _duration,

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -147,7 +148,7 @@ class _DocumentPageState extends State<DocumentPage>
 
     _controllerReset = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 100),
+      duration: Times.fastest,
     );
 
     _transformationController.addListener(() {

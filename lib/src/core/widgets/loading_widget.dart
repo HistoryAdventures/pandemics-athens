@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import 'animated_widgets/pulsing_widget.dart';
 
@@ -17,7 +18,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
       color: Colors.black,
       child: Center(
         child: PulsingWidget(
-          duration: const Duration(milliseconds: 500),
+          duration: Times.medium,
           tween: Tween(end: 0.25, begin: 1.5),
           child: const Text(
             "Loading...",
