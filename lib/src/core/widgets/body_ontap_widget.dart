@@ -9,6 +9,7 @@ class BodyOnTapsModel extends StatelessWidget {
   final VoidCallback? onTapChest;
   final VoidCallback? onTapStomach;
   final VoidCallback? onTap;
+  final String descriptiion;
 
   final String name;
   final double? height;
@@ -20,6 +21,7 @@ class BodyOnTapsModel extends StatelessWidget {
       required this.photo,
       required this.name,
       this.onTapHead,
+      required this.descriptiion,
       this.onTapStomach,
       this.onTapHends,
       this.onTapChest,

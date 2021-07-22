@@ -2,15 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
-import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
-import 'package:history_of_adventures/src/features/dead_socrates/presentation/widgets/show_dialog.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/background_widget.dart';
+import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/clickable_widget.dart';
+import '../../../../core/widgets/sound_and_menu_widget.dart';
+import '../widgets/show_dialog.dart';
 import 'modesl/socrates_info_model.dart';
 
 class EndOfWarPage extends StatefulWidget {
@@ -232,18 +232,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
               ),
             ),
             SoundAndMenuWidget(
-              widget: Clickable(
-                onPressed: () {
-                  context.router.pop();
-                },
-                child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: Image.asset(
-                      AssetsPath.arrowUpImage,
-                      color: Colors.black,
-                    )),
-              ),
               icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
               onTapVolume: isSoundOn
                   ? () {

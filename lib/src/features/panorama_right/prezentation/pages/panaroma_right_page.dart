@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -13,6 +12,7 @@ import '../../../../core/widgets/animated_widgets/pulsing_widget.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import "../../../../core/widgets/clickable_widget.dart";
 import '../../../../core/widgets/dialog_widget.dart';
+import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../panarama_left/presentation/models/dialog_model.dart';
 
 class PanaromaRightPage extends StatefulWidget {

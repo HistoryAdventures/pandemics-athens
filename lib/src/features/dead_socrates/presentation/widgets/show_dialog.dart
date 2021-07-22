@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+
+import '../../../../core/colors.dart';
 
 class ShowDialog extends StatelessWidget {
   const ShowDialog({

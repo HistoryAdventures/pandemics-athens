@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/clickable_widget.dart';
+import '../utils/assets_path.dart';
+import 'clickable_widget.dart';
 
 class ArrowLeftWidget extends StatelessWidget {
   final String textTitle;

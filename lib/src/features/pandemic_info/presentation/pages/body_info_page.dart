@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/loading_widget.dart';
-import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -14,7 +12,8 @@ import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/arrow_text_right.dart';
 import '../../../../core/widgets/body_ontap_widget.dart';
 import '../../../../core/widgets/clickable_widget.dart';
-import '../../../../core/widgets/man_body_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../../../core/widgets/sound_and_menu_widget.dart';
 
 class BodyInfoPage extends StatefulWidget {
   const BodyInfoPage({Key? key}) : super(key: key);
@@ -31,7 +30,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   late AppLocalizations locale;
   late Animation<double> animation;
   late AnimationController controller;
-  late List<ManBodyModel> listCharacters;
+  late List<BodyOnTapsModel> listCharacters;
 
   List<String> contentImages = [
     AssetsPath.manIntroImage,
@@ -72,37 +71,37 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     locale = AppLocalizations.of(context)!;
     _selectedText = locale.intrBodyText;
     listCharacters = [
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manIntroImage,
         name: locale.bodyIntro,
         descriptiion: locale.intrBodyText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manheadImage,
         name: locale.bodyHead,
         descriptiion: locale.headText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manthroatImage,
         name: locale.bodyThroat,
         descriptiion: locale.throatText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manChestImage,
         name: locale.bodyCheast,
         descriptiion: locale.chestText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manfillImage,
         name: locale.skin,
         descriptiion: locale.skinText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manstomachImage,
         name: locale.bodyStomach,
         descriptiion: locale.stomachText,
       ),
-      ManBodyModel(
+      BodyOnTapsModel(
         photo: AssetsPath.manhandsImage,
         name: locale.bodyhands,
         descriptiion: locale.hendsText,
@@ -156,6 +155,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                               key: ValueKey(_selectedItem),
                               name: _selectedItem,
                               photo: _selectedImg,
+                              descriptiion: _selectedText,
                               height: constraints.maxHeight,
                               width: constraints.maxWidth,
                               onTapStomach: () {

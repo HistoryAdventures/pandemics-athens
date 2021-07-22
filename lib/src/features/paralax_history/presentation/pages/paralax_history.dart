@@ -5,14 +5,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
+import '../../../../core/widgets/arrow_left.dart';
+import '../../../../core/widgets/arrow_right.dart';
+import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../widgets/arrow_left.dart';
-import '../widgets/arrow_right.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
   @override

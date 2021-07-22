@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/pulsing_widget.dart';
+
+import 'animated_widgets/pulsing_widget.dart';
 
 class LoadingWidget extends StatefulWidget {
   const LoadingWidget({Key? key}) : super(key: key);
