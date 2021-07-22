@@ -6,11 +6,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/animated_widgets/background_widget.dart';
-import '../../../../core/widgets/arrow_text_left.dart';
-import '../../../../core/widgets/clickable_widget.dart';
-import '../../../../core/widgets/sound_and_menu_widget.dart';
-import '../widgets/show_dialog.dart';
+import '../../../../core/widgets/widgets.dart';
 import 'modesl/socrates_info_model.dart';
 
 class EndOfWarPage extends StatefulWidget {
@@ -104,13 +100,10 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                           Widget child) {
                                         return LayoutBuilder(
                                           builder: (context, constraints) =>
-                                              ShowDialog(
-                                            selectedImg: _selectedImg,
-                                            selectedText: _selectedText,
-                                            size: Size(
-                                              constraints.maxWidth,
-                                              constraints.maxHeight,
-                                            ),
+                                              DialogImageWidget(
+                                            selectedImage: _selectedImg,
+                                            selectedImageText: _selectedText,
+                                            constraints: constraints,
                                             animation: animation,
                                           ),
                                         );

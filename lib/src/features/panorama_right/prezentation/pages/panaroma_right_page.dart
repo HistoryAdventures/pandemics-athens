@@ -7,12 +7,7 @@ import 'package:panorama/panorama.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/animated_widgets/pulsing_animaation.dart';
-import '../../../../core/widgets/animated_widgets/pulsing_widget.dart';
-import '../../../../core/widgets/arrow_text_left.dart';
-import "../../../../core/widgets/clickable_widget.dart";
-import '../../../../core/widgets/dialog_widget.dart';
-import '../../../../core/widgets/sound_and_menu_widget.dart';
+import '../../../../core/widgets/widgets.dart';
 import '../../../panarama_left/presentation/models/dialog_model.dart';
 
 class PanaromaRightPage extends StatefulWidget {

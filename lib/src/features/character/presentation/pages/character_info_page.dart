@@ -1,13 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import '../../../../core/widgets/sound_and_menu_widget.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/arrow_text_left.dart';
-import '../../../../core/widgets/hero_photo_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 
 class CharacterInfoPage extends StatefulWidget {

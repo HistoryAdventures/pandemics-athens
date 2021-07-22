@@ -9,9 +9,6 @@ import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
-import '../../../../core/widgets/arrow_left.dart';
-import '../../../../core/widgets/arrow_right.dart';
-import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {

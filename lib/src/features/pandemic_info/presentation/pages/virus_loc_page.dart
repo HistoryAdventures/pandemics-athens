@@ -7,9 +7,7 @@ import 'package:just_audio/just_audio.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/arrow_text_left.dart';
-import '../../../../core/widgets/arrow_text_right.dart';
-import '../../../../core/widgets/sound_and_menu_widget.dart';
+import '../../../../core/widgets/widgets.dart';
 
 class VirusLocationPage extends StatefulWidget {
   const VirusLocationPage({Key? key}) : super(key: key);

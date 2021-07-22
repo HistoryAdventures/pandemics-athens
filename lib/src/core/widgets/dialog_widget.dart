@@ -34,6 +34,7 @@ class _DialogWidgetState extends State<DialogWidget> {
   late String _selectedImg;
   late String _infoText;
   late String _selectedImageText;
+
   @override
   void initState() {
     _selectedItem = widget.slectedInfoDialog.title;
@@ -126,16 +127,10 @@ class _DialogWidgetState extends State<DialogWidget> {
                                           Animation<double> animation,
                                           Animation<double> secondaryAnimation,
                                           Widget child) {
-                                        const begin = Offset(-1.0, -1.0);
-                                        const end = Offset.zero;
-                                        final tween =
-                                            Tween(begin: begin, end: end);
-
                                         return LayoutBuilder(
                                             builder: (context, constraints) =>
                                                 DialogImageWidget(
                                                   animation: animation,
-                                                  tween: tween,
                                                   selectedImage: _selectedImg,
                                                   selectedImageText:
                                                       _selectedImageText,

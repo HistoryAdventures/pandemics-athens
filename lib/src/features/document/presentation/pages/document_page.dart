@@ -5,8 +5,7 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/arrow_text_right.dart';
-import '../../../../core/widgets/clickable_widget.dart';
+import '../../../../core/widgets/widgets.dart';
 import '../models/document.dart';
 import '../widgets/points.dart';
 

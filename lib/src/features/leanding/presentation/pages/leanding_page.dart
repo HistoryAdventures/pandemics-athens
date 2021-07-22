@@ -8,7 +8,7 @@ import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/background_widget.dart';
-import '../../../../core/widgets/loading_widget.dart';
+import '../../../../core/widgets/widgets.dart';
 import '../../../pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 class LeandingPage extends StatefulWidget {

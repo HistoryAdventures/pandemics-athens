@@ -4,7 +4,6 @@ import '../colors.dart';
 
 class DialogImageWidget extends StatefulWidget {
   final Animation<double> animation;
-  final Animatable<Offset> tween;
   final String selectedImage;
   final BoxConstraints constraints;
   final String selectedImageText;
@@ -12,7 +11,6 @@ class DialogImageWidget extends StatefulWidget {
   const DialogImageWidget({
     Key? key,
     required this.animation,
-    required this.tween,
     required this.selectedImage,
     required this.selectedImageText,
     required this.constraints,
@@ -32,7 +30,6 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
   Widget build(BuildContext context) {
     return Align(
       child: FadeTransition(
-        //position: widget.animation.drive(widget.tween),
         opacity: widget.animation,
         child: Container(
           margin: EdgeInsets.symmetric(

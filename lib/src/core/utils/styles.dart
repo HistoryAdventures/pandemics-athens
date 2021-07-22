@@ -42,6 +42,7 @@ class Strokes {
   static const double thin = 1;
   static const double thick = 4;
 }
+
 class Insets {
   static double scale = 1;
   static double offsetScale = 1;
@@ -53,4 +54,10 @@ class Insets {
   static double get xl => 32 * scale;
   // Offset, used for the edge of the window, or to separate large sections in the app
   static double get offset => 40 * offsetScale;
+}
+
+class Offsets {
+  static const begin = Offset(-1.0, -1.0);
+  static const end = Offset.zero;
+  static final tween = Tween(begin: begin, end: end);
 }
