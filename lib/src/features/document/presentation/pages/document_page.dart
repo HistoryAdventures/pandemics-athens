@@ -29,7 +29,10 @@ class _DocumentPageState extends State<DocumentPage>
   late String _infoText;
 
   late List<DocumentModel> documentList;
-  double scale = 0.9;
+
+  double scaleDownIndex = 0.9;
+  double scaleUpIndex = 1.25;
+
   void _onAnimateReset() {
     _transformationController.value = _animationReset!.value;
     if (!_controllerReset.isAnimating) {
@@ -40,35 +43,44 @@ class _DocumentPageState extends State<DocumentPage>
   }
 
   void _scaleUp() {
-    final Matrix4 _matrix = _transformationController.value
+    final Matrix4 _matrixUp = _transformationController.value
         .clone()
-        .multiplied(Matrix4.diagonal3Values(1.25, 1.25, 1.25));
+        .multiplied(
+            Matrix4.diagonal3Values(scaleUpIndex, scaleUpIndex, scaleUpIndex));
+    if (_matrixUp[0] < 3.5) {
+      _controllerReset.reset();
+      _animationReset =
+          Matrix4Tween(begin: _transformationController.value, end: _matrixUp)
+              .animate(_controllerReset);
+      _animationReset!.addListener(_onAnimateReset);
 
-    _controllerReset.reset();
-    _animationReset =
-        Matrix4Tween(begin: _transformationController.value, end: _matrix)
-            .animate(_controllerReset);
-    _animationReset!.addListener(_onAnimateReset);
+      _transformationController.value =
+          PointerEvent.removePerspectiveTransform(_matrixUp);
 
-    _transformationController.value =
-        PointerEvent.removePerspectiveTransform(_matrix);
-
-    _controllerReset.forward();
+      _controllerReset.forward();
+    } else {
+      return;
+    }
   }
 
   void _scaleDown() {
-    final Matrix4 _matrix = _transformationController.value
+    final Matrix4 _matrixDown = _transformationController.value
         .clone()
-        .multiplied(Matrix4.diagonal3Values(scale, scale, scale));
-    _controllerReset.reset();
-    _animationReset =
-        Matrix4Tween(begin: _transformationController.value, end: _matrix)
-            .animate(_controllerReset);
-    _animationReset!.addListener(_onAnimateReset);
-    _transformationController.value =
-        PointerEvent.removePerspectiveTransform(_matrix);
+        .multiplied(Matrix4.diagonal3Values(
+            scaleDownIndex, scaleDownIndex, scaleDownIndex));
+    if (_matrixDown[0] > 0.3) {
+      _controllerReset.reset();
+      _animationReset =
+          Matrix4Tween(begin: _transformationController.value, end: _matrixDown)
+              .animate(_controllerReset);
+      _animationReset!.addListener(_onAnimateReset);
+      _transformationController.value =
+          PointerEvent.removePerspectiveTransform(_matrixDown);
 
-    _controllerReset.forward();
+      _controllerReset.forward();
+    } else {
+      return;
+    }
   }
 
 // Stop a running reset to home transform animation.
@@ -90,6 +102,7 @@ class _DocumentPageState extends State<DocumentPage>
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
+
     _selectedItem = locale.documentIntro;
     _infoText = locale.documentIntroText;
     documentList = [
@@ -131,13 +144,14 @@ class _DocumentPageState extends State<DocumentPage>
   @override
   void initState() {
     super.initState();
+
     _controllerReset = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
     );
 
     _transformationController.addListener(() {
-      debugPrint('${_transformationController.value}');
+      //debugPrint('${_transformationController.value}');
     });
   }
 
