@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../data/model/quiz_model.dart';
 import '../widgets/draggable_advanced_widget.dart';
@@ -161,8 +162,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: IconButton(
                     onPressed: () {
                       _pageController.previousPage(
-                          duration: const Duration(seconds: 1),
-                          curve: Curves.easeIn);
+                          duration: Times.slower, curve: Curves.easeIn);
                       if (mounted) {
                         setState(() {
                           questionindex--;
@@ -179,8 +179,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: IconButton(
                     onPressed: () {
                       _pageController.nextPage(
-                          duration: const Duration(seconds: 1),
-                          curve: Curves.easeIn);
+                          duration: Times.slower, curve: Curves.easeIn);
                       if (mounted) {
                         setState(() {
                           questionindex++;

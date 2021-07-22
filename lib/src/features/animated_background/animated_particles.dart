@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import 'app_assets.dart';
 
@@ -29,7 +30,7 @@ class _AnimatedParticlesState extends State<AnimatedParticles>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 12),
+      duration: Times.backgrounAnimationDuration,
     )..repeat(reverse: true);
   }
 
