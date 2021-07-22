@@ -3,7 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_left.dart';
+import 'package:history_of_adventures/src/core/widgets/sound_and_menu_widget.dart';
 import 'package:history_of_adventures/src/features/dead_socrates/presentation/widgets/show_dialog.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -24,6 +26,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   late String _selectedImg;
   late String _selectedText;
   late List<SocratesInfoModel> socratesList;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -227,22 +231,34 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     }),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.volume_up),
-                    ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.apps))
-                  ],
-                ),
+            SoundAndMenuWidget(
+              widget: Clickable(
+                onPressed: () {
+                  context.router.pop();
+                },
+                child: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: Image.asset(
+                      AssetsPath.arrowUpImage,
+                      color: Colors.black,
+                    )),
               ),
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {},
             ),
           ],
         );

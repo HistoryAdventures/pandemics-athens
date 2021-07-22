@@ -33,6 +33,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double rateNine;
   late double rateTen;
 
+  late double _scrollFive;
+  late double _scrollFour;
   late double _scrollrateEleven;
   late double _scrollrateTwelv;
   late double _scrollrateSix;
@@ -85,9 +87,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateEight = height * 3.8;
     rateNine = height * 4.8;
     rateTen = height * 6;
-
+    _scrollFour = height * 1.3;
+    _scrollFive = height * height * 2.6;
     _scrollrateSix = height * 3;
-    _scrollrateSeven = height * 3.8;
+    _scrollrateSeven = height * 4;
     _scrollrateNine = height * 4.8;
     _scrollrateTen = height * 5.8;
     _scrollrateEleven = height * 7.3;
@@ -142,6 +145,18 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         } else {
           _bottomFieldOpasity = 0;
         }
+
+        if (_scrollController.offset > _scrollFour &&
+            _scrollController.offset < _scrollFive) {
+          setState(() {
+            _backgroundVisibility = false;
+          });
+        } else {
+          setState(() {
+            _backgroundVisibility = true;
+          });
+        }
+
         if (_scrollController.offset > rateFour &&
             _scrollController.offset < rateFour + 500) {
           _paralaxTextOpasyty1 = 1;
@@ -153,7 +168,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           _paralaxTextOpasyty2 = 1;
           setState(() {
             _lernMoreButtonVisibility = true;
-            _backgroundVisibility = true;
+            // _backgroundVisibility = true;
           });
         } else {
           _paralaxTextOpasyty2 = 0;

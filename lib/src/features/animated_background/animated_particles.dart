@@ -46,11 +46,13 @@ class _AnimatedParticlesState extends State<AnimatedParticles>
     return Stack(
       children: [
         AnimatesViruses(
+          size: Size(2 * width, 2 * height),
           targetOffset:
               Offset(0.25 * p2Counter, 0.14 * p2Counter - (mouseY / 6)),
           path: IAppAssets().getAssetPaths()[1],
           duration: 15000,
           opacity: 0.5,
+          fit: BoxFit.cover,
         ),
         AnimatesViruses(
           size: Size(2 * width, 2 * height),
@@ -66,6 +68,7 @@ class _AnimatedParticlesState extends State<AnimatedParticles>
           path: IAppAssets().getAssetPaths()[2],
           duration: 14000,
           opacity: 0.1,
+          fit: BoxFit.cover,
           color: Colors.black,
         ),
       ],
