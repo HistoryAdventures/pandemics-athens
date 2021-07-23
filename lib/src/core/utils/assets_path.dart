@@ -195,6 +195,8 @@ class AssetsPath {
   static const String endOfWar1 = 'assets/end_war/end_of_war1.png';
   static const String endOfWar2 = 'assets/end_war/end_of_war2.png';
   static const String endOfWar3 = 'assets/end_war/end_of_war3.png';
+  static const String poitButtonArrowRight =
+      'assets/document_view/pointer_button_icon.png';
 }
 
 Future<void> loadImage(ImageProvider provider) {

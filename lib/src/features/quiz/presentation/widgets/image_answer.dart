@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 class ImageAnswer extends StatelessWidget {
   final String title;
@@ -14,7 +15,7 @@ class ImageAnswer extends StatelessWidget {
     return InkWell(
       onTap: () => onChangeAnswer(isCorrect),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.2,
         margin: const EdgeInsets.symmetric(
           horizontal: 50,
           vertical: 5,
@@ -22,18 +23,15 @@ class ImageAnswer extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           boxShadow: const [
-            BoxShadow(blurRadius: 10, offset: Offset(1, 1)),
+            BoxShadow(
+                blurRadius: 1, offset: Offset(1, 1), color: AppColors.black25),
           ],
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(30),
-          gradient: const LinearGradient(colors: [
-            Color(0xFF5337ff),
-            Color(0xFF8131ff),
-            Color(0xFFbd27ff),
-          ]),
         ),
         child: SizedBox(
-          height: 100,
-          width: 100,
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width * 0.1,
           child: Image.asset(
             title,
           ),

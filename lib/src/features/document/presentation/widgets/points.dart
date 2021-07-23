@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 class PointWidget extends StatelessWidget {
   final String text;
@@ -32,7 +33,7 @@ class PointWidget extends StatelessWidget {
         SizedBox(
             height: 12,
             width: 15,
-            child: Image.asset('assets/document_view/pointer_button_icon.png')),
+            child: Image.asset(AssetsPath.poitButtonArrowRight)),
       ],
     );
   }

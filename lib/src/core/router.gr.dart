@@ -99,7 +99,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i8.QuizPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),

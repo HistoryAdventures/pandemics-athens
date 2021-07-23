@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 import '../../data/model/quiz_model.dart';
 import 'draggable_widget.dart';
@@ -22,8 +23,9 @@ class _DraggableAdvancedWidgetState extends State<DraggableAdvancedWidget> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: SizedBox(
-          // color: Colors.black,
+        backgroundColor: Colors.transparent,
+        body: Container(
+          color: Colors.transparent,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -73,9 +75,16 @@ class _DraggableAdvancedWidgetState extends State<DraggableAdvancedWidget> {
     required DragTargetAccept<AnswerText> onAccept,
   }) =>
       Container(
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                blurRadius: 1, offset: Offset(1, 1), color: AppColors.black25),
+          ],
+          borderRadius: BorderRadius.circular(30),
+          color: AppColors.white,
+        ),
         width: MediaQuery.of(context).size.width * 0.1,
         height: 30,
-        color: Colors.blue,
         child: DragTarget<AnswerText>(
           builder: (context, candidateData, rejectedData) => Stack(
             children: [
@@ -92,12 +101,14 @@ class _DraggableAdvancedWidgetState extends State<DraggableAdvancedWidget> {
       );
 
   Widget buildText(String text) => Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.8),
-            blurRadius: 12,
-          )
-        ]),
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                blurRadius: 1, offset: Offset(1, 1), color: AppColors.black25),
+          ],
+          borderRadius: BorderRadius.circular(30),
+          color: AppColors.white,
+        ),
         child: Text(
           text,
           textAlign: TextAlign.center,

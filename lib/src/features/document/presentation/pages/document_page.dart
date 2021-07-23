@@ -173,6 +173,7 @@ class _DocumentPageState extends State<DocumentPage>
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton(
+              heroTag: "btn+",
               backgroundColor: AppColors.white,
               onPressed: _scaleUp,
               child: const Icon(Icons.add, color: AppColors.blackB),
@@ -181,6 +182,7 @@ class _DocumentPageState extends State<DocumentPage>
               width: 15,
             ),
             FloatingActionButton(
+              heroTag: "btn-",
               backgroundColor: AppColors.white,
               onPressed: _scaleDown,
               child: const Icon(Icons.remove, color: AppColors.blackB),

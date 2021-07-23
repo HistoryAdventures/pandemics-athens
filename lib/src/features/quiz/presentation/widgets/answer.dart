@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 class Answer extends StatelessWidget {
   final String title;
@@ -14,7 +16,7 @@ class Answer extends StatelessWidget {
     return InkWell(
       onTap: () => onChangeAnswer(isCorrect),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.05,
         margin: const EdgeInsets.symmetric(
           horizontal: 50,
           vertical: 5,
@@ -22,19 +24,17 @@ class Answer extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           boxShadow: const [
-            BoxShadow(blurRadius: 10, offset: Offset(1, 1)),
+            BoxShadow(
+                blurRadius: 1, offset: Offset(1, 1), color: AppColors.black25),
           ],
           borderRadius: BorderRadius.circular(30),
-          gradient: const LinearGradient(colors: [
-            Color(0xFF5337ff),
-            Color(0xFF8131ff),
-            Color(0xFFbd27ff),
-          ]),
+          color: AppColors.white,
         ),
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 16, color: Colors.white),
-          textAlign: TextAlign.center,
+        child: Center(
+          child: AutoSizeText(
+            title,
+            style: Theme.of(context).textTheme.button,
+          ),
         ),
       ),
     );

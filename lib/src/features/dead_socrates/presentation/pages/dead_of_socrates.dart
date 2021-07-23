@@ -220,7 +220,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 padding: const EdgeInsets.all(24),
                 child: Clickable(
                   onPressed: () {
-                    //context.router.push(const EndOfWarPageRoute());
+                    context.router.push(const QuizPageRoute());
                   },
                   child: SizedBox(
                       height: 20,

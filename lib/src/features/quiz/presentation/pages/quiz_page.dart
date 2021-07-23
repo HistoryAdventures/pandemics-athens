@@ -1,5 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:auto_route/auto_route.dart';
+
+import '../../../../core/colors.dart';
+import '../../../../core/utils/assets_path.dart';
 
 import '../../data/model/quiz_model.dart';
 import '../widgets/draggable_advanced_widget.dart';
@@ -126,89 +133,147 @@ class _QuizPageState extends State<QuizPage> {
         previousButtonisAvailibaleToPress = true;
       });
     }
-    return Row(
-      children: [
-        Expanded(
-            flex: 3,
-            child: PageView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                controller: _pageController,
-                itemCount: quizes.length,
-                itemBuilder: (context, index) {
-                  questionindex = index;
-                  if (quizes[index].runtimeType == QuizModel) {
-                    return Quiz(
-                      index: index,
-                      questionData: quizes,
-                      onChangeAnswer: _onChangeAnswer,
-                    );
-                  } else if (quizes[index].runtimeType == ImageQuiz) {
-                    return QuizImage(
-                      index: index,
-                      questionData: quizes,
-                      onChangeAnswer: _onChangeAnswer,
-                    );
-                  } else {
-                    return DraggableAdvancedWidget();
-                  }
-                })),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Visibility(
-                visible: previousButtonisAvailibaleToPress,
-                child: IconButton(
-                    onPressed: () {
-                      _pageController.previousPage(
-                          duration: Times.slower, curve: Curves.easeIn);
-                      if (mounted) {
-                        setState(() {
-                          questionindex--;
-                        });
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.arrow_upward,
-                      color: Colors.black,
-                    )),
-              ),
-              Visibility(
-                visible: nextButtonisAvailibaleToPress,
-                child: IconButton(
-                    onPressed: () {
-                      _pageController.nextPage(
-                          duration: Times.slower, curve: Curves.easeIn);
-                      if (mounted) {
-                        setState(() {
-                          questionindex++;
-                        });
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.arrow_downward,
-                      color: Colors.black,
-                    )),
-              )
-            ],
-          ),
-        ),
-        Expanded(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(AssetsPath.charactersBackgroundImage),
+              fit: BoxFit.cover)),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: IconButton(
               onPressed: () {
-                //print(_countResult);
-                //print(rightAnswers.length * 100 / quizes.length);
+                context.router.pop();
               },
-              child: const Text("Cheak Answers"),
+              icon: const Icon(Icons.arrow_upward),
             ),
-            Text("Score::$_countResult%")
-          ],
-        ))
-      ],
+          ),
+          Expanded(
+            flex: 5,
+            child: Container(
+              //color: Colors.red,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                      flex: 3,
+                      child: PageView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          controller: _pageController,
+                          itemCount: quizes.length,
+                          itemBuilder: (context, index) {
+                            questionindex = index;
+                            if (quizes[index].runtimeType == QuizModel) {
+                              return Quiz(
+                                index: index,
+                                questionData: quizes,
+                                onChangeAnswer: _onChangeAnswer,
+                              );
+                            } else if (quizes[index].runtimeType == ImageQuiz) {
+                              return QuizImage(
+                                index: index,
+                                questionData: quizes,
+                                onChangeAnswer: _onChangeAnswer,
+                              );
+                            } else {
+                              return DraggableAdvancedWidget();
+                            }
+                          })),
+                  Expanded(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(0),
+                            primary: AppColors.white,
+                            elevation: 5),
+                        onPressed: () {
+                          //print(_countResult);
+                          //print(rightAnswers.length * 100 / quizes.length);
+                        },
+                        child: Text("Cheak Answers",
+                            style: Theme.of(context).textTheme.button),
+                      ),
+                      Text("Score::$_countResult%")
+                    ],
+                  ))
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 20),
+                  child: Visibility(
+                    visible: previousButtonisAvailibaleToPress,
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(0),
+                            primary: AppColors.white,
+                            elevation: 5),
+                        onPressed: () {
+                          _pageController.previousPage(
+                              duration: Times.slower, curve: Curves.easeIn);
+                          if (mounted) {
+                            setState(() {
+                              questionindex--;
+                            });
+                          }
+                        },
+                        child: Text(
+                          'Previous',
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Visibility(
+                    visible: nextButtonisAvailibaleToPress,
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(0),
+                            textStyle: Theme.of(context).textTheme.button,
+                            primary: AppColors.white,
+                            elevation: 5),
+                        onPressed: () {
+                          _pageController.nextPage(
+                              duration: Times.slower, curve: Curves.easeIn);
+                          if (mounted) {
+                            setState(() {
+                              questionindex++;
+                            });
+                          }
+                        },
+                        child: AutoSizeText(
+                          "Next",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+          ),
+          Flexible(
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.south),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
