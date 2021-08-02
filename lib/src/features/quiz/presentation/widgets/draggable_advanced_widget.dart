@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+import '../../../../core/colors.dart';
 
 import '../../data/model/quiz_model.dart';
 import 'draggable_widget.dart';

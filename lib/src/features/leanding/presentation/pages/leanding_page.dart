@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -22,13 +23,15 @@ class _LeandingPageState extends State<LeandingPage>
     with SingleTickerProviderStateMixin {
   late AppLocalizations locales;
   late GifController controller;
-
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
   List<String> contentImages = [
+    AssetsPath.paralaxBackground,
     AssetsPath.gifBackground,
     AssetsPath.gifVirus,
-    AssetsPath.spheresBackImage
+    AssetsPath.spheresBackImage,
   ];
 
   @override
@@ -116,7 +119,7 @@ class _LeandingPageState extends State<LeandingPage>
                                       left: BorderSide(
                                           color: AppColors.red, width: 8))),
                               child: AutoSizeText(
-                                locales.globalPandemicName,
+                                locales.globalPandemicsName,
                                 maxLines: 1,
                                 minFontSize: 10,
                                 style: Theme.of(context).textTheme.caption,
@@ -153,16 +156,24 @@ class _LeandingPageState extends State<LeandingPage>
                   },
                 ),
               ),
-              Positioned(
-                top: constraints.maxHeight * 0.06,
-                right: constraints.maxWidth * 0.06,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.menu,
-                    size: 35,
-                  ),
-                  onPressed: () {},
-                ),
+              SoundAndMenuWidget(
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {
+                  context.router.push(NavigationPageRoute());
+                },
               ),
             ],
           ),

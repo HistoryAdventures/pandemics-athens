@@ -188,6 +188,13 @@ class _GlossaryPageState extends State<GlossaryPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Flexible(
+                          child: Icon(
+                            Icons.south,
+                            size: constraints.maxHeight * 0.04,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Flexible(
                           child: AutoSizeText(
                             locales.chapter1.toUpperCase(),
                             style: Theme.of(context).textTheme.subtitle2,
@@ -197,13 +204,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
                           child: AutoSizeText(
                             locales.todoNoHarm,
                             style: Theme.of(context).textTheme.headline2,
-                          ),
-                        ),
-                        Flexible(
-                          child: Icon(
-                            Icons.south,
-                            size: constraints.maxHeight * 0.04,
-                            color: Colors.black,
                           ),
                         ),
                       ],

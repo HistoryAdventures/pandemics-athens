@@ -1,13 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:auto_route/auto_route.dart';
 
 import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
-
+import '../../../../core/utils/styles.dart';
 import '../../data/model/quiz_model.dart';
 import '../widgets/draggable_advanced_widget.dart';
 import '../widgets/item.dart';
@@ -154,8 +152,8 @@ class _QuizPageState extends State<QuizPage> {
           ),
           Expanded(
             flex: 5,
-            child: Container(
-              //color: Colors.red,
+            child: SizedBox(
+            
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -268,7 +266,9 @@ class _QuizPageState extends State<QuizPage> {
           ),
           Flexible(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.router.push(IrlNikosPageRoute());
+              },
               icon: const Icon(Icons.south),
             ),
           ),

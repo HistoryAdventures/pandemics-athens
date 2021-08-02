@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
+
+import '../../utils/styles.dart';
 
 const _defaultFadeInDuration = Times.medium;
 

@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import 'modesl/socrates_info_model.dart';
 
@@ -64,7 +64,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
               alignment: Alignment.center,
               child: Container(
                 margin: EdgeInsets.symmetric(
-                    horizontal: 50, vertical: constraints.maxHeight * 0.1),
+                    horizontal: constraints.maxWidth * 0.15,
+                    vertical: constraints.maxHeight * 0.2),
                 decoration:
                     BoxDecoration(color: AppColors.white.withOpacity(0.5)),
                 padding: const EdgeInsets.all(24),
@@ -144,15 +145,18 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(
-                                      locale.chapter1Pathogenprofile
+                                      locale.chapter1PlagueAndPersecution
                                           .toUpperCase(),
                                       maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.subtitle2,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1
+                                          ?.copyWith(color: AppColors.black25),
                                     ),
                                   ),
                                   Flexible(
-                                    child: AutoSizeText(_selectedItem,
+                                    child: AutoSizeText(
+                                        locale.endOfThePeloponneseanWar,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline2),
@@ -169,7 +173,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                 )),
                                 child: ListView(shrinkWrap: true, children: [
                                   Container(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
@@ -213,7 +217,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.bottomLeft,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10, left: 24),
                 child: ArrowLeftTextWidget(
@@ -258,7 +262,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   Widget deadofSocratesListWidget(
       {String? name, String? selected, String? image, String? text}) {
     return Container(
-        margin: const EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
             chandeState(selected, image, text);
@@ -266,11 +270,14 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
               style: _selectedItem == selected
-                  ? Theme.of(context).textTheme.bodyText1
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: AppColors.orange)
                   : Theme.of(context)
                       .textTheme
                       .bodyText1
-                      ?.copyWith(color: AppColors.grey)),
+                      ?.copyWith(color: AppColors.black54)),
         ));
   }
 }

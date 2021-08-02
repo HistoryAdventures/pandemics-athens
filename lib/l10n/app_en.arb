@@ -11,13 +11,17 @@
     "@worldOfCharactersName": {
       "description": "World Of Characters"
     },
-    "globalPandemicName": " global pandemic",
-    "@globalPandemicName": {
-      "description": " global pandemic"
+    "globalPandemicsName": " global pandemics",
+    "@globalPandemicsName": {
+      "description": " global pandemics"
     },
     "chapter1Name": "Chapter 1 / Plague & Political Instability",
     "@chapter1Name": {
       "description": "Chapter 1 / Plague & Political Instability"
+    },
+    "keyPeopleOfTheAge": "key poeople of the age",
+    "@keyPeopleOfTheAge": {
+      "keyPeopleOfTheAge": "key poeople of the age"
     },
     "battleOfThermopylae": "415, Battle of Thermopylae\n",
     "@battleOfThermopylae": {
@@ -109,11 +113,15 @@
     "@eventTimeline": {
       "whatNikosDo": "whatNikosDo"
     },
-    "todoNoHarm": "todo no harm",
+    "todoNoHarm": "to do no harm",
     "@todoNoHarm": {
       "whatNikosDo": "whatNikosDo"
     },
-    "panaromaInfoDialogText": "Would it not do more harm than good to let this man live? Nikos reasoned with himself. While his teacher had been clear that “to do no harm” meant to do no harm to the man’s physical body, Nikos found himself more compelled by the condition of the dying man’s spirit. He would do as Calyx asked.“Would you like to say goodbye to your wife?” Nikos whispered.“No, do it before she returns,” Calyx confirmed. Nikos couldn’t look at what he was doing as he held the flailing man under the bath water. Moments after the aristocrat's movement stopped, Eleni walked in to see her husband dead in the bath.“He succumbed to his condition. There was nothing I could do.” Nikos hoped the widow believed him. Eleni just nodded and Nikos left the woman to mourn her husband.",
+    "panaromaRightInfoDialogText": "Would it not do more harm than good to let this man live? Nikos reasoned with himself. While his teacher had been clear that “to do no harm” meant to do no harm to the man’s physical body, Nikos found himself more compelled by the condition of the dying man’s spirit. He would do as Calyx asked.\n\n“Would you like to say goodbye to your wife?” Nikos whispered.\n\n“No, do it before she returns,” Calyx confirmed. Nikos couldn’t look at what he was doing as he held the flailing man under the bath water. Moments after the aristocrat's movement stopped, Eleni walked in to see her husband dead in the bath.\n\n“He succumbed to his condition. There was nothing I could do.” Nikos hoped the widow believed him. Eleni just nodded and Nikos left the woman to mourn her husband.",
+    "@todoNoHarm": {
+      "panaromaInfoDialogText": "panaromaInfoDialogText"
+    },
+    "panaromaLeftInfoDialogText": "“I would help you if I could, but I have given an oath to Apollo that I cannot inflict bodily harm onto one who has entrusted me with his care,” Nikos explained, hoping his patient would understand. To Nikos’ grim surprise, Calyx did not understand. He spit in Nikos’ face.\n\n“May you die the same grim death you wish on me,” Calyx sneered. Nikos wiped the spittle off his face as quickly as he could and ran from the aristocrat’s home before Eleni had time to return with the water. As he ran back through the angry mob, he reflected that he must now look as mad as the rabel.\n\nFor the next three days, Nikos locked himself in his room, praying that Apollo would spare him in exchange for honoring his oath. Alas, the god of healing did nothing to head Nikos’ prayers. For at the end of the three days, he saw the tell tale sign of an ulcer begin to emerge under his left arm...",
     "@todoNoHarm": {
       "panaromaInfoDialogText": "panaromaInfoDialogText"
     },
@@ -125,9 +133,23 @@
     "@whereDidItComeFrom": {
       "whereDidItComeFrom": "whereDidItComeFrom"
     },
-    "whereDidItComeFromBodyText": "“Rising in lands of Aegypt, traversing reaches of air and floating fields of foam...” – Lucretius’ poem de rerum natura (a later, 1st century Roman/Latin poem gives an account of the plague and its symptoms, which might be quite good to use here to illustrate the map etc) \n\nThe Athenian hegemony in the 5th century BC, there power and influence in the Greek world, was based on their naval power. Much as the Spartan armies on land were a match for almost anyone, at sea, the Athenian navy was just as formidable.\n\n“It first began, it is said, in the parts of Ethiopia above Egypt, and thence descended into Egypt and Libya... Suddenly falling upon Athens, it first attacked the population in Piraeus – which was the occasion of the rumours that the Peloponnesians had poisoned the reservoirs – and afterwards appeared in the upper city, when the deaths became much more frequent...” (Thucydides, History of the Peloponnesian War).\n\nTo read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative...\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, and became the ideal environment for disease to spread.",
+    "whereDidItComeFromBodyText1": "“Rising in lands of Aegypt, traversing reaches of air and floating fields of foam...” – Lucretius’ poem de rerum natura (a later, 1st century Roman/Latin poem gives an account of the plague and its symptoms, which might be quite good to use here to illustrate the map etc) \n\nThe Athenian hegemony in the 5th century BC, there power and influence in the Greek world, was based on their naval power. Much as the Spartan armies on land were a match for almost anyone, at sea, the Athenian navy was just as formidable.\n\n",
     "@whereDidItComeFromBodyText": {
       "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "whereDidItComeFromBodyTextItalic": " “It first began, it is said, in the parts of Ethiopia above Egypt, and thence descended into Egypt and Libya... Suddenly falling upon Athens, it first attacked the population in Piraeus – which was the occasion of the rumours that the Peloponnesians had poisoned the reservoirs – and afterwards appeared in the upper city, when the deaths became much more frequent...” (Thucydides, History of the Peloponnesian War).",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "whereDidItComeFromBodyText2": " To read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative...\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, and became the ideal environment for disease to spread.",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+   
+   
+    "whereDidItComeFromSecondBodyText": "To read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative…\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, trebling or perhaps even quadrupling in size as people sought safety from the Spartans behind the city’s walls. Athen became the ideal environment for disease to spread. ",
+    "@whereDidItComeFromSecondBodyText": {
+      "whereDidItComeFromSecondBodyText": "whereDidItComeFromSecondBodyText"
     },
     "pathogenProfile": "pathogen profile",
     "@pathogenProfile": {
@@ -426,9 +448,22 @@
     "@y508": {
       "y508": "508"
     },
-    "y508bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
+    "y508bodyText": " The great Athenian statesman succumbed to the plague that was ravaging his city, after the illness had already carried off both of his legitimate sons. His death was, according to Thucydides, as disaster, as his successors in Athenian politics could not avoid a series of costly disasters: “each grasping at supremacy, they ended by committing even the conduct of state affairs to the whims of the multitude. This, as might have been expected in a great and sovereign state, produced a host of blunders” … ",
     "@y508bodyText": {
       "y508bodyText": "508bodyText"
+    },
+
+    "y429": "c.429",
+    "@y429": {
+      "y429": "429"
+    },
+    "y429bodyTextTitle": "429 Death of Pericles in Athens.",
+    "@y429bodyTextTitle": {
+      "y429bodyTextTitle": "429bodyTextTitle"
+    },
+    "y429bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
+    "@y429bodyText": {
+      "y429bodyText": "508bodyText"
     },
 
     "y495": "c.495",
@@ -610,7 +645,7 @@
     "@y457imageText": {
       "y457imageText": "457imageText"
     },
-    "y457bodyTextTitle": "457 Completion of the ‘Long Walls’ ",
+    "y457bodyTextTitle": "457 Completion of the 'Long Walls' ",
     "@y457bodyTextTitle": {
       "y457bodyTextTitle": "457bodyTextTitle"
     },
@@ -798,7 +833,7 @@
     "@y427imageText": {
       "y427imageText": "427imageText"
     },
-    "y427bodyTextTitle": "427 birth of plato",
+    "y427bodyTextTitle": "427 Birth of Plato",
     "@y427bodyTextTitle": {
       "y427bodyTextTitle": "427bodyTextTitle"
     },
@@ -1246,6 +1281,55 @@
     "deathOfSocrates": " death of socrates",
     "@deathOfSocrates": {
       "deathOfSocrates": "deathOfSocrates"
+    },
+    "irlNikos": "#irl",
+    "@irlNikos": {
+      "irlNikos": "irlNikos"
+    },
+    "nikos": "nikos",
+    "@nikos": {
+      "nikos": "nikos"
+    },
+    "giana": "giana",
+    "@giana": {
+      "giana": "giana"
+    },
+    "aboutTheBook": "about the book",
+    "@aboutTheBook": {
+      "aboutTheBook": "aboutTheBook"
+    },
+    "credits": "credits",
+    "@credits": {
+      "credits": "credits"
+    },
+    "meetTheTeam": "meet the team",
+    "@meetTheTeam": {
+      "meetTheTeam": "meetTheTeam"
+    },
+    "sources": "sources",
+    "@sources": {
+      "sources": "sources"
+    },
+    "furtherReading": "further reading",
+    "@furtherReading": {
+      "furtherReading": "furtherReading"
+    },
+
+    "copyright": "copyright",
+    "@copyright": {
+      "copyright": "copyright"
+    },
+    "meetTheTeamText": "meet the interantional team of History Adventures representing 6 continents!",
+    "@meetTheTeamText": {
+      "meetTheTeamText": "meetTheTeamText"
+    },
+    "aboutVirusBodyPage": "“At first, they'd bear about\nA skull on fire with heat, and eyeballs twain\nRed with suffusion of blank glare...” ",
+    "@aboutVirusBodyPage": {
+      "aboutVirusBodyPage": "aboutVirusBodyPage"
+    },
+    "chapter1PlagueAndPersecution": "Chapter 1 / Plague and Persecution",
+    "@chapter1PlagueAndPersecution": {
+      "chapter1PlagueAndPersecution": "chapter1PlagueAndPersecution"
     }
 }
 

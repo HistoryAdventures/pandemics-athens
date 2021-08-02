@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+
+import '../../../../core/utils/assets_path.dart';
 
 class PointWidget extends StatelessWidget {
   final String text;

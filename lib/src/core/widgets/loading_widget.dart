@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 
+import '../utils/styles.dart';
 import 'animated_widgets/pulsing_widget.dart';
 
 class LoadingWidget extends StatefulWidget {

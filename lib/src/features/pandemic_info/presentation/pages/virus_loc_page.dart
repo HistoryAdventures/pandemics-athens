@@ -8,6 +8,7 @@ import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../widgets/arrow_widget.dart';
 
 class VirusLocationPage extends StatefulWidget {
   const VirusLocationPage({Key? key}) : super(key: key);
@@ -37,57 +38,57 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.mapImage),
+                      image: AssetImage(AssetsPath.virusLocMap),
                       fit: BoxFit.cover)),
             ),
+            Line(
+              constraints: constraints,
+            ),
             Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.topLeft,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: AppColors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0, 1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, 0),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, -1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                    ],
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.8),
                   ),
-                  margin: const EdgeInsets.symmetric(horizontal: 50),
-                  height: constraints.maxHeight * 0.6,
-                  width: constraints.maxWidth * 0.6,
+                  height: constraints.maxHeight * 0.4,
+                  width: constraints.maxWidth * 0.4,
+                  margin: EdgeInsets.only(
+                      top: constraints.maxHeight * 0.1,
+                      left: constraints.maxWidth * 0.1),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 50,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: AutoSizeText(
-                                    locals.chapter1Pathogenprofile,
+                        Expanded(
+                          child: Container(
+                            width: constraints.maxWidth,
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: AppColors.grey, width: 1.2))),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: AutoSizeText(
+                                      locals.chapter1Pathogenprofile,
+                                      maxLines: 1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2),
+                                ),
+                                Flexible(
+                                  child: AutoSizeText(
+                                    locals.whereDidItComeFrom.toUpperCase(),
                                     maxLines: 1,
                                     style:
-                                        Theme.of(context).textTheme.subtitle2),
-                              ),
-                              Flexible(
-                                child: AutoSizeText(
-                                  locals.whereDidItComeFrom.toUpperCase(),
-                                  maxLines: 1,
-                                  style: Theme.of(context).textTheme.headline2,
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         Flexible(
@@ -95,13 +96,29 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                           child: Scrollbar(
                             child: ListView(shrinkWrap: true, children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, right: 30),
-                                child: AutoSizeText(
-                                  locals.whereDidItComeFromBodyText,
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                              )
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: locals.whereDidItComeFromBodyText1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  TextSpan(
+                                    text:
+                                        '${locals.whereDidItComeFromBodyTextItalic}\n\n',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        ?.copyWith(fontSize: 16),
+                                  ),
+                                  TextSpan(
+                                    text: locals.whereDidItComeFromBodyText2,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ])),
+                              ),
                             ]),
                           ),
                         ),
@@ -111,7 +128,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -134,7 +152,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                             textSubTitle: locals.whatDidItDo,
                             textTitle: locals.pathogenProfile,
                             onTap: () {
-                              context.router.push(const BodyInfoPageRoute());
+                              context.router
+                                  .push(const VirusLocationSecondPageRoute());
                             }),
                       ),
                     ),

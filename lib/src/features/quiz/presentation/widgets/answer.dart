@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+
+import '../../../../core/colors.dart';
 
 class Answer extends StatelessWidget {
   final String title;

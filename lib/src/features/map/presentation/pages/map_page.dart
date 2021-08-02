@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../models/year_info_model.dart';
 
@@ -23,6 +23,7 @@ class _MapPageState extends State<MapPage> {
   late String _selectedImage;
   late String _selectedTitle;
   late String _selectedBody;
+  late String _selectedImageText;
   final _scrollController = ScrollController();
   late AppLocalizations locals;
   late List<MapInfoModel> mapInfoList;
@@ -125,6 +126,12 @@ class _MapPageState extends State<MapPage> {
           title: locals.y462bodyTextTitle,
           year: locals.y462),
       MapInfoModel(
+          imageDescription: locals.y461imageText,
+          image: AssetsPath.mapImage461,
+          text: locals.y461bodyText,
+          title: locals.y461bodyTextTitle,
+          year: locals.y461),
+      MapInfoModel(
           imageDescription: locals.y458imageText,
           image: AssetsPath.mapImage458,
           text: locals.y458bodyText,
@@ -197,6 +204,12 @@ class _MapPageState extends State<MapPage> {
           title: locals.y430bodyTextTitle,
           year: locals.y430),
       MapInfoModel(
+          imageDescription: '',
+          image: '',
+          text: locals.y429bodyText,
+          title: locals.y429,
+          year: locals.y429),
+      MapInfoModel(
           imageDescription: locals.y427imageText,
           image: AssetsPath.mapImage427,
           text: locals.y427bodyText,
@@ -233,6 +246,36 @@ class _MapPageState extends State<MapPage> {
           title: locals.y413bodyTextTitle,
           year: locals.y413),
       MapInfoModel(
+          imageDescription: locals.y411imageText,
+          image: AssetsPath.mapImage413,
+          text: locals.y411bodyText,
+          title: locals.y411bodyTextTitle,
+          year: locals.y411),
+      MapInfoModel(
+          imageDescription: locals.y410imageText,
+          image: AssetsPath.mapImage413,
+          text: locals.y410bodyText,
+          title: locals.y410bodyTextTitle,
+          year: locals.y410),
+      MapInfoModel(
+          imageDescription: locals.y407imageText,
+          image: AssetsPath.mapImage413,
+          text: locals.y407bodyText,
+          title: locals.y407bodyTextTitle,
+          year: locals.y407),
+      MapInfoModel(
+          imageDescription: locals.y404imageText,
+          image: AssetsPath.mapImage413,
+          text: locals.y404bodyText,
+          title: locals.y404bodyTextTitle,
+          year: locals.y404),
+      MapInfoModel(
+          imageDescription: locals.y403imageText,
+          image: AssetsPath.mapImage413,
+          text: locals.y403bodyText,
+          title: locals.y403bodyTextTitle,
+          year: locals.y403),
+      MapInfoModel(
           imageDescription: locals.y399imageText,
           image: AssetsPath.mapImage399,
           text: locals.y399bodyText,
@@ -244,6 +287,7 @@ class _MapPageState extends State<MapPage> {
     _selectedTitle = mapInfoList[0].title;
     _selectedImage = mapInfoList[0].image;
     _selectedBody = mapInfoList[0].text;
+    _selectedImageText = mapInfoList[0].imageDescription;
     super.didChangeDependencies();
   }
 
@@ -337,7 +381,39 @@ class _MapPageState extends State<MapPage> {
                                     child: Align(
                                       alignment: Alignment.bottomLeft,
                                       child: Clickable(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showGeneralDialog(
+                                              context: context,
+                                              barrierColor:
+                                                  Colors.black.withOpacity(0.5),
+                                              transitionBuilder:
+                                                  (BuildContext context,
+                                                      Animation<double>
+                                                          animation,
+                                                      Animation<double>
+                                                          secondaryAnimation,
+                                                      Widget child) {
+                                                return LayoutBuilder(
+                                                    builder: (context,
+                                                            constraints) =>
+                                                        DialogImageWidget(
+                                                          animation: animation,
+                                                          selectedImage:
+                                                              _selectedImage,
+                                                          selectedImageText:
+                                                              _selectedImageText,
+                                                          constraints:
+                                                              constraints,
+                                                        ));
+                                              },
+                                              transitionDuration: Times.fast,
+                                              barrierDismissible: true,
+                                              barrierLabel: '',
+                                              pageBuilder: (context, animation1,
+                                                  animation2) {
+                                                return Container();
+                                              });
+                                        },
                                         child: Container(
                                           color: Colors.black,
                                           child: const Icon(
@@ -352,66 +428,85 @@ class _MapPageState extends State<MapPage> {
                               ),
                             ),
                             Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Flexible(
-                                          child: AutoSizeText(
-                                              locals.chapter1Athens5thCentury,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2),
-                                        ),
-                                        Flexible(
-                                          child: AutoSizeText(
-                                            locals.timelineOfMainEvents
-                                                .toUpperCase(),
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2,
+                                flex: 2,
+                                child: Container(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: Container(
+                                          width: constraints.maxWidth,
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: AppColors.grey,
+                                                      width: 1.2))),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Flexible(
+                                                child: AutoSizeText(
+                                                  locals
+                                                      .chapter1Athens5thCentury,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.copyWith(
+                                                          color:
+                                                              AppColors.grey),
+                                                ),
+                                              ),
+                                              Flexible(
+                                                child: AutoSizeText(
+                                                  locals.timelineOfMainEvents
+                                                      .toUpperCase(),
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      Flexible(
+                                        flex: 3,
+                                        child: Scrollbar(
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 8.0, right: 30),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                        text:
+                                                            "$_selectedTitle\n"
+                                                                .toUpperCase(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline3),
+                                                    TextSpan(
+                                                      text: _selectedBody,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Flexible(
-                                    flex: 3,
-                                    child: Scrollbar(
-                                      child:
-                                          ListView(shrinkWrap: true, children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 8.0, right: 30),
-                                          child: RichText(
-                                              text: TextSpan(children: [
-                                            TextSpan(
-                                                text: "$_selectedTitle\n",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3),
-                                            TextSpan(
-                                              text: _selectedBody,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ])),
-                                        )
-                                      ]),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
+                                )),
                           ],
                         )
                       : Padding(
@@ -420,28 +515,38 @@ class _MapPageState extends State<MapPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Flexible(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: AutoSizeText(
-                                          locals.chapter1Athens5thCentury,
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2),
-                                    ),
-                                    Flexible(
-                                      child: AutoSizeText(
-                                        locals.timelineOfMainEvents
-                                            .toUpperCase(),
+                                child: Container(
+                                  width: constraints.maxWidth,
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2))),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                          child: AutoSizeText(
+                                        locals.chapter1Athens5thCentury,
                                         maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline2,
+                                            .headline1
+                                            ?.copyWith(color: AppColors.grey),
+                                      )),
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          locals.timelineOfMainEvents
+                                              .toUpperCase(),
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               Flexible(
@@ -490,8 +595,8 @@ class _MapPageState extends State<MapPage> {
                     Expanded(
                       flex: 2,
                       child: ArrowLeftTextWidget(
-                          textSubTitle: locals.chapter1,
-                          textTitle: locals.nikosStory,
+                          textSubTitle: locals.todoNoHarm,
+                          textTitle: locals.chapter1,
                           onTap: () {
                             context.router.pop();
                           }),
@@ -509,19 +614,20 @@ class _MapPageState extends State<MapPage> {
                             itemCount: mapInfoList.length,
                             itemBuilder: (context, index) {
                               return yearsWidget(
-                                year: mapInfoList[index].year,
-                                image: mapInfoList[index].image,
-                                text: mapInfoList[index].text,
-                                selected: mapInfoList[index].year,
-                                title: mapInfoList[index].title,
-                              );
+                                  year: mapInfoList[index].year,
+                                  image: mapInfoList[index].image,
+                                  text: mapInfoList[index].text,
+                                  selected: mapInfoList[index].year,
+                                  title: mapInfoList[index].title,
+                                  imageText:
+                                      mapInfoList[index].imageDescription);
                             }),
                       ),
                     ),
                     Expanded(
                       flex: 2,
                       child: ArrowRightTextWidget(
-                          textSubTitle: locals.keyPeople,
+                          textSubTitle: locals.keyPeopleOfTheAge,
                           textTitle: locals.athens5thCentury,
                           onTap: () {
                             context.router.push(const CharacrterPageRoute());
@@ -554,13 +660,14 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  void chandeState(
-      String? selctedItem, String? image, String? text, String? title) {
+  void chandeState(String? selctedItem, String? image, String? text,
+      String? title, String? imageText) {
     setState(() {
       _selectedItem = selctedItem!;
       _selectedImage = image!;
       _selectedBody = text!;
       _selectedTitle = title!;
+      _selectedImageText = imageText!;
     });
   }
 
@@ -568,6 +675,7 @@ class _MapPageState extends State<MapPage> {
       {String? year,
       String? selected,
       String? image,
+      String? imageText,
       String? text,
       String? title}) {
     return Container(
@@ -575,7 +683,7 @@ class _MapPageState extends State<MapPage> {
       margin: const EdgeInsets.only(left: 30),
       child: Clickable(
         onPressed: () {
-          chandeState(selected, image, text, title);
+          chandeState(selected, image, text, title, imageText);
         },
         child: AutoSizeText(
           year!,

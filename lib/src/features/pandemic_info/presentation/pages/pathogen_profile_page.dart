@@ -81,30 +81,39 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height: 50,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Flexible(
-                                            child: AutoSizeText(locals.chapter1,
+                                    Flexible(
+                                      child: Container(
+                                        width: constraints.maxWidth,
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: AppColors.grey,
+                                                    width: 1.2))),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Flexible(
+                                              child: AutoSizeText(
+                                                  locals.chapter1,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2),
+                                            ),
+                                            Flexible(
+                                              child: AutoSizeText(
+                                                locals.pathogenProfile
+                                                    .toUpperCase(),
                                                 maxLines: 1,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .subtitle2),
-                                          ),
-                                          Flexible(
-                                            child: AutoSizeText(
-                                              locals.pathogenProfile
-                                                  .toUpperCase(),
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline2,
+                                                    .headline2,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     Flexible(
