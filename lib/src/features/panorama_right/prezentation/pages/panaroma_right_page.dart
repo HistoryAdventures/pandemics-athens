@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../panarama_left/presentation/models/dialog_model.dart';
 
@@ -29,7 +29,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
 
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
-  String image = 'assets/panorama_image2.png';
 
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
@@ -53,6 +52,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
       InfoDialogModel(
         imageDescription: locals.demokratiaImageText,
         description: locals.demokrataText,
+        subTitle: locals.demokratia,
         title: locals.demokratia,
         image: AssetsPath.panaramaImage1,
         latitude: -10.0,
@@ -64,6 +64,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
         imageDescription: locals.plagueImageText,
         description: locals.plagueText,
         title: locals.plaguePoliticalUpheaval,
+        subTitle: locals.plaguePoliticalUpheaval,
         image: AssetsPath.panaramaImage2,
         latitude: -45.0,
         longitude: 15.0,
@@ -74,6 +75,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
         imageDescription: locals.athenianOstracismImageText,
         description: locals.athenianText,
         title: locals.athenianOstracism,
+        subTitle:
+            'Removing Rivals, Saving the City, or Serving Yourself: Athenian Ostracism',
         image: AssetsPath.panaramaImage3,
         latitude: 10.0,
         longitude: 15.0,
@@ -84,6 +87,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
         imageDescription: locals.disposingOfTheDeadImageText,
         description: locals.disposingText,
         title: locals.disposingOfTheDead,
+        subTitle: locals.disposingOfTheDead,
         image: AssetsPath.panaramaImage4,
         latitude: -20.0,
         longitude: 160.0,
@@ -94,6 +98,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
         imageDescription: locals.abandondedImageText,
         description: locals.abandondedText,
         title: locals.abandonedByTheGods,
+        subTitle: 'Abandoning the gods, abandoned by the gods?',
         image: AssetsPath.panaramaImage5,
         latitude: 20.0,
         longitude: 120.0,
@@ -195,7 +200,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                   }),
             );
           }).toList(),
-          child: Image.asset(image),
+          child: Image.asset(AssetsPath.panaramaBackgroundImage),
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -215,7 +220,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                       padding: const EdgeInsets.all(14),
                       children: [
                         Text(
-                          locals.panaromaInfoDialogText,
+                          locals.panaromaRightInfoDialogText,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2

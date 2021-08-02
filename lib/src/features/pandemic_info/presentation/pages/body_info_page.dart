@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 
 class BodyInfoPage extends StatefulWidget {
@@ -135,6 +135,21 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                   child: Row(
                     children: [
                       Expanded(
+                          child: Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: EdgeInsets.only(
+                            left: constraints.maxWidth * 0.025,
+                            bottom: constraints.maxHeight * 0.25),
+                        child: AutoSizeText(
+                          locale.aboutVirusBodyPage,
+                          maxLines: 4,
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2
+                              ?.copyWith(fontSize: 16),
+                        ),
+                      )),
+                      Expanded(
                         child: SizedBox(
                           height: constraints.maxHeight,
                           child: AnimatedSwitcher(
@@ -186,8 +201,20 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                           margin: EdgeInsets.symmetric(
                               horizontal: 50,
                               vertical: constraints.maxHeight * 0.1),
-                          decoration: BoxDecoration(
-                              color: AppColors.white.withOpacity(0.5)),
+                          decoration: const BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 1),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                            BoxShadow(
+                                offset: Offset(1, 0),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                            BoxShadow(
+                                offset: Offset(1, -1),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                          ], color: AppColors.white),
                           padding:
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
@@ -201,16 +228,18 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                   children: [
                                     Flexible(
                                       child: AutoSizeText(
-                                        locale.chapter1Pathogenprofile
-                                            .toUpperCase(),
+                                        locale.chapter1Pathogenprofile,
                                         maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .subtitle2,
+                                            .headline1
+                                            ?.copyWith(
+                                                color: AppColors.black54),
                                       ),
                                     ),
                                     Flexible(
-                                      child: AutoSizeText(_selectedItem,
+                                      child: AutoSizeText(
+                                          locale.whatDidItDo.toUpperCase(),
                                           maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
@@ -340,7 +369,10 @@ class _BodyInfoPageState extends State<BodyInfoPage>
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
               style: _selectedItem == selected
-                  ? Theme.of(context).textTheme.bodyText1
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: AppColors.orange)
                   : Theme.of(context)
                       .textTheme
                       .bodyText1

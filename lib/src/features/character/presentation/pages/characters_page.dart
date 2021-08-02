@@ -109,7 +109,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     ),
                     Expanded(
                       child: AutoSizeText(
-                        locale.keyPeopleAthens5thCenturyBCE.toLowerCase(),
+                        locale.keyPeopleOfTheAge.toLowerCase(),
                         maxLines: 1,
                         style: DefaultTheme.standard.textTheme.subtitle2,
                       ),
@@ -148,7 +148,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
               child: Container(
                 padding: const EdgeInsets.only(bottom: 10, left: 24),
                 child: ArrowLeftTextWidget(
-                    textSubTitle: locale.eventTimeline,
+                    textSubTitle: locale.timelineOfMainEvents,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
                       context.router.pop();

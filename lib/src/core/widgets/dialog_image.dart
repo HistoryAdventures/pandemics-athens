@@ -29,6 +29,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
+      alignment: Alignment.center,
       child: FadeTransition(
         opacity: widget.animation,
         child: Container(
@@ -42,12 +43,16 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Flexible(
+                  Expanded(
                     flex: 3,
-                    child: Image.asset(
-                      widget.selectedImage,
-                      fit: BoxFit.contain,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        widget.selectedImage,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                   Flexible(

@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 
 class CharacterInfoPage extends StatefulWidget {
@@ -83,13 +83,25 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         //window.history.back();
                                       })))),
                       Expanded(
-                        flex: 3,
+                        flex: 2,
                         child: Container(
                           margin: EdgeInsets.symmetric(
-                              horizontal: 50,
+                              horizontal: constraints.maxWidth * 0.05,
                               vertical: constraints.maxHeight * 0.05),
-                          decoration: BoxDecoration(
-                              color: AppColors.grey.withOpacity(0.5)),
+                          decoration: const BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 1),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                            BoxShadow(
+                                offset: Offset(1, 0),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                            BoxShadow(
+                                offset: Offset(1, -1),
+                                color: AppColors.grey,
+                                blurRadius: 5),
+                          ], color: AppColors.white),
                           padding:
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
@@ -97,25 +109,45 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                             children: [
                               Flexible(
                                 flex: 2,
-                                child: Column(
+                                child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Flexible(
-                                      child: AutoSizeText(
-                                        locale.chapter1Name.toUpperCase(),
-                                        maxLines: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2,
+                                    Expanded(
+                                      flex: 3,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: AutoSizeText(
+                                              locale.chapter1Athens5thCentury,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(
+                                                      color: AppColors.black54),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: AutoSizeText(
+                                                locale.keyPeopleOfTheAge,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     Flexible(
-                                      child: AutoSizeText(_selectedItem,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2),
-                                    ),
+                                        child: Clickable(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Icon(Icons.clear)))
                                   ],
                                 ),
                               ),
@@ -132,14 +164,17 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                               width: 1.2))),
                                   child: ListView(shrinkWrap: true, children: [
                                     Container(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.only(right: 10),
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                          text: locale.battleOfThermopylae,
+                                          text: '$_selectedItem\n\n'
+                                              .toUpperCase(),
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline3,
+                                              .headline3
+                                              ?.copyWith(
+                                                  color: AppColors.black54),
                                         ),
                                         TextSpan(
                                           text: _infoText,
@@ -178,7 +213,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 10, left: 24),
                   child: ArrowLeftTextWidget(
-                      textSubTitle: locale.keyPeople,
+                      textSubTitle: locale.timelineOfMainEvents,
                       textTitle: locale.athens5thCentury,
                       onTap: () {}),
                 ),
@@ -227,11 +262,14 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
               style: _selectedItem == selected
-                  ? Theme.of(context).textTheme.bodyText1
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: AppColors.orange)
                   : Theme.of(context)
                       .textTheme
                       .bodyText1
-                      ?.copyWith(color: AppColors.grey)),
+                      ?.copyWith(color: AppColors.greyDeep)),
         ));
   }
 }

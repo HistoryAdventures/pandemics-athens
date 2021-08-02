@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
+
+import '../../utils/styles.dart';
 //import 'package:photobooth_ui/photobooth_ui.dart';
 
 /// Default duration for a single pulse animation.

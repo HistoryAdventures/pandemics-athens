@@ -34,7 +34,7 @@ class SoundAndMenuWidget extends StatelessWidget {
             IconButton(
                 onPressed: onTapMenu,
                 icon: Icon(
-                  Icons.apps,
+                  Icons.menu,
                   color: color ?? Colors.black,
                 ))
           ],

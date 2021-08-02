@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 
+import '../../core/utils/styles.dart';
 import 'app_assets.dart';
 
 class AnimatedParticles extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../../features/animated_background/animated_particles.dart';
 import '../../utils/assets_path.dart';
+import '../../utils/styles.dart';
 
 class BackgroundWidget extends StatefulWidget {
   final Offset? offset;

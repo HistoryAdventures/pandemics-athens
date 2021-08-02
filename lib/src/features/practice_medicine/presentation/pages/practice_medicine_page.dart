@@ -97,7 +97,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       child: SizedBox(
                         child: ArrowLeftWidget(
                             arrowColor: AppColors.white,
-                            textSubTitle: locals.stickToTheOath,
+                            textSubTitle: locals.quitMedicine,
                             textTitle: '',
                             textColor: AppColors.white,
                             onTap: () {
@@ -129,7 +129,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       flex: 2,
                       child: ArrowRightWidget(
                           textColor: AppColors.white,
-                          textSubTitle: locals.helpTheSenator,
+                          textSubTitle: locals.keepGoing,
                           textTitle: '',
                           arrowColor: AppColors.white,
                           onTap: () {

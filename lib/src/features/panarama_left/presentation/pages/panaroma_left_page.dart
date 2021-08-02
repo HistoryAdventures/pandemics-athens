@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../models/dialog_model.dart';
 
@@ -34,16 +34,16 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   @override
   void didChangeDependencies() {
-    precacheImage(const AssetImage('assets/panorama_image2.png'), context);
     locals = AppLocalizations.of(context)!;
     infoList = [
       InfoDialogModel(
         imageDescription: locals.hippocratesImageText,
         description: locals.hippocratesText,
         title: locals.hippocrates,
-        image: AssetsPath.panaramaImage6,
-        latitude: -10.0,
-        longitude: 60.0,
+        subTitle: locals.hippocrates,
+        image: AssetsPath.panaramaImage10,
+        latitude: 20.0,
+        longitude: 120.0,
         width: 90,
         height: 75,
       ),
@@ -51,26 +51,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
         imageDescription: locals.asclepiusTextImage,
         description: locals.asclepiusText,
         title: locals.asclepius,
-        image: AssetsPath.panaramaImage7,
-        latitude: -45.0,
-        longitude: 15.0,
-        width: 60,
-        height: 60,
-      ),
-      InfoDialogModel(
-        imageDescription: locals.fourHumorsImageText,
-        description: locals.fourHumorsText,
-        title: locals.fourHumours,
-        image: AssetsPath.panaramaImage8,
-        latitude: 10.0,
-        longitude: 15.0,
-        width: 90,
-        height: 75,
-      ),
-      InfoDialogModel(
-        imageDescription: locals.legasyImageText,
-        description: locals.legacyText,
-        title: locals.legacy,
+        subTitle: 'Legacy - Galen, the Romans, and the Renaissance',
         image: AssetsPath.panaramaImage9,
         latitude: -20.0,
         longitude: 160.0,
@@ -78,12 +59,35 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
         height: 75,
       ),
       InfoDialogModel(
-        imageDescription: locals.abandondedImageText,
-        description: locals.abandondedText,
-        title: locals.abandonedByTheGods,
-        image: AssetsPath.panaramaImage10,
-        latitude: 20.0,
-        longitude: 120.0,
+        imageDescription: locals.asklepionImageText,
+        description: locals.asklepionText,
+        title: locals.asklepion,
+        subTitle: locals.asklepion,
+        image: AssetsPath.panaramaImage8,
+        latitude: 10.0,
+        longitude: 15.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.fourHumorsImageText,
+        description: locals.fourHumorsText,
+        title: locals.fourHumours,
+        subTitle: locals.fourHumours,
+        image: AssetsPath.panaramaImage7,
+        latitude: -45.0,
+        longitude: 15.0,
+        width: 60,
+        height: 60,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.legasyImageText,
+        description: locals.legacyText,
+        title: locals.legacy,
+        subTitle: locals.legacy,
+        image: AssetsPath.panaramaImage6,
+        latitude: -10.0,
+        longitude: 60.0,
         width: 90,
         height: 75,
       ),
@@ -213,7 +217,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                       padding: const EdgeInsets.all(14),
                       children: [
                         Text(
-                          locals.panaromaInfoDialogText,
+                          locals.panaromaLeftInfoDialogText,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2

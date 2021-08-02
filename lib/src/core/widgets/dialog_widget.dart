@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../features/panarama_left/presentation/models/dialog_model.dart';
 import '../colors.dart';
+import '../utils/styles.dart';
 import 'clickable_widget.dart';
 import 'dialog_image.dart';
 
@@ -33,6 +33,7 @@ class DialogWidget extends StatefulWidget {
 class _DialogWidgetState extends State<DialogWidget> {
   late String _selectedItem;
   late String _selectedImg;
+  late String _selectedSubTitle;
   late String _infoText;
   late String _selectedImageText;
 
@@ -42,16 +43,19 @@ class _DialogWidgetState extends State<DialogWidget> {
     _selectedImg = widget.slectedInfoDialog.image;
     _infoText = widget.slectedInfoDialog.description;
     _selectedImageText = widget.slectedInfoDialog.imageDescription;
+
+    _selectedSubTitle = widget.slectedInfoDialog.subTitle;
     super.initState();
   }
 
   void chandeState(String? selctedItem, String? image, String? textDescription,
-      String? imageText) {
+      String? imageText, String? subTitle) {
     setState(() {
       _selectedItem = selctedItem!;
       _selectedImg = image!;
       _infoText = textDescription!;
       _selectedImageText = imageText!;
+      _selectedSubTitle = subTitle!;
     });
   }
 
@@ -60,12 +64,13 @@ class _DialogWidgetState extends State<DialogWidget> {
       String? selected,
       String? image,
       String? text,
+      String? subTitle,
       String? imageText}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
-          chandeState(selected, image, text, imageText);
+          chandeState(selected, image, text, imageText, subTitle);
         },
         child: AutoSizeText(name!.toUpperCase(),
             maxLines: 1,
@@ -189,7 +194,10 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                   minFontSize: 10,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle2,
+                                                      .headline1
+                                                      ?.copyWith(
+                                                          color: AppColors
+                                                              .black54),
                                                 ),
                                               ),
                                               Flexible(
@@ -230,7 +238,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: '$_selectedItem\n\n'
+                                            text: '$_selectedSubTitle\n\n'
                                                 .toUpperCase(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -256,6 +264,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                   name: data.title,
                                                   image: data.image,
                                                   text: data.description,
+                                                  subTitle: data.subTitle,
                                                   imageText:
                                                       data.imageDescription,
                                                   selected: data.title))

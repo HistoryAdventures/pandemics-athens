@@ -1,89 +1,14 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class AssetsPath {
-  static List<String> assetsList = [
-    gifBackground,
-    endOfWar2,
-    endOfWar3,
-    endOfWar1,
-    gifVirus,
-    spheresBackImage,
-    gifVirus,
-    gifSmallpox,
-    gifTyphoid,
-    gifTyphus,
-    gifEbola,
-    gifBubonic,
-    charactersBackgroundImage,
-    arrowBackImage,
-    arrowForwardImage,
-    arrowDounImage,
-    periclesImage,
-    thucididesImage,
-    socratesImage,
-    aristophanesImage,
-    mapImage,
-    spheresBackImage,
-    scrollIcon,
-    manChestImage,
-    manhandsImage,
-    manstomachImage,
-    manthroatImage,
-    document,
-    panaramaImage1,
-    panaramaImage2,
-    panaramaImage3,
-    panaramaImage4,
-    panaramaImage5,
-    panaramaImage6,
-    panaramaImage7,
-    panaramaImage8,
-    panaramaImage9,
-    panaramaImage10,
-    keepGoing,
-    quitMedicine,
-    medicine,
-    mapImage399,
-    mapImage413,
-    mapImage414,
-    mapImage415,
-    mapImage416,
-    mapImage421,
-    mapImage427,
-    mapImage430,
-    mapImage431,
-    mapImage438,
-    mapImage441,
-    mapImage443,
-    mapImage447_432,
-    mapImage450,
-    mapImage451,
-    mapImage454,
-    mapImage458,
-    mapImage461,
-    mapImage462,
-    mapImage471,
-    mapImage477,
-    mapImage479,
-    mapImage480,
-    mapImage490,
-    mapImage495,
-    gifVirus,
-    gifSmallpox,
-    gifTyphoid,
-    gifTyphus,
-    gifEbola,
-    gifBubonic
-  ];
-
   static List<String> assetsBlobList = [];
 
   static const String gifBackground = 'assets/image_back/backgif.gif';
+  static const String virusLocMap = 'assets/image_back/virus_loc_map.png';
+  static const String gradient = 'assets/image_back/gradient.png';
 
   static const String gifVirus = 'assets/virus_gif/virus_01.gif';
   static const String gifSmallpox = 'assets/virus_gif/smallpox.gif';
@@ -197,37 +122,11 @@ class AssetsPath {
   static const String endOfWar3 = 'assets/end_war/end_of_war3.png';
   static const String poitButtonArrowRight =
       'assets/document_view/pointer_button_icon.png';
-}
+  static const String irlNikos = 'assets/image_back/irl_Nikos.png';
+  static const String aboutBookMap = 'assets/image_back/about_book_map.png';
+  static const String socilaIcons = 'assets/icons/social_icons.png';
 
-Future<void> loadImage(ImageProvider provider) {
-  final config = ImageConfiguration(
-    bundle: rootBundle,
-    devicePixelRatio: 1,
-    platform: defaultTargetPlatform,
-  );
-  final Completer<void> completer = Completer();
-  final ImageStream stream = provider.resolve(config);
-
-  late final ImageStreamListener listener;
-
-  listener = ImageStreamListener((ImageInfo image, bool sync) {
-    debugPrint("Image ${image.debugLabel} finished loading");
-    completer.complete();
-    stream.removeListener(listener);
-  }, onError: (Object exception, StackTrace? stackTrace) {
-    completer.complete();
-    stream.removeListener(listener);
-    FlutterError.reportError(FlutterErrorDetails(
-      context: ErrorDescription('image failed to load'),
-      library: 'image resource service',
-      exception: exception,
-      stack: stackTrace,
-      silent: true,
-    ));
-  });
-
-  stream.addListener(listener);
-  return completer.future;
+  static const String paralaxBackground = 'assets/paralax_new/bk.png';
 }
 
 Future<bool> loadContent(List<String> context) async {
