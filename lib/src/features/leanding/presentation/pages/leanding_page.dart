@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -157,7 +159,9 @@ class _LeandingPageState extends State<LeandingPage>
                   iconSize: 40,
                   icon: const Icon(Icons.south),
                   onPressed: () {
-                    context.router.push(const GlossaryPageRoute());
+                    LeafDetails.visitedVertexes.add(1);
+                    LeafDetails.currentVertex = 1;
+                    context.router.push(GlossaryPageRoute(index: '1'));
                   },
                 ),
               ),
@@ -177,7 +181,7 @@ class _LeandingPageState extends State<LeandingPage>
                         });
                       },
                 onTapMenu: () {
-                  context.router.push(NavigationPageRoute());
+                  context.router.push(const NavigationPageRoute());
                 },
               ),
             ],

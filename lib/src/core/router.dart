@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/copyright_page.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/further_reading_page.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/sources_page.dart';
+import '../features/about_book/presentation/pages/copyright_page.dart';
+import '../features/about_book/presentation/pages/further_reading_page.dart';
+import '../features/about_book/presentation/pages/sources_page.dart';
 
 import '../features/about_book/presentation/pages/about_book_page.dart';
 import '../features/about_book/presentation/pages/credits_page.dart';
@@ -60,6 +60,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: GlossaryPage,
+      path: '/:id',
       transitionsBuilder: TransitionsBuilders.slideBottom,
       durationInMilliseconds: 1000),
   CustomRoute(

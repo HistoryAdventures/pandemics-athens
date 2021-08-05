@@ -103,7 +103,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         textSubTitle: locale.credits,
                         textTitle: locale.aboutTheBook,
                         onTap: () {
-                          context.router.push(CreditsPageRoute());
+                          context.router.push(const CreditsPageRoute());
                         }),
                   ),
                 ),

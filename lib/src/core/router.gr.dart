@@ -124,8 +124,12 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     GlossaryPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i10.GlossaryPage();
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<GlossaryPageRouteArgs>(
+              orElse: () =>
+                  GlossaryPageRouteArgs(index: pathParams.getString('id')));
+          return _i10.GlossaryPage(key: args.key, index: args.index);
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
@@ -315,7 +319,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
-        _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
+        _i1.RouteConfig(GlossaryPageRoute.name, path: '/:id'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
             path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaRightPageRoute.name,
@@ -404,10 +408,22 @@ class ParalaxHistoryPageRoute extends _i1.PageRouteInfo {
   static const String name = 'ParalaxHistoryPageRoute';
 }
 
-class GlossaryPageRoute extends _i1.PageRouteInfo {
-  const GlossaryPageRoute() : super(name, path: '/glossary-page');
+class GlossaryPageRoute extends _i1.PageRouteInfo<GlossaryPageRouteArgs> {
+  GlossaryPageRoute({_i2.Key? key, required String index})
+      : super(name,
+            path: '/:id',
+            args: GlossaryPageRouteArgs(key: key, index: index),
+            rawPathParams: {'id': index});
 
   static const String name = 'GlossaryPageRoute';
+}
+
+class GlossaryPageRouteArgs {
+  const GlossaryPageRouteArgs({this.key, required this.index});
+
+  final _i2.Key? key;
+
+  final String index;
 }
 
 class PanaromaLeftPageRoute extends _i1.PageRouteInfo {

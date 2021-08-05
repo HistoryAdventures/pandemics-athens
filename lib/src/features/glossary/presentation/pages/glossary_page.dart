@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -11,7 +12,9 @@ import '../../../../core/widgets/widgets.dart';
 import '../model/glossary_model.dart';
 
 class GlossaryPage extends StatefulWidget {
-  const GlossaryPage({Key? key}) : super(key: key);
+  final String index;
+  const GlossaryPage({Key? key, @PathParam('id') required this.index})
+      : super(key: key);
 
   @override
   _GlossaryPageState createState() => _GlossaryPageState();
@@ -154,6 +157,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
             SoundAndMenuWidget(
               widget: Clickable(
                 onPressed: () {
+                  LeafDetails.visitedVertexes.removeLast();
+                  LeafDetails.currentVertex = 0;
                   context.router.pop();
                 },
                 child: const Icon(

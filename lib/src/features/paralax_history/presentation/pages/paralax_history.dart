@@ -188,7 +188,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               //only if scroll update notification is triggered
               setState(() {
                 rateOne += v.scrollDelta! * 0.19;
-                print(rateOne);
+                //print(rateOne);
 
                 rateEleven -= v.scrollDelta! / 2;
                 rateTwelv -= v.scrollDelta! / 2;

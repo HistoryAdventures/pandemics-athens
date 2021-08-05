@@ -153,7 +153,6 @@ class _QuizPageState extends State<QuizPage> {
           Expanded(
             flex: 5,
             child: SizedBox(
-            
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -267,7 +266,7 @@ class _QuizPageState extends State<QuizPage> {
           Flexible(
             child: IconButton(
               onPressed: () {
-                context.router.push(IrlNikosPageRoute());
+                context.router.push(const IrlNikosPageRoute());
               },
               icon: const Icon(Icons.south),
             ),
