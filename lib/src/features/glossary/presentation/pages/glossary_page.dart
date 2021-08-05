@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -21,6 +22,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late String _selectedtText;
   late List<GlossaryModel> category;
   late AppLocalizations locales;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   @override
@@ -62,6 +64,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -171,7 +175,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                scaffoldKey.currentState!.openEndDrawer();
+              },
             ),
             Align(
               alignment: Alignment.bottomCenter,
