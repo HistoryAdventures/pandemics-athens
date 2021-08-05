@@ -180,8 +180,10 @@ class _LeandingPageState extends State<LeandingPage>
                   context.router.push(NavigationPageRoute());
                 },
               ),
-            );
-          },
-        ));
+            ],
+          ),
+        );
+      },
+    ));
   }
 }

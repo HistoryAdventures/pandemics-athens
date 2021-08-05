@@ -25,7 +25,7 @@ class NavigationTree extends StatelessWidget {
               style: Theme.of(context)
                   .primaryTextTheme
                   .subtitle1
-                  ?.copyWith(color: AppColors.black54, fontSize: 12)),
+                  ?.copyWith(color: AppColors.black54, fontSize: 10)),
         ),
         Positioned(
           left: details.pointOffset.dx,
@@ -51,14 +51,14 @@ class NavigationTree extends StatelessWidget {
     Offset offset = Offset.zero;
     // The size of the title text
     final size = StringUtils.measure(details.title,
-        Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 12));
+        Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 10));
 
     if (details.alignment == Alignment.bottomCenter) {
       offset = Offset(details.pointOffset.dx + 7.5 - size.width / 2,
           details.pointOffset.dy + size.height + 10);
     } else if (details.alignment == Alignment.topCenter) {
-      offset = Offset((details.pointOffset.dx + size.width - 7.5) / 2-40,
-          details.pointOffset.dy - size.height - 10);
+      offset = Offset(details.pointOffset.dx + 7.5 - size.width / 2,
+          details.pointOffset.dy - size.height - 5);
     } // FIXME  DONE
     else if (details.alignment == Alignment.centerLeft) {
       offset = Offset((details.pointOffset.dx - size.width) - 10,
