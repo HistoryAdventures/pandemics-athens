@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -102,7 +103,7 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                //  context.router.pop();
+                                context.router.push(const SoursePageRoute());
                               }),
                         ),
                       ],

@@ -126,7 +126,7 @@ class AssetsPath {
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
-  static const String paralaxBackground = 'assets/paralax_new/bk.png';
+  static const String paralaxBackground = 'assets/paralax_images/bk.png';
 }
 
 Future<bool> loadContent(List<String> context) async {
