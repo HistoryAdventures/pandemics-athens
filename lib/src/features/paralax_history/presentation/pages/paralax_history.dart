@@ -65,8 +65,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
+  bool isImageloaded = false;
 
   final ScrollController _scrollController = ScrollController();
+  List<String> contentImages = [AssetsPath.paralaxBackground];
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -150,8 +153,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _paralaxTextOpasyty5 = 0;
       }
     });
-
+    init();
     super.initState();
+  }
+
+  Future<void> init() async {
+    final loadedAssets = await loadContent(contentImages);
+    if (loadedAssets == true) {
+      setState(() {
+        isImageloaded = true;
+      });
+    } else {
+      setState(() {
+        isImageloaded = false;
+      });
+    }
   }
 
   @override
@@ -161,7 +177,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    MediaQuery.of(context).size.height;
+    if (isImageloaded == false) {
+      return const LoadingWidget();
+    }
     return LayoutBuilder(
       builder: (constex, constraints) => Scaffold(
         body: NotificationListener(
@@ -169,9 +187,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             if (v is ScrollUpdateNotification) {
               //only if scroll update notification is triggered
               setState(() {
-                // print(v.scrollDelta);
                 rateOne += v.scrollDelta! * 0.19;
-            
+                print(rateOne);
+
                 rateEleven -= v.scrollDelta! / 2;
                 rateTwelv -= v.scrollDelta! / 2;
                 rateTen -= v.scrollDelta! / 2;
@@ -261,7 +279,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           boxFit: BoxFit.cover,
                         ),
                         ParallaxWidget(
-                            width: rateOne,
+                            width: rateOne.clamp(0, 2000),
                             top: rateNine,
                             left: -100,
                             asset: "character_1",
@@ -310,7 +328,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 textTitle: '',
                                 onTap: () {
                                   context.router
-                                      .replace(const PanaromaLeftPageRoute());
+                                      .push(const PanaromaLeftPageRoute());
                                 }),
                           ),
                         ),
@@ -342,7 +360,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               onTap: () {
                                 ////????????
                                 context.router
-                                    .replace(const PanaromaRightPageRoute());
+                                    .push(const PanaromaRightPageRoute());
                               }),
                         ),
                       ],

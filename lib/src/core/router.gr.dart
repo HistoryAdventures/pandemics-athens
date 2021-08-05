@@ -8,7 +8,11 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../features/about_book/presentation/pages/about_book_page.dart' as _i23;
+import '../features/about_book/presentation/pages/copyright_page.dart' as _i26;
 import '../features/about_book/presentation/pages/credits_page.dart' as _i24;
+import '../features/about_book/presentation/pages/further_reading_page.dart'
+    as _i25;
+import '../features/about_book/presentation/pages/sources_page.dart' as _i27;
 import '../features/character/presentation/pages/character_info_page.dart'
     as _i5;
 import '../features/character/presentation/pages/characters_page.dart' as _i4;
@@ -21,7 +25,7 @@ import '../features/glossary/presentation/pages/glossary_page.dart' as _i10;
 import '../features/irl_nikos/presentation/pages/irl_nikos_page.dart' as _i22;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
-import '../features/navigation/presentation/pages/navigation_page.dart' as _i25;
+import '../features/navigation/presentation/pages/navigation_page.dart' as _i28;
 import '../features/panarama_left/presentation/pages/panaroma_left_page.dart'
     as _i11;
 import '../features/pandemic_info/presentation/pages/body_info_page.dart'
@@ -31,7 +35,7 @@ import '../features/pandemic_info/presentation/pages/pathogen_profile_page.dart'
 import '../features/pandemic_info/presentation/pages/virus_loc_page.dart'
     as _i18;
 import '../features/pandemic_info/presentation/pages/virus_loc_second_page.dart'
-    as _i26;
+    as _i29;
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
 import '../features/panorama_right/prezentation/pages/panaroma_right_page.dart'
@@ -45,7 +49,7 @@ import '../features/practice_medicine/presentation/pages/practice_medicine_page.
 import '../features/practice_medicine/presentation/pages/quit_medicine_page.dart'
     as _i15;
 import '../features/quiz/presentation/pages/quiz_page.dart' as _i8;
-import 'widgets/widgets.dart' as _i27;
+import 'widgets/widgets.dart' as _i30;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -228,10 +232,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     IrlNikosPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<IrlNikosPageRouteArgs>(
-              orElse: () => const IrlNikosPageRouteArgs());
-          return _i22.IrlNikosPage(key: args.key);
+        builder: (_) {
+          return const _i22.IrlNikosPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
@@ -239,10 +241,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     AboutBookPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<AboutBookPageRouteArgs>(
-              orElse: () => const AboutBookPageRouteArgs());
-          return _i23.AboutBookPage(key: args.key);
+        builder: (_) {
+          return const _i23.AboutBookPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 1000,
@@ -250,10 +250,35 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     CreditsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<CreditsPageRouteArgs>(
-              orElse: () => const CreditsPageRouteArgs());
-          return _i24.CreditsPage(key: args.key);
+        builder: (_) {
+          return const _i24.CreditsPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    FurtherReadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i25.FurtherReadingPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    CopyrightPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i26.CopyrightPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false),
+    SoursePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i27.SoursePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
@@ -261,10 +286,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     NavigationPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<NavigationPageRouteArgs>(
-              orElse: () => const NavigationPageRouteArgs());
-          return _i25.NavigationPage(key: args.key);
+        builder: (_) {
+          return const _i28.NavigationPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
@@ -273,7 +296,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     VirusLocationSecondPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i26.VirusLocationSecondPage();
+          return const _i29.VirusLocationSecondPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
@@ -313,6 +336,10 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
         _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book-page'),
         _i1.RouteConfig(CreditsPageRoute.name, path: '/credits-page'),
+        _i1.RouteConfig(FurtherReadingPageRoute.name,
+            path: '/further-reading-page'),
+        _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
+        _i1.RouteConfig(SoursePageRoute.name, path: '/sourse-page'),
         _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
             path: '/virus-location-second-page')
@@ -334,8 +361,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i27.CharacterModel photoHero,
-      required List<_i27.CharacterModel> listCharacters})
+      {required _i30.CharacterModel photoHero,
+      required List<_i30.CharacterModel> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -348,9 +375,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i27.CharacterModel photoHero;
+  final _i30.CharacterModel photoHero;
 
-  final List<_i27.CharacterModel> listCharacters;
+  final List<_i30.CharacterModel> listCharacters;
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
@@ -450,60 +477,46 @@ class EndOfWarPageRoute extends _i1.PageRouteInfo {
   static const String name = 'EndOfWarPageRoute';
 }
 
-class IrlNikosPageRoute extends _i1.PageRouteInfo<IrlNikosPageRouteArgs> {
-  IrlNikosPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/irl-nikos-page', args: IrlNikosPageRouteArgs(key: key));
+class IrlNikosPageRoute extends _i1.PageRouteInfo {
+  const IrlNikosPageRoute() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageRoute';
 }
 
-class IrlNikosPageRouteArgs {
-  const IrlNikosPageRouteArgs({this.key});
-
-  final _i2.Key? key;
-}
-
-class AboutBookPageRoute extends _i1.PageRouteInfo<AboutBookPageRouteArgs> {
-  AboutBookPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/about-book-page', args: AboutBookPageRouteArgs(key: key));
+class AboutBookPageRoute extends _i1.PageRouteInfo {
+  const AboutBookPageRoute() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageRoute';
 }
 
-class AboutBookPageRouteArgs {
-  const AboutBookPageRouteArgs({this.key});
-
-  final _i2.Key? key;
-}
-
-class CreditsPageRoute extends _i1.PageRouteInfo<CreditsPageRouteArgs> {
-  CreditsPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/credits-page', args: CreditsPageRouteArgs(key: key));
+class CreditsPageRoute extends _i1.PageRouteInfo {
+  const CreditsPageRoute() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageRoute';
 }
 
-class CreditsPageRouteArgs {
-  const CreditsPageRouteArgs({this.key});
+class FurtherReadingPageRoute extends _i1.PageRouteInfo {
+  const FurtherReadingPageRoute() : super(name, path: '/further-reading-page');
 
-  final _i2.Key? key;
+  static const String name = 'FurtherReadingPageRoute';
 }
 
-class NavigationPageRoute extends _i1.PageRouteInfo<NavigationPageRouteArgs> {
-  NavigationPageRoute({_i2.Key? key})
-      : super(name,
-            path: '/navigation-page', args: NavigationPageRouteArgs(key: key));
+class CopyrightPageRoute extends _i1.PageRouteInfo {
+  const CopyrightPageRoute() : super(name, path: '/copyright-page');
+
+  static const String name = 'CopyrightPageRoute';
+}
+
+class SoursePageRoute extends _i1.PageRouteInfo {
+  const SoursePageRoute() : super(name, path: '/sourse-page');
+
+  static const String name = 'SoursePageRoute';
+}
+
+class NavigationPageRoute extends _i1.PageRouteInfo {
+  const NavigationPageRoute() : super(name, path: '/navigation-page');
 
   static const String name = 'NavigationPageRoute';
-}
-
-class NavigationPageRouteArgs {
-  const NavigationPageRouteArgs({this.key});
-
-  final _i2.Key? key;
 }
 
 class VirusLocationSecondPageRoute extends _i1.PageRouteInfo {

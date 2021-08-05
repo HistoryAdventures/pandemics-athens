@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -26,7 +25,6 @@ class _LeandingPageState extends State<LeandingPage>
   late GifController controller;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
   List<String> contentImages = [
@@ -77,109 +75,110 @@ class _LeandingPageState extends State<LeandingPage>
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
-    return Scaffold(
-        key: scaffoldKey,
-        endDrawer: const NavigationPage(),
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            return MouseRegion(
-              onHover: (e) => setState(() {
-                offset = e.position;
-              }),
-              child: Stack(
-                children: [
-                  BackgroundWidget(offset: offset),
-                  Align(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                  child: AutoSizeText(
-                                      locales.spencerStrikerName,
-                                      maxLines: 1,
-                                      style: DefaultTheme
-                                          .standard.textTheme.headline1)),
-                              Flexible(
-                                child: AutoSizeText(
-                                  locales.historyAdventures.toUpperCase(),
-                                  style: Theme.of(context).textTheme.overline,
-                                ),
-                              ),
-                              Flexible(
-                                child: AutoSizeText(
-                                  locales.worldOfCharacters.toUpperCase(),
-                                  style: Theme.of(context).textTheme.overline,
-                                ),
-                              ),
-                              Flexible(
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      border: Border(
-                                          left: BorderSide(
-                                              color: AppColors.red, width: 8))),
-                                  child: AutoSizeText(
-                                    locales.globalPandemicsName,
+    return Scaffold(body: LayoutBuilder(
+      builder: (context, constraints) {
+        return MouseRegion(
+          onHover: (e) => setState(() {
+            offset = e.position;
+          }),
+          child: Stack(
+            children: [
+              BackgroundWidget(
+                offset: offset,
+              ),
+              Align(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15, 0,
+                      constraints.maxWidth * 0.1, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                                child: AutoSizeText(locales.spencerStrikerName,
                                     maxLines: 1,
-                                    minFontSize: 10,
-                                    style: Theme.of(context).textTheme.caption,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          child: SizedBox(
-                            height: constraints.maxHeight * 0.35,
-                            width: constraints.maxWidth * 0.35,
-                            child: Transform.translate(
-                              offset: Offset(offset.dx * 0.1, 0),
-                              child: GifImage(
-                                image: const AssetImage(AssetsPath.gifVirus),
-                                controller: controller,
+                                    style: DefaultTheme
+                                        .standard.textTheme.headline1)),
+                            Flexible(
+                              child: AutoSizeText(
+                                locales.historyAdventures.toUpperCase(),
+                                maxLines: 1,
+                                style: Theme.of(context).textTheme.overline,
                               ),
+                            ),
+                            Flexible(
+                              child: AutoSizeText(
+                                locales.worldOfCharacters.toUpperCase(),
+                                maxLines: 1,
+                                style: Theme.of(context).textTheme.overline,
+                              ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppColors.red, width: 8))),
+                                child: AutoSizeText(
+                                  locales.globalPandemicsName,
+                                  maxLines: 1,
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        child: SizedBox(
+                          height: constraints.maxHeight * 0.55,
+                          width: constraints.maxWidth * 0.55,
+                          child: Transform.translate(
+                            offset: Offset(offset.dx * 0.1, 0),
+                            child: GifImage(
+                              image: const AssetImage(AssetsPath.gifVirus),
+                              controller: controller,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: IconButton(
-                      color: AppColors.blackB,
-                      iconSize: 40,
-                      icon: const Icon(Icons.south),
-                      onPressed: () {
-                        context.router.push(const GlossaryPageRoute());
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: IconButton(
+                  color: AppColors.blackB,
+                  iconSize: 40,
+                  icon: const Icon(Icons.south),
+                  onPressed: () {
+                    context.router.push(const GlossaryPageRoute());
+                  },
+                ),
+              ),
+              SoundAndMenuWidget(
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
                       },
-                    ),
-                  ),
-                  SoundAndMenuWidget(
-                    icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                    onTapVolume: isSoundOn
-                        ? () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.pause();
-                            });
-                          }
-                        : () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.play();
-                            });
-                          },
-                    onTapMenu: () {
-                      scaffoldKey.currentState!.openEndDrawer();
-                    },
-                  ),
-                ],
+                onTapMenu: () {
+                  context.router.push(NavigationPageRoute());
+                },
               ),
             );
           },

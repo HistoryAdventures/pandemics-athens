@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/dead_socrates/presentation/modesl/socrates_info_model.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
-import 'modesl/socrates_info_model.dart';
 
 class EndOfWarPage extends StatefulWidget {
   const EndOfWarPage({Key? key}) : super(key: key);
