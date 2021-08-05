@@ -1,10 +1,9 @@
-import 'dart:convert';
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
-
 import 'package:history_of_adventures/src/core/utils/string_utils.dart';
 
 class NavigationTree extends StatelessWidget {
@@ -26,7 +25,7 @@ class NavigationTree extends StatelessWidget {
               style: Theme.of(context)
                   .primaryTextTheme
                   .subtitle1
-                  ?.copyWith(color: AppColors.black54,fontSize: 12)),
+                  ?.copyWith(color: AppColors.black54, fontSize: 12)),
         ),
         Positioned(
           left: details.pointOffset.dx,
@@ -51,23 +50,23 @@ class NavigationTree extends StatelessWidget {
     // Text offset
     Offset offset = Offset.zero;
     // The size of the title text
-    final size = StringUtils.measure(
-        details.title, Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 12));
+    final size = StringUtils.measure(details.title,
+        Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 12));
 
     if (details.alignment == Alignment.bottomCenter) {
-      offset = Offset(details.pointOffset.dx +7.5 - size.width / 2,
+      offset = Offset(details.pointOffset.dx + 7.5 - size.width / 2,
           details.pointOffset.dy + size.height + 10);
     } else if (details.alignment == Alignment.topCenter) {
-      offset = Offset((details.pointOffset.dx + size.width-7.5) / 2,
+      offset = Offset((details.pointOffset.dx + size.width - 7.5) / 2-40,
           details.pointOffset.dy - size.height - 10);
     } // FIXME  DONE
     else if (details.alignment == Alignment.centerLeft) {
-      offset = Offset((details.pointOffset.dx - size.width) -10,
-          (details.pointOffset.dy - size.height / 4)+5);
+      offset = Offset((details.pointOffset.dx - size.width) - 10,
+          (details.pointOffset.dy - size.height / 4) + 5);
     } // FIXME  DONE
     else if (details.alignment == Alignment.centerRight) {
       offset = Offset(details.pointOffset.dx + 25,
-          (details.pointOffset.dy - size.height / 4)+5);
+          (details.pointOffset.dy - size.height / 4) + 5);
     }
     return offset;
   }
