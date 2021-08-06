@@ -36,7 +36,7 @@ class NavigationTree extends StatelessWidget {
           left: details.pointOffset.dx,
           top: details.pointOffset.dy,
           child: Clickable(
-            onPressed: onTap,
+            onPressed: isAbleToNavigate ? onTap : () {},
             child: Align(
               alignment: Alignment.center,
               child: CustomPaint(

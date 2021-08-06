@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/router.gr.dart';
 
 import '../../../../core/utils/assets_path.dart';
@@ -65,7 +66,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: LeafDetails.visitedVertexes.contains(1),
             path: GlossaryPageRoute.name,
             currentVertex: LeafDetails.currentVertex,
-            adjacentEdges: [2]),
+            adjacentEdges: [0, 2]),
         onTap: () {
           context.router.push(GlossaryPageRoute(index: '1'));
         },
@@ -483,9 +484,8 @@ class _NavigationPageState extends State<NavigationPage> {
                                   details: navigationTreeLeafs[index],
                                   onTap: navigationTreeLeafs[index].onTap,
                                   isAbleToNavigate: isAbleToNavigate(
-                                      isAble: navigationTreeLeafs[index]
-                                          .vertex
-                                          .index),
+                                    vertex: navigationTreeLeafs[index].vertex,
+                                  ),
                                 ),
                               ),
                             ),
@@ -520,9 +520,8 @@ class _NavigationPageState extends State<NavigationPage> {
                                   details: navigationTreeLeafs[index],
                                   onTap: navigationTreeLeafs[index].onTap,
                                   isAbleToNavigate: isAbleToNavigate(
-                                      isAble: navigationTreeLeafs[index]
-                                          .vertex
-                                          .index),
+                                    vertex: navigationTreeLeafs[index].vertex,
+                                  ),
                                 ),
                               ],
                             ),
@@ -553,8 +552,8 @@ class _NavigationPageState extends State<NavigationPage> {
     );
   }
 
-  bool isAbleToNavigate({required int isAble}) {
-    if (LeafDetails.currentVertex == isAble) {
+  bool isAbleToNavigate({required Vertex vertex}) {
+    if (LeafDetails.currentVertex == vertex.index) {
       return true;
     } else {
       return false;
