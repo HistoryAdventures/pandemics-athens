@@ -12,9 +12,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../model/glossary_model.dart';
 
 class GlossaryPage extends StatefulWidget {
-  final String index;
-  const GlossaryPage({Key? key, @PathParam('id') required this.index})
-      : super(key: key);
+  const GlossaryPage({Key? key}) : super(key: key);
 
   @override
   _GlossaryPageState createState() => _GlossaryPageState();
@@ -157,7 +155,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
             SoundAndMenuWidget(
               widget: Clickable(
                 onPressed: () {
-                  LeafDetails.visitedVertexes.removeLast();
                   LeafDetails.currentVertex = 0;
                   context.router.pop();
                 },

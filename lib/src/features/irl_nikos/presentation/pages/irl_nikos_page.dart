@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -50,6 +51,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             SoundAndMenuWidget(
               widget: Clickable(
                 onPressed: () {
+                  LeafDetails.currentVertex = 17;
                   context.router.pop();
                 },
                 child: const Icon(
@@ -127,6 +129,8 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 iconSize: 40,
                 icon: const Icon(Icons.south),
                 onPressed: () {
+                  LeafDetails.currentVertex = 19;
+                  LeafDetails.visitedVertexes.add(19);
                   context.router.push(const AboutBookPageRoute());
                 },
               ),

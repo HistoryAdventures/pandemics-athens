@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -111,6 +112,8 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                 padding: const EdgeInsets.all(24),
                 child: IconButton(
                     onPressed: () {
+                      LeafDetails.visitedVertexes.add(15);
+                      LeafDetails.currentVertex = 15;
                       context.router.push(const DeadOfSocratesPageRoute());
                     },
                     icon: const Icon(

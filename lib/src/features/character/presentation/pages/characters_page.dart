@@ -156,7 +156,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textSubTitle: locale.timelineOfMainEvents,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
-                      LeafDetails.visitedVertexes.removeLast();
                       LeafDetails.currentVertex = 4;
                       context.router.pop();
                     }),

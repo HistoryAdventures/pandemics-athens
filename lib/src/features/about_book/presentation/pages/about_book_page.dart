@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -47,6 +48,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                 SoundAndMenuWidget(
                   widget: IconButton(
                       onPressed: () {
+                        LeafDetails.currentVertex = 18;
                         context.router.pop();
                       },
                       icon: const Icon(
@@ -107,6 +109,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         textSubTitle: locale.credits,
                         textTitle: locale.aboutTheBook,
                         onTap: () {
+                          LeafDetails.currentVertex = 20;
+                          LeafDetails.visitedVertexes.add(20);
                           context.router.push(const CreditsPageRoute());
                         }),
                   ),

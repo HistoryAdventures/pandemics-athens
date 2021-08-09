@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import '../../../../core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -51,7 +52,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                         top: constraints.maxHeight * 0.12,
                       ),
                       child: AutoSizeText(
-                        locale.sources.toUpperCase(),
+                        locale.furtherReading.toUpperCase(),
                         style: Theme.of(context).textTheme.headline2,
                       ),
                     )),
@@ -86,6 +87,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex = 21;
+      
                                 context.router.pop();
                               }),
                         ),
@@ -107,6 +110,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               textSubTitle: locale.copyright,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                 LeafDetails.visitedVertexes.add(23);
+                                 LeafDetails.currentVertex = 23;
                                 context.router.push(const CopyrightPageRoute());
                               }),
                         ),

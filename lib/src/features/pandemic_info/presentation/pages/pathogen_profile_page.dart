@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -169,6 +170,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                       textSubTitle: locals.whereDidItComeFrom,
                       textTitle: locals.pathogenProfile,
                       onTap: () {
+                        LeafDetails.currentVertex = 11;
+                        LeafDetails.visitedVertexes.add(11);
                         context.router.push(const VirusLocationPageRoute());
                       }),
                 ),
@@ -177,6 +180,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                 alignment: Alignment.bottomCenter,
                 child: Clickable(
                   onPressed: () {
+                    LeafDetails.currentVertex = 14;
+                    LeafDetails.visitedVertexes.add(14);
                     context.router.push(const PracticeMedicineRoute());
                   },
                   child: Container(
@@ -189,6 +194,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
               SoundAndMenuWidget(
                 widget: Clickable(
                   onPressed: () {
+                    LeafDetails.currentVertex = 9;
                     context.router.pop();
                   },
                   child: const Icon(

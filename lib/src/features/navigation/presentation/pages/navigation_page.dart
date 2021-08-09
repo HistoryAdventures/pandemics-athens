@@ -52,6 +52,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex,
             adjacentEdges: [1]),
         onTap: () {
+          LeafDetails.currentVertex = 0;
+         
           context.router.push(const LeandingPageRoute());
         },
         pointOffset: const Offset(140, 0),
@@ -68,7 +70,9 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex,
             adjacentEdges: [2]),
         onTap: () {
-          context.router.push(GlossaryPageRoute(index: '1'));
+          LeafDetails.currentVertex = 1;
+          LeafDetails.visitedVertexes.add(1);
+          context.router.push(const GlossaryPageRoute());
         },
         pointOffset: const Offset(155, 50),
         lineStartOffset: const Offset(12, 12),
@@ -78,13 +82,16 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       LeafDetails(
         Vertex(
-            index: 2,
-            visited: LeafDetails.visitedVertexes.contains(2),
-            path: ParalaxHistoryPageRoute.name,
-            currentVertex: LeafDetails.currentVertex,
-            adjacentEdges: [6]),
+          index: 2,
+          visited: LeafDetails.visitedVertexes.contains(2),
+          path: ParalaxHistoryPageRoute.name,
+          currentVertex: LeafDetails.currentVertex,
+          adjacentEdges: [4,9,8],
+        ),
         pointOffset: const Offset(130, 100),
         onTap: () {
+           LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
           context.router.push(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(9, 12),
@@ -98,10 +105,12 @@ class _NavigationPageState extends State<NavigationPage> {
           visited: LeafDetails.visitedVertexes.contains(3),
           path: DocumentPageRoute.name,
           currentVertex: LeafDetails.currentVertex,
-          //adjacentEdges: [2],
+          adjacentEdges: [],
         ),
         pointOffset: const Offset(40, 190),
         onTap: () {
+          LeafDetails.currentVertex = 3;
+          LeafDetails.visitedVertexes.add(3);
           context.router.push(const DocumentPageRoute());
         },
         lineStartOffset: const Offset(0, 0),
@@ -118,6 +127,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(220, 135),
         onTap: () {
+          LeafDetails.currentVertex = 4;
+          LeafDetails.visitedVertexes.add(4);
           context.router.push(const MapPageRoute());
         },
         lineStartOffset: const Offset(0, 10),
@@ -135,23 +146,27 @@ class _NavigationPageState extends State<NavigationPage> {
         alignment: Alignment.bottomCenter,
         pointOffset: const Offset(278, 155),
         onTap: () {
+          LeafDetails.currentVertex = 5;
+          LeafDetails.visitedVertexes.add(5);
           context.router.push(const CharacrterPageRoute());
         },
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-50, -10),
+        lineEndOffset: const Offset(-45, -13),
         title: 'key people of the age',
       ),
       LeafDetails(
         Vertex(
-          index: 6,
-          visited: LeafDetails.visitedVertexes.contains(6),
+          index: 2,
+          visited: LeafDetails.visitedVertexes.contains(2),
           path: MapPageRoute.name,
           currentVertex: LeafDetails.currentVertex,
-          adjacentEdges: [7, 4],
+          adjacentEdges: [4,9,8],
         ),
         pointOffset: const Offset(150, 155),
         onTap: () {
-          context.router.push(const MapPageRoute());
+          LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
+          context.router.push(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(5, 12),
         lineEndOffset: const Offset(-11, 50),
@@ -160,13 +175,15 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       LeafDetails(
         Vertex(
-            index: 7,
-            visited: LeafDetails.visitedVertexes.contains(7),
+           index: 2,
+            visited: LeafDetails.visitedVertexes.contains(2),
             path: ParalaxHistoryPageRoute.name,
             adjacentEdges: [9, 8],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(130, 200),
         onTap: () {
+          LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
           context.router.push(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -182,10 +199,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(77, 222),
         onTap: () {
+          LeafDetails.currentVertex = 8;
+          LeafDetails.visitedVertexes.add(8);
           context.router.push(const PanaromaRightPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
-        lineEndOffset: const Offset(-31, -25),
+        lineEndOffset: const Offset(-27, -20),
         alignment: Alignment.bottomCenter,
         title: 'medical tools and knowladge',
       ),
@@ -199,6 +218,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(175, 220),
         onTap: () {
+          LeafDetails.currentVertex = 9;
+          LeafDetails.visitedVertexes.add(9);
           context.router.push(const PanaromaLeftPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -215,6 +236,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(150, 285),
         onTap: () {
+          LeafDetails.currentVertex = 10;
+          LeafDetails.visitedVertexes.add(10);
           context.router.push(const PathogenProfilePageRoute());
         },
         lineStartOffset: const Offset(8, 1),
@@ -231,10 +254,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(230, 275),
         onTap: () {
+          LeafDetails.currentVertex = 11;
+          LeafDetails.visitedVertexes.add(11);
           context.router.push(const VirusLocationPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
-        lineEndOffset: const Offset(-75, 17),
+        lineEndOffset: const Offset(-68, 17),
         alignment: Alignment.topCenter,
         title: 'where did it come from?',
       ),
@@ -247,6 +272,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(305, 285),
         onTap: () {
+          LeafDetails.currentVertex = 12;
+          LeafDetails.visitedVertexes.add(12);
           context.router.push(const BodyInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -262,6 +289,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(355, 265),
         onTap: () {
+          LeafDetails.currentVertex = 13;
+          LeafDetails.visitedVertexes.add(13);
           context.router.push(const VirusesInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -279,10 +308,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(175, 325),
         onTap: () {
+          LeafDetails.currentVertex = 14;
+          LeafDetails.visitedVertexes.add(14);
           context.router.push(const PracticeMedicineRoute());
         },
         lineStartOffset: const Offset(5, 3),
-        lineEndOffset: const Offset(-17, -35),
+        lineEndOffset: const Offset(-17, -28),
         alignment: Alignment.centerRight,
         title: 'to do no harm',
       ),
@@ -295,6 +326,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(145, 375),
         onTap: () {
+          LeafDetails.currentVertex = 15;
+          LeafDetails.visitedVertexes.add(15);
           context.router.push(const DeadOfSocratesPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -310,6 +343,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(200, 385),
         onTap: () {
+          LeafDetails.currentVertex = 16;
+          LeafDetails.visitedVertexes.add(16);
           context.router.push(const EndOfWarPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -326,6 +361,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(170, 435),
         onTap: () {
+          LeafDetails.currentVertex = 17;
+          LeafDetails.visitedVertexes.add(17);
           context.router.push(const QuizPageRoute());
         },
         lineStartOffset: const Offset(5, 3),
@@ -342,6 +379,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(145, 485),
         onTap: () {
+          LeafDetails.currentVertex = 18;
+          LeafDetails.visitedVertexes.add(18);
           context.router.push(const IrlNikosPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -358,6 +397,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(200, 535),
         onTap: () {
+          LeafDetails.currentVertex = 19;
+          LeafDetails.visitedVertexes.add(19);
           context.router.push(const AboutBookPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -374,6 +415,8 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(260, 505),
         onTap: () {
+          LeafDetails.currentVertex = 20;
+          LeafDetails.visitedVertexes.add(20);
           context.router.push(const CreditsPageRoute());
         },
         lineStartOffset: const Offset(4, 5),
@@ -391,10 +434,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(300, 535),
         onTap: () {
+          LeafDetails.currentVertex = 21;
+          LeafDetails.visitedVertexes.add(21);
           context.router.push(const SoursePageRoute());
         },
-        lineStartOffset: const Offset(4, 6),
-        lineEndOffset: const Offset(-30, -20),
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-29, -19),
         alignment: Alignment.bottomCenter,
         title: 'sources',
       ),
@@ -407,10 +452,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(360, 505),
         onTap: () {
+          LeafDetails.currentVertex = 22;
+          LeafDetails.visitedVertexes.add(22);
           context.router.push(const FurtherReadingPageRoute());
         },
-        lineStartOffset: const Offset(4, 6),
-        lineEndOffset: const Offset(-50, 35),
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-49, 34),
         alignment: Alignment.topCenter,
         title: 'further reading',
       ),
@@ -423,10 +470,12 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(420, 535),
         onTap: () {
+          LeafDetails.currentVertex = 23;
+          LeafDetails.visitedVertexes.add(23);
           context.router.push(const CopyrightPageRoute());
         },
-        lineStartOffset: const Offset(4, 6),
-        lineEndOffset: const Offset(-48, -25),
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-47, -24),
         alignment: Alignment.bottomCenter,
         title: 'copyright',
       ),

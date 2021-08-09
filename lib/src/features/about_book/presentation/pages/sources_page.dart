@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import '../../../../core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -112,6 +113,7 @@ class _SoursePageState extends State<SoursePage> {
                               textSubTitle: locale.credits,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex = 20;
                                 context.router.pop();
                               }),
                         ),
@@ -133,6 +135,8 @@ class _SoursePageState extends State<SoursePage> {
                               textSubTitle: locale.furtherReading,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex = 22;
+                                LeafDetails.visitedVertexes.add(22);
                                 context.router
                                     .push(const FurtherReadingPageRoute());
                               }),

@@ -60,7 +60,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: GlossaryPage,
-      path: '/:id',
       transitionsBuilder: TransitionsBuilders.slideBottom,
       durationInMilliseconds: 1000),
   CustomRoute(

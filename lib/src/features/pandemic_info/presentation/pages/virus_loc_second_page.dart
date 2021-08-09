@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -141,6 +142,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                             textSubTitle: locals.pathogenProfile,
                             textTitle: locals.chapter1,
                             onTap: () {
+                              LeafDetails.currentVertex= 11;
                               context.router.pop();
                             }),
                       ),
@@ -152,6 +154,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                             textSubTitle: locals.whatDidItDo,
                             textTitle: locals.pathogenProfile,
                             onTap: () {
+                              LeafDetails.currentVertex = 12;
+                              LeafDetails.visitedVertexes.add(12);
                               context.router.push(const BodyInfoPageRoute());
                             }),
                       ),

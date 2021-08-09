@@ -601,7 +601,6 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.todoNoHarm,
                           textTitle: locals.chapter1,
                           onTap: () {
-                            LeafDetails.visitedVertexes.removeLast();
                             LeafDetails.currentVertex = 2;
                             context.router.pop();
                           }),

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -81,6 +82,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                         textSubTitle: locale.furtherReading,
                         textTitle: locale.aboutTheBook,
                         onTap: () {
+                          LeafDetails.currentVertex = 22;
                           context.router.pop();
                         }),
                   ),

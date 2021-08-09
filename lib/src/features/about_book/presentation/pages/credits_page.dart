@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import '../../../../core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -86,6 +87,7 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.meetTheTeam,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex  = 19;
                                 context.router.pop();
                               }),
                         ),
@@ -107,6 +109,8 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex = 21;
+                                LeafDetails.visitedVertexes.add(21);
                                 context.router.push(const SoursePageRoute());
                               }),
                         ),

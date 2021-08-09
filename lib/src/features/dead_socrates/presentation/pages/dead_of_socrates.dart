@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import '../modesl/socrates_info_model.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -225,6 +226,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 padding: const EdgeInsets.all(24),
                 child: Clickable(
                   onPressed: () {
+                    LeafDetails.currentVertex = 17;
+                    LeafDetails.visitedVertexes.add(17);
                     context.router.push(const QuizPageRoute());
                   },
                   child: SizedBox(
@@ -245,6 +248,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     textSubTitle: locale.endOfThePeloponneseanWar,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
+                        LeafDetails.currentVertex = 16;
+                    LeafDetails.visitedVertexes.add(16);
                       context.router.push(const EndOfWarPageRoute());
                     }),
               ),
@@ -252,6 +257,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
             SoundAndMenuWidget(
               widget: Clickable(
                 onPressed: () {
+                  LeafDetails.currentVertex = 14;
                   context.router.pop();
                 },
                 child: SizedBox(

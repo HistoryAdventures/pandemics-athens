@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -263,6 +264,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                 textSubTitle: locals.chapter1,
                 textTitle: locals.chapter1,
                 onTap: () {
+                   LeafDetails.currentVertex = 2;
                   context.router.pop();
                 }),
           ),
@@ -273,6 +275,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
             padding: const EdgeInsets.all(24),
             child: Clickable(
               onPressed: () {
+                LeafDetails.currentVertex = 10;
+                LeafDetails.visitedVertexes.add(10);
                 context.router.push(const PathogenProfilePageRoute());
               },
               child: SizedBox(

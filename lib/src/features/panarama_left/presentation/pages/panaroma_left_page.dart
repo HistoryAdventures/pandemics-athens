@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -240,6 +241,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                 textSubTitle: locals.sourceAnalysis,
                 textTitle: locals.medicalToolsKnowledge,
                 onTap: () {
+                  LeafDetails.visitedVertexes.add(3);
+                  LeafDetails.currentVertex = 3;
                   context.router.push(const DocumentPageRoute());
                 }),
           ),
@@ -253,6 +256,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                 textSubTitle: locals.todoNoHarm,
                 textTitle: locals.chapter1,
                 onTap: () {
+                  LeafDetails.currentVertex = 2;
                   context.router.pop();
                 }),
           ),

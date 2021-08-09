@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -145,6 +146,7 @@ class _QuizPageState extends State<QuizPage> {
           Flexible(
             child: IconButton(
               onPressed: () {
+                LeafDetails.currentVertex = 15;
                 context.router.pop();
               },
               icon: const Icon(Icons.arrow_upward),
@@ -266,6 +268,8 @@ class _QuizPageState extends State<QuizPage> {
           Flexible(
             child: IconButton(
               onPressed: () {
+                LeafDetails.currentVertex = 18;
+                LeafDetails.visitedVertexes.add(18);
                 context.router.push(const IrlNikosPageRoute());
               },
               icon: const Icon(Icons.south),

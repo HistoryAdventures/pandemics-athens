@@ -167,7 +167,7 @@ class _LeandingPageState extends State<LeandingPage>
                       onPressed: () {
                         LeafDetails.visitedVertexes.add(1);
                         LeafDetails.currentVertex = 1;
-                        context.router.push(GlossaryPageRoute(index: '1'));
+                        context.router.push(const GlossaryPageRoute());
                       },
                     ),
                   ),

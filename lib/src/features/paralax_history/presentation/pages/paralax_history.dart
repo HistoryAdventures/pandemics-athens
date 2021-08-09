@@ -333,6 +333,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   textSubTitle: locals.stickToTheOath,
                                   textTitle: '',
                                   onTap: () {
+                                    LeafDetails.currentVertex = 8;
+                                    LeafDetails.visitedVertexes.add(8);
                                     context.router
                                         .push(const PanaromaLeftPageRoute());
                                   }),
@@ -365,6 +367,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 arrowColor: Colors.black,
                                 onTap: () {
                                   ////????????
+                                   LeafDetails.currentVertex = 9;
+                                    LeafDetails.visitedVertexes.add(9);
                                   context.router
                                       .push(const PanaromaRightPageRoute());
                                 }),
@@ -383,8 +387,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           alignment: Alignment.bottomCenter,
                           child: Clickable(
                             onPressed: () {
-                              LeafDetails.visitedVertexes.add(6);
-                              LeafDetails.currentVertex = 6;
+                              LeafDetails.visitedVertexes.add(4);
+                              LeafDetails.currentVertex = 4;
                               context.router.push(const MapPageRoute());
                             },
                             child: Container(
@@ -608,7 +612,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 SoundAndMenuWidget(
                   widget: Clickable(
                     onPressed: () {
-                      LeafDetails.visitedVertexes.removeLast();
                       LeafDetails.currentVertex = 1;
                       context.router.pop();
                     },

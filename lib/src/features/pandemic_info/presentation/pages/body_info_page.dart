@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -312,6 +313,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whereDidItComeFrom,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
+                        LeafDetails.currentVertex = 11;
                         context.router.pop();
                       }),
                 ),
@@ -343,6 +345,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whatWasIt,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
+                        LeafDetails.currentVertex = 13;
+                        LeafDetails.visitedVertexes.add(13);
                         context.router.push(const VirusesInfoPageRoute());
                       }),
                 ),
