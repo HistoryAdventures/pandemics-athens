@@ -2,10 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -14,6 +10,8 @@ import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/animated_widgets/background_widget.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../../../pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 class LeandingPage extends StatefulWidget {

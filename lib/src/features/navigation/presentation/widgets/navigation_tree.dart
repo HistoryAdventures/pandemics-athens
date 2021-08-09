@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/widgets/drow_circle_line.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
+
 import '../../../../core/colors.dart';
 import '../../../../core/utils/string_utils.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../models/leaf_detail_model.dart';
+import 'drow_circle_line.dart';
 
 class NavigationTree extends StatefulWidget {
   final LeafDetails details;

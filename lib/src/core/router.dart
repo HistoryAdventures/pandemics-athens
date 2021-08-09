@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import '../features/about_book/presentation/pages/copyright_page.dart';
-import '../features/about_book/presentation/pages/further_reading_page.dart';
-import '../features/about_book/presentation/pages/sources_page.dart';
 
 import '../features/about_book/presentation/pages/about_book_page.dart';
+import '../features/about_book/presentation/pages/copyright_page.dart';
 import '../features/about_book/presentation/pages/credits_page.dart';
+import '../features/about_book/presentation/pages/further_reading_page.dart';
+import '../features/about_book/presentation/pages/sources_page.dart';
 import '../features/character/presentation/pages/character_info_page.dart';
 import '../features/character/presentation/pages/characters_page.dart';
 import '../features/dead_socrates/presentation/pages/dead_of_socrates.dart';
