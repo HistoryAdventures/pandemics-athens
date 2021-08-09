@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 
 import '../../../../core/colors.dart';
@@ -270,7 +271,7 @@ class _DocumentPageState extends State<DocumentPage>
                                             IconButton(
                                                 onPressed: () {
                                                   scaffoldkey.currentState!
-                                                      .openDrawer();
+                                                      .openEndDrawer();
                                                 },
                                                 icon: const Icon(Icons.menu))
                                           ],

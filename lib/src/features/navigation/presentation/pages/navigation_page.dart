@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/drow_circle_line.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
+import 'package:history_of_adventures/src/features/panarama_left/presentation/pages/panaroma_left_page.dart';
 import '../../../../core/router.gr.dart';
 
 import '../../../../core/utils/assets_path.dart';
@@ -201,7 +204,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 8;
           LeafDetails.visitedVertexes.add(8);
-          context.router.push(const PanaromaRightPageRoute());
+          context.router.push(const PanaromaLeftPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
         lineEndOffset: const Offset(-27, -20),
@@ -220,7 +223,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 9;
           LeafDetails.visitedVertexes.add(9);
-          context.router.push(const PanaromaLeftPageRoute());
+          context.router.push(const PanaromaRightPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
         lineEndOffset: const Offset(-33, -9),
