@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -57,6 +58,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return MouseRegion(
           onHover: (e) => setState(() => offset = e.position),
@@ -208,7 +210,9 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                           backgroundplayer.play();
                         });
                       },
-                onTapMenu: () {},
+                onTapMenu: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
               ),
             ],
           ),

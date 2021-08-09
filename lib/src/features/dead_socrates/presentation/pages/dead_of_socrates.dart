@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import '../modesl/socrates_info_model.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -58,6 +59,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -274,7 +276,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );

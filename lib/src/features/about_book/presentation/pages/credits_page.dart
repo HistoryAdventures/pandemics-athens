@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import '../../../../core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -31,6 +32,7 @@ class _CreditsPageState extends State<CreditsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -68,7 +70,9 @@ class _CreditsPageState extends State<CreditsPage> {
                             backgroundplayer.play();
                           });
                         },
-                  onTapMenu: () {},
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,

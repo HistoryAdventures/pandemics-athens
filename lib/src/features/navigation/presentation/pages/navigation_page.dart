@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/router.gr.dart';
 
 import '../../../../core/utils/assets_path.dart';
@@ -21,6 +20,7 @@ class _NavigationPageState extends State<NavigationPage> {
   final height = window.physicalSize.height / window.devicePixelRatio;
   final width = window.physicalSize.width / window.devicePixelRatio;
   List<LeafDetails> navigationTreeLeafs = [];
+  List<Widget> navigationTreeWidget = [];
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: LeafDetails.visitedVertexes.contains(1),
             path: GlossaryPageRoute.name,
             currentVertex: LeafDetails.currentVertex,
-            adjacentEdges: [0, 2]),
+            adjacentEdges: [2]),
         onTap: () {
           context.router.push(GlossaryPageRoute(index: '1'));
         },
@@ -130,6 +130,7 @@ class _NavigationPageState extends State<NavigationPage> {
             index: 5,
             visited: LeafDetails.visitedVertexes.contains(5),
             path: CharacrterPageRoute.name,
+            adjacentEdges: [],
             currentVertex: LeafDetails.currentVertex),
         alignment: Alignment.bottomCenter,
         pointOffset: const Offset(278, 155),
@@ -433,6 +434,30 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    for (int index = 0; index < navigationTreeLeafs.length; index++) {
+      navigationTreeWidget.add(
+        NavigationTree(
+          details: navigationTreeLeafs[index],
+          onTap: navigationTreeLeafs[index].onTap,
+          isAbleToNavigate: isAbleToNavigate(
+            vertex: navigationTreeLeafs[index].vertex,
+          ),
+        ),
+      );
+    }
+
+    super.didChangeDependencies();
+  }
+
+  bool isAbleToNavigate({required Vertex vertex}) {
+    return navigationTreeLeafs[LeafDetails.currentVertex]
+        .vertex
+        .adjacentEdges
+        .contains(vertex.index);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -476,19 +501,8 @@ class _NavigationPageState extends State<NavigationPage> {
                             alignment: Alignment.center,
                             height: height,
                             child: Stack(
-                              clipBehavior: Clip.none,
-                              children: List.generate(
-                                navigationTreeLeafs.length,
-                                (index) => NavigationTree(
-                                  key: ValueKey('leaf-$index'),
-                                  details: navigationTreeLeafs[index],
-                                  onTap: navigationTreeLeafs[index].onTap,
-                                  isAbleToNavigate: isAbleToNavigate(
-                                    vertex: navigationTreeLeafs[index].vertex,
-                                  ),
-                                ),
-                              ),
-                            ),
+                                clipBehavior: Clip.none,
+                                children: navigationTreeWidget),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -510,54 +524,17 @@ class _NavigationPageState extends State<NavigationPage> {
                         ),
                       ),
                       Expanded(
-                        child: Stack(
-                          children: List.generate(
-                            navigationTreeLeafs.length,
-                            (index) => Stack(
-                              children: [
-                                NavigationTree(
-                                  key: ValueKey('leaf-$index'),
-                                  details: navigationTreeLeafs[index],
-                                  onTap: navigationTreeLeafs[index].onTap,
-                                  isAbleToNavigate: isAbleToNavigate(
-                                    vertex: navigationTreeLeafs[index].vertex,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        child: Stack(children: navigationTreeWidget),
                       ),
                     ],
                   );
                 },
               ),
             ),
-            // SingleChildScrollView(
-            //   physics: const ClampingScrollPhysics(),
-            //   scrollDirection: Axis.vertical,
-            //   child: SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     physics: const ClampingScrollPhysics(),
-            //     child: SizedBox(
-            //       height: 500,
-            //       width: width,
-            //       child:
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
     );
-  }
-
-  bool isAbleToNavigate({required Vertex vertex}) {
-    if (LeafDetails.currentVertex == vertex.index) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   Widget chapterNavigationPoints(

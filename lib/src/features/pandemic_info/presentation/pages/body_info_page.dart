@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -122,6 +123,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     }
 
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Stack(
@@ -329,7 +331,9 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                           backgroundplayer.play();
                         });
                       },
-                onTapMenu: () {},
+                onTapMenu: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
               ),
               Align(
                 alignment: Alignment.bottomRight,

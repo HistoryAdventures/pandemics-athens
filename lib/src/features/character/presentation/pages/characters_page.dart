@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/router.gr.dart';
@@ -31,6 +33,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: _body(),
     );
   }
@@ -89,7 +92,9 @@ class _CharacrterPageState extends State<CharacrterPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
             Positioned(
               left: 100,
@@ -151,6 +156,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textSubTitle: locale.timelineOfMainEvents,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
+                      LeafDetails.visitedVertexes.removeLast();
+                      LeafDetails.currentVertex = 4;
                       context.router.pop();
                     }),
               ),

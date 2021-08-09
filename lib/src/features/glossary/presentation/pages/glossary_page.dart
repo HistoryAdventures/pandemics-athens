@@ -192,6 +192,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   height: MediaQuery.of(context).size.height * 0.15,
                   child: Clickable(
                     onPressed: () {
+                      LeafDetails.visitedVertexes.add(2);
+                      LeafDetails.currentVertex = 2;
                       context.router.push(const ParalaxHistoryPageRoute());
                     },
                     child: Column(

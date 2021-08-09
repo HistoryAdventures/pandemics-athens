@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -26,6 +27,7 @@ class _DocumentPageState extends State<DocumentPage>
   late AppLocalizations locale;
 
   late String _selectedItem;
+  final scaffoldkey = GlobalKey<ScaffoldState>();
 
   late String _infoText;
 
@@ -166,6 +168,8 @@ class _DocumentPageState extends State<DocumentPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scaffoldkey,
+        endDrawer: const NavigationPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         backgroundColor: AppColors.greyDeep,
         floatingActionButton: Row(
@@ -263,7 +267,10 @@ class _DocumentPageState extends State<DocumentPage>
                                               icon: const Icon(Icons.volume_up),
                                             ),
                                             IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  scaffoldkey.currentState!
+                                                      .openDrawer();
+                                                },
                                                 icon: const Icon(Icons.menu))
                                           ],
                                         ),

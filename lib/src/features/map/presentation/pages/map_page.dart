@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/navigation_tree.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -321,6 +323,7 @@ class _MapPageState extends State<MapPage> {
       return const LoadingWidget();
     }
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -598,6 +601,8 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.todoNoHarm,
                           textTitle: locals.chapter1,
                           onTap: () {
+                            LeafDetails.visitedVertexes.removeLast();
+                            LeafDetails.currentVertex = 2;
                             context.router.pop();
                           }),
                     ),
@@ -630,6 +635,8 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.keyPeopleOfTheAge,
                           textTitle: locals.athens5thCentury,
                           onTap: () {
+                            LeafDetails.visitedVertexes.add(5);
+                            LeafDetails.currentVertex = 5;
                             context.router.push(const CharacrterPageRoute());
                           }),
                     ),
@@ -652,7 +659,9 @@ class _MapPageState extends State<MapPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );

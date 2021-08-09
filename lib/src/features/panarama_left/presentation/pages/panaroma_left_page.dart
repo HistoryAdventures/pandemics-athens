@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 
@@ -31,6 +32,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
   ];
 
   bool isImageloaded = false;
+  final scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   void didChangeDependencies() {
@@ -142,6 +144,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldkey,
+        endDrawer: const NavigationPage(),
         body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
   }
 
@@ -269,7 +273,9 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                     backgroundplayer.play();
                   });
                 },
-          onTapMenu: () {},
+          onTapMenu: () {
+            scaffoldkey.currentState!.openDrawer();
+          },
         ),
       ],
     );
