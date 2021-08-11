@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
+// import 'dart:html' if (kIsWeb) 'dart:html' as html;
+import "package:universal_html/html.dart" as html;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -24,6 +28,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late List<GlossaryModel> category;
   late AppLocalizations locales;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final globalKey = GlobalKey();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   @override
@@ -156,7 +161,12 @@ class _GlossaryPageState extends State<GlossaryPage> {
               widget: Clickable(
                 onPressed: () {
                   LeafDetails.currentVertex = 0;
-                  context.router.pop();
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
                 },
                 child: const Icon(
                   Icons.arrow_upward_sharp,
@@ -191,7 +201,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     onPressed: () {
                       LeafDetails.visitedVertexes.add(2);
                       LeafDetails.currentVertex = 2;
-                      context.router.push(const ParalaxHistoryPageRoute());
+                      context.router.push(ParalaxHistoryPageRoute());
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,

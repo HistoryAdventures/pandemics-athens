@@ -251,7 +251,6 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                     textTitle: locals.pathogenProfile,
                     onTap: () {
                       LeafDetails.currentVertex = 12;
-                      context.router.pop();
                     }),
               ),
             ),

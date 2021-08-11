@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -55,7 +57,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [1]),
         onTap: () {
           LeafDetails.currentVertex = 0;
-         
+
           context.router.push(const LeandingPageRoute());
         },
         pointOffset: const Offset(140, 0),
@@ -88,11 +90,11 @@ class _NavigationPageState extends State<NavigationPage> {
           visited: LeafDetails.visitedVertexes.contains(2),
           path: ParalaxHistoryPageRoute.name,
           currentVertex: LeafDetails.currentVertex,
-          adjacentEdges: [4,9,8],
+          adjacentEdges: [4, 9, 8],
         ),
         pointOffset: const Offset(130, 100),
         onTap: () {
-           LeafDetails.currentVertex = 2;
+          LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           context.router.push(const ParalaxHistoryPageRoute());
         },
@@ -162,7 +164,7 @@ class _NavigationPageState extends State<NavigationPage> {
           visited: LeafDetails.visitedVertexes.contains(2),
           path: MapPageRoute.name,
           currentVertex: LeafDetails.currentVertex,
-          adjacentEdges: [4,9,8],
+          adjacentEdges: [4, 9, 8],
         ),
         pointOffset: const Offset(150, 155),
         onTap: () {
@@ -177,7 +179,7 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       LeafDetails(
         Vertex(
-           index: 2,
+            index: 2,
             visited: LeafDetails.visitedVertexes.contains(2),
             path: ParalaxHistoryPageRoute.name,
             adjacentEdges: [9, 8],
@@ -528,7 +530,12 @@ class _NavigationPageState extends State<NavigationPage> {
               child: IconButton(
                 icon: const Icon(Icons.close),
                 onPressed: () {
-                  context.router.pop();
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
                 },
               ),
             ),

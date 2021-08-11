@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -248,8 +250,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     textSubTitle: locale.endOfThePeloponneseanWar,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                        LeafDetails.currentVertex = 16;
-                    LeafDetails.visitedVertexes.add(16);
+                      LeafDetails.currentVertex = 16;
+                      LeafDetails.visitedVertexes.add(16);
                       context.router.push(const EndOfWarPageRoute());
                     }),
               ),
@@ -258,7 +260,12 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
               widget: Clickable(
                 onPressed: () {
                   LeafDetails.currentVertex = 14;
-                  context.router.pop();
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
                 },
                 child: SizedBox(
                     height: 20,

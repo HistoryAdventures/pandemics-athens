@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -23,8 +25,8 @@ class ParalaxHistoryPage extends StatefulWidget {
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
-  final height = window.physicalSize.height / window.devicePixelRatio;
-  final width = window.physicalSize.width / window.devicePixelRatio;
+  late double height = window.physicalSize.height / window.devicePixelRatio;
+  late double width = window.physicalSize.width / window.devicePixelRatio;
 
   double rateZero = 0;
   late double rateOne;
@@ -156,7 +158,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _paralaxTextOpasyty5 = 0;
       }
     });
+
     init();
+
     super.initState();
   }
 
@@ -174,12 +178,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    html.window.addEventListener('resize', (event) {
+      height = window.physicalSize.height / window.devicePixelRatio;
+      width = window.physicalSize.width / window.devicePixelRatio;
+      print(height);
+      print(width);
+    }, true);
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
@@ -191,10 +196,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           child: NotificationListener(
             onNotification: (v) {
               if (v is ScrollUpdateNotification) {
-                //only if scroll update notification is triggered
                 setState(() {
                   rateOne += v.scrollDelta! * 0.19;
-                  //print(rateOne);
 
                   rateEleven -= v.scrollDelta! / 2;
                   rateTwelv -= v.scrollDelta! / 2;
@@ -367,8 +370,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 arrowColor: Colors.black,
                                 onTap: () {
                                   ////????????
-                                   LeafDetails.currentVertex = 9;
-                                    LeafDetails.visitedVertexes.add(9);
+                                  LeafDetails.currentVertex = 9;
+                                  LeafDetails.visitedVertexes.add(9);
                                   context.router
                                       .push(const PanaromaRightPageRoute());
                                 }),
@@ -613,7 +616,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   widget: Clickable(
                     onPressed: () {
                       LeafDetails.currentVertex = 1;
-                      context.router.pop();
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,

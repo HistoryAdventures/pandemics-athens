@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -83,7 +85,13 @@ class _CopyrightPageState extends State<CopyrightPage> {
                         textTitle: locale.aboutTheBook,
                         onTap: () {
                           LeafDetails.currentVertex = 22;
-                          context.router.pop();
+                          LeafDetails.currentVertex = 0;
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
                         }),
                   ),
                 ),

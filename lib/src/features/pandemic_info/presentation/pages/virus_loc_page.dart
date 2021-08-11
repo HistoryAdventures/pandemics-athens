@@ -145,7 +145,6 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                             textTitle: locals.chapter1,
                             onTap: () {
                               LeafDetails.currentVertex = 10;
-                              context.router.pop();
                             }),
                       ),
                     ),
