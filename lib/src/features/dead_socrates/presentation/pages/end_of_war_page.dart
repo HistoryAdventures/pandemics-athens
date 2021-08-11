@@ -143,8 +143,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 70,
+                            Flexible(
+                              flex: 2,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -170,6 +170,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                               ),
                             ),
                             Expanded(
+                              flex: 6,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
@@ -199,8 +200,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                 ]),
                               ),
                             ),
-                            SizedBox(
-                              height: 30,
+                            Flexible(
                               child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(

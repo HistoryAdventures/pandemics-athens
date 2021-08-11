@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -147,7 +149,12 @@ class _QuizPageState extends State<QuizPage> {
             child: IconButton(
               onPressed: () {
                 LeafDetails.currentVertex = 15;
-                context.router.pop();
+                if (kIsWeb) {
+                  html.window.history.back();
+                  context.router.pop();
+                } else {
+                  context.router.pop();
+                }
               },
               icon: const Icon(Icons.arrow_upward),
             ),

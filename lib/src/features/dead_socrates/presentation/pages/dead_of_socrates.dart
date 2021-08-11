@@ -145,10 +145,11 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 70,
+                            Flexible(
+                              flex: 2,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(
@@ -163,6 +164,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                   ),
                                   Flexible(
                                     child: AutoSizeText(locale.deathOfSocrates,
+                                        maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline2),
@@ -171,6 +173,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                               ),
                             ),
                             Expanded(
+                              flex: 6,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
@@ -200,8 +203,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                 ]),
                               ),
                             ),
-                            SizedBox(
-                              height: 30,
+                            Flexible(
                               child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(

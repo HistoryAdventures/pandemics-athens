@@ -47,6 +47,64 @@ class _AboutBookPageState extends State<AboutBookPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: constraints.maxHeight * 0.15,
+                    margin: EdgeInsets.only(top: constraints.maxHeight * 0.2),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: AutoSizeText(
+                            locale.aboutTheBook.toUpperCase(),
+                            maxLines: 1,
+                            style: DefaultTheme.standard.textTheme.headline2,
+                          ),
+                        ),
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: constraints.maxWidth * 0.01),
+                            child: AutoSizeText(
+                              locale.meetTheTeamText.toLowerCase(),
+                              maxLines: 1,
+                              style: DefaultTheme.standard.textTheme.subtitle2,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: constraints.maxHeight * 0.2,
+                    ),
+                    width: constraints.maxWidth * 0.9,
+                    height: constraints.maxHeight * 0.5,
+                    child: Image.asset(
+                      AssetsPath.aboutBookMap,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 24, right: 24),
+                    child: ArrowRightTextWidget(
+                        textSubTitle: locale.credits,
+                        textTitle: locale.aboutTheBook,
+                        onTap: () {
+                          LeafDetails.currentVertex = 20;
+                          LeafDetails.visitedVertexes.add(20);
+                          context.router.push(const CreditsPageRoute());
+                        }),
+                  ),
+                ),
                 SoundAndMenuWidget(
                   widget: IconButton(
                       onPressed: () {
@@ -80,61 +138,6 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   onTapMenu: () {
                     Scaffold.of(context).openEndDrawer();
                   },
-                ),
-                Positioned(
-                  left: 100,
-                  right: 100,
-                  child: Container(
-                    height: constraints.maxHeight * 0.1,
-                    width: constraints.maxWidth * 0.1,
-                    margin: EdgeInsets.only(top: constraints.maxHeight * 0.1),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: AutoSizeText(
-                            locale.aboutTheBook.toUpperCase(),
-                            maxLines: 1,
-                            style: DefaultTheme.standard.textTheme.headline2,
-                          ),
-                        ),
-                        Expanded(
-                          child: AutoSizeText(
-                            locale.meetTheTeamText.toLowerCase(),
-                            maxLines: 1,
-                            style: DefaultTheme.standard.textTheme.subtitle2,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 24, right: 24),
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.credits,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          LeafDetails.currentVertex = 20;
-                          LeafDetails.visitedVertexes.add(20);
-                          context.router.push(const CreditsPageRoute());
-                        }),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: constraints.maxWidth * 0.1,
-                        right: constraints.maxWidth * 0.1,
-                        bottom: 80,
-                        top: constraints.maxHeight * 0.2),
-                    child: Image.asset(
-                      AssetsPath.aboutBookMap,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
                 ),
               ],
             );
