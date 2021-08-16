@@ -35,7 +35,7 @@ class ParallaxWidget extends StatelessWidget {
         child: Container(
           width: width,
           color: AppColors.transpatent,
-          child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),
+          child: Image.asset("assets/paralax_new/$asset", fit: boxFit),
         ),
       ),
     );

@@ -11,7 +11,7 @@ environment:
 
 dependencies:
 
-  universal_html: ^2.0.8
+  
   arrow_path: ^2.0.0
   #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
   auto_route: ^2.2.0
@@ -24,7 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.3
 
   dartz: ^0.10.0-nullsafety
-
+  
   #A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
   # equatable: ^2.0.3
 
@@ -59,14 +59,15 @@ dependencies:
   # Panorama -- A 360-degree panorama viewer.
   panorama: ^0.4.1
   shared_preferences: ^2.0.6
-
+  
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
+  universal_html: ^2.0.8
   platform: ^3.0.0
 
 
   #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
-
+  
 dev_dependencies:
   # AutoRoute is a declartive routing solution, where everything needed for navigation is automatically generated for you.
   auto_route_generator:
@@ -94,7 +95,6 @@ flutter:
     - assets/icons/
     - assets/image_back/
     - assets/images_quiz/
-    - assets/paralax_images/
     - assets/man_body/
     - assets/virus_gif/
     - assets/panorama_image2.png

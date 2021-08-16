@@ -23,6 +23,8 @@ class _NavigationPageState extends State<NavigationPage> {
   List<Widget> chapterNavigation = [];
   final height = window.physicalSize.height / window.devicePixelRatio;
   final width = window.physicalSize.width / window.devicePixelRatio;
+  GlobalKey chaptersPartWidgetKey = GlobalKey();
+
   List<LeafDetails> navigationTreeLeafs = [];
   List<Widget> navigationTreeWidget = [];
 
@@ -520,80 +522,85 @@ class _NavigationPageState extends State<NavigationPage> {
           image: DecorationImage(
               image: AssetImage(AssetsPath.gradient), fit: BoxFit.cover),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
-                },
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  },
+                ),
               ),
-            ),
-            Align(
-                alignment: Alignment.topCenter,
-                child: AutoSizeText(
-                  "Table of contents".toUpperCase(),
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline2,
-                )),
-            const SizedBox(height: 50),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  if (constraints.maxWidth < 600) {
-                    return SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+              Align(
+                  alignment: Alignment.topCenter,
+                  child: AutoSizeText(
+                    "Table of contents".toUpperCase(),
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline2,
+                  )),
+              const SizedBox(height: 50),
+              Align(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.1),
+                    height: 600,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        // scrollDirection: Axis.horizontal,
+                        // physics: const ClampingScrollPhysics(),
                         children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: height,
-                            child: Stack(
-                                clipBehavior: Clip.none,
-                                children: navigationTreeWidget),
-                          ),
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            key: chaptersPartWidgetKey,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: chapterNavigation,
                           ),
+                          const SizedBox(
+                            width: 500,
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: SizedBox(
+                              child: Stack(children: navigationTreeWidget),
+                            ),
+                          ),
                         ],
                       ),
-                    );
-                  }
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: chapterNavigation,
-                        ),
-                      ),
-                      Expanded(
-                        child: Stack(children: navigationTreeWidget),
-                      ),
-                    ],
-                  );
-                },
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+
+  // Future<Size> waitLayoutBuildsFuture() async {
+  //   await Future.delayed(const Duration(milliseconds: 10));
+
+  //   RenderBox? renderBox =
+  //       chaptersPartWidgetKey.currentContext!.findRenderObject()! as RenderBox;
+
+  //   return renderBox.size;
+  // }
 
   Widget chapterNavigationPoints(
       {required String numberOfChapter,

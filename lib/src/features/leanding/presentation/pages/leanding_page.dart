@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
@@ -31,9 +30,9 @@ class _LeandingPageState extends State<LeandingPage>
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
   List<String> contentImages = [
-    AssetsPath.paralaxBackground,
-    AssetsPath.gifBackground,
     AssetsPath.gifVirus,
+    AssetsPath.paralaxBackground,
+    AssetsPath.gifBackground, 
     AssetsPath.spheresBackImage,
   ];
 
@@ -167,7 +166,7 @@ class _LeandingPageState extends State<LeandingPage>
                       onPressed: () async {
                         LeafDetails.visitedVertexes.add(1);
                         LeafDetails.currentVertex = 1;
-                        print(LeafDetails.visitedVertexes);
+                        // print(LeafDetails.visitedVertexes);
                         context.router.push(const GlossaryPageRoute());
                       },
                     ),

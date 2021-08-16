@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
@@ -64,27 +66,33 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: SizedBox(
-                              height: constraints.maxHeight,
-                              child: AnimatedSwitcher(
-                                  duration: Times.medium,
-                                  transitionBuilder: (child, animation) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: child,
-                                    );
-                                  },
-                                  child: CharacterModel(
-                                      key: ValueKey(_selectedImg),
-                                      name: _selectedItem,
-                                      photo: _selectedImg,
-                                      description: _infoText,
-                                      onTap: () {
-                                        Navigator.of(context).pop();
-                                        // window.history.go(-1);
-
-                                        html.window.history.back();
-                                      })))),
+                        child: SizedBox(
+                          height: constraints.maxHeight,
+                          child: AnimatedSwitcher(
+                            duration: Times.medium,
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: CharacterModel(
+                              key: ValueKey(_selectedImg),
+                              name: _selectedItem,
+                              photo: _selectedImg,
+                              description: _infoText,
+                              onTap: () {
+                                if (kIsWeb) {
+                                  html.window.history.back();
+                                  context.router.pop();
+                                } else {
+                                  context.router.pop();
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
                       Expanded(
                         flex: 2,
                         child: Container(
@@ -148,7 +156,12 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                     Flexible(
                                         child: Clickable(
                                             onPressed: () {
-                                              Navigator.of(context).pop();
+                                              if (kIsWeb) {
+                                                html.window.history.back();
+                                                context.router.pop();
+                                              } else {
+                                                context.router.pop();
+                                              }
                                             },
                                             child: const Icon(Icons.clear)))
                                   ],

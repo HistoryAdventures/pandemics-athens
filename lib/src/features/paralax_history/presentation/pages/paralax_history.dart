@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:history_of_adventures/src/features/animated_background/animated_particles.dart';
+import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -52,6 +54,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double _scrollrateNine;
   late double _scrollrateTen;
 
+  AnimationController? _animationController;
+  Animation<double>? animation;
+  double _progress = -200;
+
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -73,10 +79,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  List<String> contentImages = [AssetsPath.paralaxBackground];
+  List<String> contentImages = [
+    AssetsPath.paralaxBackground,
+    AssetsPath.characterNikosGif
+  ];
 
   @override
   void didChangeDependencies() {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
   }
@@ -153,15 +164,39 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       }
       if (_scrollController.offset > _scrollFive &&
           _scrollController.offset < _scrollFive + 200) {
-        _paralaxTextOpasyty5 = 1;
       } else {
         _paralaxTextOpasyty5 = 0;
       }
+      if (_scrollController.offset > _scrollFive) {
+        if (_animationController == null) {
+          _animationController =
+              AnimationController(vsync: this, duration: Duration(seconds: 3));
+          animation =
+              Tween<double>(begin: -200, end: 0).animate(_animationController!)
+                ..addListener(() {
+                  if (mounted) {
+                    setState(() {
+                      print(animation?.value);
+                      _progress = animation!.value;
+                    });
+                  }
+                });
+
+          _animationController?.forward();
+          // print(_animationController.status);
+        }
+      } else {}
     });
 
     init();
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
   }
 
   Future<void> init() async {
@@ -180,10 +215,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   Widget build(BuildContext context) {
     html.window.addEventListener('resize', (event) {
-      height = window.physicalSize.height / window.devicePixelRatio;
-      width = window.physicalSize.width / window.devicePixelRatio;
-      print(height);
-      print(width);
+      setState(() {
+        height = MediaQuery.of(context).size.height;
+        width = MediaQuery.of(context).size.width;
+      });
     }, true);
     if (isImageloaded == false) {
       return const LoadingWidget();
@@ -237,21 +272,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
                             top: rateZero,
-                            asset: "clouds",
+                            asset: "clouds.png",
                           ),
                           ParallaxWidget(
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
                             top: rateTwo,
-                            asset: "building",
+                            asset: "building.png",
                           ),
                           ParallaxWidget(
                             paralaxText: locals.paralaxText1,
                             width: MediaQuery.of(context).size.width / 2.2,
                             boxFit: BoxFit.contain,
                             top: rateThree,
-                            left: 0,
-                            asset: "character_nkos",
+                            left: _progress,
+                            asset: "character_nkos.gif",
                           ),
                           ParallaxWidget(
                             paralaxText: locals.paralaxText1,
@@ -260,57 +295,72 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             top: rateFour,
                             left: MediaQuery.of(context).size.width / 2.2,
                             right: 0,
-                            asset: "dead_bodies",
+                            asset: "dead_bodies.png",
+                          ),
+                          Positioned(
+                            right: constraints.maxWidth * 0.13,
+                            top: height * 2.8,
+                            child: AnimatedOpacity(
+                              duration: Times.medium,
+                              opacity: 1,
+                              child: Container(
+                                width: width,
+                                color: AppColors.transpatent,
+                                child: Lottie.asset(
+                                  "assets/paralax_new/smoke.json",
+                                ),
+                              ),
+                            ),
                           ),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
                               top: rateFive,
                               opacity: _paralaxImageOpasyty,
-                              asset: "left_crowd"),
+                              asset: "left_crowd.png"),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.cover,
                               top: rateSix,
-                              asset: "characters_2"),
+                              asset: "characters_2.png"),
                           ParallaxWidget(
                             width: MediaQuery.of(context).size.width / 3,
                             top: rateSeven,
                             left: constraints.maxWidth * 0.13,
-                            asset: "character_12",
+                            asset: "character_12.png",
                             boxFit: BoxFit.contain,
                           ),
                           ParallaxWidget(
                             width: MediaQuery.of(context).size.width / 3,
                             top: rateEight,
                             left: MediaQuery.of(context).size.width / 2,
-                            asset: "character_11",
+                            asset: "character_11.png",
                             boxFit: BoxFit.cover,
                           ),
                           ParallaxWidget(
                               width: rateOne.clamp(0, 2000),
                               top: rateNine,
                               left: -100,
-                              asset: "character_1",
+                              asset: "character_1.png",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               width: constraints.maxWidth * 0.6,
                               top: rateTen,
                               left: constraints.maxWidth * 0.3,
                               right: 0,
-                              asset: "hand",
+                              asset: "hand.png",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
                               top: rateEleven,
                               left: constraints.maxWidth * 0.2,
                               right: constraints.maxWidth * 0.2,
-                              asset: "character_2",
+                              asset: "character_2.png",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
                               top: rateTwelv,
-                              asset: "cloud",
+                              asset: "cloud.png",
                               boxFit: BoxFit.contain),
                         ],
                       )
