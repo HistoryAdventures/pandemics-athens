@@ -20,16 +20,15 @@ class PanaromaRightPage extends StatefulWidget {
   _PanaromaRightPageState createState() => _PanaromaRightPageState();
 }
 
-class _PanaromaRightPageState extends State<PanaromaRightPage>
-    with TickerProviderStateMixin {
+class _PanaromaRightPageState extends State<PanaromaRightPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
 
   final begin = const Offset(0.0, -1.0);
   final end = Offset.zero;
   final curve = Curves.easeInBack;
-  final backgroundplayer = AudioPlayer();
-  final openInfoPlayer = AudioPlayer();
+  //final backgroundplayer = AudioPlayer();
+  //final openInfoPlayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
   bool onButtonInfoPressed = false;
@@ -120,7 +119,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
       setState(() {
         isImageloaded = true;
         isSoundOn = true;
-        backgroundplayer.play();
+        //backgroundplayer.play();
       });
     } else {
       setState(() {
@@ -142,12 +141,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   void initState() {
     init();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    backgroundplayer.stop();
-    super.dispose();
   }
 
   @override
@@ -244,13 +237,13 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
               ? () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.pause();
+                    //backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.play();
+                    //backgroundplayer.play();
                   });
                 },
           onTapMenu: () {

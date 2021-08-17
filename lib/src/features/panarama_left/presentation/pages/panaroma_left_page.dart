@@ -20,8 +20,7 @@ class PanaromaLeftPage extends StatefulWidget {
   _PanaromaLeftPageState createState() => _PanaromaLeftPageState();
 }
 
-class _PanaromaLeftPageState extends State<PanaromaLeftPage>
-    with TickerProviderStateMixin {
+class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
   List<String> contentImages = [
@@ -102,8 +101,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
-  final backgroundplayer = AudioPlayer();
-  final openInfoPlayer = AudioPlayer();
+  //final backgroundplayer = AudioPlayer();
+  //final openInfoPlayer = AudioPlayer();
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
@@ -114,7 +113,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
       setState(() {
         isImageloaded = true;
         isSoundOn = true;
-        backgroundplayer.play();
+        //backgroundplayer.play();
       });
     } else {
       setState(() {
@@ -140,7 +139,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   @override
   void dispose() {
-    backgroundplayer.stop();
+    //backgroundplayer.stop();
     super.dispose();
   }
 
@@ -175,7 +174,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                   ),
                   onPressed: () {
                     setState(() {
-                      openInfoPlayer.play();
+                      // openInfoPlayer.play();
                       //print("object");
                     });
                     showGeneralDialog(
@@ -275,13 +274,13 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
               ? () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.pause();
+                    // backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.play();
+                    // backgroundplayer.play();
                   });
                 },
           onTapMenu: () {

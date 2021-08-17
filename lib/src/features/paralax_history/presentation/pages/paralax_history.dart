@@ -210,6 +210,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void dispose() {
     _animationControllerForCharacterNikos?.dispose();
+    _animationControllerForClouds?.dispose();
     super.dispose();
   }
 
