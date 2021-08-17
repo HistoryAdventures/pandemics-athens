@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
 
 class AssetsPath {
+  static final scaffoldkey = material.GlobalKey<material.ScaffoldState>();
+
   static List<String> assetsBlobList = [];
 
   static const String gifBackground = 'assets/image_back/backgif.gif';
@@ -126,7 +129,7 @@ class AssetsPath {
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
-  static const String paralaxBackground = 'assets/paralax_new/bk.png';
+  static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
   static const String characterNikosGif =
       'assets/paralax_new/character_nkos.gif';
 }

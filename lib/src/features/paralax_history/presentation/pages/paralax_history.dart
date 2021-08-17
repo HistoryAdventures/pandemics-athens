@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:history_of_adventures/src/features/animated_background/animated_particles.dart';
-import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -54,9 +52,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double _scrollrateNine;
   late double _scrollrateTen;
 
-  AnimationController? _animationController;
-  Animation<double>? animation;
-  double _progress = -200;
+  AnimationController? _animationControllerForCharacterNikos;
+  Animation<double>? animationForCharacterNikos;
+  AnimationController? _animationControllerForClouds;
+  Animation<double>? animationForClouds;
+  double _progress1 = -200;
+  double _progress2 = -200;
 
   double _topTextOpasyty = 1;
 
@@ -94,6 +95,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
+    _animationControllerForClouds =
+        AnimationController(vsync: this, duration: const Duration(seconds: 20));
+    animationForClouds = Tween<double>(begin: -500, end: 0)
+        .animate(_animationControllerForClouds!)
+          ..addListener(() {
+            if (mounted) {
+              setState(() {
+                _progress2 = animationForClouds!.value;
+              });
+            }
+          });
+
+    _animationControllerForClouds?.forward();
     rateOne = width * 0;
     rateTwo = height * 2;
     rateThree = height * 3;
@@ -167,25 +181,25 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       } else {
         _paralaxTextOpasyty5 = 0;
       }
-      if (_scrollController.offset > _scrollFive) {
-        if (_animationController == null) {
-          _animationController =
-              AnimationController(vsync: this, duration: Duration(seconds: 3));
-          animation =
-              Tween<double>(begin: -200, end: 0).animate(_animationController!)
+      if (_scrollController.offset > _scrollFive - 200) {
+        if (_animationControllerForCharacterNikos == null) {
+          _animationControllerForCharacterNikos = AnimationController(
+              vsync: this, duration: const Duration(seconds: 3));
+          animationForCharacterNikos = Tween<double>(begin: -200, end: 0)
+              .animate(_animationControllerForCharacterNikos!)
                 ..addListener(() {
                   if (mounted) {
                     setState(() {
-                      print(animation?.value);
-                      _progress = animation!.value;
+                      _progress1 = animationForCharacterNikos!.value;
                     });
                   }
                 });
 
-          _animationController?.forward();
-          // print(_animationController.status);
+          _animationControllerForCharacterNikos?.forward();
         }
-      } else {}
+      } else {
+        _animationControllerForCharacterNikos?.stop();
+      }
     });
 
     init();
@@ -195,7 +209,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void dispose() {
-    _animationController?.dispose();
+    _animationControllerForCharacterNikos?.dispose();
     super.dispose();
   }
 
@@ -233,7 +247,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               if (v is ScrollUpdateNotification) {
                 setState(() {
                   rateOne += v.scrollDelta! * 0.19;
-
                   rateEleven -= v.scrollDelta! / 2;
                   rateTwelv -= v.scrollDelta! / 2;
                   rateTen -= v.scrollDelta! / 2;
@@ -272,6 +285,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
                             top: rateZero,
+                            left: _progress2,
                             asset: "clouds.png",
                           ),
                           ParallaxWidget(
@@ -285,33 +299,33 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             width: MediaQuery.of(context).size.width / 2.2,
                             boxFit: BoxFit.contain,
                             top: rateThree,
-                            left: _progress,
+                            left: _progress1,
                             asset: "character_nkos.gif",
                           ),
-                          ParallaxWidget(
-                            paralaxText: locals.paralaxText1,
-                            width: MediaQuery.of(context).size.width / 2.2,
-                            boxFit: BoxFit.contain,
-                            top: rateFour,
-                            left: MediaQuery.of(context).size.width / 2.2,
-                            right: 0,
-                            asset: "dead_bodies.png",
-                          ),
-                          Positioned(
-                            right: constraints.maxWidth * 0.13,
-                            top: height * 2.8,
-                            child: AnimatedOpacity(
-                              duration: Times.medium,
-                              opacity: 1,
-                              child: Container(
-                                width: width,
-                                color: AppColors.transpatent,
-                                child: Lottie.asset(
-                                  "assets/paralax_new/smoke.json",
-                                ),
-                              ),
-                            ),
-                          ),
+                          // ParallaxWidget(
+                          //   paralaxText: locals.paralaxText1,
+                          //   width: MediaQuery.of(context).size.width / 2.2,
+                          //   boxFit: BoxFit.contain,
+                          //   top: rateFour,
+                          //   left: MediaQuery.of(context).size.width / 2.2,
+                          //   right: 0,
+                          //   asset: "dead_bodies.png",
+                          // ),
+                          // Positioned(
+                          //   right: constraints.maxWidth * 0.13,
+                          //   top: height * 2.8,
+                          //   child: AnimatedOpacity(
+                          //     duration: Times.medium,
+                          //     opacity: 1,
+                          //     child: Container(
+                          //       width: width,
+                          //       color: AppColors.transpatent,
+                          //       child: Lottie.asset(
+                          //         "assets/paralax_new/smoke.json",
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
