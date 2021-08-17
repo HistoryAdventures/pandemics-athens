@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -23,6 +26,10 @@ class _QuizPageState extends State<QuizPage> {
   int questionindex = 0;
   int _countResult = 0;
   late List<dynamic> quizes;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+
   List<bool> rightAnswers = [];
   final List<String> land = [];
   bool nextButtonisAvailibaleToPress = true;
@@ -96,6 +103,8 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
       body: _body(),
     );
   }
@@ -145,6 +154,25 @@ class _QuizPageState extends State<QuizPage> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          SoundAndMenuWidget(
+            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            onTapVolume: isSoundOn
+                ? () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.pause();
+                    });
+                  }
+                : () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.play();
+                    });
+                  },
+            onTapMenu: () {
+              scaffoldkey.currentState!.openEndDrawer();
+            },
+          ),
           Flexible(
             child: IconButton(
               onPressed: () {

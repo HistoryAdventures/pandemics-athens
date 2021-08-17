@@ -59,7 +59,8 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [1]),
         onTap: () {
           LeafDetails.currentVertex = 0;
-          AssetsPath.scaffoldkey.currentState!.openEndDrawer();
+          print("object");
+
           context.router.replace(const LeandingPageRoute());
         },
         pointOffset: const Offset(140, 0),
