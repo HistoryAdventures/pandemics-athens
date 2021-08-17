@@ -536,12 +536,12 @@ class _NavigationPageState extends State<NavigationPage> {
                 child: IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () {
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
+                    // if (kIsWeb) {
+                    //   html.window.history.back();
+                    //   context.router.pop();
+                    // } else {
+                    context.router.pop();
+                    //}
                   },
                 ),
               ),

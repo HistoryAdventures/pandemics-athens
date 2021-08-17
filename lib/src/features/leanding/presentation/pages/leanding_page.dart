@@ -32,7 +32,7 @@ class _LeandingPageState extends State<LeandingPage>
   List<String> contentImages = [
     AssetsPath.gifVirus,
     AssetsPath.paralaxBackground,
-    AssetsPath.gifBackground, 
+    AssetsPath.gifBackground,
     AssetsPath.spheresBackImage,
   ];
 
@@ -69,7 +69,14 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void initState() {
     init();
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
