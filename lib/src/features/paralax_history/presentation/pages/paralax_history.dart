@@ -67,10 +67,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _paralaxTextOpasyty3 = 0;
   double _paralaxTextOpasyty4 = 0;
   double _paralaxTextOpasyty5 = 0;
-
-  double _paralaxImageOpasyty = 1;
-
-  bool _lernMoreButtonVisibility = false;
+  double _lernMoreOpasyty = 0;
 
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
@@ -82,7 +79,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
-    AssetsPath.characterNikosGif
+    AssetsPath.characterNikosGif,
+    AssetsPath.paralaxBuilding,
+    AssetsPath.paralaxCharacter_1,
+    AssetsPath.paralaxCharacter_2,
+    AssetsPath.paralaxCharacter_11,
+    AssetsPath.paralaxCharacters_2,
   ];
 
   @override
@@ -113,8 +115,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateThree = height * 3;
     rateFour = height * 3.5;
     rateFive = height * 5.2;
-    rateSix = height * 5.5;
-    rateSeven = height * 6;
+    rateSix = height * 6.6;
+    rateSeven = height * 6.5;
     rateEight = height * 9;
     rateNine = height * 9.3;
     rateTen = height * 11;
@@ -123,7 +125,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     _scrollFour = height * 2.3;
     _scrollFive = height * 2;
-    _scrollrateSix = height * 3.3;
+    _scrollrateSix = height * 3.5;
     _scrollrateSeven = height * 3.8;
     _scrollrateNine = height * 5;
     _scrollrateTen = height * 5.8;
@@ -153,22 +155,20 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateSix &&
           _scrollController.offset < _scrollrateSeven) {
         _paralaxTextOpasyty2 = 1;
-        _paralaxImageOpasyty = 0;
-        setState(() {
-          _lernMoreButtonVisibility = true;
-        });
       } else {
         _paralaxTextOpasyty2 = 0;
-        _paralaxImageOpasyty = 1;
-        setState(() {
-          _lernMoreButtonVisibility = false;
-        });
       }
-      if (_scrollController.offset > _scrollrateNine &&
+      if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
       } else {
         _paralaxTextOpasyty3 = 0;
+      }
+      if (_scrollController.offset > _scrollrateNine &&
+          _scrollController.offset < _scrollrateNine + 300) {
+        _lernMoreOpasyty = 1;
+      } else {
+        _lernMoreOpasyty = 0;
       }
       if (_scrollController.offset > _scrollrateEleven &&
           _scrollController.offset < _scrollrateEleven + 350) {
@@ -178,6 +178,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       }
       if (_scrollController.offset > _scrollFive &&
           _scrollController.offset < _scrollFive + 200) {
+        _paralaxTextOpasyty5 = 1;
       } else {
         _paralaxTextOpasyty5 = 0;
       }
@@ -253,7 +254,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   rateTen -= v.scrollDelta! / 2;
                   rateNine -= v.scrollDelta! / 2;
                   rateEight -= v.scrollDelta! / 1.8;
-                  rateSeven -= v.scrollDelta! / 1.5;
+                  rateSeven -= v.scrollDelta! / 2;
                   rateSix -= v.scrollDelta! / 2;
                   rateFive -= v.scrollDelta! / 2;
                   rateFour -= v.scrollDelta! / 2;
@@ -331,7 +332,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
                               top: rateFive,
-                              opacity: _paralaxImageOpasyty,
                               asset: "left_crowd.png"),
                           ParallaxWidget(
                               width: MediaQuery.of(context).size.width,
@@ -446,84 +446,77 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: _lernMoreButtonVisibility,
-                  child: AnimatedOpacity(
-                      duration: Times.medium,
-                      opacity: _paralaxTextOpasyty2,
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Clickable(
-                            onPressed: () {
-                              LeafDetails.visitedVertexes.add(4);
-                              LeafDetails.currentVertex = 4;
-                              context.router.push(const MapPageRoute());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(bottom: 30),
-                              decoration: BoxDecoration(
-                                  color: AppColors.blackG.withOpacity(0.75),
-                                  border: Border.all(
-                                    color: AppColors.white,
-                                  )),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 18.0, vertical: 5),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          AutoSizeText(
-                                            locals.learnMore.toUpperCase(),
-                                            minFontSize: 5,
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                ?.copyWith(
-                                                    color: AppColors.white,
-                                                    fontSize: 10),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              AutoSizeText(
-                                                locals.athens5thCentury
-                                                    .toUpperCase(),
-                                                minFontSize: 5,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText2
-                                                    ?.copyWith(
-                                                        color: AppColors.white),
+                AnimatedOpacity(
+                    duration: Times.medium,
+                    opacity: _lernMoreOpasyty,
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: Clickable(
+                          onPressed: () {
+                            LeafDetails.visitedVertexes.add(4);
+                            LeafDetails.currentVertex = 4;
+                            context.router.push(const MapPageRoute());
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 100, right: 50),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18.0, vertical: 5),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // AutoSizeText(
+                                        //   locals.learnMore.toUpperCase(),
+                                        //   minFontSize: 5,
+                                        //   maxLines: 1,
+                                        //   style: Theme.of(context)
+                                        //       .textTheme
+                                        //       .bodyText2
+                                        //       ?.copyWith(
+                                        //           color: AppColors.white,
+                                        //           fontSize: 10),
+                                        // ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AutoSizeText(
+                                              locals.athens5thCentury
+                                                  .toUpperCase(),
+                                              minFontSize: 5,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .caption
+                                                  ?.copyWith(
+                                                      color: AppColors.white,
+                                                      fontSize: 50),
+                                            ),
+                                            const SizedBox(
+                                              height: 50,
+                                              width: 50,
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: AppColors.white,
                                               ),
-                                              const SizedBox(
-                                                height: 10,
-                                                width: 10,
-                                                child: Icon(
-                                                  Icons.arrow_forward,
-                                                  color: AppColors.white,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ))),
-                ),
+                          ),
+                        ))),
                 Positioned(
                   top: constraints.maxHeight * 0.3,
                   left: constraints.maxWidth * 0.01,

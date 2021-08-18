@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/models/chapter_tree.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/chapter_navigation_tree.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
@@ -20,7 +22,6 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  List<Widget> chapterNavigation = [];
   final height = window.physicalSize.height / window.devicePixelRatio;
   final width = window.physicalSize.width / window.devicePixelRatio;
   GlobalKey chaptersPartWidgetKey = GlobalKey();
@@ -28,25 +29,81 @@ class _NavigationPageState extends State<NavigationPage> {
   List<LeafDetails> navigationTreeLeafs = [];
   List<Widget> navigationTreeWidget = [];
 
+  List<ChapterDetails> chapterNavigation = [];
+  List<Widget> chapterNavigationWidgets = [];
+
   @override
   void initState() {
     super.initState();
 
     chapterNavigation = [
-      chapterNavigationPoints(
-          nameOfChapter: ' to do no harm', numberOfChapter: 'chapter1 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' forty days', numberOfChapter: 'chapter2 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' beard of life', numberOfChapter: 'chapter3 '),
-      chapterNavigationPoints(
+      ChapterDetails(
+          vertex: Vertex(
+            index: 0,
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            adjacentEdges: [1],
+            visited: ChapterDetails.visitedVertexes.contains(0),
+          ),
+          onTap: () {
+            print('0');
+          },
+          nameOfChapter: ' to do no harm',
+          numberOfChapter: 'chapter1 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 1,
+            adjacentEdges: [2],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(1),
+          ),
+          onTap: () {
+            print('1');
+          },
+          nameOfChapter: ' forty days',
+          numberOfChapter: 'chapter2 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 2,
+            adjacentEdges: [3],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(2),
+          ),
+          onTap: () {
+            print('2');
+          },
+          nameOfChapter: ' beard of life',
+          numberOfChapter: 'chapter3 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 3,
+            adjacentEdges: [4],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(3),
+          ),
+          onTap: () {
+            print('3');
+          },
           nameOfChapter: ' red pepper and black pepper',
           numberOfChapter: 'chapter4 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' positive',
-          numberOfChapter: 'chapter5 ',
-          start: const Offset(0, 0),
-          end: const Offset(0, 0)),
+      ChapterDetails(
+        vertex: Vertex(
+          index: 4,
+          currentVertex: ChapterDetails.currentVertex,
+          path: '',
+          visited: ChapterDetails.visitedVertexes.contains(4),
+        ),
+        onTap: () {
+          print('4');
+        },
+        nameOfChapter: ' positive',
+        numberOfChapter: 'chapter5 ',
+        end: const Offset(0, 0),
+        start: const Offset(0, 0),
+      ),
     ];
 
     navigationTreeLeafs = [
@@ -505,7 +562,21 @@ class _NavigationPageState extends State<NavigationPage> {
       );
     }
 
+    for (int index = 0; index < chapterNavigation.length; index++) {
+      chapterNavigationWidgets.add(
+        ChapterNavigationTree(
+          details: chapterNavigation[index],
+          isAbleToNavigate: isAbleToNavigateCapter(),
+          onTap: chapterNavigation[index].onTap,
+        ),
+      );
+    }
+
     super.didChangeDependencies();
+  }
+
+  bool isAbleToNavigateCapter() {
+    return false;
   }
 
   bool isAbleToNavigate({required Vertex vertex}) {
@@ -572,7 +643,7 @@ class _NavigationPageState extends State<NavigationPage> {
                             key: chaptersPartWidgetKey,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: chapterNavigation,
+                            children: chapterNavigationWidgets,
                           ),
                           const SizedBox(
                             width: 500,
@@ -592,51 +663,6 @@ class _NavigationPageState extends State<NavigationPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  // Future<Size> waitLayoutBuildsFuture() async {
-  //   await Future.delayed(const Duration(milliseconds: 10));
-
-  //   RenderBox? renderBox =
-  //       chaptersPartWidgetKey.currentContext!.findRenderObject()! as RenderBox;
-
-  //   return renderBox.size;
-  // }
-
-  Widget chapterNavigationPoints(
-      {required String numberOfChapter,
-      required String nameOfChapter,
-      Offset? start,
-      Offset? end}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 60),
-      child: Row(
-        children: [
-          Text(numberOfChapter),
-          SizedBox(
-            child: CustomPaint(
-              painter: DrowCircleAndLine(
-                currentColor: Colors.black,
-                color: Colors.white,
-                strat: start ?? const Offset(8, 30),
-                end: end ?? const Offset(8, 60),
-              ),
-              child: const SizedBox(
-                height: 15,
-                width: 15,
-                child: Center(
-                  child: Text(
-                    "",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Text(nameOfChapter),
-        ],
       ),
     );
   }

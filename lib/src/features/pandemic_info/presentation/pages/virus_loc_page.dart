@@ -43,7 +43,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLocMap),
+                      image: AssetImage(AssetsPath.virusLoc1),
                       fit: BoxFit.cover)),
             ),
             Line(

@@ -92,7 +92,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                       top: constraints.maxHeight * 0.15,
                     ),
                     child: AutoSizeText(
-                      locales.glosssary.toUpperCase(),
+                      locales.glossary.toUpperCase(),
                       style: Theme.of(context).textTheme.headline2,
                     ),
                   )),

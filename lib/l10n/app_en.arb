@@ -19,9 +19,9 @@
     "@chapter1Name": {
       "description": "Chapter 1 / Plague & Political Instability"
     },
-    "keyPeopleOfTheAge": "key poeople of the age",
+    "keyPeopleOfTheAge": "key people of the age",
     "@keyPeopleOfTheAge": {
-      "keyPeopleOfTheAge": "key poeople of the age"
+      "keyPeopleOfTheAge": "key people of the age"
     },
     "battleOfThermopylae": "415, Battle of Thermopylae\n",
     "@battleOfThermopylae": {
@@ -89,9 +89,9 @@
     "@eventTimeline": {
       "description": "quiz"
     },
-    "glosssary": "glosssary",
+    "glossary": "glossary",
     "@eventTimeline": {
-      "description": "glosssary"
+      "description": "glossary"
     },
     "sovereignty": "Sovereignty",
     "@eventTimeline": {

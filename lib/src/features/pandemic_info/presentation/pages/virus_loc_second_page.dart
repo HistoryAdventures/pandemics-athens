@@ -44,7 +44,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLocMap),
+                      image: AssetImage(AssetsPath.virusLoc2),
                       fit: BoxFit.cover)),
             ),
             AnimatedLine(
