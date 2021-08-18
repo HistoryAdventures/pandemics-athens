@@ -187,7 +187,6 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
                                     animation: animation,
-                                    tween: Offsets.tween,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
                                     locals: locals,

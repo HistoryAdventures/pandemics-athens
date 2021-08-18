@@ -10,7 +10,6 @@ import 'dialog_image.dart';
 
 class DialogWidget extends StatefulWidget {
   final Animation<double> animation;
-  final Animatable<Offset> tween;
   final BoxConstraints constraints;
   final AppLocalizations locals;
   final InfoDialogModel slectedInfoDialog;
@@ -19,7 +18,6 @@ class DialogWidget extends StatefulWidget {
   const DialogWidget(
       {Key? key,
       required this.animation,
-      required this.tween,
       required this.slectedInfoDialog,
       required this.listDialogInfo,
       required this.constraints,
@@ -90,8 +88,8 @@ class _DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: SlideTransition(
-        position: widget.animation.drive(widget.tween),
+      child: FadeTransition(
+        opacity: widget.animation,
         child: Container(
           width: widget.constraints.maxWidth,
           height: widget.constraints.maxHeight,

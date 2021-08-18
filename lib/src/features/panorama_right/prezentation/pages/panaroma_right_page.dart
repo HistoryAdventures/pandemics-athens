@@ -24,9 +24,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
 
-  final begin = const Offset(0.0, -1.0);
-  final end = Offset.zero;
-  final curve = Curves.easeInBack;
   //final backgroundplayer = AudioPlayer();
   //final openInfoPlayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -184,7 +181,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
                                     animation: animation,
-                                    tween: Offsets.tween,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
                                     locals: locals,
