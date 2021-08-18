@@ -152,7 +152,7 @@ class _LeandingPageState extends State<LeandingPage>
                               height: constraints.maxHeight * 0.55,
                               width: constraints.maxWidth * 0.55,
                               child: Transform.translate(
-                                offset: Offset(offset.dx * 0.1, 0),
+                                offset: Offset(offset.dx * 0.02, 0),
                                 child: GifImage(
                                   image: const AssetImage(AssetsPath.gifVirus),
                                   controller: controller,
