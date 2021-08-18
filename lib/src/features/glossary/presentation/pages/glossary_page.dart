@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import "package:universal_html/html.dart" as html;
 
 import 'package:auto_route/auto_route.dart';
@@ -127,31 +128,41 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.05),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                  child: AutoSizeText(
-                                _selectedtItem.substring(2),
-                                maxLines: 1,
-                                minFontSize: 5,
-                                style: Theme.of(context).textTheme.headline5,
-                              )),
-                              Flexible(
-                                  child: SingleChildScrollView(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 18.0),
-                                  child: Text(
-                                    _selectedtText,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        ?.copyWith(fontSize: 20),
+                          child: AnimatedSwitcher(
+                            duration: Times.medium,
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: Column(
+                              key: ValueKey(_selectedtItem),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                    child: AutoSizeText(
+                                  _selectedtItem.substring(2),
+                                  maxLines: 1,
+                                  minFontSize: 5,
+                                  style: Theme.of(context).textTheme.headline5,
+                                )),
+                                Flexible(
+                                    child: SingleChildScrollView(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 18.0),
+                                    child: Text(
+                                      _selectedtText,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          ?.copyWith(fontSize: 20),
+                                    ),
                                   ),
-                                ),
-                              ))
-                            ],
+                                ))
+                              ],
+                            ),
                           ),
                         ),
                       ),
