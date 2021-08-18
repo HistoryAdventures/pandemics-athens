@@ -74,6 +74,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   late AppLocalizations locals;
   bool isImageloaded = false;
+  bool _lernMoreVisibility = false;
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -167,7 +168,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine &&
           _scrollController.offset < _scrollrateNine + 300) {
         _lernMoreOpasyty = 1;
+        setState(() {
+          _lernMoreVisibility = true;
+        });
       } else {
+        setState(() {
+          _lernMoreVisibility = false;
+        });
         _lernMoreOpasyty = 0;
       }
       if (_scrollController.offset > _scrollrateEleven &&
@@ -446,77 +453,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     ),
                   ),
                 ),
-                AnimatedOpacity(
-                    duration: Times.medium,
-                    opacity: _lernMoreOpasyty,
-                    child: Align(
-                        alignment: Alignment.topRight,
-                        child: Clickable(
-                          onPressed: () {
-                            LeafDetails.visitedVertexes.add(4);
-                            LeafDetails.currentVertex = 4;
-                            context.router.push(const MapPageRoute());
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 100, right: 50),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 18.0, vertical: 5),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // AutoSizeText(
-                                        //   locals.learnMore.toUpperCase(),
-                                        //   minFontSize: 5,
-                                        //   maxLines: 1,
-                                        //   style: Theme.of(context)
-                                        //       .textTheme
-                                        //       .bodyText2
-                                        //       ?.copyWith(
-                                        //           color: AppColors.white,
-                                        //           fontSize: 10),
-                                        // ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            AutoSizeText(
-                                              locals.athens5thCentury
-                                                  .toUpperCase(),
-                                              minFontSize: 5,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .caption
-                                                  ?.copyWith(
-                                                      color: AppColors.white,
-                                                      fontSize: 50),
-                                            ),
-                                            const SizedBox(
-                                              height: 50,
-                                              width: 50,
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: AppColors.white,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ))),
                 Positioned(
                   top: constraints.maxHeight * 0.3,
                   left: constraints.maxWidth * 0.01,
@@ -709,6 +645,61 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   onTapMenu: () {
                     scaffoldkey.currentState!.openEndDrawer();
                   },
+                ),
+                AnimatedOpacity(
+                  duration: Times.medium,
+                  opacity: _lernMoreOpasyty,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 100, right: 50),
+                      child: Clickable(
+                        onPressed: () {
+                          LeafDetails.visitedVertexes.add(4);
+                          LeafDetails.currentVertex = 4;
+                          context.router.push(const MapPageRoute());
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 18.0, vertical: 5),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText(
+                                      locals.athens5thCentury.toUpperCase(),
+                                      minFontSize: 5,
+                                      maxLines: 1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          ?.copyWith(
+                                              color: AppColors.white,
+                                              fontSize: 50),
+                                    ),
+                                    const SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        size: 50,
+                                        color: AppColors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

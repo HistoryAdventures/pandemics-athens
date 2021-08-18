@@ -155,6 +155,18 @@ class _QuizPageState extends State<QuizPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SoundAndMenuWidget(
+            widget: IconButton(
+              onPressed: () {
+                LeafDetails.currentVertex = 15;
+                if (kIsWeb) {
+                  html.window.history.back();
+                  context.router.pop();
+                } else {
+                  context.router.pop();
+                }
+              },
+              icon: const Icon(Icons.arrow_upward),
+            ),
             icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
             onTapVolume: isSoundOn
                 ? () {
@@ -172,20 +184,6 @@ class _QuizPageState extends State<QuizPage> {
             onTapMenu: () {
               scaffoldkey.currentState!.openEndDrawer();
             },
-          ),
-          Flexible(
-            child: IconButton(
-              onPressed: () {
-                LeafDetails.currentVertex = 15;
-                if (kIsWeb) {
-                  html.window.history.back();
-                  context.router.pop();
-                } else {
-                  context.router.pop();
-                }
-              },
-              icon: const Icon(Icons.arrow_upward),
-            ),
           ),
           Expanded(
             flex: 5,
