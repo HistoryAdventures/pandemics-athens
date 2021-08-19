@@ -100,8 +100,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: constraints.maxWidth * 0.1),
-                  width: constraints.maxWidth * 0.7,
-                  height: constraints.maxHeight * 0.45,
+                  width: constraints.maxWidth * 0.75,
+                  height: constraints.maxHeight * 0.5,
                   decoration: const BoxDecoration(
                     color: AppColors.white,
                     boxShadow: [

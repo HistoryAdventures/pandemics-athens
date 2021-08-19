@@ -439,6 +439,7 @@ class _MapPageState extends State<MapPage> {
                                       child: Clickable(
                                         onPressed: () {
                                           showGeneralDialog(
+                                            
                                               context: context,
                                               barrierColor:
                                                   Colors.black.withOpacity(0.5),
