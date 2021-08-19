@@ -12,7 +12,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widgets/arrow_widget.dart';
 
 class VirusLocationPage extends StatefulWidget {
   const VirusLocationPage({Key? key}) : super(key: key);
@@ -45,9 +44,6 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   image: DecorationImage(
                       image: AssetImage(AssetsPath.virusLoc1),
                       fit: BoxFit.cover)),
-            ),
-            Line(
-              constraints: constraints,
             ),
             Align(
                 alignment: Alignment.topLeft,

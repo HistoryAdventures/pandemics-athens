@@ -20,6 +20,7 @@ class AssetsPath {
 
   static const String gifTyphoid = 'assets/virus_gif/typhoid.gif';
   static const String gifEbola = 'assets/virus_gif/ebola.gif';
+  static const String glossaryBk = 'assets/image_back/glossary_bk.png';
 
   static const String gifBubonic = 'assets/virus_gif/bubonic.gif';
   static const String charactersBackgroundImage =

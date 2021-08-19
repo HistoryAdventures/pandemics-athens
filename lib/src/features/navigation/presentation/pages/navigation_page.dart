@@ -6,12 +6,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/models/chapter_tree.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/widgets/chapter_navigation_tree.dart';
-import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../models/leaf_detail_model.dart';
-import '../widgets/drow_circle_line.dart';
 import '../widgets/navigation_tree.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -46,7 +44,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: ChapterDetails.visitedVertexes.contains(0),
           ),
           onTap: () {
-            print('0');
+            // print('0');
           },
           nameOfChapter: ' to do no harm',
           numberOfChapter: 'chapter1 '),
@@ -59,7 +57,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: ChapterDetails.visitedVertexes.contains(1),
           ),
           onTap: () {
-            print('1');
+            // print('1');
           },
           nameOfChapter: ' forty days',
           numberOfChapter: 'chapter2 '),
@@ -72,7 +70,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: ChapterDetails.visitedVertexes.contains(2),
           ),
           onTap: () {
-            print('2');
+            // print('2');
           },
           nameOfChapter: ' beard of life',
           numberOfChapter: 'chapter3 '),
@@ -85,7 +83,7 @@ class _NavigationPageState extends State<NavigationPage> {
             visited: ChapterDetails.visitedVertexes.contains(3),
           ),
           onTap: () {
-            print('3');
+            // print('3');
           },
           nameOfChapter: ' red pepper and black pepper',
           numberOfChapter: 'chapter4 '),
@@ -97,7 +95,7 @@ class _NavigationPageState extends State<NavigationPage> {
           visited: ChapterDetails.visitedVertexes.contains(4),
         ),
         onTap: () {
-          print('4');
+          // print('4');
         },
         nameOfChapter: ' positive',
         numberOfChapter: 'chapter5 ',
@@ -116,7 +114,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [1]),
         onTap: () {
           LeafDetails.currentVertex = 0;
-          print("object");
+          // print("object");
 
           context.router.replace(const LeandingPageRoute());
         },
@@ -546,10 +544,7 @@ class _NavigationPageState extends State<NavigationPage> {
         title: 'copyright',
       ),
     ];
-  }
 
-  @override
-  void didChangeDependencies() {
     for (int index = 0; index < navigationTreeLeafs.length; index++) {
       navigationTreeWidget.add(
         NavigationTree(
@@ -571,8 +566,6 @@ class _NavigationPageState extends State<NavigationPage> {
         ),
       );
     }
-
-    super.didChangeDependencies();
   }
 
   bool isAbleToNavigateCapter() {
@@ -626,7 +619,7 @@ class _NavigationPageState extends State<NavigationPage> {
                   )),
               const SizedBox(height: 50),
               Align(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 child: SingleChildScrollView(
                   child: Container(
                     margin: EdgeInsets.only(
@@ -639,14 +632,18 @@ class _NavigationPageState extends State<NavigationPage> {
                         // scrollDirection: Axis.horizontal,
                         // physics: const ClampingScrollPhysics(),
                         children: [
-                          Column(
-                            key: chaptersPartWidgetKey,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: chapterNavigationWidgets,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.1,
                           ),
-                          const SizedBox(
-                            width: 500,
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: chapterNavigationWidgets,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.2,
                           ),
                           SizedBox(
                             width: 500,

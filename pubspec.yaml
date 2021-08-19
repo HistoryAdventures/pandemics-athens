@@ -105,6 +105,7 @@ flutter:
     - assets/dead_socrates/
     - assets/end_war/
     - assets/imgs/
+    - assets/map/
     - assets/paralax_new/
     # - animated_particles/assets/imgs/
 
@@ -120,4 +121,5 @@ flutter:
 
     - family: Lora
       fonts:
-        - asset: fonts/Lora.ttf
+        - asset: fonts/Lora-Italic.ttf
+        - asset: fonts/Lora-Regular.ttf

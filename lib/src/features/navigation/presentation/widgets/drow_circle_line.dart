@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class DrowCircleAndLine extends CustomPainter {
     final rect = Rect.fromLTRB(0.0, 0.0, size.width, size.height);
     final circleSize = rect.width / 2;
     final area = circleSize * circleSize;
-    final radius1 = sqrt(area * 1.5);
+    final radius1 = sqrt(area * 2);
     final radius2 = sqrt(area);
     final radius3 = sqrt(area * 0.3);
 

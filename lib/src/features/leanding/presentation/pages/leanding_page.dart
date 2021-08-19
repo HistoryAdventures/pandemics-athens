@@ -105,6 +105,7 @@ class _LeandingPageState extends State<LeandingPage>
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Expanded(
+                            flex: 2,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -126,7 +127,11 @@ class _LeandingPageState extends State<LeandingPage>
                                   child: AutoSizeText(
                                     locales.worldOfCharacters.toUpperCase(),
                                     maxLines: 1,
-                                    style: Theme.of(context).textTheme.overline,
+                                    maxFontSize: 100,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .overline
+                                        ?.copyWith(fontSize: 100),
                                   ),
                                 ),
                                 Flexible(

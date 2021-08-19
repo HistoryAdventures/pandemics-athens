@@ -74,7 +74,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   late AppLocalizations locals;
   bool isImageloaded = false;
-  bool _lernMoreVisibility = false;
+  // bool _lernMoreVisibility = false;
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -168,13 +168,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine &&
           _scrollController.offset < _scrollrateNine + 300) {
         _lernMoreOpasyty = 1;
-        setState(() {
-          _lernMoreVisibility = true;
-        });
       } else {
-        setState(() {
-          _lernMoreVisibility = false;
-        });
         _lernMoreOpasyty = 0;
       }
       if (_scrollController.offset > _scrollrateEleven &&
@@ -284,6 +278,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           Container(
                             height: constraints.maxHeight * 10,
                             //color: Colors.transparent,
+
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
@@ -392,50 +387,39 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: AnimatedOpacity(
                     duration: Times.slower,
                     opacity: _bottomFieldOpasity,
-                    child: Container(
-                      // padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
                       height: constraints.maxHeight * 0.1,
-                      decoration:
-                          BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            flex: 2,
-                            child: SizedBox(
-                              child: ArrowLeftWidget(
-                                  arrowColor: Colors.black,
-                                  textSubTitle: locals.stickToTheOath,
-                                  textTitle: '',
-                                  onTap: () {
-                                    LeafDetails.currentVertex = 8;
-                                    LeafDetails.visitedVertexes.add(8);
-                                    context.router
-                                        .push(const PanaromaLeftPageRoute());
-                                  }),
-                            ),
+                            child: ArrowLeftWidget(
+                                arrowColor: Colors.black,
+                                textSubTitle: locals.stickToTheOath,
+                                textTitle: '',
+                                onTap: () {
+                                  LeafDetails.currentVertex = 8;
+                                  LeafDetails.visitedVertexes.add(8);
+                                  context.router
+                                      .push(const PanaromaLeftPageRoute());
+                                }),
                           ),
-                          Expanded(
+                          Flexible(
                             flex: 3,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: AutoSizeText(
-                                locals.whatNikosDo,
-                                maxLines: 1,
-                                minFontSize: 5,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.normal),
-                              ),
+                            child: AutoSizeText(
+                              locals.whatNikosDo,
+                              maxLines: 1,
+                              minFontSize: 5,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w400),
                             ),
                           ),
                           Expanded(
-                            flex: 2,
                             child: ArrowRightWidget(
                                 textSubTitle: locals.helpTheSenator,
                                 textTitle: '',
@@ -458,7 +442,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   left: constraints.maxWidth * 0.01,
                   child: Container(
                     width: constraints.maxWidth * 0.4,
-                    padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
+                    padding: EdgeInsets.only(left: constraints.maxWidth * 0.05),
                     child: AnimatedOpacity(
                       opacity: _topTextOpasyty,
                       duration: Times.fast,
@@ -479,7 +463,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2
-                                  ?.copyWith(fontSize: 80),
+                                  ?.copyWith(
+                                      fontSize: 80,
+                                      fontStyle: FontStyle.italic),
                             ),
                           ),
                           Container(
@@ -493,7 +479,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               minFontSize: 8,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2
+                                  .headline4
                                   ?.copyWith(
                                     fontSize: 80,
                                     fontWeight: FontWeight.w100,

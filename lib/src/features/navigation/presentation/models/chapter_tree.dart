@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
 
 import 'package:flutter/material.dart';

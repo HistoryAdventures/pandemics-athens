@@ -289,13 +289,18 @@ class _DocumentPageState extends State<DocumentPage>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                AutoSizeText(
-                                                  locale
-                                                      .chapter1MedicalToolsKnowledge,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: AutoSizeText(
+                                                    locale
+                                                        .chapter1MedicalToolsKnowledge,
+                                                    maxLines: 1,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1,
+                                                  ),
                                                 ),
                                                 AutoSizeText(
                                                   locale

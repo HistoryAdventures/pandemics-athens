@@ -79,8 +79,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
           width: constraints.maxWidth,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AssetsPath.charactersBackgroundImage),
-                fit: BoxFit.cover),
+                image: AssetImage(AssetsPath.glossaryBk), fit: BoxFit.cover),
           ),
           child: Stack(
             children: [
@@ -101,8 +100,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: constraints.maxWidth * 0.1),
-                  width: constraints.maxWidth * 0.9,
-                  height: constraints.maxHeight * 0.5,
+                  width: constraints.maxWidth * 0.7,
+                  height: constraints.maxHeight * 0.45,
                   decoration: const BoxDecoration(
                     color: AppColors.white,
                     boxShadow: [
@@ -125,9 +124,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     children: [
                       Expanded(
                         flex: 2,
-                        child: Padding(
+                        child: Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: constraints.maxWidth * 0.05),
+                              horizontal: constraints.maxWidth * 0.03),
                           child: AnimatedSwitcher(
                             duration: Times.medium,
                             transitionBuilder: (child, animation) {
@@ -243,13 +242,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Flexible(
-                            child: Icon(
-                              Icons.south,
-                              size: constraints.maxHeight * 0.04,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Flexible(
                             child: AutoSizeText(
                               locales.chapter1.toUpperCase(),
                               style: Theme.of(context).textTheme.subtitle2,
@@ -259,6 +251,13 @@ class _GlossaryPageState extends State<GlossaryPage> {
                             child: AutoSizeText(
                               locales.todoNoHarm,
                               style: Theme.of(context).textTheme.headline2,
+                            ),
+                          ),
+                          Flexible(
+                            child: Icon(
+                              Icons.south,
+                              size: constraints.maxHeight * 0.04,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -298,6 +297,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
               child: AutoSizeText(

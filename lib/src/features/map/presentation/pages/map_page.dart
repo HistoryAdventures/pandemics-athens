@@ -500,20 +500,26 @@ class _MapPageState extends State<MapPage> {
                                                       color: AppColors.grey,
                                                       width: 1.2))),
                                           child: Column(
+                                            mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Flexible(
-                                                child: AutoSizeText(
-                                                  locals
-                                                      .chapter1Athens5thCentury,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          color:
-                                                              AppColors.grey),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: AutoSizeText(
+                                                    locals
+                                                        .chapter1Athens5thCentury,
+                                                    maxLines: 1,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1
+                                                        ?.copyWith(
+                                                            color:
+                                                                AppColors.grey),
+                                                  ),
                                                 ),
                                               ),
                                               Flexible(
@@ -579,17 +585,22 @@ class _MapPageState extends State<MapPage> {
                                               color: AppColors.grey,
                                               width: 1.2))),
                                   child: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
-                                          child: AutoSizeText(
-                                        locals.chapter1Athens5thCentury,
-                                        maxLines: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1
-                                            ?.copyWith(color: AppColors.grey),
+                                          child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8.0),
+                                        child: AutoSizeText(
+                                          locals.chapter1Athens5thCentury,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1
+                                              ?.copyWith(color: AppColors.grey),
+                                        ),
                                       )),
                                       Flexible(
                                         child: AutoSizeText(

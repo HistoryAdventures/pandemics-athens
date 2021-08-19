@@ -21,15 +21,21 @@ class AppTextStyle {
     color: AppColors.blackB,
   );
 
+  static const _titleTextStyleLoraItalic = TextStyle(
+    fontFamily: AppFontFamily.lora,
+    fontStyle: FontStyle.italic,
+    color: AppColors.blackB,
+  );
   static const _titleTextStyleLora = TextStyle(
     fontFamily: AppFontFamily.lora,
+    fontStyle: FontStyle.normal,
     color: AppColors.blackB,
   );
 
   /// Headline 1 Text Style
   static TextStyle get headline1 {
     return _baseTextStyle.copyWith(
-      fontSize: 24,
+      fontSize: 16,
       //fontWeight: AppFontWeight.medium,
     );
   }
@@ -37,7 +43,7 @@ class AppTextStyle {
   /// Headline 2 Text Style
   static TextStyle get headline2 {
     return _titleTextStyleBold.copyWith(
-      fontSize: 36,
+      fontSize: 32,
       // fontWeight: AppFontWeight.regular,
     );
   }
@@ -52,9 +58,8 @@ class AppTextStyle {
 
   /// Headline 4 Text Style
   static TextStyle get headline4 {
-    return _baseTextStyle.copyWith(
-      fontSize: 22,
-      fontWeight: AppFontWeight.bold,
+    return _titleTextStyleLoraItalic.copyWith(
+      fontSize: 16,
     );
   }
 
@@ -69,7 +74,7 @@ class AppTextStyle {
   /// Headline 6 Text Style
   static TextStyle get headline6 {
     return _baseTextStyle.copyWith(
-      fontSize: 10,
+      fontSize: 12,
       //fontWeight: AppFontWeight.bold,
     );
   }
