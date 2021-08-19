@@ -62,11 +62,15 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
               Align(
                 child: Container(
                   margin: EdgeInsets.only(
-                      bottom: 80, top: constraints.maxHeight * 0.18),
+                    bottom: 80,
+                    top: constraints.maxHeight * 0.18,
+                    left: constraints.maxWidth * 0.1,
+                    right: constraints.maxWidth * 0.1,
+                  ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        flex: 2,
+                      Flexible(
                         child: SizedBox(
                           height: constraints.maxHeight,
                           child: AnimatedSwitcher(
@@ -174,7 +178,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
-                                flex: 6,
+                                flex: 10,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
