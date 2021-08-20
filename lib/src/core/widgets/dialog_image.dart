@@ -37,32 +37,39 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
             future: imageSize(),
             builder: (context, snapshot) {
               return Container(
+                color: AppColors.green,
                 width: snapshot.data?.width,
-                height: snapshot.data?.height,
+                height: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(
+                    vertical: widget.constraints.maxHeight * 0.1),
                 child: Scaffold(
-                  backgroundColor: AppColors.white,
-                  body: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
+                  body: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(
                           child: Image.asset(
                             widget.selectedImage,
                             fit: BoxFit.cover,
                             key: imageKey,
                           ),
                         ),
-                        Container(
+                      ),
+                      Expanded(
+                        child: Container(
                           width: snapshot.data?.width,
-                          child: Text(
-                            widget.selectedImageText,
-                            style: Theme.of(context).textTheme.subtitle1,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              widget.selectedImageText,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               );
@@ -74,7 +81,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
   Future<Size> imageSize() async {
     await Future.delayed(const Duration(milliseconds: 10));
 
-   final RenderBox renderBox =
+    final RenderBox renderBox =
         imageKey.currentContext!.findRenderObject()! as RenderBox;
 
     return renderBox.size;

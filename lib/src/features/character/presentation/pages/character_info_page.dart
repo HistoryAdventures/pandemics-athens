@@ -138,19 +138,14 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Flexible(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8.0),
-                                              child: AutoSizeText(
-                                                locale.chapter1Athens5thCentury,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1
-                                                    ?.copyWith(
-                                                        color:
-                                                            AppColors.black54),
-                                              ),
+                                            child: AutoSizeText(
+                                              locale.chapter1Athens5thCentury,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(
+                                                      color: AppColors.black54),
                                             ),
                                           ),
                                           Flexible(
@@ -178,7 +173,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 ),
                               ),
                               Expanded(
-                                flex: 10,
+                                flex: 8,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
