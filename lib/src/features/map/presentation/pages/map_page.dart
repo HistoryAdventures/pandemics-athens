@@ -439,7 +439,6 @@ class _MapPageState extends State<MapPage> {
                                       child: Clickable(
                                         onPressed: () {
                                           showGeneralDialog(
-                                            
                                               context: context,
                                               barrierColor:
                                                   Colors.black.withOpacity(0.5),
@@ -506,21 +505,15 @@ class _MapPageState extends State<MapPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Flexible(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 8.0),
-                                                  child: AutoSizeText(
-                                                    locals
-                                                        .chapter1Athens5thCentury,
-                                                    maxLines: 1,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1
-                                                        ?.copyWith(
-                                                            color:
-                                                                AppColors.grey),
-                                                  ),
+                                                child: AutoSizeText(
+                                                  "${locals.chapter1Athens5thCentury}\n",
+                                                  maxLines: 2,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.copyWith(
+                                                          color:
+                                                              AppColors.grey),
                                                 ),
                                               ),
                                               Flexible(
@@ -591,17 +584,13 @@ class _MapPageState extends State<MapPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
-                                          child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 8.0),
-                                        child: AutoSizeText(
-                                          locals.chapter1Athens5thCentury,
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1
-                                              ?.copyWith(color: AppColors.grey),
-                                        ),
+                                          child: AutoSizeText(
+                                        "${locals.chapter1Athens5thCentury}\n",
+                                        maxLines: 2,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1
+                                            ?.copyWith(color: AppColors.grey),
                                       )),
                                       Flexible(
                                         child: AutoSizeText(

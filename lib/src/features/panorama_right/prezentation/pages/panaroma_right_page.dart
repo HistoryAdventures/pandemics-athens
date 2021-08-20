@@ -183,7 +183,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                                     animation: animation,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
-                                    locals: locals,
                                     listDialogInfo: infoList,
                                   ));
                         },

@@ -233,8 +233,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                   children: [
                                     Flexible(
                                       child: AutoSizeText(
-                                        locale.chapter1Pathogenprofile,
-                                        maxLines: 1,
+                                        "${locale.chapter1Pathogenprofile}\n",
+                                        maxLines: 2,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1

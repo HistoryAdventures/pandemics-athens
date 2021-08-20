@@ -139,8 +139,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         children: [
                                           Flexible(
                                             child: AutoSizeText(
-                                              locale.chapter1Athens5thCentury,
-                                              maxLines: 1,
+                                              "${locale.chapter1Athens5thCentury}\n",
+                                              maxLines: 2,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline1

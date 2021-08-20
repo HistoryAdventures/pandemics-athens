@@ -11,18 +11,17 @@ import 'dialog_image.dart';
 class DialogWidget extends StatefulWidget {
   final Animation<double> animation;
   final BoxConstraints constraints;
-  final AppLocalizations locals;
+
   final InfoDialogModel slectedInfoDialog;
   final List<InfoDialogModel> listDialogInfo;
 
-  const DialogWidget(
-      {Key? key,
-      required this.animation,
-      required this.slectedInfoDialog,
-      required this.listDialogInfo,
-      required this.constraints,
-      required this.locals})
-      : super(key: key);
+  const DialogWidget({
+    Key? key,
+    required this.animation,
+    required this.slectedInfoDialog,
+    required this.listDialogInfo,
+    required this.constraints,
+  }) : super(key: key);
 
   @override
   _DialogWidgetState createState() => _DialogWidgetState();
@@ -35,6 +34,8 @@ class _DialogWidgetState extends State<DialogWidget> {
   late String _infoText;
   late String _selectedImageText;
 
+  late AppLocalizations locals;
+
   @override
   void initState() {
     _selectedItem = widget.slectedInfoDialog.title;
@@ -44,6 +45,12 @@ class _DialogWidgetState extends State<DialogWidget> {
 
     _selectedSubTitle = widget.slectedInfoDialog.subTitle;
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
   }
 
   void chandeState(String? selctedItem, String? image, String? textDescription,
@@ -166,7 +173,6 @@ class _DialogWidgetState extends State<DialogWidget> {
                           padding: const EdgeInsets.only(left: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Flexible(
                                   flex: 2,
@@ -185,10 +191,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                                             children: [
                                               Flexible(
                                                 child: AutoSizeText(
-                                                  AppLocalizations.of(context)!
-                                                      .chapter1Name
+                                                  "${locals.chapter1Name}\n"
                                                       .toUpperCase(),
-                                                  maxLines: 1,
+                                                  maxLines: 2,
                                                   minFontSize: 10,
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -200,7 +205,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                               ),
                                               Flexible(
                                                 child: AutoSizeText(
-                                                    widget.locals
+                                                    locals
                                                         .plaguePoliticalInstability,
                                                     minFontSize: 13,
                                                     maxLines: 1,
@@ -219,7 +224,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                 child: const Icon(Icons.clear)))
                                       ])),
                               Expanded(
-                                flex: 6,
+                                flex: 8,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(

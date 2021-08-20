@@ -147,12 +147,13 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                               flex: 2,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(
-                                      locale.chapter1PlagueAndPersecution
+                                      "${locale.chapter1PlagueAndPersecution}\n"
                                           .toUpperCase(),
-                                      maxLines: 1,
+                                      maxLines: 2,
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline1
@@ -170,34 +171,41 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                               ),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 8,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
-                                  top: BorderSide(
-                                      color: AppColors.grey, width: 1.2),
-                                )),
-                                child: ListView(shrinkWrap: true, children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                        text:
-                                            '$_selectedItem\n\n'.toUpperCase(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline3,
-                                      ),
-                                      TextSpan(
-                                        text: _selectedText,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      ),
-                                    ])),
-                                  )
-                                ]),
+                                        top: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                        bottom: BorderSide(
+                                            color: AppColors.grey,
+                                            width: 1.2))),
+                                child: ListView(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shrinkWrap: true,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: RichText(
+                                            text: TextSpan(children: [
+                                          TextSpan(
+                                            text: '$_selectedItem\n\n'
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline3,
+                                          ),
+                                          TextSpan(
+                                            text: _selectedText,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                          ),
+                                        ])),
+                                      )
+                                    ]),
                               ),
                             ),
                             Flexible(

@@ -101,11 +101,12 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                                           children: [
                                             Flexible(
                                               child: AutoSizeText(
-                                                  locals.chapter1,
-                                                  maxLines: 1,
+                                                  '${locals.chapter1}\n',
+                                                  maxLines: 2,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle2),
+                                                      .headline1
+                                                      ?.copyWith(fontSize: 22)),
                                             ),
                                             Flexible(
                                               child: AutoSizeText(

@@ -88,11 +88,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
-                                      locals.chapter1Pathogenprofile,
-                                      maxLines: 1,
+                                      "${locals.chapter1Pathogenprofile}\n",
+                                      maxLines: 2,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .subtitle2),
+                                          .headline1),
                                 ),
                                 Flexible(
                                   child: AutoSizeText(

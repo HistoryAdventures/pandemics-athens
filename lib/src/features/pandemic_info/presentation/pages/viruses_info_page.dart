@@ -174,8 +174,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(
-                                      locals.chapter1Pathogenprofile,
-                                      maxLines: 1,
+                                      "${locals.chapter1Pathogenprofile}\n",
+                                      maxLines: 2,
                                       style: DefaultTheme
                                           .standard.textTheme.headline1
                                           ?.copyWith(color: AppColors.black54),
