@@ -194,6 +194,15 @@ class _DocumentPageState extends State<DocumentPage>
               onPressed: _scaleDown,
               child: const Icon(Icons.remove, color: AppColors.blackB),
             ),
+            const SizedBox(
+              width: 15,
+            ),
+            FloatingActionButton(
+              heroTag: "bt[]",
+              backgroundColor: AppColors.white,
+              onPressed: () {},
+              child: const Icon(Icons.crop_free, color: AppColors.blackB),
+            ),
           ],
         ),
         body: LayoutBuilder(

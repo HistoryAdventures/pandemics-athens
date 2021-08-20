@@ -159,7 +159,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                 child: Container(
                                   color: Colors.black,
                                   child: const Icon(
-                                    Icons.add,
+                                    Icons.zoom_in,
                                     color: Colors.white,
                                   ),
                                 ),

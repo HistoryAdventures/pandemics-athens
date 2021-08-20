@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -56,8 +57,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   Animation<double>? animationForCharacterNikos;
   AnimationController? _animationControllerForClouds;
   Animation<double>? animationForClouds;
-  double _progress1 = -200;
+  double _progress_caracter_nikos = -200;
   double _progress2 = -200;
+
+  late GifController gifControllerCharacter_2;
 
   double _topTextOpasyty = 1;
 
@@ -83,7 +86,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     AssetsPath.characterNikosGif,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
-    AssetsPath.paralaxCharacter_2,
     AssetsPath.paralaxCharacter_11,
     AssetsPath.paralaxCharacters_2,
   ];
@@ -98,6 +100,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
+    gifControllerCharacter_2 = GifController(vsync: this);
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -121,7 +124,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateEight = height * 9;
     rateNine = height * 9.3;
     rateTen = height * 11;
-    rateEleven = height * 13.5;
+    rateEleven = height * 13.3;
     rateTwelv = height * 14;
 
     _scrollFour = height * 2.3;
@@ -143,6 +146,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           _scrollController.offset >=
               _scrollController.position.maxScrollExtent - 100) {
         _bottomFieldOpasity = 1;
+
+        //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+        gifControllerCharacter_2.animateTo(
+          253,
+          duration: const Duration(seconds: 4),
+        );
       } else {
         _bottomFieldOpasity = 0;
       }
@@ -192,7 +201,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ..addListener(() {
                   if (mounted) {
                     setState(() {
-                      _progress1 = animationForCharacterNikos!.value;
+                      _progress_caracter_nikos =
+                          animationForCharacterNikos!.value;
                     });
                   }
                 });
@@ -213,6 +223,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void dispose() {
     _animationControllerForCharacterNikos?.dispose();
     _animationControllerForClouds?.dispose();
+    gifControllerCharacter_2.dispose();
     super.dispose();
   }
 
@@ -286,6 +297,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                     fit: BoxFit.cover)),
                           ),
                           ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
                             top: rateZero,
@@ -293,17 +305,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             asset: "clouds.png",
                           ),
                           ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
                             top: rateTwo,
                             asset: "building.png",
                           ),
                           ParallaxWidget(
+                            isImage: true,
                             paralaxText: locals.paralaxText1,
                             width: MediaQuery.of(context).size.width / 2.2,
                             boxFit: BoxFit.contain,
                             top: rateThree,
-                            left: _progress1,
+                            left: _progress_caracter_nikos,
                             asset: "character_nkos.gif",
                           ),
                           // ParallaxWidget(
@@ -331,16 +345,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           //   ),
                           // ),
                           ParallaxWidget(
+                              isImage: true,
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
                               top: rateFive,
                               asset: "left_crowd.png"),
                           ParallaxWidget(
+                              isImage: true,
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.cover,
                               top: rateSix,
                               asset: "characters_2.png"),
                           ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width / 3,
                             top: rateSeven,
                             left: constraints.maxWidth * 0.13,
@@ -348,6 +365,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             boxFit: BoxFit.contain,
                           ),
                           ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width / 3,
                             top: rateEight,
                             left: MediaQuery.of(context).size.width / 2,
@@ -355,12 +373,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             boxFit: BoxFit.cover,
                           ),
                           ParallaxWidget(
+                              isImage: true,
                               width: rateOne.clamp(0, 2000),
                               top: rateNine,
                               left: -100,
                               asset: "character_1.png",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
+                              isImage: true,
                               width: constraints.maxWidth * 0.6,
                               top: rateTen,
                               left: constraints.maxWidth * 0.3,
@@ -368,13 +388,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               asset: "hand.png",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
+                              isImage: false,
+                              gifController: gifControllerCharacter_2,
                               width: MediaQuery.of(context).size.width,
                               top: rateEleven,
-                              left: constraints.maxWidth * 0.2,
-                              right: constraints.maxWidth * 0.2,
-                              asset: "character_2.png",
+                              asset: "character_2.gif",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
+                              isImage: true,
                               width: MediaQuery.of(context).size.width,
                               top: rateTwelv,
                               asset: "cloud.png",
@@ -406,10 +427,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                           Flexible(
                             flex: 3,
-                            child: AutoSizeText(
+                            child: Text(
                               locals.whatNikosDo,
                               maxLines: 1,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
@@ -452,14 +473,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: AutoSizeText(locals.chapter1.toUpperCase()),
+                            child: Text(locals.chapter1.toUpperCase()),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.todoNoHarm.toUpperCase(),
                               maxLines: 1,
-                              minFontSize: 8,
+                              // minFontSize: 8,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2
@@ -473,10 +494,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 border: Border(
                                     left: BorderSide(
                                         color: AppColors.red, width: 3))),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.athens429Bc,
                               maxLines: 1,
-                              minFontSize: 8,
+                              // minFontSize: 8,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4
@@ -503,9 +524,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.paralaxText2,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               // maxLines: 20,
                               style: Theme.of(context).textTheme.bodyText2,
                             ))),
@@ -523,9 +544,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.paralaxText3,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               // maxLines: 20,
                               style: Theme.of(context).textTheme.bodyText2,
                             ))),
@@ -543,9 +564,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.paralaxText4,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               // maxLines: 20,
                               style: Theme.of(context).textTheme.bodyText2,
                             ))),
@@ -563,9 +584,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
+                            child: Text(
                               locals.paralaxText5,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               // maxLines: 20,
                               style: Theme.of(context).textTheme.bodyText2,
                             ))),
@@ -583,9 +604,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Padding(
                           padding: const EdgeInsets.all(24),
-                          child: AutoSizeText(
+                          child: Text(
                             locals.paralaxText1,
-                            minFontSize: 5,
+                            // minFontSize: 5,
                             // maxLines: 20,
                             style: Theme.of(context).textTheme.bodyText2,
                           )),
@@ -610,7 +631,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           Icons.arrow_upward_sharp,
                           color: AppColors.black54,
                         ),
-                        AutoSizeText("BOOK INTO"),
+                        Text("BOOK INTO"),
                       ],
                     ),
                   ),
@@ -657,9 +678,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    AutoSizeText(
+                                    Text(
                                       locals.athens5thCentury.toUpperCase(),
-                                      minFontSize: 5,
+                                      // minFontSize: 5,
                                       maxLines: 1,
                                       style: Theme.of(context)
                                           .textTheme

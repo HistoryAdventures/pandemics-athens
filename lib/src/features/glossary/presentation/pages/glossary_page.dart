@@ -98,10 +98,10 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   )),
               Align(
                 child: Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.1),
-                  width: constraints.maxWidth * 0.75,
-                  height: constraints.maxHeight * 0.5,
+                  // margin: EdgeInsets.symmetric(
+                  //     horizontal: constraints.maxWidth * 0.1),
+                  width: constraints.maxWidth * 0.65,
+                  height: constraints.maxHeight * 0.4,
                   decoration: const BoxDecoration(
                     color: AppColors.white,
                     boxShadow: [
@@ -167,14 +167,14 @@ class _GlossaryPageState extends State<GlossaryPage> {
                       ),
                       Flexible(
                         child: SizedBox(
-                          height: constraints.maxHeight * 0.5,
-                          width: constraints.maxHeight * 0.5,
+                          height: constraints.maxHeight * 0.4,
+                          width: constraints.maxHeight * 0.4,
                           child: GridView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithMaxCrossAxisExtent(
                                     maxCrossAxisExtent:
-                                        constraints.maxHeight * 0.5 / 5,
+                                        constraints.maxHeight * 0.4 / 5,
                                     crossAxisSpacing: 1,
                                     mainAxisSpacing: 1),
                             itemCount: 25,

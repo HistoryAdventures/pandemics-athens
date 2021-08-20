@@ -45,14 +45,14 @@ class _LeandingPageState extends State<LeandingPage>
   Future<void> init() async {
     controller = GifController(vsync: this);
 
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      controller.repeat(
-        min: 0,
-        max: 150,
-        period: const Duration(seconds: 4),
-        reverse: true,
-      );
-    });
+    //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    controller.repeat(
+      min: 0,
+      max: 150,
+      period: const Duration(seconds: 4),
+      reverse: true,
+    );
+    // });
 
     final loadedAssets = await loadContent(contentImages);
     if (loadedAssets == true) {
