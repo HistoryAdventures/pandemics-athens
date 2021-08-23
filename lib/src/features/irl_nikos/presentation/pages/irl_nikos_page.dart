@@ -105,9 +105,9 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                       decoration: const BoxDecoration(
                           border: Border(
                               left: BorderSide(
-                                  color: AppColors.orange, width: 3))),
+                                  color: AppColors.orange, width: 10))),
                       child: AutoSizeText(
-                        locals.nikos.toUpperCase(),
+                        ' ${locals.nikos.toLowerCase()}',
                         maxLines: 1,
                         minFontSize: 8,
                         style: Theme.of(context).textTheme.caption,

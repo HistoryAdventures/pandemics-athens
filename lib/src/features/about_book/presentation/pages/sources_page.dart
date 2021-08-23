@@ -264,7 +264,7 @@ class _SoursePageState extends State<SoursePage> {
             children: [
               Expanded(
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 5),
+                  margin: const EdgeInsets.only(bottom: 10),
                   decoration: const BoxDecoration(
                       border: Border(
                     bottom: BorderSide(color: AppColors.grey, width: 1),
@@ -286,6 +286,10 @@ class _SoursePageState extends State<SoursePage> {
             children: peoples.map((people) {
               return Container(
                 margin: const EdgeInsets.only(bottom: 10),
+                decoration: const BoxDecoration(
+                    border: Border(
+                        bottom:
+                            BorderSide(color: AppColors.black100, width: 0.5))),
                 child: AutoSizeText(
                   people,
                   maxLines: 2,
