@@ -165,63 +165,79 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                         padding: EdgeInsets.all(constraints.maxHeight * 0.024),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Flexible(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: AutoSizeText(
-                                      "${locals.chapter1Pathogenprofile}\n",
-                                      maxLines: 2,
-                                      style: DefaultTheme
-                                          .standard.textTheme.headline1
-                                          ?.copyWith(color: AppColors.black54),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: AutoSizeText(
-                                        locals.whatWasIt.toUpperCase(),
-                                        maxLines: 1,
-                                        style: DefaultTheme
-                                            .standard.textTheme.headline2),
-                                  ),
-                                ],
-                              ),
-                            ),
                             Expanded(
-                              flex: 6,
+                              flex: 10,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
-                                        top: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
                                         bottom: BorderSide(
                                             color: AppColors.grey,
                                             width: 1.2))),
-                                child: Scrollbar(
-                                  isAlwaysShown: true,
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                          text:
-                                              '$_selectedItem\n'.toUpperCase(),
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline3,
-                                        ),
-                                        TextSpan(
-                                          text: _selectedText,
-                                          style: DefaultTheme
-                                              .standard.textTheme.bodyText1,
-                                        ),
-                                      ])),
-                                    )
-                                  ]),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: AutoSizeText(
+                                              "${locals.chapter1Pathogenprofile}\n",
+                                              maxLines: 2,
+                                              style: DefaultTheme
+                                                  .standard.textTheme.headline1
+                                                  ?.copyWith(
+                                                      color: AppColors.black54),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: AutoSizeText(
+                                                locals.whatWasIt.toUpperCase(),
+                                                maxLines: 1,
+                                                style: DefaultTheme.standard
+                                                    .textTheme.headline2),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                          top: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2),
+                                        )),
+                                        child: ListView(
+                                            shrinkWrap: true,
+                                            children: [
+                                              Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: RichText(
+                                                    text: TextSpan(children: [
+                                                  TextSpan(
+                                                    text: '$_selectedItem\n'
+                                                        .toUpperCase(),
+                                                    style: DefaultTheme.standard
+                                                        .textTheme.headline3,
+                                                  ),
+                                                  TextSpan(
+                                                    text: _selectedText,
+                                                    style: DefaultTheme.standard
+                                                        .textTheme.bodyText1,
+                                                  ),
+                                                ])),
+                                              )
+                                            ]),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

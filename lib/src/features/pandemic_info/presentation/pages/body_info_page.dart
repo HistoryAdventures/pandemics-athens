@@ -224,67 +224,88 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
-                                flex: 2,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Flexible(
-                                      child: AutoSizeText(
-                                        "${locale.chapter1Pathogenprofile}\n",
-                                        maxLines: 2,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1
-                                            ?.copyWith(
-                                                color: AppColors.black54),
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: AutoSizeText(
-                                          locale.whatDidItDo.toUpperCase(),
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2),
-                                    ),
-                                  ],
-                                ),
-                              ),
                               Expanded(
-                                flex: 6,
+                                flex: 10,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
                                           bottom: BorderSide(
                                               color: AppColors.grey,
                                               width: 1.2))),
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                          text: '$_selectedItem\n\n'
-                                              .toUpperCase(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline3,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Flexible(
+                                              child: AutoSizeText(
+                                                "${locale.chapter1Pathogenprofile}\n",
+                                                maxLines: 2,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1
+                                                    ?.copyWith(
+                                                        color:
+                                                            AppColors.black54),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: AutoSizeText(
+                                                  locale.whatDidItDo
+                                                      .toUpperCase(),
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2),
+                                            ),
+                                          ],
                                         ),
-                                        TextSpan(
-                                          text: _selectedText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          )),
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text: '$_selectedItem\n\n'
+                                                          .toUpperCase(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                    TextSpan(
+                                                      text: _selectedText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
                                         ),
-                                      ])),
-                                    )
-                                  ]),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Flexible(

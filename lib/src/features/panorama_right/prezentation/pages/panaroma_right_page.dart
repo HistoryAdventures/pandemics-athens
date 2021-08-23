@@ -226,7 +226,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           ),
         ),
         SoundAndMenuWidget(
-          color: AppColors.white,
+          color: AppColors.black100,
           icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
           onTapVolume: isSoundOn
               ? () {
@@ -250,7 +250,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowLeftTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.chapter1,
                 textTitle: locals.chapter1,
                 onTap: () {
@@ -279,7 +279,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                   width: 20,
                   child: Image.asset(
                     AssetsPath.arrowDounImage,
-                    color: AppColors.white,
+                    color: AppColors.black100,
                   )),
             ),
           ),

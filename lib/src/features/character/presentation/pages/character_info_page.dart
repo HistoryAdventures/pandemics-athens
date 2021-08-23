@@ -29,6 +29,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late AppLocalizations locale;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -103,7 +105,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         child: Container(
                           margin: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.05,
-                              vertical: constraints.maxHeight * 0.05),
+                              vertical: constraints.maxHeight * 0.03),
                           decoration: const BoxDecoration(boxShadow: [
                             BoxShadow(
                                 offset: Offset(0, 1),
@@ -122,90 +124,118 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
-                                flex: 2,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Flexible(
-                                            child: AutoSizeText(
-                                              "${locale.chapter1Athens5thCentury}\n",
-                                              maxLines: 2,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(
-                                                      color: AppColors.black54),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: AutoSizeText(
-                                                locale.keyPeopleOfTheAge,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline2),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Flexible(
-                                        child: Clickable(
-                                            onPressed: () {
-                                              if (kIsWeb) {
-                                                html.window.history.back();
-                                                context.router.pop();
-                                              } else {
-                                                context.router.pop();
-                                              }
-                                            },
-                                            child: const Icon(Icons.clear)))
-                                  ],
-                                ),
-                              ),
                               Expanded(
-                                flex: 8,
+                                flex: 10,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
                                           bottom: BorderSide(
                                               color: AppColors.grey,
                                               width: 1.2))),
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                          text: '$_selectedItem\n\n'
-                                              .toUpperCase(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline3
-                                              ?.copyWith(
-                                                  color: AppColors.black54),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              flex: 3,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Flexible(
+                                                    child: AutoSizeText(
+                                                      "${locale.chapter1Athens5thCentury}\n",
+                                                      maxLines: 2,
+                                                      minFontSize: 10,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1
+                                                          ?.copyWith(
+                                                              color: AppColors
+                                                                  .black54),
+                                                    ),
+                                                  ),
+                                                  Flexible(
+                                                    child: AutoSizeText(
+                                                        locale
+                                                            .keyPeopleOfTheAge,
+                                                        minFontSize: 13,
+                                                        maxLines: 1,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline2),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Flexible(
+                                                child: Clickable(
+                                                    onPressed: () {
+                                                      if (kIsWeb) {
+                                                        html.window.history
+                                                            .back();
+                                                        context.router.pop();
+                                                      } else {
+                                                        context.router.pop();
+                                                      }
+                                                    },
+                                                    child: const Icon(
+                                                        Icons.clear)))
+                                          ],
                                         ),
-                                        TextSpan(
-                                          text: _infoText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          )),
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text: '$_selectedItem\n\n'
+                                                          .toUpperCase(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3
+                                                          ?.copyWith(
+                                                              color: AppColors
+                                                                  .black54),
+                                                    ),
+                                                    TextSpan(
+                                                      text: _infoText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
                                         ),
-                                      ])),
-                                    )
-                                  ]),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Flexible(
@@ -236,7 +266,14 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   child: ArrowLeftTextWidget(
                       textSubTitle: locale.timelineOfMainEvents,
                       textTitle: locale.athens5thCentury,
-                      onTap: () {}),
+                      onTap: () {
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
                 ),
               ),
               SoundAndMenuWidget(
@@ -255,7 +292,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         });
                       },
                 onTapMenu: () {
-                  Scaffold.of(context).openEndDrawer();
+                  scaffoldkey.currentState!.openEndDrawer();
                 },
               ),
             ],

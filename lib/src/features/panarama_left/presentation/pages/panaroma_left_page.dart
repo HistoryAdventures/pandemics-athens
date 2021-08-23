@@ -236,7 +236,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowLeftTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.sourceAnalysis,
                 textTitle: locals.medicalToolsKnowledge,
                 onTap: () {
@@ -251,7 +251,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowRightTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.todoNoHarm,
                 textTitle: locals.chapter1,
                 onTap: () {
@@ -266,7 +266,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           ),
         ),
         SoundAndMenuWidget(
-          color: AppColors.white,
+          color: AppColors.black100,
           icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
           onTapVolume: isSoundOn
               ? () {

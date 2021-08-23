@@ -427,7 +427,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                           Flexible(
                             flex: 3,
-                            child: Text(
+                            child: AutoSizeText(
                               locals.whatNikosDo,
                               maxLines: 1,
                               // minFontSize: 5,
@@ -460,10 +460,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
                 Positioned(
                   top: constraints.maxHeight * 0.3,
-                  left: constraints.maxWidth * 0.01,
-                  child: Container(
+                  left: constraints.maxWidth * 0.05,
+                  child: SizedBox(
                     width: constraints.maxWidth * 0.4,
-                    padding: EdgeInsets.only(left: constraints.maxWidth * 0.05),
                     child: AnimatedOpacity(
                       opacity: _topTextOpasyty,
                       duration: Times.fast,
@@ -473,11 +472,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: Text(locals.chapter1.toUpperCase()),
+                            child: AutoSizeText(locals.chapter1.toUpperCase()),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.todoNoHarm.toUpperCase(),
                               maxLines: 1,
                               // minFontSize: 8,
@@ -494,7 +493,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 border: Border(
                                     left: BorderSide(
                                         color: AppColors.red, width: 3))),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.athens429Bc,
                               maxLines: 1,
                               // minFontSize: 8,
@@ -524,7 +523,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.paralaxText2,
                               // minFontSize: 5,
                               // maxLines: 20,
@@ -544,7 +543,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.paralaxText3,
                               // minFontSize: 5,
                               // maxLines: 20,
@@ -564,7 +563,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.paralaxText4,
                               // minFontSize: 5,
                               // maxLines: 20,
@@ -584,7 +583,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Padding(
                             padding: const EdgeInsets.all(24),
-                            child: Text(
+                            child: AutoSizeText(
                               locals.paralaxText5,
                               // minFontSize: 5,
                               // maxLines: 20,
@@ -604,7 +603,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Padding(
                           padding: const EdgeInsets.all(24),
-                          child: Text(
+                          child: AutoSizeText(
                             locals.paralaxText1,
                             // minFontSize: 5,
                             // maxLines: 20,

@@ -173,88 +173,116 @@ class _DialogWidgetState extends State<DialogWidget> {
                           padding: const EdgeInsets.only(left: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
-                                  flex: 2,
-                                  child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                  "${locals.chapter1Name}\n"
-                                                      .toUpperCase(),
-                                                  maxLines: 2,
-                                                  minFontSize: 10,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          color: AppColors
-                                                              .black54),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                    locals
-                                                        .plaguePoliticalInstability,
-                                                    minFontSize: 13,
-                                                    maxLines: 1,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Flexible(
-                                            child: Clickable(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Icon(Icons.clear)))
-                                      ])),
                               Expanded(
-                                flex: 8,
+                                flex: 10,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
                                           bottom: BorderSide(
                                               color: AppColors.grey,
                                               width: 1.2))),
-                                  child: ListView(children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 30),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: '$_selectedSubTitle\n\n'
-                                                .toUpperCase(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3),
-                                        TextSpan(
-                                          text: _infoText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                          flex: 1,
+                                          child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Flexible(
+                                                        child: AutoSizeText(
+                                                          "${locals.chapter1Name}\n"
+                                                              .toUpperCase(),
+                                                          maxLines: 2,
+                                                          minFontSize: 10,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .headline1
+                                                              ?.copyWith(
+                                                                  color: AppColors
+                                                                      .black54),
+                                                        ),
+                                                      ),
+                                                      Flexible(
+                                                        child: AutoSizeText(
+                                                            locals
+                                                                .plaguePoliticalInstability,
+                                                            minFontSize: 13,
+                                                            maxLines: 1,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline2),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Flexible(
+                                                    child: Clickable(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: const Icon(
+                                                            Icons.clear)))
+                                              ])),
+                                      Expanded(
+                                        flex: 5,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          )),
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 8.0, right: 30),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                        text:
+                                                            '$_selectedSubTitle\n\n'
+                                                                .toUpperCase(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline3),
+                                                    TextSpan(
+                                                      text: _infoText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
                                         ),
-                                      ])),
-                                    )
-                                  ]),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Flexible(

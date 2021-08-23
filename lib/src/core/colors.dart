@@ -10,6 +10,9 @@ abstract class AppColors {
   /// Black
   static const Color blackG = Color(0xFF202124);
 
+  /// Black 100% opacity
+  static const Color black100 = Colors.black;
+
   /// Black 54% opacity
   static const Color black54 = Color(0x8A000000);
 
