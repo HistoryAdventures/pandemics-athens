@@ -48,7 +48,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavigationPage(),
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Stack(
@@ -106,20 +107,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                           margin: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.05,
                               vertical: constraints.maxHeight * 0.03),
-                          decoration: const BoxDecoration(boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0, 1),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                            BoxShadow(
-                                offset: Offset(1, 0),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                            BoxShadow(
-                                offset: Offset(1, -1),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                          ], color: AppColors.white),
+                          decoration: BoxDecoration(
+                              color: AppColors.white,
+                              boxShadow: Shadows.universal),
                           padding:
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
@@ -139,7 +129,6 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
-                                        flex: 1,
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -196,7 +185,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         ),
                                       ),
                                       Expanded(
-                                        flex: 3,
+                                        flex: 5,
                                         child: Container(
                                           decoration: const BoxDecoration(
                                               border: Border(

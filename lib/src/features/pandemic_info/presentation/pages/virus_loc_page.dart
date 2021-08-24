@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -49,8 +50,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 alignment: Alignment.topLeft,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.8),
-                  ),
+                      color: AppColors.white, boxShadow: Shadows.universal),
                   height: constraints.maxHeight * 0.4,
                   width: constraints.maxWidth * 0.4,
                   margin: EdgeInsets.only(

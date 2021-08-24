@@ -640,12 +640,15 @@ class _MapPageState extends State<MapPage> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 height: 80,
-                decoration: BoxDecoration(boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(1, -1),
-                      color: AppColors.grey,
-                      blurRadius: 5),
-                ], color: AppColors.white.withOpacity(0.9)),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(1, -1),
+                        color: AppColors.grey,
+                        blurRadius: 5),
+                  ],
+                  gradient: AppColors.linearGradientForBackground,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -668,7 +671,7 @@ class _MapPageState extends State<MapPage> {
                       flex: 4,
                       child: Container(
                         alignment: Alignment.topCenter,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
                         child: ListView.builder(
                             controller: _scrollController,

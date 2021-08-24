@@ -148,20 +148,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             right: 50,
                             top: constraints.maxHeight * 0.1,
                             bottom: constraints.maxHeight * 0.1),
-                        decoration: const BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 1),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                          BoxShadow(
-                              offset: Offset(1, 0),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                          BoxShadow(
-                              offset: Offset(1, -1),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                        ], color: AppColors.white),
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            boxShadow: Shadows.universal),
                         padding: EdgeInsets.all(constraints.maxHeight * 0.024),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

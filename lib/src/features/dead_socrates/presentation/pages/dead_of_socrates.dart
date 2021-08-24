@@ -73,8 +73,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 margin: EdgeInsets.symmetric(
                     horizontal: constraints.maxWidth * 0.15,
                     vertical: constraints.maxHeight * 0.2),
-                decoration:
-                    BoxDecoration(color: AppColors.white.withOpacity(0.5)),
+                decoration: BoxDecoration(
+                    boxShadow: Shadows.universal, color: AppColors.white),
                 padding: const EdgeInsets.all(24),
                 child: Row(
                   children: [
@@ -128,7 +128,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                 child: Container(
                                   color: Colors.black,
                                   child: const Icon(
-                                    Icons.add,
+                                    Icons.zoom_in,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -165,8 +165,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                         children: [
                                           Flexible(
                                             child: AutoSizeText(
-                                              "${locale.chapter1PlagueAndPersecution}\n"
-                                                  .toUpperCase(),
+                                              "${locale.chapter1EndOfWar}\n",
                                               maxLines: 2,
                                               style: Theme.of(context)
                                                   .textTheme
@@ -187,7 +186,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 5,
                                       child: Container(
                                         decoration: const BoxDecoration(
                                             border: Border(

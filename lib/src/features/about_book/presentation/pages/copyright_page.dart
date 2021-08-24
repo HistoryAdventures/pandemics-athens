@@ -211,7 +211,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1
-                      ?.copyWith(color: AppColors.greyDeep),
+                      ?.copyWith(color: AppColors.greyDeep, fontSize: 22),
                 ),
               );
             }).toList(),

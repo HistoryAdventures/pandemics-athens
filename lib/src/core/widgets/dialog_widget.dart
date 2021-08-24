@@ -104,7 +104,7 @@ class _DialogWidgetState extends State<DialogWidget> {
               horizontal: widget.constraints.maxWidth * 0.15,
               vertical: widget.constraints.maxHeight * 0.2),
           child: Scaffold(
-              backgroundColor: AppColors.white,
+              backgroundColor: AppColors.white.withOpacity(0.9),
               body: Container(
                 padding: EdgeInsets.all(widget.constraints.maxHeight * 0.024),
                 child: Row(

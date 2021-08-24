@@ -59,12 +59,12 @@ abstract class AppColors {
 
   static const LinearGradient linearGradientForBackground =
       LinearGradient(colors: [
-    Color.fromRGBO(255, 255, 255, 0.1),
+    Color.fromRGBO(255, 255, 255, 0.3),
     Color.fromRGBO(255, 255, 255, 0.7),
-    Color.fromRGBO(255, 255, 255, 0.7),
-    Color.fromRGBO(255, 255, 255, 0.7),
-    Color.fromRGBO(255, 255, 255, 0.7),
-    Color.fromRGBO(255, 255, 255, 0.28)
+    Color.fromRGBO(255, 255, 255, 0.9),
+    Color.fromRGBO(255, 255, 255, 0.9),
+    Color.fromRGBO(255, 255, 255, 0.6),
+    Color.fromRGBO(255, 255, 255, 0.3)
   ]);
 
   static const LinearGradient linearGradientForBackgroundDocument =

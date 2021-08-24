@@ -60,6 +60,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                       ),
                       Expanded(
                         child: Container(
+                          padding: const EdgeInsets.all(5),
                           width: snapshot.data?.width,
                           child: SingleChildScrollView(
                             child: Text(

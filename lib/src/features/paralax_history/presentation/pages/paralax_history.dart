@@ -61,7 +61,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _progress2 = -200;
 
   late GifController gifControllerCharacter_2;
-
+  late GifController _gifControllerHand;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -83,7 +83,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
-    AssetsPath.characterNikosGif,
+    // AssetsPath.characterNikosGif,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
     AssetsPath.paralaxCharacter_11,
@@ -101,6 +101,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void initState() {
     gifControllerCharacter_2 = GifController(vsync: this);
+    _gifControllerHand = GifController(vsync: this);
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -124,7 +125,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateEight = height * 9;
     rateNine = height * 9.3;
     rateTen = height * 11;
-    rateEleven = height * 13.3;
+    rateEleven = height * 13.5;
     rateTwelv = height * 14;
 
     _scrollFour = height * 2.3;
@@ -133,7 +134,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _scrollrateSeven = height * 3.8;
     _scrollrateNine = height * 5;
     _scrollrateTen = height * 5.8;
-    _scrollrateEleven = height * 7.3;
+    _scrollrateEleven = height * 7.5;
 
     _scrollController.addListener(() {
       if (_scrollController.offset > 10) {
@@ -148,9 +149,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _bottomFieldOpasity = 1;
 
         //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        gifControllerCharacter_2.animateTo(
-          253,
-          duration: const Duration(seconds: 4),
+        gifControllerCharacter_2.repeat(
+          min: 1,
+          max: 254,
+          period: const Duration(seconds: 8),
         );
       } else {
         _bottomFieldOpasity = 0;
@@ -171,6 +173,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
+        _gifControllerHand.repeat(
+          min: 0,
+          max: 348,
+          period: const Duration(seconds: 8),
+        );
       } else {
         _paralaxTextOpasyty3 = 0;
       }
@@ -242,12 +249,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    html.window.addEventListener('resize', (event) {
-      setState(() {
-        height = MediaQuery.of(context).size.height;
-        width = MediaQuery.of(context).size.width;
-      });
-    }, true);
+    // html.window.addEventListener('resize', (event) {
+    //   setState(() {
+    //     height = MediaQuery.of(context).size.height;
+    //     width = MediaQuery.of(context).size.width;
+    //   });
+    // }, true);
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
@@ -381,19 +388,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               isImage: true,
+                              gifController: _gifControllerHand,
                               width: constraints.maxWidth * 0.6,
                               top: rateTen,
                               left: constraints.maxWidth * 0.3,
                               right: 0,
-                              asset: "hand.png",
+                              asset: "hand.gif",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
-                              isImage: false,
+                              isImage: true,
                               gifController: gifControllerCharacter_2,
                               width: MediaQuery.of(context).size.width,
                               top: rateEleven,
+                              left: 200,
+                              right: 200,
                               asset: "character_2.gif",
-                              boxFit: BoxFit.contain),
+                              boxFit: BoxFit.cover),
                           ParallaxWidget(
                               isImage: true,
                               width: MediaQuery.of(context).size.width,
@@ -476,17 +486,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: AutoSizeText(
-                              locals.todoNoHarm.toUpperCase(),
-                              maxLines: 1,
-                              // minFontSize: 8,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                      fontSize: 80,
-                                      fontStyle: FontStyle.italic),
-                            ),
+                            child: AutoSizeText(locals.todoNoHarm.toUpperCase(),
+                                maxLines: 1,
+                                // minFontSize: 8,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                        fontSize: 80,
+                                        fontStyle: FontStyle.italic)),
                           ),
                           Container(
                             decoration: const BoxDecoration(

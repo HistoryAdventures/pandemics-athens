@@ -1330,6 +1330,11 @@
     "chapter1PlagueAndPersecution": "Chapter 1 / Plague and Persecution",
     "@chapter1PlagueAndPersecution": {
       "chapter1PlagueAndPersecution": "chapter1PlagueAndPersecution"
+    },
+
+    "chapter1EndOfWar": "Chapter 1 / End of War",
+    "@chapter1EndOfWar": {
+      "chapter1EndOfWar": "chapter1EndOfWar"
     }
 }
 

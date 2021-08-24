@@ -294,7 +294,7 @@ class _CreditsPageState extends State<CreditsPage> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
+                        ?.copyWith(color: AppColors.grey, fontSize: 16),
                   ),
                 ),
               ),
@@ -308,7 +308,10 @@ class _CreditsPageState extends State<CreditsPage> {
                 child: AutoSizeText(
                   people,
                   maxLines: 2,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(fontSize: 22),
                 ),
               );
             }).toList(),
