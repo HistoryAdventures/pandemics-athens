@@ -205,8 +205,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
             margin: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.06,
                 top: MediaQuery.of(context).size.height * 0.25,
-                bottom: MediaQuery.of(context).size.height * 0.4,
-                right: MediaQuery.of(context).size.width * 0.6),
+                bottom: MediaQuery.of(context).size.height * 0.25,
+                right: MediaQuery.of(context).size.width * 0.55),
             child: Scaffold(
                 backgroundColor: AppColors.blackG.withOpacity(0.75),
                 body: Padding(

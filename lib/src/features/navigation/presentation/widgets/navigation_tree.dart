@@ -46,13 +46,15 @@ class _NavigationTreeState extends State<NavigationTree> {
               style: Theme.of(context)
                   .primaryTextTheme
                   .subtitle1
-                  ?.copyWith(color: AppColors.black54, fontSize: 10)),
+                  ?.copyWith(color: AppColors.black100, fontSize: 10)),
         ),
         Positioned(
           left: widget.details.pointOffset.dx,
           top: widget.details.pointOffset.dy,
           child: Clickable(
-            onPressed: widget.isAbleToNavigate || widget.details.vertex.visited ? widget.onTap : () {},
+            onPressed: widget.isAbleToNavigate || widget.details.vertex.visited
+                ? widget.onTap
+                : () {},
             child: Align(
               alignment: Alignment.center,
               child: CustomPaint(

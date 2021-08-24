@@ -176,14 +176,14 @@ class _SoursePageState extends State<SoursePage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      authorWidget(
-                                          'bridge', ['Darrell Steward']),
-                                      authorWidget(
-                                          'bridge', ['Darrell Steward']),
-                                      authorWidget(
-                                          'bridge', ['Darrell Steward']),
-                                      authorWidget(
-                                          'bridge', ['Darrell Steward']),
+                                      authorWidget('bridge',
+                                          ['Analysing Potential Problems']),
+                                      authorWidget('bridge',
+                                          ['Analysing Potential Problems']),
+                                      authorWidget('bridge',
+                                          ['Analysing Potential Problems']),
+                                      authorWidget('bridge',
+                                          ['Analysing Potential Problems']),
                                     ],
                                   ),
                                 ),

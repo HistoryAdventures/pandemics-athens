@@ -41,27 +41,31 @@ class _ChapterNavigationTreeState extends State<ChapterNavigationTree> {
       child: Row(
         children: [
           Text(widget.details.numberOfChapter),
-          Clickable(
-            onPressed: widget.isAbleToNavigate || widget.details.vertex.visited
-                ? widget.onTap
-                : () {},
-            child: SizedBox(
-              child: CustomPaint(
-                painter: DrowCircleAndLine(
-                  currentColor: widget.details.vertex.isCurrent
-                      ? Colors.white
-                      : Colors.transparent,
-                  color: widget.details.vertex.visited ? Colors.white : color,
-                  strat: widget.details.start ?? const Offset(8, 30),
-                  end: widget.details.end ?? const Offset(8, 60),
-                ),
-                child: const SizedBox(
-                  height: 15,
-                  width: 15,
-                  child: Center(
-                    child: Text(
-                      "",
-                      style: TextStyle(color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Clickable(
+              onPressed:
+                  widget.isAbleToNavigate || widget.details.vertex.visited
+                      ? widget.onTap
+                      : () {},
+              child: SizedBox(
+                child: CustomPaint(
+                  painter: DrowCircleAndLine(
+                    currentColor: widget.details.vertex.isCurrent
+                        ? Colors.white
+                        : Colors.transparent,
+                    color: widget.details.vertex.visited ? Colors.white : color,
+                    strat: widget.details.start ?? const Offset(8, 30),
+                    end: widget.details.end ?? const Offset(8, 60),
+                  ),
+                  child: const SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Center(
+                      child: Text(
+                        "",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

@@ -643,7 +643,7 @@ class _NavigationPageState extends State<NavigationPage> {
                             ),
                           ),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.2,
+                            width: MediaQuery.of(context).size.width * 0.1,
                           ),
                           SizedBox(
                             width: 500,
