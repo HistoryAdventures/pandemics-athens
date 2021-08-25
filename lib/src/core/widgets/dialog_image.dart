@@ -50,12 +50,10 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: Container(
-                          child: Image.asset(
-                            widget.selectedImage,
-                            fit: BoxFit.cover,
-                            key: imageKey,
-                          ),
+                        child: Image.asset(
+                          widget.selectedImage,
+                          fit: BoxFit.cover,
+                          key: imageKey,
                         ),
                       ),
                       Expanded(
