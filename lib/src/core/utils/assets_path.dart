@@ -9,11 +9,59 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
-  static const String gifBackground = 'assets/image_back/backgif.gif';
+  //static const String gifBackground = 'assets/image_back/backgif.gif';
+  static const String gifBackgroundFirst =
+      'assets/animated_backgrounds/1/liquid.gif';
+
+  static const String gifBackgroundSecond =
+      'assets/animated_backgrounds/2/liquid.gif';
+
+  static const String animatedBack1Vbody0 =
+      'assets/animated_backgrounds/1/virus/vbody_0.png';
+  static const String animatedBack1Vbody1 =
+      'assets/animated_backgrounds/1/virus/vbody_1.png';
+  static const String animatedBack1Vbody2 =
+      'assets/animated_backgrounds/1/virus/vbody_2.png';
+  static const String animatedBack1Vbody3 =
+      'assets/animated_backgrounds/1/virus/vbody_3.png';
+  static const String animatedBack1Vbody4 =
+      'assets/animated_backgrounds/1/virus/vbody_4.png';
+  static const String animatedBack1Vbody5 =
+      'assets/animated_backgrounds/1/virus/vbody_5.png';
+  static const String animatedBack1Vbody6 =
+      'assets/animated_backgrounds/1/virus/vbody_6.png';
+  static const String animatedBack1Vbody7 =
+      'assets/animated_backgrounds/1/virus/vbody_7.png';
+  static const String animatedBack1Vbody8 =
+      'assets/animated_backgrounds/1/virus/vbody_8.png';
+
+  static const String animatedBack2Vbody0 =
+      'assets/animated_backgrounds/2/virus/vbody_0.png';
+  static const String animatedBack2Vbody1 =
+      'assets/animated_backgrounds/2/virus/vbody_1.png';
+  static const String animatedBack2Vbody2 =
+      'assets/animated_backgrounds/2/virus/vbody_2.png';
+  static const String animatedBack2Vbody3 =
+      'assets/animated_backgrounds/2/virus/vbody_3.png';
+  static const String animatedBack2Vbody4 =
+      'assets/animated_backgrounds/2/virus/vbody_4.png';
+  static const String animatedBack2Vbody5 =
+      'assets/animated_backgrounds/2/virus/vbody_5.png';
+  static const String animatedBack2Vbody6 =
+      'assets/animated_backgrounds/2/virus/vbody_6.png';
+  static const String animatedBack2Vbody7 =
+      'assets/animated_backgrounds/2/virus/vbody_7.png';
+  static const String animatedBack2Vbody8 =
+      'assets/animated_backgrounds/2/virus/vbody_8.png';
+
   static const String virusLocMap = 'assets/image_back/virus_loc_map.png';
   static const String gradient = 'assets/image_back/gradient.png';
 
-  static const String gifVirus = 'assets/virus_gif/virus_01.gif';
+  static const String gifVirusTyphoid =
+      'assets/animated_backgrounds/2/virus/typhoid.gif';
+
+  static const String gifVirus = 'assets/animated_backgrounds/virus.gif';
+
   static const String gifSmallpox = 'assets/virus_gif/smallpox.gif';
 
   static const String gifTyphus = 'assets/virus_gif/typhus.gif';

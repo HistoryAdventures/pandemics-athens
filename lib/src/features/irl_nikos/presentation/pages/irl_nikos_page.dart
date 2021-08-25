@@ -134,7 +134,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 padding: const EdgeInsets.only(bottom: 24),
                 color: AppColors.blackB,
                 iconSize: 40,
-                icon: const Icon(Icons.south),
+                icon: const Icon(Icons.arrow_downward),
                 onPressed: () {
                   LeafDetails.currentVertex = 19;
                   LeafDetails.visitedVertexes.add(19);

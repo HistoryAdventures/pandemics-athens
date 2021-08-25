@@ -1,5 +1,5 @@
 export 'animated_widgets/animated_widgets.dart';
-export 'animated_widgets/background_widget.dart';
+export 'animated_widgets/background_widgets/background_phatogen_profile.dart';
 export 'app_page_view.dart';
 export 'app_tooltip.dart';
 export 'app_tooltip_button.dart';

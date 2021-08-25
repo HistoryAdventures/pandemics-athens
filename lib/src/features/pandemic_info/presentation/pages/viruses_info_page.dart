@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -207,7 +208,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                             children: [
                                               Container(
                                                 padding: const EdgeInsets.only(
-                                                    right: 10),
+                                                    right: 38, top: 16),
                                                 child: RichText(
                                                     text: TextSpan(children: [
                                                   TextSpan(

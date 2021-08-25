@@ -14,14 +14,18 @@ class DialogWidget extends StatefulWidget {
 
   final InfoDialogModel slectedInfoDialog;
   final List<InfoDialogModel> listDialogInfo;
+  final String subTitleText;
+  final String titleText;
 
-  const DialogWidget({
-    Key? key,
-    required this.animation,
-    required this.slectedInfoDialog,
-    required this.listDialogInfo,
-    required this.constraints,
-  }) : super(key: key);
+  const DialogWidget(
+      {Key? key,
+      required this.titleText,
+      required this.animation,
+      required this.slectedInfoDialog,
+      required this.listDialogInfo,
+      required this.constraints,
+      required this.subTitleText})
+      : super(key: key);
 
   @override
   _DialogWidgetState createState() => _DialogWidgetState();
@@ -209,8 +213,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                     children: [
                                                       Flexible(
                                                         child: AutoSizeText(
-                                                          "${locals.chapter1Name}\n"
-                                                              .toUpperCase(),
+                                                          "${widget.titleText}\n",
                                                           maxLines: 2,
                                                           minFontSize: 10,
                                                           style: Theme.of(
@@ -224,8 +227,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                       ),
                                                       Flexible(
                                                         child: AutoSizeText(
-                                                            locals
-                                                                .plaguePoliticalInstability,
+                                                            widget.subTitleText,
                                                             minFontSize: 13,
                                                             maxLines: 1,
                                                             style: Theme.of(
@@ -260,7 +262,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          top: 8.0, right: 30),
+                                                          top: 16,
+                                                          right: 38,
+                                                          bottom: 16),
                                                   child: RichText(
                                                       text: TextSpan(children: [
                                                     TextSpan(

@@ -150,7 +150,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                 Flexible(
                                     child: SingleChildScrollView(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(right: 18.0),
+                                    padding: const EdgeInsets.only(
+                                        right: 18.0, top: 18),
                                     child: Text(
                                       _selectedtText,
                                       style: Theme.of(context)
