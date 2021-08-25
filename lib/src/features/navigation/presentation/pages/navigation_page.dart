@@ -621,7 +621,7 @@ class _NavigationPageState extends State<NavigationPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     height: 600,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

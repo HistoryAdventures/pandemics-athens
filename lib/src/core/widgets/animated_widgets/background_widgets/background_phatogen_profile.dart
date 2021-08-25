@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/animated_background/animated_particles_2.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
-import '../../../../features/animated_background/animated_particles_1.dart';
 import '../../../utils/assets_path.dart';
 import '../../../utils/styles.dart';
 
@@ -187,7 +186,7 @@ class GifBackground extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: Image.asset(
-        AssetsPath.gifBackgroundSecond,
+        AssetsPath.gifBackground2,
         fit: BoxFit.cover,
       ),
     );

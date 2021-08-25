@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_2.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 import '../../../../features/animated_background/animated_particles_1.dart';
 import '../../../utils/assets_path.dart';
 import '../../../utils/styles.dart';
 
-class BackgroundWidget extends StatefulWidget {
-  const BackgroundWidget();
+class BackgroundLeandingPage extends StatefulWidget {
+  const BackgroundLeandingPage();
 
   @override
-  _BackgroundWidgetState createState() => _BackgroundWidgetState();
+  _BackgroundLeandingPageState createState() => _BackgroundLeandingPageState();
 }
 
-class _BackgroundWidgetState extends State<BackgroundWidget>
+class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
     with TickerProviderStateMixin {
   late AppLocalizations locales;
   late AnimationController animatinController;
@@ -189,7 +188,7 @@ class GifBackground extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: Image.asset(
-        AssetsPath.gifBackgroundFirst,
+        AssetsPath.gifBackground1,
         fit: BoxFit.cover,
       ),
     );
@@ -223,8 +222,7 @@ class AnimatedVirusBodies extends StatelessWidget {
       top: top,
       right: right,
       bottom: bottom,
-      child: Container(
-        // color: Colors.red,
+      child: SizedBox(
         width: size.width,
         height: size.height,
         child: Transform.translate(

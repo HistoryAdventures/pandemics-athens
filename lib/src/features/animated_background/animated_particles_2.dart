@@ -65,15 +65,6 @@ class _AnimatedParticlesSecondState extends State<AnimatedParticlesSecond>
           opacity: 1,
           fit: BoxFit.contain,
         ),
-        // AnimatesViruses(
-        //   size: Size(2 * width, 2 * height),
-        //   targetOffset: Offset(0.25 * p3Counter, 0.1125 * p3Counter),
-        //   path: IAppAssets().getAssetPaths()[2],
-        //   duration: 14000,
-        //   opacity: 0.1,
-        //   fit: BoxFit.cover,
-        //   color: Colors.black,
-        // ),
       ],
     );
   }
@@ -131,7 +122,7 @@ class AnimatesViruses extends StatelessWidget {
       left: targetOffset.dx,
       top: targetOffset.dy,
       duration: Duration(milliseconds: duration),
-      child: Container(
+      child: SizedBox(
         height: size?.height ?? MediaQuery.of(context).size.height,
         width: size?.width ?? MediaQuery.of(context).size.width,
         child: Image.asset(

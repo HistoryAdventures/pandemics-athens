@@ -9,7 +9,6 @@ import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/animated_widgets/background_widgets/background_phatogen_profile.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -33,8 +32,7 @@ class _LeandingPageState extends State<LeandingPage>
   List<String> contentImages = [
     AssetsPath.gifVirus,
     AssetsPath.paralaxBackground,
-    AssetsPath.gifBackgroundFirst,
-    AssetsPath.spheresBackImage,
+    AssetsPath.gifBackground1,
   ];
 
   @override
@@ -95,7 +93,7 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                  BackgroundWidget(),
+                 const BackgroundLeandingPage(),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,

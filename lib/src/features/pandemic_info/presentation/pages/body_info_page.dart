@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_body_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -132,7 +132,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
         builder: (context, constraints) {
           return Stack(
             children: [
-              const BackgroundWidget(),
+              const BackgroundBodyPage(),
               Align(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -207,20 +207,9 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                           margin: EdgeInsets.symmetric(
                               horizontal: 50,
                               vertical: constraints.maxHeight * 0.1),
-                          decoration: const BoxDecoration(boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0, 1),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                            BoxShadow(
-                                offset: Offset(1, 0),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                            BoxShadow(
-                                offset: Offset(1, -1),
-                                color: AppColors.grey,
-                                blurRadius: 5),
-                          ], color: AppColors.white),
+                          decoration: BoxDecoration(
+                              boxShadow: Shadows.universal,
+                              color: AppColors.white),
                           padding:
                               EdgeInsets.all(constraints.maxHeight * 0.024),
                           child: Column(
@@ -329,6 +318,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                   ),
                 ),
               ),
+        
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Padding(

@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
+import 'package:history_of_adventures/src/features/animated_background/animated_particles_3.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -67,7 +67,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
-            const BackgroundWidget(),
+            const AnimatedParticlesThird(),
             Align(
               alignment: Alignment.center,
               child: Container(

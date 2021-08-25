@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -89,7 +88,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                               children: [
                                 Flexible(
                                   child: Container(
-                                    padding: EdgeInsets.only(bottom: 16),
+                                    padding:const EdgeInsets.only(bottom: 16),
                                     width: constraints.maxWidth,
                                     decoration: const BoxDecoration(
                                         border: Border(

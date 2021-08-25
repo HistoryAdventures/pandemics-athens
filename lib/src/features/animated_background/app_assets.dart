@@ -15,4 +15,12 @@ class BackgroundPaths {
       'assets/animated_backgrounds/1/particles';
   static const String backgroundPath2 =
       'assets/animated_backgrounds/2/particles';
+  static const String backgroundPath3 =
+      'assets/animated_backgrounds/3/particles';
+  static const String backgroundPath4 =
+      'assets/animated_backgrounds/4/particles';
+  static const String backgroundPath5 =
+      'assets/animated_backgrounds/5/particles';
+  static const String backgroundPath6 =
+      'assets/animated_backgrounds/6/particles';
 }
