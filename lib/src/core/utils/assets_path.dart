@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
 
 class AssetsPath {
+  static final scaffoldkey = material.GlobalKey<material.ScaffoldState>();
+
   static List<String> assetsBlobList = [];
 
   static const String gifBackground = 'assets/image_back/backgif.gif';
@@ -17,6 +20,7 @@ class AssetsPath {
 
   static const String gifTyphoid = 'assets/virus_gif/typhoid.gif';
   static const String gifEbola = 'assets/virus_gif/ebola.gif';
+  static const String glossaryBk = 'assets/image_back/glossary_bk.png';
 
   static const String gifBubonic = 'assets/virus_gif/bubonic.gif';
   static const String charactersBackgroundImage =
@@ -122,11 +126,64 @@ class AssetsPath {
   static const String endOfWar3 = 'assets/end_war/end_of_war3.png';
   static const String poitButtonArrowRight =
       'assets/document_view/pointer_button_icon.png';
-  static const String irlNikos = 'assets/image_back/irl_Nikos.png';
+  static const String irlNikos = 'assets/image_back/irl_nikos.png';
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
-  static const String paralaxBackground = 'assets/paralax_images/bk.png';
+  static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
+  static const String characterNikosGif =
+      'assets/paralax_new/character_nkos.gif';
+
+  static const String paralaxBuilding = 'assets/paralax_new/building.png';
+  static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
+  static const String paralaxCharacter_2 = 'assets/paralax_new/character_2.png';
+  static const String paralaxCharacter_11 =
+      'assets/paralax_new/character_11.png';
+  static const String paralaxCharacter_12 =
+      'assets/paralax_new/character_12.png';
+  static const String paralaxCharacters_2 =
+      'assets/paralax_new/characters_2.png';
+  static const String map508 = 'assets/map/map411image.png';
+  static const String map495 = 'assets/map/map495image.png';
+  static const String map490 = 'assets/map/map490image.png';
+  static const String map480 = 'assets/map/map480image.png';
+  static const String map479 = 'assets/map/map479image.png';
+  static const String map477 = 'assets/map/map477image.png';
+  static const String map471 = 'assets/map/map471image.png';
+  static const String map469 = 'assets/map/map469image.png';
+  static const String map462 = 'assets/map/map462image.png';
+  static const String map461 = 'assets/map/map461image.png';
+  static const String map458 = 'assets/map/map458image.png';
+  static const String map457 = 'assets/map/map457image.png';
+  static const String map454 = 'assets/map/map454image.png';
+  static const String map451 = 'assets/map/map451image.png';
+
+  static const String map450 = 'assets/map/map450image.png';
+  static const String map447_432 = 'assets/map/map447_432image.png';
+  static const String map446 = 'assets/map/map446image.png';
+  static const String map443 = 'assets/map/map443image.png';
+
+  static const String map441 = 'assets/map/map441image.png';
+  static const String map438 = 'assets/map/map438image.png';
+  static const String map431 = 'assets/map/map431image.png';
+  static const String map430 = 'assets/map/map430image.png';
+  static const String map429 = 'assets/map/map429image.png';
+  static const String map427 = 'assets/map/map427image.png';
+  static const String map421 = 'assets/map/map421image.png';
+  static const String map416 = 'assets/map/map416image.png';
+  static const String map415 = 'assets/map/map415image.png';
+
+  static const String map414 = 'assets/map/map414image.png';
+  static const String map413 = 'assets/map/map413image.png';
+  static const String map411 = 'assets/map/map411image.png';
+  static const String map410 = 'assets/map/map410image.png';
+
+  static const String map407 = 'assets/map/map407image.png';
+  static const String map404 = 'assets/map/map404image.png';
+  static const String map403 = 'assets/map/map403image.png';
+  static const String map399 = 'assets/map/map399image.png';
+  static const String virusLoc1 = 'assets/map/virus_loc_1.png';
+  static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 }
 
 Future<bool> loadContent(List<String> context) async {

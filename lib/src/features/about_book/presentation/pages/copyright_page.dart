@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class CopyrightPage extends StatefulWidget {
   const CopyrightPage({Key? key}) : super(key: key);
@@ -30,6 +34,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -67,7 +72,9 @@ class _CopyrightPageState extends State<CopyrightPage> {
                             backgroundplayer.play();
                           });
                         },
-                  onTapMenu: () {},
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
@@ -77,7 +84,14 @@ class _CopyrightPageState extends State<CopyrightPage> {
                         textSubTitle: locale.furtherReading,
                         textTitle: locale.aboutTheBook,
                         onTap: () {
-                          context.router.pop();
+                          LeafDetails.currentVertex = 22;
+                          LeafDetails.currentVertex = 0;
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
                         }),
                   ),
                 ),
@@ -197,7 +211,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1
-                      ?.copyWith(color: AppColors.greyDeep),
+                      ?.copyWith(color: AppColors.greyDeep, fontSize: 22),
                 ),
               );
             }).toList(),

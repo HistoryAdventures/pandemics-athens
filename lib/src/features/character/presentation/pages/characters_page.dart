@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -31,6 +35,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: _body(),
     );
   }
@@ -89,7 +94,9 @@ class _CharacrterPageState extends State<CharacrterPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
             Positioned(
               left: 100,
@@ -151,7 +158,13 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     textSubTitle: locale.timelineOfMainEvents,
                     textTitle: locale.athens5thCentury,
                     onTap: () {
-                      context.router.pop();
+                      LeafDetails.currentVertex = 4;
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
                     }),
               ),
             ),

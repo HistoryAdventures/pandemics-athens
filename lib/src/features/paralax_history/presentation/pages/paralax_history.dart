@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
+import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -12,6 +15,8 @@ import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../widget/paralax_widget.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
@@ -21,8 +26,8 @@ class ParalaxHistoryPage extends StatefulWidget {
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
-  final height = window.physicalSize.height / window.devicePixelRatio;
-  final width = window.physicalSize.width / window.devicePixelRatio;
+  late double height = window.physicalSize.height / window.devicePixelRatio;
+  late double width = window.physicalSize.width / window.devicePixelRatio;
 
   double rateZero = 0;
   late double rateOne;
@@ -48,6 +53,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double _scrollrateNine;
   late double _scrollrateTen;
 
+  AnimationController? _animationControllerForCharacterNikos;
+  Animation<double>? animationForCharacterNikos;
+  AnimationController? _animationControllerForClouds;
+  Animation<double>? animationForClouds;
+  double _progress_caracter_nikos = -200;
+  double _progress2 = -200;
+
+  late GifController gifControllerCharacter_2;
+  late GifController _gifControllerHand;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -56,35 +70,58 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _paralaxTextOpasyty3 = 0;
   double _paralaxTextOpasyty4 = 0;
   double _paralaxTextOpasyty5 = 0;
-
-  double _paralaxImageOpasyty = 1;
-
-  bool _lernMoreButtonVisibility = false;
+  double _lernMoreOpasyty = 0;
 
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
   bool isImageloaded = false;
+  // bool _lernMoreVisibility = false;
 
   final ScrollController _scrollController = ScrollController();
-  List<String> contentImages = [AssetsPath.paralaxBackground];
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+  List<String> contentImages = [
+    AssetsPath.paralaxBackground,
+    // AssetsPath.characterNikosGif,
+    AssetsPath.paralaxBuilding,
+    AssetsPath.paralaxCharacter_1,
+    AssetsPath.paralaxCharacter_11,
+    AssetsPath.paralaxCharacters_2,
+  ];
 
   @override
   void didChangeDependencies() {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
+    gifControllerCharacter_2 = GifController(vsync: this);
+    _gifControllerHand = GifController(vsync: this);
+    _animationControllerForClouds =
+        AnimationController(vsync: this, duration: const Duration(seconds: 20));
+    animationForClouds = Tween<double>(begin: -500, end: 0)
+        .animate(_animationControllerForClouds!)
+          ..addListener(() {
+            if (mounted) {
+              setState(() {
+                _progress2 = animationForClouds!.value;
+              });
+            }
+          });
+
+    _animationControllerForClouds?.forward();
     rateOne = width * 0;
     rateTwo = height * 2;
     rateThree = height * 3;
     rateFour = height * 3.5;
     rateFive = height * 5.2;
-    rateSix = height * 5.5;
-    rateSeven = height * 6;
+    rateSix = height * 6.6;
+    rateSeven = height * 6.5;
     rateEight = height * 9;
     rateNine = height * 9.3;
     rateTen = height * 11;
@@ -93,11 +130,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     _scrollFour = height * 2.3;
     _scrollFive = height * 2;
-    _scrollrateSix = height * 3.3;
+    _scrollrateSix = height * 3.5;
     _scrollrateSeven = height * 3.8;
     _scrollrateNine = height * 5;
     _scrollrateTen = height * 5.8;
-    _scrollrateEleven = height * 7.3;
+    _scrollrateEleven = height * 7.5;
 
     _scrollController.addListener(() {
       if (_scrollController.offset > 10) {
@@ -110,6 +147,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           _scrollController.offset >=
               _scrollController.position.maxScrollExtent - 100) {
         _bottomFieldOpasity = 1;
+
+        //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+        gifControllerCharacter_2.repeat(
+          min: 1,
+          max: 254,
+          period: const Duration(seconds: 8),
+        );
       } else {
         _bottomFieldOpasity = 0;
       }
@@ -123,22 +167,25 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateSix &&
           _scrollController.offset < _scrollrateSeven) {
         _paralaxTextOpasyty2 = 1;
-        _paralaxImageOpasyty = 0;
-        setState(() {
-          _lernMoreButtonVisibility = true;
-        });
       } else {
         _paralaxTextOpasyty2 = 0;
-        _paralaxImageOpasyty = 1;
-        setState(() {
-          _lernMoreButtonVisibility = false;
-        });
       }
-      if (_scrollController.offset > _scrollrateNine &&
+      if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
+        _gifControllerHand.repeat(
+          min: 0,
+          max: 348,
+          period: const Duration(seconds: 8),
+        );
       } else {
         _paralaxTextOpasyty3 = 0;
+      }
+      if (_scrollController.offset > _scrollrateNine &&
+          _scrollController.offset < _scrollrateNine + 300) {
+        _lernMoreOpasyty = 1;
+      } else {
+        _lernMoreOpasyty = 0;
       }
       if (_scrollController.offset > _scrollrateEleven &&
           _scrollController.offset < _scrollrateEleven + 350) {
@@ -152,9 +199,39 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       } else {
         _paralaxTextOpasyty5 = 0;
       }
+      if (_scrollController.offset > _scrollFive - 200) {
+        if (_animationControllerForCharacterNikos == null) {
+          _animationControllerForCharacterNikos = AnimationController(
+              vsync: this, duration: const Duration(seconds: 3));
+          animationForCharacterNikos = Tween<double>(begin: -200, end: 0)
+              .animate(_animationControllerForCharacterNikos!)
+                ..addListener(() {
+                  if (mounted) {
+                    setState(() {
+                      _progress_caracter_nikos =
+                          animationForCharacterNikos!.value;
+                    });
+                  }
+                });
+
+          _animationControllerForCharacterNikos?.forward();
+        }
+      } else {
+        _animationControllerForCharacterNikos?.stop();
+      }
     });
+
     init();
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationControllerForCharacterNikos?.dispose();
+    _animationControllerForClouds?.dispose();
+    gifControllerCharacter_2.dispose();
+    super.dispose();
   }
 
   Future<void> init() async {
@@ -171,463 +248,475 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // html.window.addEventListener('resize', (event) {
+    //   setState(() {
+    //     height = MediaQuery.of(context).size.height;
+    //     width = MediaQuery.of(context).size.width;
+    //   });
+    // }, true);
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
-    return LayoutBuilder(
-      builder: (constex, constraints) => Scaffold(
-        body: NotificationListener(
-          onNotification: (v) {
-            if (v is ScrollUpdateNotification) {
-              //only if scroll update notification is triggered
-              setState(() {
-                rateOne += v.scrollDelta! * 0.19;
-                print(rateOne);
+    return Scaffold(
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
+      body: LayoutBuilder(
+        builder: (constex, constraints) => SizedBox(
+          child: NotificationListener(
+            onNotification: (v) {
+              if (v is ScrollUpdateNotification) {
+                setState(() {
+                  rateOne += v.scrollDelta! * 0.19;
+                  rateEleven -= v.scrollDelta! / 2;
+                  rateTwelv -= v.scrollDelta! / 2;
+                  rateTen -= v.scrollDelta! / 2;
+                  rateNine -= v.scrollDelta! / 2;
+                  rateEight -= v.scrollDelta! / 1.8;
+                  rateSeven -= v.scrollDelta! / 2;
+                  rateSix -= v.scrollDelta! / 2;
+                  rateFive -= v.scrollDelta! / 2;
+                  rateFour -= v.scrollDelta! / 2;
+                  rateThree -= v.scrollDelta! / 2;
+                  rateTwo -= v.scrollDelta! / 0.85;
+                  rateZero -= v.scrollDelta! / 2.5;
+                });
+              }
+              return true;
+            },
+            child: Stack(
+              children: <Widget>[
+                ListView(
+                    physics: const ClampingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    controller: _scrollController,
+                    children: <Widget>[
+                      Stack(
+                        children: [
+                          Container(
+                            height: constraints.maxHeight * 10,
+                            //color: Colors.transparent,
 
-                rateEleven -= v.scrollDelta! / 2;
-                rateTwelv -= v.scrollDelta! / 2;
-                rateTen -= v.scrollDelta! / 2;
-                rateNine -= v.scrollDelta! / 2;
-                rateEight -= v.scrollDelta! / 1.8;
-                rateSeven -= v.scrollDelta! / 1.5;
-                rateSix -= v.scrollDelta! / 2;
-                rateFive -= v.scrollDelta! / 2;
-                rateFour -= v.scrollDelta! / 2;
-                rateThree -= v.scrollDelta! / 2;
-                rateTwo -= v.scrollDelta! / 0.85;
-                rateZero -= v.scrollDelta! / 2.5;
-              });
-            }
-            return true;
-          },
-          child: Stack(
-            children: <Widget>[
-              ListView(
-                  physics: const ClampingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  controller: _scrollController,
-                  children: <Widget>[
-                    Stack(
-                      children: [
-                        Container(
-                          height: constraints.maxHeight * 10,
-                          //color: Colors.transparent,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(AssetsPath.paralaxBackground),
-                                  fit: BoxFit.cover)),
-                        ),
-                        ParallaxWidget(
-                          width: MediaQuery.of(context).size.width,
-                          boxFit: BoxFit.contain,
-                          top: rateZero,
-                          asset: "clouds",
-                        ),
-                        ParallaxWidget(
-                          width: MediaQuery.of(context).size.width,
-                          boxFit: BoxFit.contain,
-                          top: rateTwo,
-                          asset: "building",
-                        ),
-                        ParallaxWidget(
-                          paralaxText: locals.paralaxText1,
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          boxFit: BoxFit.contain,
-                          top: rateThree,
-                          left: 0,
-                          asset: "character_nkos",
-                        ),
-                        ParallaxWidget(
-                          paralaxText: locals.paralaxText1,
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          boxFit: BoxFit.contain,
-                          top: rateFour,
-                          left: MediaQuery.of(context).size.width / 2.2,
-                          right: 0,
-                          asset: "dead_bodies",
-                        ),
-                        ParallaxWidget(
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        AssetsPath.paralaxBackground),
+                                    fit: BoxFit.cover)),
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width,
                             boxFit: BoxFit.contain,
-                            top: rateFive,
-                            opacity: _paralaxImageOpasyty,
-                            asset: "left_crowd"),
-                        ParallaxWidget(
+                            top: rateZero,
+                            left: _progress2,
+                            asset: "clouds.png",
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
                             width: MediaQuery.of(context).size.width,
+                            boxFit: BoxFit.contain,
+                            top: rateTwo,
+                            asset: "building.png",
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
+                            paralaxText: locals.paralaxText1,
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            boxFit: BoxFit.contain,
+                            top: rateThree,
+                            left: _progress_caracter_nikos,
+                            asset: "character_nkos.gif",
+                          ),
+                          // ParallaxWidget(
+                          //   paralaxText: locals.paralaxText1,
+                          //   width: MediaQuery.of(context).size.width / 2.2,
+                          //   boxFit: BoxFit.contain,
+                          //   top: rateFour,
+                          //   left: MediaQuery.of(context).size.width / 2.2,
+                          //   right: 0,
+                          //   asset: "dead_bodies.png",
+                          // ),
+                          // Positioned(
+                          //   right: constraints.maxWidth * 0.13,
+                          //   top: height * 2.8,
+                          //   child: AnimatedOpacity(
+                          //     duration: Times.medium,
+                          //     opacity: 1,
+                          //     child: Container(
+                          //       width: width,
+                          //       color: AppColors.transpatent,
+                          //       child: Lottie.asset(
+                          //         "assets/paralax_new/smoke.json",
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: MediaQuery.of(context).size.width,
+                              boxFit: BoxFit.contain,
+                              top: rateFive,
+                              asset: "left_crowd.png"),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: MediaQuery.of(context).size.width,
+                              boxFit: BoxFit.cover,
+                              top: rateSix,
+                              asset: "characters_2.png"),
+                          ParallaxWidget(
+                            isImage: true,
+                            width: MediaQuery.of(context).size.width / 3,
+                            top: rateSeven,
+                            left: constraints.maxWidth * 0.13,
+                            asset: "character_12.png",
+                            boxFit: BoxFit.contain,
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
+                            width: MediaQuery.of(context).size.width / 3,
+                            top: rateEight,
+                            left: MediaQuery.of(context).size.width / 2,
+                            asset: "character_11.png",
                             boxFit: BoxFit.cover,
-                            top: rateSix,
-                            asset: "characters_2"),
-                        ParallaxWidget(
-                          width: MediaQuery.of(context).size.width / 3,
-                          top: rateSeven,
-                          left: constraints.maxWidth * 0.13,
-                          asset: "character_12",
-                          boxFit: BoxFit.contain,
-                        ),
-                        ParallaxWidget(
-                          width: MediaQuery.of(context).size.width / 3,
-                          top: rateEight,
-                          left: MediaQuery.of(context).size.width / 2,
-                          asset: "character_11",
-                          boxFit: BoxFit.cover,
-                        ),
-                        ParallaxWidget(
-                            width: rateOne.clamp(0, 2000),
-                            top: rateNine,
-                            left: -100,
-                            asset: "character_1",
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
-                            width: constraints.maxWidth * 0.6,
-                            top: rateTen,
-                            left: constraints.maxWidth * 0.3,
-                            right: 0,
-                            asset: "hand",
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
-                            width: MediaQuery.of(context).size.width,
-                            top: rateEleven,
-                            left: constraints.maxWidth * 0.2,
-                            right: constraints.maxWidth * 0.2,
-                            asset: "character_2",
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
-                            width: MediaQuery.of(context).size.width,
-                            top: rateTwelv,
-                            asset: "cloud",
-                            boxFit: BoxFit.contain),
-                      ],
-                    )
-                  ]),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: AnimatedOpacity(
-                  duration: Times.slower,
-                  opacity: _bottomFieldOpasity,
-                  child: Container(
-                    // padding: const EdgeInsets.symmetric(horizontal: 20),
-                    height: constraints.maxHeight * 0.1,
-                    decoration:
-                        BoxDecoration(color: AppColors.grey.withOpacity(0.9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: SizedBox(
+                          ),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: rateOne.clamp(0, 2000),
+                              top: rateNine,
+                              left: -100,
+                              asset: "character_1.png",
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: true,
+                              gifController: _gifControllerHand,
+                              width: constraints.maxWidth * 0.6,
+                              top: rateTen,
+                              left: constraints.maxWidth * 0.3,
+                              right: 0,
+                              asset: "hand.gif",
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: true,
+                              gifController: gifControllerCharacter_2,
+                              width: MediaQuery.of(context).size.width,
+                              top: rateEleven,
+                              left: 200,
+                              right: 200,
+                              asset: "character_2.gif",
+                              boxFit: BoxFit.cover),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: MediaQuery.of(context).size.width,
+                              top: rateTwelv,
+                              asset: "cloud.png",
+                              boxFit: BoxFit.contain),
+                        ],
+                      )
+                    ]),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedOpacity(
+                    duration: Times.slower,
+                    opacity: _bottomFieldOpasity,
+                    child: SizedBox(
+                      height: constraints.maxHeight * 0.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
                             child: ArrowLeftWidget(
                                 arrowColor: Colors.black,
                                 textSubTitle: locals.stickToTheOath,
                                 textTitle: '',
                                 onTap: () {
+                                  LeafDetails.currentVertex = 8;
+                                  LeafDetails.visitedVertexes.add(8);
                                   context.router
                                       .push(const PanaromaLeftPageRoute());
                                 }),
                           ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                          Flexible(
+                            flex: 3,
                             child: AutoSizeText(
                               locals.whatNikosDo,
                               maxLines: 1,
-                              minFontSize: 5,
+                              // minFontSize: 5,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2
                                   ?.copyWith(
                                       fontSize: 36,
-                                      fontWeight: FontWeight.normal),
+                                      fontWeight: FontWeight.w400),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: ArrowRightWidget(
-                              textSubTitle: locals.helpTheSenator,
-                              textTitle: '',
-                              arrowColor: Colors.black,
-                              onTap: () {
-                                ////????????
-                                context.router
-                                    .push(const PanaromaRightPageRoute());
-                              }),
-                        ),
-                      ],
+                          Expanded(
+                            child: ArrowRightWidget(
+                                textSubTitle: locals.helpTheSenator,
+                                textTitle: '',
+                                arrowColor: Colors.black,
+                                onTap: () {
+                                  ////????????
+                                  LeafDetails.currentVertex = 9;
+                                  LeafDetails.visitedVertexes.add(9);
+                                  context.router
+                                      .push(const PanaromaRightPageRoute());
+                                }),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Visibility(
-                visible: _lernMoreButtonVisibility,
-                child: AnimatedOpacity(
-                    duration: Times.medium,
-                    opacity: _paralaxTextOpasyty2,
-                    child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Clickable(
-                          onPressed: () {
-                            context.router.push(const MapPageRoute());
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 30),
-                            decoration: BoxDecoration(
-                                color: AppColors.blackG.withOpacity(0.75),
-                                border: Border.all(
-                                  color: AppColors.white,
-                                )),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 18.0, vertical: 5),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        AutoSizeText(
-                                          locals.learnMore.toUpperCase(),
-                                          minFontSize: 5,
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2
-                                              ?.copyWith(
-                                                  color: AppColors.white,
-                                                  fontSize: 10),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            AutoSizeText(
-                                              locals.athens5thCentury
-                                                  .toUpperCase(),
-                                              minFontSize: 5,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2
-                                                  ?.copyWith(
-                                                      color: AppColors.white),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                              width: 10,
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: AppColors.white,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                Positioned(
+                  top: constraints.maxHeight * 0.3,
+                  left: constraints.maxWidth * 0.05,
+                  child: SizedBox(
+                    width: constraints.maxWidth * 0.4,
+                    child: AnimatedOpacity(
+                      opacity: _topTextOpasyty,
+                      duration: Times.fast,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: AutoSizeText(locals.chapter1.toUpperCase()),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: AutoSizeText(locals.todoNoHarm.toUpperCase(),
+                                maxLines: 1,
+                                // minFontSize: 8,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                        fontSize: 80,
+                                        fontStyle: FontStyle.italic)),
+                          ),
+                          Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    left: BorderSide(
+                                        color: AppColors.red, width: 3))),
+                            child: AutoSizeText(
+                              locals.athens429Bc,
+                              maxLines: 1,
+                              // minFontSize: 8,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4
+                                  ?.copyWith(
+                                    fontSize: 80,
+                                    fontWeight: FontWeight.w100,
                                   ),
-                                ),
-                              ],
                             ),
                           ),
-                        ))),
-              ),
-              Positioned(
-                top: constraints.maxHeight * 0.3,
-                left: constraints.maxWidth * 0.01,
-                child: Container(
-                  width: constraints.maxWidth * 0.4,
-                  padding: EdgeInsets.only(left: constraints.maxWidth * 0.01),
-                  child: AnimatedOpacity(
-                    opacity: _topTextOpasyty,
-                    duration: Times.fast,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: AutoSizeText(locals.chapter1.toUpperCase()),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: AutoSizeText(
-                            locals.todoNoHarm.toUpperCase(),
-                            maxLines: 1,
-                            minFontSize: 8,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(fontSize: 80),
-                          ),
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  left: BorderSide(
-                                      color: AppColors.red, width: 3))),
-                          child: AutoSizeText(
-                            locals.athens429Bc,
-                            maxLines: 1,
-                            minFontSize: 8,
-                            style:
-                                Theme.of(context).textTheme.bodyText2?.copyWith(
-                                      fontSize: 80,
-                                      fontWeight: FontWeight.w100,
-                                    ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              AnimatedOpacity(
-                duration: Times.fast,
-                opacity: _paralaxTextOpasyty1,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container(
-                      margin: EdgeInsets.only(
-                          left: constraints.maxWidth * 0.05,
-                          bottom: constraints.maxHeight * 0.05),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: AutoSizeText(
-                            locals.paralaxText2,
-                            minFontSize: 5,
-                            // maxLines: 20,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ))),
+                AnimatedOpacity(
+                  duration: Times.fast,
+                  opacity: _paralaxTextOpasyty1,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            left: constraints.maxWidth * 0.05,
+                            bottom: constraints.maxHeight * 0.05),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText2,
+                              // minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context).textTheme.headline1,
+                            ))),
+                  ),
                 ),
-              ),
-              AnimatedOpacity(
-                duration: Times.fast,
-                opacity: _paralaxTextOpasyty2,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
+                AnimatedOpacity(
+                  duration: Times.fast,
+                  opacity: _paralaxTextOpasyty2,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            right: constraints.maxWidth * 0.05,
+                            bottom: constraints.maxHeight * 0.05),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText3,
+                              // minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context).textTheme.headline1,
+                            ))),
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: Times.fast,
+                  opacity: _paralaxTextOpasyty3,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            left: constraints.maxWidth * 0.05,
+                            bottom: constraints.maxHeight * 0.05),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText4,
+                              // minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context).textTheme.headline1,
+                            ))),
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: Times.fast,
+                  opacity: _paralaxTextOpasyty4,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            left: constraints.maxWidth * 0.05,
+                            bottom: constraints.maxHeight * 0.05),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: AutoSizeText(
+                              locals.paralaxText5,
+                              // minFontSize: 5,
+                              // maxLines: 20,
+                              style: Theme.of(context).textTheme.headline1,
+                            ))),
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: Times.fast,
+                  opacity: _paralaxTextOpasyty5,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
                       margin: EdgeInsets.only(
                           right: constraints.maxWidth * 0.05,
-                          bottom: constraints.maxHeight * 0.05),
+                          top: constraints.maxHeight * 0.05),
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Padding(
                           padding: const EdgeInsets.all(24),
                           child: AutoSizeText(
-                            locals.paralaxText3,
-                            minFontSize: 5,
+                            locals.paralaxText1,
+                            // minFontSize: 5,
                             // maxLines: 20,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ))),
-                ),
-              ),
-              AnimatedOpacity(
-                duration: Times.fast,
-                opacity: _paralaxTextOpasyty3,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                      margin: EdgeInsets.only(
-                          left: constraints.maxWidth * 0.05,
-                          bottom: constraints.maxHeight * 0.05),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: AutoSizeText(
-                            locals.paralaxText4,
-                            minFontSize: 5,
-                            // maxLines: 20,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ))),
-                ),
-              ),
-              AnimatedOpacity(
-                duration: Times.fast,
-                opacity: _paralaxTextOpasyty4,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container(
-                      margin: EdgeInsets.only(
-                          left: constraints.maxWidth * 0.05,
-                          bottom: constraints.maxHeight * 0.05),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: AutoSizeText(
-                            locals.paralaxText5,
-                            minFontSize: 5,
-                            // maxLines: 20,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ))),
-                ),
-              ),
-              AnimatedOpacity(
-                duration: Times.fast,
-                opacity: _paralaxTextOpasyty5,
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        right: constraints.maxWidth * 0.05,
-                        top: constraints.maxHeight * 0.05),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Padding(
-                        padding: const EdgeInsets.all(24),
-                        child: AutoSizeText(
-                          locals.paralaxText1,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context).textTheme.bodyText2,
-                        )),
+                            style: Theme.of(context).textTheme.headline1,
+                          )),
+                    ),
                   ),
                 ),
-              ),
-              SoundAndMenuWidget(
-                widget: Clickable(
-                  onPressed: () {
-                    context.router.pop();
-                  },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.arrow_upward_sharp,
-                        color: AppColors.black54,
-                      ),
-                      AutoSizeText("BOOK INTO"),
-                    ],
-                  ),
-                ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                onTapVolume: isSoundOn
-                    ? () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
+                SoundAndMenuWidget(
+                  widget: Clickable(
+                    onPressed: () {
+                      LeafDetails.currentVertex = 1;
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
                       }
-                    : () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
-                      },
-                onTapMenu: () {},
-              ),
-            ],
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(
+                          Icons.arrow_upward_sharp,
+                          color: AppColors.black54,
+                        ),
+                        Text("BOOK INTO"),
+                      ],
+                    ),
+                  ),
+                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                  onTapVolume: isSoundOn
+                      ? () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.pause();
+                          });
+                        }
+                      : () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.play();
+                          });
+                        },
+                  onTapMenu: () {
+                    scaffoldkey.currentState!.openEndDrawer();
+                  },
+                ),
+                AnimatedOpacity(
+                  duration: Times.medium,
+                  opacity: _lernMoreOpasyty,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 100, right: 50),
+                      child: Clickable(
+                        onPressed: () {
+                          LeafDetails.visitedVertexes.add(4);
+                          LeafDetails.currentVertex = 4;
+                          context.router.push(const MapPageRoute());
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 18.0, vertical: 5),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      locals.athens5thCentury.toUpperCase(),
+                                      // minFontSize: 5,
+                                      maxLines: 1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          ?.copyWith(
+                                              color: AppColors.white,
+                                              fontSize: 50),
+                                    ),
+                                    const SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        size: 50,
+                                        color: AppColors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

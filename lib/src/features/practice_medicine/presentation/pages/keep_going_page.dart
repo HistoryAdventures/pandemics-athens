@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class KeepGoingPage extends StatefulWidget {
   const KeepGoingPage({Key? key}) : super(key: key);
@@ -30,6 +34,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -53,7 +58,12 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                     textSubTitle: locals.todoNoHarm,
                     textTitle: locals.chapter1,
                     onTap: () {
-                      context.router.pop();
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
                     }),
               ),
             ),
@@ -73,7 +83,9 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -106,6 +118,8 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                 padding: const EdgeInsets.all(24),
                 child: IconButton(
                     onPressed: () {
+                      LeafDetails.currentVertex = 15;
+                      LeafDetails.visitedVertexes.add(15);
                       context.router.push(const DeadOfSocratesPageRoute());
                     },
                     icon: const Icon(

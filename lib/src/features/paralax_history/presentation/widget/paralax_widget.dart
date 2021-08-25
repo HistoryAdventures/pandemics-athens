@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/styles.dart';
@@ -11,6 +12,8 @@ class ParallaxWidget extends StatelessWidget {
   final BoxFit boxFit;
   final double width;
   final double? right;
+  final bool isImage;
+  final GifController? gifController;
   final Animation<Offset>? animation;
   final double? opacity;
   const ParallaxWidget(
@@ -18,6 +21,8 @@ class ParallaxWidget extends StatelessWidget {
       required this.asset,
       required this.boxFit,
       required this.width,
+      required this.isImage,
+      this.gifController,
       this.opacity,
       this.right,
       this.left,
@@ -33,10 +38,17 @@ class ParallaxWidget extends StatelessWidget {
         duration: Times.medium,
         opacity: opacity ?? 1,
         child: Container(
-          width: width,
-          color: AppColors.transpatent,
-          child: Image.asset("assets/paralax_images/$asset.png", fit: boxFit),
-        ),
+            width: width,
+            color: AppColors.transpatent,
+            child: isImage
+                ? Image.asset(
+                    "assets/paralax_new/$asset",
+                    fit: boxFit,
+                    gaplessPlayback: true,
+                  )
+                : GifImage(
+                    image: AssetImage("assets/paralax_new/$asset"),
+                    controller: gifController!)),
       ),
     );
   }

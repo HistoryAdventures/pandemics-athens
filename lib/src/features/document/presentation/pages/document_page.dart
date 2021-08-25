@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/document.dart';
 import '../widgets/points.dart';
 
@@ -26,6 +30,7 @@ class _DocumentPageState extends State<DocumentPage>
   late AppLocalizations locale;
 
   late String _selectedItem;
+  final scaffoldkey = GlobalKey<ScaffoldState>();
 
   late String _infoText;
 
@@ -166,6 +171,8 @@ class _DocumentPageState extends State<DocumentPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scaffoldkey,
+        endDrawer: const NavigationPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         backgroundColor: AppColors.greyDeep,
         floatingActionButton: Row(
@@ -186,6 +193,15 @@ class _DocumentPageState extends State<DocumentPage>
               backgroundColor: AppColors.white,
               onPressed: _scaleDown,
               child: const Icon(Icons.remove, color: AppColors.blackB),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            FloatingActionButton(
+              heroTag: "bt[]",
+              backgroundColor: AppColors.white,
+              onPressed: () {},
+              child: const Icon(Icons.crop_free, color: AppColors.blackB),
             ),
           ],
         ),
@@ -263,7 +279,10 @@ class _DocumentPageState extends State<DocumentPage>
                                               icon: const Icon(Icons.volume_up),
                                             ),
                                             IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  scaffoldkey.currentState!
+                                                      .openEndDrawer();
+                                                },
                                                 icon: const Icon(Icons.menu))
                                           ],
                                         ),
@@ -279,13 +298,18 @@ class _DocumentPageState extends State<DocumentPage>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                AutoSizeText(
-                                                  locale
-                                                      .chapter1MedicalToolsKnowledge,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: AutoSizeText(
+                                                    locale
+                                                        .chapter1MedicalToolsKnowledge,
+                                                    maxLines: 1,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1,
+                                                  ),
                                                 ),
                                                 AutoSizeText(
                                                   locale
@@ -370,7 +394,13 @@ class _DocumentPageState extends State<DocumentPage>
                         textSubTitle: locale.medicalToolsKnowledge,
                         textTitle: locale.chapter1,
                         onTap: () {
-                          context.router.pop();
+                          LeafDetails.currentVertex = 8;
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
                         }),
                   ),
                 ),

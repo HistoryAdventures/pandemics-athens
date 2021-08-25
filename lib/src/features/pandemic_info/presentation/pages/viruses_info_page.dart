@@ -1,14 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../widgets/gif_contrrol.dart';
 
 class VirusesInfoPage extends StatefulWidget {
@@ -37,7 +42,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
-
+  final skaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -106,6 +111,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
+        key: skaffoldKey,
+        endDrawer: const NavigationPage(),
         body: Stack(
           children: [
             const BackgroundWidget(),
@@ -141,80 +148,85 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             right: 50,
                             top: constraints.maxHeight * 0.1,
                             bottom: constraints.maxHeight * 0.1),
-                        decoration: const BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 1),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                          BoxShadow(
-                              offset: Offset(1, 0),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                          BoxShadow(
-                              offset: Offset(1, -1),
-                              color: AppColors.grey,
-                              blurRadius: 5),
-                        ], color: AppColors.white),
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            boxShadow: Shadows.universal),
                         padding: EdgeInsets.all(constraints.maxHeight * 0.024),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Flexible(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: AutoSizeText(
-                                      locals.chapter1Pathogenprofile,
-                                      maxLines: 1,
-                                      style: DefaultTheme
-                                          .standard.textTheme.headline1
-                                          ?.copyWith(color: AppColors.black54),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: AutoSizeText(
-                                        locals.whatWasIt.toUpperCase(),
-                                        maxLines: 1,
-                                        style: DefaultTheme
-                                            .standard.textTheme.headline2),
-                                  ),
-                                ],
-                              ),
-                            ),
                             Expanded(
-                              flex: 6,
+                              flex: 10,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
-                                        top: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
                                         bottom: BorderSide(
                                             color: AppColors.grey,
                                             width: 1.2))),
-                                child: Scrollbar(
-                                  isAlwaysShown: true,
-                                  child: ListView(shrinkWrap: true, children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                          text:
-                                              '$_selectedItem\n'.toUpperCase(),
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline3,
-                                        ),
-                                        TextSpan(
-                                          text: _selectedText,
-                                          style: DefaultTheme
-                                              .standard.textTheme.bodyText1,
-                                        ),
-                                      ])),
-                                    )
-                                  ]),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: AutoSizeText(
+                                              "${locals.chapter1Pathogenprofile}\n",
+                                              maxLines: 2,
+                                              style: DefaultTheme
+                                                  .standard.textTheme.headline1
+                                                  ?.copyWith(
+                                                      color: AppColors.black54),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: AutoSizeText(
+                                                locals.whatWasIt.toUpperCase(),
+                                                maxLines: 1,
+                                                style: DefaultTheme.standard
+                                                    .textTheme.headline2),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                          top: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2),
+                                        )),
+                                        child: ListView(
+                                            shrinkWrap: true,
+                                            children: [
+                                              Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: RichText(
+                                                    text: TextSpan(children: [
+                                                  TextSpan(
+                                                    text: '$_selectedItem\n'
+                                                        .toUpperCase(),
+                                                    style: DefaultTheme.standard
+                                                        .textTheme.headline3,
+                                                  ),
+                                                  TextSpan(
+                                                    text: _selectedText,
+                                                    style: DefaultTheme.standard
+                                                        .textTheme.bodyText1,
+                                                  ),
+                                                ])),
+                                              )
+                                            ]),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -246,7 +258,13 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                     textSubTitle: locals.whatDidItDo,
                     textTitle: locals.pathogenProfile,
                     onTap: () {
-                      context.router.pop();
+                      LeafDetails.currentVertex = 12;
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
                     }),
               ),
             ),
@@ -265,7 +283,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                skaffoldKey.currentState!.openEndDrawer();
+              },
             ),
           ],
         ),

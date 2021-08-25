@@ -30,10 +30,10 @@ class ArrowRightWidget extends StatelessWidget {
               textAlign: TextAlign.end,
               maxLines: 1,
               minFontSize: 5,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2
-                  ?.copyWith(fontSize: 24, color: textColor ?? Colors.black),
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    fontSize: 24,
+                    color: textColor ?? Colors.black,
+                  ),
             ),
           ),
           Expanded(

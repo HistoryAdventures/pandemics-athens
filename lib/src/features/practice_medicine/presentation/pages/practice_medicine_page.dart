@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -11,6 +13,8 @@ import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/arrow_right.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class PracticeMedicine extends StatefulWidget {
   const PracticeMedicine({Key? key}) : super(key: key);
@@ -69,6 +73,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
       return const LoadingWidget();
     }
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -145,7 +150,13 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
               color: AppColors.white,
               widget: IconButton(
                   onPressed: () {
-                    context.router.pop();
+                    LeafDetails.currentVertex = 10;
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
                   },
                   icon: const Icon(
                     Icons.arrow_upward_sharp,
@@ -166,7 +177,9 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
             Align(
               alignment: Alignment.topCenter,

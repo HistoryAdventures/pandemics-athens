@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../widgets/animate_arrow.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class VirusLocationSecondPage extends StatefulWidget {
   const VirusLocationSecondPage({Key? key}) : super(key: key);
@@ -31,6 +35,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -39,32 +44,14 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLocMap),
+                      image: AssetImage(AssetsPath.virusLoc2),
                       fit: BoxFit.cover)),
-            ),
-            AnimatedLine(
-              constraints: constraints,
             ),
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.8),
-                    // boxShadow: const [
-                    //   BoxShadow(
-                    //       offset: Offset(0, 1),
-                    //       color: AppColors.grey,
-                    //       blurRadius: 5),
-                    //   BoxShadow(
-                    //       offset: Offset(1, 0),
-                    //       color: AppColors.grey,
-                    //       blurRadius: 5),
-                    //   BoxShadow(
-                    //       offset: Offset(1, -1),
-                    //       color: AppColors.grey,
-                    //       blurRadius: 5),
-                    // ],
-                  ),
+                      color: AppColors.white, boxShadow: Shadows.universal),
                   height: constraints.maxHeight * 0.4,
                   width: constraints.maxWidth * 0.4,
                   margin: EdgeInsets.only(
@@ -87,11 +74,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
-                                      locals.chapter1Pathogenprofile,
-                                      maxLines: 1,
+                                      "${locals.chapter1Pathogenprofile}\n",
+                                      maxLines: 2,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .subtitle2),
+                                          .headline1),
                                 ),
                                 Flexible(
                                   child: AutoSizeText(
@@ -139,7 +126,13 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                             textSubTitle: locals.pathogenProfile,
                             textTitle: locals.chapter1,
                             onTap: () {
-                              context.router.pop();
+                              LeafDetails.currentVertex = 11;
+                              if (kIsWeb) {
+                                html.window.history.back();
+                                context.router.pop();
+                              } else {
+                                context.router.pop();
+                              }
                             }),
                       ),
                     ),
@@ -150,6 +143,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                             textSubTitle: locals.whatDidItDo,
                             textTitle: locals.pathogenProfile,
                             onTap: () {
+                              LeafDetails.currentVertex = 12;
+                              LeafDetails.visitedVertexes.add(12);
                               context.router.push(const BodyInfoPageRoute());
                             }),
                       ),
@@ -173,7 +168,9 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );

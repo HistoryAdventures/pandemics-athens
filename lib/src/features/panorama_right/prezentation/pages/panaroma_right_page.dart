@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../../../panarama_left/presentation/models/dialog_model.dart';
 
 class PanaromaRightPage extends StatefulWidget {
@@ -16,16 +20,13 @@ class PanaromaRightPage extends StatefulWidget {
   _PanaromaRightPageState createState() => _PanaromaRightPageState();
 }
 
-class _PanaromaRightPageState extends State<PanaromaRightPage>
-    with TickerProviderStateMixin {
+class _PanaromaRightPageState extends State<PanaromaRightPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
 
-  final begin = const Offset(0.0, -1.0);
-  final end = Offset.zero;
-  final curve = Curves.easeInBack;
-  final backgroundplayer = AudioPlayer();
-  final openInfoPlayer = AudioPlayer();
+  //final backgroundplayer = AudioPlayer();
+  //final openInfoPlayer = AudioPlayer();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
 
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
@@ -115,7 +116,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
       setState(() {
         isImageloaded = true;
         isSoundOn = true;
-        backgroundplayer.play();
+        //backgroundplayer.play();
       });
     } else {
       setState(() {
@@ -140,14 +141,10 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
   }
 
   @override
-  void dispose() {
-    backgroundplayer.stop();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldkey,
+        endDrawer: const NavigationPage(),
         body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
   }
 
@@ -184,10 +181,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
                                     animation: animation,
-                                    tween: Offsets.tween,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
-                                    locals: locals,
                                     listDialogInfo: infoList,
                                   ));
                         },
@@ -210,8 +205,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
             margin: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.06,
                 top: MediaQuery.of(context).size.height * 0.25,
-                bottom: MediaQuery.of(context).size.height * 0.4,
-                right: MediaQuery.of(context).size.width * 0.6),
+                bottom: MediaQuery.of(context).size.height * 0.25,
+                right: MediaQuery.of(context).size.width * 0.55),
             child: Scaffold(
                 backgroundColor: AppColors.blackG.withOpacity(0.75),
                 body: Padding(
@@ -231,33 +226,41 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
           ),
         ),
         SoundAndMenuWidget(
-          color: AppColors.white,
+          color: AppColors.black100,
           icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
           onTapVolume: isSoundOn
               ? () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.pause();
+                    //backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.play();
+                    //backgroundplayer.play();
                   });
                 },
-          onTapMenu: () {},
+          onTapMenu: () {
+            scaffoldkey.currentState!.openEndDrawer();
+          },
         ),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowLeftTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.chapter1,
                 textTitle: locals.chapter1,
                 onTap: () {
-                  context.router.pop();
+                  LeafDetails.currentVertex = 2;
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
                 }),
           ),
         ),
@@ -267,6 +270,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
             padding: const EdgeInsets.all(24),
             child: Clickable(
               onPressed: () {
+                LeafDetails.currentVertex = 10;
+                LeafDetails.visitedVertexes.add(10);
                 context.router.push(const PathogenProfilePageRoute());
               },
               child: SizedBox(
@@ -274,7 +279,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage>
                   width: 20,
                   child: Image.asset(
                     AssetsPath.arrowDounImage,
-                    color: AppColors.white,
+                    color: AppColors.black100,
                   )),
             ),
           ),

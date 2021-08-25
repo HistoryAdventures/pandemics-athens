@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/dialog_model.dart';
 
 class PanaromaLeftPage extends StatefulWidget {
@@ -16,8 +20,7 @@ class PanaromaLeftPage extends StatefulWidget {
   _PanaromaLeftPageState createState() => _PanaromaLeftPageState();
 }
 
-class _PanaromaLeftPageState extends State<PanaromaLeftPage>
-    with TickerProviderStateMixin {
+class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
   List<String> contentImages = [
@@ -31,6 +34,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
   ];
 
   bool isImageloaded = false;
+  final scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   void didChangeDependencies() {
@@ -97,8 +101,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
-  final backgroundplayer = AudioPlayer();
-  final openInfoPlayer = AudioPlayer();
+  //final backgroundplayer = AudioPlayer();
+  //final openInfoPlayer = AudioPlayer();
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
@@ -109,7 +113,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
       setState(() {
         isImageloaded = true;
         isSoundOn = true;
-        backgroundplayer.play();
+        //backgroundplayer.play();
       });
     } else {
       setState(() {
@@ -135,13 +139,15 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
 
   @override
   void dispose() {
-    backgroundplayer.stop();
+    //backgroundplayer.stop();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldkey,
+        endDrawer: const NavigationPage(),
         body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
   }
 
@@ -168,7 +174,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                   ),
                   onPressed: () {
                     setState(() {
-                      openInfoPlayer.play();
+                      // openInfoPlayer.play();
                       //print("object");
                     });
                     showGeneralDialog(
@@ -181,10 +187,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
                                     animation: animation,
-                                    tween: Offsets.tween,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
-                                    locals: locals,
                                     listDialogInfo: infoList,
                                   ));
                         },
@@ -232,10 +236,12 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowLeftTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.sourceAnalysis,
                 textTitle: locals.medicalToolsKnowledge,
                 onTap: () {
+                  LeafDetails.visitedVertexes.add(3);
+                  LeafDetails.currentVertex = 3;
                   context.router.push(const DocumentPageRoute());
                 }),
           ),
@@ -245,31 +251,39 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage>
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: ArrowRightTextWidget(
-                color: AppColors.white,
+                color: AppColors.black100,
                 textSubTitle: locals.todoNoHarm,
                 textTitle: locals.chapter1,
                 onTap: () {
-                  context.router.pop();
+                  LeafDetails.currentVertex = 2;
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
                 }),
           ),
         ),
         SoundAndMenuWidget(
-          color: AppColors.white,
+          color: AppColors.black100,
           icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
           onTapVolume: isSoundOn
               ? () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.pause();
+                    // backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
                     isSoundOn = !isSoundOn;
-                    backgroundplayer.play();
+                    // backgroundplayer.play();
                   });
                 },
-          onTapMenu: () {},
+          onTapMenu: () {
+            scaffoldkey.currentState!.openEndDrawer();
+          },
         ),
       ],
     );

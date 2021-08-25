@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class AboutBookPage extends StatefulWidget {
   const AboutBookPage({Key? key}) : super(key: key);
@@ -32,6 +36,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -42,10 +47,74 @@ class _AboutBookPageState extends State<AboutBookPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: constraints.maxHeight * 0.15,
+                    margin: EdgeInsets.only(top: constraints.maxHeight * 0.2),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: AutoSizeText(
+                            locale.aboutTheBook.toUpperCase(),
+                            maxLines: 1,
+                            style: DefaultTheme.standard.textTheme.headline2,
+                          ),
+                        ),
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: constraints.maxWidth * 0.01),
+                            child: AutoSizeText(
+                              locale.meetTheTeamText.toLowerCase(),
+                              maxLines: 1,
+                              style: DefaultTheme.standard.textTheme.subtitle2,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: constraints.maxHeight * 0.2,
+                    ),
+                    width: constraints.maxWidth * 0.9,
+                    height: constraints.maxHeight * 0.5,
+                    child: Image.asset(
+                      AssetsPath.aboutBookMap,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 24, right: 24),
+                    child: ArrowRightTextWidget(
+                        textSubTitle: locale.credits,
+                        textTitle: locale.aboutTheBook,
+                        onTap: () {
+                          LeafDetails.currentVertex = 20;
+                          LeafDetails.visitedVertexes.add(20);
+                          context.router.push(const CreditsPageRoute());
+                        }),
+                  ),
+                ),
                 SoundAndMenuWidget(
                   widget: IconButton(
                       onPressed: () {
-                        context.router.pop();
+                        LeafDetails.currentVertex = 18;
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
                       },
                       icon: const Icon(
                         Icons.arrow_upward_sharp,
@@ -66,60 +135,9 @@ class _AboutBookPageState extends State<AboutBookPage> {
                             backgroundplayer.play();
                           });
                         },
-                  onTapMenu: () {},
-                ),
-                Positioned(
-                  left: 100,
-                  right: 100,
-                  child: Container(
-                    height: constraints.maxHeight * 0.1,
-                    width: constraints.maxWidth * 0.1,
-                    margin: EdgeInsets.only(top: constraints.maxHeight * 0.1),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: AutoSizeText(
-                            locale.aboutTheBook.toUpperCase(),
-                            maxLines: 1,
-                            style: DefaultTheme.standard.textTheme.headline2,
-                          ),
-                        ),
-                        Expanded(
-                          child: AutoSizeText(
-                            locale.meetTheTeamText.toLowerCase(),
-                            maxLines: 1,
-                            style: DefaultTheme.standard.textTheme.subtitle2,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 24, right: 24),
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.credits,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          context.router.push(CreditsPageRoute());
-                        }),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: constraints.maxWidth * 0.1,
-                        right: constraints.maxWidth * 0.1,
-                        bottom: 80,
-                        top: constraints.maxHeight * 0.2),
-                    child: Image.asset(
-                      AssetsPath.aboutBookMap,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
               ],
             );

@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class CreditsPage extends StatefulWidget {
   const CreditsPage({Key? key}) : super(key: key);
@@ -31,6 +35,7 @@ class _CreditsPageState extends State<CreditsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -68,7 +73,9 @@ class _CreditsPageState extends State<CreditsPage> {
                             backgroundplayer.play();
                           });
                         },
-                  onTapMenu: () {},
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -82,7 +89,13 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.meetTheTeam,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                context.router.pop();
+                                LeafDetails.currentVertex = 19;
+                                if (kIsWeb) {
+                                  html.window.history.back();
+                                  context.router.pop();
+                                } else {
+                                  context.router.pop();
+                                }
                               }),
                         ),
                         Flexible(
@@ -103,6 +116,8 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.currentVertex = 21;
+                                LeafDetails.visitedVertexes.add(21);
                                 context.router.push(const SoursePageRoute());
                               }),
                         ),
@@ -279,7 +294,7 @@ class _CreditsPageState extends State<CreditsPage> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
+                        ?.copyWith(color: AppColors.grey, fontSize: 16),
                   ),
                 ),
               ),
@@ -293,7 +308,10 @@ class _CreditsPageState extends State<CreditsPage> {
                 child: AutoSizeText(
                   people,
                   maxLines: 2,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(fontSize: 22),
                 ),
               );
             }).toList(),

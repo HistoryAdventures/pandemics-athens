@@ -10,21 +10,18 @@ import 'dialog_image.dart';
 
 class DialogWidget extends StatefulWidget {
   final Animation<double> animation;
-  final Animatable<Offset> tween;
   final BoxConstraints constraints;
-  final AppLocalizations locals;
+
   final InfoDialogModel slectedInfoDialog;
   final List<InfoDialogModel> listDialogInfo;
 
-  const DialogWidget(
-      {Key? key,
-      required this.animation,
-      required this.tween,
-      required this.slectedInfoDialog,
-      required this.listDialogInfo,
-      required this.constraints,
-      required this.locals})
-      : super(key: key);
+  const DialogWidget({
+    Key? key,
+    required this.animation,
+    required this.slectedInfoDialog,
+    required this.listDialogInfo,
+    required this.constraints,
+  }) : super(key: key);
 
   @override
   _DialogWidgetState createState() => _DialogWidgetState();
@@ -37,6 +34,8 @@ class _DialogWidgetState extends State<DialogWidget> {
   late String _infoText;
   late String _selectedImageText;
 
+  late AppLocalizations locals;
+
   @override
   void initState() {
     _selectedItem = widget.slectedInfoDialog.title;
@@ -46,6 +45,12 @@ class _DialogWidgetState extends State<DialogWidget> {
 
     _selectedSubTitle = widget.slectedInfoDialog.subTitle;
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
   }
 
   void chandeState(String? selctedItem, String? image, String? textDescription,
@@ -90,8 +95,8 @@ class _DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: SlideTransition(
-        position: widget.animation.drive(widget.tween),
+      child: FadeTransition(
+        opacity: widget.animation,
         child: Container(
           width: widget.constraints.maxWidth,
           height: widget.constraints.maxHeight,
@@ -99,7 +104,7 @@ class _DialogWidgetState extends State<DialogWidget> {
               horizontal: widget.constraints.maxWidth * 0.15,
               vertical: widget.constraints.maxHeight * 0.2),
           child: Scaffold(
-              backgroundColor: AppColors.white,
+              backgroundColor: AppColors.white.withOpacity(0.9),
               body: Container(
                 padding: EdgeInsets.all(widget.constraints.maxHeight * 0.024),
                 child: Row(
@@ -154,7 +159,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                 child: Container(
                                   color: Colors.black,
                                   child: const Icon(
-                                    Icons.add,
+                                    Icons.zoom_in,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -168,90 +173,116 @@ class _DialogWidgetState extends State<DialogWidget> {
                           padding: const EdgeInsets.only(left: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
-                                  flex: 2,
-                                  child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                  AppLocalizations.of(context)!
-                                                      .chapter1Name
-                                                      .toUpperCase(),
-                                                  maxLines: 1,
-                                                  minFontSize: 10,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          color: AppColors
-                                                              .black54),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                    widget.locals
-                                                        .plaguePoliticalInstability,
-                                                    minFontSize: 13,
-                                                    maxLines: 1,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Flexible(
-                                            child: Clickable(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Icon(Icons.clear)))
-                                      ])),
                               Expanded(
-                                flex: 6,
+                                flex: 10,
                                 child: Container(
                                   decoration: const BoxDecoration(
                                       border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
                                           bottom: BorderSide(
                                               color: AppColors.grey,
                                               width: 1.2))),
-                                  child: ListView(children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 30),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: '$_selectedSubTitle\n\n'
-                                                .toUpperCase(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3),
-                                        TextSpan(
-                                          text: _infoText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                          flex: 1,
+                                          child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Flexible(
+                                                        child: AutoSizeText(
+                                                          "${locals.chapter1Name}\n"
+                                                              .toUpperCase(),
+                                                          maxLines: 2,
+                                                          minFontSize: 10,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .headline1
+                                                              ?.copyWith(
+                                                                  color: AppColors
+                                                                      .black54),
+                                                        ),
+                                                      ),
+                                                      Flexible(
+                                                        child: AutoSizeText(
+                                                            locals
+                                                                .plaguePoliticalInstability,
+                                                            minFontSize: 13,
+                                                            maxLines: 1,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline2),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Flexible(
+                                                    child: Clickable(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: const Icon(
+                                                            Icons.clear)))
+                                              ])),
+                                      Expanded(
+                                        flex: 5,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          )),
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 8.0, right: 30),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                        text:
+                                                            '$_selectedSubTitle\n\n'
+                                                                .toUpperCase(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline3),
+                                                    TextSpan(
+                                                      text: _infoText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
                                         ),
-                                      ])),
-                                    )
-                                  ]),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Flexible(

@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
-import '../widgets/arrow_widget.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class VirusLocationPage extends StatefulWidget {
   const VirusLocationPage({Key? key}) : super(key: key);
@@ -30,6 +34,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -38,18 +43,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               height: constraints.maxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLocMap),
+                      image: AssetImage(AssetsPath.virusLoc1),
                       fit: BoxFit.cover)),
-            ),
-            Line(
-              constraints: constraints,
             ),
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.8),
-                  ),
+                      color: AppColors.white, boxShadow: Shadows.universal),
                   height: constraints.maxHeight * 0.4,
                   width: constraints.maxWidth * 0.4,
                   margin: EdgeInsets.only(
@@ -73,11 +74,11 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
-                                      locals.chapter1Pathogenprofile,
-                                      maxLines: 1,
+                                      "${locals.chapter1Pathogenprofile}\n",
+                                      maxLines: 2,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .subtitle2),
+                                          .headline1),
                                 ),
                                 Flexible(
                                   child: AutoSizeText(
@@ -141,7 +142,13 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                             textSubTitle: locals.pathogenProfile,
                             textTitle: locals.chapter1,
                             onTap: () {
-                              context.router.pop();
+                              LeafDetails.currentVertex = 10;
+                              if (kIsWeb) {
+                                html.window.history.back();
+                                context.router.pop();
+                              } else {
+                                context.router.pop();
+                              }
                             }),
                       ),
                     ),
@@ -176,7 +183,9 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );

@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
 
 class MapPage extends StatefulWidget {
@@ -20,6 +24,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   late String _selectedItem;
+  late String _selectedMap;
   late String _selectedImage;
   late String _selectedTitle;
   late String _selectedBody;
@@ -72,218 +77,258 @@ class _MapPageState extends State<MapPage> {
     locals = AppLocalizations.of(context)!;
     mapInfoList = [
       MapInfoModel(
-          imageDescription: '',
-          image: '',
-          text: locals.y508bodyText,
-          title: locals.y508,
-          year: locals.y508),
+        imageDescription: '',
+        image: '',
+        text: locals.y508bodyText,
+        title: locals.y508,
+        year: locals.y508,
+        mapImage: AssetsPath.map508,
+      ),
       MapInfoModel(
-          imageDescription: locals.y495imageText,
-          image: AssetsPath.mapImage495,
-          text: locals.y495bodyText,
-          title: locals.y495,
-          year: locals.y495),
+        imageDescription: locals.y495imageText,
+        image: AssetsPath.mapImage495,
+        text: locals.y495bodyText,
+        title: locals.y495,
+        year: locals.y495,
+        mapImage: AssetsPath.map495,
+      ),
       MapInfoModel(
           imageDescription: locals.y490imageText,
           image: AssetsPath.mapImage490,
           text: locals.y490bodyText,
           title: locals.y490,
-          year: locals.y490),
+          year: locals.y490,
+          mapImage: AssetsPath.map490),
       MapInfoModel(
           imageDescription: locals.y480imageText,
           image: AssetsPath.mapImage480,
           text: locals.y480bodyText,
           title: locals.y480bodyTextTitle,
-          year: locals.y480),
+          year: locals.y480,
+          mapImage: AssetsPath.map480),
       MapInfoModel(
           imageDescription: locals.y479imageText,
           image: AssetsPath.mapImage479,
           text: locals.y479bodyText,
           title: locals.y479bodyTextTitle,
-          year: locals.y479),
+          year: locals.y479,
+          mapImage: AssetsPath.map479),
       MapInfoModel(
           imageDescription: locals.y477imageText,
           image: AssetsPath.mapImage477,
           text: locals.y477bodyText,
           title: locals.y477bodyTextTitle,
-          year: locals.y477),
+          year: locals.y477,
+          mapImage: AssetsPath.map477),
       MapInfoModel(
           imageDescription: locals.y471imageText,
           image: AssetsPath.mapImage471,
           text: locals.y471bodyText,
           title: locals.y471bodyTextTitle,
-          year: locals.y471),
+          year: locals.y471,
+          mapImage: AssetsPath.map471),
       MapInfoModel(
           imageDescription: locals.y469imageText,
           image: AssetsPath.mapImage469,
           text: locals.y469bodyText,
           title: locals.y469bodyTextTitle,
-          year: locals.y469),
+          year: locals.y469,
+          mapImage: AssetsPath.map469),
       MapInfoModel(
           imageDescription: locals.y462imageText,
           image: AssetsPath.mapImage462,
           text: locals.y462bodyText,
           title: locals.y462bodyTextTitle,
-          year: locals.y462),
+          year: locals.y462,
+          mapImage: AssetsPath.map462),
       MapInfoModel(
           imageDescription: locals.y461imageText,
           image: AssetsPath.mapImage461,
           text: locals.y461bodyText,
           title: locals.y461bodyTextTitle,
-          year: locals.y461),
+          year: locals.y461,
+          mapImage: AssetsPath.map461),
       MapInfoModel(
           imageDescription: locals.y458imageText,
           image: AssetsPath.mapImage458,
           text: locals.y458bodyText,
           title: locals.y458bodyTextTitle,
-          year: locals.y458),
+          year: locals.y458,
+          mapImage: AssetsPath.map458),
       MapInfoModel(
           imageDescription: locals.y457imageText,
           image: AssetsPath.mapImage457,
           text: locals.y457bodyText,
           title: locals.y457bodyTextTitle,
-          year: locals.y457),
+          year: locals.y457,
+          mapImage: AssetsPath.map457),
       MapInfoModel(
           imageDescription: locals.y454imageText,
           image: AssetsPath.mapImage454,
           text: locals.y454bodyText,
           title: locals.y454bodyTextTitle,
-          year: locals.y454),
+          year: locals.y454,
+          mapImage: AssetsPath.map454),
       MapInfoModel(
           imageDescription: locals.y451imageText,
           image: AssetsPath.mapImage451,
           text: locals.y451bodyText,
           title: locals.y451bodyTextTitle,
-          year: locals.y451),
+          year: locals.y451,
+          mapImage: AssetsPath.map451),
       MapInfoModel(
           imageDescription: locals.y450imageText,
           image: AssetsPath.mapImage450,
           text: locals.y450bodyText,
           title: locals.y450bodyTextTitle,
-          year: locals.y450),
+          year: locals.y450,
+          mapImage: AssetsPath.map450),
       MapInfoModel(
           imageDescription: locals.y447_432imageText,
           image: AssetsPath.mapImage447_432,
           text: locals.y447_432bodyText,
           title: locals.y447_432bodyTextTitle,
-          year: locals.y447_432),
+          year: locals.y447_432,
+          mapImage: AssetsPath.map447_432),
       MapInfoModel(
           imageDescription: locals.y446imageText,
           image: AssetsPath.mapImage446,
           text: locals.y446bodyText,
           title: locals.y446bodyTextTitle,
-          year: locals.y446),
+          year: locals.y446,
+          mapImage: AssetsPath.map446),
       MapInfoModel(
           imageDescription: locals.y443imageText,
           image: AssetsPath.mapImage443,
           text: locals.y443bodyText,
           title: locals.y443bodyTextTitle,
-          year: locals.y443),
+          year: locals.y443,
+          mapImage: AssetsPath.map443),
       MapInfoModel(
           imageDescription: locals.y441imageText,
           image: AssetsPath.mapImage441,
           text: locals.y441bodyText,
           title: locals.y441bodyTextTitle,
-          year: locals.y441),
+          year: locals.y441,
+          mapImage: AssetsPath.map441),
       MapInfoModel(
           imageDescription: locals.y438imageText,
           image: AssetsPath.mapImage438,
           text: locals.y438bodyText,
           title: locals.y438bodyTextTitle,
-          year: locals.y438),
+          year: locals.y438,
+          mapImage: AssetsPath.map438),
       MapInfoModel(
           imageDescription: locals.y431imageText,
           image: AssetsPath.mapImage431,
           text: locals.y431bodyText,
           title: locals.y431bodyTextTitle,
-          year: locals.y431),
+          year: locals.y431,
+          mapImage: AssetsPath.map431),
       MapInfoModel(
           imageDescription: locals.y430imageText,
           image: AssetsPath.mapImage430,
           text: locals.y430bodyText,
           title: locals.y430bodyTextTitle,
-          year: locals.y430),
+          year: locals.y430,
+          mapImage: AssetsPath.map430),
       MapInfoModel(
-          imageDescription: '',
-          image: '',
-          text: locals.y429bodyText,
-          title: locals.y429,
-          year: locals.y429),
+        imageDescription: '',
+        image: '',
+        text: locals.y429bodyText,
+        title: locals.y429,
+        year: locals.y429,
+        mapImage: AssetsPath.map429,
+      ),
       MapInfoModel(
-          imageDescription: locals.y427imageText,
-          image: AssetsPath.mapImage427,
-          text: locals.y427bodyText,
-          title: locals.y427bodyTextTitle,
-          year: locals.y427),
+        mapImage: AssetsPath.map427,
+        imageDescription: locals.y427imageText,
+        image: AssetsPath.mapImage427,
+        text: locals.y427bodyText,
+        title: locals.y427bodyTextTitle,
+        year: locals.y427,
+      ),
       MapInfoModel(
           imageDescription: locals.y421imageText,
           image: AssetsPath.mapImage421,
           text: locals.y421bodyText,
           title: locals.y421bodyTextTitle,
-          year: locals.y421),
+          year: locals.y421,
+          mapImage: AssetsPath.map421),
       MapInfoModel(
           imageDescription: locals.y416imageText,
           image: AssetsPath.mapImage416,
           text: locals.y416bodyText,
           title: locals.y416bodyTextTitle,
-          year: locals.y416),
+          year: locals.y416,
+          mapImage: AssetsPath.map416),
       MapInfoModel(
           imageDescription: locals.y415imageText,
           image: AssetsPath.mapImage415,
           text: locals.y415bodyText,
           title: locals.y415bodyTextTitle,
-          year: locals.y415),
+          year: locals.y415,
+          mapImage: AssetsPath.map415),
       MapInfoModel(
           imageDescription: locals.y414imageText,
           image: AssetsPath.mapImage414,
           text: locals.y414bodyText,
           title: locals.y414bodyTextTitle,
-          year: locals.y414),
+          year: locals.y414,
+          mapImage: AssetsPath.map414),
       MapInfoModel(
           imageDescription: locals.y413imageText,
           image: AssetsPath.mapImage413,
           text: locals.y413bodyText,
           title: locals.y413bodyTextTitle,
-          year: locals.y413),
+          year: locals.y413,
+          mapImage: AssetsPath.map413),
       MapInfoModel(
           imageDescription: locals.y411imageText,
           image: AssetsPath.mapImage413,
           text: locals.y411bodyText,
           title: locals.y411bodyTextTitle,
-          year: locals.y411),
+          year: locals.y411,
+          mapImage: AssetsPath.map411),
       MapInfoModel(
           imageDescription: locals.y410imageText,
           image: AssetsPath.mapImage413,
           text: locals.y410bodyText,
           title: locals.y410bodyTextTitle,
-          year: locals.y410),
+          year: locals.y410,
+          mapImage: AssetsPath.map410),
       MapInfoModel(
           imageDescription: locals.y407imageText,
           image: AssetsPath.mapImage413,
           text: locals.y407bodyText,
           title: locals.y407bodyTextTitle,
-          year: locals.y407),
+          year: locals.y407,
+          mapImage: AssetsPath.map407),
       MapInfoModel(
           imageDescription: locals.y404imageText,
           image: AssetsPath.mapImage413,
           text: locals.y404bodyText,
           title: locals.y404bodyTextTitle,
-          year: locals.y404),
+          year: locals.y404,
+          mapImage: AssetsPath.map404),
       MapInfoModel(
           imageDescription: locals.y403imageText,
           image: AssetsPath.mapImage413,
           text: locals.y403bodyText,
           title: locals.y403bodyTextTitle,
-          year: locals.y403),
+          year: locals.y403,
+          mapImage: AssetsPath.map403),
       MapInfoModel(
           imageDescription: locals.y399imageText,
           image: AssetsPath.mapImage399,
           text: locals.y399bodyText,
           title: locals.y399bodyTextTitle,
-          year: locals.y399),
+          year: locals.y399,
+          mapImage: AssetsPath.map399),
     ];
 
     _selectedItem = mapInfoList[0].year;
+    _selectedMap = mapInfoList[0].mapImage;
     _selectedTitle = mapInfoList[0].title;
     _selectedImage = mapInfoList[0].image;
     _selectedBody = mapInfoList[0].text;
@@ -321,16 +366,27 @@ class _MapPageState extends State<MapPage> {
       return const LoadingWidget();
     }
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
-            Container(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              decoration: const BoxDecoration(
+            AnimatedSwitcher(
+              duration: Times.medium,
+              transitionBuilder: (child, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+              child: Container(
+                key: ValueKey(_selectedMap),
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(AssetsPath.mapImage),
-                      fit: BoxFit.cover)),
+                      image: AssetImage(_selectedMap), fit: BoxFit.cover),
+                ),
+              ),
             ),
             Align(
                 alignment: Alignment.topLeft,
@@ -444,14 +500,14 @@ class _MapPageState extends State<MapPage> {
                                                       color: AppColors.grey,
                                                       width: 1.2))),
                                           child: Column(
+                                            mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Flexible(
                                                 child: AutoSizeText(
-                                                  locals
-                                                      .chapter1Athens5thCentury,
-                                                  maxLines: 1,
+                                                  "${locals.chapter1Athens5thCentury}\n",
+                                                  maxLines: 2,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline1
@@ -523,13 +579,14 @@ class _MapPageState extends State<MapPage> {
                                               color: AppColors.grey,
                                               width: 1.2))),
                                   child: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
                                           child: AutoSizeText(
-                                        locals.chapter1Athens5thCentury,
-                                        maxLines: 1,
+                                        "${locals.chapter1Athens5thCentury}\n",
+                                        maxLines: 2,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1
@@ -583,12 +640,15 @@ class _MapPageState extends State<MapPage> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 height: 80,
-                decoration: BoxDecoration(boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(1, -1),
-                      color: AppColors.grey,
-                      blurRadius: 5),
-                ], color: AppColors.white.withOpacity(0.9)),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(1, -1),
+                        color: AppColors.grey,
+                        blurRadius: 5),
+                  ],
+                  gradient: AppColors.linearGradientForBackground,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -598,14 +658,20 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.todoNoHarm,
                           textTitle: locals.chapter1,
                           onTap: () {
-                            context.router.pop();
+                            LeafDetails.currentVertex = 2;
+                            if (kIsWeb) {
+                              html.window.history.back();
+                              context.router.pop();
+                            } else {
+                              context.router.pop();
+                            }
                           }),
                     ),
                     Expanded(
                       flex: 4,
                       child: Container(
                         alignment: Alignment.topCenter,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
                         child: ListView.builder(
                             controller: _scrollController,
@@ -617,6 +683,7 @@ class _MapPageState extends State<MapPage> {
                                   year: mapInfoList[index].year,
                                   image: mapInfoList[index].image,
                                   text: mapInfoList[index].text,
+                                  map: mapInfoList[index].mapImage,
                                   selected: mapInfoList[index].year,
                                   title: mapInfoList[index].title,
                                   imageText:
@@ -630,6 +697,8 @@ class _MapPageState extends State<MapPage> {
                           textSubTitle: locals.keyPeopleOfTheAge,
                           textTitle: locals.athens5thCentury,
                           onTap: () {
+                            LeafDetails.visitedVertexes.add(5);
+                            LeafDetails.currentVertex = 5;
                             context.router.push(const CharacrterPageRoute());
                           }),
                     ),
@@ -652,7 +721,9 @@ class _MapPageState extends State<MapPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );
@@ -661,8 +732,9 @@ class _MapPageState extends State<MapPage> {
   }
 
   void chandeState(String? selctedItem, String? image, String? text,
-      String? title, String? imageText) {
+      String? title, String? imageText, String? map) {
     setState(() {
+      _selectedMap = map!;
       _selectedItem = selctedItem!;
       _selectedImage = image!;
       _selectedBody = text!;
@@ -677,13 +749,14 @@ class _MapPageState extends State<MapPage> {
       String? image,
       String? imageText,
       String? text,
+      String? map,
       String? title}) {
     return Container(
       alignment: Alignment.bottomCenter,
       margin: const EdgeInsets.only(left: 30),
       child: Clickable(
         onPressed: () {
-          chandeState(selected, image, text, title, imageText);
+          chandeState(selected, image, text, title, imageText, map);
         },
         child: AutoSizeText(
           year!,

@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/copyright_page.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/further_reading_page.dart';
-import 'package:history_of_adventures/src/features/about_book/presentation/pages/sources_page.dart';
 
 import '../features/about_book/presentation/pages/about_book_page.dart';
+import '../features/about_book/presentation/pages/copyright_page.dart';
 import '../features/about_book/presentation/pages/credits_page.dart';
+import '../features/about_book/presentation/pages/further_reading_page.dart';
+import '../features/about_book/presentation/pages/sources_page.dart';
 import '../features/character/presentation/pages/character_info_page.dart';
 import '../features/character/presentation/pages/characters_page.dart';
 import '../features/dead_socrates/presentation/pages/dead_of_socrates.dart';
@@ -36,7 +36,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: CharacrterPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: CharacterInfoPage,
@@ -44,11 +44,11 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: VirusesInfoPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: MapPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: QuizPage,
@@ -64,11 +64,11 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: PanaromaLeftPage,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      transitionsBuilder: TransitionsBuilders.slideRight,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: PanaromaRightPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: PathogenProfilePage,
@@ -76,11 +76,11 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: KeepGoingPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: QuitMedicinePage,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      transitionsBuilder: TransitionsBuilders.slideRight,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: PracticeMedicine,
@@ -88,15 +88,15 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: BodyInfoPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: VirusLocationPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: DocumentPage,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      transitionsBuilder: TransitionsBuilders.slideRight,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: DeadOfSocratesPage,
@@ -104,7 +104,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: EndOfWarPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
       page: IrlNikosPage,
@@ -116,27 +116,27 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       durationInMilliseconds: 1000),
   CustomRoute(
       page: CreditsPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
-      durationInMilliseconds: 1000),
-  CustomRoute(
-      page: FurtherReadingPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
-      durationInMilliseconds: 1000),
-  CustomRoute(
-      page: CopyrightPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
-      durationInMilliseconds: 1000),
-  CustomRoute(
-      page: SoursePage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
-      durationInMilliseconds: 1000),
-  CustomRoute(
-      page: NavigationPage,
       transitionsBuilder: TransitionsBuilders.slideLeft,
       durationInMilliseconds: 1000),
   CustomRoute(
-      page: VirusLocationSecondPage,
+      page: FurtherReadingPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: CopyrightPage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: SoursePage,
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: NavigationPage,
       transitionsBuilder: TransitionsBuilders.slideRight,
+      durationInMilliseconds: 1000),
+  CustomRoute(
+      page: VirusLocationSecondPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
       durationInMilliseconds: 1000),
 ])
 class $FlutterRouter {}

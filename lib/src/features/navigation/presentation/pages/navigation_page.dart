@@ -2,11 +2,14 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
-import 'package:history_of_adventures/src/core/utils/string_utils.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/models/chapter_tree.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/chapter_navigation_tree.dart';
 
+import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../models/leaf_detail_model.dart';
 import '../widgets/navigation_tree.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -17,124 +20,255 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  late List<Widget> chapterNavigation;
   final height = window.physicalSize.height / window.devicePixelRatio;
   final width = window.physicalSize.width / window.devicePixelRatio;
-  int currentVertex = 0;
-  List<int> visitedVertexes = [];
+  GlobalKey chaptersPartWidgetKey = GlobalKey();
+
+  List<LeafDetails> navigationTreeLeafs = [];
+  List<Widget> navigationTreeWidget = [];
+
+  List<ChapterDetails> chapterNavigation = [];
+  List<Widget> chapterNavigationWidgets = [];
 
   @override
   void initState() {
     super.initState();
 
+    chapterNavigation = [
+      ChapterDetails(
+          vertex: Vertex(
+            index: 0,
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            adjacentEdges: [1],
+            visited: ChapterDetails.visitedVertexes.contains(0),
+          ),
+          onTap: () {
+            // print('0');
+          },
+          nameOfChapter: ' to do no harm',
+          numberOfChapter: 'chapter1 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 1,
+            adjacentEdges: [2],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(1),
+          ),
+          onTap: () {
+            // print('1');
+          },
+          nameOfChapter: ' forty days',
+          numberOfChapter: 'chapter2 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 2,
+            adjacentEdges: [3],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(2),
+          ),
+          onTap: () {
+            // print('2');
+          },
+          nameOfChapter: ' beard of life',
+          numberOfChapter: 'chapter3 '),
+      ChapterDetails(
+          vertex: Vertex(
+            index: 3,
+            adjacentEdges: [4],
+            currentVertex: ChapterDetails.currentVertex,
+            path: '',
+            visited: ChapterDetails.visitedVertexes.contains(3),
+          ),
+          onTap: () {
+            // print('3');
+          },
+          nameOfChapter: ' red pepper and black pepper',
+          numberOfChapter: 'chapter4 '),
+      ChapterDetails(
+        vertex: Vertex(
+          index: 4,
+          currentVertex: ChapterDetails.currentVertex,
+          path: '',
+          visited: ChapterDetails.visitedVertexes.contains(4),
+        ),
+        onTap: () {
+          // print('4');
+        },
+        nameOfChapter: ' positive',
+        numberOfChapter: 'chapter5 ',
+        end: const Offset(0, 0),
+        start: const Offset(0, 0),
+      ),
+    ];
+
     navigationTreeLeafs = [
       LeafDetails(
         Vertex(
-          index: 0,
-          visited: visitedVertexes.contains(0),
-          path: CharacrterPageRoute.name,
-          currentVertex: currentVertex,
-        ),
-        pointOffset: Offset(140, 0),
-        lineStartOffset: Offset(12, 12),
-        lineEndOffset: Offset(20, 50),
+            index: 0,
+            visited: LeafDetails.visitedVertexes.contains(0),
+            path: LeandingPageRoute.name,
+            currentVertex: LeafDetails.currentVertex,
+            adjacentEdges: [1]),
+        onTap: () {
+          LeafDetails.currentVertex = 0;
+          // print("object");
+
+          context.router.replace(const LeandingPageRoute());
+        },
+        pointOffset: const Offset(140, 0),
+        lineStartOffset: const Offset(12, 12),
+        lineEndOffset: const Offset(20, 50),
         alignment: Alignment.centerLeft,
         title: 'home',
       ),
       LeafDetails(
         Vertex(
-          index: 1,
-          visited: visitedVertexes.contains(1),
-          path: GlossaryPageRoute.name,
-          currentVertex: currentVertex,
-        ),
-        pointOffset: Offset(155, 50),
-        lineStartOffset: Offset(12, 12),
-        lineEndOffset: Offset(-21, 60),
+            index: 1,
+            visited: LeafDetails.visitedVertexes.contains(1),
+            path: GlossaryPageRoute.name,
+            currentVertex: LeafDetails.currentVertex,
+            adjacentEdges: [2]),
+        onTap: () {
+          LeafDetails.currentVertex = 1;
+          LeafDetails.visitedVertexes.add(1);
+
+          context.router.replace(const GlossaryPageRoute());
+        },
+        pointOffset: const Offset(155, 50),
+        lineStartOffset: const Offset(12, 12),
+        lineEndOffset: const Offset(-21, 60),
         alignment: Alignment.centerRight,
         title: 'glossary',
       ),
       LeafDetails(
         Vertex(
           index: 2,
-          visited: visitedVertexes.contains(2),
+          visited: LeafDetails.visitedVertexes.contains(2),
           path: ParalaxHistoryPageRoute.name,
-          currentVertex: currentVertex,
+          currentVertex: LeafDetails.currentVertex,
+          adjacentEdges: [4, 9, 8],
         ),
-        pointOffset: Offset(130, 100),
-        lineStartOffset: Offset(9, 12),
-        lineEndOffset: Offset(25, 60),
+        pointOffset: const Offset(130, 100),
+        onTap: () {
+          LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
+          context.router.replace(const ParalaxHistoryPageRoute());
+        },
+        lineStartOffset: const Offset(9, 12),
+        lineEndOffset: const Offset(25, 60),
         alignment: Alignment.centerLeft,
         title: 'to do no harm',
       ),
       LeafDetails(
         Vertex(
-            index: 3,
-            visited: visitedVertexes.contains(3),
-            path: DocumentPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(40, 190),
-        lineStartOffset: Offset(0, 0),
-        lineEndOffset: Offset(0, 0),
+          index: 3,
+          visited: LeafDetails.visitedVertexes.contains(3),
+          path: DocumentPageRoute.name,
+          currentVertex: LeafDetails.currentVertex,
+          adjacentEdges: [],
+        ),
+        pointOffset: const Offset(40, 190),
+        onTap: () {
+          LeafDetails.currentVertex = 3;
+          LeafDetails.visitedVertexes.add(3);
+          context.router.replace(const DocumentPageRoute());
+        },
+        lineStartOffset: const Offset(0, 0),
+        lineEndOffset: const Offset(0, 0),
         alignment: Alignment.topCenter,
         title: 'source analysis',
       ),
       LeafDetails(
         Vertex(
             index: 4,
-            visited: visitedVertexes.contains(4),
+            visited: LeafDetails.visitedVertexes.contains(4),
             path: MapPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(220, 135),
-        lineStartOffset: Offset(0, 10),
-        lineEndOffset: Offset(-55, 25),
+            adjacentEdges: [5],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(220, 135),
+        onTap: () {
+          LeafDetails.currentVertex = 4;
+          LeafDetails.visitedVertexes.add(4);
+          context.router.replace(const MapPageRoute());
+        },
+        lineStartOffset: const Offset(0, 10),
+        lineEndOffset: const Offset(-55, 25),
         alignment: Alignment.topCenter,
         title: 'timeline of man events',
       ),
       LeafDetails(
         Vertex(
             index: 5,
-            visited: visitedVertexes.contains(5),
-            path: MapPageRoute.name,
-            currentVertex: currentVertex),
+            visited: LeafDetails.visitedVertexes.contains(5),
+            path: CharacrterPageRoute.name,
+            adjacentEdges: [],
+            currentVertex: LeafDetails.currentVertex),
         alignment: Alignment.bottomCenter,
-        pointOffset: Offset(278, 155),
-        lineStartOffset: Offset(0, 5),
-        lineEndOffset: Offset(-50, -10),
+        pointOffset: const Offset(278, 155),
+        onTap: () {
+          LeafDetails.currentVertex = 5;
+          LeafDetails.visitedVertexes.add(5);
+          context.router.replace(const CharacrterPageRoute());
+        },
+        lineStartOffset: const Offset(0, 5),
+        lineEndOffset: const Offset(-45, -13),
         title: 'key people of the age',
       ),
       LeafDetails(
         Vertex(
-            index: 6,
-            visited: visitedVertexes.contains(6),
-            path: CharacrterPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(150, 155),
-        lineStartOffset: Offset(5, 12),
-        lineEndOffset: Offset(-11, 50),
+          index: 2,
+          visited: LeafDetails.visitedVertexes.contains(2),
+          path: MapPageRoute.name,
+          currentVertex: LeafDetails.currentVertex,
+          adjacentEdges: [4, 9, 8],
+        ),
+        pointOffset: const Offset(150, 155),
+        onTap: () {
+          LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
+
+          context.router.replace(const ParalaxHistoryPageRoute());
+        },
+        lineStartOffset: const Offset(5, 12),
+        lineEndOffset: const Offset(-11, 50),
         alignment: Alignment.centerLeft,
-        title: '',
+        title: 'athens, 5th century bce',
       ),
       LeafDetails(
         Vertex(
-            index: 7,
-            visited: visitedVertexes.contains(7),
-            path: CharacterInfoPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(130, 200),
-        lineStartOffset: Offset(2, 5),
-        lineEndOffset: Offset(-41, 30),
+            index: 2,
+            visited: LeafDetails.visitedVertexes.contains(2),
+            path: ParalaxHistoryPageRoute.name,
+            adjacentEdges: [9, 8],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(130, 200),
+        onTap: () {
+          LeafDetails.currentVertex = 2;
+          LeafDetails.visitedVertexes.add(2);
+          context.router.replace(const ParalaxHistoryPageRoute());
+        },
+        lineStartOffset: const Offset(2, 5),
+        lineEndOffset: const Offset(-41, 30),
         title: '',
       ),
       LeafDetails(
         Vertex(
             index: 8,
-            visited: visitedVertexes.contains(8),
+            visited: LeafDetails.visitedVertexes.contains(8),
             path: PanaromaRightPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(77, 222),
-        lineStartOffset: Offset(2, 5),
-        lineEndOffset: Offset(-31, -25),
+            adjacentEdges: [3],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(77, 222),
+        onTap: () {
+          LeafDetails.currentVertex = 8;
+          LeafDetails.visitedVertexes.add(8);
+          context.router.replace(const PanaromaLeftPageRoute());
+        },
+        lineStartOffset: const Offset(2, 5),
+        lineEndOffset: const Offset(-27, -20),
         alignment: Alignment.bottomCenter,
         title: 'medical tools and knowladge',
       ),
@@ -142,60 +276,89 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 9,
-            visited: visitedVertexes.contains(9),
+            visited: LeafDetails.visitedVertexes.contains(9),
             path: PanaromaLeftPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(175, 220),
-        lineStartOffset: Offset(2, 5),
-        lineEndOffset: Offset(-33, -9),
+            adjacentEdges: [10],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(175, 220),
+        onTap: () {
+          LeafDetails.currentVertex = 9;
+          LeafDetails.visitedVertexes.add(9);
+          context.router.replace(const PanaromaRightPageRoute());
+        },
+        lineStartOffset: const Offset(2, 5),
+        lineEndOffset: const Offset(-33, -9),
         alignment: Alignment.centerRight,
         title: 'plague and political instability',
       ),
       LeafDetails(
         Vertex(
             index: 10,
-            visited: visitedVertexes.contains(10),
+            visited: LeafDetails.visitedVertexes.contains(10),
             path: PathogenProfilePageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(150, 285),
-        lineStartOffset: Offset(8, 1),
-        lineEndOffset: Offset(28, -52),
+            adjacentEdges: [11, 14],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(150, 285),
+        onTap: () {
+          LeafDetails.currentVertex = 10;
+          LeafDetails.visitedVertexes.add(10);
+          context.router.replace(const PathogenProfilePageRoute());
+        },
+        lineStartOffset: const Offset(8, 1),
+        lineEndOffset: const Offset(28, -52),
         alignment: Alignment.centerLeft,
         title: 'pathogen profile',
       ),
       LeafDetails(
         Vertex(
             index: 11,
-            visited: visitedVertexes.contains(11),
+            visited: LeafDetails.visitedVertexes.contains(11),
             path: VirusLocationPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(230, 275),
-        lineStartOffset: Offset(2, 8),
-        lineEndOffset: Offset(-75, 17),
+            adjacentEdges: [12],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(230, 275),
+        onTap: () {
+          LeafDetails.currentVertex = 11;
+          LeafDetails.visitedVertexes.add(11);
+          context.router.replace(const VirusLocationPageRoute());
+        },
+        lineStartOffset: const Offset(2, 8),
+        lineEndOffset: const Offset(-68, 17),
         alignment: Alignment.topCenter,
         title: 'where did it come from?',
       ),
       LeafDetails(
         Vertex(
             index: 12,
-            visited: visitedVertexes.contains(12),
+            visited: LeafDetails.visitedVertexes.contains(12),
             path: BodyInfoPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(305, 285),
-        lineStartOffset: Offset(2, 8),
-        lineEndOffset: Offset(-60, 0),
+            adjacentEdges: [13],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(305, 285),
+        onTap: () {
+          LeafDetails.currentVertex = 12;
+          LeafDetails.visitedVertexes.add(12);
+          context.router.replace(const BodyInfoPageRoute());
+        },
+        lineStartOffset: const Offset(2, 8),
+        lineEndOffset: const Offset(-60, 0),
         alignment: Alignment.bottomCenter,
         title: 'what did it do?',
       ),
       LeafDetails(
         Vertex(
             index: 13,
-            visited: visitedVertexes.contains(13),
+            visited: LeafDetails.visitedVertexes.contains(13),
             path: VirusesInfoPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(355, 265),
-        lineStartOffset: Offset(2, 8),
-        lineEndOffset: Offset(-36, 30),
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(355, 265),
+        onTap: () {
+          LeafDetails.currentVertex = 13;
+          LeafDetails.visitedVertexes.add(13);
+          context.router.replace(const VirusesInfoPageRoute());
+        },
+        lineStartOffset: const Offset(2, 8),
+        lineEndOffset: const Offset(-36, 30),
         alignment: Alignment.topCenter,
         title: 'what was it?',
       ),
@@ -203,84 +366,125 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 14,
-            visited: visitedVertexes.contains(14),
+            visited: LeafDetails.visitedVertexes.contains(14),
             path: PracticeMedicineRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(175, 325),
-        lineStartOffset: Offset(5, 3),
-        lineEndOffset: Offset(-17, -35),
+            adjacentEdges: [15],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(175, 325),
+        onTap: () {
+          LeafDetails.currentVertex = 14;
+          LeafDetails.visitedVertexes.add(14);
+          context.router.replace(const PracticeMedicineRoute());
+        },
+        lineStartOffset: const Offset(5, 3),
+        lineEndOffset: const Offset(-17, -28),
         alignment: Alignment.centerRight,
         title: 'to do no harm',
       ),
       LeafDetails(
         Vertex(
             index: 15,
-            visited: visitedVertexes.contains(15),
+            visited: LeafDetails.visitedVertexes.contains(15),
             path: DeadOfSocratesPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(145, 375),
-        lineStartOffset: Offset(8, 3),
-        lineEndOffset: Offset(38, -38),
+            adjacentEdges: [16, 17],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(145, 375),
+        onTap: () {
+          LeafDetails.currentVertex = 15;
+          LeafDetails.visitedVertexes.add(15);
+          context.router.replace(const DeadOfSocratesPageRoute());
+        },
+        lineStartOffset: const Offset(8, 3),
+        lineEndOffset: const Offset(38, -38),
         alignment: Alignment.centerLeft,
         title: 'death of socrates',
       ),
       LeafDetails(
         Vertex(
             index: 16,
-            visited: visitedVertexes.contains(16),
+            visited: LeafDetails.visitedVertexes.contains(16),
             path: EndOfWarPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(200, 385),
-        lineStartOffset: Offset(4, 6),
-        lineEndOffset: Offset(-42, 0),
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(200, 385),
+        onTap: () {
+          LeafDetails.currentVertex = 16;
+          LeafDetails.visitedVertexes.add(16);
+          context.router.replace(const EndOfWarPageRoute());
+        },
+        lineStartOffset: const Offset(4, 6),
+        lineEndOffset: const Offset(-42, 0),
         alignment: Alignment.centerRight,
         title: 'end of war',
       ),
       LeafDetails(
         Vertex(
             index: 17,
-            visited: visitedVertexes.contains(17),
+            visited: LeafDetails.visitedVertexes.contains(17),
             path: QuizPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(170, 435),
-        lineStartOffset: Offset(5, 3),
-        lineEndOffset: Offset(-17, -45),
+            adjacentEdges: [18],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(170, 435),
+        onTap: () {
+          LeafDetails.currentVertex = 17;
+          LeafDetails.visitedVertexes.add(17);
+          context.router.replace(const QuizPageRoute());
+        },
+        lineStartOffset: const Offset(5, 3),
+        lineEndOffset: const Offset(-17, -45),
         alignment: Alignment.centerRight,
         title: 'assesment',
       ),
       LeafDetails(
         Vertex(
             index: 18,
-            visited: visitedVertexes.contains(18),
+            visited: LeafDetails.visitedVertexes.contains(18),
             path: IrlNikosPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(145, 485),
-        lineStartOffset: Offset(8, 3),
-        lineEndOffset: Offset(33, -38),
+            adjacentEdges: [19],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(145, 485),
+        onTap: () {
+          LeafDetails.currentVertex = 18;
+          LeafDetails.visitedVertexes.add(18);
+          context.router.replace(const IrlNikosPageRoute());
+        },
+        lineStartOffset: const Offset(8, 3),
+        lineEndOffset: const Offset(33, -38),
         alignment: Alignment.centerLeft,
         title: '#irl',
       ),
       LeafDetails(
         Vertex(
             index: 19,
-            visited: visitedVertexes.contains(19),
+            visited: LeafDetails.visitedVertexes.contains(19),
             path: AboutBookPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(200, 535),
-        lineStartOffset: Offset(4, 6),
-        lineEndOffset: Offset(-42, -38),
+            adjacentEdges: [20],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(200, 535),
+        onTap: () {
+          LeafDetails.currentVertex = 19;
+          LeafDetails.visitedVertexes.add(19);
+          context.router.replace(const AboutBookPageRoute());
+        },
+        lineStartOffset: const Offset(4, 6),
+        lineEndOffset: const Offset(-42, -38),
         alignment: Alignment.centerLeft,
         title: 'about the book',
       ),
       LeafDetails(
         Vertex(
             index: 20,
-            visited: visitedVertexes.contains(20),
+            visited: LeafDetails.visitedVertexes.contains(20),
             path: CreditsPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(260, 505),
-        lineStartOffset: Offset(4, 5),
-        lineEndOffset: Offset(-47, 33),
+            adjacentEdges: [21],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(260, 505),
+        onTap: () {
+          LeafDetails.currentVertex = 20;
+          LeafDetails.visitedVertexes.add(20);
+          context.router.replace(const CreditsPageRoute());
+        },
+        lineStartOffset: const Offset(4, 5),
+        lineEndOffset: const Offset(-47, 33),
         alignment: Alignment.topCenter,
         title: 'credits',
       ),
@@ -288,62 +492,91 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 21,
-            visited: visitedVertexes.contains(21),
-            path: CreditsPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(300, 535),
-        lineStartOffset: Offset(4, 6),
-        lineEndOffset: Offset(-30, -20),
+            visited: LeafDetails.visitedVertexes.contains(21),
+            path: SoursePageRoute.name,
+            adjacentEdges: [22],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(300, 535),
+        onTap: () {
+          LeafDetails.currentVertex = 21;
+          LeafDetails.visitedVertexes.add(21);
+          context.router.replace(const SoursePageRoute());
+        },
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-29, -19),
         alignment: Alignment.bottomCenter,
         title: 'sources',
       ),
       LeafDetails(
         Vertex(
             index: 22,
-            visited: visitedVertexes.contains(22),
-            path: CreditsPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(360, 505),
-        lineStartOffset: Offset(4, 6),
-        lineEndOffset: Offset(-50, 35),
+            visited: LeafDetails.visitedVertexes.contains(22),
+            path: FurtherReadingPageRoute.name,
+            adjacentEdges: [23],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(360, 505),
+        onTap: () {
+          LeafDetails.currentVertex = 22;
+          LeafDetails.visitedVertexes.add(22);
+          context.router.replace(const FurtherReadingPageRoute());
+        },
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-49, 34),
         alignment: Alignment.topCenter,
         title: 'further reading',
       ),
       LeafDetails(
         Vertex(
             index: 23,
-            visited: visitedVertexes.contains(23),
-            path: CreditsPageRoute.name,
-            currentVertex: currentVertex),
-        pointOffset: Offset(420, 535),
-        lineStartOffset: Offset(4, 6),
-        lineEndOffset: Offset(-48, -25),
+            visited: LeafDetails.visitedVertexes.contains(23),
+            path: CopyrightPageRoute.name,
+            adjacentEdges: [23],
+            currentVertex: LeafDetails.currentVertex),
+        pointOffset: const Offset(420, 535),
+        onTap: () {
+          LeafDetails.currentVertex = 23;
+          LeafDetails.visitedVertexes.add(23);
+          context.router.replace(const CopyrightPageRoute());
+        },
+        lineStartOffset: const Offset(3, 5),
+        lineEndOffset: const Offset(-47, -24),
         alignment: Alignment.bottomCenter,
         title: 'copyright',
       ),
     ];
+
+    for (int index = 0; index < navigationTreeLeafs.length; index++) {
+      navigationTreeWidget.add(
+        NavigationTree(
+          details: navigationTreeLeafs[index],
+          onTap: navigationTreeLeafs[index].onTap,
+          isAbleToNavigate: isAbleToNavigate(
+            vertex: navigationTreeLeafs[index].vertex,
+          ),
+        ),
+      );
+    }
+
+    for (int index = 0; index < chapterNavigation.length; index++) {
+      chapterNavigationWidgets.add(
+        ChapterNavigationTree(
+          details: chapterNavigation[index],
+          isAbleToNavigate: isAbleToNavigateCapter(),
+          onTap: chapterNavigation[index].onTap,
+        ),
+      );
+    }
   }
 
-  @override
-  void didChangeDependencies() {
-    chapterNavigation = [
-      chapterNavigationPoints(
-          nameOfChapter: ' to do no harm', numberOfChapter: 'chapter1 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' forty days', numberOfChapter: 'chapter2 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' beard of life', numberOfChapter: 'chapter3 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' red pepper and black pepper',
-          numberOfChapter: 'chapter4 '),
-      chapterNavigationPoints(
-          nameOfChapter: ' positive',
-          numberOfChapter: 'chapter5 ',
-          start: const Offset(0, 0),
-          end: const Offset(0, 0)),
-    ];
+  bool isAbleToNavigateCapter() {
+    return false;
+  }
 
-    super.didChangeDependencies();
+  bool isAbleToNavigate({required Vertex vertex}) {
+    return navigationTreeLeafs[LeafDetails.currentVertex]
+        .vertex
+        .adjacentEdges
+        .contains(vertex.index);
   }
 
   @override
@@ -356,142 +589,78 @@ class _NavigationPageState extends State<NavigationPage> {
           image: DecorationImage(
               image: AssetImage(AssetsPath.gradient), fit: BoxFit.cover),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {
-                  context.router.pop();
-                },
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    // if (kIsWeb) {
+                    //   html.window.history.back();
+                    //   context.router.pop();
+                    // } else {
+                    context.router.pop();
+                    //}
+                  },
+                ),
               ),
-            ),
-            Align(
-                alignment: Alignment.topCenter,
-                child: AutoSizeText(
-                  "Table of contents".toUpperCase(),
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline2,
-                )),
-            const SizedBox(height: 50),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  if (constraints.maxWidth < 600) {
-                    return SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+              Align(
+                  alignment: Alignment.topCenter,
+                  child: AutoSizeText(
+                    "Table of contents".toUpperCase(),
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline2,
+                  )),
+              const SizedBox(height: 50),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.1),
+                    height: 600,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        // scrollDirection: Axis.horizontal,
+                        // physics: const ClampingScrollPhysics(),
                         children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: height,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: List.generate(
-                                navigationTreeLeafs.length,
-                                (index) => NavigationTree(
-                                  key: ValueKey('leaf-$index'),
-                                  details: navigationTreeLeafs[index],
-                                ),
-                              ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.1,
+                          ),
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: chapterNavigationWidgets,
                             ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: chapterNavigation,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.1,
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: SizedBox(
+                              child: Stack(children: navigationTreeWidget),
+                            ),
                           ),
                         ],
                       ),
-                    );
-                  }
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: chapterNavigation,
-                        ),
-                      ),
-                      Expanded(
-                        child: Stack(
-                          children: List.generate(
-                            navigationTreeLeafs.length,
-                            (index) => Stack(
-                              children: [
-                                NavigationTree(
-                                  key: ValueKey('leaf-$index'),
-                                  details: navigationTreeLeafs[index],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
+                    ),
+                  ),
+                ),
               ),
-            ),
-            // SingleChildScrollView(
-            //   physics: const ClampingScrollPhysics(),
-            //   scrollDirection: Axis.vertical,
-            //   child: SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     physics: const ClampingScrollPhysics(),
-            //     child: SizedBox(
-            //       height: 500,
-            //       width: width,
-            //       child:
-            //     ),
-            //   ),
-            // ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
-
-  Widget chapterNavigationPoints(
-      {required String numberOfChapter,
-      required String nameOfChapter,
-      Offset? start,
-      Offset? end}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 60),
-      child: Row(
-        children: [
-          Text(numberOfChapter),
-          SizedBox(
-            child: CustomPaint(
-              painter: DrowCircleAndLine(
-                color: Colors.white,
-                strat: start ?? const Offset(8, 30),
-                end: end ?? const Offset(8, 60),
-              ),
-              child: const SizedBox(
-                height: 15,
-                width: 15,
-                child: Center(
-                  child: Text(
-                    "",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Text(nameOfChapter),
-        ],
-      ),
-    );
-  }
-
-  List<LeafDetails> navigationTreeLeafs = [];
 }

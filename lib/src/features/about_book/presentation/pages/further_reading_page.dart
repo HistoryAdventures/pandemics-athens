@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class FurtherReadingPage extends StatefulWidget {
   const FurtherReadingPage({Key? key}) : super(key: key);
@@ -31,6 +35,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -49,7 +54,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                         top: constraints.maxHeight * 0.12,
                       ),
                       child: AutoSizeText(
-                        locale.sources.toUpperCase(),
+                        locale.furtherReading.toUpperCase(),
                         style: Theme.of(context).textTheme.headline2,
                       ),
                     )),
@@ -68,7 +73,9 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                             backgroundplayer.play();
                           });
                         },
-                  onTapMenu: () {},
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -82,7 +89,13 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                context.router.pop();
+                                LeafDetails.currentVertex = 21;
+                                if (kIsWeb) {
+                                  html.window.history.back();
+                                  context.router.pop();
+                                } else {
+                                  context.router.pop();
+                                }
                               }),
                         ),
                         Flexible(
@@ -103,6 +116,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               textSubTitle: locale.copyright,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
+                                LeafDetails.visitedVertexes.add(23);
+                                LeafDetails.currentVertex = 23;
                                 context.router.push(const CopyrightPageRoute());
                               }),
                         ),
@@ -210,7 +225,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
+                        ?.copyWith(color: AppColors.grey, fontSize: 16),
                   ),
                 ),
               ),
@@ -224,7 +239,10 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                 child: AutoSizeText(
                   people,
                   maxLines: 2,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(fontSize: 22),
                 ),
               );
             }).toList(),

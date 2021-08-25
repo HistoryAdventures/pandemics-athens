@@ -1,11 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
+import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../data/model/quiz_model.dart';
 import '../widgets/draggable_advanced_widget.dart';
 import '../widgets/item.dart';
@@ -20,6 +26,10 @@ class _QuizPageState extends State<QuizPage> {
   int questionindex = 0;
   int _countResult = 0;
   late List<dynamic> quizes;
+  bool isSoundOn = false;
+  final backgroundplayer = AudioPlayer();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+
   List<bool> rightAnswers = [];
   final List<String> land = [];
   bool nextButtonisAvailibaleToPress = true;
@@ -93,6 +103,8 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
       body: _body(),
     );
   }
@@ -142,18 +154,40 @@ class _QuizPageState extends State<QuizPage> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-            child: IconButton(
+          SoundAndMenuWidget(
+            widget: IconButton(
               onPressed: () {
-                context.router.pop();
+                LeafDetails.currentVertex = 15;
+                if (kIsWeb) {
+                  html.window.history.back();
+                  context.router.pop();
+                } else {
+                  context.router.pop();
+                }
               },
               icon: const Icon(Icons.arrow_upward),
             ),
+            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            onTapVolume: isSoundOn
+                ? () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.pause();
+                    });
+                  }
+                : () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.play();
+                    });
+                  },
+            onTapMenu: () {
+              scaffoldkey.currentState!.openEndDrawer();
+            },
           ),
           Expanded(
             flex: 5,
             child: SizedBox(
-            
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -267,7 +301,9 @@ class _QuizPageState extends State<QuizPage> {
           Flexible(
             child: IconButton(
               onPressed: () {
-                context.router.push(IrlNikosPageRoute());
+                LeafDetails.currentVertex = 18;
+                LeafDetails.visitedVertexes.add(18);
+                context.router.push(const IrlNikosPageRoute());
               },
               icon: const Icon(Icons.south),
             ),

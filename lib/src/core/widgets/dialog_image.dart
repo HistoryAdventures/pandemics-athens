@@ -26,49 +26,65 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
     super.initState();
   }
 
+  final GlobalKey imageKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.center,
       child: FadeTransition(
         opacity: widget.animation,
-        child: Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: widget.constraints.maxWidth * 0.2,
-              vertical: widget.constraints.maxHeight * 0.15),
-          child: Scaffold(
-            backgroundColor: AppColors.white,
-            body: Padding(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        widget.selectedImage,
-                        fit: BoxFit.contain,
+        child: FutureBuilder<Size>(
+            future: imageSize(),
+            builder: (context, snapshot) {
+              return Container(
+                color: AppColors.green,
+                width: snapshot.data?.width,
+                height: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(
+                    vertical: widget.constraints.maxHeight * 0.1),
+                child: Scaffold(
+                  body: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          child: Image.asset(
+                            widget.selectedImage,
+                            fit: BoxFit.cover,
+                            key: imageKey,
+                          ),
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          width: snapshot.data?.width,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              widget.selectedImageText,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Flexible(
-                    child: SingleChildScrollView(
-                      child: Text(
-                        widget.selectedImageText,
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
+                ),
+              );
+            }),
       ),
     );
+  }
+
+  Future<Size> imageSize() async {
+    await Future.delayed(const Duration(milliseconds: 10));
+
+    final RenderBox renderBox =
+        imageKey.currentContext!.findRenderObject()! as RenderBox;
+
+    return renderBox.size;
   }
 }

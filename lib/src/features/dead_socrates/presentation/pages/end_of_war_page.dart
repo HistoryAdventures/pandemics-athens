@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/dead_socrates/presentation/modesl/socrates_info_model.dart';
 import 'package:just_audio/just_audio.dart';
+import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../navigation/presentation/models/leaf_detail_model.dart';
+import '../../../navigation/presentation/pages/navigation_page.dart';
+import '../modesl/socrates_info_model.dart';
 
 class EndOfWarPage extends StatefulWidget {
   const EndOfWarPage({Key? key}) : super(key: key);
@@ -56,6 +60,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
@@ -66,8 +71,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                 margin: EdgeInsets.symmetric(
                     horizontal: constraints.maxWidth * 0.15,
                     vertical: constraints.maxHeight * 0.2),
-                decoration:
-                    BoxDecoration(color: AppColors.white.withOpacity(0.5)),
+                decoration: BoxDecoration(
+                    boxShadow: Shadows.universal, color: AppColors.white),
                 padding: const EdgeInsets.all(24),
                 child: Row(
                   children: [
@@ -121,7 +126,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                 child: Container(
                                   color: Colors.black,
                                   child: const Icon(
-                                    Icons.add,
+                                    Icons.zoom_in,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -137,65 +142,88 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              height: 70,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: AutoSizeText(
-                                      locale.chapter1PlagueAndPersecution
-                                          .toUpperCase(),
-                                      maxLines: 1,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1
-                                          ?.copyWith(color: AppColors.black25),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: AutoSizeText(
-                                        locale.endOfThePeloponneseanWar,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                  ),
-                                ],
-                              ),
-                            ),
                             Expanded(
+                              flex: 10,
                               child: Container(
                                 decoration: const BoxDecoration(
                                     border: Border(
-                                  top: BorderSide(
-                                      color: AppColors.grey, width: 1.2),
-                                )),
-                                child: ListView(shrinkWrap: true, children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                        text:
-                                            '$_selectedItem\n\n'.toUpperCase(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline3,
+                                        bottom: BorderSide(
+                                            color: AppColors.grey,
+                                            width: 1.2))),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: AutoSizeText(
+                                              "${locale.chapter1EndOfWar}\n",
+                                              maxLines: 2,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(
+                                                      color: AppColors.black25),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: AutoSizeText(
+                                                locale.endOfThePeloponneseanWar,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2),
+                                          ),
+                                        ],
                                       ),
-                                      TextSpan(
-                                        text: _selectedText,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                          top: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2),
+                                        )),
+                                        child: ListView(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 16),
+                                            shrinkWrap: true,
+                                            children: [
+                                              Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: RichText(
+                                                    text: TextSpan(children: [
+                                                  TextSpan(
+                                                    text: '$_selectedItem\n\n'
+                                                        .toUpperCase(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline3,
+                                                  ),
+                                                  TextSpan(
+                                                    text: _selectedText,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1,
+                                                  ),
+                                                ])),
+                                              )
+                                            ]),
                                       ),
-                                    ])),
-                                  )
-                                ]),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            SizedBox(
-                              height: 30,
+                            Flexible(
                               child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -224,7 +252,13 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     textSubTitle: locale.deathOfSocrates,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                      context.router.pop();
+                      LeafDetails.currentVertex = 15;
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
                     }),
               ),
             ),
@@ -243,7 +277,9 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                         backgroundplayer.play();
                       });
                     },
-              onTapMenu: () {},
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
             ),
           ],
         );

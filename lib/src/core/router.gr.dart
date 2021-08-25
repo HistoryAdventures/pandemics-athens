@@ -71,7 +71,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.CharacrterPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -91,7 +91,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i6.VirusesInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -100,7 +100,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i7.MapPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -136,7 +136,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i11.PanaromaLeftPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -145,7 +145,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i12.PanaromaRightPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -163,7 +163,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i14.KeepGoingPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -172,7 +172,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i15.QuitMedicinePage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -190,7 +190,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i17.BodyInfoPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -199,7 +199,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i18.VirusLocationPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -208,7 +208,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i19.DocumentPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -226,7 +226,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i21.EndOfWarPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -253,7 +253,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i24.CreditsPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -262,7 +262,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i25.FurtherReadingPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -271,7 +271,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i26.CopyrightPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -280,7 +280,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i27.SoursePage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -289,7 +289,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i28.NavigationPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false),
@@ -298,7 +298,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i29.VirusLocationSecondPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false)

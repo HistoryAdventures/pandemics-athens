@@ -25,27 +25,23 @@ class CharacterModel extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Align(
+      alignment: Alignment.center,
       child: Hero(
         tag: photo,
         child: Material(
-          color: Colors.white.withOpacity(0),
+          color: AppColors.transpatent,
           child: InkWell(
             splashColor: AppColors.transpatent,
             highlightColor: AppColors.transpatent,
             focusColor: AppColors.transpatent,
             hoverColor: AppColors.transpatent,
             onTap: onTap,
-            child: Stack(
-              fit: StackFit.passthrough,
-              children: [
-                SizedBox(
-                  child: Image.asset(
-                    photo,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ],
+            child: SizedBox(
+              child: Image.asset(
+                photo,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
