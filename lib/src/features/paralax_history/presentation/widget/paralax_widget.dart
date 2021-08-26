@@ -45,12 +45,11 @@ class ParallaxWidget extends StatelessWidget {
             color: AppColors.transpatent,
             child: isImage
                 ? Image.asset(
-                    "assets/paralax_new/$asset",
+                    asset,
                     fit: boxFit,
-                    gaplessPlayback: true,
                   )
                 : GifAnimation(
-                    image: AssetImage("assets/paralax_new/$asset"),
+                    image: AssetImage(asset),
                     controller: gifController!,
                     imageInfo: imageInfo!)),
       ),

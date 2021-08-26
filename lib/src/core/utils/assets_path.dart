@@ -293,19 +293,25 @@ class AssetsPath {
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
   static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
+  static const String paralaxBuilding = 'assets/paralax_new/building.png';
+  static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
   static const String gifCharacterNikos_2 =
       'assets/paralax_new/character_2.gif';
   static const String gifHand = 'assets/paralax_new/hand.gif';
 
-  static const String paralaxBuilding = 'assets/paralax_new/building.png';
-  static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
-  // static const String paralaxCharacter_2 = 'assets/paralax_new/character_2.png';
   static const String paralaxCharacter_11 =
       'assets/paralax_new/character_11.png';
   static const String paralaxCharacter_12 =
       'assets/paralax_new/character_12.png';
   static const String paralaxCharacters_2 =
       'assets/paralax_new/characters_2.png';
+  static const String paralaxCharacterNikosGif =
+      'assets/paralax_new/character_nkos.gif';
+  static const String paralaxCloud = 'assets/paralax_new/cloud.png';
+  static const String paralaxCrows = 'assets/paralax_new/crows.png';
+  static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
+  static const String paralaxClouds = 'assets/paralax_new/clouds.png';
+  static const String paralaxLeftCrowd = 'assets/paralax_new/left_crowd.png';
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';

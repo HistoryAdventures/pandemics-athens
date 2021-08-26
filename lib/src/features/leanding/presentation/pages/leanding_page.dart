@@ -33,6 +33,7 @@ class _LeandingPageState extends State<LeandingPage>
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
   ];
+   late List<ImageInfo> imageInfo;
 
   @override
   void didChangeDependencies() {
@@ -42,7 +43,11 @@ class _LeandingPageState extends State<LeandingPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
+    imageInfo = await preloadImage(
+        provider: const AssetImage(AssetsPath.gifVirus),
+        frameCount: 960,
+        context: context);
+    if (loadedAssets == true&&imageInfo.isNotEmpty) {
       setState(() {
         isImageloaded = true;
       });
@@ -74,7 +79,9 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                  BackgroundLeandingPage(),
+                  BackgroundLeandingPage(
+                 imageinfo: imageInfo,
+                  ),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
