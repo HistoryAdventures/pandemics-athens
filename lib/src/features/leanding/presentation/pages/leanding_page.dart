@@ -12,7 +12,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../../../pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -24,11 +23,11 @@ class LeandingPage extends StatefulWidget {
 class _LeandingPageState extends State<LeandingPage>
     with SingleTickerProviderStateMixin {
   late AppLocalizations locales;
-  late GifController controller;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
+
   List<String> contentImages = [
     AssetsPath.gifVirus,
     AssetsPath.paralaxBackground,
@@ -42,17 +41,6 @@ class _LeandingPageState extends State<LeandingPage>
   }
 
   Future<void> init() async {
-    controller = GifController(vsync: this);
-
-    //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-    controller.repeat(
-      min: 0,
-      max: 150,
-      period: const Duration(seconds: 4),
-      reverse: true,
-    );
-    // });
-
     final loadedAssets = await loadContent(contentImages);
     if (loadedAssets == true) {
       setState(() {
@@ -68,14 +56,7 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void initState() {
     init();
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -93,7 +74,7 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                 const BackgroundLeandingPage(),
+                  BackgroundLeandingPage(),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,

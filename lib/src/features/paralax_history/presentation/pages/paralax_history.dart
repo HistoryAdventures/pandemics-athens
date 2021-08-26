@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -57,11 +58,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   Animation<double>? animationForCharacterNikos;
   AnimationController? _animationControllerForClouds;
   Animation<double>? animationForClouds;
-  double _progress_caracter_nikos = -200;
+  double _progressCaracterNikos = -200;
   double _progress2 = -200;
 
-  late GifController gifControllerCharacter_2;
-  late GifController _gifControllerHand;
+  late GifAnimationController gifControllerCharacter_2;
+  late GifAnimationController gifControllerHand;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -76,32 +77,66 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
-  bool isImageloaded = false;
+  bool isImageloaded = true;
   // bool _lernMoreVisibility = false;
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
-    // AssetsPath.characterNikosGif,
+    //AssetsPath.gifCharacterNikos,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
     AssetsPath.paralaxCharacter_11,
     AssetsPath.paralaxCharacters_2,
   ];
 
+  //List<ImageInfo> imageInfoCharacter_2 = [];
+
+  //late List<ImageInfo> imageInfoHand;
+
   @override
   void didChangeDependencies() {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
     locals = AppLocalizations.of(context)!;
+    // init();
     super.didChangeDependencies();
+  }
+
+  void init() {
+    //final loadedAssets = await loadContent(contentImages);
+    // imageInfoCharacter_2 = await preloadImage(
+    //     context: context,
+    //     frameCount: 254,
+    //     provider: const AssetImage(AssetsPath.gifCharacterNikos_2));
+
+    // preloadImage(
+    //   provider: const AssetImage(AssetsPath.gifHand),
+    //   frameCount: 349,
+    //   context: context,
+    // ).then((value) {
+    //   imageInfoHand = value;
+    //   if (imageInfoHand.isNotEmpty) {
+    //     isImageloaded = true;
+    //   } else {
+    //     isImageloaded = false;
+    //   }
+    // });
   }
 
   @override
   void initState() {
-    gifControllerCharacter_2 = GifController(vsync: this);
-    _gifControllerHand = GifController(vsync: this);
+    //  init();
+    // gifControllerCharacter_2 = GifAnimationController(
+    //   vsync: this,
+    //   frameCount: 254,
+    //   duration: const Duration(seconds: 10),
+    // );
+    gifControllerHand = GifAnimationController(
+      vsync: this,
+      frameCount: 349,
+      duration: const Duration(seconds: 10),
+    );
+
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -149,11 +184,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _bottomFieldOpasity = 1;
 
         //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        gifControllerCharacter_2.repeat(
-          min: 1,
-          max: 254,
-          period: const Duration(seconds: 8),
-        );
+        // gifControllerCharacter_2.repeat();
       } else {
         _bottomFieldOpasity = 0;
       }
@@ -173,11 +204,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
-        _gifControllerHand.repeat(
-          min: 0,
-          max: 348,
-          period: const Duration(seconds: 8),
-        );
+        // gifControllerHand.repeat();
       } else {
         _paralaxTextOpasyty3 = 0;
       }
@@ -208,7 +235,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ..addListener(() {
                   if (mounted) {
                     setState(() {
-                      _progress_caracter_nikos =
+                      _progressCaracterNikos =
                           animationForCharacterNikos!.value;
                     });
                   }
@@ -221,8 +248,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       }
     });
 
-    init();
-
     super.initState();
   }
 
@@ -231,30 +256,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForCharacterNikos?.dispose();
     _animationControllerForClouds?.dispose();
     gifControllerCharacter_2.dispose();
+    gifControllerHand.dispose();
     super.dispose();
-  }
-
-  Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
-      setState(() {
-        isImageloaded = true;
-      });
-    } else {
-      setState(() {
-        isImageloaded = false;
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // html.window.addEventListener('resize', (event) {
-    //   setState(() {
-    //     height = MediaQuery.of(context).size.height;
-    //     width = MediaQuery.of(context).size.width;
-    //   });
-    // }, true);
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    //   init();
+    // });
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
@@ -324,33 +334,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             width: MediaQuery.of(context).size.width / 2.2,
                             boxFit: BoxFit.contain,
                             top: rateThree,
-                            left: _progress_caracter_nikos,
+                            left: _progressCaracterNikos,
                             asset: "character_nkos.gif",
                           ),
-                          // ParallaxWidget(
-                          //   paralaxText: locals.paralaxText1,
-                          //   width: MediaQuery.of(context).size.width / 2.2,
-                          //   boxFit: BoxFit.contain,
-                          //   top: rateFour,
-                          //   left: MediaQuery.of(context).size.width / 2.2,
-                          //   right: 0,
-                          //   asset: "dead_bodies.png",
-                          // ),
-                          // Positioned(
-                          //   right: constraints.maxWidth * 0.13,
-                          //   top: height * 2.8,
-                          //   child: AnimatedOpacity(
-                          //     duration: Times.medium,
-                          //     opacity: 1,
-                          //     child: Container(
-                          //       width: width,
-                          //       color: AppColors.transpatent,
-                          //       child: Lottie.asset(
-                          //         "assets/paralax_new/smoke.json",
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           ParallaxWidget(
                               isImage: true,
                               width: MediaQuery.of(context).size.width,
@@ -388,20 +374,22 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               isImage: true,
-                              gifController: _gifControllerHand,
+                              // gifController: gifControllerHand,
                               width: constraints.maxWidth * 0.6,
                               top: rateTen,
                               left: constraints.maxWidth * 0.3,
                               right: 0,
+                              // imageInfo: imageInfoHand,
                               asset: "hand.gif",
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
                               isImage: true,
-                              gifController: gifControllerCharacter_2,
+                              // gifController: gifControllerCharacter_2,
                               width: MediaQuery.of(context).size.width,
                               top: rateEleven,
                               left: 200,
                               right: 200,
+                              // imageInfo: imageInfoCharacter_2,
                               asset: "character_2.gif",
                               boxFit: BoxFit.cover),
                           ParallaxWidget(

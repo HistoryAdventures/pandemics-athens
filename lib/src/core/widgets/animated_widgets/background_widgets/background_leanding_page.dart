@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../features/animated_background/animated_particles_1.dart';
 import '../../../utils/assets_path.dart';
 import '../../../utils/styles.dart';
+import '../gif_animation.dart';
 
 class BackgroundLeandingPage extends StatefulWidget {
-  const BackgroundLeandingPage();
-
   @override
   _BackgroundLeandingPageState createState() => _BackgroundLeandingPageState();
 }
@@ -16,9 +15,9 @@ class BackgroundLeandingPage extends StatefulWidget {
 class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
     with TickerProviderStateMixin {
   late AppLocalizations locales;
-  late AnimationController animatinController;
-  late Animation<double> animation;
-  late GifController controller;
+  // late AnimationController animatinController;
+  // late Animation<double> animation;
+  late GifAnimationController controller;
   Offset offset = const Offset(0, 0);
 
   @override
@@ -33,30 +32,10 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
   @override
   void initState() {
     super.initState();
-    controller = GifController(vsync: this);
+    controller = GifAnimationController(
+        vsync: this, frameCount: 960, duration: const Duration(seconds: 20));
 
-    controller.repeat(
-      min: 0,
-      max: 150,
-      period: const Duration(seconds: 4),
-      reverse: true,
-    );
-
-    animatinController =
-        AnimationController(vsync: this, duration: Times.slower)
-          ..addStatusListener(_onAnimationStatusChanged)
-          ..forward();
-
-    animation = Tween<double>(begin: 0, end: 30).animate(animatinController);
-  }
-
-  void _onAnimationStatusChanged(AnimationStatus status) {
-    if (!mounted) return;
-    if (status == AnimationStatus.completed) {
-      if (mounted) animatinController.reverse();
-    } else if (status == AnimationStatus.dismissed) {
-      if (mounted) animatinController.forward();
-    }
+    controller.repeat();
   }
 
   @override
@@ -154,10 +133,7 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
                   width: constraints.maxWidth * 0.55,
                   child: Transform.translate(
                     offset: Offset(offset.dx * 0.02, offset.dy * 0.01),
-                    child: GifImage(
-                      image: const AssetImage(AssetsPath.gifVirus),
-                      controller: controller,
-                    ),
+                    child: Image.asset(AssetsPath.gifVirus),
                   ),
                 ),
               ],
@@ -170,7 +146,7 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
 
   @override
   void dispose() {
-    animatinController.dispose();
+    /// animatinController.dispose();
     super.dispose();
   }
 }
