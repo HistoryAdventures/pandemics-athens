@@ -61,8 +61,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _progressCaracterNikos = -200;
   double _progress2 = -200;
 
-  late GifAnimationController gifControllerCharacter_2;
-  late GifAnimationController gifControllerHand;
+  // late GifAnimationController gifControllerCharacter_2;
+  // late GifAnimationController gifControllerHand;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -77,7 +77,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
-  bool isImageloaded = true;
+  bool isImageloaded = false;
   // bool _lernMoreVisibility = false;
 
   final ScrollController _scrollController = ScrollController();
@@ -85,6 +85,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
     AssetsPath.paralaxCharacterNikosGif,
+    AssetsPath.gifHand,
+    AssetsPath.gifCharacterNikos_2,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
     AssetsPath.paralaxCharacter_11,
@@ -128,17 +130,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
-    // init();
+    init();
     // gifControllerCharacter_2 = GifAnimationController(
     //   vsync: this,
     //   frameCount: 254,
     //   duration: const Duration(seconds: 10),
     // );
-    gifControllerHand = GifAnimationController(
-      vsync: this,
-      frameCount: 349,
-      duration: const Duration(seconds: 10),
-    );
+    // gifControllerHand = GifAnimationController(
+    //   vsync: this,
+    //   frameCount: 349,
+    //   duration: const Duration(seconds: 10),
+    // );
 
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
@@ -207,9 +209,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
-        gifControllerHand.forward();
+        //gifControllerHand.forward();
       } else {
-        gifControllerHand.stop();
+        // gifControllerHand.stop();
         _paralaxTextOpasyty3 = 0;
       }
       if (_scrollController.offset > _scrollrateNine &&
@@ -259,8 +261,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void dispose() {
     _animationControllerForCharacterNikos?.dispose();
     _animationControllerForClouds?.dispose();
-    gifControllerCharacter_2.dispose();
-    gifControllerHand.dispose();
+    // gifControllerCharacter_2.dispose();
+    // gifControllerHand.dispose();
     super.dispose();
   }
 

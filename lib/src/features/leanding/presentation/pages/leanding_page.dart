@@ -30,11 +30,11 @@ class _LeandingPageState extends State<LeandingPage>
 
   List<String> contentImages = [
     AssetsPath.gifVirus,
-    AssetsPath.paralaxCharacterNikosGif,
+    // AssetsPath.paralaxCharacterNikosGif,
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
   ];
-  late List<ImageInfo> imageInfo;
+  // late List<ImageInfo> imageInfo;
 
   @override
   void didChangeDependencies() {
@@ -44,11 +44,11 @@ class _LeandingPageState extends State<LeandingPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
-    imageInfo = await preloadImage(
-        provider: const AssetImage(AssetsPath.paralaxCharacterNikosGif),
-        frameCount: 180,
-        context: context);
-    if (loadedAssets == true && imageInfo.isNotEmpty) {
+    // imageInfo = await preloadImage(
+    //     provider: const AssetImage(AssetsPath.gifVirus),
+    //     frameCount: 180,
+    //     context: context);
+    if (loadedAssets == true) {
       setState(() {
         isImageloaded = true;
       });
@@ -80,9 +80,7 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                  BackgroundLeandingPage(
-                    imageinfo: imageInfo,
-                  ),
+                  BackgroundLeandingPage(),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,

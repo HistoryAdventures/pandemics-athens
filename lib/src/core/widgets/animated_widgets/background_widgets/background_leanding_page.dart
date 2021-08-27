@@ -8,10 +8,10 @@ import '../../../utils/styles.dart';
 import '../gif_animation.dart';
 
 class BackgroundLeandingPage extends StatefulWidget {
-  final List<ImageInfo> imageinfo;
+  //final List<ImageInfo> imageinfo;
 
-  const BackgroundLeandingPage({Key? key, required this.imageinfo})
-      : super(key: key);
+  // const BackgroundLeandingPage({Key? key, required this.imageinfo})
+  //     : super(key: key);
 
   @override
   _BackgroundLeandingPageState createState() => _BackgroundLeandingPageState();
@@ -138,12 +138,7 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
                   width: constraints.maxWidth * 0.55,
                   child: Transform.translate(
                     offset: Offset(offset.dx * 0.02, offset.dy * 0.01),
-                    child: GifAnimation(
-                      controller: controller,
-                      image:
-                          const AssetImage(AssetsPath.paralaxCharacterNikosGif),
-                      imageInfo: widget.imageinfo,
-                    ),
+                    child: Image.asset(AssetsPath.gifVirus),
                   ),
                 ),
               ],

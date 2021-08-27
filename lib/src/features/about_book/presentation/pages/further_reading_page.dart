@@ -206,7 +206,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
 
   Widget authorWidget(String profession, List<String> peoples) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -152,10 +152,7 @@ class _BackgroundPhatogenProfileState extends State<BackgroundPhatogenProfile>
                   width: constraints.maxWidth * 0.5,
                   child: Transform.translate(
                     offset: Offset(offset.dx * 0.02, offset.dy * 0.01),
-                    child: GifImage(
-                      image: const AssetImage(AssetsPath.gifVirusTyphoid),
-                      controller: controller,
-                    ),
+                    child: Image.asset(AssetsPath.gifVirusTyphoid),
                   ),
                 ),
               ],
