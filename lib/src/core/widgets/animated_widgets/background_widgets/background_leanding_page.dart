@@ -38,7 +38,7 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
   void initState() {
     super.initState();
     controller = GifAnimationController(
-        vsync: this, frameCount: 960, duration: const Duration(seconds: 20));
+        vsync: this, frameCount: 180, duration: const Duration(seconds: 10));
 
     controller.repeat();
   }
@@ -140,7 +140,8 @@ class _BackgroundLeandingPageState extends State<BackgroundLeandingPage>
                     offset: Offset(offset.dx * 0.02, offset.dy * 0.01),
                     child: GifAnimation(
                       controller: controller,
-                      image: AssetImage(AssetsPath.gifVirus),
+                      image:
+                          const AssetImage(AssetsPath.paralaxCharacterNikosGif),
                       imageInfo: widget.imageinfo,
                     ),
                   ),

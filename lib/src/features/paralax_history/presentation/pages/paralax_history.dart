@@ -93,7 +93,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   //List<ImageInfo> imageInfoCharacter_2 = [];
 
-  late List<ImageInfo> imageInfoHand;
+  // late List<ImageInfo> imageInfoHand;
 
   @override
   void didChangeDependencies() {
@@ -108,17 +108,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     //     context: context,
     //     frameCount: 254,
     //     provider: const AssetImage(AssetsPath.gifCharacterNikos_2));
-    imageInfoHand = await preloadImage(
-      provider: const AssetImage(AssetsPath.gifHand),
-      frameCount: 349,
-      context: context,
-    );
+    // imageInfoHand = await preloadImage(
+    //   provider: const AssetImage(AssetsPath.gifHand),
+    //   frameCount: 349,
+    //   context: context,
+    // );
     // preloadImage(
     //   provider: const AssetImage(AssetsPath.gifHand),
     //   frameCount: 349,
     //   context: context,
     // ).then((value) {
-    if (loadedAssets == true && imageInfoHand.isNotEmpty) {
+    if (loadedAssets == true) {
       isImageloaded = true;
     } else {
       isImageloaded = false;
@@ -128,7 +128,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
-   // init();
+    // init();
     // gifControllerCharacter_2 = GifAnimationController(
     //   vsync: this,
     //   frameCount: 254,
@@ -207,9 +207,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
         _paralaxTextOpasyty3 = 1;
-         gifControllerHand.forward();
+        gifControllerHand.forward();
       } else {
-         gifControllerHand.stop();
+        gifControllerHand.stop();
         _paralaxTextOpasyty3 = 0;
       }
       if (_scrollController.offset > _scrollrateNine &&
@@ -266,11 +266,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      setState(() {
-        init();
-      });
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    //   setState(() {
+    //     init();
+    //   });
+    // });
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
@@ -379,13 +379,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               asset: AssetsPath.paralaxCharacter_1,
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
-                              isImage: false,
-                               gifController: gifControllerHand,
+                              isImage: true,
+                              //gifController: gifControllerHand,
                               width: constraints.maxWidth * 0.6,
                               top: rateTen,
                               left: constraints.maxWidth * 0.3,
                               right: 0,
-                              imageInfo: imageInfoHand,
+                              //imageInfo: imageInfoHand,
                               asset: AssetsPath.gifHand,
                               boxFit: BoxFit.contain),
                           ParallaxWidget(
