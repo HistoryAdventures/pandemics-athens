@@ -138,8 +138,10 @@ class AssetsPath {
       'assets/animated_backgrounds/5/virus/vbody_8.png';
   static const String animatedBack5Vbody9 =
       'assets/animated_backgrounds/5/virus/vbody_9.png';
-  static const String animatedBack5body10 =
+  static const String animatedBack5Vbody10 =
       'assets/animated_backgrounds/5/virus/vbody_10.png';
+  static const String animatedBack5Vbody11 =
+      'assets/animated_backgrounds/5/virus/vbody_11.png';
 
   static const String animatedBack6Vbody0 =
       'assets/animated_backgrounds/6/virus/vbody_0.png';
