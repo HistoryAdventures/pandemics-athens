@@ -166,7 +166,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                         children: [
                                           Flexible(
                                             child: AutoSizeText(
-                                              "${locale.chapter1EndOfWar}\n",
+                                              "${locale.chapter1PlagueAndPersecution}\n",
                                               maxLines: 2,
                                               style: Theme.of(context)
                                                   .textTheme

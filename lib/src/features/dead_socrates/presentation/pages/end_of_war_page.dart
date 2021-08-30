@@ -164,7 +164,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                         children: [
                                           Flexible(
                                             child: AutoSizeText(
-                                              "${locale.chapter1EndOfWar}\n",
+                                              "${locale.chapter1PlagueAndPersecution}\n",
                                               maxLines: 2,
                                               style: Theme.of(context)
                                                   .textTheme

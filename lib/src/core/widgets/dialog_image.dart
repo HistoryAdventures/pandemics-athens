@@ -40,8 +40,6 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                 color: AppColors.green,
                 width: snapshot.data?.width,
                 height: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(
-                    vertical: widget.constraints.maxHeight * 0.1),
                 child: Scaffold(
                   body: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -49,7 +47,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        flex: 3,
+                        flex: 6,
                         child: Image.asset(
                           widget.selectedImage,
                           fit: BoxFit.cover,
@@ -57,12 +55,14 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                         ),
                       ),
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
+                        child: SizedBox(
                           width: snapshot.data?.width,
                           child: SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 20),
                             child: Text(
                               widget.selectedImageText,
+                              textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                           ),

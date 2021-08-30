@@ -84,9 +84,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
-    AssetsPath.paralaxCharacterNikosGif,
-    AssetsPath.gifHand,
-    AssetsPath.gifCharacterNikos_2,
+    //AssetsPath.paralaxCharacterNikosGif,
+    //AssetsPath.gifHand,
+    //AssetsPath.gifCharacterNikos_2,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
     AssetsPath.paralaxCharacter_11,
