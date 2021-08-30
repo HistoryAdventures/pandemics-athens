@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart' as material;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AssetsPath {
-  static final scaffoldkey = material.GlobalKey<material.ScaffoldState>();
+  static final scaffoldkey = GlobalKey<ScaffoldState>();
 
   static List<String> assetsBlobList = [];
 
@@ -295,18 +295,25 @@ class AssetsPath {
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
   static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
-  static const String characterNikosGif =
-      'assets/paralax_new/character_nkos.gif';
-
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
   static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
-  static const String paralaxCharacter_2 = 'assets/paralax_new/character_2.png';
+  static const String gifCharacterNikos_2 =
+      'assets/paralax_new/character_2.gif';
+  static const String gifHand = 'assets/paralax_new/hand.gif';
+
   static const String paralaxCharacter_11 =
       'assets/paralax_new/character_11.png';
   static const String paralaxCharacter_12 =
       'assets/paralax_new/character_12.png';
   static const String paralaxCharacters_2 =
       'assets/paralax_new/characters_2.png';
+  static const String paralaxCharacterNikosGif =
+      'assets/paralax_new/character_nkos.gif';
+  static const String paralaxCloud = 'assets/paralax_new/cloud.png';
+  static const String paralaxCrows = 'assets/paralax_new/crows.png';
+  static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
+  static const String paralaxClouds = 'assets/paralax_new/clouds.png';
+  static const String paralaxLeftCrowd = 'assets/paralax_new/left_crowd.png';
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';
@@ -358,17 +365,47 @@ Future<bool> loadContent(List<String> context) async {
   return true;
 }
 
-Future<Image> getBytesFromAsset(
+Future<ui.Image> getBytesFromAsset(
   String path,
 ) async {
   final data = await rootBundle.load(path);
 
-  final codec = await instantiateImageCodec(
+  final codec = await ui.instantiateImageCodec(
     data.buffer.asUint8List(),
   );
 
   final fi = await codec.getNextFrame();
 
-  final byteData = fi.image;
+  final ui.Image byteData = fi.image;
   return byteData;
+}
+
+Future<List<ImageInfo>> preloadImage({
+  required ImageProvider provider,
+  required BuildContext context,
+  int frameCount = 1,
+  Size? size,
+  ImageErrorListener? onError,
+}) async {
+  final ImageConfiguration config =
+      createLocalImageConfiguration(context, size: size);
+  final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
+  final ImageStream stream = provider.resolve(config);
+  final List<ImageInfo> ret = [];
+
+  final ImageStreamListener imageStreamListener =
+      ImageStreamListener((ImageInfo image, bool sync) {
+    ret.add(image);
+    if (ret.length == frameCount) {
+      print("object");
+      completer.complete(ret);
+    }
+  });
+
+  stream.addListener(imageStreamListener);
+  completer.future.then((List<ImageInfo> _) {
+    stream.removeListener(imageStreamListener);
+  });
+
+  return completer.future;
 }

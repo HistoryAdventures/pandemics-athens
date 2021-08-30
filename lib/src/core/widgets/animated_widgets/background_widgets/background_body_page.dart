@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/animated_background/animated_particles_3.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
 
 import '../../../utils/assets_path.dart';
 import '../../../utils/styles.dart';
@@ -187,7 +187,7 @@ class _BackgroundBodyPageState extends State<BackgroundBodyPage>
                       constraints.maxWidth * 0.2, constraints.maxHeight * 0.2),
                   targetOffset: Offset(-offset.dx * 0.02, offset.dy * 0.01),
                 ),
-                 AnimatedVirusBodies(
+                AnimatedVirusBodies(
                   top: constraints.maxHeight * 0.15,
                   right: 0,
                   path: AssetsPath.animatedBack3Vbody11,
@@ -196,7 +196,7 @@ class _BackgroundBodyPageState extends State<BackgroundBodyPage>
                       constraints.maxWidth * 0.2, constraints.maxHeight * 0.2),
                   targetOffset: Offset(-offset.dx * 0.02, offset.dy * 0.01),
                 ),
-                 AnimatedVirusBodies(
+                AnimatedVirusBodies(
                   bottom: -50,
                   left: 0,
                   path: AssetsPath.animatedBack3Vbody12,
@@ -206,7 +206,6 @@ class _BackgroundBodyPageState extends State<BackgroundBodyPage>
                   targetOffset: Offset(-offset.dx * 0.02, offset.dy * 0.01),
                 ),
               ],
-
             );
           },
         ),

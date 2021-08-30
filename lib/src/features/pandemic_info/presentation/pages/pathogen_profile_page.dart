@@ -10,10 +10,10 @@ import "package:universal_html/html.dart" as html;
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widgets/gif_contrrol.dart';
 
 class PathogenProfilePage extends StatefulWidget {
   const PathogenProfilePage({Key? key}) : super(key: key);
@@ -88,7 +88,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                               children: [
                                 Flexible(
                                   child: Container(
-                                    padding:const EdgeInsets.only(bottom: 16),
+                                    padding: const EdgeInsets.only(bottom: 16),
                                     width: constraints.maxWidth,
                                     decoration: const BoxDecoration(
                                         border: Border(

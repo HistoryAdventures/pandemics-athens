@@ -12,10 +12,10 @@ import "package:universal_html/html.dart" as html;
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widgets/gif_contrrol.dart';
 
 class VirusesInfoPage extends StatefulWidget {
   const VirusesInfoPage({Key? key}) : super(key: key);
