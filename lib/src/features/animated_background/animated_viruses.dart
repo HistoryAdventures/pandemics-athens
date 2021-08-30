@@ -5,15 +5,17 @@ class AnimatesViruses extends StatelessWidget {
   final String path;
   final Size? size;
   final int duration;
+  final Alignment? alignment;
   final double opacity;
   final BoxFit? fit;
   final Color? color;
 
-  const AnimatesViruses({
+  AnimatesViruses({
     Key? key,
     required this.targetOffset,
     required this.path,
     this.size,
+    this.alignment,
     required this.duration,
     required this.opacity,
     this.fit,
@@ -26,9 +28,8 @@ class AnimatesViruses extends StatelessWidget {
       left: targetOffset.dx,
       top: targetOffset.dy,
       duration: Duration(milliseconds: duration),
-      // curve: Curves.easeIn,
-
-      child: SizedBox(
+      child: Container(
+        alignment: alignment ?? Alignment.center,
         height: size?.height ?? MediaQuery.of(context).size.height,
         width: size?.width ?? MediaQuery.of(context).size.width,
         child: InteractiveViewer(
