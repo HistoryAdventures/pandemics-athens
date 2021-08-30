@@ -48,6 +48,7 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
     return Stack(
       children: [
         AnimatesViruses(
+          alignment: Alignment.centerLeft,
           size: Size(width * 2, height * 2),
           targetOffset:
               Offset(0.5 * p2Counter, 0.14 * p2Counter - (mouseY / 6)),

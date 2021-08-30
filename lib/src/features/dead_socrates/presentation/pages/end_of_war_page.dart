@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_3.dart';
+import 'package:history_of_adventures/src/features/animated_background/animated_particles_6.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -27,108 +27,117 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   late String _selectedItem;
   late String _selectedImg;
   late String _selectedText;
+
+  double objWave = 0;
+  int direction = 1;
+  double mouseX = 100;
+  double mouseY = 100;
+  Offset offset = Offset.zero;
   late List<SocratesInfoModel> socratesList;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
-  @override
-  void didChangeDependencies() {
-    locale = AppLocalizations.of(context)!;
-    _selectedItem = locale.theSicilianExpedition;
-    _selectedText = locale.theSicilianExpeditionText;
-    _selectedImg = AssetsPath.endOfWar1;
-    socratesList = [
-      SocratesInfoModel(
-          description: locale.theSicilianExpeditionText,
-          image: AssetsPath.endOfWar1,
-          name: locale.theSicilianExpedition,
-          imageText: locale.theSicilianExpeditionTextImage),
-      SocratesInfoModel(
-        name: locale.theWallsCrumble,
-        description: locale.theWallsCrumbleText,
-        imageText: locale.theWallsCrumbleTextImage,
-        image: AssetsPath.endOfWar2,
-      ),
-      SocratesInfoModel(
-        name: locale.theAfterlifeOfClassicalAthens,
-        description: locale.theAfterlifeOfClassicalAthensText,
-        imageText: locale.theAfterlifeOfClassicalAthensTextImage,
-        image: AssetsPath.endOfWar3,
-      ),
-    ];
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      endDrawer: const NavigationPage(),
-      body: LayoutBuilder(builder: (context, constraints) {
-        return Stack(
-          children: [
-            const AnimatedParticlesThird(),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: constraints.maxWidth * 0.15,
-                    vertical: constraints.maxHeight * 0.2),
-                decoration: BoxDecoration(
-                    boxShadow: Shadows.universal, color: AppColors.white),
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: constraints.maxHeight,
-                        child: AnimatedSwitcher(
-                          duration: Times.medium,
-                          transitionBuilder: (child, animation) {
-                            return FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            );
-                          },
-                          child: Container(
-                            key: ValueKey(_selectedImg),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(_selectedImg),
-                                    fit: BoxFit.cover)),
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Clickable(
-                                onPressed: () {
-                                  showGeneralDialog(
-                                      context: context,
-                                      barrierColor:
-                                          Colors.black.withOpacity(0.5),
-                                      transitionBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return LayoutBuilder(
-                                          builder: (context, constraints) =>
-                                              DialogImageWidget(
-                                            selectedImage: _selectedImg,
-                                            selectedImageText: _selectedText,
-                                            constraints: constraints,
-                                            animation: animation,
-                                          ),
-                                        );
-                                      },
-                                      transitionDuration: Times.fast,
-                                      barrierDismissible: true,
-                                      barrierLabel: '',
-                                      pageBuilder:
-                                          (context, animation1, animation2) {
-                                        return Container();
-                                      });
-                                },
-                                child: Container(
-                                  color: Colors.black,
-                                  child: const Icon(
-                                    Icons.zoom_in,
-                                    color: Colors.white,
+    return MouseRegion(
+      onHover: (e) {
+        if (objWave < 50 && direction == 1) {
+          objWave += .2;
+        } else if (objWave == 50 && direction == 1) {
+          direction = 0;
+        } else if (objWave > -50 && direction == 0) {
+          objWave -= .2;
+        } else if (objWave == -50 && direction == 0) {
+          direction = 1;
+        }
+        mouseX = (e.position.dx - width / 2) / 20;
+        mouseY = (e.position.dy - height / 2) / 20;
+        setState(() {
+          offset = e.position;
+        });
+      },
+      child: LayoutBuilder(builder: (context, constraints) {
+        return Scaffold(
+          endDrawer: const NavigationPage(),
+          body: Stack(
+            children: [
+              GifBackground(
+                size: Size(constraints.maxWidth, constraints.maxHeight),
+                path: AssetsPath.gifBackground6,
+              ),
+              AnimatedParticlesSixth(
+                constraints: constraints,
+                mouseY: mouseY,
+                mouseX: mouseX,
+                objWave: objWave,
+                offset: offset,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: constraints.maxWidth * 0.15,
+                      vertical: constraints.maxHeight * 0.2),
+                  decoration: BoxDecoration(
+                      boxShadow: Shadows.universal, color: AppColors.white),
+                  padding: const EdgeInsets.all(24),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: constraints.maxHeight,
+                          child: AnimatedSwitcher(
+                            duration: Times.medium,
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: Container(
+                              key: ValueKey(_selectedImg),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(_selectedImg),
+                                      fit: BoxFit.cover)),
+                              child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Clickable(
+                                  onPressed: () {
+                                    showGeneralDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        transitionBuilder:
+                                            (BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double>
+                                                    secondaryAnimation,
+                                                Widget child) {
+                                          return LayoutBuilder(
+                                            builder: (context, constraints) =>
+                                                DialogImageWidget(
+                                              selectedImage: _selectedImg,
+                                              selectedImageText: _selectedText,
+                                              constraints: constraints,
+                                              animation: animation,
+                                            ),
+                                          );
+                                        },
+                                        transitionDuration: Times.fast,
+                                        barrierDismissible: true,
+                                        barrierLabel: '',
+                                        pageBuilder:
+                                            (context, animation1, animation2) {
+                                          return Container();
+                                        });
+                                  },
+                                  child: Container(
+                                    color: Colors.black,
+                                    child: const Icon(
+                                      Icons.zoom_in,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -178,111 +187,126 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                                 locale.endOfThePeloponneseanWar,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2),
-                                          ),
-                                        ],
+                                                    .headline1
+                                                    ?.copyWith(
+                                                        color:
+                                                            AppColors.black25),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: AutoSizeText(
+                                                  locale
+                                                      .endOfThePeloponneseanWar,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
-                                        )),
-                                        child: ListView(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 16),
-                                            shrinkWrap: true,
-                                            children: [
-                                              Container(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: RichText(
-                                                    text: TextSpan(children: [
-                                                  TextSpan(
-                                                    text: '$_selectedItem\n\n'
-                                                        .toUpperCase(),
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline3,
-                                                  ),
-                                                  TextSpan(
-                                                    text: _selectedText,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText1,
-                                                  ),
-                                                ])),
-                                              )
-                                            ]),
+                                      Expanded(
+                                        flex: 5,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          )),
+                                          child: ListView(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 16),
+                                              shrinkWrap: true,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text: '$_selectedItem\n\n'
+                                                          .toUpperCase(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                    TextSpan(
+                                                      text: _selectedText,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                )
+                                              ]),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Flexible(
-                              child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                      children: socratesList
-                                          .map((data) =>
-                                              deadofSocratesListWidget(
-                                                  name: data.name,
-                                                  text: data.description,
-                                                  image: data.image,
-                                                  selected: data.name))
-                                          .toList())),
-                            )
-                          ],
+                              Flexible(
+                                child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                        children: socratesList
+                                            .map((data) =>
+                                                deadofSocratesListWidget(
+                                                    name: data.name,
+                                                    text: data.description,
+                                                    image: data.image,
+                                                    selected: data.name))
+                                            .toList())),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10, left: 24),
-                child: ArrowLeftTextWidget(
-                    textSubTitle: locale.deathOfSocrates,
-                    textTitle: locale.plagueAndPersecution,
-                    onTap: () {
-                      LeafDetails.currentVertex = 15;
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    }),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10, left: 24),
+                  child: ArrowLeftTextWidget(
+                      textSubTitle: locale.deathOfSocrates,
+                      textTitle: locale.plagueAndPersecution,
+                      onTap: () {
+                        LeafDetails.currentVertex = 15;
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
+                ),
               ),
-            ),
-            SoundAndMenuWidget(
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-              onTapVolume: isSoundOn
-                  ? () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
-                      });
-                    }
-                  : () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
-                      });
-                    },
-              onTapMenu: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-            ),
-          ],
+              SoundAndMenuWidget(
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+              ),
+            ],
+          ),
         );
       }),
     );
@@ -316,5 +340,33 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                       .bodyText1
                       ?.copyWith(color: AppColors.black54)),
         ));
+  }
+
+  @override
+  void didChangeDependencies() {
+    locale = AppLocalizations.of(context)!;
+    _selectedItem = locale.theSicilianExpedition;
+    _selectedText = locale.theSicilianExpeditionText;
+    _selectedImg = AssetsPath.endOfWar1;
+    socratesList = [
+      SocratesInfoModel(
+          description: locale.theSicilianExpeditionText,
+          image: AssetsPath.endOfWar1,
+          name: locale.theSicilianExpedition,
+          imageText: locale.theSicilianExpeditionTextImage),
+      SocratesInfoModel(
+        name: locale.theWallsCrumble,
+        description: locale.theWallsCrumbleText,
+        imageText: locale.theWallsCrumbleTextImage,
+        image: AssetsPath.endOfWar2,
+      ),
+      SocratesInfoModel(
+        name: locale.theAfterlifeOfClassicalAthens,
+        description: locale.theAfterlifeOfClassicalAthensText,
+        imageText: locale.theAfterlifeOfClassicalAthensTextImage,
+        image: AssetsPath.endOfWar3,
+      ),
+    ];
+    super.didChangeDependencies();
   }
 }
