@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSecureStorage {
-  static const _keyEmail = "userEmail";
-  static const _keyPassword = "userPassword";
+  static const keyEmail = "userEmail";
+  static const keyPassword = "userPassword";
 
   static Future<void> addStringToSF() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

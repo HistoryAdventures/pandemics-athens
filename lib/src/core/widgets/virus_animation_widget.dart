@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/pandemic_info/presentation/widgets/gif_contrrol.dart';
+import 'animated_widgets/gif_contrrol.dart';
 
 class VirusModel extends StatelessWidget {
   const VirusModel(

@@ -199,7 +199,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                                 Container(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          right: 10),
+                                                          right: 24, top: 16),
                                                   child: RichText(
                                                       text: TextSpan(children: [
                                                     TextSpan(

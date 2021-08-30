@@ -275,7 +275,7 @@ class _CreditsPageState extends State<CreditsPage> {
 
   Widget authorWidget(String profession, List<String> peoples) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -294,7 +294,7 @@ class _CreditsPageState extends State<CreditsPage> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 16),
+                        ?.copyWith(color: AppColors.grey, fontSize: 12),
                   ),
                 ),
               ),
@@ -311,7 +311,7 @@ class _CreditsPageState extends State<CreditsPage> {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1
-                      ?.copyWith(fontSize: 22),
+                      ?.copyWith(fontSize: 16),
                 ),
               );
             }).toList(),

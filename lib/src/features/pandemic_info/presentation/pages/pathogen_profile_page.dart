@@ -10,10 +10,10 @@ import "package:universal_html/html.dart" as html;
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widgets/gif_contrrol.dart';
 
 class PathogenProfilePage extends StatefulWidget {
   const PathogenProfilePage({Key? key}) : super(key: key);
@@ -68,105 +68,85 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
           onHover: (e) => setState(() => offset = e.position),
           child: Stack(
             children: [
-              const BackgroundWidget(),
+              const BackgroundPhatogenProfile(),
               Align(
                   alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 50),
-                        height: constraints.maxHeight * 0.6,
-                        width: constraints.maxWidth * 0.6,
-                        decoration: BoxDecoration(
-                            color: AppColors.white,
-                            boxShadow: Shadows.universal),
-                        child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        width: constraints.maxWidth,
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: AppColors.grey,
-                                                    width: 1.2))),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Flexible(
-                                              child: AutoSizeText(
-                                                  '${locals.chapter1}\n',
-                                                  maxLines: 2,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(fontSize: 22)),
-                                            ),
-                                            Flexible(
-                                              child: AutoSizeText(
-                                                locals.pathogenProfile
-                                                    .toUpperCase(),
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline2,
-                                              ),
-                                            ),
-                                          ],
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 50),
+                    height: constraints.maxHeight * 0.6,
+                    width: constraints.maxWidth * 0.5,
+                    decoration: BoxDecoration(
+                        color: AppColors.white, boxShadow: Shadows.universal),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    width: constraints.maxWidth,
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2))),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Flexible(
+                                          child: AutoSizeText(
+                                              '${locals.chapter1}\n',
+                                              maxLines: 2,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(fontSize: 22)),
                                         ),
-                                      ),
+                                        Flexible(
+                                          child: AutoSizeText(
+                                            locals.pathogenProfile
+                                                .toUpperCase(),
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Flexible(
-                                      flex: 3,
-                                      child: Scrollbar(
-                                        child: ListView(
-                                            shrinkWrap: true,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 8.0, right: 30),
-                                                child: AutoSizeText(
-                                                  locals.pathogenProfileText,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2,
-                                                ),
-                                              )
-                                            ]),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: SizedBox(
-                          height: constraints.maxHeight * 0.35,
-                          width: constraints.maxWidth * 0.35,
-                          child: Transform.rotate(
-                            angle: -offset.direction,
-                            alignment: Alignment.center,
-                            child: GifImage(
-                              image: const AssetImage(
-                                  'assets/virus_gif/virus_01.gif'),
-                              controller: controller,
+                                Flexible(
+                                  flex: 3,
+                                  child: Scrollbar(
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 16, right: 38),
+                                        child: AutoSizeText(
+                                          locals.pathogenProfileText,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                        ),
+                                      )
+                                    ]),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   )),
               Align(
                 alignment: Alignment.bottomRight,

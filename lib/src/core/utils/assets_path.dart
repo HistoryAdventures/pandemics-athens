@@ -1,19 +1,183 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart' as material;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AssetsPath {
-  static final scaffoldkey = material.GlobalKey<material.ScaffoldState>();
+  static final scaffoldkey = GlobalKey<ScaffoldState>();
 
   static List<String> assetsBlobList = [];
 
-  static const String gifBackground = 'assets/image_back/backgif.gif';
+  //static const String gifBackground = 'assets/image_back/backgif.gif';
+  static const String gifBackground1 =
+      'assets/animated_backgrounds/1/liquid.gif';
+
+  static const String gifBackground2 =
+      'assets/animated_backgrounds/2/liquid.gif';
+
+  static const String gifBackground3 =
+      'assets/animated_backgrounds/3/liquid.gif';
+
+  static const String gifBackground4 =
+      'assets/animated_backgrounds/4/liquid.gif';
+
+  static const String gifBackground5 =
+      'assets/animated_backgrounds/5/liquid.gif';
+
+  static const String gifBackground6 =
+      'assets/animated_backgrounds/6/liquid.gif';
+
+  static const String animatedBack1Vbody0 =
+      'assets/animated_backgrounds/1/virus/vbody_0.png';
+  static const String animatedBack1Vbody1 =
+      'assets/animated_backgrounds/1/virus/vbody_1.png';
+  static const String animatedBack1Vbody2 =
+      'assets/animated_backgrounds/1/virus/vbody_2.png';
+  static const String animatedBack1Vbody3 =
+      'assets/animated_backgrounds/1/virus/vbody_3.png';
+  static const String animatedBack1Vbody4 =
+      'assets/animated_backgrounds/1/virus/vbody_4.png';
+  static const String animatedBack1Vbody5 =
+      'assets/animated_backgrounds/1/virus/vbody_5.png';
+  static const String animatedBack1Vbody6 =
+      'assets/animated_backgrounds/1/virus/vbody_6.png';
+  static const String animatedBack1Vbody7 =
+      'assets/animated_backgrounds/1/virus/vbody_7.png';
+  static const String animatedBack1Vbody8 =
+      'assets/animated_backgrounds/1/virus/vbody_8.png';
+
+  static const String animatedBack2Vbody0 =
+      'assets/animated_backgrounds/2/virus/vbody_0.png';
+  static const String animatedBack2Vbody1 =
+      'assets/animated_backgrounds/2/virus/vbody_1.png';
+  static const String animatedBack2Vbody2 =
+      'assets/animated_backgrounds/2/virus/vbody_2.png';
+  static const String animatedBack2Vbody3 =
+      'assets/animated_backgrounds/2/virus/vbody_3.png';
+  static const String animatedBack2Vbody4 =
+      'assets/animated_backgrounds/2/virus/vbody_4.png';
+  static const String animatedBack2Vbody5 =
+      'assets/animated_backgrounds/2/virus/vbody_5.png';
+  static const String animatedBack2Vbody6 =
+      'assets/animated_backgrounds/2/virus/vbody_6.png';
+  static const String animatedBack2Vbody7 =
+      'assets/animated_backgrounds/2/virus/vbody_7.png';
+  static const String animatedBack2Vbody8 =
+      'assets/animated_backgrounds/2/virus/vbody_8.png';
+
+  static const String animatedBack3Vbody0 =
+      'assets/animated_backgrounds/3/virus/vbody_0.png';
+  static const String animatedBack3Vbody1 =
+      'assets/animated_backgrounds/3/virus/vbody_1.png';
+  static const String animatedBack3Vbody2 =
+      'assets/animated_backgrounds/3/virus/vbody_2.png';
+  static const String animatedBack3Vbody3 =
+      'assets/animated_backgrounds/3/virus/vbody_3.png';
+  static const String animatedBack3Vbody4 =
+      'assets/animated_backgrounds/3/virus/vbody_4.png';
+  static const String animatedBack3Vbody5 =
+      'assets/animated_backgrounds/3/virus/vbody_5.png';
+  static const String animatedBack3Vbody6 =
+      'assets/animated_backgrounds/3/virus/vbody_6.png';
+  static const String animatedBack3Vbody7 =
+      'assets/animated_backgrounds/3/virus/vbody_7.png';
+  static const String animatedBack3Vbody8 =
+      'assets/animated_backgrounds/3/virus/vbody_8.png';
+  static const String animatedBack3Vbody9 =
+      'assets/animated_backgrounds/3/virus/vbody_9.png';
+  static const String animatedBack3Vbody10 =
+      'assets/animated_backgrounds/3/virus/vbody_10.png';
+  static const String animatedBack3Vbody11 =
+      'assets/animated_backgrounds/3/virus/vbody_11.png';
+  static const String animatedBack3Vbody12 =
+      'assets/animated_backgrounds/3/virus/vbody_12.png';
+  static const String animatedBack3Vbody13 =
+      'assets/animated_backgrounds/3/virus/vbody_13.png';
+
+  static const String animatedBack4Vbody0 =
+      'assets/animated_backgrounds/4/virus/vbody_0.png';
+  static const String animatedBack4Vbody1 =
+      'assets/animated_backgrounds/4/virus/vbody_1.png';
+  static const String animatedBack4Vbody2 =
+      'assets/animated_backgrounds/4/virus/vbody_2.png';
+  static const String animatedBack4Vbody3 =
+      'assets/animated_backgrounds/4/virus/vbody_3.png';
+  static const String animatedBack4Vbody4 =
+      'assets/animated_backgrounds/4/virus/vbody_4.png';
+  static const String animatedBack4Vbody5 =
+      'assets/animated_backgrounds/4/virus/vbody_5.png';
+  static const String animatedBack4Vbody6 =
+      'assets/animated_backgrounds/4/virus/vbody_6.png';
+  static const String animatedBack4Vbody7 =
+      'assets/animated_backgrounds/4/virus/vbody_7.png';
+  static const String animatedBack4Vbody8 =
+      'assets/animated_backgrounds/4/virus/vbody_8.png';
+  static const String animatedBack4Vbody9 =
+      'assets/animated_backgrounds/4/virus/vbody_9.png';
+  static const String animatedBack4Vbody10 =
+      'assets/animated_backgrounds/4/virus/vbody_10.png';
+
+  static const String animatedBack5Vbody0 =
+      'assets/animated_backgrounds/5/virus/vbody_0.png';
+  static const String animatedBack5Vbody1 =
+      'assets/animated_backgrounds/5/virus/vbody_1.png';
+  static const String animatedBack5Vbody2 =
+      'assets/animated_backgrounds/5/virus/vbody_2.png';
+  static const String animatedBack5Vbody3 =
+      'assets/animated_backgrounds/5/virus/vbody_3.png';
+  static const String animatedBack5Vbody4 =
+      'assets/animated_backgrounds/5/virus/vbody_4.png';
+  static const String animatedBack5Vbody5 =
+      'assets/animated_backgrounds/5/virus/vbody_5.png';
+  static const String animatedBack5Vbody6 =
+      'assets/animated_backgrounds/5/virus/vbody_6.png';
+  static const String animatedBack5Vbody7 =
+      'assets/animated_backgrounds/5/virus/vbody_7.png';
+  static const String animatedBack5Vbody8 =
+      'assets/animated_backgrounds/5/virus/vbody_8.png';
+  static const String animatedBack5Vbody9 =
+      'assets/animated_backgrounds/5/virus/vbody_9.png';
+  static const String animatedBack5Vbody10 =
+      'assets/animated_backgrounds/5/virus/vbody_10.png';
+  static const String animatedBack5Vbody11 =
+      'assets/animated_backgrounds/5/virus/vbody_11.png';
+
+  static const String animatedBack6Vbody0 =
+      'assets/animated_backgrounds/6/virus/vbody_0.png';
+  static const String animatedBack6Vbody1 =
+      'assets/animated_backgrounds/6/virus/vbody_1.png';
+  static const String animatedBack6Vbody2 =
+      'assets/animated_backgrounds/6/virus/vbody_2.png';
+  static const String animatedBack6Vbody3 =
+      'assets/animated_backgrounds/6/virus/vbody_3.png';
+  static const String animatedBack6Vbody4 =
+      'assets/animated_backgrounds/6/virus/vbody_4.png';
+  static const String animatedBack6Vbody5 =
+      'assets/animated_backgrounds/6/virus/vbody_5.png';
+  static const String animatedBack6Vbody6 =
+      'assets/animated_backgrounds/6/virus/vbody_6.png';
+  static const String animatedBack6Vbody7 =
+      'assets/animated_backgrounds/6/virus/vbody_7.png';
+  static const String animatedBack6Vbody8 =
+      'assets/animated_backgrounds/6/virus/vbody_8.png';
+  static const String animatedBack6Vbody9 =
+      'assets/animated_backgrounds/6/virus/vbody_9.png';
+  static const String animatedBack6Vbody10 =
+      'assets/animated_backgrounds/6/virus/vbody_10.png';
+  static const String animatedBack6Vbody11 =
+      'assets/animated_backgrounds/6/virus/vbody_11.png';
+  static const String animatedBack6Vbody12 =
+      'assets/animated_backgrounds/6/virus/vbody_12.png';
+
   static const String virusLocMap = 'assets/image_back/virus_loc_map.png';
   static const String gradient = 'assets/image_back/gradient.png';
 
-  static const String gifVirus = 'assets/virus_gif/virus_01.gif';
+  static const String gifVirusTyphoid =
+      'assets/animated_backgrounds/2/virus/typhoid.gif';
+
+  static const String gifVirus = 'assets/animated_backgrounds/virus.gif';
+
   static const String gifSmallpox = 'assets/virus_gif/smallpox.gif';
 
   static const String gifTyphus = 'assets/virus_gif/typhus.gif';
@@ -131,18 +295,25 @@ class AssetsPath {
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
   static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
-  static const String characterNikosGif =
-      'assets/paralax_new/character_nkos.gif';
-
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
   static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
-  static const String paralaxCharacter_2 = 'assets/paralax_new/character_2.png';
+  static const String gifCharacterNikos_2 =
+      'assets/paralax_new/character_2.gif';
+  static const String gifHand = 'assets/paralax_new/hand.gif';
+
   static const String paralaxCharacter_11 =
       'assets/paralax_new/character_11.png';
   static const String paralaxCharacter_12 =
       'assets/paralax_new/character_12.png';
   static const String paralaxCharacters_2 =
       'assets/paralax_new/characters_2.png';
+  static const String paralaxCharacterNikosGif =
+      'assets/paralax_new/character_nkos.gif';
+  static const String paralaxCloud = 'assets/paralax_new/cloud.png';
+  static const String paralaxCrows = 'assets/paralax_new/crows.png';
+  static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
+  static const String paralaxClouds = 'assets/paralax_new/clouds.png';
+  static const String paralaxLeftCrowd = 'assets/paralax_new/left_crowd.png';
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';
@@ -194,17 +365,47 @@ Future<bool> loadContent(List<String> context) async {
   return true;
 }
 
-Future<Image> getBytesFromAsset(
+Future<ui.Image> getBytesFromAsset(
   String path,
 ) async {
   final data = await rootBundle.load(path);
 
-  final codec = await instantiateImageCodec(
+  final codec = await ui.instantiateImageCodec(
     data.buffer.asUint8List(),
   );
 
   final fi = await codec.getNextFrame();
 
-  final byteData = fi.image;
+  final ui.Image byteData = fi.image;
   return byteData;
+}
+
+Future<List<ImageInfo>> preloadImage({
+  required ImageProvider provider,
+  required BuildContext context,
+  int frameCount = 1,
+  Size? size,
+  ImageErrorListener? onError,
+}) async {
+  final ImageConfiguration config =
+      createLocalImageConfiguration(context, size: size);
+  final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
+  final ImageStream stream = provider.resolve(config);
+  final List<ImageInfo> ret = [];
+
+  final ImageStreamListener imageStreamListener =
+      ImageStreamListener((ImageInfo image, bool sync) {
+    ret.add(image);
+    if (ret.length == frameCount) {
+      print("object");
+      completer.complete(ret);
+    }
+  });
+
+  stream.addListener(imageStreamListener);
+  completer.future.then((List<ImageInfo> _) {
+    stream.removeListener(imageStreamListener);
+  });
+
+  return completer.future;
 }

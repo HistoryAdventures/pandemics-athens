@@ -2,17 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/widgets/animated_widgets/background_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../../../pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 class LeandingPage extends StatefulWidget {
   const LeandingPage({Key? key}) : super(key: key);
@@ -24,17 +23,18 @@ class LeandingPage extends StatefulWidget {
 class _LeandingPageState extends State<LeandingPage>
     with SingleTickerProviderStateMixin {
   late AppLocalizations locales;
-  late GifController controller;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
+
   List<String> contentImages = [
     AssetsPath.gifVirus,
+    // AssetsPath.paralaxCharacterNikosGif,
     AssetsPath.paralaxBackground,
-    AssetsPath.gifBackground,
-    AssetsPath.spheresBackImage,
+    AssetsPath.gifBackground1,
   ];
+  // late List<ImageInfo> imageInfo;
 
   @override
   void didChangeDependencies() {
@@ -43,18 +43,11 @@ class _LeandingPageState extends State<LeandingPage>
   }
 
   Future<void> init() async {
-    controller = GifController(vsync: this);
-
-    //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-    controller.repeat(
-      min: 0,
-      max: 150,
-      period: const Duration(seconds: 4),
-      reverse: true,
-    );
-    // });
-
     final loadedAssets = await loadContent(contentImages);
+    // imageInfo = await preloadImage(
+    //     provider: const AssetImage(AssetsPath.gifVirus),
+    //     frameCount: 180,
+    //     context: context);
     if (loadedAssets == true) {
       setState(() {
         isImageloaded = true;
@@ -69,14 +62,7 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void initState() {
     init();
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -94,9 +80,7 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                  BackgroundWidget(
-                    offset: offset,
-                  ),
+                  BackgroundLeandingPage(),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
@@ -112,10 +96,12 @@ class _LeandingPageState extends State<LeandingPage>
                               children: [
                                 Flexible(
                                     child: AutoSizeText(
-                                        locales.spencerStrikerName,
+                                        locales.spencerStrikerName
+                                            .toUpperCase(),
                                         maxLines: 1,
                                         style: DefaultTheme
-                                            .standard.textTheme.headline1)),
+                                            .standard.textTheme.headline1
+                                            ?.copyWith(fontSize: 24))),
                                 Flexible(
                                   child: AutoSizeText(
                                     locales.historyAdventures.toUpperCase(),
@@ -150,19 +136,6 @@ class _LeandingPageState extends State<LeandingPage>
                                   ),
                                 )
                               ],
-                            ),
-                          ),
-                          Flexible(
-                            child: SizedBox(
-                              height: constraints.maxHeight * 0.55,
-                              width: constraints.maxWidth * 0.55,
-                              child: Transform.translate(
-                                offset: Offset(offset.dx * 0.02, 0),
-                                child: GifImage(
-                                  image: const AssetImage(AssetsPath.gifVirus),
-                                  controller: controller,
-                                ),
-                              ),
                             ),
                           ),
                         ],

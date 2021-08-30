@@ -11,7 +11,7 @@
     "@worldOfCharactersName": {
       "description": "World Of Characters"
     },
-    "globalPandemicsName": " global pandemics",
+    "globalPandemicsName": "  global pandemics",
     "@globalPandemicsName": {
       "description": " global pandemics"
     },
@@ -30,6 +30,10 @@
     "chapter1": "Chapter 1",
     "@chapter1": {
       "description": "Chapter 1"
+    },
+    "chapter1PathogenProfile": "Chapter 1 / Pathogen Profile",
+    "@chapter1PathogenProfile": {
+      "description": "chapter1PathogenProfile1"
     },
     "keyPeople": "key people",
     "@keyPeople": {
@@ -299,6 +303,11 @@
     "@abandonedByTheGods": {
       "abandonedByTheGods": "abandonedByTheGods"
     },
+    "chapter1plaguePoliticalInstability": "Chapter 1 / Plague & Political Instability",
+    "@chapter1plaguePoliticalInstability": {
+      "chapter1plaguePoliticalInstability": "chapter1plaguePoliticalInstability"
+    },
+
     "plaguePoliticalInstability": "plague & political Instability",
     "@plaguePoliticalInstability": {
       "plaguePoliticalInstability": "plaguePoliticalInstability"
@@ -1180,7 +1189,7 @@
       "sourceAnalysisHippocraticOath": "#sourceAnalysisHippocraticOath"
     },
 
-    "chapter1MedicalToolsKnowledge": "Chapter 1 / Medical tools & knowledge",
+    "chapter1MedicalToolsKnowledge": "Chapter 1 / Medical tools & Knowledge",
     "@chapter1MedicalToolsKnowledge": {
       "chapter1MedicalToolsKnowledge": "chapter1MedicalToolsKnowledge4"
     },

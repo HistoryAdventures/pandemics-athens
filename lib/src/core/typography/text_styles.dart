@@ -43,7 +43,7 @@ class AppTextStyle {
   /// Headline 2 Text Style
   static TextStyle get headline2 {
     return _titleTextStyleBold.copyWith(
-      fontSize: 32,
+      fontSize: 36,
       // fontWeight: AppFontWeight.regular,
     );
   }

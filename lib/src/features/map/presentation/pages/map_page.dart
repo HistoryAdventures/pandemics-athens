@@ -671,7 +671,7 @@ class _MapPageState extends State<MapPage> {
                       flex: 4,
                       child: Container(
                         alignment: Alignment.topCenter,
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
                         child: ListView.builder(
                             controller: _scrollController,

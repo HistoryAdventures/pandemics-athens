@@ -62,12 +62,13 @@ dependencies:
 
   # Panorama -- A 360-degree panorama viewer.
   panorama: ^0.4.1
+  platform: ^3.0.0
   shared_preferences: ^2.0.6
-  
+  universal_html: ^2.0.8
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
-  universal_html: ^2.0.8
-  platform: ^3.0.0
+ 
+
 
 
   #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
@@ -109,7 +110,26 @@ flutter:
     - assets/imgs/
     - assets/map/
     - assets/paralax_new/
-    # - animated_particles/assets/imgs/
+    - assets/animated_backgrounds/
+    - assets/animated_backgrounds/2/
+    - assets/animated_backgrounds/2/particles/
+    - assets/animated_backgrounds/2/virus/
+    - assets/animated_backgrounds/1/
+    - assets/animated_backgrounds/1/virus/
+    - assets/animated_backgrounds/1/particles/
+    - assets/animated_backgrounds/3/
+    - assets/animated_backgrounds/3/virus/
+    - assets/animated_backgrounds/3/particles/
+    - assets/animated_backgrounds/4/virus/
+    - assets/animated_backgrounds/4/particles/
+    - assets/animated_backgrounds/4/
+    - assets/animated_backgrounds/5/virus/
+    - assets/animated_backgrounds/5/particles/
+    - assets/animated_backgrounds/5/
+    - assets/animated_backgrounds/6/virus/
+    - assets/animated_backgrounds/6/particles/
+    - assets/animated_backgrounds/6/
+
 
   fonts:
     - family: BebasNeue
