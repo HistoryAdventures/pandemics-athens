@@ -175,8 +175,10 @@ class _BackgroundPhatogenProfileState extends State<BackgroundPhatogenProfile>
 
 class GifBackground extends StatelessWidget {
   final Size size;
+  final String? path;
   const GifBackground({
     required this.size,
+    this.path,
     Key? key,
   }) : super(key: key);
 
@@ -186,7 +188,7 @@ class GifBackground extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: Image.asset(
-        AssetsPath.gifBackground2,
+        path ?? AssetsPath.gifBackground2,
         fit: BoxFit.cover,
       ),
     );
@@ -194,16 +196,16 @@ class GifBackground extends StatelessWidget {
 }
 
 class AnimatedVirusBodies extends StatelessWidget {
-  const AnimatedVirusBodies(
-      {Key? key,
-      required this.targetOffset,
-      required this.size,
-      this.left,
-      this.right,
-      this.bottom,
-      this.top,
-      required this.path})
-      : super(key: key);
+  const AnimatedVirusBodies({
+    Key? key,
+    this.targetOffset,
+    required this.size,
+    this.left,
+    this.right,
+    this.bottom,
+    this.top,
+    required this.path,
+  }) : super(key: key);
 
   final Offset? targetOffset;
   final Size size;

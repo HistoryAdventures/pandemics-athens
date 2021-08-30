@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
+
+double width = window.physicalSize.width / window.devicePixelRatio,
+    height = window.physicalSize.height / window.devicePixelRatio;
 
 class Shadows {
   static List<BoxShadow> get universal => const [

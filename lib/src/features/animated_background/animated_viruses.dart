@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AnimatesViruses extends StatelessWidget {
@@ -27,12 +26,21 @@ class AnimatesViruses extends StatelessWidget {
       left: targetOffset.dx,
       top: targetOffset.dy,
       duration: Duration(milliseconds: duration),
+      // curve: Curves.easeIn,
+
       child: SizedBox(
         height: size?.height ?? MediaQuery.of(context).size.height,
         width: size?.width ?? MediaQuery.of(context).size.width,
-        child: Image.asset(
-          path,
-          fit: fit ?? BoxFit.fitWidth,
+        child: InteractiveViewer(
+          scaleEnabled: false,
+          panEnabled: false,
+          constrained: false,
+          maxScale: 2,
+          minScale: 2,
+          child: Image.asset(
+            path,
+            fit: fit ?? BoxFit.fitWidth,
+          ),
         ),
       ),
     );
