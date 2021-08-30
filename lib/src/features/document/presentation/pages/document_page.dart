@@ -264,27 +264,37 @@ class _DocumentPageState extends State<DocumentPage>
                                 alignment: Alignment.topCenter,
                                 child: Container(
                                   height: constraines.maxHeight,
-                                  padding: const EdgeInsets.all(24),
+                                  padding: EdgeInsets.only(
+                                    left: constraints.maxWidth * 0.064,
+                                    right: constraints.maxWidth * 0.064,
+                                    top: constraines.maxHeight * 0.05,
+                                  ),
                                   child: Column(
                                     children: [
                                       Flexible(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {},
-                                              icon: const Icon(Icons.volume_up),
-                                            ),
-                                            IconButton(
-                                                onPressed: () {
-                                                  scaffoldkey.currentState!
-                                                      .openEndDrawer();
-                                                },
-                                                icon: const Icon(Icons.menu))
-                                          ],
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  constraines.maxHeight * 0.05),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Clickable(
+                                                onPressed: () {},
+                                                child:
+                                                    const Icon(Icons.volume_up),
+                                              ),
+                                              Clickable(
+                                                  onPressed: () {
+                                                    scaffoldkey.currentState!
+                                                        .openEndDrawer();
+                                                  },
+                                                  child: const Icon(Icons.menu))
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Expanded(
@@ -301,7 +311,8 @@ class _DocumentPageState extends State<DocumentPage>
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          bottom: 8.0),
+                                                    bottom: 8.0,
+                                                  ),
                                                   child: AutoSizeText(
                                                     locale
                                                         .chapter1MedicalToolsKnowledge,
@@ -335,22 +346,28 @@ class _DocumentPageState extends State<DocumentPage>
                                                   ),
                                                 ),
                                                 child: SingleChildScrollView(
-                                                  child: RichText(
-                                                      text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text: '$_selectedItem\n'
-                                                          .toUpperCase(),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline3,
-                                                    ),
-                                                    TextSpan(
-                                                      text: _infoText,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1,
-                                                    ),
-                                                  ])),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 16, right: 32),
+                                                    child: RichText(
+                                                        text:
+                                                            TextSpan(children: [
+                                                      TextSpan(
+                                                        text: '$_selectedItem\n'
+                                                            .toUpperCase(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline3,
+                                                      ),
+                                                      TextSpan(
+                                                        text: _infoText,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1,
+                                                      ),
+                                                    ])),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -389,7 +406,8 @@ class _DocumentPageState extends State<DocumentPage>
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10, right: 24),
+                    padding:
+                        const EdgeInsets.only(bottom: 10, right: 16, top: 16),
                     child: ArrowRightTextWidget(
                         textSubTitle: locale.medicalToolsKnowledge,
                         textTitle: locale.chapter1,

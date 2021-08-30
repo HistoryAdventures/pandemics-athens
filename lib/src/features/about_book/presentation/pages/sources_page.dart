@@ -244,19 +244,19 @@ class _SoursePageState extends State<SoursePage> {
                     color: _selectedItem == selected
                         ? AppColors.orange
                         : AppColors.transpatent))),
-        child: AutoSizeText(name!.toUpperCase(),
+        child: AutoSizeText(name!,
             maxLines: 1,
             style: Theme.of(context)
                 .textTheme
                 .bodyText1
-                ?.copyWith(color: AppColors.black54)),
+                ?.copyWith(color: AppColors.black100)),
       ),
     );
   }
 
   Widget authorWidget(String profession, List<String> peoples) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -97,7 +97,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                           child: Scrollbar(
                             child: ListView(shrinkWrap: true, children: [
                               Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding: const EdgeInsets.only(right: 16),
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(

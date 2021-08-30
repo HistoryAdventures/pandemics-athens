@@ -111,11 +111,23 @@ flutter:
     - assets/map/
     - assets/paralax_new/
     - assets/animated_backgrounds/
-    - assets/animated_backgrounds/1/
     - assets/animated_backgrounds/2/
+    - assets/animated_backgrounds/2/particles/
+    - assets/animated_backgrounds/2/virus/
+    - assets/animated_backgrounds/1/
+    - assets/animated_backgrounds/1/virus/
+    - assets/animated_backgrounds/1/particles/
     - assets/animated_backgrounds/3/
+    - assets/animated_backgrounds/3/virus/
+    - assets/animated_backgrounds/3/particles/
+    - assets/animated_backgrounds/4/virus/
+    - assets/animated_backgrounds/4/particles/
     - assets/animated_backgrounds/4/
+    - assets/animated_backgrounds/5/virus/
+    - assets/animated_backgrounds/5/particles/
     - assets/animated_backgrounds/5/
+    - assets/animated_backgrounds/6/virus/
+    - assets/animated_backgrounds/6/particles/
     - assets/animated_backgrounds/6/
 
 

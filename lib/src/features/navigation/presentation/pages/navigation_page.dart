@@ -270,7 +270,7 @@ class _NavigationPageState extends State<NavigationPage> {
         lineStartOffset: const Offset(2, 5),
         lineEndOffset: const Offset(-27, -20),
         alignment: Alignment.bottomCenter,
-        title: 'medical tools and knowladge',
+        title: 'medical tools and knowledge',
       ),
 
       LeafDetails(
@@ -617,13 +617,11 @@ class _NavigationPageState extends State<NavigationPage> {
                     maxLines: 1,
                     style: Theme.of(context).textTheme.headline2,
                   )),
-              const SizedBox(height: 50),
+              const SizedBox(height: 76),
               Align(
                 alignment: Alignment.centerLeft,
                 child: SingleChildScrollView(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1),
+                  child: SizedBox(
                     height: 600,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

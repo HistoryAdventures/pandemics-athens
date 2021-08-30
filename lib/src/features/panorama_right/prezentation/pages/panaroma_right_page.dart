@@ -180,6 +180,10 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                             Widget child) {
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
+                                    titleText: locals
+                                        .chapter1plaguePoliticalInstability,
+                                    subTitleText:
+                                        locals.plaguePoliticalInstability,
                                     animation: animation,
                                     slectedInfoDialog: info,
                                     constraints: constraints,
