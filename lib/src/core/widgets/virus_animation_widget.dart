@@ -31,9 +31,8 @@ class VirusModel extends StatelessWidget {
                     child: SizedBox(
                       height: constraints!.height * 0.35,
                       width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[0]),
+                      child: Image.asset(
+                        widgets[0],
                       ),
                     ),
                   ),
@@ -42,32 +41,22 @@ class VirusModel extends StatelessWidget {
                     child: SizedBox(
                       height: constraints!.height * 0.35,
                       width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[1]),
-                      ),
+                      child: Image.asset(widgets[1]),
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[2]),
-                      ),
-                    ),
+                        height: constraints!.height * 0.35,
+                        width: constraints!.width * 0.35,
+                        child: Image.asset(widgets[2])),
                   ),
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: SizedBox(
                       height: constraints!.height * 0.35,
                       width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[3]),
-                      ),
+                      child: Image.asset(widgets[3]),
                     ),
                   ),
                   Align(
@@ -75,10 +64,7 @@ class VirusModel extends StatelessWidget {
                     child: SizedBox(
                       height: constraints!.height * 0.35,
                       width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[4]),
-                      ),
+                      child: Image.asset(widgets[4]),
                     ),
                   ),
                 ])),

@@ -63,7 +63,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i3.LeandingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideTop,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     CharacrterPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -72,7 +72,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i4.CharacrterPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     CharacterInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -83,7 +83,7 @@ class FlutterRouter extends _i1.RootStackRouter {
               photoHero: args.photoHero, listCharacters: args.listCharacters);
         },
         transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     VirusesInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -92,7 +92,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i6.VirusesInfoPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     MapPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -101,7 +101,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i7.MapPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     QuizPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -110,7 +110,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i8.QuizPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     ParalaxHistoryPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -119,7 +119,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i9.ParalaxHistoryPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     GlossaryPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -128,7 +128,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i10.GlossaryPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     PanaromaLeftPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -137,7 +137,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i11.PanaromaLeftPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     PanaromaRightPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -146,7 +146,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i12.PanaromaRightPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     PathogenProfilePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -155,7 +155,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i13.PathogenProfilePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     KeepGoingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -164,7 +164,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i14.KeepGoingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     QuitMedicinePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -173,7 +173,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i15.QuitMedicinePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     PracticeMedicineRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -182,7 +182,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i16.PracticeMedicine();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     BodyInfoPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -191,7 +191,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i17.BodyInfoPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     VirusLocationPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -200,7 +200,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i18.VirusLocationPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     DocumentPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -209,7 +209,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i19.DocumentPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     DeadOfSocratesPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -218,7 +218,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i20.DeadOfSocratesPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     EndOfWarPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -227,7 +227,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i21.EndOfWarPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     IrlNikosPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -236,7 +236,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i22.IrlNikosPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     AboutBookPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -245,7 +245,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i23.AboutBookPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     CreditsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -254,7 +254,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i24.CreditsPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     FurtherReadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -263,7 +263,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i25.FurtherReadingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     CopyrightPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -272,7 +272,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i26.CopyrightPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     SoursePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -281,7 +281,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i27.SoursePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     NavigationPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -290,7 +290,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i28.NavigationPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     VirusLocationSecondPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -299,7 +299,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i29.VirusLocationSecondPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false)
   };

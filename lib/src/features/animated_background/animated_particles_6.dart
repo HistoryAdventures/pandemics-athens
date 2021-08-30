@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 import '../../core/utils/styles.dart';
 import 'animated_viruses.dart';

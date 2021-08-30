@@ -4,8 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/backgrounds_dead_of_socrates_page.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
 import 'package:history_of_adventures/src/features/animated_background/animated_viruses.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 import '../../core/utils/styles.dart';
 import 'app_assets.dart';

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_2.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_5.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/widgets/gif_contrrol.dart';
 
 import '../../../utils/assets_path.dart';
 import '../../../utils/styles.dart';
+import '../gif_contrrol.dart';
 
 class BackgroundDeadOfSocratesPage extends StatefulWidget {
   const BackgroundDeadOfSocratesPage();
