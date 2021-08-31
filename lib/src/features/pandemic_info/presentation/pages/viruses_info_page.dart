@@ -168,9 +168,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                               widgets: _selectedImg,
                               onTapBubonik: () {
                                 changeState(
-                                    locals.bodyStomach,
-                                    [AssetsPath.manstomachImage],
-                                    locals.stomachText);
+                                  locals.bubonicPlague,
+                                  [gifBubonic],
+                                  locals.bubonicPlagueText,
+                                );
                               },
                               onTapEbola: () {
                                 changeState(
