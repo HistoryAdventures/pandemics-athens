@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../features/animated_background/animated_particles_1.dart';
 import '../../../utils/assets_path.dart';
-import '../../../utils/styles.dart';
 import '../gif_animation.dart';
 
 class BackgroundLeandingPage extends StatefulWidget {

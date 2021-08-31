@@ -107,7 +107,7 @@ class GifBackground extends StatelessWidget {
 }
 
 class AnimatedVirusBodies extends StatelessWidget {
-  AnimatedVirusBodies(
+  const AnimatedVirusBodies(
       {Key? key,
       required this.targetOffset,
       required this.size,

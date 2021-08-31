@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/about_book/presentation/widgets/author_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -148,9 +149,15 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget(
-                                          'books', ['Darrell Steward']),
+                                    children: const [
+                                      AuthorWidget(
+                                          border: Border(
+                                            bottom: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1),
+                                          ),
+                                          peoples: ['Darrell Steward'],
+                                          profession: 'books')
                                     ],
                                   ),
                                 ),
@@ -159,16 +166,23 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('movie & TV', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander'
-                                      ]),
+                                    children: const [
+                                      AuthorWidget(
+                                          border: Border(
+                                            bottom: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1),
+                                          ),
+                                          peoples: [
+                                            'Darrell Steward',
+                                            'Jerome Bell',
+                                            'Kristin Watson',
+                                            'Kathryn Murphy',
+                                            'Robert Fox',
+                                            'Marvin McKinney',
+                                            'Leslie Alexander'
+                                          ],
+                                          profession: 'movie & TV')
                                     ],
                                   ),
                                 ),
@@ -177,16 +191,23 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('video games', [
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Esther Howard',
-                                        'Bessie Cooper',
-                                        'Wade Warren'
-                                      ]),
+                                    children: const [
+                                      AuthorWidget(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey, width: 1),
+                                        ),
+                                        peoples: [
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                          'Esther Howard',
+                                          'Bessie Cooper',
+                                          'Wade Warren'
+                                        ],
+                                        profession: 'video games',
+                                      )
                                     ],
                                   ),
                                 ),
@@ -200,54 +221,6 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget authorWidget(String profession, List<String> peoples) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                    bottom: BorderSide(color: AppColors.grey, width: 1),
-                  )),
-                  child: AutoSizeText(
-                    profession.toUpperCase(),
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: peoples.map((people) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                child: AutoSizeText(
-                  people,
-                  maxLines: 2,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      ?.copyWith(fontSize: 16),
-                ),
-              );
-            }).toList(),
-          )
-        ],
       ),
     );
   }

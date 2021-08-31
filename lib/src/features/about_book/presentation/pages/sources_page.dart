@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/about_book/presentation/widgets/author_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -175,15 +176,37 @@ class _SoursePageState extends State<SoursePage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('bridge',
-                                          ['Analysing Potential Problems']),
-                                      authorWidget('bridge',
-                                          ['Analysing Potential Problems']),
-                                      authorWidget('bridge',
-                                          ['Analysing Potential Problems']),
-                                      authorWidget('bridge',
-                                          ['Analysing Potential Problems']),
+                                    children: const [
+                                      AuthorWidget(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey, width: 1),
+                                        ),
+                                        peoples: [
+                                          'Analysing Potential Problems'
+                                        ],
+                                        profession: 'bridge',
+                                      ),
+                                      AuthorWidget(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey, width: 1),
+                                        ),
+                                        peoples: [
+                                          'Analysing Potential Problems'
+                                        ],
+                                        profession: 'bridge',
+                                      ),
+                                      AuthorWidget(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey, width: 1),
+                                        ),
+                                        peoples: [
+                                          'Analysing Potential Problems'
+                                        ],
+                                        profession: 'bridge',
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -192,18 +215,26 @@ class _SoursePageState extends State<SoursePage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('wikimedia', [
-                                        'Are you ready for your big date?',
-                                        'I do not know how to spell a lot of thin...',
-                                        'Does he write an email?',
-                                        "Don't go there!",
-                                        'Is this big enough for you?',
-                                        'Guess what, I am broke.',
-                                        'That class was so hard!',
-                                        'How big was your contribution?',
-                                        "I'm hoping for a really big discount."
-                                      ]),
+                                    children: const [
+                                      AuthorWidget(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.black100,
+                                              width: 1),
+                                        ),
+                                        peoples: [
+                                          'Are you ready for your big date?',
+                                          'I do not know how to spell a lot of thin...',
+                                          'Does he write an email?',
+                                          "Don't go there!",
+                                          'Is this big enough for you?',
+                                          'Guess what, I am broke.',
+                                          'That class was so hard!',
+                                          'How big was your contribution?',
+                                          "I'm hoping for a really big discount."
+                                        ],
+                                        profession: 'wikimedia',
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -250,58 +281,6 @@ class _SoursePageState extends State<SoursePage> {
                 .textTheme
                 .bodyText1
                 ?.copyWith(color: AppColors.black100)),
-      ),
-    );
-  }
-
-  Widget authorWidget(String profession, List<String> peoples) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                    bottom: BorderSide(color: AppColors.grey, width: 1),
-                  )),
-                  child: AutoSizeText(
-                    profession.toUpperCase(),
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: peoples.map((people) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                decoration: const BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(color: AppColors.black100, width: 0.5))),
-                child: AutoSizeText(
-                  people,
-                  maxLines: 2,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      ?.copyWith(fontSize: 16),
-                ),
-              );
-            }).toList(),
-          )
-        ],
       ),
     );
   }

@@ -10,7 +10,7 @@ class AnimatesViruses extends StatelessWidget {
   final BoxFit? fit;
   final Color? color;
 
-  AnimatesViruses({
+  const AnimatesViruses({
     Key? key,
     required this.targetOffset,
     required this.path,

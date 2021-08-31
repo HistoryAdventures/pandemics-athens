@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/about_book/presentation/widgets/author_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -148,18 +149,29 @@ class _CreditsPageState extends State<CreditsPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget(
-                                          'creator', ['Darrell Steward']),
-                                      authorWidget('producers', [
-                                        'Bessie Cooper',
-                                        'Wade Warren',
-                                        'Ralph Edwards'
-                                      ]),
-                                      authorWidget(
-                                          'art director', ['Darrell Steward']),
-                                      authorWidget('narrators',
-                                          ['Jerome Bell', 'Kristin Watson']),
+                                    children: const [
+                                      AuthorWidget(
+                                          peoples: ['Darrell Steward'],
+                                          profession: 'creator'),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Bessie Cooper',
+                                          'Wade Warren',
+                                          'Ralph Edwards'
+                                        ],
+                                        profession: 'producers',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: ['Darrell Steward'],
+                                        profession: 'art director',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Jerome Bell',
+                                          'Kristin Watson'
+                                        ],
+                                        profession: 'narrators',
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -168,8 +180,86 @@ class _CreditsPageState extends State<CreditsPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('illustrators', [
+                                    children: const [
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Darrell Steward',
+                                          'Jerome Bell',
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                          'Leslie Alexander',
+                                          'Esther Howard',
+                                          'Bessie Cooper'
+                                        ],
+                                        profession: 'illustrators',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Darrell Steward',
+                                          'Jerome Bell',
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                          'Leslie Alexander'
+                                        ],
+                                        profession: 'writers',
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Darrell Steward',
+                                          'Jerome Bell',
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                        ],
+                                        profession: 'animators',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Darrell Steward',
+                                          'Jerome Bell',
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                        ],
+                                        profession: 'developers',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                          'Esther Howard',
+                                          'Bessie Cooper',
+                                          'Wade Warren'
+                                        ],
+                                        profession: 'marketing & PR',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      AuthorWidget(peoples: [
                                         'Darrell Steward',
                                         'Jerome Bell',
                                         'Kristin Watson',
@@ -179,83 +269,23 @@ class _CreditsPageState extends State<CreditsPage> {
                                         'Leslie Alexander',
                                         'Esther Howard',
                                         'Bessie Cooper'
-                                      ]),
-                                      authorWidget('writers', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander'
-                                      ]),
-                                    ],
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('animators', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                      ]),
-                                      authorWidget('developers', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                      ]),
-                                      authorWidget('marketing & PR', [
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Esther Howard',
-                                        'Bessie Cooper',
-                                        'Wade Warren'
-                                      ]),
-                                    ],
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('supported by', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander',
-                                        'Esther Howard',
-                                        'Bessie Cooper'
-                                      ]),
-                                      authorWidget('special thanks', [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander',
-                                        'Esther Howard',
-                                        'Bessie Cooper',
-                                        'Esther Howard',
-                                        'Bessie Cooper'
-                                      ]),
+                                      ], profession: 'supported by'),
+                                      AuthorWidget(
+                                        peoples: [
+                                          'Darrell Steward',
+                                          'Jerome Bell',
+                                          'Kristin Watson',
+                                          'Kathryn Murphy',
+                                          'Robert Fox',
+                                          'Marvin McKinney',
+                                          'Leslie Alexander',
+                                          'Esther Howard',
+                                          'Bessie Cooper',
+                                          'Esther Howard',
+                                          'Bessie Cooper'
+                                        ],
+                                        profession: 'special thanks',
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -269,54 +299,6 @@ class _CreditsPageState extends State<CreditsPage> {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget authorWidget(String profession, List<String> peoples) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                    bottom: BorderSide(color: AppColors.grey, width: 1),
-                  )),
-                  child: AutoSizeText(
-                    profession.toUpperCase(),
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1
-                        ?.copyWith(color: AppColors.grey, fontSize: 12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: peoples.map((people) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                child: AutoSizeText(
-                  people,
-                  maxLines: 2,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      ?.copyWith(fontSize: 16),
-                ),
-              );
-            }).toList(),
-          )
-        ],
       ),
     );
   }

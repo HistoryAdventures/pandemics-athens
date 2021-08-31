@@ -70,7 +70,6 @@ class _MapPageState extends State<MapPage> {
     AssetsPath.socratesImage,
     AssetsPath.aristophanesImage,
     AssetsPath.charactersBackgroundImage,
-    AssetsPath.mapImage
   ];
 
   @override
@@ -691,7 +690,7 @@ class _MapPageState extends State<MapPage> {
                               child: Scrollbar(
                                 isAlwaysShown: true,
                                 child: ListView.builder(
-                                    padding: EdgeInsets.only(bottom: 10),
+                                    padding: const EdgeInsets.only(bottom: 10),
                                     controller: _scrollController,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,

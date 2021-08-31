@@ -1,5 +1,6 @@
 import 'dart:ui';
-
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -131,9 +132,14 @@ class _NavigationPageState extends State<NavigationPage> {
             path: GlossaryPageRoute.name,
             currentVertex: LeafDetails.currentVertex,
             adjacentEdges: [2]),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 1;
           LeafDetails.visitedVertexes.add(1);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
 
           context.router.replace(const GlossaryPageRoute());
         },
@@ -152,9 +158,14 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         pointOffset: const Offset(130, 100),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(9, 12),
@@ -171,9 +182,14 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [],
         ),
         pointOffset: const Offset(40, 190),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 3;
           LeafDetails.visitedVertexes.add(3);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const DocumentPageRoute());
         },
         lineStartOffset: const Offset(0, 0),
@@ -189,9 +205,14 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [5],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(220, 135),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const MapPageRoute());
         },
         lineStartOffset: const Offset(0, 10),
@@ -208,9 +229,14 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         alignment: Alignment.bottomCenter,
         pointOffset: const Offset(278, 155),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 5;
           LeafDetails.visitedVertexes.add(5);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const CharacrterPageRoute());
         },
         lineStartOffset: const Offset(0, 5),
@@ -226,10 +252,14 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         pointOffset: const Offset(150, 155),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
 
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(5, 12),
@@ -245,9 +275,14 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [9, 8],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(130, 200),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -262,9 +297,14 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [3],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(77, 222),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 8;
           LeafDetails.visitedVertexes.add(8);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const PanaromaLeftPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -281,9 +321,14 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [10],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(175, 220),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 9;
           LeafDetails.visitedVertexes.add(9);
+
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const PanaromaRightPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -299,9 +344,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [11, 14],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(150, 285),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const PathogenProfilePageRoute());
         },
         lineStartOffset: const Offset(8, 1),
@@ -317,9 +366,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [12],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(230, 275),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 11;
           LeafDetails.visitedVertexes.add(11);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const VirusLocationPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -335,9 +388,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [13],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(305, 285),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 12;
           LeafDetails.visitedVertexes.add(12);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const BodyInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -352,9 +409,13 @@ class _NavigationPageState extends State<NavigationPage> {
             path: VirusesInfoPageRoute.name,
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(355, 265),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 13;
           LeafDetails.visitedVertexes.add(13);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const VirusesInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -371,9 +432,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [15],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(175, 325),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 14;
           LeafDetails.visitedVertexes.add(14);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const PracticeMedicineRoute());
         },
         lineStartOffset: const Offset(5, 3),
@@ -389,9 +454,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [16, 17],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(145, 375),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 15;
           LeafDetails.visitedVertexes.add(15);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const DeadOfSocratesPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -406,9 +475,13 @@ class _NavigationPageState extends State<NavigationPage> {
             path: EndOfWarPageRoute.name,
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(200, 385),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 16;
           LeafDetails.visitedVertexes.add(16);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const EndOfWarPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -424,9 +497,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [18],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(170, 435),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 17;
           LeafDetails.visitedVertexes.add(17);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const QuizPageRoute());
         },
         lineStartOffset: const Offset(5, 3),
@@ -442,9 +519,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [19],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(145, 485),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 18;
           LeafDetails.visitedVertexes.add(18);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const IrlNikosPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -460,9 +541,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [20],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(200, 535),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 19;
           LeafDetails.visitedVertexes.add(19);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const AboutBookPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -478,9 +563,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [21],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(260, 505),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 20;
           LeafDetails.visitedVertexes.add(20);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const CreditsPageRoute());
         },
         lineStartOffset: const Offset(4, 5),
@@ -497,9 +586,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [22],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(300, 535),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 21;
           LeafDetails.visitedVertexes.add(21);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const SoursePageRoute());
         },
         lineStartOffset: const Offset(3, 5),
@@ -515,9 +608,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [23],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(360, 505),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 22;
           LeafDetails.visitedVertexes.add(22);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const FurtherReadingPageRoute());
         },
         lineStartOffset: const Offset(3, 5),
@@ -533,9 +630,13 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [23],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(420, 535),
-        onTap: () {
+        onTap: () async {
           LeafDetails.currentVertex = 23;
           LeafDetails.visitedVertexes.add(23);
+          final List<String> navigationList =
+              LeafDetails.visitedVertexes.map((e) => e.toString()).toList();
+
+          await NavigationSharedPreferences.addListToSF(navigationList);
           context.router.replace(const CopyrightPageRoute());
         },
         lineStartOffset: const Offset(3, 5),

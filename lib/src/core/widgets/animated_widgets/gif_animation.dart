@@ -1,11 +1,8 @@
 library gif_ani;
 
-import 'dart:async';
-
 import 'package:flutter/animation.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 class GifAnimationController extends AnimationController {
   final int frameCount;

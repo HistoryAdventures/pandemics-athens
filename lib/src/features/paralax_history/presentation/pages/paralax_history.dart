@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';

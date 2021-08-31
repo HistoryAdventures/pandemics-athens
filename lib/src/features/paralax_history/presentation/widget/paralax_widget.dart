@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../core/colors.dart';

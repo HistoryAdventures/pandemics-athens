@@ -1,17 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class UserSecureStorage {
-  static const keyEmail = "userEmail";
-  static const keyPassword = "userPassword";
+class NavigationSharedPreferences {
+  static const keyNavigationList = "userEmail";
 
-  static Future<void> addStringToSF() async {
+  static Future<void> addListToSF(List<String> navigationList) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('stringValue', "abc");
+    prefs.setStringList(keyNavigationList, navigationList);
   }
 
-  static Future<String?> getStringValuesSF() async {
+  static Future<List<String>?> getListSF() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? stringValue = prefs.getString('stringValue');
+    final List<String>? stringValue = prefs.getStringList(keyNavigationList);
     return stringValue;
   }
 }

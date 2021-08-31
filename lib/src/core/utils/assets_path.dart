@@ -199,7 +199,6 @@ class AssetsPath {
   static const String socratesImage = "assets/characters/character_3.png";
 
   static const String aristophanesImage = "assets/characters/character_4.png";
-  static const String mapImage = 'assets/image_back/map.png';
 
   static const String spheresBackImage = 'assets/image_back/spheres.png';
   static const String scrollIcon = 'assets/icons/scroll.png';
@@ -397,7 +396,6 @@ Future<List<ImageInfo>> preloadImage({
       ImageStreamListener((ImageInfo image, bool sync) {
     ret.add(image);
     if (ret.length == frameCount) {
-      print("object");
       completer.complete(ret);
     }
   });
