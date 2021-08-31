@@ -7,7 +7,6 @@ import 'package:history_of_adventures/src/features/about_book/presentation/widge
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
-import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/widgets/widgets.dart';
