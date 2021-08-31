@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -437,47 +438,41 @@ class _MapPageState extends State<MapPage> {
                                     child: Align(
                                       alignment: Alignment.bottomLeft,
                                       child: Clickable(
-                                        onPressed: () {
-                                          showGeneralDialog(
-                                              context: context,
-                                              barrierColor:
-                                                  Colors.black.withOpacity(0.5),
-                                              transitionBuilder:
-                                                  (BuildContext context,
-                                                      Animation<double>
-                                                          animation,
-                                                      Animation<double>
-                                                          secondaryAnimation,
-                                                      Widget child) {
-                                                return LayoutBuilder(
-                                                    builder: (context,
-                                                            constraints) =>
-                                                        DialogImageWidget(
-                                                          animation: animation,
-                                                          selectedImage:
-                                                              _selectedImage,
-                                                          selectedImageText:
-                                                              _selectedImageText,
-                                                          constraints:
-                                                              constraints,
-                                                        ));
-                                              },
-                                              transitionDuration: Times.fast,
-                                              barrierDismissible: true,
-                                              barrierLabel: '',
-                                              pageBuilder: (context, animation1,
-                                                  animation2) {
-                                                return Container();
-                                              });
-                                        },
-                                        child: Container(
-                                          color: Colors.black,
-                                          child: const Icon(
-                                            Icons.add,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
+                                          onPressed: () {
+                                            showGeneralDialog(
+                                                context: context,
+                                                barrierColor: Colors.black
+                                                    .withOpacity(0.5),
+                                                transitionBuilder:
+                                                    (BuildContext context,
+                                                        Animation<double>
+                                                            animation,
+                                                        Animation<double>
+                                                            secondaryAnimation,
+                                                        Widget child) {
+                                                  return LayoutBuilder(
+                                                      builder: (context,
+                                                              constraints) =>
+                                                          DialogImageWidget(
+                                                            animation:
+                                                                animation,
+                                                            selectedImage:
+                                                                _selectedImage,
+                                                            selectedImageText:
+                                                                _selectedImageText,
+                                                            constraints:
+                                                                constraints,
+                                                          ));
+                                                },
+                                                transitionDuration: Times.fast,
+                                                barrierDismissible: true,
+                                                barrierLabel: '',
+                                                pageBuilder: (context,
+                                                    animation1, animation2) {
+                                                  return Container();
+                                                });
+                                          },
+                                          child: const ZoomInNotesWidget()),
                                     ),
                                   ),
                                 ),
@@ -668,27 +663,66 @@ class _MapPageState extends State<MapPage> {
                           }),
                     ),
                     Expanded(
-                      flex: 4,
-                      child: Container(
-                        alignment: Alignment.topCenter,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        height: 50,
-                        child: ListView.builder(
-                            controller: _scrollController,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: mapInfoList.length,
-                            itemBuilder: (context, index) {
-                              return yearsWidget(
-                                  year: mapInfoList[index].year,
-                                  image: mapInfoList[index].image,
-                                  text: mapInfoList[index].text,
-                                  map: mapInfoList[index].mapImage,
-                                  selected: mapInfoList[index].year,
-                                  title: mapInfoList[index].title,
-                                  imageText:
-                                      mapInfoList[index].imageDescription);
-                            }),
+                      flex: 6,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: IconButton(
+                              onPressed: () {
+                                _scrollController.animateTo(
+                                  0.0,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 300),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.navigate_before,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 6,
+                            child: Container(
+                              alignment: Alignment.topCenter,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              height: 50,
+                              child: Scrollbar(
+                                isAlwaysShown: true,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    controller: _scrollController,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: mapInfoList.length,
+                                    itemBuilder: (context, index) {
+                                      return yearsWidget(
+                                          year: mapInfoList[index].year,
+                                          image: mapInfoList[index].image,
+                                          text: mapInfoList[index].text,
+                                          map: mapInfoList[index].mapImage,
+                                          selected: mapInfoList[index].year,
+                                          title: mapInfoList[index].title,
+                                          imageText: mapInfoList[index]
+                                              .imageDescription);
+                                    }),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: IconButton(
+                              onPressed: () {
+                                _scrollController.animateTo(
+                                  _scrollController.position.maxScrollExtent,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 300),
+                                );
+                              },
+                              icon: const Icon(Icons.navigate_next),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Expanded(

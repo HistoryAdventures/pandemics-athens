@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -167,6 +166,40 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                               description: _selectedText,
                               name: _selectedItem,
                               widgets: _selectedImg,
+                              onTapBubonik: () {
+                                changeState(
+                                    locals.bodyStomach,
+                                    [AssetsPath.manstomachImage],
+                                    locals.stomachText);
+                              },
+                              onTapEbola: () {
+                                changeState(
+                                  locals.ebola,
+                                  [gifEbola],
+                                  locals.ebolaText,
+                                );
+                              },
+                              onTapSmall: () {
+                                changeState(
+                                  locals.smallpox,
+                                  [gifSmallpox],
+                                  locals.smallpoxText,
+                                );
+                              },
+                              onTapTiphid: () {
+                                changeState(
+                                  locals.typhiod,
+                                  [gifTyphoid],
+                                  locals.typhiodText,
+                                );
+                              },
+                              onTapTiphius: () {
+                                changeState(
+                                  locals.typhus,
+                                  [gifTyphus],
+                                  locals.typhusText,
+                                );
+                              },
                             ),
                           ),
                         ),

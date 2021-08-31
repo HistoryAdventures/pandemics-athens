@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 
 import '../../features/panarama_left/presentation/models/dialog_model.dart';
 import '../colors.dart';
@@ -133,41 +134,36 @@ class _DialogWidgetState extends State<DialogWidget> {
                             child: Align(
                               alignment: Alignment.bottomLeft,
                               child: Clickable(
-                                onPressed: () {
-                                  showGeneralDialog(
-                                      context: context,
-                                      barrierColor:
-                                          Colors.black.withOpacity(0.5),
-                                      transitionBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return LayoutBuilder(
-                                            builder: (context, constraints) =>
-                                                DialogImageWidget(
-                                                  animation: animation,
-                                                  selectedImage: _selectedImg,
-                                                  selectedImageText:
-                                                      _selectedImageText,
-                                                  constraints: constraints,
-                                                ));
-                                      },
-                                      transitionDuration: Times.fast,
-                                      barrierDismissible: true,
-                                      barrierLabel: '',
-                                      pageBuilder:
-                                          (context, animation1, animation2) {
-                                        return Container();
-                                      });
-                                },
-                                child: Container(
-                                  color: Colors.black,
-                                  child: const Icon(
-                                    Icons.zoom_in,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
+                                  onPressed: () {
+                                    showGeneralDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        transitionBuilder:
+                                            (BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double>
+                                                    secondaryAnimation,
+                                                Widget child) {
+                                          return LayoutBuilder(
+                                              builder: (context, constraints) =>
+                                                  DialogImageWidget(
+                                                    animation: animation,
+                                                    selectedImage: _selectedImg,
+                                                    selectedImageText:
+                                                        _selectedImageText,
+                                                    constraints: constraints,
+                                                  ));
+                                        },
+                                        transitionDuration: Times.fast,
+                                        barrierDismissible: true,
+                                        barrierLabel: '',
+                                        pageBuilder:
+                                            (context, animation1, animation2) {
+                                          return Container();
+                                        });
+                                  },
+                                  child: const ZoomInNotesWidget()),
                             )),
                       ),
                     )),
