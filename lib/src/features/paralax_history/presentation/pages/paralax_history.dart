@@ -268,11 +268,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-    //   setState(() {
-    //     init();
-    //   });
-    // });
     if (isImageloaded == false) {
       return const LoadingWidget();
     }
@@ -337,9 +332,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             asset: AssetsPath.paralaxBuilding,
                           ),
                           ParallaxWidget(
-                            isImage: true,
+                            isImage: false,
                             paralaxText: locals.paralaxText1,
-                            width: MediaQuery.of(context).size.width / 2.2,
+                            width: MediaQuery.of(context).size.width / 3,
                             boxFit: BoxFit.contain,
                             top: rateThree,
                             left: _progressCaracterNikos,

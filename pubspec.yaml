@@ -110,6 +110,7 @@ flutter:
     - assets/imgs/
     - assets/map/
     - assets/paralax_new/
+    - assets/paralax_new/images/
     - assets/animated_backgrounds/
     - assets/animated_backgrounds/2/
     - assets/animated_backgrounds/2/particles/

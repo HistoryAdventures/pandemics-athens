@@ -189,18 +189,6 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                                             ),
                                             Flexible(
                                               child: AutoSizeText(
-                                                locale.deathOfSocrates,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1
-                                                    ?.copyWith(
-                                                        color:
-                                                            AppColors.black25),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: AutoSizeText(
                                                   locale.deathOfSocrates,
                                                   maxLines: 1,
                                                   style: Theme.of(context)

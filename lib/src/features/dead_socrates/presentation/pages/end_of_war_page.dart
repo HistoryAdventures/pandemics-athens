@@ -180,17 +180,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                                             ),
                                             Flexible(
                                               child: AutoSizeText(
-                                                locale.endOfThePeloponneseanWar,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1
-                                                    ?.copyWith(
-                                                        color:
-                                                            AppColors.black25),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: AutoSizeText(
                                                   locale
                                                       .endOfThePeloponneseanWar,
                                                   style: Theme.of(context)
