@@ -3,12 +3,11 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/backgrounds_dead_of_socrates_page.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_viruses.dart';
 
-import '../../core/utils/styles.dart';
 import 'app_assets.dart';
+import 'gif_background_widget.dart';
 
 class AnimatedParticlesFive extends StatefulWidget {
   final BoxConstraints constraints;
@@ -67,8 +66,12 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
     return Stack(
       children: [
         GifBackground(
-            size: Size(
-                widget.constraints.maxWidth, widget.constraints.maxHeight)),
+          size: Size(
+            widget.constraints.maxWidth,
+            widget.constraints.maxHeight,
+          ),
+          asset: AssetsPath.gifBackground5,
+        ),
         AnimatedVirusBodies(
           top: widget.constraints.maxHeight * 0.1,
           left: widget.constraints.maxWidth * 0.33,

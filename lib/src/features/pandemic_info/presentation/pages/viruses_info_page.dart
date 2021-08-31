@@ -4,7 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_4.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_4.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/gif_background_widget.dart';
+
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -136,7 +138,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             children: [
               GifBackground(
                 size: Size(constraints.maxWidth, constraints.maxHeight),
-                path: AssetsPath.gifBackground4,
+                asset: AssetsPath.gifBackground4,
               ),
               AnimatedParticlesForth(
                 constraints: constraints,
