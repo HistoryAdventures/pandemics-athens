@@ -1,18 +1,14 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_5.dart';
 import 'package:history_of_adventures/src/core/widgets/card_image_and_text_widget.dart';
-import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
-import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -27,9 +23,7 @@ class DeadOfSocratesPage extends StatefulWidget {
 
 class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   late AppLocalizations locale;
-  late String _selectedItem;
-  late String _selectedImg;
-  late String _selectedText;
+
   Offset offset = const Offset(0, 0);
   late List<SocratesInfoModel> socratesList;
 
@@ -38,9 +32,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
-    _selectedItem = locale.athenianDefeat;
-    _selectedText = locale.athenianDefeatText;
-    _selectedImg = AssetsPath.deadOfSocrates1;
+
     socratesList = [
       SocratesInfoModel(
           description: locale.athenianDefeatText,
@@ -80,14 +72,13 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 constraints: constraints,
                 offset: offset,
               ),
-              // CardTextAndImageWidget(
-              //   animation: null,
-              //   constraints: null,
-              //   listDialogInfo: [],
-              //   slectedInfoDialog: null,
-              //   subTitleText: '',
-              //   titleText: '',
-              // ),
+              CardTextAndImageWidget(
+                constraints: constraints,
+                listDialogInfo: socratesList,
+                slectedInfoDialog: socratesList[0],
+                subTitleText: locale.deathOfSocrates,
+                titleText: locale.chapter1PlagueAndPersecution,
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -164,35 +155,5 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
         }),
       ),
     );
-  }
-
-  void chandeState(String? selctedItem, String? image, String? text) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = image!;
-      _selectedText = text!;
-    });
-  }
-
-  Widget deadofSocratesListWidget(
-      {String? name, String? selected, String? image, String? text}) {
-    return Container(
-        margin: const EdgeInsets.only(right: 30),
-        child: Clickable(
-          onPressed: () {
-            chandeState(selected, image, text);
-          },
-          child: AutoSizeText(name!.toUpperCase(),
-              maxLines: 1,
-              style: _selectedItem == selected
-                  ? Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.black54)),
-        ));
   }
 }
