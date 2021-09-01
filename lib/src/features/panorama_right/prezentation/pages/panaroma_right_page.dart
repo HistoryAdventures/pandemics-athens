@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 // import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
@@ -137,6 +138,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
@@ -259,6 +261,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                 textTitle: locals.chapter1,
                 onTap: () {
                   LeafDetails.currentVertex = 2;
+                  NavigationSharedPreferences.upDateShatedPreferences();
+
                   if (kIsWeb) {
                     html.window.history.back();
                     context.router.pop();
@@ -276,6 +280,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
               onPressed: () {
                 LeafDetails.currentVertex = 10;
                 LeafDetails.visitedVertexes.add(10);
+                NavigationSharedPreferences.upDateShatedPreferences();
                 context.router.push(const PathogenProfilePageRoute());
               },
               child: SizedBox(

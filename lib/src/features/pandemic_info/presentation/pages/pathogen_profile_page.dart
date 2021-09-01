@@ -3,7 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_2.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -50,6 +52,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
         reverse: true,
       );
     });
+    NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
@@ -68,7 +71,10 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
           onHover: (e) => setState(() => offset = e.position),
           child: Stack(
             children: [
-              const BackgroundPhatogenProfile(),
+              AnimatedParticlesSecond(
+                constraints: constraints,
+                offset: offset,
+              ),
               Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
@@ -158,6 +164,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                       onTap: () {
                         LeafDetails.currentVertex = 11;
                         LeafDetails.visitedVertexes.add(11);
+                        NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.push(const VirusLocationPageRoute());
                       }),
                 ),
@@ -168,6 +175,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                   onPressed: () {
                     LeafDetails.currentVertex = 14;
                     LeafDetails.visitedVertexes.add(14);
+                    NavigationSharedPreferences.upDateShatedPreferences();
                     context.router.push(const PracticeMedicineRoute());
                   },
                   child: Container(
@@ -181,6 +189,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                 widget: Clickable(
                   onPressed: () {
                     LeafDetails.currentVertex = 9;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+
                     if (kIsWeb) {
                       html.window.history.back();
                       context.router.pop();

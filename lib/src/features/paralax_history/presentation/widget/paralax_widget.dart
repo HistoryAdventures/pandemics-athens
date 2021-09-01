@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_contrrol.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/styles.dart';
@@ -41,17 +41,17 @@ class ParallaxWidget extends StatelessWidget {
         duration: Times.medium,
         opacity: opacity ?? 1,
         child: Container(
-            width: width,
-            color: AppColors.transpatent,
-            child: isImage
-                ? Image.asset(
-                    asset,
-                    fit: boxFit,
-                  )
-                : GifAnimation(
-                    image: AssetImage(asset),
-                    controller: gifController!,
-                    imageInfo: imageInfo!)),
+          width: width,
+          color: AppColors.transpatent,
+          child: isImage
+              ? Image.asset(
+                  asset,
+                  fit: boxFit,
+                )
+              : Lottie.asset(
+                  asset,
+                ),
+        ),
       ),
     );
   }

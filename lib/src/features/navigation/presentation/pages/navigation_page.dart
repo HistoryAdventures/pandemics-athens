@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -134,7 +134,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 1;
           LeafDetails.visitedVertexes.add(1);
-
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const GlossaryPageRoute());
         },
         pointOffset: const Offset(155, 50),
@@ -155,6 +155,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(9, 12),
@@ -174,6 +175,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 3;
           LeafDetails.visitedVertexes.add(3);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const DocumentPageRoute());
         },
         lineStartOffset: const Offset(0, 0),
@@ -192,6 +195,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const MapPageRoute());
         },
         lineStartOffset: const Offset(0, 10),
@@ -211,6 +216,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 5;
           LeafDetails.visitedVertexes.add(5);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CharacrterPageRoute());
         },
         lineStartOffset: const Offset(0, 5),
@@ -230,6 +237,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
 
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(5, 12),
@@ -248,6 +256,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -265,6 +275,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 8;
           LeafDetails.visitedVertexes.add(8);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PanaromaLeftPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -284,6 +296,8 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 9;
           LeafDetails.visitedVertexes.add(9);
+
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PanaromaRightPageRoute());
         },
         lineStartOffset: const Offset(2, 5),
@@ -302,6 +316,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PathogenProfilePageRoute());
         },
         lineStartOffset: const Offset(8, 1),
@@ -320,6 +335,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 11;
           LeafDetails.visitedVertexes.add(11);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const VirusLocationPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -338,6 +354,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 12;
           LeafDetails.visitedVertexes.add(12);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const BodyInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -355,6 +372,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 13;
           LeafDetails.visitedVertexes.add(13);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const VirusesInfoPageRoute());
         },
         lineStartOffset: const Offset(2, 8),
@@ -374,6 +392,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 14;
           LeafDetails.visitedVertexes.add(14);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PracticeMedicineRoute());
         },
         lineStartOffset: const Offset(5, 3),
@@ -392,6 +411,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 15;
           LeafDetails.visitedVertexes.add(15);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const DeadOfSocratesPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -409,6 +429,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 16;
           LeafDetails.visitedVertexes.add(16);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const EndOfWarPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -427,6 +448,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 17;
           LeafDetails.visitedVertexes.add(17);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const QuizPageRoute());
         },
         lineStartOffset: const Offset(5, 3),
@@ -445,6 +467,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 18;
           LeafDetails.visitedVertexes.add(18);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
         lineStartOffset: const Offset(8, 3),
@@ -463,6 +486,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 19;
           LeafDetails.visitedVertexes.add(19);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const AboutBookPageRoute());
         },
         lineStartOffset: const Offset(4, 6),
@@ -481,6 +505,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 20;
           LeafDetails.visitedVertexes.add(20);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CreditsPageRoute());
         },
         lineStartOffset: const Offset(4, 5),
@@ -500,6 +525,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 21;
           LeafDetails.visitedVertexes.add(21);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const SoursePageRoute());
         },
         lineStartOffset: const Offset(3, 5),
@@ -518,6 +544,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 22;
           LeafDetails.visitedVertexes.add(22);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const FurtherReadingPageRoute());
         },
         lineStartOffset: const Offset(3, 5),
@@ -536,6 +563,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 23;
           LeafDetails.visitedVertexes.add(23);
+          NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CopyrightPageRoute());
         },
         lineStartOffset: const Offset(3, 5),
@@ -581,6 +609,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('navigation build');
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

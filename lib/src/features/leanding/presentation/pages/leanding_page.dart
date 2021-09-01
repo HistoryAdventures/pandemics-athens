@@ -2,8 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/background_leanding_page.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_1.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -44,6 +46,7 @@ class _LeandingPageState extends State<LeandingPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
+
     // imageInfo = await preloadImage(
     //     provider: const AssetImage(AssetsPath.gifVirus),
     //     frameCount: 180,
@@ -57,11 +60,13 @@ class _LeandingPageState extends State<LeandingPage>
         isImageloaded = false;
       });
     }
+    NavigationSharedPreferences.clearSF();
   }
 
   @override
   void initState() {
     init();
+
     super.initState();
   }
 
@@ -80,7 +85,10 @@ class _LeandingPageState extends State<LeandingPage>
               }),
               child: Stack(
                 children: [
-                  BackgroundLeandingPage(),
+                  AnimatedParticlesFirst(
+                    constraints: constraints,
+                    offset: offset,
+                  ),
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
@@ -152,6 +160,7 @@ class _LeandingPageState extends State<LeandingPage>
                         LeafDetails.visitedVertexes.add(1);
                         LeafDetails.currentVertex = 1;
                         // print(LeafDetails.visitedVertexes);
+                        NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.push(const GlossaryPageRoute());
                       },
                     ),

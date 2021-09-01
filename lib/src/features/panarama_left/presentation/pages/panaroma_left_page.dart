@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 // import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
@@ -134,6 +135,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
@@ -245,6 +247,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                 onTap: () {
                   LeafDetails.visitedVertexes.add(3);
                   LeafDetails.currentVertex = 3;
+                  NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.push(const DocumentPageRoute());
                 }),
           ),
@@ -259,6 +262,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                 textTitle: locals.chapter1,
                 onTap: () {
                   LeafDetails.currentVertex = 2;
+                  NavigationSharedPreferences.upDateShatedPreferences();
+
                   if (kIsWeb) {
                     html.window.history.back();
                     context.router.pop();

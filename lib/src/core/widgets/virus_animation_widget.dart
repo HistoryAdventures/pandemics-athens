@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 
 import 'animated_widgets/gif_contrrol.dart';
 
@@ -8,6 +9,11 @@ class VirusModel extends StatelessWidget {
       this.onTap,
       this.constraints,
       this.gifController,
+      this.onTapEbola,
+      this.onTapSmall,
+      this.onTapBubonik,
+      this.onTapTiphid,
+      this.onTapTiphius,
       required this.name,
       required this.description});
   //final String widget;
@@ -18,6 +24,11 @@ class VirusModel extends StatelessWidget {
   final GifController? gifController;
   final String name;
   final Size? constraints;
+  final VoidCallback? onTapBubonik;
+  final VoidCallback? onTapEbola;
+  final VoidCallback? onTapSmall;
+  final VoidCallback? onTapTiphid;
+  final VoidCallback? onTapTiphius;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,58 +37,128 @@ class VirusModel extends StatelessWidget {
           child: widgets.length == 1
               ? Image.asset(widgets[0])
               : Stack(children: [
-                  Align(
-                    alignment: Alignment.topLeft,
+                  Positioned(
+                    top: constraints!.height * 0.16,
+                    left: constraints!.width * 0.25,
                     child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[0]),
+                      height: constraints!.height * 0.4,
+                      width: constraints!.width * 0.4,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            widgets[0],
+                          ),
+                          Positioned(
+                            top: constraints!.height * 0.15,
+                            left: constraints!.width * 0.05,
+                            child: Clickable(
+                                onPressed: onTapBubonik!,
+                                child: SizedBox(
+                                  height: constraints!.height * 0.1,
+                                  width: constraints!.width * 0.1,
+                                )),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
+                  Positioned(
+                    top: constraints!.height * 0.33,
+                    left: constraints!.width * 0.23,
                     child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[1]),
+                      height: constraints!.height * 0.3,
+                      width: constraints!.width * 0.3,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            widgets[1],
+                          ),
+                          Positioned(
+                            top: constraints!.height * 0.12,
+                            left: constraints!.width * 0.05,
+                            child: Clickable(
+                                onPressed: onTapTiphius!,
+                                child: SizedBox(
+                                  height: constraints!.height * 0.08,
+                                  width: constraints!.width * 0.1,
+                                )),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.center,
+                  Positioned(
+                    top: constraints!.height * 0.45,
+                    left: constraints!.width * 0.13,
                     child: SizedBox(
                       height: constraints!.height * 0.35,
                       width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[2]),
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            widgets[2],
+                          ),
+                          Positioned(
+                            top: constraints!.height * 0.13,
+                            left: constraints!.width * 0.05,
+                            child: Clickable(
+                                onPressed: onTapTiphid!,
+                                child: SizedBox(
+                                  height: constraints!.height * 0.1,
+                                  width: constraints!.width * 0.1,
+                                )),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
+                  Positioned(
+                    top: constraints!.height * 0.08,
+                    left: constraints!.width * 0.15,
                     child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[3]),
+                      height: constraints!.height * 0.3,
+                      width: constraints!.width * 0.3,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            widgets[3],
+                          ),
+                          Positioned(
+                            top: constraints!.height * 0.13,
+                            child: Clickable(
+                                onPressed: onTapSmall!,
+                                child: SizedBox(
+                                  height: constraints!.height * 0.1,
+                                  width: constraints!.width * 0.1,
+                                )),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: GifImage(
-                        controller: gifController!,
-                        image: AssetImage(widgets[4]),
+                  Positioned(
+                    top: constraints!.height * 0.23,
+                    left: constraints!.width * 0.05,
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      height: constraints!.height * 0.4,
+                      width: constraints!.width * 0.4,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            widgets[4],
+                          ),
+                          Positioned(
+                            top: constraints!.height * 0.18,
+                            left: constraints!.width * 0.05,
+                            child: Clickable(
+                                onPressed: onTapEbola!,
+                                child: SizedBox(
+                                  height: constraints!.height * 0.1,
+                                  width: constraints!.width * 0.1,
+                                )),
+                          )
+                        ],
                       ),
                     ),
                   ),

@@ -1,18 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/background_widgets/backgrounds_dead_of_socrates_page.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_3.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_5.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_5.dart';
+import 'package:history_of_adventures/src/core/widgets/card_image_and_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
-import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
-import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -27,9 +24,7 @@ class DeadOfSocratesPage extends StatefulWidget {
 
 class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   late AppLocalizations locale;
-  late String _selectedItem;
-  late String _selectedImg;
-  late String _selectedText;
+
   Offset offset = const Offset(0, 0);
   late List<SocratesInfoModel> socratesList;
 
@@ -38,9 +33,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
-    _selectedItem = locale.athenianDefeat;
-    _selectedText = locale.athenianDefeatText;
-    _selectedImg = AssetsPath.deadOfSocrates1;
+
     socratesList = [
       SocratesInfoModel(
           description: locale.athenianDefeatText,
@@ -64,6 +57,12 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   }
 
   @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
@@ -80,202 +79,12 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 constraints: constraints,
                 offset: offset,
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.15,
-                      vertical: constraints.maxHeight * 0.2),
-                  decoration: BoxDecoration(
-                      boxShadow: Shadows.universal, color: AppColors.white),
-                  padding: const EdgeInsets.all(24),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: constraints.maxHeight,
-                          child: AnimatedSwitcher(
-                            duration: Times.medium,
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                            child: Container(
-                              key: ValueKey(_selectedImg),
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(_selectedImg),
-                                      fit: BoxFit.cover)),
-                              child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Clickable(
-                                  onPressed: () {
-                                    showGeneralDialog(
-                                        context: context,
-                                        barrierColor:
-                                            Colors.black.withOpacity(0.5),
-                                        transitionBuilder:
-                                            (BuildContext context,
-                                                Animation<double> animation,
-                                                Animation<double>
-                                                    secondaryAnimation,
-                                                Widget child) {
-                                          return LayoutBuilder(
-                                              builder: (context, constraints) =>
-                                                  DialogImageWidget(
-                                                    selectedImage: _selectedImg,
-                                                    selectedImageText:
-                                                        _selectedText,
-                                                    animation: animation,
-                                                    constraints: constraints,
-                                                  ));
-                                        },
-                                        transitionDuration: Times.fast,
-                                        barrierDismissible: true,
-                                        barrierLabel: '',
-                                        pageBuilder:
-                                            (context, animation1, animation2) {
-                                          return Container();
-                                        });
-                                  },
-                                  child: Container(
-                                    color: Colors.black,
-                                    child: const Icon(
-                                      Icons.zoom_in,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 10,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    border: Border(
-                                        bottom: BorderSide(
-                                            color: AppColors.grey,
-                                            width: 1.2))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Flexible(
-                                            child: AutoSizeText(
-                                              "${locale.chapter1PlagueAndPersecution}\n",
-                                              maxLines: 2,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(
-                                                      color: AppColors.black25),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: AutoSizeText(
-                                                locale.deathOfSocrates,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1
-                                                    ?.copyWith(
-                                                        color:
-                                                            AppColors.black25),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: AutoSizeText(
-                                                  locale.deathOfSocrates,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 5,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              border: Border(
-                                            top: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2),
-                                          )),
-                                          child: ListView(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 16),
-                                              shrinkWrap: true,
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10),
-                                                  child: RichText(
-                                                      text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text: '$_selectedItem\n\n'
-                                                          .toUpperCase(),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline3,
-                                                    ),
-                                                    TextSpan(
-                                                      text: _selectedText,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1,
-                                                    ),
-                                                  ])),
-                                                )
-                                              ]),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                        children: socratesList
-                                            .map((data) =>
-                                                deadofSocratesListWidget(
-                                                    name: data.name,
-                                                    text: data.description,
-                                                    image: data.image,
-                                                    selected: data.name))
-                                            .toList())),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              CardTextAndImageWidget(
+                constraints: constraints,
+                listDialogInfo: socratesList,
+                slectedInfoDialog: socratesList[0],
+                subTitleText: locale.deathOfSocrates,
+                titleText: locale.chapter1PlagueAndPersecution,
               ),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -285,6 +94,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     onPressed: () {
                       LeafDetails.currentVertex = 17;
                       LeafDetails.visitedVertexes.add(17);
+                      NavigationSharedPreferences.upDateShatedPreferences();
                       context.router.push(const QuizPageRoute());
                     },
                     child: SizedBox(
@@ -307,6 +117,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                       onTap: () {
                         LeafDetails.currentVertex = 16;
                         LeafDetails.visitedVertexes.add(16);
+                        NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.push(const EndOfWarPageRoute());
                       }),
                 ),
@@ -315,6 +126,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 widget: Clickable(
                   onPressed: () {
                     LeafDetails.currentVertex = 14;
+                    NavigationSharedPreferences.upDateShatedPreferences();
                     if (kIsWeb) {
                       html.window.history.back();
                       context.router.pop();
@@ -353,35 +165,5 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
         }),
       ),
     );
-  }
-
-  void chandeState(String? selctedItem, String? image, String? text) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = image!;
-      _selectedText = text!;
-    });
-  }
-
-  Widget deadofSocratesListWidget(
-      {String? name, String? selected, String? image, String? text}) {
-    return Container(
-        margin: const EdgeInsets.only(right: 30),
-        child: Clickable(
-          onPressed: () {
-            chandeState(selected, image, text);
-          },
-          child: AutoSizeText(name!.toUpperCase(),
-              maxLines: 1,
-              style: _selectedItem == selected
-                  ? Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.black54)),
-        ));
   }
 }

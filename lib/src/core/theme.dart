@@ -11,6 +11,8 @@ class DefaultTheme {
   static ThemeData get standard {
     return ThemeData(
       scrollbarTheme: ScrollbarThemeData(
+        trackColor: MaterialStateProperty.all(AppColors.green),
+        trackBorderColor: MaterialStateProperty.all(AppColors.grey),
         thumbColor: MaterialStateProperty.all(AppColors.orange),
       ),
       highlightColor: AppColors.orange,

@@ -1,11 +1,13 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/theme.dart';
-import 'package:history_of_adventures/src/features/animated_background/animated_particles_4.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_4.dart';
+import 'package:history_of_adventures/src/core/widgets/animated_background/gif_background_widget.dart';
+
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -92,6 +94,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   @override
   void initState() {
     super.initState();
+    NavigationSharedPreferences.getNavigationListFromSF();
     _selectedItem = 'intro';
     _selectedImg = [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola];
     controller = GifController(vsync: this);
@@ -137,7 +140,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             children: [
               GifBackground(
                 size: Size(constraints.maxWidth, constraints.maxHeight),
-                path: AssetsPath.gifBackground4,
+                asset: AssetsPath.gifBackground4,
               ),
               AnimatedParticlesForth(
                 constraints: constraints,
@@ -167,6 +170,41 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                               description: _selectedText,
                               name: _selectedItem,
                               widgets: _selectedImg,
+                              onTapBubonik: () {
+                                changeState(
+                                  locals.bubonicPlague,
+                                  [gifBubonic],
+                                  locals.bubonicPlagueText,
+                                );
+                              },
+                              onTapEbola: () {
+                                changeState(
+                                  locals.ebola,
+                                  [gifEbola],
+                                  locals.ebolaText,
+                                );
+                              },
+                              onTapSmall: () {
+                                changeState(
+                                  locals.smallpox,
+                                  [gifSmallpox],
+                                  locals.smallpoxText,
+                                );
+                              },
+                              onTapTiphid: () {
+                                changeState(
+                                  locals.typhiod,
+                                  [gifTyphoid],
+                                  locals.typhiodText,
+                                );
+                              },
+                              onTapTiphius: () {
+                                changeState(
+                                  locals.typhus,
+                                  [gifTyphus],
+                                  locals.typhusText,
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -217,12 +255,18 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                               ),
                                             ),
                                             Flexible(
-                                              child: AutoSizeText(
-                                                  locals.whatWasIt
-                                                      .toUpperCase(),
-                                                  maxLines: 1,
-                                                  style: DefaultTheme.standard
-                                                      .textTheme.headline2),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom:
+                                                        constraints.maxHeight *
+                                                            0.01),
+                                                child: AutoSizeText(
+                                                    locals.whatWasIt
+                                                        .toUpperCase(),
+                                                    maxLines: 1,
+                                                    style: DefaultTheme.standard
+                                                        .textTheme.headline2),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -246,8 +290,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: '$_selectedItem\n'
-                                                            .toUpperCase(),
+                                                        text:
+                                                            '$_selectedItem\n\n'
+                                                                .toUpperCase(),
                                                         style: DefaultTheme
                                                             .standard
                                                             .textTheme
@@ -302,6 +347,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                       textTitle: locals.pathogenProfile,
                       onTap: () {
                         LeafDetails.currentVertex = 12;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+
                         if (kIsWeb) {
                           html.window.history.back();
                           context.router.pop();

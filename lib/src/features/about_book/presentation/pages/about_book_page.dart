@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -31,6 +32,12 @@ class _AboutBookPageState extends State<AboutBookPage> {
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
   }
 
   @override
@@ -101,6 +108,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         onTap: () {
                           LeafDetails.currentVertex = 20;
                           LeafDetails.visitedVertexes.add(20);
+                          NavigationSharedPreferences.upDateShatedPreferences();
                           context.router.push(const CreditsPageRoute());
                         }),
                   ),
@@ -109,6 +117,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   widget: IconButton(
                       onPressed: () {
                         LeafDetails.currentVertex = 18;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+
                         if (kIsWeb) {
                           html.window.history.back();
                           context.router.pop();
