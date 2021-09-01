@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_6.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/gif_background_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/card_image_and_text_widget.dart';
@@ -34,6 +35,12 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   late List<SocratesInfoModel> socratesList;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +92,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                       textTitle: locale.plagueAndPersecution,
                       onTap: () {
                         LeafDetails.currentVertex = 15;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+
                         if (kIsWeb) {
                           html.window.history.back();
                           context.router.pop();

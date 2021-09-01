@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/features/about_book/presentation/widgets/author_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -31,6 +32,12 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
   }
 
   @override
@@ -91,6 +98,9 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               textTitle: locale.aboutTheBook,
                               onTap: () {
                                 LeafDetails.currentVertex = 21;
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
+
                                 if (kIsWeb) {
                                   html.window.history.back();
                                   context.router.pop();
@@ -119,6 +129,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               onTap: () {
                                 LeafDetails.visitedVertexes.add(23);
                                 LeafDetails.currentVertex = 23;
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
                                 context.router.push(const CopyrightPageRoute());
                               }),
                         ),
@@ -134,7 +146,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                           left: constraints.maxWidth * 0.1,
                           right: constraints.maxWidth * 0.1,
                           bottom: 80,
-                          top: constraints.maxHeight * 0.2),
+                          top: constraints.maxHeight * 0.25),
                       child: Scrollbar(
                         showTrackOnHover: false,
                         child: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -128,6 +129,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+
     init();
     // gifControllerCharacter_2 = GifAnimationController(
     //   vsync: this,
@@ -420,6 +423,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 onTap: () {
                                   LeafDetails.currentVertex = 8;
                                   LeafDetails.visitedVertexes.add(8);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
                                   context.router
                                       .push(const PanaromaLeftPageRoute());
                                 }),
@@ -448,6 +453,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   ////????????
                                   LeafDetails.currentVertex = 9;
                                   LeafDetails.visitedVertexes.add(9);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
                                   context.router
                                       .push(const PanaromaRightPageRoute());
                                 }),
@@ -486,6 +493,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                         fontStyle: FontStyle.italic)),
                           ),
                           Container(
+                            alignment: Alignment.center,
                             decoration: const BoxDecoration(
                                 border: Border(
                                     left: BorderSide(
@@ -613,6 +621,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   widget: Clickable(
                     onPressed: () {
                       LeafDetails.currentVertex = 1;
+                      NavigationSharedPreferences.upDateShatedPreferences();
                       if (kIsWeb) {
                         html.window.history.back();
                         context.router.pop();
@@ -660,6 +669,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         onPressed: () {
                           LeafDetails.visitedVertexes.add(4);
                           LeafDetails.currentVertex = 4;
+                          NavigationSharedPreferences.upDateShatedPreferences();
                           context.router.push(const MapPageRoute());
                         },
                         child: Row(

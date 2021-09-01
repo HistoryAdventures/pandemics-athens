@@ -222,14 +222,22 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                         ),
                                                       ),
                                                       Flexible(
-                                                        child: AutoSizeText(
-                                                            widget.subTitleText,
-                                                            minFontSize: 13,
-                                                            maxLines: 1,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .headline2),
+                                                        child: Padding(
+                                                          padding: EdgeInsets.only(
+                                                              bottom: widget
+                                                                      .constraints
+                                                                      .maxHeight *
+                                                                  0.01),
+                                                          child: AutoSizeText(
+                                                              widget
+                                                                  .subTitleText,
+                                                              minFontSize: 13,
+                                                              maxLines: 1,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .headline2),
+                                                        ),
                                                       ),
                                                     ],
                                                   ),

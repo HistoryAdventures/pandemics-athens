@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/features/about_book/presentation/widgets/author_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -37,6 +38,12 @@ class _SoursePageState extends State<SoursePage> {
     super.didChangeDependencies();
   }
 
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
+
   List<String> characters = ["Nikos", 'Eduardo', "Greg", "Arlene", "Collen"];
 
   @override
@@ -68,6 +75,9 @@ class _SoursePageState extends State<SoursePage> {
                               style: Theme.of(context).textTheme.headline2,
                             ),
                           ),
+                          SizedBox(
+                            height: constraints.maxHeight * 0.05,
+                          ),
                           Flexible(
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +91,7 @@ class _SoursePageState extends State<SoursePage> {
                           ),
                           SizedBox(
                             height: constraints.maxHeight * 0.05,
-                          )
+                          ),
                         ],
                       ),
                     )),
@@ -117,6 +127,9 @@ class _SoursePageState extends State<SoursePage> {
                               textTitle: locale.aboutTheBook,
                               onTap: () {
                                 LeafDetails.currentVertex = 20;
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
+
                                 if (kIsWeb) {
                                   html.window.history.back();
                                   context.router.pop();
@@ -145,6 +158,8 @@ class _SoursePageState extends State<SoursePage> {
                               onTap: () {
                                 LeafDetails.currentVertex = 22;
                                 LeafDetails.visitedVertexes.add(22);
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
                                 context.router
                                     .push(const FurtherReadingPageRoute());
                               }),
@@ -161,7 +176,7 @@ class _SoursePageState extends State<SoursePage> {
                           left: constraints.maxWidth * 0.1,
                           right: constraints.maxWidth * 0.1,
                           bottom: 80,
-                          top: constraints.maxHeight * 0.25),
+                          top: constraints.maxHeight * 0.3),
                       child: Scrollbar(
                         showTrackOnHover: false,
                         child: SingleChildScrollView(

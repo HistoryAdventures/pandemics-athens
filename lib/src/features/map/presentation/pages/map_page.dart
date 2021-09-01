@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -96,7 +97,7 @@ class _MapPageState extends State<MapPage> {
           imageDescription: locals.y490imageText,
           image: AssetsPath.mapImage490,
           text: locals.y490bodyText,
-          title: locals.y490,
+          title: locals.y490bodyTextTitle,
           year: locals.y490,
           mapImage: AssetsPath.map490),
       MapInfoModel(
@@ -352,6 +353,7 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
@@ -391,21 +393,22 @@ class _MapPageState extends State<MapPage> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: AppColors.white,
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.8),
                     boxShadow: [
                       BoxShadow(
-                          offset: Offset(0, 1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, 0),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, -1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
+                        offset: Offset(0, 1),
+                        color: AppColors.white.withOpacity(0.5),
+                        blurRadius: 10,
+                      ),
+                      // BoxShadow(
+                      //     offset: Offset(1, 0),
+                      //     color: AppColors.grey.withOpacity(0.5),
+                      //     blurRadius: 5),
+                      // BoxShadow(
+                      //     offset: Offset(1, -1),
+                      //     color: AppColors.grey.withOpacity(0.5),
+                      //     blurRadius: 5),
                     ],
                   ),
                   padding: const EdgeInsets.all(24),
@@ -511,13 +514,19 @@ class _MapPageState extends State<MapPage> {
                                                 ),
                                               ),
                                               Flexible(
-                                                child: AutoSizeText(
-                                                  locals.timelineOfMainEvents
-                                                      .toUpperCase(),
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: constraints
+                                                              .maxHeight *
+                                                          0.01),
+                                                  child: AutoSizeText(
+                                                    '${locals.timelineOfMainEvents}\n'
+                                                        .toUpperCase(),
+                                                    maxLines: 1,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline2,
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -533,12 +542,12 @@ class _MapPageState extends State<MapPage> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          top: 8.0, right: 30),
+                                                          top: 10.0, right: 30),
                                                   child: RichText(
                                                       text: TextSpan(children: [
                                                     TextSpan(
                                                         text:
-                                                            "$_selectedTitle\n"
+                                                            "$_selectedTitle\n\n"
                                                                 .toUpperCase(),
                                                         style: Theme.of(context)
                                                             .textTheme
@@ -578,22 +587,30 @@ class _MapPageState extends State<MapPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
+                                          flex: 2,
                                           child: AutoSizeText(
-                                        "${locals.chapter1Athens5thCentury}\n",
-                                        maxLines: 2,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1
-                                            ?.copyWith(color: AppColors.grey),
-                                      )),
+                                            "${locals.chapter1Athens5thCentury}\n",
+                                            maxLines: 2,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1
+                                                ?.copyWith(
+                                                    color: AppColors.grey),
+                                          )),
                                       Flexible(
-                                        child: AutoSizeText(
-                                          locals.timelineOfMainEvents
-                                              .toUpperCase(),
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2,
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  constraints.maxHeight * 0.01),
+                                          child: AutoSizeText(
+                                            locals.timelineOfMainEvents
+                                                .toUpperCase(),
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -606,11 +623,11 @@ class _MapPageState extends State<MapPage> {
                                   child: ListView(shrinkWrap: true, children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 8.0, right: 30),
+                                          top: 10.0, right: 30),
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: "$_selectedTitle\n",
+                                            text: "$_selectedTitle\n\n",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline3),
@@ -653,6 +670,9 @@ class _MapPageState extends State<MapPage> {
                           textTitle: locals.chapter1,
                           onTap: () {
                             LeafDetails.currentVertex = 2;
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
+
                             if (kIsWeb) {
                               html.window.history.back();
                               context.router.pop();
@@ -732,6 +752,8 @@ class _MapPageState extends State<MapPage> {
                           onTap: () {
                             LeafDetails.visitedVertexes.add(5);
                             LeafDetails.currentVertex = 5;
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
                             context.router.push(const CharacrterPageRoute());
                           }),
                     ),

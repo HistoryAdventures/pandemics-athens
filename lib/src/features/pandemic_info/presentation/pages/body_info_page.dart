@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_3.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -114,6 +115,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     _selectedItem = "intro";
     _selectedImg = AssetsPath.manIntroImage;
     controller = AnimationController(duration: Times.slower, vsync: this);
@@ -151,21 +153,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                     child: Row(
                       children: [
                         Expanded(
-                            child: Container(
-                          alignment: Alignment.bottomCenter,
-                          padding: EdgeInsets.only(
-                              left: constraints.maxWidth * 0.025,
-                              bottom: constraints.maxHeight * 0.25),
-                          child: AutoSizeText(
-                            locale.aboutVirusBodyPage,
-                            maxLines: 4,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2
-                                ?.copyWith(fontSize: 16),
-                          ),
-                        )),
-                        Expanded(
+                          flex: 2,
                           child: SizedBox(
                             height: constraints.maxHeight,
                             child: AnimatedSwitcher(
@@ -216,7 +204,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                           ),
                         ),
                         Expanded(
-                          flex: 3,
+                          flex: 2,
                           child: Container(
                             margin: EdgeInsets.symmetric(
                                 horizontal: 50,
@@ -261,13 +249,19 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                                 ),
                                               ),
                                               Flexible(
-                                                child: AutoSizeText(
-                                                    locale.whatDidItDo
-                                                        .toUpperCase(),
-                                                    maxLines: 1,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: constraints
+                                                              .maxHeight *
+                                                          0.01),
+                                                  child: AutoSizeText(
+                                                      locale.whatDidItDo
+                                                          .toUpperCase(),
+                                                      maxLines: 1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline2),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -344,6 +338,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                         textTitle: locale.pathogenProfile,
                         onTap: () {
                           LeafDetails.currentVertex = 11;
+                          NavigationSharedPreferences.upDateShatedPreferences();
+
                           if (kIsWeb) {
                             html.window.history.back();
                             context.router.pop();
@@ -382,6 +378,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                         onTap: () {
                           LeafDetails.currentVertex = 13;
                           LeafDetails.visitedVertexes.add(13);
+                          NavigationSharedPreferences.upDateShatedPreferences();
                           context.router.push(const VirusesInfoPageRoute());
                         }),
                   ),

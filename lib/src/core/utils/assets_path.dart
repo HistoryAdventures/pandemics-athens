@@ -313,6 +313,38 @@ class AssetsPath {
   static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
   static const String paralaxLeftCrowd = 'assets/paralax_new/left_crowd.png';
+
+  static const String lottieImage0 = 'assets/paralax_new/images/img_0.png';
+
+  static const String lottieImage1 = 'assets/paralax_new/images/img_1.png';
+  static const String lottieImage2 = 'assets/paralax_new/images/img_2.png';
+  static const String lottieImage3 = 'assets/paralax_new/images/img_3.png';
+  static const String lottieImage4 = 'assets/paralax_new/images/img_4.png';
+  static const String lottieImage5 = 'assets/paralax_new/images/img_5.png';
+  static const String lottieImage6 = 'assets/paralax_new/images/img_6.png';
+  static const String lottieImage7 = 'assets/paralax_new/images/img_7.png';
+  static const String lottieImage8 = 'assets/paralax_new/images/img_8.png';
+  static const String lottieImage9 = 'assets/paralax_new/images/img_9.png';
+  static const String lottieImage10 = 'assets/paralax_new/images/img_10.png';
+  static const String lottieImage11 = 'assets/paralax_new/images/img_11.png';
+  static const String lottieImage12 = 'assets/paralax_new/images/img_12.png';
+  static const String lottieImage13 = 'assets/paralax_new/images/img_13.png';
+  static const String lottieImage14 = 'assets/paralax_new/images/img_14.png';
+  static const String lottieImage15 = 'assets/paralax_new/images/img_15.png';
+  static const String lottieImage16 = 'assets/paralax_new/images/img_16.png';
+  static const String lottieImage17 = 'assets/paralax_new/images/img_17.png';
+  static const String lottieImage18 = 'assets/paralax_new/images/img_18.png';
+  static const String lottieImage19 = 'assets/paralax_new/images/img_19.png';
+  static const String lottieImage20 = 'assets/paralax_new/images/img_20.png';
+  static const String lottieImage21 = 'assets/paralax_new/images/img_21.png';
+  static const String lottieImage22 = 'assets/paralax_new/images/img_22.png';
+  static const String lottieImage23 = 'assets/paralax_new/images/img_23.png';
+  static const String lottieImage24 = 'assets/paralax_new/images/img_24.png';
+  static const String lottieImage25 = 'assets/paralax_new/images/img_25.png';
+  static const String lottieImage26 = 'assets/paralax_new/images/img_26.png';
+  static const String lottieImage27 = 'assets/paralax_new/images/img_27.png';
+  static const String lottieImage28 = 'assets/paralax_new/images/img_28.png';
+
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';

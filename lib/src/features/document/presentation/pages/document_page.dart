@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -151,7 +152,7 @@ class _DocumentPageState extends State<DocumentPage>
   @override
   void initState() {
     super.initState();
-
+    NavigationSharedPreferences.getNavigationListFromSF();
     _controllerReset = AnimationController(
       vsync: this,
       duration: Times.fastest,
@@ -176,39 +177,42 @@ class _DocumentPageState extends State<DocumentPage>
         endDrawer: const NavigationPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         backgroundColor: AppColors.greyDeep,
-        floatingActionButton: Row(
-          mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FloatingActionButton(
-              heroTag: "btn+",
-              backgroundColor: AppColors.white,
-              onPressed: _scaleUp,
-              child: const Icon(Icons.add, color: AppColors.blackB),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            FloatingActionButton(
-              heroTag: "btn-",
-              backgroundColor: AppColors.white,
-              onPressed: _scaleDown,
-              child: const Icon(Icons.remove, color: AppColors.blackB),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            FloatingActionButton(
-              heroTag: "bt[]",
-              backgroundColor: AppColors.white,
-              onPressed: () {
-                setState(() {
-                  isInfoBorderOpen = !isInfoBorderOpen;
-                });
-              },
-              child: const Icon(Icons.crop_free, color: AppColors.blackB),
-            ),
-          ],
+        floatingActionButton: Container(
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FloatingActionButton(
+                heroTag: "btn+",
+                backgroundColor: AppColors.white,
+                onPressed: _scaleUp,
+                child: const Icon(Icons.add, color: AppColors.blackB),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              FloatingActionButton(
+                heroTag: "btn-",
+                backgroundColor: AppColors.white,
+                onPressed: _scaleDown,
+                child: const Icon(Icons.remove, color: AppColors.blackB),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              FloatingActionButton(
+                heroTag: "bt[]",
+                backgroundColor: AppColors.white,
+                onPressed: () {
+                  setState(() {
+                    isInfoBorderOpen = !isInfoBorderOpen;
+                  });
+                },
+                child: const Icon(Icons.crop_free, color: AppColors.blackB),
+              ),
+            ],
+          ),
         ),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -218,7 +222,7 @@ class _DocumentPageState extends State<DocumentPage>
                   duration: Times.fastest,
                   height: constraints.maxHeight,
                   width: isInfoBorderOpen
-                      ? constraints.maxWidth / 2
+                      ? constraints.maxWidth * 0.6
                       : constraints.maxWidth,
                   child: InteractiveViewer(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -262,7 +266,7 @@ class _DocumentPageState extends State<DocumentPage>
                 ),
                 AnimatedPositioned(
                   height: constraints.maxHeight,
-                  width: isInfoBorderOpen ? constraints.maxWidth / 2 : 0,
+                  width: isInfoBorderOpen ? constraints.maxWidth * 0.4 : 0,
                   right: 0,
                   duration: Times.fastest,
                   child: LayoutBuilder(builder: (context, constraines) {
@@ -318,9 +322,10 @@ class _DocumentPageState extends State<DocumentPage>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                bottom: 8.0,
-                                              ),
+                                              padding: EdgeInsets.only(
+                                                  bottom:
+                                                      constraints.maxHeight *
+                                                          0.01),
                                               child: AutoSizeText(
                                                 locale
                                                     .chapter1MedicalToolsKnowledge,
@@ -330,13 +335,19 @@ class _DocumentPageState extends State<DocumentPage>
                                                     .headline1,
                                               ),
                                             ),
-                                            AutoSizeText(
-                                              locale
-                                                  .sourceAnalysisHippocraticOath,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline2,
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom:
+                                                      constraints.maxHeight *
+                                                          0.01),
+                                              child: AutoSizeText(
+                                                locale
+                                                    .sourceAnalysisHippocraticOath,
+                                                maxLines: 1,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -360,7 +371,7 @@ class _DocumentPageState extends State<DocumentPage>
                                                 child: RichText(
                                                     text: TextSpan(children: [
                                                   TextSpan(
-                                                    text: '$_selectedItem\n'
+                                                    text: '$_selectedItem\n\n'
                                                         .toUpperCase(),
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -414,6 +425,8 @@ class _DocumentPageState extends State<DocumentPage>
                         textTitle: locale.chapter1,
                         onTap: () {
                           LeafDetails.currentVertex = 8;
+                          NavigationSharedPreferences.upDateShatedPreferences();
+
                           if (kIsWeb) {
                             html.window.history.back();
                             context.router.pop();

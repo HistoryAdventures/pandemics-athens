@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/pages/navigation_page.dart';
 import 'package:just_audio/just_audio.dart';
@@ -112,6 +113,7 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void initState() {
     super.initState();
+    NavigationSharedPreferences.getNavigationListFromSF();
     _pageController = PageController();
     quizes = getQuizes;
   }
@@ -158,6 +160,8 @@ class _QuizPageState extends State<QuizPage> {
             widget: IconButton(
               onPressed: () {
                 LeafDetails.currentVertex = 15;
+                NavigationSharedPreferences.upDateShatedPreferences();
+
                 if (kIsWeb) {
                   html.window.history.back();
                   context.router.pop();
@@ -303,6 +307,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 LeafDetails.currentVertex = 18;
                 LeafDetails.visitedVertexes.add(18);
+                NavigationSharedPreferences.upDateShatedPreferences();
                 context.router.push(const IrlNikosPageRoute());
               },
               icon: const Icon(Icons.south),

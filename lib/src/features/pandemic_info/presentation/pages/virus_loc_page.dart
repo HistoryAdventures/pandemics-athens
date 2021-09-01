@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -29,6 +30,12 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
   }
 
   @override
@@ -81,11 +88,15 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                                           .headline1),
                                 ),
                                 Flexible(
-                                  child: AutoSizeText(
-                                    locals.whereDidItComeFrom.toUpperCase(),
-                                    maxLines: 1,
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: constraints.maxHeight * 0.01),
+                                    child: AutoSizeText(
+                                      locals.whereDidItComeFrom.toUpperCase(),
+                                      maxLines: 1,
+                                      style:
+                                          Theme.of(context).textTheme.headline2,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -143,6 +154,9 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                             textTitle: locals.chapter1,
                             onTap: () {
                               LeafDetails.currentVertex = 10;
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+
                               if (kIsWeb) {
                                 html.window.history.back();
                                 context.router.pop();

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_5.dart';
 import 'package:history_of_adventures/src/core/widgets/card_image_and_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -56,6 +57,12 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   }
 
   @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
@@ -87,6 +94,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     onPressed: () {
                       LeafDetails.currentVertex = 17;
                       LeafDetails.visitedVertexes.add(17);
+                      NavigationSharedPreferences.upDateShatedPreferences();
                       context.router.push(const QuizPageRoute());
                     },
                     child: SizedBox(
@@ -109,6 +117,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                       onTap: () {
                         LeafDetails.currentVertex = 16;
                         LeafDetails.visitedVertexes.add(16);
+                        NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.push(const EndOfWarPageRoute());
                       }),
                 ),
@@ -117,6 +126,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 widget: Clickable(
                   onPressed: () {
                     LeafDetails.currentVertex = 14;
+                    NavigationSharedPreferences.upDateShatedPreferences();
                     if (kIsWeb) {
                       html.window.history.back();
                       context.router.pop();

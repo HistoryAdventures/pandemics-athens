@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -33,6 +34,12 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
   }
 
   @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
@@ -54,6 +61,8 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               widget: Clickable(
                 onPressed: () {
                   LeafDetails.currentVertex = 17;
+                  NavigationSharedPreferences.upDateShatedPreferences();
+
                   if (kIsWeb) {
                     html.window.history.back();
                     context.router.pop();
@@ -138,6 +147,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 onPressed: () {
                   LeafDetails.currentVertex = 19;
                   LeafDetails.visitedVertexes.add(19);
+                  NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.push(const AboutBookPageRoute());
                 },
               ),

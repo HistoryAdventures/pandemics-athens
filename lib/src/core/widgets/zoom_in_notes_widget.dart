@@ -6,7 +6,7 @@ class ZoomInNotesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.black.withOpacity(0.6),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [

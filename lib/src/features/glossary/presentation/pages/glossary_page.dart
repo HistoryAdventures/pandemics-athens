@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -32,6 +33,12 @@ class _GlossaryPageState extends State<GlossaryPage> {
   final globalKey = GlobalKey();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+    super.initState();
+  }
+
   @override
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
@@ -196,6 +203,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 widget: Clickable(
                   onPressed: () {
                     LeafDetails.currentVertex = 0;
+                    NavigationSharedPreferences.upDateShatedPreferences();
                     if (kIsWeb) {
                       html.window.history.back();
                       context.router.pop();
@@ -236,6 +244,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                       onPressed: () {
                         LeafDetails.visitedVertexes.add(2);
                         LeafDetails.currentVertex = 2;
+                        NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.push(const ParalaxHistoryPageRoute());
                       },
                       child: Column(
@@ -256,7 +265,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                           ),
                           Flexible(
                             child: Icon(
-                              Icons.south,
+                              Icons.arrow_downward,
                               size: constraints.maxHeight * 0.04,
                               color: Colors.black,
                             ),

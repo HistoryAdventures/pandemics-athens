@@ -457,7 +457,7 @@
     "@y508": {
       "y508": "508"
     },
-    "y508bodyText": " The great Athenian statesman succumbed to the plague that was ravaging his city, after the illness had already carried off both of his legitimate sons. His death was, according to Thucydides, as disaster, as his successors in Athenian politics could not avoid a series of costly disasters: “each grasping at supremacy, they ended by committing even the conduct of state affairs to the whims of the multitude. This, as might have been expected in a great and sovereign state, produced a host of blunders” … ",
+    "y508bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
     "@y508bodyText": {
       "y508bodyText": "508bodyText"
     },
@@ -470,7 +470,7 @@
     "@y429bodyTextTitle": {
       "y429bodyTextTitle": "429bodyTextTitle"
     },
-    "y429bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
+    "y429bodyText": "The great Athenian statesman succumbed to the plague that was ravaging his city, after the illness had already carried off both of his legitimate sons. His death was, according to Thucydides, as disaster, as his successors in Athenian politics could not avoid a series of costly disasters: “each grasping at supremacy, they ended by committing even the conduct of state affairs to the whims of the multitude. This, as might have been expected in a great and sovereign state, produced a host of blunders” … ",
     "@y429bodyText": {
       "y429bodyText": "508bodyText"
     },
@@ -500,7 +500,7 @@
     "@y490imageText": {
       "y490imageText": "490imageText"
     },
-    "y490bodyTextTitle": "490",
+    "y490bodyTextTitle": "490 battle of marathon",
     "@y490bodyTextTitle": {
       "y490bodyTextTitle": "490bodyTextTitle"
     },
@@ -1021,7 +1021,7 @@
     "@y399": {
       "y399": "399"
     },
-    "y399bodyText": "rial and death of Socrates in Athens.",
+    "y399bodyText": "Trial and death of Socrates in Athens.",
     "@y399bodyText": {
       "y399bodyText": "399bodyText"
     },
@@ -1198,7 +1198,7 @@
     "@athenianDefeat": {
       "athenianDefeat": "athenianDefeat"
     },
-    "timeOfTyrants": "Atime of tyrants",
+    "timeOfTyrants": "A time of tyrants",
     "@timeOfTyrants": {
       "timeOfTyrants": "timeOfTyrants"
     },

@@ -48,7 +48,9 @@ class ParallaxWidget extends StatelessWidget {
                   asset,
                   fit: boxFit,
                 )
-              : Lottie.asset(asset, repeat: true),
+              : Lottie.asset(
+                  asset,
+                ),
         ),
       ),
     );
