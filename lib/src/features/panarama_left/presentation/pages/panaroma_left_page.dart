@@ -216,10 +216,10 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
             margin: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.06,
                 top: MediaQuery.of(context).size.height * 0.25,
-                bottom: MediaQuery.of(context).size.height * 0.4,
-                right: MediaQuery.of(context).size.width * 0.6),
+                bottom: MediaQuery.of(context).size.height * 0.3,
+                right: MediaQuery.of(context).size.width * 0.5),
             child: Scaffold(
-                backgroundColor: AppColors.blackG.withOpacity(0.75),
+                backgroundColor: AppColors.blackG.withOpacity(0.65),
                 body: Padding(
                     padding: const EdgeInsets.all(14),
                     child: ListView(
@@ -227,6 +227,10 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                       children: [
                         Text(
                           locals.panaromaLeftInfoDialogText,
+                          strutStyle: const StrutStyle(
+                            fontSize: 16.0,
+                            height: 2,
+                          ),
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2
