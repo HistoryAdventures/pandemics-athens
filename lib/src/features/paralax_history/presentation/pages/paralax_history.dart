@@ -215,8 +215,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         // gifControllerHand.stop();
         _paralaxTextOpasyty3 = 0;
       }
-      if (_scrollController.offset > _scrollrateNine &&
-          _scrollController.offset < _scrollrateNine + 300) {
+      if (_scrollController.offset > _scrollrateSeven &&
+          _scrollController.offset < _scrollrateSeven + 450) {
         _lernMoreOpasyty = 1;
       } else {
         _lernMoreOpasyty = 0;
@@ -416,6 +416,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
+                            flex: 2,
                             child: ArrowLeftWidget(
                                 arrowColor: Colors.black,
                                 textSubTitle: locals.stickToTheOath,
@@ -445,6 +446,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ),
                           ),
                           Expanded(
+                            flex: 2,
                             child: ArrowRightWidget(
                                 textSubTitle: locals.helpTheSenator,
                                 textTitle: '',
@@ -493,11 +495,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                         fontStyle: FontStyle.italic)),
                           ),
                           Container(
-                            alignment: Alignment.center,
                             decoration: const BoxDecoration(
                                 border: Border(
                                     left: BorderSide(
-                                        color: AppColors.red, width: 3))),
+                                        color: AppColors.red, width: 8))),
                             child: AutoSizeText(
                               locals.athens429Bc,
                               maxLines: 1,
@@ -703,9 +704,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   duration: Times.medium,
                   opacity: _lernMoreOpasyty,
                   child: Align(
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 100, right: 50),
+                      color: AppColors.black100,
+                      height: constraints.maxHeight * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       child: Clickable(
                         onPressed: () {
                           LeafDetails.visitedVertexes.add(4);
@@ -713,44 +716,18 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           NavigationSharedPreferences.upDateShatedPreferences();
                           context.router.push(const MapPageRoute());
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 18.0, vertical: 5),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      locals.athens5thCentury.toUpperCase(),
-                                      // minFontSize: 5,
-                                      maxLines: 1,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption
-                                          ?.copyWith(
-                                              color: AppColors.white,
-                                              fontSize: 50),
-                                    ),
-                                    const SizedBox(
-                                      height: 50,
-                                      width: 50,
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        size: 50,
-                                        color: AppColors.white,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: ArrowRightWidget(
+                            textSubTitle: locals.athens5thCentury.toUpperCase(),
+                            textTitle: '',
+                            textColor: AppColors.white,
+                            onTap: () {
+                              ////????????
+                              LeafDetails.currentVertex = 9;
+                              LeafDetails.visitedVertexes.add(9);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router.push(const MapPageRoute());
+                            }),
                       ),
                     ),
                   ),

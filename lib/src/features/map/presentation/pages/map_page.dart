@@ -394,13 +394,7 @@ class _MapPageState extends State<MapPage> {
                 alignment: Alignment.topLeft,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.8),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        color: AppColors.white.withOpacity(0.5),
-                        blurRadius: 10,
-                      ),
+                      color: AppColors.white, boxShadow: Shadows.universal
                       // BoxShadow(
                       //     offset: Offset(1, 0),
                       //     color: AppColors.grey.withOpacity(0.5),
@@ -409,8 +403,8 @@ class _MapPageState extends State<MapPage> {
                       //     offset: Offset(1, -1),
                       //     color: AppColors.grey.withOpacity(0.5),
                       //     blurRadius: 5),
-                    ],
-                  ),
+
+                      ),
                   padding: const EdgeInsets.all(24),
                   margin: EdgeInsets.only(
                       left: 50, top: constraints.maxHeight * 0.18),

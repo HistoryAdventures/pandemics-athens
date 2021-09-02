@@ -19,34 +19,34 @@ class ArrowRightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            flex: 3,
-            child: AutoSizeText(
-              textSubTitle.toUpperCase(),
-              textAlign: TextAlign.end,
-              maxLines: 1,
-              minFontSize: 5,
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                    fontSize: 24,
-                    color: textColor ?? Colors.black,
-                  ),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          flex: 3,
+          child: AutoSizeText(
+            textSubTitle.toUpperCase(),
+            textAlign: TextAlign.end,
+            maxLines: 1,
+            minFontSize: 5,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  fontSize: 24,
+                  color: textColor ?? Colors.black,
+                ),
           ),
-          Expanded(
-            child: Clickable(
-                onPressed: onTap,
-                child: SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset(AssetsPath.arrowForwardImage,
-                        color: arrowColor ?? Colors.white))),
-          ),
-        ],
-      ),
+        ),
+        Flexible(
+          child: Clickable(
+              onPressed: onTap,
+              child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  height: 30,
+                  width: 30,
+                  child: Image.asset(AssetsPath.arrowForwardImage,
+                      color: arrowColor ?? Colors.white))),
+        ),
+      ],
     );
   }
 }
