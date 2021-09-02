@@ -77,7 +77,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   late AppLocalizations locals;
   bool isImageloaded = false;
-  // bool _lernMoreVisibility = false;
+  bool _lernMoreVisibility = false;
+  bool _bottomFieldVizibility = false;
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -189,9 +190,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               _scrollController.position.maxScrollExtent - 100) {
         _bottomFieldOpasity = 1;
 
+        _bottomFieldVizibility = true;
+
         //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
         // gifControllerCharacter_2.repeat();
       } else {
+        _bottomFieldVizibility = false;
+
         _bottomFieldOpasity = 0;
       }
 
@@ -218,8 +223,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       if (_scrollController.offset > _scrollrateSeven &&
           _scrollController.offset < _scrollrateSeven + 450) {
         _lernMoreOpasyty = 1;
+        _lernMoreVisibility = true;
       } else {
         _lernMoreOpasyty = 0;
+        _lernMoreVisibility = false;
       }
       if (_scrollController.offset > _scrollrateEleven &&
           _scrollController.offset < _scrollrateEleven + 350) {
@@ -405,63 +412,66 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         ],
                       )
                     ]),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                    duration: Times.slower,
-                    opacity: _bottomFieldOpasity,
-                    child: SizedBox(
-                      height: constraints.maxHeight * 0.1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: ArrowLeftWidget(
-                                arrowColor: Colors.black,
-                                textSubTitle: locals.stickToTheOath,
-                                textTitle: '',
-                                onTap: () {
-                                  LeafDetails.currentVertex = 8;
-                                  LeafDetails.visitedVertexes.add(8);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaLeftPageRoute());
-                                }),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: AutoSizeText(
-                              locals.whatNikosDo,
-                              maxLines: 1,
-                              // minFontSize: 5,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w400),
+                Visibility(
+                  visible: _bottomFieldVizibility,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: AnimatedOpacity(
+                      duration: Times.slower,
+                      opacity: _bottomFieldOpasity,
+                      child: SizedBox(
+                        height: constraints.maxHeight * 0.1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: ArrowLeftWidget(
+                                  arrowColor: Colors.black,
+                                  textSubTitle: locals.stickToTheOath,
+                                  textTitle: '',
+                                  onTap: () {
+                                    LeafDetails.currentVertex = 8;
+                                    LeafDetails.visitedVertexes.add(8);
+                                    NavigationSharedPreferences
+                                        .upDateShatedPreferences();
+                                    context.router
+                                        .push(const PanaromaLeftPageRoute());
+                                  }),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: ArrowRightWidget(
-                                textSubTitle: locals.helpTheSenator,
-                                textTitle: '',
-                                arrowColor: Colors.black,
-                                onTap: () {
-                                  ////????????
-                                  LeafDetails.currentVertex = 9;
-                                  LeafDetails.visitedVertexes.add(9);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaRightPageRoute());
-                                }),
-                          ),
-                        ],
+                            Flexible(
+                              flex: 3,
+                              child: AutoSizeText(
+                                locals.whatNikosDo,
+                                maxLines: 1,
+                                // minFontSize: 5,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: ArrowRightWidget(
+                                  textSubTitle: locals.helpTheSenator,
+                                  textTitle: '',
+                                  arrowColor: Colors.black,
+                                  onTap: () {
+                                    ////????????
+                                    LeafDetails.currentVertex = 9;
+                                    LeafDetails.visitedVertexes.add(9);
+                                    NavigationSharedPreferences
+                                        .upDateShatedPreferences();
+                                    context.router
+                                        .push(const PanaromaRightPageRoute());
+                                  }),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -700,34 +710,39 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     scaffoldkey.currentState!.openEndDrawer();
                   },
                 ),
-                AnimatedOpacity(
-                  duration: Times.medium,
-                  opacity: _lernMoreOpasyty,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      color: AppColors.black100,
-                      height: constraints.maxHeight * 0.1,
-                      width: MediaQuery.of(context).size.width,
-                      child: Clickable(
-                        onPressed: () {
-                          LeafDetails.visitedVertexes.add(4);
-                          LeafDetails.currentVertex = 4;
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.push(const MapPageRoute());
-                        },
-                        child: ArrowRightWidget(
-                            textSubTitle: locals.athens5thCentury.toUpperCase(),
-                            textTitle: '',
-                            textColor: AppColors.white,
-                            onTap: () {
-                              ////????????
-                              LeafDetails.currentVertex = 9;
-                              LeafDetails.visitedVertexes.add(9);
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
-                              context.router.push(const MapPageRoute());
-                            }),
+                Visibility(
+                  visible: _lernMoreVisibility,
+                  child: AnimatedOpacity(
+                    duration: Times.medium,
+                    opacity: _lernMoreOpasyty,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        color: AppColors.black100,
+                        height: constraints.maxHeight * 0.1,
+                        width: MediaQuery.of(context).size.width,
+                        child: Clickable(
+                          onPressed: () {
+                            LeafDetails.visitedVertexes.add(4);
+                            LeafDetails.currentVertex = 4;
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
+                            context.router.push(const MapPageRoute());
+                          },
+                          child: ArrowRightWidget(
+                              textSubTitle:
+                                  locals.athens5thCentury.toUpperCase(),
+                              textTitle: '',
+                              textColor: AppColors.white,
+                              onTap: () {
+                                ////????????
+                                LeafDetails.currentVertex = 9;
+                                LeafDetails.visitedVertexes.add(9);
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
+                                context.router.push(const MapPageRoute());
+                              }),
+                        ),
                       ),
                     ),
                   ),
