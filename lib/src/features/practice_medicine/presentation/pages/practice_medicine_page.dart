@@ -118,7 +118,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: AutoSizeText(
-                          locals.medicine,
+                          locals.medicine.toUpperCase(),
                           maxLines: 1,
                           minFontSize: 5,
                           textAlign: TextAlign.center,
@@ -190,7 +190,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
+                color: AppColors.black06,
                 margin: const EdgeInsets.only(top: 80),
                 width: MediaQuery.of(context).size.width * 0.4,
                 child: Padding(

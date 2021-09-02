@@ -91,7 +91,7 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
+                color: AppColors.black06,
                 margin: EdgeInsets.only(
                   top: constraints.maxWidth * 0.01,
                   left: constraints.maxWidth * 0.01,

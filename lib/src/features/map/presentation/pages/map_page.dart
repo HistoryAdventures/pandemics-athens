@@ -237,7 +237,7 @@ class _MapPageState extends State<MapPage> {
         imageDescription: '',
         image: '',
         text: locals.y429bodyText,
-        title: locals.y429,
+        title: locals.y429bodyTextTitle,
         year: locals.y429,
         mapImage: AssetsPath.map429,
       ),
@@ -279,7 +279,7 @@ class _MapPageState extends State<MapPage> {
           mapImage: AssetsPath.map414),
       MapInfoModel(
           imageDescription: locals.y413imageText,
-          image: AssetsPath.mapImage413,
+          image: AssetsPath.mapImage421,
           text: locals.y413bodyText,
           title: locals.y413bodyTextTitle,
           year: locals.y413,
@@ -627,7 +627,8 @@ class _MapPageState extends State<MapPage> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: "$_selectedTitle\n\n",
+                                            text: "$_selectedTitle\n\n"
+                                                .toUpperCase(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline3),

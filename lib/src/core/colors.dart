@@ -13,6 +13,8 @@ abstract class AppColors {
   /// Black 100% opacity
   static const Color black100 = Colors.black;
 
+  static const Color black06 = Color.fromRGBO(0, 0, 0, 0.6);
+
   /// Black 54% opacity
   static const Color black54 = Color(0x8A000000);
 

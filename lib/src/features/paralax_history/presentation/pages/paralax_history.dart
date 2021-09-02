@@ -522,6 +522,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Container(
+                        color: AppColors.black06,
                         margin: EdgeInsets.only(
                             left: constraints.maxWidth * 0.05,
                             bottom: constraints.maxHeight * 0.05),
@@ -532,7 +533,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               locals.paralaxText2,
                               // minFontSize: 5,
                               // maxLines: 20,
-                              style: Theme.of(context).textTheme.headline1,
+                              strutStyle: const StrutStyle(
+                                fontSize: 16.0,
+                                height: 1.5,
+                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
                             ))),
                   ),
                 ),
@@ -542,6 +550,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Container(
+                        color: AppColors.black06,
                         margin: EdgeInsets.only(
                             right: constraints.maxWidth * 0.05,
                             bottom: constraints.maxHeight * 0.05),
@@ -552,7 +561,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               locals.paralaxText3,
                               // minFontSize: 5,
                               // maxLines: 20,
-                              style: Theme.of(context).textTheme.headline1,
+                              strutStyle: const StrutStyle(
+                                fontSize: 16.0,
+                                height: 1.5,
+                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
                             ))),
                   ),
                 ),
@@ -562,6 +578,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
+                        color: AppColors.black06,
                         margin: EdgeInsets.only(
                             left: constraints.maxWidth * 0.05,
                             bottom: constraints.maxHeight * 0.05),
@@ -572,7 +589,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               locals.paralaxText4,
                               // minFontSize: 5,
                               // maxLines: 20,
-                              style: Theme.of(context).textTheme.headline1,
+                              strutStyle: const StrutStyle(
+                                fontSize: 16.0,
+                                height: 1.5,
+                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
                             ))),
                   ),
                 ),
@@ -582,6 +606,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Container(
+                        color: AppColors.black06,
                         margin: EdgeInsets.only(
                             left: constraints.maxWidth * 0.05,
                             bottom: constraints.maxHeight * 0.05),
@@ -592,7 +617,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               locals.paralaxText5,
                               // minFontSize: 5,
                               // maxLines: 20,
-                              style: Theme.of(context).textTheme.headline1,
+                              strutStyle: const StrutStyle(
+                                fontSize: 16.0,
+                                height: 1.5,
+                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
                             ))),
                   ),
                 ),
@@ -602,6 +634,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: Align(
                     alignment: Alignment.topRight,
                     child: Container(
+                      color: AppColors.black06,
                       margin: EdgeInsets.only(
                           right: constraints.maxWidth * 0.05,
                           top: constraints.maxHeight * 0.05),
@@ -612,7 +645,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             locals.paralaxText1,
                             // minFontSize: 5,
                             // maxLines: 20,
-                            style: Theme.of(context).textTheme.headline1,
+                            strutStyle: const StrutStyle(
+                              fontSize: 16.0,
+                              height: 1.5,
+                            ),
+
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
                           )),
                     ),
                   ),

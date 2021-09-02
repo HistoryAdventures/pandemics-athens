@@ -91,7 +91,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
+                color: AppColors.black06,
                 margin: EdgeInsets.only(
                     top: constraints.maxHeight * 0.05,
                     left: constraints.maxWidth * 0.05),
