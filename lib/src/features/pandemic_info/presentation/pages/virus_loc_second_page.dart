@@ -59,7 +59,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                 child: Container(
                   decoration: BoxDecoration(
                       color: AppColors.white, boxShadow: Shadows.universal),
-                  height: constraints.maxHeight * 0.4,
+                  height: constraints.maxHeight * 0.6,
                   width: constraints.maxWidth * 0.4,
                   margin: EdgeInsets.only(
                       top: constraints.maxHeight * 0.1,
@@ -69,7 +69,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
+                        Flexible(
                           child: Container(
                             width: constraints.maxWidth,
                             decoration: const BoxDecoration(
@@ -78,6 +78,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                                         color: AppColors.grey, width: 1.2))),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
@@ -88,11 +89,15 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                                           .headline1),
                                 ),
                                 Flexible(
-                                  child: AutoSizeText(
-                                    locals.whereDidItComeFrom.toUpperCase(),
-                                    maxLines: 1,
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: constraints.maxHeight * 0.01),
+                                    child: AutoSizeText(
+                                      locals.whereDidItComeFrom.toUpperCase(),
+                                      maxLines: 1,
+                                      style:
+                                          Theme.of(context).textTheme.headline2,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -105,7 +110,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                             child: ListView(shrinkWrap: true, children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 8.0, right: 30),
+                                    const EdgeInsets.only(top: 16, right: 30),
                                 child: AutoSizeText(
                                   locals.whereDidItComeFromSecondBodyText,
                                   style: Theme.of(context).textTheme.bodyText1,

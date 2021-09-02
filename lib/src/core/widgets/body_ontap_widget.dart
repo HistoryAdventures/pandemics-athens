@@ -32,11 +32,12 @@ class BodyOnTapsModel extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SizedBox(
       child: Hero(
         tag: photo,
         child: Material(
-          color: Colors.white.withOpacity(0),
+          color: AppColors.transpatent,
           child: InkWell(
             splashColor: AppColors.transpatent,
             highlightColor: AppColors.transpatent,
@@ -53,9 +54,8 @@ class BodyOnTapsModel extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 10,
-                  left: 80,
-                  right: 80,
+                  top: size.height * 0.01,
+                  left: size.width * 0.05,
                   child: InkWell(
                     splashColor: AppColors.transpatent,
                     highlightColor: AppColors.transpatent,
@@ -63,15 +63,14 @@ class BodyOnTapsModel extends StatelessWidget {
                     hoverColor: AppColors.transpatent,
                     onTap: onTapHead ?? () {},
                     child: SizedBox(
-                      height: height! * 0.09,
-                      width: width,
+                      height: size.height * 0.07,
+                      width: size.width * 0.05,
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 80,
-                  left: 80,
-                  right: 80,
+                  top: size.height * 0.09,
+                  left: size.width * 0.05,
                   child: InkWell(
                     splashColor: AppColors.transpatent,
                     highlightColor: AppColors.transpatent,
@@ -79,15 +78,14 @@ class BodyOnTapsModel extends StatelessWidget {
                     hoverColor: AppColors.transpatent,
                     onTap: onTapThroat ?? () {},
                     child: SizedBox(
-                      height: height! / 20,
-                      width: width,
+                      height: size.height * 0.03,
+                      width: size.width * 0.05,
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 130,
-                  left: 60,
-                  right: 50,
+                  top: size.height * 0.12,
+                  left: size.width * 0.03,
                   child: InkWell(
                     splashColor: AppColors.transpatent,
                     highlightColor: AppColors.transpatent,
@@ -95,15 +93,14 @@ class BodyOnTapsModel extends StatelessWidget {
                     hoverColor: AppColors.transpatent,
                     onTap: onTapChest ?? () {},
                     child: SizedBox(
-                      height: height! / 14,
-                      width: width,
+                      height: size.height * 0.07,
+                      width: size.width * 0.09,
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 210,
-                  left: 60,
-                  right: 50,
+                  top: size.height * 0.22,
+                  left: size.width * 0.03,
                   child: InkWell(
                     splashColor: AppColors.transpatent,
                     highlightColor: AppColors.transpatent,
@@ -111,13 +108,13 @@ class BodyOnTapsModel extends StatelessWidget {
                     hoverColor: AppColors.transpatent,
                     onTap: onTapStomach ?? () {},
                     child: SizedBox(
-                      height: height! / 10,
-                      width: width,
+                      height: size.height * 0.09,
+                      width: size.width * 0.08,
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 300,
+                  top: size.height * 0.3,
                   left: 1,
                   right: 1,
                   child: Row(
@@ -140,7 +137,7 @@ class BodyOnTapsModel extends StatelessWidget {
                             height: height! / 10,
                           )),
                       Expanded(
-                          child: SizedBox(
+                          child: Container(
                         height: height! / 10,
                         child: InkWell(
                           splashColor: AppColors.transpatent,

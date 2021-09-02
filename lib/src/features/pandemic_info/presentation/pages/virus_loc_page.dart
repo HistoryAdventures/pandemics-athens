@@ -58,7 +58,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 child: Container(
                   decoration: BoxDecoration(
                       color: AppColors.white, boxShadow: Shadows.universal),
-                  height: constraints.maxHeight * 0.4,
+                  height: constraints.maxHeight * 0.5,
                   width: constraints.maxWidth * 0.4,
                   margin: EdgeInsets.only(
                       top: constraints.maxHeight * 0.1,
@@ -68,7 +68,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
+                        Flexible(
                           child: Container(
                             width: constraints.maxWidth,
                             decoration: const BoxDecoration(
@@ -76,7 +76,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                                     bottom: BorderSide(
                                         color: AppColors.grey, width: 1.2))),
                             child: Column(
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Flexible(
@@ -108,7 +108,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                           child: Scrollbar(
                             child: ListView(shrinkWrap: true, children: [
                               Padding(
-                                padding: const EdgeInsets.only(right: 16),
+                                padding:
+                                    const EdgeInsets.only(top: 16, right: 16),
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
@@ -124,11 +125,11 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                                         .subtitle2
                                         ?.copyWith(fontSize: 16),
                                   ),
-                                  TextSpan(
-                                    text: locals.whereDidItComeFromBodyText2,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                  ),
+                                  // TextSpan(
+                                  //   text: locals.whereDidItComeFromBodyText2,
+                                  //   style:
+                                  //       Theme.of(context).textTheme.bodyText1,
+                                  // ),
                                 ])),
                               ),
                             ]),

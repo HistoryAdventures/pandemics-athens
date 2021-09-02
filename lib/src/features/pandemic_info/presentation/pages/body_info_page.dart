@@ -72,6 +72,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
     _selectedText = locale.intrBodyText;
+    _selectedImg = AssetsPath.manIntroImage;
+    _selectedItem = locale.bodyIntro;
     listCharacters = [
       BodyOnTapsModel(
         photo: AssetsPath.manIntroImage,
@@ -116,8 +118,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   void initState() {
     init();
     NavigationSharedPreferences.getNavigationListFromSF();
-    _selectedItem = "intro";
-    _selectedImg = AssetsPath.manIntroImage;
+
     controller = AnimationController(duration: Times.slower, vsync: this);
     animation = Tween<double>(begin: 80, end: 50).animate(controller);
     super.initState();
@@ -154,7 +155,10 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       children: [
                         Expanded(
                           flex: 2,
-                          child: SizedBox(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: constraints.maxHeight * 0.1),
+                            //  color: Colors.red,
                             height: constraints.maxHeight,
                             child: AnimatedSwitcher(
                               duration: Times.medium,
@@ -279,28 +283,58 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                                 shrinkWrap: true,
                                                 children: [
                                                   Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 38, top: 16),
-                                                    child: RichText(
-                                                        text:
-                                                            TextSpan(children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '$_selectedItem\n\n'
-                                                                .toUpperCase(),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline3,
-                                                      ),
-                                                      TextSpan(
-                                                        text: _selectedText,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText1,
-                                                      ),
-                                                    ])),
-                                                  )
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 38,
+                                                              top: 16),
+                                                      child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              '$_selectedItem\n'
+                                                                  .toUpperCase(),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .headline3,
+                                                            ),
+                                                            if (_selectedItem ==
+                                                                locale
+                                                                    .bodyIntro)
+                                                              Column(
+                                                                children: [
+                                                                  Text(
+                                                                    locale
+                                                                        .intrBodyText,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyText1,
+                                                                  ),
+                                                                  Text(
+                                                                    locale
+                                                                        .intrBodyTextItalic,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .subtitle2
+                                                                        ?.copyWith(
+                                                                            fontSize:
+                                                                                18),
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            else
+                                                              Text(
+                                                                '$_selectedText',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyText1,
+                                                              ),
+                                                          ])),
                                                 ]),
                                           ),
                                         ),
