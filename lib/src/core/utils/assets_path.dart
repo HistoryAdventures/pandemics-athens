@@ -215,7 +215,10 @@ class AssetsPath {
   static const String manthroatImage = 'assets/man_body/throat.png';
   static const String document = 'assets/document_view/document.png';
 
-  static const String panaramaBackgroundImage = 'assets/panorama_image2.png';
+  static const String panaramaBackgroundImageLeft =
+      'assets/panarama_image/choice1_left.jpg';
+  static const String panaramaBackgroundImageRight =
+      'assets/panarama_image/choice2_right.jpg';
 
   static const String panaramaImage1 =
       'assets/panarama_image/panaram_image_1.png';

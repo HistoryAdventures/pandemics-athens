@@ -39,7 +39,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   bool isImageloaded = false;
 
   List<String> contentImages = [
-    AssetsPath.panaramaBackgroundImage,
+    AssetsPath.panaramaBackgroundImageRight,
     AssetsPath.panaramaImage1,
     AssetsPath.panaramaImage2,
     AssetsPath.panaramaImage3,
@@ -201,7 +201,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                   }),
             );
           }).toList(),
-          child: Image.asset(AssetsPath.panaramaBackgroundImage),
+          child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
         ),
         Align(
           alignment: Alignment.centerLeft,

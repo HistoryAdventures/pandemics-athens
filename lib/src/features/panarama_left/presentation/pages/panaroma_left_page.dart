@@ -25,7 +25,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
   List<String> contentImages = [
-    AssetsPath.panaramaBackgroundImage,
+    AssetsPath.panaramaBackgroundImageLeft,
     AssetsPath.panaramaImage6,
     AssetsPath.panaramaImage7,
     AssetsPath.panaramaImage8,
@@ -206,7 +206,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                   }),
             );
           }).toList(),
-          child: Image.asset('assets/panorama_image2.png'),
+          child: Image.asset(AssetsPath.panaramaBackgroundImageLeft),
         ),
         Align(
           alignment: Alignment.centerLeft,
