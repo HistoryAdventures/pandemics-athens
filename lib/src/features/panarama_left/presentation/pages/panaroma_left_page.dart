@@ -211,34 +211,32 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.06,
-                top: MediaQuery.of(context).size.height * 0.25,
-                bottom: MediaQuery.of(context).size.height * 0.3,
-                right: MediaQuery.of(context).size.width * 0.5),
-            child: Scaffold(
-                backgroundColor: AppColors.blackG.withOpacity(0.65),
-                body: Padding(
+              color: AppColors.blackG.withOpacity(0.75),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.06,
+                  top: MediaQuery.of(context).size.height * 0.25,
+                  bottom: MediaQuery.of(context).size.height * 0.3,
+                  right: MediaQuery.of(context).size.width * 0.5),
+              child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: ListView(
                     padding: const EdgeInsets.all(14),
-                    child: ListView(
-                      padding: const EdgeInsets.all(14),
-                      children: [
-                        Text(
-                          locals.panaromaLeftInfoDialogText,
-                          strutStyle: const StrutStyle(
-                            fontSize: 16.0,
-                            height: 2,
-                          ),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        )
-                      ],
-                    ))),
-          ),
+                    children: [
+                      Text(
+                        locals.panaromaLeftInfoDialogText,
+                        strutStyle: const StrutStyle(
+                          fontSize: 16.0,
+                          height: 2,
+                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2
+                            ?.copyWith(color: AppColors.white),
+                      )
+                    ],
+                  ))),
         ),
         Align(
           alignment: Alignment.bottomLeft,

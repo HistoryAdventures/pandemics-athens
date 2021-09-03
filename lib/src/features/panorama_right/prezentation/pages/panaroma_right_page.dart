@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
-// import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -25,8 +24,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   late AppLocalizations locals;
   late List<InfoDialogModel> infoList;
 
-  //final backgroundplayer = AudioPlayer();
-  //final openInfoPlayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
   bool onButtonInfoPressed = false;
@@ -151,6 +148,12 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   }
 
   Widget _body() {
+    final edg = EdgeInsets.fromLTRB(
+      HW.getWidth(165, context),
+      HW.getHeight(335, context),
+      HW.getWidth(995, context),
+      HW.getHeight(335, context),
+    );
     return Stack(
       children: [
         Panorama(
@@ -203,38 +206,30 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           }).toList(),
           child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
         ),
-        Align(
-          alignment: Alignment.centerLeft,
+        Positioned(
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.06,
-                top: MediaQuery.of(context).size.height * 0.25,
-                bottom: MediaQuery.of(context).size.height * 0.3,
-                right: MediaQuery.of(context).size.width * 0.5),
-            child: Scaffold(
-                backgroundColor: AppColors.blackG.withOpacity(0.75),
-                body: Padding(
+              color: AppColors.blackG.withOpacity(0.75),
+              width: HW.getWidth(760, context),
+              height: HW.getHeight(364, context),
+              margin: edg,
+              child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: ListView(
                     padding: const EdgeInsets.all(14),
-                    child: ListView(
-                      padding: const EdgeInsets.all(14),
-                      children: [
-                        Text(
-                          locals.panaromaRightInfoDialogText,
-                          //textHeightBehavior: TextHeightBehavior(),
-                          strutStyle: const StrutStyle(
-                            fontSize: 16.0,
-                            height: 2,
-                          ),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        )
-                      ],
-                    ))),
-          ),
+                    children: [
+                      Text(
+                        locals.panaromaRightInfoDialogText,
+                        strutStyle: const StrutStyle(
+                          fontSize: 16.0,
+                          height: 2,
+                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2
+                            ?.copyWith(color: AppColors.white),
+                      )
+                    ],
+                  ))),
         ),
         SoundAndMenuWidget(
           color: AppColors.black100,

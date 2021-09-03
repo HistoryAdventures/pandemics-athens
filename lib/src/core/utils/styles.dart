@@ -23,6 +23,16 @@ class Shadows {
       ];
 }
 
+class HW {
+  static double getHeight(double height, BuildContext context) {
+    return height * MediaQuery.of(context).size.height / 1080;
+  }
+
+  static double getWidth(double width, BuildContext context) {
+    return width * MediaQuery.of(context).size.width / 1920;
+  }
+}
+
 /// Used for all animations in the  app
 class Times {
   static const Duration fastest = Duration(milliseconds: 150);
