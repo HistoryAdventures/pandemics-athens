@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/paralax_text_widget.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -63,11 +64,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
-  double _paralaxTextOpasyty1 = 0;
-  double _paralaxTextOpasyty2 = 0;
-  double _paralaxTextOpasyty3 = 0;
-  double _paralaxTextOpasyty4 = 0;
-  double _paralaxTextOpasyty5 = 0;
+  double _paralaxText2Opacity = 0;
+  double _paralaxText3Opacity = 0;
+  double _paralaxText4Opacity = 0;
+  double _paralaxText5Opacity = 0;
+  double _paralaxText1Opacity = 0;
   double _lernMoreOpasyty = 0;
 
   bool isSoundOn = false;
@@ -82,9 +83,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> contentImages = [
     AssetsPath.paralaxBackground,
-    //AssetsPath.paralaxCharacterNikosGif,
-    //AssetsPath.gifHand,
-    //AssetsPath.gifCharacterNikos_2,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
     AssetsPath.paralaxCharacter_11,
@@ -94,7 +92,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-    // init();
     super.didChangeDependencies();
   }
 
@@ -111,9 +108,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
-
     init();
-
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -125,7 +120,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               });
             }
           });
-
     _animationControllerForClouds?.forward();
     rateOne = width * 0;
     rateTwo = height * 2;
@@ -162,9 +156,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _bottomFieldOpasity = 1;
 
         _bottomFieldVizibility = true;
-
-        //  WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        // gifControllerCharacter_2.repeat();
       } else {
         _bottomFieldVizibility = false;
 
@@ -173,23 +164,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
       if (_scrollController.offset > _scrollFour &&
           _scrollController.offset < _scrollFour + 400) {
-        _paralaxTextOpasyty1 = 1;
+        _paralaxText2Opacity = 1;
       } else {
-        _paralaxTextOpasyty1 = 0;
+        _paralaxText2Opacity = 0;
       }
       if (_scrollController.offset > _scrollrateSix &&
           _scrollController.offset < _scrollrateSeven) {
-        _paralaxTextOpasyty2 = 1;
+        _paralaxText3Opacity = 1;
       } else {
-        _paralaxTextOpasyty2 = 0;
+        _paralaxText3Opacity = 0;
       }
       if (_scrollController.offset > _scrollrateNine + 400 &&
           _scrollController.offset < _scrollrateTen) {
-        _paralaxTextOpasyty3 = 1;
-        //gifControllerHand.forward();
+        _paralaxText4Opacity = 1;
       } else {
-        // gifControllerHand.stop();
-        _paralaxTextOpasyty3 = 0;
+        _paralaxText4Opacity = 0;
       }
       if (_scrollController.offset > _scrollrateSeven &&
           _scrollController.offset < _scrollrateSeven + 500) {
@@ -201,15 +190,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       }
       if (_scrollController.offset > _scrollrateEleven &&
           _scrollController.offset < _scrollrateEleven + 350) {
-        _paralaxTextOpasyty4 = 1;
+        _paralaxText5Opacity = 1;
       } else {
-        _paralaxTextOpasyty4 = 0;
+        _paralaxText5Opacity = 0;
       }
       if (_scrollController.offset > _scrollFive &&
           _scrollController.offset < _scrollFive + 200) {
-        _paralaxTextOpasyty5 = 1;
+        _paralaxText1Opacity = 1;
       } else {
-        _paralaxTextOpasyty5 = 0;
+        _paralaxText1Opacity = 0;
       }
       if (_scrollController.offset > _scrollFive - 200) {
         if (_animationControllerForCharacterNikos == null) {
@@ -240,8 +229,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void dispose() {
     _animationControllerForCharacterNikos?.dispose();
     _animationControllerForClouds?.dispose();
-    // gifControllerCharacter_2.dispose();
-    // gifControllerHand.dispose();
     super.dispose();
   }
 
@@ -283,115 +270,113 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     padding: EdgeInsets.zero,
                     controller: _scrollController,
                     children: <Widget>[
-                      Stack(
-                        children: [
-                          Container(
-                            height: constraints.maxHeight * 10,
-                            //color: Colors.transparent,
-
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        AssetsPath.paralaxBackground),
-                                    fit: BoxFit.cover)),
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: MediaQuery.of(context).size.width,
-                            boxFit: BoxFit.contain,
-                            top: rateZero,
-                            left: _progress2,
-                            asset: AssetsPath.paralaxClouds,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: MediaQuery.of(context).size.width,
-                            boxFit: BoxFit.contain,
-                            top: rateTwo,
-                            asset: AssetsPath.paralaxBuilding,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            paralaxText: locals.paralaxText1,
-                            width: MediaQuery.of(context).size.width / 3,
-                            boxFit: BoxFit.contain,
-                            top: rateThree,
-                            left: _progressCaracterNikos,
-                            asset: AssetsPath.paralaxCharacterNikosGif,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            paralaxText: locals.paralaxText1,
-                            width: MediaQuery.of(context).size.width / 3,
-                            left: MediaQuery.of(context).size.width / 3,
-                            boxFit: BoxFit.contain,
-                            // color: Colors.red,
-                            top: rate,
-                            right: 0,
-                            asset: AssetsPath.paralaxFireLottie,
-                          ),
-                          ParallaxWidget(
+                      Container(
+                        height: constraints.maxHeight * 10,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(AssetsPath.paralaxBackground),
+                              fit: BoxFit.cover),
+                        ),
+                        child: Stack(
+                          children: [
+                            ParallaxWidget(
                               isImage: true,
                               width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
-                              top: rateFive,
-                              asset: AssetsPath.paralaxLeftCrowd),
-                          ParallaxWidget(
+                              top: rateZero,
+                              left: _progress2,
+                              asset: AssetsPath.paralaxClouds,
+                            ),
+                            ParallaxWidget(
                               isImage: true,
                               width: MediaQuery.of(context).size.width,
-                              boxFit: BoxFit.cover,
-                              top: rateSix,
-                              asset: AssetsPath.paralaxCharacters_2),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: MediaQuery.of(context).size.width / 3,
-                            top: rateSeven,
-                            left: constraints.maxWidth * 0.13,
-                            asset: AssetsPath.paralaxCharacter_12,
-                            boxFit: BoxFit.contain,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: MediaQuery.of(context).size.width / 3,
-                            top: rateEight,
-                            left: MediaQuery.of(context).size.width / 2,
-                            asset: AssetsPath.paralaxCharacter_11,
-                            boxFit: BoxFit.cover,
-                          ),
-                          ParallaxWidget(
-                              isImage: true,
-                              width: rateOne.clamp(0, 2000),
-                              top: rateNine,
-                              left: -100,
-                              asset: AssetsPath.paralaxCharacter_1,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
-                              isImage: true,
-                              //gifController: gifControllerHand,
-                              width: constraints.maxWidth * 0.6,
-                              top: rateTen,
-                              left: constraints.maxWidth * 0.3,
+                              boxFit: BoxFit.contain,
+                              top: rateTwo,
+                              asset: AssetsPath.paralaxBuilding,
+                            ),
+                            ParallaxWidget(
+                              isImage: false,
+                              paralaxText: locals.paralaxText1,
+                              width: MediaQuery.of(context).size.width / 3,
+                              boxFit: BoxFit.contain,
+                              top: rateThree,
+                              left: _progressCaracterNikos,
+                              asset: AssetsPath.paralaxCharacterNikosGif,
+                            ),
+                            ParallaxWidget(
+                              isImage: false,
+                              paralaxText: locals.paralaxText1,
+                              width: MediaQuery.of(context).size.width / 3,
+                              left: MediaQuery.of(context).size.width / 3,
+                              boxFit: BoxFit.contain,
+                              // color: Colors.red,
+                              top: rate,
                               right: 0,
-                              //imageInfo: imageInfoHand,
-                              asset: AssetsPath.gifHand,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
+                              asset: AssetsPath.paralaxFireLottie,
+                            ),
+                            ParallaxWidget(
+                                isImage: true,
+                                width: MediaQuery.of(context).size.width,
+                                boxFit: BoxFit.contain,
+                                top: rateFive,
+                                asset: AssetsPath.paralaxLeftCrowd),
+                            ParallaxWidget(
+                                isImage: true,
+                                width: MediaQuery.of(context).size.width,
+                                boxFit: BoxFit.cover,
+                                top: rateSix,
+                                asset: AssetsPath.paralaxCharacters_2),
+                            ParallaxWidget(
                               isImage: true,
-                              // gifController: gifControllerCharacter_2,
-                              width: MediaQuery.of(context).size.width,
-                              top: rateEleven,
-                              left: 200,
-                              right: 200,
-                              // imageInfo: imageInfoCharacter_2,
-                              asset: AssetsPath.gifCharacterNikos_2,
-                              boxFit: BoxFit.cover),
-                          ParallaxWidget(
+                              width: MediaQuery.of(context).size.width / 3,
+                              top: rateSeven,
+                              left: constraints.maxWidth * 0.13,
+                              asset: AssetsPath.paralaxCharacter_12,
+                              boxFit: BoxFit.contain,
+                            ),
+                            ParallaxWidget(
                               isImage: true,
-                              width: MediaQuery.of(context).size.width,
-                              top: rateTwelv,
-                              asset: AssetsPath.paralaxCloud,
-                              boxFit: BoxFit.contain),
-                        ],
+                              width: MediaQuery.of(context).size.width / 3,
+                              top: rateEight,
+                              left: MediaQuery.of(context).size.width / 2,
+                              asset: AssetsPath.paralaxCharacter_11,
+                              boxFit: BoxFit.cover,
+                            ),
+                            ParallaxWidget(
+                                isImage: true,
+                                width: rateOne.clamp(0, 2000),
+                                top: rateNine,
+                                left: -100,
+                                asset: AssetsPath.paralaxCharacter_1,
+                                boxFit: BoxFit.contain),
+                            ParallaxWidget(
+                                isImage: true,
+                                //gifController: gifControllerHand,
+                                width: constraints.maxWidth * 0.6,
+                                top: rateTen,
+                                left: constraints.maxWidth * 0.3,
+                                right: 0,
+                                //imageInfo: imageInfoHand,
+                                asset: AssetsPath.gifHand,
+                                boxFit: BoxFit.contain),
+                            ParallaxWidget(
+                                isImage: true,
+                                // gifController: gifControllerCharacter_2,
+                                width: MediaQuery.of(context).size.width,
+                                top: rateEleven,
+                                left: 200,
+                                right: 200,
+                                // imageInfo: imageInfoCharacter_2,
+                                asset: AssetsPath.gifCharacterNikos_2,
+                                boxFit: BoxFit.cover),
+                            ParallaxWidget(
+                                isImage: true,
+                                width: MediaQuery.of(context).size.width,
+                                top: rateTwelv,
+                                asset: AssetsPath.paralaxCloud,
+                                boxFit: BoxFit.contain),
+                          ],
+                        ),
                       )
                     ]),
                 Visibility(
@@ -426,7 +411,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               child: AutoSizeText(
                                 locals.whatNikosDo,
                                 maxLines: 1,
-                                // minFontSize: 5,
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
@@ -443,7 +427,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   textTitle: '',
                                   arrowColor: Colors.black,
                                   onTap: () {
-                                    ////????????
                                     LeafDetails.currentVertex = 9;
                                     LeafDetails.visitedVertexes.add(9);
                                     NavigationSharedPreferences
@@ -509,147 +492,35 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     ),
                   ),
                 ),
-                AnimatedOpacity(
-                  duration: Times.fast,
-                  opacity: _paralaxTextOpasyty1,
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                        color: AppColors.black06,
-                        margin: EdgeInsets.only(
-                            left: constraints.maxWidth * 0.05,
-                            bottom: constraints.maxHeight * 0.05),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText2,
-                              // minFontSize: 5,
-                              // maxLines: 20,
-                              strutStyle: const StrutStyle(
-                                fontSize: 16.0,
-                                height: 1.5,
-                              ),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                ParalaxTextWidget(
+                  text: locals.paralaxText1,
+                  alignment: Alignment.topRight,
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  opacity: _paralaxText1Opacity,
                 ),
-                AnimatedOpacity(
-                  duration: Times.fast,
-                  opacity: _paralaxTextOpasyty2,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                        color: AppColors.black06,
-                        margin: EdgeInsets.only(
-                            right: constraints.maxWidth * 0.05,
-                            bottom: constraints.maxHeight * 0.05),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText3,
-                              // minFontSize: 5,
-                              // maxLines: 20,
-                              strutStyle: const StrutStyle(
-                                fontSize: 16.0,
-                                height: 1.5,
-                              ),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                ParalaxTextWidget(
+                  text: locals.paralaxText2,
+                  alignment: Alignment.bottomLeft,
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  opacity: _paralaxText2Opacity,
                 ),
-                AnimatedOpacity(
-                  duration: Times.fast,
-                  opacity: _paralaxTextOpasyty3,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                        color: AppColors.black06,
-                        margin: EdgeInsets.only(
-                            left: constraints.maxWidth * 0.05,
-                            bottom: constraints.maxHeight * 0.05),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText4,
-                              // minFontSize: 5,
-                              // maxLines: 20,
-                              strutStyle: const StrutStyle(
-                                fontSize: 16.0,
-                                height: 1.5,
-                              ),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                ParalaxTextWidget(
+                  text: locals.paralaxText3,
+                  alignment: Alignment.centerRight,
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  opacity: _paralaxText3Opacity,
                 ),
-                AnimatedOpacity(
-                  duration: Times.fast,
-                  opacity: _paralaxTextOpasyty4,
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                        color: AppColors.black06,
-                        margin: EdgeInsets.only(
-                            left: constraints.maxWidth * 0.05,
-                            bottom: constraints.maxHeight * 0.05),
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: AutoSizeText(
-                              locals.paralaxText5,
-                              // minFontSize: 5,
-                              // maxLines: 20,
-                              strutStyle: const StrutStyle(
-                                fontSize: 16.0,
-                                height: 1.5,
-                              ),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            ))),
-                  ),
+                ParalaxTextWidget(
+                  text: locals.paralaxText4,
+                  alignment: Alignment.centerLeft,
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  opacity: _paralaxText4Opacity,
                 ),
-                AnimatedOpacity(
-                  duration: Times.fast,
-                  opacity: _paralaxTextOpasyty5,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      color: AppColors.black06,
-                      margin: EdgeInsets.only(
-                          right: constraints.maxWidth * 0.05,
-                          top: constraints.maxHeight * 0.05),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: AutoSizeText(
-                            locals.paralaxText1,
-                            // minFontSize: 5,
-                            // maxLines: 20,
-                            strutStyle: const StrutStyle(
-                              fontSize: 16.0,
-                              height: 1.5,
-                            ),
-
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(color: AppColors.white),
-                          )),
-                    ),
-                  ),
+                ParalaxTextWidget(
+                  text: locals.paralaxText5,
+                  alignment: Alignment.bottomLeft,
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  opacity: _paralaxText5Opacity,
                 ),
                 SoundAndMenuWidget(
                   widget: Clickable(
