@@ -30,6 +30,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late double width = window.physicalSize.width / window.devicePixelRatio;
 
   double rateZero = 0;
+  late double rate;
   late double rateOne;
   late double rateTwo;
   late double rateThree;
@@ -59,9 +60,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   Animation<double>? animationForClouds;
   double _progressCaracterNikos = -200;
   double _progress2 = -200;
-
-  // late GifAnimationController gifControllerCharacter_2;
-  // late GifAnimationController gifControllerHand;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -93,10 +91,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     AssetsPath.paralaxCharacters_2,
   ];
 
-  //List<ImageInfo> imageInfoCharacter_2 = [];
-
-  // late List<ImageInfo> imageInfoHand;
-
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -106,26 +100,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
-    // imageInfoCharacter_2 = await preloadImage(
-    //     context: context,
-    //     frameCount: 254,
-    //     provider: const AssetImage(AssetsPath.gifCharacterNikos_2));
-    // imageInfoHand = await preloadImage(
-    //   provider: const AssetImage(AssetsPath.gifHand),
-    //   frameCount: 349,
-    //   context: context,
-    // );
-    // preloadImage(
-    //   provider: const AssetImage(AssetsPath.gifHand),
-    //   frameCount: 349,
-    //   context: context,
-    // ).then((value) {
+
     if (loadedAssets == true) {
       isImageloaded = true;
     } else {
       isImageloaded = false;
     }
-    // });
   }
 
   @override
@@ -133,16 +113,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     NavigationSharedPreferences.getNavigationListFromSF();
 
     init();
-    // gifControllerCharacter_2 = GifAnimationController(
-    //   vsync: this,
-    //   frameCount: 254,
-    //   duration: const Duration(seconds: 10),
-    // );
-    // gifControllerHand = GifAnimationController(
-    //   vsync: this,
-    //   frameCount: 349,
-    //   duration: const Duration(seconds: 10),
-    // );
 
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
@@ -159,6 +129,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForClouds?.forward();
     rateOne = width * 0;
     rateTwo = height * 2;
+    rate = height * 1.5;
     rateThree = height * 3;
     rateFour = height * 3.5;
     rateFive = height * 5.2;
@@ -171,7 +142,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateTwelv = height * 14;
 
     _scrollFour = height * 2.3;
-    _scrollFive = height * 2;
+    _scrollFive = height * 1.7;
     _scrollrateSix = height * 3.5;
     _scrollrateSeven = height * 3.8;
     _scrollrateNine = height * 5;
@@ -221,7 +192,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _paralaxTextOpasyty3 = 0;
       }
       if (_scrollController.offset > _scrollrateSeven &&
-          _scrollController.offset < _scrollrateSeven + 450) {
+          _scrollController.offset < _scrollrateSeven + 500) {
         _lernMoreOpasyty = 1;
         _lernMoreVisibility = true;
       } else {
@@ -347,6 +318,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             top: rateThree,
                             left: _progressCaracterNikos,
                             asset: AssetsPath.paralaxCharacterNikosGif,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            paralaxText: locals.paralaxText1,
+                            width: MediaQuery.of(context).size.width / 3,
+                            left: MediaQuery.of(context).size.width / 3,
+                            boxFit: BoxFit.contain,
+                            // color: Colors.red,
+                            top: rate,
+                            right: 0,
+                            asset: AssetsPath.paralaxFireLottie,
                           ),
                           ParallaxWidget(
                               isImage: true,
@@ -718,7 +700,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
-                        color: AppColors.black100,
+                        decoration: BoxDecoration(boxShadow: Shadows.small),
+                        // color: AppColors.black100,
                         height: constraints.maxHeight * 0.1,
                         width: MediaQuery.of(context).size.width,
                         child: Clickable(

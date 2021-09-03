@@ -13,11 +13,13 @@ class Shadows {
         BoxShadow(offset: Offset(1, 0), color: AppColors.grey, blurRadius: 1),
         BoxShadow(offset: Offset(1, -1), color: AppColors.grey, blurRadius: 1),
       ];
-  static List<BoxShadow> get small => [
+  static List<BoxShadow> get small => const [
         BoxShadow(
-            color: const Color(0xff333333).withOpacity(.15),
-            blurRadius: 3,
-            offset: const Offset(0, 1)),
+          color: AppColors.black100,
+          blurRadius: 10,
+          spreadRadius: 5,
+          offset: Offset(0, 1),
+        ),
       ];
 }
 
