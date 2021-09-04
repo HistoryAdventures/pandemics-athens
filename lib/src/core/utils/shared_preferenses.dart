@@ -1,5 +1,6 @@
-import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../features/navigation/presentation/models/leaf_detail_model.dart';
 
 class NavigationSharedPreferences {
   static const keyNavigationList = "navigationList";

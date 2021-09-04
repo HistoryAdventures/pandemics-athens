@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_5.dart';
-import 'package:history_of_adventures/src/core/widgets/card_image_and_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
+import '../../../../core/widgets/animated_background/animated_particles_5.dart';
+import '../../../../core/widgets/card_image_and_text_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/body_model.dart';
+import '../../features/pandemic_info/presentation/models/body_model.dart';
 
 import '../colors.dart';
 

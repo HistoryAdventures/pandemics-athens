@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/virus_model.dart';
 
+import '../../features/pandemic_info/presentation/models/virus_model.dart';
 import 'animated_widgets/gif_contrrol.dart';
+import 'widgets.dart';
 
 class VirusModelWidget extends StatelessWidget {
   const VirusModelWidget(

@@ -1,15 +1,16 @@
 import 'dart:ui';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/models/chapter_tree.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/widgets/chapter_navigation_tree.dart';
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
+import '../models/chapter_tree.dart';
 import '../models/leaf_detail_model.dart';
+import '../widgets/chapter_navigation_tree.dart';
 import '../widgets/navigation_tree.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -609,7 +610,6 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

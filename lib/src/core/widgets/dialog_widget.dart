@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 
-import '../../features/panarama_left/presentation/models/dialog_model.dart';
+import '../../features/panaramas/presentation/models/dialog_model.dart';
 import '../colors.dart';
 import '../utils/styles.dart';
 import 'clickable_widget.dart';
 import 'dialog_image.dart';
+import 'zoom_in_notes_widget.dart';
 
 class DialogWidget extends StatefulWidget {
   final Animation<double> animation;

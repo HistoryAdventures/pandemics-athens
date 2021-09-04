@@ -1,6 +1,6 @@
-import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
-
 import 'package:flutter/material.dart';
+
+import 'leaf_detail_model.dart';
 
 class ChapterDetails {
   final Vertex vertex;

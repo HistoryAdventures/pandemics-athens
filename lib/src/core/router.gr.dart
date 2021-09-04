@@ -27,8 +27,10 @@ import '../features/irl_nikos/presentation/pages/irl_nikos_page.dart' as _i22;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
 import '../features/navigation/presentation/pages/navigation_page.dart' as _i28;
-import '../features/panarama_left/presentation/pages/panaroma_left_page.dart'
+import '../features/panaramas/presentation/pages/panaroma_left_page.dart'
     as _i11;
+import '../features/panaramas/presentation/pages/panaroma_right_page.dart'
+    as _i12;
 import '../features/pandemic_info/presentation/pages/body_info_page.dart'
     as _i17;
 import '../features/pandemic_info/presentation/pages/pathogen_profile_page.dart'
@@ -39,8 +41,6 @@ import '../features/pandemic_info/presentation/pages/virus_loc_second_page.dart'
     as _i29;
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
-import '../features/panorama_right/prezentation/pages/panaroma_right_page.dart'
-    as _i12;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
     as _i9;
 import '../features/practice_medicine/presentation/pages/keep_going_page.dart'

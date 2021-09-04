@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/animated_widgets/gif_animation.dart';
 
 class ParallaxWidget extends StatelessWidget {
   final double top;
