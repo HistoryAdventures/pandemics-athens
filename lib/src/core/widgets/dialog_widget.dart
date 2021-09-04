@@ -33,22 +33,22 @@ class DialogWidget extends StatefulWidget {
 }
 
 class _DialogWidgetState extends State<DialogWidget> {
-  late String _selectedItem;
-  late String _selectedImg;
-  late String _selectedSubTitle;
-  late String _infoText;
-  late String _selectedImageText;
-
   late AppLocalizations locals;
+  late InfoDialogModel infoDialogModel;
 
   @override
   void initState() {
-    _selectedItem = widget.slectedInfoDialog.title;
-    _selectedImg = widget.slectedInfoDialog.image;
-    _infoText = widget.slectedInfoDialog.description;
-    _selectedImageText = widget.slectedInfoDialog.imageDescription;
-
-    _selectedSubTitle = widget.slectedInfoDialog.subTitle;
+    infoDialogModel = InfoDialogModel(
+      description: widget.slectedInfoDialog.description,
+      height: widget.slectedInfoDialog.height,
+      image: widget.slectedInfoDialog.image,
+      imageDescription: widget.slectedInfoDialog.imageDescription,
+      latitude: widget.slectedInfoDialog.latitude,
+      longitude: widget.slectedInfoDialog.longitude,
+      subTitle: widget.slectedInfoDialog.subTitle,
+      title: widget.slectedInfoDialog.title,
+      width: widget.slectedInfoDialog.width,
+    );
     super.initState();
   }
 
@@ -56,45 +56,6 @@ class _DialogWidgetState extends State<DialogWidget> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
-  }
-
-  void chandeState(String? selctedItem, String? image, String? textDescription,
-      String? imageText, String? subTitle) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = image!;
-      _infoText = textDescription!;
-      _selectedImageText = imageText!;
-      _selectedSubTitle = subTitle!;
-    });
-  }
-
-  Widget charactersNameListWidget(
-      {String? name,
-      String? selected,
-      String? image,
-      String? text,
-      String? subTitle,
-      String? imageText}) {
-    return Container(
-      margin: const EdgeInsets.only(right: 30),
-      child: Clickable(
-        onPressed: () {
-          chandeState(selected, image, text, imageText, subTitle);
-        },
-        child: AutoSizeText(name!.toUpperCase(),
-            maxLines: 1,
-            style: _selectedItem == selected
-                ? Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.orange)
-                : Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.grey)),
-      ),
-    );
   }
 
   @override
@@ -126,10 +87,10 @@ class _DialogWidgetState extends State<DialogWidget> {
                           );
                         },
                         child: Container(
-                            key: ValueKey(_selectedImg),
+                            key: ValueKey(infoDialogModel.image),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage(_selectedImg),
+                                    image: AssetImage(infoDialogModel.image),
                                     fit: BoxFit.cover)),
                             child: Align(
                               alignment: Alignment.bottomLeft,
@@ -149,9 +110,11 @@ class _DialogWidgetState extends State<DialogWidget> {
                                               builder: (context, constraints) =>
                                                   DialogImageWidget(
                                                     animation: animation,
-                                                    selectedImage: _selectedImg,
+                                                    selectedImage:
+                                                        infoDialogModel.image,
                                                     selectedImageText:
-                                                        _selectedImageText,
+                                                        infoDialogModel
+                                                            .imageDescription,
                                                     constraints: constraints,
                                                   ));
                                         },
@@ -273,13 +236,14 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                       text: TextSpan(children: [
                                                     TextSpan(
                                                         text:
-                                                            '$_selectedSubTitle\n\n'
+                                                            '${infoDialogModel.subTitle}\n\n'
                                                                 .toUpperCase(),
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .headline3),
                                                     TextSpan(
-                                                      text: _infoText,
+                                                      text: infoDialogModel
+                                                          .description,
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyText1,
@@ -300,13 +264,13 @@ class _DialogWidgetState extends State<DialogWidget> {
                                       children: widget.listDialogInfo
                                           .map((data) =>
                                               charactersNameListWidget(
-                                                  name: data.title,
-                                                  image: data.image,
-                                                  text: data.description,
-                                                  subTitle: data.subTitle,
-                                                  imageText:
-                                                      data.imageDescription,
-                                                  selected: data.title))
+                                                title: data.title,
+                                                image: data.image,
+                                                text: data.description,
+                                                subTitle: data.subTitle,
+                                                imageText:
+                                                    data.imageDescription,
+                                              ))
                                           .toList()),
                                 ),
                               )
@@ -317,6 +281,41 @@ class _DialogWidgetState extends State<DialogWidget> {
                 ),
               )),
         ),
+      ),
+    );
+  }
+
+  Widget charactersNameListWidget(
+      {String? title,
+      String? image,
+      String? text,
+      String? subTitle,
+      String? imageText}) {
+    return Container(
+      margin: const EdgeInsets.only(right: 30),
+      child: Clickable(
+        onPressed: () {
+          setState(() {
+            infoDialogModel.chandeState(
+              title: title,
+              image: image,
+              description: text,
+              imageDescription: imageText,
+              subTitle: subTitle,
+            );
+          });
+        },
+        child: AutoSizeText(title!.toUpperCase(),
+            maxLines: 1,
+            style: infoDialogModel.title == title
+                ? Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.orange)
+                : Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.grey)),
       ),
     );
   }

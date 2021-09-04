@@ -42,14 +42,12 @@ class NavigationSharedPreferences {
     final navigationCurrentVertex =
         await NavigationSharedPreferences.getCurrentVertexSF();
 
-    print(navigationCurrentVertex);
 
     final List<int> navigationListInteger =
         navigationList!.map((e) => int.parse(e)).toList();
 
     LeafDetails.currentVertex = navigationCurrentVertex!;
     LeafDetails.visitedVertexes = navigationListInteger;
-    print('$navigationListInteger from sheradpreferens');
   }
 
   static Future<void> clearSF() async {

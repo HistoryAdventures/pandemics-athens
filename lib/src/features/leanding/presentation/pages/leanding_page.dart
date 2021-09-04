@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_1.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';

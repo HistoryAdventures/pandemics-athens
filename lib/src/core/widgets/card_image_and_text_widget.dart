@@ -2,16 +2,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
+import 'package:history_of_adventures/src/features/dead_socrates/presentation/modesl/socrates_info_model.dart';
 
 import '../colors.dart';
 import '../utils/styles.dart';
 import 'clickable_widget.dart';
 import 'dialog_image.dart';
 
-class CardTextAndImageWidget<T> extends StatefulWidget {
+class CardTextAndImageWidget extends StatefulWidget {
   final BoxConstraints constraints;
-  final T slectedInfoDialog;
-  final List<T> listDialogInfo;
+  final SocratesInfoModel slectedInfoDialog;
+  final List<SocratesInfoModel> listDialogInfo;
   final String subTitleText;
   final String titleText;
 
@@ -29,20 +30,17 @@ class CardTextAndImageWidget<T> extends StatefulWidget {
 }
 
 class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
-  late String _selectedItem;
-  late String _selectedImg;
-
-  late String _infoText;
-  late String _selectedImageText;
-
   late AppLocalizations locals;
+  late SocratesInfoModel socratesInfoModel;
 
   @override
   void initState() {
-    _selectedItem = widget.slectedInfoDialog.name as String;
-    _selectedImg = widget.slectedInfoDialog.image as String;
-    _infoText = widget.slectedInfoDialog.description as String;
-    _selectedImageText = widget.slectedInfoDialog.imageText as String;
+    socratesInfoModel = SocratesInfoModel(
+      description: widget.slectedInfoDialog.description,
+      image: widget.slectedInfoDialog.image,
+      imageText: widget.slectedInfoDialog.imageText,
+      name: widget.slectedInfoDialog.name,
+    );
     super.initState();
   }
 
@@ -50,44 +48,6 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
-  }
-
-  void chandeState(String? selctedItem, String? image, String? textDescription,
-      String? imageText, String? subTitle) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = image!;
-      _infoText = textDescription!;
-      _selectedImageText = imageText!;
-    });
-  }
-
-  Widget buttomItemsList(
-      {String? name,
-      String? selected,
-      String? image,
-      String? text,
-      String? subTitle,
-      String? imageText}) {
-    return Container(
-      margin: const EdgeInsets.only(right: 30),
-      child: Clickable(
-        onPressed: () {
-          chandeState(selected, image, text, imageText, subTitle);
-        },
-        child: AutoSizeText(name!.toUpperCase(),
-            maxLines: 1,
-            style: _selectedItem == selected
-                ? Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.orange)
-                : Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.grey)),
-      ),
-    );
   }
 
   @override
@@ -116,10 +76,11 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                       );
                     },
                     child: Container(
-                        key: ValueKey(_selectedImg),
+                        key: ValueKey(socratesInfoModel.name),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(_selectedImg),
+                                image:
+                                    AssetImage(socratesInfoModel.image!),
                                 fit: BoxFit.cover)),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -136,9 +97,9 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                           builder: (context, constraints) =>
                                               DialogImageWidget(
                                                 animation: animation,
-                                                selectedImage: _selectedImg,
-                                                selectedImageText:
-                                                    _selectedImageText,
+                                                selectedImage: socratesInfoModel.image!,
+                                                selectedImageText:socratesInfoModel
+                                                    .description!,
                                                 constraints: constraints,
                                               ));
                                     },
@@ -247,13 +208,15 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                           child: RichText(
                                               text: TextSpan(children: [
                                             TextSpan(
-                                                text: '$_selectedItem\n\n'
-                                                    .toUpperCase(),
+                                                text:
+                                                    '${socratesInfoModel.name}\n\n'
+                                                        .toUpperCase(),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .headline3),
                                             TextSpan(
-                                              text: _infoText,
+                                              text: socratesInfoModel
+                                                  .description,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1,
@@ -273,12 +236,12 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                               child: Row(
                                   children: widget.listDialogInfo
                                       .map((data) => buttomItemsList(
-                                            name: data.name as String,
-                                            image: data.image as String,
-                                            text: data.description as String,
-                                            subTitle: data.name as String,
-                                            imageText: data.imageText as String,
-                                            selected: data.name as String,
+                                            name: data.name,
+                                            image: data.image,
+                                            text: data.description,
+                                            subTitle: data.name,
+                                            imageText: data.imageText,
+                                            selected: data.name,
                                           ))
                                       .toList()),
                             ),
@@ -289,6 +252,40 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
               ],
             ),
           )),
+    );
+  }
+
+  Widget buttomItemsList(
+      {String? name,
+      String? selected,
+      String? image,
+      String? text,
+      String? subTitle,
+      String? imageText}) {
+    return Container(
+      margin: const EdgeInsets.only(right: 30),
+      child: Clickable(
+        onPressed: () {
+          setState(() {
+            socratesInfoModel.changeCaracterInfo(
+                name: name,
+                image: image,
+                description: text,
+                imageText: imageText);
+          });
+        },
+        child: AutoSizeText(name!.toUpperCase(),
+            maxLines: 1,
+            style: socratesInfoModel.name == selected
+                ? Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.orange)
+                : Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.grey)),
+      ),
     );
   }
 }

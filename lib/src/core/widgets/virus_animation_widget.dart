@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/virus_model.dart';
 
 import 'animated_widgets/gif_contrrol.dart';
 
-class VirusModel extends StatelessWidget {
-  const VirusModel(
-      {required this.widgets,
+class VirusModelWidget extends StatelessWidget {
+  const VirusModelWidget(
+      {
       this.onTap,
       this.constraints,
       this.gifController,
@@ -14,15 +15,13 @@ class VirusModel extends StatelessWidget {
       this.onTapBubonik,
       this.onTapTiphid,
       this.onTapTiphius,
-      required this.name,
-      required this.description});
-  //final String widget;
-  //final Key key;
-  final List<String> widgets;
-  final String description;
+      required this.virusModel
+     });
+ 
+
   final VoidCallback? onTap;
   final GifController? gifController;
-  final String name;
+ final VirusModel virusModel;
   final Size? constraints;
   final VoidCallback? onTapBubonik;
   final VoidCallback? onTapEbola;
@@ -34,8 +33,8 @@ class VirusModel extends StatelessWidget {
     return SizedBox(
       child: Material(
           color: Colors.white.withOpacity(0),
-          child: widgets.length == 1
-              ? Image.asset(widgets[0])
+          child: virusModel.widgets.length == 1
+              ? Image.asset(virusModel.widgets[0])
               : Stack(children: [
                   Positioned(
                     top: constraints!.height * 0.16,
@@ -46,7 +45,7 @@ class VirusModel extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            widgets[0],
+                            virusModel.widgets[0],
                           ),
                           Positioned(
                             top: constraints!.height * 0.15,
@@ -71,7 +70,7 @@ class VirusModel extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            widgets[1],
+                            virusModel.widgets[1],
                           ),
                           Positioned(
                             top: constraints!.height * 0.12,
@@ -96,7 +95,7 @@ class VirusModel extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            widgets[2],
+                           virusModel. widgets[2],
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
@@ -121,7 +120,7 @@ class VirusModel extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            widgets[3],
+                           virusModel. widgets[3],
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
@@ -146,7 +145,7 @@ class VirusModel extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                            widgets[4],
+                            virusModel.widgets[4],
                           ),
                           Positioned(
                             top: constraints!.height * 0.18,

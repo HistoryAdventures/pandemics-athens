@@ -30,13 +30,12 @@ class _DocumentPageState extends State<DocumentPage>
   late final AnimationController _controllerReset;
   late AppLocalizations locale;
 
-  late String _selectedItem;
   final scaffoldkey = GlobalKey<ScaffoldState>();
   bool isInfoBorderOpen = true;
 
-  late String _infoText;
-
   late List<DocumentModel> documentList;
+
+  late DocumentModel documentModel;
 
   double scaleDownIndex = 0.9;
   double scaleUpIndex = 1.25;
@@ -111,8 +110,6 @@ class _DocumentPageState extends State<DocumentPage>
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
 
-    _selectedItem = locale.documentIntro;
-    _infoText = locale.documentIntroText;
     documentList = [
       DocumentModel(
         left: 0,
@@ -153,6 +150,12 @@ class _DocumentPageState extends State<DocumentPage>
   void initState() {
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
+    documentModel = DocumentModel(
+      left: 0,
+      top: 0,
+      name: locale.documentIntro,
+      text: locale.documentIntroText,
+    );
     _controllerReset = AnimationController(
       vsync: this,
       duration: Times.fastest,
@@ -177,42 +180,40 @@ class _DocumentPageState extends State<DocumentPage>
         endDrawer: const NavigationPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         backgroundColor: AppColors.greyDeep,
-        floatingActionButton: Container(
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FloatingActionButton(
-                heroTag: "btn+",
-                backgroundColor: AppColors.white,
-                onPressed: _scaleUp,
-                child: const Icon(Icons.add, color: AppColors.blackB),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              FloatingActionButton(
-                heroTag: "btn-",
-                backgroundColor: AppColors.white,
-                onPressed: _scaleDown,
-                child: const Icon(Icons.remove, color: AppColors.blackB),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              FloatingActionButton(
-                heroTag: "bt[]",
-                backgroundColor: AppColors.white,
-                onPressed: () {
-                  setState(() {
-                    isInfoBorderOpen = !isInfoBorderOpen;
-                  });
-                },
-                child: const Icon(Icons.crop_free, color: AppColors.blackB),
-              ),
-            ],
-          ),
+        floatingActionButton: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FloatingActionButton(
+              heroTag: "btn+",
+              backgroundColor: AppColors.white,
+              onPressed: _scaleUp,
+              child: const Icon(Icons.add, color: AppColors.blackB),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            FloatingActionButton(
+              heroTag: "btn-",
+              backgroundColor: AppColors.white,
+              onPressed: _scaleDown,
+              child: const Icon(Icons.remove, color: AppColors.blackB),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            FloatingActionButton(
+              heroTag: "bt[]",
+              backgroundColor: AppColors.white,
+              onPressed: () {
+                setState(() {
+                  isInfoBorderOpen = !isInfoBorderOpen;
+                });
+              },
+              child: const Icon(Icons.crop_free, color: AppColors.blackB),
+            ),
+          ],
         ),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -249,13 +250,13 @@ class _DocumentPageState extends State<DocumentPage>
                             left: data.left,
                             child: Clickable(
                               onPressed: () {
-                                chandeState(data.name, data.text);
+                                data.chandeState(data.name, data.text);
                               },
                               child: PointWidget(
-                                color: _selectedItem == data.name
+                                color: documentModel.name == data.name
                                     ? AppColors.orange
                                     : Colors.black,
-                                text: data.name.substring(1),
+                                text: data.name!.substring(1),
                               ),
                             ),
                           );
@@ -371,14 +372,14 @@ class _DocumentPageState extends State<DocumentPage>
                                                 child: RichText(
                                                     text: TextSpan(children: [
                                                   TextSpan(
-                                                    text: '$_selectedItem\n\n'
+                                                    text: '${documentModel.name}\n\n'
                                                         .toUpperCase(),
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline3,
                                                   ),
                                                   TextSpan(
-                                                    text: _infoText,
+                                                    text: documentModel.text,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyText1,
@@ -444,31 +445,24 @@ class _DocumentPageState extends State<DocumentPage>
     );
   }
 
-  void chandeState(String? selctedItem, String? textDescription) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _infoText = textDescription!;
-    });
-  }
-
   Widget documentInfoListWidgets(
       {String? name,
       String? selected,
       String? image,
       String? text,
-      bool? color}) {
+     }) {
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
-            chandeState(selected, text);
+            documentModel.chandeState(selected, text);
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
               maxFontSize: 15,
               minFontSize: 5,
-              style: _selectedItem == selected
+              style: documentModel.name == selected
                   ? Theme.of(context)
                       .textTheme
                       .bodyText1

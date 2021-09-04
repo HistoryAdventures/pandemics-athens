@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/body_model.dart';
 
 import '../colors.dart';
 
 class BodyOnTapsModel extends StatelessWidget {
-  final String photo;
+
   final VoidCallback? onTapHead;
   final VoidCallback? onTapThroat;
   final VoidCallback? onTapChest;
   final VoidCallback? onTapStomach;
   final VoidCallback? onTap;
-  final String descriptiion;
+  final BodyModel bodyModel;
 
-  final String name;
+  
   final double? height;
   final double? width;
   final VoidCallback? onTapHends;
 
   const BodyOnTapsModel(
       {Key? key,
-      required this.photo,
-      required this.name,
+    
       this.onTapHead,
-      required this.descriptiion,
+      required this.bodyModel,
       this.onTapStomach,
       this.onTapHends,
       this.onTapChest,
@@ -32,10 +32,10 @@ class BodyOnTapsModel extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     return SizedBox(
       child: Hero(
-        tag: photo,
+        tag: bodyModel.image,
         child: Material(
           color: AppColors.transpatent,
           child: InkWell(
@@ -49,7 +49,7 @@ class BodyOnTapsModel extends StatelessWidget {
               children: [
                 SizedBox(
                   child: Image.asset(
-                    photo,
+                    bodyModel.image,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -137,7 +137,7 @@ class BodyOnTapsModel extends StatelessWidget {
                             height: height! / 10,
                           )),
                       Expanded(
-                          child: Container(
+                          child: SizedBox(
                         height: height! / 10,
                         child: InkWell(
                           splashColor: AppColors.transpatent,

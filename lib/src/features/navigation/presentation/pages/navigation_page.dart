@@ -609,7 +609,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('navigation build');
+
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

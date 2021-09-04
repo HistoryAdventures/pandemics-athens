@@ -43,6 +43,32 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    locale = AppLocalizations.of(context)!;
+
+    socratesList = [
+      SocratesInfoModel(
+          description: locale.theSicilianExpeditionText,
+          image: AssetsPath.endOfWar1,
+          name: locale.theSicilianExpedition,
+          imageText: locale.theSicilianExpeditionTextImage),
+      SocratesInfoModel(
+        name: locale.theWallsCrumble,
+        description: locale.theWallsCrumbleText,
+        imageText: locale.theWallsCrumbleTextImage,
+        image: AssetsPath.endOfWar2,
+      ),
+      SocratesInfoModel(
+        name: locale.theAfterlifeOfClassicalAthens,
+        description: locale.theAfterlifeOfClassicalAthensText,
+        imageText: locale.theAfterlifeOfClassicalAthensTextImage,
+        image: AssetsPath.endOfWar3,
+      ),
+    ];
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onHover: (e) {
@@ -127,31 +153,5 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
         );
       }),
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    locale = AppLocalizations.of(context)!;
-
-    socratesList = [
-      SocratesInfoModel(
-          description: locale.theSicilianExpeditionText,
-          image: AssetsPath.endOfWar1,
-          name: locale.theSicilianExpedition,
-          imageText: locale.theSicilianExpeditionTextImage),
-      SocratesInfoModel(
-        name: locale.theWallsCrumble,
-        description: locale.theWallsCrumbleText,
-        imageText: locale.theWallsCrumbleTextImage,
-        image: AssetsPath.endOfWar2,
-      ),
-      SocratesInfoModel(
-        name: locale.theAfterlifeOfClassicalAthens,
-        description: locale.theAfterlifeOfClassicalAthensText,
-        imageText: locale.theAfterlifeOfClassicalAthensTextImage,
-        image: AssetsPath.endOfWar3,
-      ),
-    ];
-    super.didChangeDependencies();
   }
 }
