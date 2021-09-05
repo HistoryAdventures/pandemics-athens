@@ -148,12 +148,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   }
 
   Widget _body() {
-    final edg = EdgeInsets.fromLTRB(
-      HW.getWidth(165, context),
-      HW.getHeight(335, context),
-      HW.getWidth(995, context),
-      HW.getHeight(335, context),
-    );
     return Stack(
       children: [
         Panorama(
@@ -209,9 +203,13 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
         Positioned(
           child: Container(
               color: AppColors.blackG.withOpacity(0.75),
-              width: HW.getWidth(760, context),
-              height: HW.getHeight(364, context),
-              margin: edg,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.06,
+                  top: MediaQuery.of(context).size.height * 0.25,
+                  bottom: MediaQuery.of(context).size.height * 0.3,
+                  right: MediaQuery.of(context).size.width * 0.5),
               child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: ListView(

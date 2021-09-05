@@ -108,22 +108,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   //     horizontal: constraints.maxWidth * 0.1),
                   width: constraints.maxWidth * 0.8,
                   height: constraints.maxHeight * 0.5,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     color: AppColors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0, 1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, 0),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                      BoxShadow(
-                          offset: Offset(1, -1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                    ],
+                    boxShadow: Shadows.universal,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
