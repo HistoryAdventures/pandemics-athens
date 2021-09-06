@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/navigation/presentation/models/chapter_tree.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../models/chapter_tree.dart';
 import 'drow_circle_line.dart';
 
 class ChapterNavigationTree extends StatefulWidget {

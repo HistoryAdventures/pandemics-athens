@@ -22,16 +22,17 @@ class ArrowLeftWidget extends StatelessWidget {
     return SizedBox(
       child: Row(
         children: [
-          Expanded(
+          Flexible(
             child: Clickable(
                 onPressed: onTap,
-                child: SizedBox(
+                child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     height: 30,
                     width: 30,
                     child: Image.asset(AssetsPath.arrowBackImage,
                         color: arrowColor ?? Colors.white))),
           ),
-          Expanded(
+          Flexible(
             flex: 3,
             child: AutoSizeText(
               textSubTitle.toUpperCase(),

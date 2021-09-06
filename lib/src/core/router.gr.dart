@@ -13,6 +13,7 @@ import '../features/about_book/presentation/pages/credits_page.dart' as _i24;
 import '../features/about_book/presentation/pages/further_reading_page.dart'
     as _i25;
 import '../features/about_book/presentation/pages/sources_page.dart' as _i27;
+import '../features/character/presentation/models/caracter_model.dart' as _i30;
 import '../features/character/presentation/pages/character_info_page.dart'
     as _i5;
 import '../features/character/presentation/pages/characters_page.dart' as _i4;
@@ -26,8 +27,10 @@ import '../features/irl_nikos/presentation/pages/irl_nikos_page.dart' as _i22;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
 import '../features/navigation/presentation/pages/navigation_page.dart' as _i28;
-import '../features/panarama_left/presentation/pages/panaroma_left_page.dart'
+import '../features/panaramas/presentation/pages/panaroma_left_page.dart'
     as _i11;
+import '../features/panaramas/presentation/pages/panaroma_right_page.dart'
+    as _i12;
 import '../features/pandemic_info/presentation/pages/body_info_page.dart'
     as _i17;
 import '../features/pandemic_info/presentation/pages/pathogen_profile_page.dart'
@@ -38,8 +41,6 @@ import '../features/pandemic_info/presentation/pages/virus_loc_second_page.dart'
     as _i29;
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
-import '../features/panorama_right/prezentation/pages/panaroma_right_page.dart'
-    as _i12;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
     as _i9;
 import '../features/practice_medicine/presentation/pages/keep_going_page.dart'
@@ -49,7 +50,6 @@ import '../features/practice_medicine/presentation/pages/practice_medicine_page.
 import '../features/practice_medicine/presentation/pages/quit_medicine_page.dart'
     as _i15;
 import '../features/quiz/presentation/pages/quiz_page.dart' as _i8;
-import 'widgets/widgets.dart' as _i30;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -361,8 +361,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i30.CharacterModel photoHero,
-      required List<_i30.CharacterModel> listCharacters})
+      {required _i30.CharacterModelNotifier photoHero,
+      required List<_i30.CharacterModelNotifier> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -375,9 +375,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i30.CharacterModel photoHero;
+  final _i30.CharacterModelNotifier photoHero;
 
-  final List<_i30.CharacterModel> listCharacters;
+  final List<_i30.CharacterModelNotifier> listCharacters;
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {

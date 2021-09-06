@@ -3,47 +3,52 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
+import '../models/caracter_model.dart';
 
 class CharacterInfoPage extends StatefulWidget {
-  final CharacterModel photoHero;
-  final List<CharacterModel> listCharacters;
-  const CharacterInfoPage(
-      {required this.photoHero, required this.listCharacters});
+  final CharacterModelNotifier photoHero;
+  final List<CharacterModelNotifier> listCharacters;
+  const CharacterInfoPage({
+    required this.photoHero,
+    required this.listCharacters,
+  });
 
   @override
   _CharacterInfoPageState createState() => _CharacterInfoPageState();
 }
 
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
-  late String _selectedItem;
-  late String _selectedImg;
-  late String _infoText;
   late AppLocalizations locale;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
+  late CharacterModelNotifier characterModelNotifierprovider;
+
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
+    characterModelNotifierprovider = CharacterModelNotifier(
+      bodyText: widget.photoHero.bodyText,
+      image: widget.photoHero.image,
+      name: widget.photoHero.name,
+    );
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
-    _selectedItem = widget.photoHero.name;
-    _selectedImg = widget.photoHero.photo;
-    _infoText = widget.photoHero.description;
     NavigationSharedPreferences.getNavigationListFromSF();
+
     super.initState();
   }
 
@@ -57,13 +62,14 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           return Stack(
             children: [
               Container(
-                  height: constraints.maxHeight,
-                  width: constraints.maxWidth,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image:
-                              AssetImage(AssetsPath.charactersBackgroundImage),
-                          fit: BoxFit.cover))),
+                height: constraints.maxHeight,
+                width: constraints.maxWidth,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(AssetsPath.charactersBackgroundImage),
+                      fit: BoxFit.cover),
+                ),
+              ),
               Align(
                 child: Container(
                   margin: EdgeInsets.only(
@@ -87,10 +93,12 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                               );
                             },
                             child: CharacterModel(
-                              key: ValueKey(_selectedImg),
-                              name: _selectedItem,
-                              photo: _selectedImg,
-                              description: _infoText,
+                              key:
+                                  ValueKey(characterModelNotifierprovider.name),
+                              name: characterModelNotifierprovider.name ?? "",
+                              photo: characterModelNotifierprovider.image ?? "",
+                              description:
+                                  characterModelNotifierprovider.bodyText ?? "",
                               onTap: () {
                                 if (kIsWeb) {
                                   html.window.history.back();
@@ -212,8 +220,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                                   child: RichText(
                                                       text: TextSpan(children: [
                                                     TextSpan(
-                                                      text: '$_selectedItem\n\n'
-                                                          .toUpperCase(),
+                                                      text:
+                                                          '${characterModelNotifierprovider.name}\n\n'
+                                                              .toUpperCase(),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .headline3
@@ -222,7 +231,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                                                   .black54),
                                                     ),
                                                     TextSpan(
-                                                      text: _infoText,
+                                                      text:
+                                                          characterModelNotifierprovider
+                                                              .bodyText,
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyText1,
@@ -244,8 +255,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                             .map((data) =>
                                                 charactersNameListWidget(
                                                     name: data.name,
-                                                    image: data.photo,
-                                                    text: data.description,
+                                                    image: data.image,
+                                                    text: data.bodyText,
                                                     selected: data.name))
                                             .toList())),
                               )
@@ -300,26 +311,20 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     );
   }
 
-  void chandeState(
-      String? selctedItem, String? image, String? textDescription) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = image!;
-      _infoText = textDescription!;
-    });
-  }
-
   Widget charactersNameListWidget(
       {String? name, String? selected, String? image, String? text}) {
     return Container(
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
-            chandeState(selected, image, text);
+            setState(() {
+              characterModelNotifierprovider.changeCaracterInfo(
+                  name: name, image: image, bodyText: text);
+            });
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
-              style: _selectedItem == selected
+              style: characterModelNotifierprovider.name == selected
                   ? Theme.of(context)
                       .textTheme
                       .bodyText1

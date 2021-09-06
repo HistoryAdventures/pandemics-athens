@@ -13,6 +13,8 @@ abstract class AppColors {
   /// Black 100% opacity
   static const Color black100 = Colors.black;
 
+  static const Color black06 = Color.fromRGBO(0, 0, 0, 0.6);
+
   /// Black 54% opacity
   static const Color black54 = Color(0x8A000000);
 
@@ -57,15 +59,18 @@ abstract class AppColors {
   static const LinearGradient linearGradient2 =
       LinearGradient(colors: [greyDeep, greyDeep]);
 
-  static const LinearGradient linearGradientForBackground =
-      LinearGradient(colors: [
-    Color.fromRGBO(255, 255, 255, 0.3),
-    Color.fromRGBO(255, 255, 255, 0.7),
-    Color.fromRGBO(255, 255, 255, 0.9),
-    Color.fromRGBO(255, 255, 255, 0.9),
-    Color.fromRGBO(255, 255, 255, 0.6),
-    Color.fromRGBO(255, 255, 255, 0.3)
-  ]);
+  static LinearGradient linearGradientForBackground = LinearGradient(
+    colors: [
+      const Color.fromRGBO(255, 255, 255, 0.3).withOpacity(0.3),
+      const Color.fromRGBO(255, 255, 255, 0.7).withOpacity(0.7),
+      const Color.fromRGBO(255, 255, 255, 0.9).withOpacity(0.9),
+      const Color.fromRGBO(255, 255, 255, 0.9).withOpacity(0.9),
+      const Color.fromRGBO(255, 255, 255, 0.6).withOpacity(0.6),
+      const Color.fromRGBO(255, 255, 255, 0.3).withOpacity(0.3),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 
   static const LinearGradient linearGradientForBackgroundDocument =
       LinearGradient(

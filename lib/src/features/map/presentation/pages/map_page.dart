@@ -3,16 +3,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
-import 'package:history_of_adventures/src/core/widgets/zoom_in_notes_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../../core/widgets/zoom_in_notes_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
@@ -25,12 +25,6 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  late String _selectedItem;
-  late String _selectedMap;
-  late String _selectedImage;
-  late String _selectedTitle;
-  late String _selectedBody;
-  late String _selectedImageText;
   final _scrollController = ScrollController();
   late AppLocalizations locals;
   late List<MapInfoModel> mapInfoList;
@@ -38,6 +32,8 @@ class _MapPageState extends State<MapPage> {
   bool isImageloaded = false;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+
+  late MapInfoModel mapInfoModel;
 
   List<String> contentImages = [
     AssetsPath.mapImage495,
@@ -76,6 +72,14 @@ class _MapPageState extends State<MapPage> {
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
+    mapInfoModel = MapInfoModel(
+      imageDescription: '',
+      image: '',
+      text: locals.y508bodyText,
+      title: locals.y508,
+      year: locals.y508,
+      mapImage: AssetsPath.map508,
+    );
     mapInfoList = [
       MapInfoModel(
         imageDescription: '',
@@ -237,7 +241,7 @@ class _MapPageState extends State<MapPage> {
         imageDescription: '',
         image: '',
         text: locals.y429bodyText,
-        title: locals.y429,
+        title: locals.y429bodyTextTitle,
         year: locals.y429,
         mapImage: AssetsPath.map429,
       ),
@@ -279,7 +283,7 @@ class _MapPageState extends State<MapPage> {
           mapImage: AssetsPath.map414),
       MapInfoModel(
           imageDescription: locals.y413imageText,
-          image: AssetsPath.mapImage413,
+          image: AssetsPath.mapImage421,
           text: locals.y413bodyText,
           title: locals.y413bodyTextTitle,
           year: locals.y413,
@@ -327,13 +331,6 @@ class _MapPageState extends State<MapPage> {
           year: locals.y399,
           mapImage: AssetsPath.map399),
     ];
-
-    _selectedItem = mapInfoList[0].year;
-    _selectedMap = mapInfoList[0].mapImage;
-    _selectedTitle = mapInfoList[0].title;
-    _selectedImage = mapInfoList[0].image;
-    _selectedBody = mapInfoList[0].text;
-    _selectedImageText = mapInfoList[0].imageDescription;
     super.didChangeDependencies();
   }
 
@@ -381,12 +378,13 @@ class _MapPageState extends State<MapPage> {
                 );
               },
               child: Container(
-                key: ValueKey(_selectedMap),
+                key: ValueKey(mapInfoModel.title),
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(_selectedMap), fit: BoxFit.cover),
+                      image: AssetImage(mapInfoModel.mapImage),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -394,29 +392,23 @@ class _MapPageState extends State<MapPage> {
                 alignment: Alignment.topLeft,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.8),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        color: AppColors.white.withOpacity(0.5),
-                        blurRadius: 10,
-                      ),
-                      // BoxShadow(
-                      //     offset: Offset(1, 0),
-                      //     color: AppColors.grey.withOpacity(0.5),
-                      //     blurRadius: 5),
-                      // BoxShadow(
-                      //     offset: Offset(1, -1),
-                      //     color: AppColors.grey.withOpacity(0.5),
-                      //     blurRadius: 5),
-                    ],
+                    gradient: AppColors.linearGradientForBackground,
+                    //boxShadow: Shadows.universal
+                    // BoxShadow(
+                    //     offset: Offset(1, 0),
+                    //     color: AppColors.grey.withOpacity(0.5),
+                    //     blurRadius: 5),
+                    // BoxShadow(
+                    //     offset: Offset(1, -1),
+                    //     color: AppColors.grey.withOpacity(0.5),
+                    //     blurRadius: 5),
                   ),
                   padding: const EdgeInsets.all(24),
                   margin: EdgeInsets.only(
                       left: 50, top: constraints.maxHeight * 0.18),
                   height: constraints.maxHeight * 0.5,
                   width: constraints.maxWidth * 0.5,
-                  child: _selectedImage != ''
+                  child: mapInfoModel.image != ''
                       ? Row(
                           children: [
                             Expanded(
@@ -431,10 +423,10 @@ class _MapPageState extends State<MapPage> {
                                     );
                                   },
                                   child: Container(
-                                    key: ValueKey(_selectedImage),
+                                    key: ValueKey(mapInfoModel.title),
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
-                                      image: AssetImage(_selectedImage),
+                                      image: AssetImage(mapInfoModel.image),
                                       fit: BoxFit.cover,
                                     )),
                                     child: Align(
@@ -459,9 +451,11 @@ class _MapPageState extends State<MapPage> {
                                                             animation:
                                                                 animation,
                                                             selectedImage:
-                                                                _selectedImage,
+                                                                mapInfoModel
+                                                                    .image,
                                                             selectedImageText:
-                                                                _selectedImageText,
+                                                                mapInfoModel
+                                                                    .imageDescription,
                                                             constraints:
                                                                 constraints,
                                                           ));
@@ -547,13 +541,13 @@ class _MapPageState extends State<MapPage> {
                                                       text: TextSpan(children: [
                                                     TextSpan(
                                                         text:
-                                                            "$_selectedTitle\n\n"
+                                                            "${mapInfoModel.title}\n\n"
                                                                 .toUpperCase(),
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .headline3),
                                                     TextSpan(
-                                                      text: _selectedBody,
+                                                      text: mapInfoModel.text,
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyText1,
@@ -627,12 +621,13 @@ class _MapPageState extends State<MapPage> {
                                       child: RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: "$_selectedTitle\n\n",
+                                            text: "${mapInfoModel.title}\n\n"
+                                                .toUpperCase(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline3),
                                         TextSpan(
-                                          text: _selectedBody,
+                                          text: mapInfoModel.text,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1,
@@ -651,8 +646,8 @@ class _MapPageState extends State<MapPage> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 height: 80,
-                decoration: const BoxDecoration(
-                  boxShadow: [
+                decoration: BoxDecoration(
+                  boxShadow: const [
                     BoxShadow(
                         offset: Offset(1, -1),
                         color: AppColors.grey,
@@ -721,7 +716,6 @@ class _MapPageState extends State<MapPage> {
                                           image: mapInfoList[index].image,
                                           text: mapInfoList[index].text,
                                           map: mapInfoList[index].mapImage,
-                                          selected: mapInfoList[index].year,
                                           title: mapInfoList[index].title,
                                           imageText: mapInfoList[index]
                                               .imageDescription);
@@ -786,21 +780,8 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  void chandeState(String? selctedItem, String? image, String? text,
-      String? title, String? imageText, String? map) {
-    setState(() {
-      _selectedMap = map!;
-      _selectedItem = selctedItem!;
-      _selectedImage = image!;
-      _selectedBody = text!;
-      _selectedTitle = title!;
-      _selectedImageText = imageText!;
-    });
-  }
-
   Widget yearsWidget(
       {String? year,
-      String? selected,
       String? image,
       String? imageText,
       String? text,
@@ -811,12 +792,20 @@ class _MapPageState extends State<MapPage> {
       margin: const EdgeInsets.only(left: 30),
       child: Clickable(
         onPressed: () {
-          chandeState(selected, image, text, title, imageText, map);
+        setState(() {
+            mapInfoModel.chandeState(
+            image: image,
+            text: text,
+            title: title,
+            imageDescription: imageText,
+            mapImage: map,
+          );
+        });
         },
         child: AutoSizeText(
           year!,
           textAlign: TextAlign.end,
-          style: _selectedItem == selected
+          style: mapInfoModel.title == title
               ? const TextStyle(
                   color: AppColors.orange,
                   fontSize: 36,

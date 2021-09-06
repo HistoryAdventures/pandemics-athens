@@ -3,16 +3,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
+import '../models/caracter_model.dart';
 
 class CharacrterPage extends StatefulWidget {
   const CharacrterPage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class CharacrterPage extends StatefulWidget {
 }
 
 class _CharacrterPageState extends State<CharacrterPage> {
+  late List<CharacterModelNotifier> list;
   late AppLocalizations locale;
 
   final backgroundplayer = AudioPlayer();
@@ -30,7 +32,35 @@ class _CharacrterPageState extends State<CharacrterPage> {
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
+    setList();
+
     super.didChangeDependencies();
+  }
+
+  void setList() {
+    list = [
+      CharacterModelNotifier(
+        bodyText: locale.periclesTextDescription,
+        image: AssetsPath.periclesImage,
+        name: locale.namePericles,
+      ),
+      CharacterModelNotifier(
+        image: AssetsPath.thucididesImage,
+        name: locale.thucididesName,
+        bodyText: locale.thucydidesTextDescription,
+      ),
+      CharacterModelNotifier(
+        image: AssetsPath.socratesImage,
+        name: locale.socratesAndPlatoName,
+        bodyText: locale.socratesAndPlatoTextDescription,
+      ),
+      CharacterModelNotifier(
+        image: AssetsPath.aristophanesImage,
+        name: locale.aristophanesAndSophocles,
+        bodyText: locale.aristophanesAndSophoclesTextDescription,
+      ),
+    ];
+    
   }
 
   @override
@@ -48,33 +78,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
   }
 
   Widget _body() {
-    final List<CharacterModel> listCharacters = [
-      CharacterModel(
-        photo: AssetsPath.periclesImage,
-        name: locale.namePericles,
-        description: locale.periclesTextDescription,
-      ),
-      CharacterModel(
-        photo: AssetsPath.thucididesImage,
-        name: locale.thucididesName,
-        description: locale.thucydidesTextDescription,
-      ),
-      CharacterModel(
-        photo: AssetsPath.socratesImage,
-        name: locale.socratesAndPlatoName,
-        description: locale.socratesAndPlatoTextDescription,
-      ),
-      CharacterModel(
-        photo: AssetsPath.aristophanesImage,
-        name: locale.aristophanesAndSophocles,
-        description: locale.aristophanesAndSophoclesTextDescription,
-      ),
-      // CharacterModel(
-      //   photo: AssetsPath.aristophanesImage,
-      //   name: locale.phidias,
-      //   description: locale.phidiasTextDescription,
-      // ),
-    ];
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         height: constraints.maxHeight,
@@ -142,15 +145,16 @@ class _CharacrterPageState extends State<CharacrterPage> {
                       bottom: 80, top: constraints.maxHeight * 0.2),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: listCharacters
+                      children: list
                           .map((photo) => CharacterModel(
-                                name: photo.name,
-                                photo: photo.photo,
-                                description: photo.description,
+                                name: photo.name!,
+                                photo: photo.image!,
+                                description: photo.bodyText!,
                                 onTap: () {
                                   context.router.push(CharacterInfoPageRoute(
-                                      photoHero: photo,
-                                      listCharacters: listCharacters));
+                                    listCharacters: list,
+                                    photoHero: photo,
+                                  ));
                                 },
                               ))
                           .toList()),
@@ -176,18 +180,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     }),
               ),
             ),
-            // Align(
-            //   alignment: Alignment.bottomRight,
-            //   child: Container(
-            //     padding: const EdgeInsets.only(bottom: 10, right: 24),
-            //     child: ArrowRightTextWidget(
-            //         textSubTitle: locale.quiz,
-            //         textTitle: locale.athens5thCentury,
-            //         onTap: () {
-            //           context.router.push(const QuizPageRoute());
-            //         }),
-            //   ),
-            // ),
           ],
         ),
       );
