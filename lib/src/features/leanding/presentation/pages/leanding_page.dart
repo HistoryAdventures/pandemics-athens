@@ -31,11 +31,9 @@ class _LeandingPageState extends State<LeandingPage>
 
   List<String> contentImages = [
     AssetsPath.gifVirus,
-    // AssetsPath.paralaxCharacterNikosGif,
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
   ];
-  // late List<ImageInfo> imageInfo;
 
   @override
   void didChangeDependencies() {
@@ -45,11 +43,6 @@ class _LeandingPageState extends State<LeandingPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
-
-    // imageInfo = await preloadImage(
-    //     provider: const AssetImage(AssetsPath.gifVirus),
-    //     frameCount: 180,
-    //     context: context);
     if (loadedAssets == true) {
       setState(() {
         isImageloaded = true;
@@ -59,13 +52,12 @@ class _LeandingPageState extends State<LeandingPage>
         isImageloaded = false;
       });
     }
-    NavigationSharedPreferences.clearSF();
+    // NavigationSharedPreferences.clearSF();
   }
 
   @override
   void initState() {
     init();
-
     super.initState();
   }
 
@@ -88,7 +80,6 @@ class _LeandingPageState extends State<LeandingPage>
                     constraints: constraints,
                     offset: offset,
                   ),
-                  //789371
                   Align(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
