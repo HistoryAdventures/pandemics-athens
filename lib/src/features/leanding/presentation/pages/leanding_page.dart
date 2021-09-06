@@ -52,12 +52,12 @@ class _LeandingPageState extends State<LeandingPage>
         isImageloaded = false;
       });
     }
-    // NavigationSharedPreferences.clearSF();
   }
 
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
