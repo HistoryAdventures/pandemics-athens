@@ -646,7 +646,7 @@
     "@y457": {
       "y457": "457"
     },
-    "y457bodyText": "Completion of the ‘Long Walls’, the defensive fortifications that connected Athens to the port of Piraeus. These fortifications had been an important catalyst in escalating tensions between Athens and Sparta.",
+    "y457bodyText": "The defensive fortifications that connected Athens to the port of Piraeus. These fortifications had been an important catalyst in escalating tensions between Athens and Sparta.",
     "@y457bodyText": {
       "y457bodyText": "457bodyText"
     },
@@ -663,7 +663,7 @@
     "@y454": {
       "y454": "454"
     },
-    "y454bodyText": "A fragment of the Athenian tribute list. Dating to 425-4 BC, it records the tribute afforded to Athens by members of the Delian League, which was in effect, an Athenian empire. Here, one can see the assessments of Paros, Naxos, Andros, Melos, Siphnos, Eretria, and Thera. The amounts owed by these poleis are particularly high at this time because it is in the height of the Peloponnesian War, and Athens was likewise still reeling from the effects of the plague.",
+    "y454bodyText": "The Athenians move the treasury of the Delian League from the island of Delos to Athens, a statement of empire.",
     "@y454bodyText": {
       "y454bodyText": "454bodyText"
     },
@@ -783,7 +783,7 @@
     "@y438": {
       "y438": "438"
     },
-    "y438bodyText": "A reconstruction of the Athena Parthenon statue of Phidias, designed by Alan LeQuire can be seen in a reproduction of the Athenian Parthenon that is found in Nashville, Tennessee. ",
+    "y438bodyText": "The colossal cult statue of Athena Parthenos is dedicated in the Parthenon of Athens.",
     "@y438bodyText": {
       "y438bodyText": "438bodyText"
     },
@@ -800,7 +800,7 @@
     "@y431": {
       "y431": "431"
     },
-    "y431bodyText": "Euripides produces Medea, a tragedy involving the princess Medea, scorned by Jason (leader of the Argonauts) and the terrible revenge she exacts.",
+    "y431bodyText": "Re-start of the Peloponnesian War between Athens and allies against Sparta and allies. The entire Greek world is involved.\n\n Euripides produces Medea, a tragedy involving the princess Medea, scorned by Jason (leader of the Argonauts) and the terrible revenge she exacts.",
     "@y431bodyText": {
       "y431bodyText": "431bodyText"
     },
@@ -919,7 +919,7 @@
     "@y413": {
       "y413": "413"
     },
-    "y413bodyText": "Athenian expedition to Sicily. It ends in disaster, with the loss of hundreds of ships and thousands of soldiers.",
+    "y413bodyText": "An enormously costly  Athenian attack on Syracuse in Sicily. It ends in disaster, with the loss of hundreds of ships and thousands of soldiers.",
     "@y413bodyText": {
       "y413bodyText": "413bodyText"
     },
@@ -927,7 +927,7 @@
     "@y413imageText": {
       "y413imageText": "413imageText"
     },
-    "y413bodyTextTitle": "413 ",
+    "y413bodyTextTitle": "413 sicilian expedition",
     "@y413bodyTextTitle": {
       "y413bodyTextTitle": "413bodyTextTitle"
     },
@@ -1093,9 +1093,13 @@
       "skinText": "skinText"
     },
 
-    "intrBodyText": "Whatever the pathogen was that devastated Athens in the 5th century BC, it was lethal, killing those who contracted the illness generally within a week. There are two evocative accounts of the symptoms of the symptoms. One is historical: the contemporary account of Thucydides, who himself contracted the disease but fortuitously survived. The second is a later poetic account, probably inspired in part by Thucydides: the poem, de rerum natura (“On the Nature of Things”), written by the Roman poet Lucretius in the 1st century BC. Both of these accounts present a horrific illness that attacked the body in stages, attacking the patient’s head first...\n\n“The disease worked its way right through the body from the top, beginning with the affliction which first settled in the head. If anyone survived the worst symptoms, the disease left its mark by catching his extremities. It attacked the private parts, and the fingers and toes, and many people survived but lost these, while others lost their eyes. Others, on first recovering, suffered a total loss of memory, and were unable to recognize themselves and their relatives.” (Thucydides, History of the Peloponnesian War)",
+    "intrBodyText": "Whatever the pathogen was that devastated Athens in the 5th century BC, it was lethal, killing those who contracted the illness generally within a week. There are two evocative accounts of the symptoms of the symptoms. One is historical: the contemporary account of Thucydides, who himself contracted the disease but fortuitously survived. The second is a later poetic account, probably inspired in part by Thucydides: the poem, de rerum natura (“On the Nature of Things”), written by the Roman poet Lucretius in the 1st century BC. Both of these accounts present a horrific illness that attacked the body in stages, attacking the patient’s head first...\n",
     "@intrBodyText": {
       "intrBodyText": "intrBodyText"
+    },
+    "intrBodyTextItalic": "“The disease worked its way right through the body from the top, beginning with the affliction which first settled in the head. If anyone survived the worst symptoms, the disease left its mark by catching his extremities. It attacked the private parts, and the fingers and toes, and many people survived but lost these, while others lost their eyes. Others, on first recovering, suffered a total loss of memory, and were unable to recognize themselves and their relatives.” (Thucydides, History of the Peloponnesian War)",
+    "@intrBodyTextItalic": {
+      "intrBodyTextItalic": "intrBodyTextItalic"
     },
     "stomachText": "If (and it was far from certain) a patient survived the onset of the stomachlesions and fever, then they were not yet safe. Thucydides describes how the disease continued to work its way lower through the body. Now, it reached the stomach and people suffered from violent diarrhoea. Already weakened, and now purged of vital fluids and minerals, death soon followed…",
     "@stomachText": {

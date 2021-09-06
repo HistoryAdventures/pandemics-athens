@@ -19,4 +19,18 @@ class InfoDialogModel {
       required this.description,
       required this.title,
       required this.width});
+
+  void chandeState({
+    String? title,
+    String? image,
+    String? description,
+    String? imageDescription,
+    String? subTitle,
+  }) {
+    this.title = title!;
+    this.image = image!;
+    this.description = description!;
+    this.imageDescription = imageDescription!;
+    this.subTitle = subTitle!;
+  }
 }

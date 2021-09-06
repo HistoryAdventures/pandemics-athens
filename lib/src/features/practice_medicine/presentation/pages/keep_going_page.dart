@@ -3,13 +3,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/widgets/arrow_text_left.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
@@ -91,7 +91,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
+                color: AppColors.black06,
                 margin: EdgeInsets.only(
                     top: constraints.maxHeight * 0.05,
                     left: constraints.maxWidth * 0.05),

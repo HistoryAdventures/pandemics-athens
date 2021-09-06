@@ -2,15 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_1.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
+import '../../../../core/widgets/animated_background/animated_particles_1.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -32,11 +31,9 @@ class _LeandingPageState extends State<LeandingPage>
 
   List<String> contentImages = [
     AssetsPath.gifVirus,
-    // AssetsPath.paralaxCharacterNikosGif,
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
   ];
-  // late List<ImageInfo> imageInfo;
 
   @override
   void didChangeDependencies() {
@@ -46,11 +43,6 @@ class _LeandingPageState extends State<LeandingPage>
 
   Future<void> init() async {
     final loadedAssets = await loadContent(contentImages);
-
-    // imageInfo = await preloadImage(
-    //     provider: const AssetImage(AssetsPath.gifVirus),
-    //     frameCount: 180,
-    //     context: context);
     if (loadedAssets == true) {
       setState(() {
         isImageloaded = true;
@@ -60,13 +52,12 @@ class _LeandingPageState extends State<LeandingPage>
         isImageloaded = false;
       });
     }
-    NavigationSharedPreferences.clearSF();
+    // NavigationSharedPreferences.clearSF();
   }
 
   @override
   void initState() {
     init();
-
     super.initState();
   }
 

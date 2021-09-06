@@ -1,5 +1,6 @@
-import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../features/navigation/presentation/models/leaf_detail_model.dart';
 
 class NavigationSharedPreferences {
   static const keyNavigationList = "navigationList";
@@ -42,14 +43,12 @@ class NavigationSharedPreferences {
     final navigationCurrentVertex =
         await NavigationSharedPreferences.getCurrentVertexSF();
 
-    print(navigationCurrentVertex);
 
     final List<int> navigationListInteger =
         navigationList!.map((e) => int.parse(e)).toList();
 
     LeafDetails.currentVertex = navigationCurrentVertex!;
     LeafDetails.visitedVertexes = navigationListInteger;
-    print('$navigationListInteger from sheradpreferens');
   }
 
   static Future<void> clearSF() async {

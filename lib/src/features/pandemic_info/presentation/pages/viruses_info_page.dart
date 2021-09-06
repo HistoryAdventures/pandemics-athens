@@ -3,21 +3,21 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/theme.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferenses.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/animated_particles_4.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/gif_background_widget.dart';
-
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
+import '../../../../core/theme.dart';
 import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/animated_background/animated_particles_4.dart';
+import '../../../../core/widgets/animated_background/gif_background_widget.dart';
 import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
+import '../models/virus_model.dart';
 
 class VirusesInfoPage extends StatefulWidget {
   const VirusesInfoPage({Key? key}) : super(key: key);
@@ -31,17 +31,14 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   /// Localizations object
   late AppLocalizations locals;
   late GifController controller;
-  late List<VirusModel> listCharacters;
+  late List<VirusModelWidget> listCharacters;
   String gifVirus = AssetsPath.gifVirus;
   String gifTyphus = AssetsPath.gifTyphus;
   String gifSmallpox = AssetsPath.gifSmallpox;
   String gifTyphoid = AssetsPath.gifTyphoid;
   String gifEbola = AssetsPath.gifEbola;
   String gifBubonic = AssetsPath.gifBubonic;
-
-  late String _selectedItem;
-  late String _selectedText;
-  late List<String> _selectedImg;
+  late VirusModel virusModel;
 
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
@@ -53,39 +50,55 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-    _selectedText = locals.introVirusText;
+    virusModel = VirusModel(
+      description: locals.introVirusText,
+      title: locals.introVirus,
+      widgets: [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola],
+    );
 
     listCharacters = [
-      VirusModel(
-        name: locals.introVirus,
-        widgets: [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola],
-        description: locals.introVirusText,
+      VirusModelWidget(
+        virusModel: VirusModel(
+          title: locals.introVirus,
+          widgets: [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola],
+          description: locals.introVirusText,
+        ),
       ),
-      VirusModel(
-        widgets: [gifBubonic],
-        name: locals.bubonicPlague,
-        description: locals.bubonicPlagueText,
+      VirusModelWidget(
+        virusModel: VirusModel(
+          widgets: [gifBubonic],
+          title: locals.bubonicPlague,
+          description: locals.bubonicPlagueText,
+        ),
       ),
-      VirusModel(
-        widgets: [gifTyphus],
-        name: locals.typhus,
-        description: locals.typhusText,
+      VirusModelWidget(
+        virusModel: VirusModel(
+          widgets: [gifTyphus],
+          title: locals.typhus,
+          description: locals.typhusText,
+        ),
       ),
-      VirusModel(
-        widgets: [gifTyphoid],
-        name: locals.typhiod,
-        description: locals.typhiodText,
+      VirusModelWidget(
+        virusModel: VirusModel(
+          widgets: [gifTyphoid],
+          title: locals.typhiod,
+          description: locals.typhiodText,
+        ),
       ),
-      VirusModel(
-        widgets: [gifSmallpox],
-        name: locals.smallpox,
-        description: locals.smallpoxText,
+      VirusModelWidget(
+        virusModel: VirusModel(
+          widgets: [gifSmallpox],
+          title: locals.smallpox,
+          description: locals.smallpoxText,
+        ),
       ),
-      VirusModel(
-        widgets: [gifEbola],
-        name: locals.ebola,
-        description: locals.ebolaText,
-      )
+      VirusModelWidget(
+        virusModel: VirusModel(
+          widgets: [gifEbola],
+          title: locals.ebola,
+          description: locals.ebolaText,
+        ),
+      ),
     ];
 
     super.didChangeDependencies();
@@ -95,8 +108,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   void initState() {
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
-    _selectedItem = 'intro';
-    _selectedImg = [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola];
+
     controller = GifController(vsync: this);
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -162,49 +174,57 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             child: child,
                           ),
                           child: Container(
-                            key: ValueKey(_selectedImg),
-                            child: VirusModel(
+                            key: ValueKey(virusModel.title),
+                            child: VirusModelWidget(
                               constraints: Size(
                                   constraints.maxWidth, constraints.maxHeight),
                               gifController: controller,
-                              description: _selectedText,
-                              name: _selectedItem,
-                              widgets: _selectedImg,
                               onTapBubonik: () {
-                                changeState(
-                                  locals.bubonicPlague,
-                                  [gifBubonic],
-                                  locals.bubonicPlagueText,
+                               setState(() {
+                                  virusModel.changeState(
+                                  title: locals.bubonicPlague,
+                                  widgets: [gifBubonic],
+                                  description: locals.bubonicPlagueText,
                                 );
+                               });
                               },
                               onTapEbola: () {
-                                changeState(
-                                  locals.ebola,
-                                  [gifEbola],
-                                  locals.ebolaText,
+                               setState(() {
+                                  virusModel.changeState(
+                                  title: locals.ebola,
+                                  widgets: [gifEbola],
+                                  description: locals.ebolaText,
                                 );
+                               });
                               },
                               onTapSmall: () {
-                                changeState(
-                                  locals.smallpox,
-                                  [gifSmallpox],
-                                  locals.smallpoxText,
+                               setState(() {
+                                  virusModel.changeState(
+                                  title: locals.smallpox,
+                                  widgets: [gifSmallpox],
+                                  description: locals.smallpoxText,
                                 );
+                               });
                               },
                               onTapTiphid: () {
-                                changeState(
-                                  locals.typhiod,
-                                  [gifTyphoid],
-                                  locals.typhiodText,
+                               setState(() {
+                                  virusModel.changeState(
+                                  title: locals.typhiod,
+                                  widgets: [gifTyphoid],
+                                  description: locals.typhiodText,
                                 );
+                               });
                               },
                               onTapTiphius: () {
-                                changeState(
-                                  locals.typhus,
-                                  [gifTyphus],
-                                  locals.typhusText,
+                                setState(() {
+                                  virusModel.changeState(
+                                  title: locals.typhus,
+                                  widgets: [gifTyphus],
+                                  description: locals.typhusText,
                                 );
+                                });
                               },
+                              virusModel: virusModel,
                             ),
                           ),
                         ),
@@ -291,7 +311,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                                     children: [
                                                       TextSpan(
                                                         text:
-                                                            '$_selectedItem\n\n'
+                                                            '${virusModel.title}\n\n'
                                                                 .toUpperCase(),
                                                         style: DefaultTheme
                                                             .standard
@@ -299,7 +319,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                                             .headline3,
                                                       ),
                                                       TextSpan(
-                                                        text: _selectedText,
+                                                        text: virusModel.description,
                                                         style: DefaultTheme
                                                             .standard
                                                             .textTheme
@@ -324,10 +344,12 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                         children: listCharacters
                                             .map((data) =>
                                                 virusesNameListWidget(
-                                                    image: data.widgets,
-                                                    name: data.name,
-                                                    text: data.description,
-                                                    selected: data.name))
+                                                  image:
+                                                      data.virusModel.widgets,
+                                                  name: data.virusModel.title,
+                                                  text: data
+                                                      .virusModel.description,
+                                                ))
                                             .toList())),
                               )
                             ],
@@ -384,27 +406,20 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     );
   }
 
-  void changeState(
-      String? selctedItem, List<String>? slectedImg, String? text) {
-    setState(() {
-      _selectedItem = selctedItem!;
-      _selectedImg = slectedImg!;
-      _selectedText = text!;
-      //  print(_selectedImg);
-    });
-  }
-
   Widget virusesNameListWidget(
-      {String? name, String? selected, List<String>? image, String? text}) {
+      {String? name, List<String>? image, String? text}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
-          changeState(selected, image, text);
+         setState(() {
+            virusModel.changeState(
+              description: text, title: name, widgets: image);
+         });
         },
         child: AutoSizeText(name!.toUpperCase(),
             maxLines: 1,
-            style: _selectedItem == selected
+            style: virusModel.title == name
                 ? Theme.of(context)
                     .textTheme
                     .bodyText1

@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/animated_viruses.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/animatied_virus_bodies.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_background/gif_background_widget.dart';
 
+import '../../utils/assets_path.dart';
+import '../../utils/styles.dart';
+import 'animated_viruses.dart';
+import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
+import 'gif_background_widget.dart';
 
 class AnimatedParticlesFirst extends StatefulWidget {
   final BoxConstraints constraints;

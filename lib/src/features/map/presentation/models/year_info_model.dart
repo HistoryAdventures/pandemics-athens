@@ -1,10 +1,10 @@
 class MapInfoModel {
-  final String image;
-  final String title;
-  final String text;
-  final String year;
-  final String mapImage;
-  final String imageDescription;
+  String image;
+  String title;
+  String text;
+  String year;
+  String mapImage;
+  String imageDescription;
 
   MapInfoModel(
       {required this.image,
@@ -13,4 +13,17 @@ class MapInfoModel {
       required this.mapImage,
       required this.imageDescription,
       required this.year});
+  void chandeState({
+    required String? image,
+    required String? text,
+    required String? title,
+    required String? imageDescription,
+    required String? mapImage,
+  }) {
+    this.mapImage = mapImage!;
+    this.title = title!;
+    this.image = image!;
+    this.imageDescription = imageDescription!;
+    this.text = text!;
+  }
 }

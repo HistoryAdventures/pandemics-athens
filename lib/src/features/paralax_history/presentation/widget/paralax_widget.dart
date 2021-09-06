@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/widgets/animated_widgets/gif_animation.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/animated_widgets/gif_animation.dart';
 
 class ParallaxWidget extends StatelessWidget {
   final double top;
@@ -14,6 +14,7 @@ class ParallaxWidget extends StatelessWidget {
   final double width;
   final double? right;
   final bool isImage;
+  final Color? color;
   final List<ImageInfo>? imageInfo;
   final GifAnimationController? gifController;
   final Animation<Offset>? animation;
@@ -25,6 +26,7 @@ class ParallaxWidget extends StatelessWidget {
       required this.width,
       required this.isImage,
       this.gifController,
+      this.color,
       this.imageInfo,
       this.opacity,
       this.right,
@@ -42,7 +44,7 @@ class ParallaxWidget extends StatelessWidget {
         opacity: opacity ?? 1,
         child: Container(
           width: width,
-          color: AppColors.transpatent,
+          color: color ?? AppColors.transpatent,
           child: isImage
               ? Image.asset(
                   asset,
