@@ -32,6 +32,11 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   late List<BodyOnTapsModel> listCharacters;
   late BodyModel bodyModel;
 
+  double objWave = 0;
+  int direction = 1;
+  double mouseX = 100;
+  double mouseY = 100;
+
   List<String> contentImages = [
     AssetsPath.manIntroImage,
     AssetsPath.manheadImage,
@@ -141,17 +146,26 @@ class _BodyInfoPageState extends State<BodyInfoPage>
 
   @override
   Widget build(BuildContext context) {
-    if (isImageloaded == false) {
-      return const LoadingWidget();
-    }
+    // if (isImageloaded == false) {
+    //   return LoadingWidget();
+    // }
 
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: MouseRegion(
         onHover: (e) {
-          setState(() {
-            offset = e.position;
-          });
+          if (objWave < 50 && direction == 1) {
+            objWave += .2;
+          } else if (objWave == 50 && direction == 1) {
+            direction = 0;
+          } else if (objWave > -50 && direction == 0) {
+            objWave -= .2;
+          } else if (objWave == -50 && direction == 0) {
+            direction = 1;
+          }
+          mouseX = (e.position.dx - width / 2) / 20;
+          mouseY = (e.position.dy - height / 2) / 20;
+          setState(() {});
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -159,7 +173,9 @@ class _BodyInfoPageState extends State<BodyInfoPage>
               children: [
                 AnimatedParticlesThird(
                   constraints: constraints,
-                  offset: offset,
+                  mouseX: mouseX,
+                  mouseY: mouseY,
+                  objWave: objWave,
                 ),
                 Align(
                   child: Container(

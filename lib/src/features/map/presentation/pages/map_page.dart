@@ -361,9 +361,9 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (isImageloaded == false) {
-      return const LoadingWidget();
-    }
+    // if (isImageloaded == false) {
+    //   return LoadingWidget();
+    // }
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
@@ -792,15 +792,15 @@ class _MapPageState extends State<MapPage> {
       margin: const EdgeInsets.only(left: 30),
       child: Clickable(
         onPressed: () {
-        setState(() {
+          setState(() {
             mapInfoModel.chandeState(
-            image: image,
-            text: text,
-            title: title,
-            imageDescription: imageText,
-            mapImage: map,
-          );
-        });
+              image: image,
+              text: text,
+              title: title,
+              imageDescription: imageText,
+              mapImage: map,
+            );
+          });
         },
         child: AutoSizeText(
           year!,

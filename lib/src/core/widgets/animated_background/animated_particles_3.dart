@@ -12,12 +12,16 @@ import 'gif_background_widget.dart';
 
 class AnimatedParticlesThird extends StatefulWidget {
   final BoxConstraints constraints;
-  final Offset offset;
+  final double mouseY;
+  final double mouseX;
+  final double objWave;
 
   const AnimatedParticlesThird({
     Key? key,
     required this.constraints,
-    required this.offset,
+    required this.mouseY,
+    required this.mouseX,
+    required this.objWave,
   }) : super(key: key);
 
   @override
@@ -62,60 +66,84 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
           asset: AssetsPath.gifBackground3,
         ),
         AnimatedVirusBodies(
-          right: -50,
-          bottom: widget.constraints.maxHeight * 0.2,
+          left: widget.constraints.maxWidth * 0.901,
+          top: widget.constraints.maxHeight * 0.685,
           path: AssetsPath.animatedBack3Vbody0,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.1),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.077,
+            widget.constraints.maxHeight * 0.137,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: -100,
-          right: -100,
+          left: widget.constraints.maxWidth * 0.65,
+          top: -widget.constraints.maxHeight * 0.092,
           alignment: Alignment.centerRight,
           path: AssetsPath.animatedBack3Vbody1,
-          size: Size(widget.constraints.maxWidth * 0.8,
-              widget.constraints.maxHeight * 0.85),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, -widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.397,
+            widget.constraints.maxHeight * 0.846,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / 4,
+            widget.mouseY / -4 + widget.objWave / -4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          left: widget.constraints.maxWidth * 0.15,
+          left: widget.constraints.maxWidth * 0.901,
+          top: widget.constraints.maxHeight * 0.09,
           path: AssetsPath.animatedBack3Vbody2,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.1),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.144,
+            widget.constraints.maxHeight * 0.269,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / 4,
+            widget.mouseY / -4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          right: widget.constraints.maxWidth * 0.2,
+          left: widget.constraints.maxWidth * 0.13,
+          top: widget.constraints.maxHeight * 0.101,
           path: AssetsPath.animatedBack3Vbody7,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.1),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.03,
+            widget.constraints.maxHeight * 0.05,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / -4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          left: -20,
+          left: widget.constraints.maxWidth * 0.62,
+          top: widget.constraints.maxHeight * 0.052,
           alignment: Alignment.topLeft,
           path: AssetsPath.animatedBack3Vbody8,
-          size: Size(widget.constraints.maxWidth * 0.3,
-              widget.constraints.maxHeight * 0.3),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.144,
+            widget.constraints.maxHeight * 0.361,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / -4 + widget.objWave / -4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: 0,
-          right: widget.constraints.maxHeight * 0.4,
+          left: widget.constraints.maxWidth * 0.133,
+          top: widget.constraints.maxHeight * 0.801,
           path: AssetsPath.animatedBack3Vbody10,
-          size: Size(widget.constraints.maxWidth * 0.3,
-              widget.constraints.maxHeight * 0.3),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.05,
+            widget.constraints.maxHeight * 0.09,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / -4,
+          ),
         ),
         AnimatesViruses(
           size: Size(width * 1.2, height * 1.2),
@@ -136,79 +164,84 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
           fit: BoxFit.cover,
         ),
         AnimatedVirusBodies(
-          right: -50,
-          bottom: widget.constraints.maxHeight * 0.2,
-          path: AssetsPath.animatedBack3Vbody0,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.1),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
-        ),
-        AnimatedVirusBodies(
-          top: -50,
-          right: -50,
-          alignment: Alignment.centerRight,
-          path: AssetsPath.animatedBack3Vbody1,
-          size: Size(widget.constraints.maxWidth * 0.85,
-              widget.constraints.maxHeight * 0.85),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, -widget.offset.dy * 0.01),
-        ),
-        AnimatedVirusBodies(
-          top: -50,
-          left: widget.constraints.maxWidth * 0.15,
+          left: widget.constraints.maxWidth * 0.085,
+          top: -widget.constraints.maxHeight * 0.09,
           path: AssetsPath.animatedBack3Vbody6,
-          size: Size(widget.constraints.maxWidth * 0.5,
-              widget.constraints.maxHeight * 0.5),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.48,
+            widget.constraints.maxHeight * 0.401,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / -4,
+            widget.mouseY / -4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: 0,
-          right: widget.constraints.maxHeight * 0.2,
+          left: widget.constraints.maxWidth * 0.52,
+          top: -widget.constraints.maxHeight * 0.09,
           path: AssetsPath.animatedBack3Vbody5,
-          size: Size(widget.constraints.maxWidth * 0.35,
-              widget.constraints.maxHeight * 0.35),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, -widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.25,
+            widget.constraints.maxHeight * 0.38,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: 0,
-          right: -30,
+          left: widget.constraints.maxWidth * 0.812,
+          top: -widget.constraints.maxHeight * 0.08,
           path: AssetsPath.animatedBack3Vbody3,
-          size: Size(widget.constraints.maxWidth * 0.25,
-              widget.constraints.maxHeight * 0.25),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.126,
+            widget.constraints.maxHeight * 0.22,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: widget.constraints.maxHeight * 0.3,
-          right: widget.constraints.maxHeight * 0.2,
+          left: widget.constraints.maxWidth * 0.68,
+          top: widget.constraints.maxHeight * 0.287,
           path: AssetsPath.animatedBack3Vbody4,
-          size: Size(widget.constraints.maxWidth * 0.2,
-              widget.constraints.maxHeight * 0.2),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.09,
+            widget.constraints.maxHeight * 0.16,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: widget.constraints.maxHeight * 0.15,
-          right: 0,
+          left: widget.constraints.maxWidth * 0.483,
+          top: widget.constraints.maxHeight * 0.787,
           path: AssetsPath.animatedBack3Vbody11,
           alignment: Alignment.centerRight,
-          size: Size(widget.constraints.maxWidth * 0.2,
-              widget.constraints.maxHeight * 0.2),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.176,
+            widget.constraints.maxHeight * 0.289,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: -50,
-          left: 0,
+          left: widget.constraints.maxWidth * 0.066,
+          top: widget.constraints.maxHeight * 0.85,
           path: AssetsPath.animatedBack3Vbody12,
           alignment: Alignment.bottomCenter,
-          size: Size(widget.constraints.maxWidth * 0.4,
-              widget.constraints.maxHeight * 0.4),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.05,
+            widget.constraints.maxHeight * 0.08,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / 4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
       ],
     );

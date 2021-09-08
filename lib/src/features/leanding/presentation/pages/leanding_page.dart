@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
+import 'dart:ui' as ui;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -28,12 +30,12 @@ class _LeandingPageState extends State<LeandingPage>
   final backgroundplayer = AudioPlayer();
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
+  String loadingCount = '0';
 
-  List<String> contentImages = [
-    AssetsPath.gifVirus,
-    AssetsPath.paralaxBackground,
-    AssetsPath.gifBackground1,
-  ];
+  double objWave = 0;
+  int direction = 1;
+  double mouseX = 100;
+  double mouseY = 100;
 
   @override
   void didChangeDependencies() {
@@ -42,8 +44,17 @@ class _LeandingPageState extends State<LeandingPage>
   }
 
   Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
+    ui.Image? image;
+    for (int i = 0; i < AssetsPath.contentImages.length; i++) {
+      image = await getBytesFromAsset(AssetsPath.contentImages[i]);
+      setState(() {
+        loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
+            .toStringAsFixed(0);
+      });
+      //  print(loadingCount);
+    }
+    //final loadedAssets = await loadContent(contentImages);
+    if (image != null) {
       setState(() {
         isImageloaded = true;
       });
@@ -57,6 +68,8 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void initState() {
     init();
+    LeafDetails.currentVertex = 0;
+    NavigationSharedPreferences.addCurrentVertexToSF(0);
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
@@ -64,7 +77,9 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   Widget build(BuildContext context) {
     if (isImageloaded == false) {
-      return const LoadingWidget();
+      return LoadingWidget(
+        loadingCound: loadingCount,
+      );
     }
     return Scaffold(
         endDrawer: const NavigationPage(),
@@ -72,13 +87,26 @@ class _LeandingPageState extends State<LeandingPage>
           builder: (context, constraints) {
             return MouseRegion(
               onHover: (e) => setState(() {
-                offset = e.position;
+                if (objWave < 50 && direction == 1) {
+                  objWave += .2;
+                } else if (objWave == 50 && direction == 1) {
+                  direction = 0;
+                } else if (objWave > -50 && direction == 0) {
+                  objWave -= .2;
+                } else if (objWave == -50 && direction == 0) {
+                  direction = 1;
+                }
+                mouseX = (e.position.dx - width / 2) / 20;
+                mouseY = (e.position.dy - height / 2) / 20;
+                setState(() {});
               }),
               child: Stack(
                 children: [
                   AnimatedParticlesFirst(
                     constraints: constraints,
-                    offset: offset,
+                    mouseX: mouseX,
+                    mouseY: mouseY,
+                    objWave: objWave,
                   ),
                   Align(
                     child: Container(

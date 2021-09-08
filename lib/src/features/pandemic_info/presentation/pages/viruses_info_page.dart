@@ -180,48 +180,48 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                   constraints.maxWidth, constraints.maxHeight),
                               gifController: controller,
                               onTapBubonik: () {
-                               setState(() {
+                                setState(() {
                                   virusModel.changeState(
-                                  title: locals.bubonicPlague,
-                                  widgets: [gifBubonic],
-                                  description: locals.bubonicPlagueText,
-                                );
-                               });
+                                    title: locals.bubonicPlague,
+                                    widgets: [gifBubonic],
+                                    description: locals.bubonicPlagueText,
+                                  );
+                                });
                               },
                               onTapEbola: () {
-                               setState(() {
+                                setState(() {
                                   virusModel.changeState(
-                                  title: locals.ebola,
-                                  widgets: [gifEbola],
-                                  description: locals.ebolaText,
-                                );
-                               });
+                                    title: locals.ebola,
+                                    widgets: [gifEbola],
+                                    description: locals.ebolaText,
+                                  );
+                                });
                               },
                               onTapSmall: () {
-                               setState(() {
+                                setState(() {
                                   virusModel.changeState(
-                                  title: locals.smallpox,
-                                  widgets: [gifSmallpox],
-                                  description: locals.smallpoxText,
-                                );
-                               });
+                                    title: locals.smallpox,
+                                    widgets: [gifSmallpox],
+                                    description: locals.smallpoxText,
+                                  );
+                                });
                               },
                               onTapTiphid: () {
-                               setState(() {
+                                setState(() {
                                   virusModel.changeState(
-                                  title: locals.typhiod,
-                                  widgets: [gifTyphoid],
-                                  description: locals.typhiodText,
-                                );
-                               });
+                                    title: locals.typhiod,
+                                    widgets: [gifTyphoid],
+                                    description: locals.typhiodText,
+                                  );
+                                });
                               },
                               onTapTiphius: () {
                                 setState(() {
                                   virusModel.changeState(
-                                  title: locals.typhus,
-                                  widgets: [gifTyphus],
-                                  description: locals.typhusText,
-                                );
+                                    title: locals.typhus,
+                                    widgets: [gifTyphus],
+                                    description: locals.typhusText,
+                                  );
                                 });
                               },
                               virusModel: virusModel,
@@ -319,7 +319,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                                             .headline3,
                                                       ),
                                                       TextSpan(
-                                                        text: virusModel.description,
+                                                        text: virusModel
+                                                            .description,
                                                         style: DefaultTheme
                                                             .standard
                                                             .textTheme
@@ -412,10 +413,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
-         setState(() {
+          setState(() {
             virusModel.changeState(
-              description: text, title: name, widgets: image);
-         });
+                description: text, title: name, widgets: image);
+          });
         },
         child: AutoSizeText(name!.toUpperCase(),
             maxLines: 1,

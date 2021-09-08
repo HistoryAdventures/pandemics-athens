@@ -148,9 +148,10 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldkey,
-        endDrawer: const NavigationPage(),
-        body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
+      body: _body(),
+    );
   }
 
   Widget _body() {

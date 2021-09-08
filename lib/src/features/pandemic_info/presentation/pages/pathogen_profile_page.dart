@@ -34,6 +34,11 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
 
+  double objWave = 0;
+  int direction = 1;
+  double mouseX = 100;
+  double mouseY = 100;
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -68,12 +73,27 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return MouseRegion(
-          onHover: (e) => setState(() => offset = e.position),
+          onHover: (e) => setState(() {
+            if (objWave < 50 && direction == 1) {
+              objWave += .2;
+            } else if (objWave == 50 && direction == 1) {
+              direction = 0;
+            } else if (objWave > -50 && direction == 0) {
+              objWave -= .2;
+            } else if (objWave == -50 && direction == 0) {
+              direction = 1;
+            }
+            mouseX = (e.position.dx - width / 2) / 20;
+            mouseY = (e.position.dy - height / 2) / 20;
+            setState(() {});
+          }),
           child: Stack(
             children: [
               AnimatedParticlesSecond(
                 constraints: constraints,
-                offset: offset,
+                mouseX: mouseX,
+                mouseY: mouseY,
+                objWave: objWave,
               ),
               Align(
                   alignment: Alignment.centerLeft,

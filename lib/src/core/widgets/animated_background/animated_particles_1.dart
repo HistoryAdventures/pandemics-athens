@@ -12,12 +12,16 @@ import 'gif_background_widget.dart';
 
 class AnimatedParticlesFirst extends StatefulWidget {
   final BoxConstraints constraints;
-  final Offset offset;
+  final double mouseY;
+  final double mouseX;
+  final double objWave;
 
   const AnimatedParticlesFirst({
     Key? key,
     required this.constraints,
-    required this.offset,
+    required this.mouseY,
+    required this.mouseX,
+    required this.objWave,
   }) : super(key: key);
 
   @override
@@ -28,11 +32,7 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
 
-  double objWave = 0;
-  int direction = 1;
-  double mouseX = 100;
-  double mouseY = 100;
-  int p1Counter = 0, p2Counter = 0, p3Counter = 0;
+  int p1Counter = 0, p2Counter = 0;
   bool reversed = false;
   double width = window.physicalSize.width / window.devicePixelRatio,
       height = window.physicalSize.height / window.devicePixelRatio;
@@ -65,8 +65,10 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
         AnimatesViruses(
           alignment: Alignment.centerLeft,
           size: Size(width * 2, height * 2),
-          targetOffset:
-              Offset(0.5 * p2Counter, 0.14 * p2Counter - (mouseY / 6)),
+          targetOffset: Offset(
+            0.5 * p2Counter,
+            0.14 * p2Counter - (widget.mouseY / 6),
+          ),
           path: IAppAssets().getAssetPaths(BackgroundPaths.backgroundPath1)[1],
           duration: 25000,
           opacity: 0.5,
@@ -74,7 +76,7 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
         ),
         AnimatesViruses(
           size: Size(width, height * 2),
-          targetOffset: Offset(0, 0.5 * p2Counter - (mouseY / 6)),
+          targetOffset: Offset(0, 0.5 * p2Counter - (widget.mouseY / 6)),
           path: IAppAssets().getAssetPaths(BackgroundPaths.backgroundPath1)[0],
           duration: 23000,
           opacity: 0.4,
@@ -82,94 +84,118 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
         ),
 
         AnimatedVirusBodies(
-          right: 0,
-          top: widget.constraints.maxHeight * 0.3,
+          left: 0.898 * widget.constraints.maxWidth,
+          top: 0.16 * widget.constraints.maxHeight,
           path: AssetsPath.animatedBack1Vbody0,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.25),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, -widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.144,
+            widget.constraints.maxHeight * 0.27,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: 0,
-          right: -150,
+          left: widget.constraints.maxWidth * 0.639,
+          top: -widget.constraints.maxHeight * 0.09,
           path: AssetsPath.animatedBack1Vbody1,
-          size: Size(widget.constraints.maxWidth * 0.4,
-              widget.constraints.maxHeight * 0.4),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, -widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.415,
+            widget.constraints.maxHeight * 0.435,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / 4,
+            widget.mouseY / -4 + widget.objWave / -4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: widget.constraints.maxHeight * 0.1,
-          right: widget.constraints.maxWidth * 0.3,
+          top: widget.constraints.maxHeight * 0.08,
+          left: widget.constraints.maxWidth * 0.55,
           path: AssetsPath.animatedBack1Vbody2,
-          size: Size(widget.constraints.maxWidth * 0.1,
-              widget.constraints.maxHeight * 0.1),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.063,
+            widget.constraints.maxHeight * 0.107,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / 4,
+            widget.mouseY / -4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          top: widget.constraints.maxHeight * 0.15,
-          right: widget.constraints.maxWidth * 0.3,
+          top: widget.constraints.maxHeight * 0.072,
+          left: widget.constraints.maxWidth * 0.389,
           path: AssetsPath.animatedBack1Vbody3,
-          size: Size(widget.constraints.maxWidth * 0.2,
-              widget.constraints.maxHeight * 0.2),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.204,
+            widget.constraints.maxHeight * 0.272,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          left: widget.constraints.maxHeight * 0.2,
+          top: widget.constraints.maxHeight * 0.656,
+          left: widget.constraints.maxHeight * 0.88,
           path: AssetsPath.animatedBack1Vbody5,
-          size: Size(widget.constraints.maxWidth * 0.35,
-              widget.constraints.maxHeight * 0.35),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.175,
+            widget.constraints.maxHeight * 0.288,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / 4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: 0,
-          left: 0,
+          top: widget.constraints.maxHeight * 0.61,
+          left: -widget.constraints.maxWidth * 0.05,
           path: AssetsPath.animatedBack1Vbody6,
-          size: Size(widget.constraints.maxWidth * 0.4,
-              widget.constraints.maxHeight * 0.4),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.29,
+            widget.constraints.maxHeight * 0.506,
+          ),
+          targetOffset: Offset(widget.mouseX / 4 + widget.objWave / 4,
+              widget.mouseY / -4 + widget.objWave / -4),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          right: widget.constraints.maxWidth * 0.9,
+          top: widget.constraints.maxHeight * 0.134,
+          left: widget.constraints.maxWidth * 0.82,
           path: AssetsPath.animatedBack1Vbody7,
-          size: Size(widget.constraints.maxWidth * 0.3,
-              widget.constraints.maxHeight * 0.3),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.055,
+            widget.constraints.maxHeight * 0.094,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / 4 + widget.objWave / -4,
+            widget.mouseY / 4 + widget.objWave / -4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: widget.constraints.maxHeight * 0.1,
-          left: widget.constraints.maxHeight * 0.25,
+          top: widget.constraints.maxHeight * 0.068,
+          left: widget.constraints.maxHeight * 0.0612,
           path: AssetsPath.animatedBack1Vbody4,
-          size: Size(widget.constraints.maxWidth * 0.08,
-              widget.constraints.maxHeight * 0.08),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+          size: Size(
+            widget.constraints.maxWidth * 0.205,
+            widget.constraints.maxHeight * 0.361,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / 4,
+            widget.mouseY / 4 + widget.objWave / 4,
+          ),
         ),
         AnimatedVirusBodies(
-          bottom: -50,
+          top: widget.constraints.maxHeight * 0.772,
           left: widget.constraints.maxWidth * 0.25,
           path: AssetsPath.animatedBack1Vbody8,
-          size: Size(widget.constraints.maxWidth * 0.3,
-              widget.constraints.maxHeight * 0.3),
-          targetOffset:
-              Offset(-widget.offset.dx * 0.01, widget.offset.dy * 0.01),
-        ),
-        Positioned(
-          top: widget.constraints.maxHeight * 0.25,
-          right: 0,
-          height: widget.constraints.maxHeight * 0.55,
-          width: widget.constraints.maxWidth * 0.55,
-          child: Transform.translate(
-            offset: Offset(widget.offset.dx * 0.02, widget.offset.dy * 0.01),
-            child: Image.asset(AssetsPath.gifVirus),
+          size: Size(
+            widget.constraints.maxWidth * 0.235,
+            widget.constraints.maxHeight * 0.381,
+          ),
+          targetOffset: Offset(
+            widget.mouseX / -4 + widget.objWave / -4,
+            widget.mouseY / -4 + widget.objWave / -4,
           ),
         ),
         Positioned(
@@ -178,10 +204,12 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
           height: widget.constraints.maxHeight * 0.55,
           width: widget.constraints.maxWidth * 0.55,
           child: Transform.translate(
-            offset: Offset(widget.offset.dx * 0.02, widget.offset.dy * 0.01),
+            offset: Offset(widget.mouseX / 4 + widget.objWave / 4,
+                widget.mouseY / -4 + widget.objWave / -4),
             child: Image.asset(AssetsPath.gifVirus),
           ),
-        )
+        ),
+
         // AnimatesViruses(
         //   size: Size(2 * width, 2 * height),
         //   targetOffset: Offset(0.25 * p3Counter, 0.1125 * p3Counter),
@@ -205,10 +233,10 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
         p2Counter = -width ~/ 2;
       }
 
-      if (p3Counter > -width && p3Counter != 0 || p3Counter == (width ~/ 4)) {
-        p3Counter--;
+      if (p1Counter > -width && p1Counter != 0 || p1Counter == (width ~/ 4)) {
+        p1Counter--;
       } else {
-        p3Counter = width ~/ 2;
+        p1Counter = width ~/ 2;
       }
 
       if (mounted) setState(() {});

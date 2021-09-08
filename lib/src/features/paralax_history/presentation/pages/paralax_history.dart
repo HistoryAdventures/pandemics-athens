@@ -27,7 +27,6 @@ class ParalaxHistoryPage extends StatefulWidget {
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
-
   double rateTopClouds = 0;
   late double rateFire;
   late double rateOne;
@@ -131,9 +130,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateCharacter_2 = height * 13.5;
     rateBottomClouds = height * 14;
 
-    _scrollParalaxText2
- 
- = height * 2.3;
+    _scrollParalaxText2 = height * 2.3;
     _scrollParalaxText1 = height * 1.7;
     _scrollParalaxText3 = height * 3.5;
     _scrollLearnMoreText = height * 3.8;
@@ -160,12 +157,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _bottomFieldOpasity = 0;
       }
 
-      if (_scrollController.offset > _scrollParalaxText2
-   
-   &&
-          _scrollController.offset < _scrollParalaxText2
-       
-       + 400) {
+      if (_scrollController.offset > _scrollParalaxText2 &&
+          _scrollController.offset < _scrollParalaxText2 + 400) {
         _paralaxText2Opacity = 1;
       } else {
         _paralaxText2Opacity = 0;
@@ -236,9 +229,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    if (isImageloaded == false) {
-      return const LoadingWidget();
-    }
+    // if (isImageloaded == false) {
+    //   return LoadingWidget();
+    // }
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),

@@ -71,9 +71,9 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
 
   @override
   Widget build(BuildContext context) {
-    if (isImageloaded == false) {
-      return const LoadingWidget();
-    }
+    // if (isImageloaded == false) {
+    //   return LoadingWidget();
+    // }
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {

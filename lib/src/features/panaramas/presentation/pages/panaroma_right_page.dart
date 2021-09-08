@@ -33,17 +33,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
 
-  bool isImageloaded = false;
-
-  List<String> contentImages = [
-    AssetsPath.panaramaBackgroundImageRight,
-    AssetsPath.panaramaImage1,
-    AssetsPath.panaramaImage2,
-    AssetsPath.panaramaImage3,
-    AssetsPath.panaramaImage4,
-    AssetsPath.panaramaImage5,
-  ];
-
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -109,17 +98,14 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   }
 
   Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
+    if (isSoundOn == true) {
       setState(() {
-        isImageloaded = true;
         isSoundOn = true;
         //backgroundplayer.play();
       });
     } else {
       setState(() {
         isSoundOn = false;
-        isImageloaded = false;
       });
     }
   }
@@ -142,156 +128,153 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldkey,
-        endDrawer: const NavigationPage(),
-        body: (isImageloaded || isSoundOn) ? _body() : const LoadingWidget());
-  }
-
-  Widget _body() {
-    return Stack(
-      children: [
-        Panorama(
-          hotspots: infoList.map((info) {
-            return Hotspot(
-              height: info.height,
-              width: info.width,
-              latitude: info.latitude,
-              longitude: info.longitude,
-              widget: hotspotButton(
-                  icon: const AnimatedPulse(
-                    pulseDuration: Duration(seconds: 3),
-                    child: SizedBox(
-                      height: 30,
-                      width: 30,
+      key: scaffoldkey,
+      endDrawer: const NavigationPage(),
+      body: Stack(
+        children: [
+          Panorama(
+            hotspots: infoList.map((info) {
+              return Hotspot(
+                height: info.height,
+                width: info.width,
+                latitude: info.latitude,
+                longitude: info.longitude,
+                widget: hotspotButton(
+                    icon: const AnimatedPulse(
+                      pulseDuration: Duration(seconds: 3),
+                      child: SizedBox(
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      // openInfoPlayer.play();
-                      //print("object");
-                    });
-                    showGeneralDialog(
-                        context: context,
-                        barrierColor: Colors.black.withOpacity(0.5),
-                        transitionBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation,
-                            Widget child) {
-                          return LayoutBuilder(
-                              builder: (context, constraints) => DialogWidget(
-                                    titleText: locals
-                                        .chapter1plaguePoliticalInstability,
-                                    subTitleText:
-                                        locals.plaguePoliticalInstability,
-                                    animation: animation,
-                                    slectedInfoDialog: info,
-                                    constraints: constraints,
-                                    listDialogInfo: infoList,
-                                  ));
-                        },
-                        transitionDuration: Times.fast,
-                        barrierDismissible: true,
-                        barrierLabel: '',
-                        pageBuilder: (context, animation1, animation2) {
-                          return Container();
-                        });
-                  }),
-            );
-          }).toList(),
-          child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
-        ),
-        Positioned(
-          child: Container(
-              color: AppColors.blackG.withOpacity(0.75),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.06,
-                  top: MediaQuery.of(context).size.height * 0.25,
-                  bottom: MediaQuery.of(context).size.height * 0.3,
-                  right: MediaQuery.of(context).size.width * 0.5),
-              child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: ListView(
-                    padding: const EdgeInsets.all(14),
-                    children: [
-                      Text(
-                        locals.panaromaRightInfoDialogText,
-                        strutStyle: const StrutStyle(
-                          fontSize: 16.0,
-                          height: 2,
-                        ),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            ?.copyWith(color: AppColors.white),
-                      )
-                    ],
-                  ))),
-        ),
-        SoundAndMenuWidget(
-          color: AppColors.black100,
-          icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-          onTapVolume: isSoundOn
-              ? () {
-                  setState(() {
-                    isSoundOn = !isSoundOn;
-                    //backgroundplayer.pause();
-                  });
-                }
-              : () {
-                  setState(() {
-                    isSoundOn = !isSoundOn;
-                    //backgroundplayer.play();
-                  });
-                },
-          onTapMenu: () {
-            scaffoldkey.currentState!.openEndDrawer();
-          },
-        ),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: ArrowLeftTextWidget(
-                color: AppColors.black100,
-                textSubTitle: locals.chapter1,
-                textTitle: locals.chapter1,
-                onTap: () {
-                  LeafDetails.currentVertex = 2;
-                  NavigationSharedPreferences.upDateShatedPreferences();
-
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
-                }),
+                    onPressed: () {
+                      setState(() {
+                        // openInfoPlayer.play();
+                        //print("object");
+                      });
+                      showGeneralDialog(
+                          context: context,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          transitionBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation,
+                              Widget child) {
+                            return LayoutBuilder(
+                                builder: (context, constraints) => DialogWidget(
+                                      titleText: locals
+                                          .chapter1plaguePoliticalInstability,
+                                      subTitleText:
+                                          locals.plaguePoliticalInstability,
+                                      animation: animation,
+                                      slectedInfoDialog: info,
+                                      constraints: constraints,
+                                      listDialogInfo: infoList,
+                                    ));
+                          },
+                          transitionDuration: Times.fast,
+                          barrierDismissible: true,
+                          barrierLabel: '',
+                          pageBuilder: (context, animation1, animation2) {
+                            return Container();
+                          });
+                    }),
+              );
+            }).toList(),
+            child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Clickable(
-              onPressed: () {
-                LeafDetails.currentVertex = 10;
-                LeafDetails.visitedVertexes.add(10);
-                NavigationSharedPreferences.upDateShatedPreferences();
-                context.router.push(const PathogenProfilePageRoute());
-              },
-              child: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: Image.asset(
-                    AssetsPath.arrowDounImage,
-                    color: AppColors.black100,
-                  )),
+          Positioned(
+            child: Container(
+                color: AppColors.blackG.withOpacity(0.75),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.06,
+                    top: MediaQuery.of(context).size.height * 0.25,
+                    bottom: MediaQuery.of(context).size.height * 0.3,
+                    right: MediaQuery.of(context).size.width * 0.5),
+                child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: ListView(
+                      padding: const EdgeInsets.all(14),
+                      children: [
+                        Text(
+                          locals.panaromaRightInfoDialogText,
+                          strutStyle: const StrutStyle(
+                            fontSize: 16.0,
+                            height: 2,
+                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.white),
+                        )
+                      ],
+                    ))),
+          ),
+          SoundAndMenuWidget(
+            color: AppColors.black100,
+            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            onTapVolume: isSoundOn
+                ? () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      //backgroundplayer.pause();
+                    });
+                  }
+                : () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      //backgroundplayer.play();
+                    });
+                  },
+            onTapMenu: () {
+              scaffoldkey.currentState!.openEndDrawer();
+            },
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: ArrowLeftTextWidget(
+                  color: AppColors.black100,
+                  textSubTitle: locals.chapter1,
+                  textTitle: locals.chapter1,
+                  onTap: () {
+                    LeafDetails.currentVertex = 2;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
             ),
           ),
-        )
-      ],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Clickable(
+                onPressed: () {
+                  LeafDetails.currentVertex = 10;
+                  LeafDetails.visitedVertexes.add(10);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const PathogenProfilePageRoute());
+                },
+                child: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: Image.asset(
+                      AssetsPath.arrowDounImage,
+                      color: AppColors.black100,
+                    )),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -30,6 +31,10 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
 
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  double objWave = 0;
+  int direction = 1;
+  double mouseX = 100;
+  double mouseY = 100;
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -67,9 +72,22 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: MouseRegion(
-        onHover: (event) {
+        onHover: (e) {
           setState(() {
-            offset = event.position;
+            if (objWave < 50 && direction == 1) {
+              objWave += .2;
+            } else if (objWave == 50 && direction == 1) {
+              direction = 0;
+            } else if (objWave > -50 && direction == 0) {
+              objWave -= .2;
+            } else if (objWave == -50 && direction == 0) {
+              direction = 1;
+            }
+            mouseX = (e.position.dx - width / 2) / 20;
+            mouseY = (e.position.dy - height / 2) / 20;
+            setState(() {
+              offset = e.position;
+            });
           });
         },
         child: LayoutBuilder(builder: (context, constraints) {
@@ -77,7 +95,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
             children: [
               AnimatedParticlesFive(
                 constraints: constraints,
-                offset: offset,
+                mouseX: mouseX,
+                mouseY: mouseY,
+                objWave: objWave,
               ),
               CardTextAndImageWidget(
                 constraints: constraints,
