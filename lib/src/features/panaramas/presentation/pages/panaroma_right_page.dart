@@ -237,7 +237,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
               padding: const EdgeInsets.all(24),
               child: ArrowLeftTextWidget(
                   color: AppColors.black100,
-                  textSubTitle: locals.chapter1,
+                  textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
                   onTap: () {
                     LeafDetails.currentVertex = 2;

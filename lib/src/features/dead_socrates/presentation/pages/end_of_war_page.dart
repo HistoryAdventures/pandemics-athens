@@ -34,6 +34,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   late List<SocratesInfoModel> socratesList;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  final skaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -69,27 +70,28 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onHover: (e) {
-        if (objWave < 50 && direction == 1) {
-          objWave += .2;
-        } else if (objWave == 50 && direction == 1) {
-          direction = 0;
-        } else if (objWave > -50 && direction == 0) {
-          objWave -= .2;
-        } else if (objWave == -50 && direction == 0) {
-          direction = 1;
-        }
-        mouseX = (e.position.dx - width / 2) / 20;
-        mouseY = (e.position.dy - height / 2) / 20;
-        setState(() {
-          offset = e.position;
-        });
-      },
-      child: LayoutBuilder(builder: (context, constraints) {
-        return Scaffold(
-          endDrawer: const NavigationPage(),
-          body: Stack(
+    return Scaffold(
+      key: skaffoldKey,
+      endDrawer: const NavigationPage(),
+      body: MouseRegion(
+        onHover: (e) {
+          if (objWave < 50 && direction == 1) {
+            objWave += .2;
+          } else if (objWave == 50 && direction == 1) {
+            direction = 0;
+          } else if (objWave > -50 && direction == 0) {
+            objWave -= .2;
+          } else if (objWave == -50 && direction == 0) {
+            direction = 1;
+          }
+          mouseX = (e.position.dx - width / 2) / 20;
+          mouseY = (e.position.dy - height / 2) / 20;
+          setState(() {
+            offset = e.position;
+          });
+        },
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Stack(
             children: [
               GifBackground(
                 size: Size(constraints.maxWidth, constraints.maxHeight),
@@ -134,23 +136,24 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     ? () {
                         setState(() {
                           isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
+                          //backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
                           isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
+                          //backgroundplayer.play();
                         });
                       },
                 onTapMenu: () {
-                  Scaffold.of(context).openEndDrawer();
+                  print("object");
+                  skaffoldKey.currentState?.openEndDrawer();
                 },
               ),
             ],
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 }

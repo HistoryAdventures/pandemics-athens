@@ -79,8 +79,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                         key: ValueKey(socratesInfoModel.name),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image:
-                                    AssetImage(socratesInfoModel.image!),
+                                image: AssetImage(socratesInfoModel.image!),
                                 fit: BoxFit.cover)),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -97,9 +96,11 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                           builder: (context, constraints) =>
                                               DialogImageWidget(
                                                 animation: animation,
-                                                selectedImage: socratesInfoModel.image!,
-                                                selectedImageText:socratesInfoModel
-                                                    .description!,
+                                                selectedImage:
+                                                    socratesInfoModel.image!,
+                                                selectedImageText:
+                                                    socratesInfoModel
+                                                        .description!,
                                                 constraints: constraints,
                                               ));
                                     },
@@ -136,62 +137,54 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Flexible(
-                                      flex: 1,
-                                      child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              flex: 3,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Flexible(
-                                                    child: AutoSizeText(
-                                                      "${widget.titleText}\n",
-                                                      maxLines: 2,
-                                                      minFontSize: 10,
+                                    flex: 1,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Flexible(
+                                                child: AutoSizeText(
+                                                  "${widget.titleText}\n",
+                                                  maxLines: 2,
+                                                  minFontSize: 10,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.copyWith(
+                                                          color: AppColors
+                                                              .black54),
+                                                ),
+                                              ),
+                                              Flexible(
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: widget.constraints
+                                                              .maxHeight *
+                                                          0.01),
+                                                  child: AutoSizeText(
+                                                      widget.subTitleText,
+                                                      minFontSize: 13,
+                                                      maxLines: 1,
                                                       style: Theme.of(context)
                                                           .textTheme
-                                                          .headline1
-                                                          ?.copyWith(
-                                                              color: AppColors
-                                                                  .black54),
-                                                    ),
-                                                  ),
-                                                  Flexible(
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: widget
-                                                                  .constraints
-                                                                  .maxHeight *
-                                                              0.01),
-                                                      child: AutoSizeText(
-                                                          widget.subTitleText,
-                                                          minFontSize: 13,
-                                                          maxLines: 1,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline2),
-                                                    ),
-                                                  ),
-                                                ],
+                                                          .headline2),
+                                                ),
                                               ),
-                                            ),
-                                            Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Icon(
-                                                        Icons.clear)))
-                                          ])),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Expanded(
                                     flex: 5,
                                     child: Container(
@@ -215,8 +208,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                                     .textTheme
                                                     .headline3),
                                             TextSpan(
-                                              text: socratesInfoModel
-                                                  .description,
+                                              text:
+                                                  socratesInfoModel.description,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1,

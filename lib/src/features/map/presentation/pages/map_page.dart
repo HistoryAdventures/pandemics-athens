@@ -645,7 +645,7 @@ class _MapPageState extends State<MapPage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                height: 80,
+                height: constraints.maxHeight * 0.137,
                 decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(

@@ -153,12 +153,15 @@ class _LeandingPageState extends State<LeandingPage>
                                         border: Border(
                                             left: BorderSide(
                                                 color: AppColors.red,
-                                                width: 8))),
-                                    child: AutoSizeText(
-                                      locales.globalPandemicsName,
-                                      maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.caption,
+                                                width: 10))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 5),
+                                      child: AutoSizeText(
+                                        locales.globalPandemicsName,
+                                        maxLines: 1,
+                                        style:
+                                            Theme.of(context).textTheme.caption,
+                                      ),
                                     ),
                                   ),
                                 )
