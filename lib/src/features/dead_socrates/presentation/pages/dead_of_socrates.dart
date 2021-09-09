@@ -28,8 +28,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
 
   Offset offset = const Offset(0, 0);
   late List<SocratesInfoModel> socratesList;
-  final skaffoldKey = GlobalKey<ScaffoldState>();
-
+  final scaffoldkey = GlobalKey<ScaffoldState>();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   double objWave = 0;
@@ -71,7 +70,6 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: skaffoldKey,
       endDrawer: const NavigationPage(),
       body: MouseRegion(
         onHover: (e) {
@@ -179,7 +177,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                         });
                       },
                 onTapMenu: () {
-                  skaffoldKey.currentState?.openEndDrawer();
+                  scaffoldkey.currentState!.openEndDrawer();
                 },
               ),
             ],
