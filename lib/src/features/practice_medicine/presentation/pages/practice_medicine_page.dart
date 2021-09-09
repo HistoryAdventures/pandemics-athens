@@ -64,7 +64,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
 
   @override
   void initState() {
-    init();
+    //init();
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }

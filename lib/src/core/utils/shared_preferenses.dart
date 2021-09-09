@@ -43,7 +43,6 @@ class NavigationSharedPreferences {
     final navigationCurrentVertex =
         await NavigationSharedPreferences.getCurrentVertexSF();
 
-
     final List<int> navigationListInteger =
         navigationList!.map((e) => int.parse(e)).toList();
 

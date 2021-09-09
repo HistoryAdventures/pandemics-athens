@@ -349,7 +349,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void initState() {
-    init();
+    // init();
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }

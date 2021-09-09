@@ -109,7 +109,13 @@ class _DocumentPageState extends State<DocumentPage>
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
-
+    NavigationSharedPreferences.getNavigationListFromSF();
+    documentModel = DocumentModel(
+      left: 0,
+      top: 0,
+      name: locale.documentIntro,
+      text: locale.documentIntroText,
+    );
     documentList = [
       DocumentModel(
         left: 0,
@@ -149,13 +155,7 @@ class _DocumentPageState extends State<DocumentPage>
   @override
   void initState() {
     super.initState();
-    NavigationSharedPreferences.getNavigationListFromSF();
-    documentModel = DocumentModel(
-      left: 0,
-      top: 0,
-      name: locale.documentIntro,
-      text: locale.documentIntroText,
-    );
+
     _controllerReset = AnimationController(
       vsync: this,
       duration: Times.fastest,
@@ -372,8 +372,9 @@ class _DocumentPageState extends State<DocumentPage>
                                                 child: RichText(
                                                     text: TextSpan(children: [
                                                   TextSpan(
-                                                    text: '${documentModel.name}\n\n'
-                                                        .toUpperCase(),
+                                                    text:
+                                                        '${documentModel.name}\n\n'
+                                                            .toUpperCase(),
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline3,
@@ -445,12 +446,12 @@ class _DocumentPageState extends State<DocumentPage>
     );
   }
 
-  Widget documentInfoListWidgets(
-      {String? name,
-      String? selected,
-      String? image,
-      String? text,
-     }) {
+  Widget documentInfoListWidgets({
+    String? name,
+    String? selected,
+    String? image,
+    String? text,
+  }) {
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.only(right: 30),

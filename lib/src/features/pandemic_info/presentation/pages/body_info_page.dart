@@ -136,7 +136,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
 
   @override
   void initState() {
-    init();
+    // init();
     NavigationSharedPreferences.getNavigationListFromSF();
 
     controller = AnimationController(duration: Times.slower, vsync: this);
