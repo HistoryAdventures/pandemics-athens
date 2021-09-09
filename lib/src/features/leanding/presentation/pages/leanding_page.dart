@@ -76,140 +76,147 @@ class _LeandingPageState extends State<LeandingPage>
 
   @override
   Widget build(BuildContext context) {
-    if (isImageloaded == false) {
-      return LoadingWidget(
-        loadingCound: loadingCount,
-      );
-    }
-    return Scaffold(
-        endDrawer: const NavigationPage(),
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            return MouseRegion(
-              onHover: (e) => setState(() {
-                if (objWave < 50 && direction == 1) {
-                  objWave += .2;
-                } else if (objWave == 50 && direction == 1) {
-                  direction = 0;
-                } else if (objWave > -50 && direction == 0) {
-                  objWave -= .2;
-                } else if (objWave == -50 && direction == 0) {
-                  direction = 1;
-                }
-                mouseX = (e.position.dx - width / 2) / 20;
-                mouseY = (e.position.dy - height / 2) / 20;
-                setState(() {});
-              }),
-              child: Stack(
-                children: [
-                  AnimatedParticlesFirst(
-                    constraints: constraints,
-                    mouseX: mouseX,
-                    mouseY: mouseY,
-                    objWave: objWave,
-                  ),
-                  Align(
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
-                          0, constraints.maxWidth * 0.1, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                    child: AutoSizeText(
-                                        locales.spencerStrikerName
-                                            .toUpperCase(),
-                                        maxLines: 1,
-                                        style: DefaultTheme
-                                            .standard.textTheme.headline1
-                                            ?.copyWith(fontSize: 24))),
-                                Flexible(
-                                  child: AutoSizeText(
-                                    locales.historyAdventures.toUpperCase(),
-                                    maxLines: 1,
-                                    style: Theme.of(context).textTheme.overline,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: AutoSizeText(
-                                    locales.worldOfCharacters.toUpperCase(),
-                                    maxLines: 1,
-                                    maxFontSize: 100,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .overline
-                                        ?.copyWith(fontSize: 100),
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color: AppColors.red,
-                                                width: 10))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(bottom: 5),
+    return Stack(
+      children: [
+        Scaffold(
+          endDrawer: const NavigationPage(),
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              return MouseRegion(
+                onHover: (e) => setState(() {
+                  if (objWave < 50 && direction == 1) {
+                    objWave += .2;
+                  } else if (objWave == 50 && direction == 1) {
+                    direction = 0;
+                  } else if (objWave > -50 && direction == 0) {
+                    objWave -= .2;
+                  } else if (objWave == -50 && direction == 0) {
+                    direction = 1;
+                  }
+                  mouseX = (e.position.dx - width / 2) / 20;
+                  mouseY = (e.position.dy - height / 2) / 20;
+                  setState(() {});
+                }),
+                child: Stack(
+                  children: [
+                    AnimatedParticlesFirst(
+                      constraints: constraints,
+                      mouseX: mouseX,
+                      mouseY: mouseY,
+                      objWave: objWave,
+                    ),
+                    Align(
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
+                            0, constraints.maxWidth * 0.1, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Flexible(
                                       child: AutoSizeText(
-                                        locales.globalPandemicsName,
-                                        maxLines: 1,
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
+                                          locales.spencerStrikerName
+                                              .toUpperCase(),
+                                          maxLines: 1,
+                                          style: DefaultTheme
+                                              .standard.textTheme.headline1
+                                              ?.copyWith(fontSize: 24))),
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      locales.historyAdventures.toUpperCase(),
+                                      maxLines: 1,
+                                      style:
+                                          Theme.of(context).textTheme.overline,
                                     ),
                                   ),
-                                )
-                              ],
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      locales.worldOfCharacters.toUpperCase(),
+                                      maxLines: 1,
+                                      maxFontSize: 100,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .overline
+                                          ?.copyWith(fontSize: 100),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppColors.red,
+                                                  width: 10))),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 5),
+                                        child: AutoSizeText(
+                                          locales.globalPandemicsName,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .caption,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: IconButton(
-                      color: AppColors.blackB,
-                      iconSize: 40,
-                      icon: const Icon(Icons.south),
-                      onPressed: () async {
-                        LeafDetails.visitedVertexes.add(1);
-                        LeafDetails.currentVertex = 1;
-                        // print(LeafDetails.visitedVertexes);
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const GlossaryPageRoute());
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: IconButton(
+                        color: AppColors.blackB,
+                        iconSize: 40,
+                        icon: const Icon(Icons.south),
+                        onPressed: () async {
+                          LeafDetails.visitedVertexes.add(1);
+                          LeafDetails.currentVertex = 1;
+                          // print(LeafDetails.visitedVertexes);
+                          NavigationSharedPreferences.upDateShatedPreferences();
+                          context.router.push(const GlossaryPageRoute());
+                        },
+                      ),
+                    ),
+                    SoundAndMenuWidget(
+                      icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      onTapVolume: isSoundOn
+                          ? () {
+                              setState(() {
+                                isSoundOn = !isSoundOn;
+                                backgroundplayer.pause();
+                              });
+                            }
+                          : () {
+                              setState(() {
+                                isSoundOn = !isSoundOn;
+                                backgroundplayer.play();
+                              });
+                            },
+                      onTapMenu: () {
+                        Scaffold.of(context).openEndDrawer();
                       },
                     ),
-                  ),
-                  SoundAndMenuWidget(
-                    icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                    onTapVolume: isSoundOn
-                        ? () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.pause();
-                            });
-                          }
-                        : () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.play();
-                            });
-                          },
-                    onTapMenu: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
-        ));
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        if (isImageloaded == false)
+          LoadingWidget(
+            loadingCound: loadingCount,
+          ),
+      ],
+    );
   }
 }

@@ -250,7 +250,9 @@ class _DocumentPageState extends State<DocumentPage>
                             left: data.left,
                             child: Clickable(
                               onPressed: () {
-                                data.chandeState(data.name, data.text);
+                                setState(() {
+                                  data.chandeState(data.name, data.text);
+                                });
                               },
                               child: PointWidget(
                                 color: documentModel.name == data.name
@@ -457,7 +459,9 @@ class _DocumentPageState extends State<DocumentPage>
         padding: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
-            documentModel.chandeState(selected, text);
+            setState(() {
+              documentModel.chandeState(selected, text);
+            });
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
