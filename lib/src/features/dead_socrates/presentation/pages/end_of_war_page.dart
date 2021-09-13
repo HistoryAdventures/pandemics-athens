@@ -146,7 +146,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                         });
                       },
                 onTapMenu: () {
-                  print("object");
                   skaffoldKey.currentState?.openEndDrawer();
                 },
               ),

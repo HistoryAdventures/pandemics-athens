@@ -23,15 +23,18 @@ class ArrowLeftTextWidget extends StatelessWidget {
       children: [
         Flexible(
           child: Clickable(
-              onPressed: onTap,
-              child: Container(
-                  margin: const EdgeInsets.only(right: 24),
-                  height: 30,
-                  width: 30,
-                  child: Image.asset(
-                    AssetsPath.arrowBackImage,
-                    color: color ?? Colors.black,
-                  ))),
+            onPressed: onTap,
+            child: Container(
+              margin: const EdgeInsets.only(right: 24),
+              height: 40,
+              width: 40,
+              child: Icon(
+                Icons.arrow_back,
+                color: color ?? Colors.black,
+                size: 40,
+              ),
+            ),
+          ),
         ),
         Flexible(
           child: Column(
@@ -54,10 +57,10 @@ class ArrowLeftTextWidget extends StatelessWidget {
                   textSubTitle.toUpperCase(),
                   textAlign: TextAlign.left,
                   maxLines: 1,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      ?.copyWith(fontSize: 26, color: color ?? Colors.black),
+                  style: Theme.of(context).textTheme.headline2?.copyWith(
+                        fontSize: 26,
+                        color: color ?? Colors.black,
+                      ),
                 ),
               )
             ],

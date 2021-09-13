@@ -251,7 +251,8 @@ class _DocumentPageState extends State<DocumentPage>
                             child: Clickable(
                               onPressed: () {
                                 setState(() {
-                                  data.chandeState(data.name, data.text);
+                                  documentModel.chandeState(
+                                      data.name, data.text);
                                 });
                               },
                               child: PointWidget(

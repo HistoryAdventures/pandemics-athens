@@ -24,13 +24,18 @@ class ArrowLeftWidget extends StatelessWidget {
         children: [
           Flexible(
             child: Clickable(
-                onPressed: onTap,
-                child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    height: 30,
-                    width: 30,
-                    child: Image.asset(AssetsPath.arrowBackImage,
-                        color: arrowColor ?? Colors.white))),
+              onPressed: onTap,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                height: 40,
+                width: 40,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: arrowColor ?? Colors.white,
+                  size: 40,
+                ),
+              ),
+            ),
           ),
           Flexible(
             flex: 3,

@@ -583,8 +583,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               textColor: AppColors.white,
                               onTap: () {
                                 ////????????
-                                LeafDetails.currentVertex = 9;
-                                LeafDetails.visitedVertexes.add(9);
+                                LeafDetails.currentVertex = 4;
+                                LeafDetails.visitedVertexes.add(4);
+
+                                // LeafDetails.currentVertex = 9;
+                                // LeafDetails.visitedVertexes.add(9);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
                                 context.router.push(const MapPageRoute());

@@ -12,7 +12,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/arrow_right.dart';
-import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';

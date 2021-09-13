@@ -53,13 +53,18 @@ class ArrowRightTextWidget extends StatelessWidget {
         ),
         Flexible(
           child: Clickable(
-              onPressed: onTap,
-              child: Container(
-                  margin: const EdgeInsets.only(left: 24),
-                  height: 30,
-                  width: 30,
-                  child: Image.asset(AssetsPath.arrowForwardImage,
-                      color: color ?? Colors.black))),
+            onPressed: onTap,
+            child: Container(
+              margin: const EdgeInsets.only(left: 24),
+              height: 40,
+              width: 40,
+              child: Icon(
+                Icons.arrow_forward,
+                color: color ?? Colors.black,
+                size: 40,
+              ),
+            ),
+          ),
         ),
       ],
     );
