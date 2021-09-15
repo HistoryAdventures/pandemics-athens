@@ -6,7 +6,8 @@ import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/animated_widgets/gif_animation.dart';
 
 class ParallaxWidget extends StatelessWidget {
-  final double top;
+  final double? top;
+  final double? bottom;
   final double? left;
   final String? paralaxText;
   final String asset;
@@ -20,13 +21,14 @@ class ParallaxWidget extends StatelessWidget {
   final Animation<Offset>? animation;
   final double? opacity;
   const ParallaxWidget(
-      {required this.top,
+      {this.top,
       required this.asset,
       required this.boxFit,
       required this.width,
       required this.isImage,
       this.gifController,
       this.color,
+      this.bottom,
       this.imageInfo,
       this.opacity,
       this.right,
@@ -39,6 +41,7 @@ class ParallaxWidget extends StatelessWidget {
       top: top,
       left: left ?? 0,
       right: right,
+      bottom: bottom,
       child: AnimatedOpacity(
         duration: Times.medium,
         opacity: opacity ?? 1,

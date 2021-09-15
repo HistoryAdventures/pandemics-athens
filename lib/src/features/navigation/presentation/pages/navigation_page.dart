@@ -117,7 +117,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 0;
           // print("object");
 
-          context.router.replace(const LeandingPageRoute());
+          context.router
+              .replace(LeandingPageRoute(navigateFromNavigatorPage: true));
         },
         pointOffset: const Offset(140, 0),
         lineStartOffset: const Offset(12, 12),

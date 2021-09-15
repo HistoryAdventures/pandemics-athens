@@ -18,7 +18,8 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class LeandingPage extends StatefulWidget {
-  const LeandingPage({Key? key}) : super(key: key);
+  bool? navigateFromNavigatorPage = false;
+  LeandingPage({this.navigateFromNavigatorPage});
 
   @override
   _LeandingPageState createState() => _LeandingPageState();
@@ -52,9 +53,7 @@ class _LeandingPageState extends State<LeandingPage>
         loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
             .toStringAsFixed(0);
       });
-      //  print(loadingCount);
     }
-    //final loadedAssets = await loadContent(contentImages);
     if (image != null) {
       setState(() {
         isImageloaded = true;
@@ -68,11 +67,14 @@ class _LeandingPageState extends State<LeandingPage>
 
   @override
   void initState() {
-    init();
+    if (widget.navigateFromNavigatorPage != null) {
+      isImageloaded = widget.navigateFromNavigatorPage!;
+    } else {
+      init();
+    }
     NavigationSharedPreferences.getNavigationListFromSF();
     LeafDetails.currentVertex = 0;
     NavigationSharedPreferences.addCurrentVertexToSF(0);
-
     super.initState();
   }
 

@@ -59,11 +59,12 @@ class FlutterRouter extends _i1.RootStackRouter {
   final Map<String, _i1.PageFactory> pagesMap = {
     LeandingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i3.LeandingPage();
+        builder: (data) {
+          final args = data.argsAs<LeandingPageRouteArgs>(
+              orElse: () => const LeandingPageRouteArgs());
+          return _i3.LeandingPage(
+              navigateFromNavigatorPage: args.navigateFromNavigatorPage);
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideTop,
-        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     CharacrterPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -346,10 +347,20 @@ class FlutterRouter extends _i1.RootStackRouter {
       ];
 }
 
-class LeandingPageRoute extends _i1.PageRouteInfo {
-  const LeandingPageRoute() : super(name, path: '/');
+class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
+  LeandingPageRoute({bool? navigateFromNavigatorPage})
+      : super(name,
+            path: '/',
+            args: LeandingPageRouteArgs(
+                navigateFromNavigatorPage: navigateFromNavigatorPage));
 
   static const String name = 'LeandingPageRoute';
+}
+
+class LeandingPageRouteArgs {
+  const LeandingPageRouteArgs({this.navigateFromNavigatorPage});
+
+  final bool? navigateFromNavigatorPage;
 }
 
 class CharacrterPageRoute extends _i1.PageRouteInfo {
