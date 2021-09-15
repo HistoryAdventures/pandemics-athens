@@ -69,9 +69,10 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void initState() {
     init();
+    NavigationSharedPreferences.getNavigationListFromSF();
     LeafDetails.currentVertex = 0;
     NavigationSharedPreferences.addCurrentVertexToSF(0);
-    NavigationSharedPreferences.getNavigationListFromSF();
+
     super.initState();
   }
 

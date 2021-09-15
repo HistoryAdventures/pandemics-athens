@@ -42,12 +42,12 @@ class NavigationSharedPreferences {
         await NavigationSharedPreferences.getListSF();
     final navigationCurrentVertex =
         await NavigationSharedPreferences.getCurrentVertexSF();
-
-    final List<int> navigationListInteger =
-        navigationList!.map((e) => int.parse(e)).toList();
-
-    LeafDetails.currentVertex = navigationCurrentVertex!;
-    LeafDetails.visitedVertexes = navigationListInteger;
+    if (navigationList != null) {
+      final List<int> navigationListInteger =
+          navigationList.map((e) => int.parse(e)).toList();
+      LeafDetails.currentVertex = navigationCurrentVertex!;
+      LeafDetails.visitedVertexes = navigationListInteger;
+    }
   }
 
   static Future<void> clearSF() async {
