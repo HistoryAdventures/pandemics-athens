@@ -6,8 +6,7 @@ import 'widgets.dart';
 
 class VirusModelWidget extends StatelessWidget {
   const VirusModelWidget(
-      {
-      this.onTap,
+      {this.onTap,
       this.constraints,
       this.gifController,
       this.onTapEbola,
@@ -15,13 +14,11 @@ class VirusModelWidget extends StatelessWidget {
       this.onTapBubonik,
       this.onTapTiphid,
       this.onTapTiphius,
-      required this.virusModel
-     });
- 
+      required this.virusModel});
 
   final VoidCallback? onTap;
   final GifController? gifController;
- final VirusModel virusModel;
+  final VirusModel virusModel;
   final Size? constraints;
   final VoidCallback? onTapBubonik;
   final VoidCallback? onTapEbola;
@@ -51,7 +48,7 @@ class VirusModelWidget extends StatelessWidget {
                             top: constraints!.height * 0.15,
                             left: constraints!.width * 0.05,
                             child: Clickable(
-                                onPressed: onTapBubonik!,
+                                onPressed: onTapBubonik,
                                 child: SizedBox(
                                   height: constraints!.height * 0.1,
                                   width: constraints!.width * 0.1,
@@ -76,7 +73,7 @@ class VirusModelWidget extends StatelessWidget {
                             top: constraints!.height * 0.12,
                             left: constraints!.width * 0.05,
                             child: Clickable(
-                                onPressed: onTapTiphius!,
+                                onPressed: onTapTiphius,
                                 child: SizedBox(
                                   height: constraints!.height * 0.08,
                                   width: constraints!.width * 0.1,
@@ -95,13 +92,13 @@ class VirusModelWidget extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                           virusModel. widgets[2],
+                            virusModel.widgets[2],
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
                             left: constraints!.width * 0.05,
                             child: Clickable(
-                                onPressed: onTapTiphid!,
+                                onPressed: onTapTiphid,
                                 child: SizedBox(
                                   height: constraints!.height * 0.1,
                                   width: constraints!.width * 0.1,
@@ -120,12 +117,12 @@ class VirusModelWidget extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(
-                           virusModel. widgets[3],
+                            virusModel.widgets[3],
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
                             child: Clickable(
-                                onPressed: onTapSmall!,
+                                onPressed: onTapSmall,
                                 child: SizedBox(
                                   height: constraints!.height * 0.1,
                                   width: constraints!.width * 0.1,
@@ -151,7 +148,7 @@ class VirusModelWidget extends StatelessWidget {
                             top: constraints!.height * 0.18,
                             left: constraints!.width * 0.05,
                             child: Clickable(
-                                onPressed: onTapEbola!,
+                                onPressed: onTapEbola,
                                 child: SizedBox(
                                   height: constraints!.height * 0.1,
                                   width: constraints!.width * 0.1,

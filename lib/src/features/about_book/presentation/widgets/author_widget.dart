@@ -13,7 +13,7 @@ class AuthorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 128, bottom: 31),
+      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 31),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,7 +51,7 @@ class AuthorWidget extends StatelessWidget {
                 ),
                 child: AutoSizeText(
                   people,
-                  maxLines: 2,
+                  maxLines: 1,
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1

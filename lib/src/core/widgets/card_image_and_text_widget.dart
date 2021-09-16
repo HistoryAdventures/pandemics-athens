@@ -79,7 +79,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                         key: ValueKey(socratesInfoModel.name),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(socratesInfoModel.image!),
+                                image: AssetImage(socratesInfoModel.image),
                                 fit: BoxFit.cover)),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -97,10 +97,10 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                               DialogImageWidget(
                                                 animation: animation,
                                                 selectedImage:
-                                                    socratesInfoModel.image!,
+                                                    socratesInfoModel.image,
                                                 selectedImageText:
                                                     socratesInfoModel
-                                                        .description!,
+                                                        .description,
                                                 constraints: constraints,
                                               ));
                                     },
@@ -145,7 +145,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
-                                          flex: 3,
+                                          flex: 2,
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
@@ -198,23 +198,28 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 16, right: 38, bottom: 16),
-                                          child: RichText(
-                                              text: TextSpan(children: [
-                                            TextSpan(
-                                                text:
-                                                    '${socratesInfoModel.name}\n\n'
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 16),
+                                                child: AutoSizeText(
+                                                    socratesInfoModel.name
                                                         .toUpperCase(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline3),
+                                              ),
+                                              AutoSizeText(
+                                                socratesInfoModel.description,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline3),
-                                            TextSpan(
-                                              text:
-                                                  socratesInfoModel.description,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ])),
+                                                    .bodyText1,
+                                              ),
+                                            ],
+                                          ),
                                         )
                                       ]),
                                     ),
@@ -249,12 +254,12 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
   }
 
   Widget buttomItemsList(
-      {String? name,
-      String? selected,
-      String? image,
-      String? text,
-      String? subTitle,
-      String? imageText}) {
+      {required String name,
+      required String selected,
+      required String image,
+      required String text,
+      required String subTitle,
+      required String imageText}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -267,7 +272,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                 imageText: imageText);
           });
         },
-        child: AutoSizeText(name!.toUpperCase(),
+        child: AutoSizeText(name.toUpperCase(),
             maxLines: 1,
             style: socratesInfoModel.name == selected
                 ? Theme.of(context)

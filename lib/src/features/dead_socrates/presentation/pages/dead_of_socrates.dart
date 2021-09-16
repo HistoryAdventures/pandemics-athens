@@ -70,6 +70,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
       endDrawer: const NavigationPage(),
       body: MouseRegion(
         onHover: (e) {

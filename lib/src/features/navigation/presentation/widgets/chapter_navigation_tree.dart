@@ -44,10 +44,12 @@ class _ChapterNavigationTreeState extends State<ChapterNavigationTree> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Clickable(
+              isAbleToPress:
+                  widget.isAbleToNavigate || widget.details.vertex.visited,
               onPressed:
                   widget.isAbleToNavigate || widget.details.vertex.visited
                       ? widget.onTap
-                      : () {},
+                      : null,
               child: SizedBox(
                 child: CustomPaint(
                   painter: DrowCircleAndLine(

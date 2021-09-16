@@ -93,10 +93,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(
             children: [
-              GifBackground(
-                size: Size(constraints.maxWidth, constraints.maxHeight),
-                asset: AssetsPath.gifBackground6,
-              ),
               AnimatedParticlesSixth(
                 constraints: constraints,
                 mouseY: mouseY,

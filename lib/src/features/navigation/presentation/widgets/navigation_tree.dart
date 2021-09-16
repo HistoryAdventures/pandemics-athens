@@ -52,9 +52,11 @@ class _NavigationTreeState extends State<NavigationTree> {
           left: widget.details.pointOffset.dx,
           top: widget.details.pointOffset.dy,
           child: Clickable(
+            isAbleToPress:
+                widget.isAbleToNavigate || widget.details.vertex.visited,
             onPressed: widget.isAbleToNavigate || widget.details.vertex.visited
                 ? widget.onTap
-                : () {},
+                : null,
             child: Align(
               alignment: Alignment.center,
               child: CustomPaint(

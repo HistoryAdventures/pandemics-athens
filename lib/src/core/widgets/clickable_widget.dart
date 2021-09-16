@@ -10,6 +10,7 @@ class Clickable extends StatelessWidget {
       {Key? key,
       required this.child,
       required this.onPressed,
+      this.isAbleToPress = true,
       this.opaque = true})
       : super(key: key);
 
@@ -17,7 +18,7 @@ class Clickable extends StatelessWidget {
   final Widget child;
 
   /// Callback that notifies when the widget has been clicked or tapped
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// If `true` Opaque targets can be hit by hit tests, causing them to both receive
   /// events within their bounds and prevent targets visually behind them
@@ -27,10 +28,13 @@ class Clickable extends StatelessWidget {
   /// is hit by the hit test.
   final bool opaque;
 
+  final bool isAbleToPress;
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
+      cursor:
+          isAbleToPress ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
         behavior:
             opaque ? HitTestBehavior.opaque : HitTestBehavior.deferToChild,

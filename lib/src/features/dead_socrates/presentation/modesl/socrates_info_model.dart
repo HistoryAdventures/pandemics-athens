@@ -1,8 +1,8 @@
 class SocratesInfoModel {
-  String? name;
-  String? image;
-  String? imageText;
-  String? description;
+  String name;
+  String image;
+  String imageText;
+  String description;
 
   SocratesInfoModel(
       {required this.name,
@@ -11,7 +11,10 @@ class SocratesInfoModel {
       required this.imageText});
 
   void changeCaracterInfo(
-      {String? name, String? image, String? description, String? imageText}) {
+      {required String name,
+      required String image,
+      required String description,
+      required String imageText}) {
     this.name = name;
     this.image = image;
     this.description = description;
