@@ -294,26 +294,29 @@ class AssetsPath {
 
   static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
   static const String paralaxFireLottie = 'assets/paralax_new/fire/fire.json';
+  static const String paralaxCrowdLottie =
+      'assets/paralax_new/crowd/crowd.json';
+  static const String paralaxTube2Lottie =
+      'assets/paralax_new/tube2/tube2.json';
+  static const String paralaxYoungManLottie =
+      'assets/paralax_new/young_man/young_man.json';
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
-  static const String paralaxCharacter_1 = 'assets/paralax_new/character_1.png';
-  static const String gifCharacterNikos_2 =
-      'assets/paralax_new/character_2.gif';
+  static const String paralaxCharacter_1 = 'assets/paralax_new/walker.png';
+
   static const String gifHand = 'assets/paralax_new/hand.gif';
 
-  static const String paralaxCharacter_11 =
-      'assets/paralax_new/character_11.png';
-  static const String paralaxCharacter_12 =
-      'assets/paralax_new/character_12.png';
-  static const String paralaxCharacters_2 =
-      'assets/paralax_new/characters_2.png';
-  static const String paralaxCharacterNikosGif =
+  static const String paralaxCharacterNikosLottie =
       'assets/paralax_new/character_nikos/character_nikos_lottie.json';
   static const String paralaxCloud = 'assets/paralax_new/cloud.png';
   static const String paralaxCrows = 'assets/paralax_new/crows.png';
   static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
-  static const String paralaxLeftCrowd = 'assets/paralax_new/left_crowd.png';
-
+  static const String paralaxFightersRightLottie =
+      'assets/paralax_new/fighters_right/fighters_right.json';
+  static const String paralaxFightersLeftLottie =
+      'assets/paralax_new/fighters_left/fighters_left.json';
+  static const String paralaxFightersLeft =
+      'assets/paralax_new/fighters_left.png';
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';
@@ -524,16 +527,11 @@ class AssetsPath {
     AssetsPath.gifBackground5,
     AssetsPath.gifBackground6,
     AssetsPath.paralaxCharacter_1,
-    AssetsPath.gifCharacterNikos_2,
     AssetsPath.gifHand,
-    AssetsPath.paralaxCharacter_11,
-    AssetsPath.paralaxCharacter_12,
-    AssetsPath.paralaxCharacters_2,
     AssetsPath.paralaxCloud,
     AssetsPath.paralaxCrows,
     AssetsPath.paralaxDeadBodies,
     AssetsPath.paralaxClouds,
-    AssetsPath.paralaxLeftCrowd,
     AssetsPath.gifVirusTyphoid,
     AssetsPath.gifSmallpox,
     AssetsPath.gifTyphus,

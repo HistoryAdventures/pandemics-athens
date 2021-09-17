@@ -39,7 +39,7 @@ class ParallaxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: top,
-      left: left ?? 0,
+      left: left,
       right: right,
       bottom: bottom,
       child: AnimatedOpacity(

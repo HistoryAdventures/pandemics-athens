@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -52,10 +53,24 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   AnimationController? _animationControllerForCharacterNikos;
   Animation<double>? animationForCharacterNikos;
+
+  AnimationController? _animationControllerForProgressLeftFighters;
+  Animation<double>? animationForProgressLeftFighters;
+
   AnimationController? _animationControllerForClouds;
   Animation<double>? animationForClouds;
+
+  AnimationController? _animationControllerForProgressRightFighters;
+  Animation<double>? animationForProgressRightFighters;
+
+  AnimationController? _animationControllerForWalker;
+  Animation<double>? animationForWalker;
+
   double _progressCaracterNikos = -200;
+  double _progressLeftFighters = -200;
+  double _progressRightFighters = -200;
   double _progressTopClouds = -200;
+  double _progressWeightWalker = 0;
   double _topTextOpasyty = 1;
 
   double _bottomFieldOpasity = 0;
@@ -80,8 +95,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     AssetsPath.paralaxBackground,
     AssetsPath.paralaxBuilding,
     AssetsPath.paralaxCharacter_1,
-    AssetsPath.paralaxCharacter_11,
-    AssetsPath.paralaxCharacters_2,
   ];
 
   @override
@@ -116,7 +129,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             }
           });
     _animationControllerForClouds?.forward();
-    rateOne = width * 0;
+    rateOne = 0;
     rateBuilding = height * 2;
     rateFire = height * 1.5;
     rateCharactersNikosGif = height * 3;
@@ -125,7 +138,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     rateCharacters_2 = height * 6.6;
     rateCharacter_12 = height * 6.5;
     rateCharacter_11 = height * 9;
-    rateCharacter_1 = height * 9.3;
+    rateCharacter_1 = height * 9.5;
     rateHand = height * 11;
     rateCharacter_2 = height * 13.5;
     rateBottomClouds = height * 14;
@@ -189,6 +202,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       } else {
         _paralaxText5Opacity = 0;
       }
+
       if (_scrollController.offset > _scrollParalaxText1 &&
           _scrollController.offset < _scrollParalaxText1 + 200) {
         _paralaxText1Opacity = 1;
@@ -215,6 +229,63 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       } else {
         _animationControllerForCharacterNikos?.stop();
       }
+      if (_scrollController.offset > _scrollParalaxText2 + 400) {
+        if (_animationControllerForProgressLeftFighters == null &&
+            _animationControllerForProgressRightFighters == null) {
+          _animationControllerForProgressLeftFighters = AnimationController(
+              vsync: this, duration: const Duration(seconds: 3));
+          animationForProgressLeftFighters = Tween<double>(begin: -200, end: 0)
+              .animate(_animationControllerForProgressLeftFighters!)
+                ..addListener(() {
+                  if (mounted) {
+                    setState(() {
+                      _progressLeftFighters =
+                          animationForProgressLeftFighters!.value;
+                    });
+                  }
+                });
+
+          _animationControllerForProgressLeftFighters?.forward();
+
+          _animationControllerForProgressRightFighters = AnimationController(
+              vsync: this, duration: const Duration(seconds: 3));
+          animationForProgressRightFighters = Tween<double>(begin: -200, end: 0)
+              .animate(_animationControllerForProgressRightFighters!)
+                ..addListener(() {
+                  if (mounted) {
+                    setState(() {
+                      _progressRightFighters =
+                          animationForProgressRightFighters!.value;
+                    });
+                  }
+                });
+
+          _animationControllerForProgressRightFighters?.forward();
+        }
+      } else {
+        _animationControllerForProgressLeftFighters?.stop();
+        _animationControllerForProgressRightFighters?.stop();
+      }
+
+      if (_scrollController.offset > _scrollParalaxText4 + 200) {
+        if (_animationControllerForWalker == null) {
+          _animationControllerForWalker = AnimationController(
+              vsync: this, duration: const Duration(seconds: 5));
+          animationForWalker = Tween<double>(begin: 0, end: width * 0.17)
+              .animate(_animationControllerForWalker!)
+                ..addListener(() {
+                  if (mounted) {
+                    setState(() {
+                      _progressWeightWalker = animationForWalker!.value;
+                    });
+                  }
+                });
+
+          _animationControllerForWalker?.forward();
+        }
+      } else {
+        _animationControllerForWalker?.stop();
+      }
     });
 
     super.initState();
@@ -232,6 +303,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     // if (isImageloaded == false) {
     //   return LoadingWidget();
     // }
+
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
@@ -241,7 +313,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             onNotification: (v) {
               if (v is ScrollUpdateNotification) {
                 setState(() {
-                  rateOne += v.scrollDelta! * 0.19;
+                  rateOne = _scrollController.offset * 0.06;
                   rateCharacter_2 -= v.scrollDelta! / 2;
                   rateBottomClouds -= v.scrollDelta! / 2;
                   rateHand -= v.scrollDelta! / 2;
@@ -296,7 +368,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               boxFit: BoxFit.contain,
                               top: rateCharactersNikosGif,
                               left: _progressCaracterNikos,
-                              asset: AssetsPath.paralaxCharacterNikosGif,
+                              asset: AssetsPath.paralaxCharacterNikosLottie,
                             ),
                             ParallaxWidget(
                               isImage: false,
@@ -309,38 +381,47 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               asset: AssetsPath.paralaxFireLottie,
                             ),
                             ParallaxWidget(
-                                isImage: true,
-                                width: MediaQuery.of(context).size.width,
-                                boxFit: BoxFit.contain,
-                                top: rateLeftCrowd,
-                                asset: AssetsPath.paralaxLeftCrowd),
-                            ParallaxWidget(
-                                isImage: true,
-                                width: MediaQuery.of(context).size.width,
-                                boxFit: BoxFit.cover,
-                                top: rateCharacters_2,
-                                asset: AssetsPath.paralaxCharacters_2),
-                            ParallaxWidget(
-                              isImage: true,
-                              width: MediaQuery.of(context).size.width / 3,
-                              top: rateCharacter_12,
-                              left: constraints.maxWidth * 0.13,
-                              asset: AssetsPath.paralaxCharacter_12,
+                              isImage: false,
+                              width: MediaQuery.of(context).size.width,
                               boxFit: BoxFit.contain,
+                              top: rateLeftCrowd,
+                              right: _progressRightFighters,
+                              asset: AssetsPath.paralaxFightersRightLottie,
                             ),
                             ParallaxWidget(
                               isImage: true,
+                              width: MediaQuery.of(context).size.width,
+                              boxFit: BoxFit.contain,
+                              left: _progressLeftFighters,
+                              top: rateLeftCrowd,
+                              asset: AssetsPath.paralaxFightersLeft,
+                            ),
+                            ParallaxWidget(
+                              isImage: false,
+                              width: MediaQuery.of(context).size.width,
+                              boxFit: BoxFit.contain,
+                              top: rateLeftCrowd,
+                              asset: AssetsPath.paralaxFightersLeftLottie,
+                            ),
+                            ParallaxWidget(
+                                isImage: false,
+                                width: MediaQuery.of(context).size.width,
+                                boxFit: BoxFit.cover,
+                                top: rateCharacters_2,
+                                asset: AssetsPath.paralaxCrowdLottie),
+                            ParallaxWidget(
+                              isImage: false,
                               width: MediaQuery.of(context).size.width / 3,
                               top: rateCharacter_11,
                               left: MediaQuery.of(context).size.width / 2,
-                              asset: AssetsPath.paralaxCharacter_11,
+                              asset: AssetsPath.paralaxYoungManLottie,
                               boxFit: BoxFit.cover,
                             ),
                             ParallaxWidget(
                                 isImage: true,
-                                width: rateOne.clamp(0, 2000),
+                                width: _progressWeightWalker,
                                 top: rateCharacter_1,
-                                left: -constraints.maxWidth * 0.05,
+                                left: constraints.maxWidth * 0.2,
                                 asset: AssetsPath.paralaxCharacter_1,
                                 boxFit: BoxFit.contain),
                             ParallaxWidget(
@@ -353,12 +434,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 asset: AssetsPath.gifHand,
                                 boxFit: BoxFit.contain),
                             ParallaxWidget(
-                                isImage: true,
+                                isImage: false,
                                 width: constraints.maxWidth,
                                 bottom: 0,
                                 left: constraints.maxWidth * 0.1,
                                 right: constraints.maxWidth * 0.1,
-                                asset: AssetsPath.gifCharacterNikos_2,
+                                asset: AssetsPath.paralaxTube2Lottie,
                                 boxFit: BoxFit.cover),
                             ParallaxWidget(
                                 isImage: true,

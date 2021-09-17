@@ -109,6 +109,16 @@ flutter:
     - assets/imgs/
     - assets/map/
     - assets/paralax_new/
+    - assets/paralax_new/crowd/
+    - assets/paralax_new/crowd/images/
+    - assets/paralax_new/tube2/
+    - assets/paralax_new/tube2/images/
+    - assets/paralax_new/young_man/
+    - assets/paralax_new/young_man/images/
+    - assets/paralax_new/fighters_right/
+    - assets/paralax_new/fighters_right/images/
+    - assets/paralax_new/fighters_left/
+    - assets/paralax_new/fighters_left/images/
     - assets/paralax_new/fire/
     - assets/paralax_new/fire/images/
     - assets/paralax_new/character_nikos/
