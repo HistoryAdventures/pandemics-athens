@@ -9,7 +9,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/animated_background/animated_particles_6.dart';
-import '../../../../core/widgets/animated_background/gif_background_widget.dart';
 import '../../../../core/widgets/card_image_and_text_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';

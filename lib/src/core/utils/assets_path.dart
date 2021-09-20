@@ -313,6 +313,8 @@ class AssetsPath {
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
   static const String paralaxFightersRightLottie =
       'assets/paralax_new/fighters_right/fighters_right.json';
+  static const String paralaxSmokeLottie =
+      'assets/paralax_new/smoke/smoke.json';
   static const String paralaxFightersLeftLottie =
       'assets/paralax_new/fighters_left/fighters_left.json';
   static const String paralaxFightersLeft =
@@ -539,6 +541,17 @@ class AssetsPath {
     AssetsPath.gifEbola,
     AssetsPath.glossaryBk,
     AssetsPath.gifBubonic,
+    AssetsPath.keepGoing,
+    AssetsPath.medicine,
+    AssetsPath.quitMedicine,
+    AssetsPath.manChestImage,
+    AssetsPath.manhandsImage,
+    AssetsPath.manfillImage,
+    AssetsPath.manIntroImage,
+    AssetsPath.manheadImage,
+    AssetsPath.manstomachImage,
+    AssetsPath.manthroatImage,
+    AssetsPath.document,
   ];
 }
 

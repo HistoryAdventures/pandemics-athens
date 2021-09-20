@@ -1,4 +1,1353 @@
 {
-    "helloWorld": "Բարև Աշխարհ",
-    "vazgen": " Վազգեն"
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "spencerStrikerName": "Spencer Striker, PHD",
+    "@spencerStrikerName": {
+      "description": "Spencer Striker, PHD"
+    },
+    "worldOfCharactersName": "World Of Characters",
+    "@worldOfCharactersName": {
+      "description": "World Of Characters"
+    },
+    "globalPandemicsName": "  global pandemics",
+    "@globalPandemicsName": {
+      "description": " global pandemics"
+    },
+    "chapter1Name": "Chapter 1 / Plague & Political Instability",
+    "@chapter1Name": {
+      "description": "Chapter 1 / Plague & Political Instability"
+    },
+    "keyPeopleOfTheAge": "key people of the age",
+    "@keyPeopleOfTheAge": {
+      "keyPeopleOfTheAge": "key people of the age"
+    },
+    "battleOfThermopylae": "415, Battle of Thermopylae\n",
+    "@battleOfThermopylae": {
+      "description": "415, Battle of Thermopylae\n"
+    },
+    "chapter1": "Chapter 1",
+    "@chapter1": {
+      "description": "Chapter 1"
+    },
+    "chapter1PathogenProfile": "Chapter 1 / Pathogen Profile",
+    "@chapter1PathogenProfile": {
+      "description": "chapter1PathogenProfile1"
+    },
+    "keyPeople": "key people",
+    "@keyPeople": {
+      "description": "key people"
+    },
+    "athens5thCentury": "Athens, 5th century BC",
+    "@Athens5thCentury": {
+      "description": "Athens, 5th century BC"
+    },
+    "nikosStory": "nikos story",
+    "@nikosStory": {
+      "description": "nikos story"
+    },
+    "historyAdventures": "History Adventures",
+    "@historyAdventures": {
+      "description": "History Adventures"
+    },
+    "worldOfCharacters": "World Of Characters",
+    "@worldOfCharacters": {
+      "description": "World Of Characters"
+    },
+    "namePericles": "Pericles",
+    "@namePericles": {
+      "description": "Pericles"
+    },
+    "thucididesName": "thucidides",
+    "@thucididesName": {
+      "thucidides": "thucidides"
+    },
+    "socratesAndPlatoName": "socrates and plato",
+    "@socratesAndPlatoName": {
+      "description": "socrates and plato"
+    },
+    "aristophanesAndSophocles": "Aristophanes and Sophocles",
+    "@aristophanesAndSophocles": {
+      "description": "Aristophanes and Sophocles"
+    },
+    
+    "phidias": "Phidias",
+    "@phidias ": {
+      "description": "Phidias"
+    },
+
+    "keyPeopleAthens5thCenturyBCE": "Key people in Athens 5th century BCE",
+    "@keyPeopleAthens5thCenturyBCE": {
+      "description": "Key people in Athens 5th century BCE"
+    },
+    "eventTimeline": "event timeline",
+    "@eventTimeline": {
+      "description": "event timeline"
+    },
+    "bodyText": "In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured. In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.At first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future.In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured",
+    "@bodyText": {
+      "description": "event timeline"
+    },
+    "quiz": "quiz",
+    "@eventTimeline": {
+      "description": "quiz"
+    },
+    "glossary": "glossary",
+    "@eventTimeline": {
+      "description": "glossary"
+    },
+    "sovereignty": "Sovereignty",
+    "@eventTimeline": {
+      "description": "Sovereignty"
+    },
+    "sovereigntyText": "Sovereignty refers to the full right and power of a given governing body over itself, without any interference from external bodies. Broadly speaking, it refers to a state’s supreme authority and it can have different sources. ",
+    "@eventTimeline": {
+      "description": "Sovereignty"
+    },
+    "whatNikosDo": "What should Nikos do?",
+    "@eventTimeline": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "helpTheSenator": "help the senator",
+    "@eventTimeline": {
+      "helpTheSenator": "helpTheSenator"
+    },
+    "stickToTheOath": "stick to the oath",
+    "@eventTimeline": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "todoNoHarm": "to do no harm",
+    "@todoNoHarm": {
+      "whatNikosDo": "whatNikosDo"
+    },
+    "panaromaRightInfoDialogText": "Would it not do more harm than good to let this man live? Nikos reasoned with himself. While his teacher had been clear that “to do no harm” meant to do no harm to the man’s physical body, Nikos found himself more compelled by the condition of the dying man’s spirit. He would do as Calyx asked.\n\n“Would you like to say goodbye to your wife?” Nikos whispered.\n\n“No, do it before she returns,” Calyx confirmed. Nikos couldn’t look at what he was doing as he held the flailing man under the bath water. Moments after the aristocrat's movement stopped, Eleni walked in to see her husband dead in the bath.\n\n“He succumbed to his condition. There was nothing I could do.” Nikos hoped the widow believed him. Eleni just nodded and Nikos left the woman to mourn her husband.",
+    "@todoNoHarm": {
+      "panaromaInfoDialogText": "panaromaInfoDialogText"
+    },
+    "panaromaLeftInfoDialogText": "“I would help you if I could, but I have given an oath to Apollo that I cannot inflict bodily harm onto one who has entrusted me with his care,” Nikos explained, hoping his patient would understand. To Nikos’ grim surprise, Calyx did not understand. He spit in Nikos’ face.\n\n“May you die the same grim death you wish on me,” Calyx sneered. Nikos wiped the spittle off his face as quickly as he could and ran from the aristocrat’s home before Eleni had time to return with the water. As he ran back through the angry mob, he reflected that he must now look as mad as the rabel.\n\nFor the next three days, Nikos locked himself in his room, praying that Apollo would spare him in exchange for honoring his oath. Alas, the god of healing did nothing to head Nikos’ prayers. For at the end of the three days, he saw the tell tale sign of an ulcer begin to emerge under his left arm...",
+    "@todoNoHarm": {
+      "panaromaInfoDialogText": "panaromaInfoDialogText"
+    },
+    "chapter1Pathogenprofile": "Chapter 1 / Pathogen Profile",
+    "@todoNoHarm": {
+      "chapter1Pathogenprofile": "chapter1Pathogenprofile"
+    },
+    "whereDidItComeFrom": "where did it come from?",
+    "@whereDidItComeFrom": {
+      "whereDidItComeFrom": "whereDidItComeFrom"
+    },
+    "whereDidItComeFromBodyText1": "“Rising in lands of Aegypt, traversing reaches of air and floating fields of foam...” – Lucretius’ poem de rerum natura (a later, 1st century Roman/Latin poem gives an account of the plague and its symptoms, which might be quite good to use here to illustrate the map etc) \n\nThe Athenian hegemony in the 5th century BC, there power and influence in the Greek world, was based on their naval power. Much as the Spartan armies on land were a match for almost anyone, at sea, the Athenian navy was just as formidable.\n\n",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "whereDidItComeFromBodyTextItalic": " “It first began, it is said, in the parts of Ethiopia above Egypt, and thence descended into Egypt and Libya... Suddenly falling upon Athens, it first attacked the population in Piraeus – which was the occasion of the rumours that the Peloponnesians had poisoned the reservoirs – and afterwards appeared in the upper city, when the deaths became much more frequent...” (Thucydides, History of the Peloponnesian War).",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+    "whereDidItComeFromBodyText2": " To read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative...\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, and became the ideal environment for disease to spread.",
+    "@whereDidItComeFromBodyText": {
+      "whereDidItComeFromBodyText": "whereDidItComeFromBodyText"
+    },
+   
+   
+    "whereDidItComeFromSecondBodyText": "To read the account of Thucydides, there is a clear inference that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city. Thucydides offers two stages of explanation for the origins of the disease. In the first instance, he suggests that the disease originated overseas, likely to the south, in Africa and Egypt. This has led some modern specialists to ponder whether the disease that devastated Athens was in fact Ebola, or a similar haemorrhagic fever (such as Marburg virus). The Greek world, including Athens, did have naval connections with the African world, so the links are not impossible. Moreover, some of the symptoms described by Thucydides are also common in these diseases, including the hiccups, and the lingering effects on the eyes and genitals of the sufferers. The recent outbreaks of such diseases in Africa have also led to funeral rites being abandoned, in a grisly echo of the Thucydidean narrative…\n\nAlthough Thucydides isn’t totally clear as to where the disease originated from, he does appear to be more certain about how it spread through the city of Athens itself. The Athenian naval connections are again important, as was the war and the fear it spread through the Athenian populace.It arrived in the port of Piraeus, connected to the city by the Long Walls. At the outset of the war, fearing a Spartan invasion, the Athenians and the people of the surrounding countryside had retreated behind the walls. The city’s population – already dense – exploded, trebling or perhaps even quadrupling in size as people sought safety from the Spartans behind the city’s walls. Athen became the ideal environment for disease to spread. ",
+    "@whereDidItComeFromSecondBodyText": {
+      "whereDidItComeFromSecondBodyText": "whereDidItComeFromSecondBodyText"
+    },
+    "pathogenProfile": "pathogen profile",
+    "@pathogenProfile": {
+      "pathogenProfile": "pathogen profile"
+    },
+    "whatDidItDo": "what did it do?",
+    "@whatDidItDo": {
+      "whatDidItDo": "whatDidItDo"
+    },
+    "pathogenProfileText": "Within just two years of the Peloponnesian War beginning in 431 BC, the city was gripped by a plague that devastated the population. In a city that prided itself on its democracy – the basic equality of its citizens – it soon became apparent that there was nothing more democratic than the disease that was striking through the polis. Rich or poor, man or woman, slave or free, it hardly mattered; no one was safe from this pestilence.\n\nHistorians are fortunate to have the vivid account of the plague that is preserved in Thucydides’ historical narrative and some archaeological remains to try to piece together what happened in the four brief years that the city suffered from the plague. For example, archaeologists have uncovered mass burial pits in Athens, a grim reminder of how deadly this plague was. The use of modern DNA testing on the teeth recovered from these long-dead victims of the disease led a team of researchers to claim that the plague was an outbreak of Typhoid fever. However, another team of scientists later challenged these results...\n\nIt remains unlikely historians will ever know exactly what the awful disease that fell upon Athens at this time really was. Nevertheless, by exploring what is known of the origins and symptoms of the plague, we can begin to build a case for and against a line-up of suspects...",
+    "@pathogenProfileText": {
+      "pathogenProfileText": "pathogenProfileText"
+    },
+    "bodyIntro": "intro",
+    "@bodyIntro": {
+      "bodyIntro": "bodyIntro"
+    },
+    "bodyHead": "head",
+    "@bodyHead": {
+      "bodyHead": "bodyHead"
+    },
+    "bodyThroat": "throat",
+    "@bodyThroat": {
+      "bodyThroat": "bodyThroat"
+    },
+    "bodyCheast": "chest",
+    "@bodyCheast": {
+      "bodyCheast": "bodyCheast"
+    },
+    "bodySkin": "skin",
+    "@bodySkin": {
+      "bodySkin": "bodySkin"
+    },
+    "bodyStomach": "stomach",
+    "@bodyStomach": {
+      "bodyStomach": "bodyStomach"
+    },
+    "bodyhands": "hands",
+    "@bodyhands": {
+      "bodyhands": "bodyhands"
+    },
+    "whatWasIt": "what was it?",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "introVirus": "intro",
+    "@introVirus": {
+      "introVirus": "introVirus"
+    },
+    "bubonicPlague": "bubonic plague",
+    "@whatWasIt": {
+      "whatWasIt": "whatWasIt"
+    },
+    "typhus": "typhus",
+    "@typhus": {
+      "typhus": "typhus"
+    },
+    "typhiod": "typhiod",
+    "@typhiod": {
+      "typhiod": "typhiod"
+    },
+    "smallpox": "smallpox",
+    "@smallpox": {
+      "smallpox": "smallpox"
+    },
+    "ebola": "ebola",
+    "@ebola": {
+      "ebola": "ebola"
+    },
+    "athens429Bc": " athens, 429 bc",
+    "@athens429Bc": {
+      "athens429Bc": "athens429Bc"
+    },
+    "paralaxText1": " Nikos of Athens was tired. The pestilence that tormented his great city had taken its toll, not just on the bodies of those who died from the strange disease -- those poor, sad souls overtaken by the vicious heat that started at their head, inflamed their eyes, and eventually choked the victim in his own hot  blood -- but on the spirit of those it left behind. Bodies so putrid even the crows died from consuming their rotten flesh lined the streets. A man could only walk streets like that so many times before he started to go mad. Nikos was afraid he was about to reach that breaking point. But, the physician forced himself to persevere. He had made a promise before his master Hypocrites, as well as the gods, Asclepius and Apollo. He had promised to serve the sick of the City. He would not go back on his promise.",
+    "@paralaxText1": {
+      "paralaxText1": "paralaxText1"
+    },
+    "paralaxText2": "As Nikos made his way to the house of his patient, Calyx, he had to fight through an angry mob. Many blamed the pestilence on the Athenian elite. Why else would the gods have taken the general Pericles if not to give the city to invading Sparta? Others blamed it on the Spartans themselves and only blamed the Senate for not dealing with the Spartans sooner.  While the Spartans were no doubt ignoble brutes, it was clear the disease had not come from Sparta since the infection predated the arrival of their armies. It was equally clear to Nikos that the gods did not favor Sparta over his native Athens since the illness did not seem to discriminate.",
+    "@paralaxText2": {
+      "paralaxText2": "paralaxText2"
+    },
+    "paralaxText3": "But, really, who could expect more than superstitious fervor from the perioikoi  rabel who now fled into the city like rats since the beginning of the war? Of all the troubles the Spartans had given them, overcrowding had been one of the worst in Nikos’ mind. Nothing bread disease like crowds after all. The physician pushed himself through the rabel until he arrived at the door of his preferred patient. When Nikos arrived at the door, a slave girl unlocked the front gate just long enough for Nikos to slip in. The slave led Nikos through the open air courtyard that stretched through the center of the aristocrat’s home to the bedroom in the back. When Nikos arrived in the bedroom, he saw  Calyx was being attended by his wife, Eleni.  The patient himself was submerged in a tub of cold water, completely naked.",
+    "@paralaxText3": {
+      "paralaxText3": "paralaxText3"
+    },
+    "paralaxText4": "“I apologize for my husband’s indisposed state, doctor,” Eleni looked embarrassed. “But his body is so hot, he cannot bear to be out of the water, much less put on clothes.\n\n”“It is alright, Kyria. I am used to seeing patients in this state.” Nikos walked closer to Calyx and saw his body was covered in ulcers. As Nikos leaned down, the aristocrat groaned painfully.\n\n“Water, give me water,” he rasped. Constant thirst, along with incontinence of the bowels, was a sign the patient was well past his crisis. There was nothing Nikos could do to save him now.\n\n“If you please, could you go fetch your husband some clean water to drink.? We do not want him drinking from the bath,” Nikos told Eleni. The aristocrat’s wife seemed relieved to remove herself from the scene of her husband’s shame.\n\n",
+    "@paralaxText4": {
+      "paralaxText4": "paralaxText4"
+    },
+    "paralaxText5": "“Be honest with me,” Calyx croaked after his wife left. “Is there anything that can be done?\n\n”“No.” Nikos respected his patient enough to give him honesty.\n\n“Then, please, end my life now. I do not wish to waste away, leaving my body not even fit for carrion crows. Let my wife bury a man she recognizes,” Calyx pleaded. Nikos wanted nothing more than to honor his patient’s request. A noble man did not deserve this sort of ignoble death, but part of Nikos’ pledge to Apollo had been an oath to do no harm. He had been taught he could not so much as cut off the man’s ailing pustules with a knife, as cutting into the flesh constitutes bodily harm. How could Apollo ever forgive him for causing a man’s death?\n\n",
+    "@paralaxText5": {
+      "paralaxText5": "paralaxText5"
+    },
+    "learnMore": "learn more",
+    "@learnMore": {
+      "learnMore": "learnMore"
+    },
+    "backToChapter1": "back to chapter 1",
+    "@learnMore": {
+      "learnMore": "learnMore"
+    },
+    "keyPeopleOfTheCentury": "key people of the century",
+    "@keyPeopleOfTheCentury": {
+      "keyPeopleOfTheCentury": "keyPeopleOfTheCentury"
+    },
+    "backToChapter1": "back to chapter 1",
+    "@learnMore": {
+      "learnMore": "learnMore"
+    },
+    "periclesTextDescription": "Although the point of democracy was that the citizen body of Athens at large decided upon their political fate, the democratic system was still dominated by certain individuals. The most famous of these is Pericles, the man Thucydides described as the “first citizen of Athens” (H.P.W, 2.65). Pericles was a general, a statesman, and an orator, and effectively led the Athenian state during its Golden Age, between the Persian and the Peloponnesian Wars (c. 461 to 429 BC).\n\n He was responsible for overseeing much of the cultural embellishment of Athens which has helped bolster its historical reputation. It was under his supervision that the ambitious building project atop the city’s Acropolis, including the Parthenon, was carried out. Pericles had also ordered the famous long walls of Athens to be rebuilt to protect the city and its harbour (the Piraeus). Many of these building projects were funded by the treasury of the Delian League, increasing tensions between Athens and her ostensible allies (really, they were effectively subjects).Pericles’ reputation in history is as a powerful orator and a champion of the democratic principles of the Athens he knew. However, because of his control of Athenian politics at this time, some have labelled Pericles a demagogue or a populist. Demagoguery, the manipulation of people (often derisively referred to as the ‘mob’) is one of the oldest criticisms of democracy as a form of politics.The most famous of Pericles’ speeches is the ‘Funeral Oration’ recorded by Thucydides, in which the Athenian statesman commemorated those who had died in the first year of the Peloponnesian War, as well as the glory of Athens and her democracy.“I have dwelt upon the greatness of Athens because I want to show you that we are contending for a higher prize than those who enjoy none of these privileges... Make them your examples, and, esteeming courage to be freedom and freedom to be happiness, do not weigh too nicely the perils of war.” (Thucydides, History of the Peloponnesian War)Pericles’ own funeral would not be long in arriving. He would lose his life to the plague that devastated his city in 429 BC.A bust of Pericles, a Roman marble copy of a Greek original from c.430BC, now in the Museo Pio-Clementino in the Vatican",
+    "@periclesTextDescription": {
+      "periclesTextDescription": "periclesTextDescription"
+    },
+    "thucydidesTextDescription": "Along with Herodotus, Thucydides is often labelled as the “Father of History”. He was an Athenian general who lived between c.460 and 400 BC and is most well known for his History of the Peloponnesian War, the account of the war between Athens and Sparta. Although he was slightly later than Herodotus, whose Histories describe the Persian Wars, Thucydides historical methods are more scientific: he aspires to a level of impartiality and evidence (beyond the gods) that is not always evident in Herodotus’ work… Thucydides’ narrative of the Peloponnesian War begins in 431 BC and it ends in 411 BC, with the crushing Athenian defeat at Syracuse in Sicily. Although it misses the final years of the war (which ended in 404), it is a precious source for historians and archaeologists. He was, as he writes, a firsthand witness to the struggles of his age: he fought in the war, contracted the plague (but survived), and was even exiled from his city! As a result, Thucydides is the primary source we have for the plague. The historian gives an evocative account of the devastation the pestilence wrought on the Athenians, whilst his descriptions have helped historians establish what the disease may have been. “The nature of the disease was beyond description, and the sufferings that it brought to each victim were greater than human nature can bear… So the Athenians had fallen into the great misfortune and were being ground down by it” (Thucydides, History of the Peloponnesian War)",
+    "@thucydidesTextDescription": {
+      "thucydidesTextDescription": "thucydidesTextDescription"
+    },
+    "socratesAndPlatoTextDescription": "Athens’ Golden Age was the time of some of the most important philosophers in European history. The two most well-known are certainty Socrates (c.470-399), and his student Plato (c.428-348).Much of what is known about Socrates today is filtered through the dialogues of Plato, in which Socrates is the central character (more of an antagonist, in the sense that his constant questioning of the Athenian citizens must have stretched patience quite thin sometimes!). Because of this, what exactly Socrates taught to the people of Athens is something of a mystery; we are presented with a Socrates as presented by Plato, and to a slightly lesser extent, the historian Xenophon.Socrates’ early life might strike many as quite surprising for a philosopher; he was a distinguished soldier, serving the Athenian army and even saving the life of the General Alcibiades at the Battle of Potidaea in 432 BC. The story of Socrates the Philosopher (which literally means a ‘lover of wisdom’, philo meaning to love, and sophia being wisdom), begins at the Oracle at Delphi. Socrates asked the Oracle whether anyone was wiser than he, to which they responded “No”. Perplexed, Socrates set about proving the Oracle wrong by questioning those regarded to be wise. None, to his dismay, stood up to his scrutiny. In questioning these wise men around Athens, Socrates soon developed a following of like-minded philosophers, including Plato. Much of what he discussed concerned the living of a good life; what may be termed today as ethics and morality. Like his teacher Socrates, Plato evidently had pursuits we would not perhaps associate with a philosopher: Plato is actually a nickname, meaning broad, which he was allegedly given because of his broad shoulders and wrestling prowess. Plato is the source of much modern knowledge of Socrates, whose teachings and wisdoms are recorded in his Dialogues. These are, generally, concerned with the search for Truth and its nature, and an understanding of what it is to be Good. His most famous philosophical idea is the Theory of the Forms, explained in his Allegory of the Cave. This argued that ideas existed in a higher realm of truth, and the understanding of something as good, in the human world, corresponded to a reflection of this higher Form of good. The Theory of the Forms is argued in Plato’s Republic, his other famous work. In the Republic, the philosopher outlines his ideas for how to create a perfect society, a utopia; unsurprisingly, the philosophers would be important in this ideal society… There was no happy ending to this tale of a philosophical awakening in Athens. Socrates’ questioning of Athenian customs angered people in the city. With Athenian fortunes on the wane, the city having been devastated by plague and being roundly defeated in the Peloponnesian War, the Athenian’s rounded on Socrates, viewing him as a source of instability. He was famously accused of corrupting the youth of Athens with his philosophy. He was put on trial in 399 BC and found guilty. His punishment was death. Famously, Socrates faced his end with courage, drinking a poisonous concoction that included hemlock. The death of Socrates was recorded by Plato in his Phaedo, and it has inspired artists ever since. His last words were, allegedly, a reminder of his debt to the healing god Asclepius: “Crito, we owe a cockerel to Asclepius”.There’s a good chance that some of you reading this deal with the legacy of these philosophers every day. A lot of modern teaching makes use of the so-called Socratic method. This was outlined in Plato’s dialogues, and it involves the breaking down of a problem into a series of questions, which would allow one to work towards the answer.",
+    "@socratesAndPlatoTextDescription": {
+      "socratesAndPlatoTextDescription": "socratesAndPlatoTextDescription"
+    },
+    "phidiasTextDescription": "Phidias was something of a polymath: he was a jack of all trades and seemingly a master of them all too. Born in around 480 BC, this sculptor, painter, and architect was responsible for Athens looking like a city worthy of enjoying a Golden Age. It wasn’t just Athens that benefitted from Phidias’ prodigious artistic talents however, as his endeavours were sought out across the Greek world. Today he is remembered in Art History as a leading figure in the emergence of the Classical style, particularly in terms of sculpture. In Athens, it is generally believed that Phidias was on good terms with the political elite of the 5th century. The biographer Plutarch, writing during the 1st century AD (under the Roman Empire), describes how Phidias had a close friendship with Pericles. The biographer even records the gossip that Phidias was guilty of syphoning money set aside for the Athenian state into his own coffers (although this might well just be gossip). The most famous of Phidias’ work in Athens remains the statue of Athena Parthenos inside the Parthenon, and the Athena Promachos, a colossal bronze statue on the Acropolis, stood between the Parthenon and the Propylaea (the monumental gateway to the hilltop sanctuary). Plutarch likewise suggests that Phidias oversaw the works that were being executed on the Acropolis, including supervising Iktinos and Kallkrates, the architects responsible for the Parthenon itself which was built between 447 and 432 BC.Outside of Athens, Phidias’ name is associated with the Panhellenic sanctuary at Olympia on the Peloponnese. Panhellenic sanctuaries were sacred spaces open to all Greeks, and this one is famous as the site of the Olympic Games which began in the 8th century BC. Here, archaeologists have uncovered Phidias’ workshop. Unusually, they know that this was Phidias’ workshop because he left his name there: a small cup discovered here was inscribed on the base with the words ‘Pheidiou eimi’, or, ‘I belong to Phidias’. In the sanctuary, Phidias achieved immortality as the artist responsible for the Statue of Olympian Zeus. This monumental statue, showing the King of the Gods seated, holding a winged Nike, was famous as one of the Seven Wonders of the Ancient World.",
+    "@phidiasTextDescription": {
+      "phidiasTextDescription": "phidiasTextDescription"
+    },
+    "aristophanesAndSophoclesTextDescription": "When looking at the importance of 5th century Athens as a place and time in history, it soon becomes clear that the city took centre stage for a staggering number of developments – political, social, and cultural – which are still significant to this day. Notable amongst these, and an important medium for exploring the politics of the period in particular, is theatre. There was nothing that the citizens of Athens enjoyed more than a trip to the theatre to cry – either tears of joy or sorrow – at the comedies and tragedies that graced the stages in the city.Athens was home to a number of the most famous playwrights in history, including Aeschylus and Euripides. Perhaps the most important however, was Sophocles. Born in around 496, he is responsible for producing some of the most enduring tragedies, may of which are still performed in modern theatres. These plays would typically be performed in competitions as part of religious festivals, such as the Dionysia festival at Athens, before being staged around Greece. Sophocles is known to have been an incredibly prolific playwright, producing around 120 plays. Unfortunately, a great number of these now survive only in fragmentary form. Seven Sophoclean tragedies have survived intact, and these include Oedipus the King, Electra, and Antigone. Many of his plays draw on well-known figures from Greek mythology. They often centred less on what happened, and instead how or why, typically featuring a central hero whose over-confidence and pride (their hubris) leads to a tragic ending for the character and a cautionary tale for the audience. Sophocles is also known to have been an active and important member of the Athenian polis, contributing to the democratic politics of the period. He worked alongside Pericles to quash a revolt on Samos in c.441 BC for instance.When it came to contemporary politics however, it was comedy that focused on the heroes and villains of the present – rather than mythology – most keenly. Few did it better, or with more bite, than Aristophanes. Born in around 460 BC, he is the best-known writer of Comedy from the Ancient Greek world, and he is still celebrated for his uproarious, though perceptive, portrayals of the turbulences of Athenian politics. Not much is known of Aristophanes the man, although he does feature in one of Plato’s dialogues; he is scalded by the philosopher for encouraging the public distrust of Socrates, the victim of Aristophanes’ lampooning (most famously in his play, The Clouds, written in around 423 BC). His grasp of the nature of Athenian politics and his ability to read the pulse of society is suggested by the plots of the plays that have survived however, and some of the most famous confront the Athenian state directly. For example, The Wasps (c. 422 BC) takes aim at the Athenian jury system, whilst the Lysistrata tells the tale of the women of Greece going on a sex strike to compel men to make peace with each other!",
+    "@aristophanesAndSophoclesTextDescription": {
+      "aristophanesAndSophoclesTextDescription": "aristophanesAndSophoclesTextDescription"
+    },
+    "demokratia": "demokratia",
+    "@demokratia": {
+      "demokratia": "demokratia"
+    },
+    "plaguePoliticalUpheaval": "Plague & Political Upheaval",
+    "@plaguePoliticalUpheaval": {
+      "plaguePoliticalUpheaval": "plaguePoliticalUpheaval"
+    },
+    "athenianOstracism": "Athenian Ostracism",
+    "@athenianOstracism": {
+      "athenianOstracism": "athenianOstracism"
+    },
+    "disposingOfTheDead": "disposing of the dead",
+    "@disposingOfTheDead": {
+      "disposingOfTheDead": "disposingOfTheDead"
+    },
+    "abandonedByTheGods": "abandoned by the gods",
+    "@abandonedByTheGods": {
+      "abandonedByTheGods": "abandonedByTheGods"
+    },
+    "chapter1plaguePoliticalInstability": "Chapter 1 / Plague & Political Instability",
+    "@chapter1plaguePoliticalInstability": {
+      "chapter1plaguePoliticalInstability": "chapter1plaguePoliticalInstability"
+    },
+
+    "plaguePoliticalInstability": "plague & political Instability",
+    "@plaguePoliticalInstability": {
+      "plaguePoliticalInstability": "plaguePoliticalInstability"
+    },
+    "demokrataText": "Perhaps the single most significant development that is synonymous with Classical Athens was a political revolution. Traditional ways of political organisation were abandoned, in favour of a new approach. The Athenians decided that instead of serving the interests of a King or a tyrant (a monarchy) or being subject to the whims of a narrow band of aristocrats (an oligarchy), they would instead represent themselves; the people would exercise political control. This was democracy. \n\n Demokratia, democracy, derives from two Greek words: demos, meaning power, and kratos, meaning power. It was politics by people power. The Athenians were not conducting the first ancient experiment in democracy, but it was certainly the most successfule and  by developed at that time.  The Athenian democracy was very different to our own, however. Most modern democracies are representative; we vote to elect individuals to  our interests. Athenian democracy was direct: “everyone” could participate. However, not everyone was eligible. Only adult male citizens could participate. Women (even Athenian women), slaves, and non-Athenians (called metics) could not. \n\n IMAGE:\n\n A terracotta lekythos (oil flask) from the late 6th century (ca. 550-530 BC), attributed to the Amasis painter. The main body of this lekythos depicts a number of women at work, weaving at a loom. Denied political equality within the Athenian democracy, women were typically meant to remain at home, caring for the house. This was often expressed in a number of stereotypical subjects, including weaving. ",
+    "@demokrataText": {
+      "demokrataText": "demokrataText"
+    },
+    "plagueText": "“In other respects too, the plague was the beginning of increased lawlessness in the city… No fear of god or human law was any constraint. Pious or impious made no difference in their view, when they could see all dying without distinction. As for offences against the law, no one expected to live long enough to brought to justice and pay the penalty: they thought that a much heavier sentence had already been passed and was hanging over them, so that might as well have some enjoyment of life before it fell.” Thucydides, 2.53\n\nIn a gruesomely ironic twist, the plague that ran riot through the streets of ancient Athens in 430 BC served to remind the residents of the pestilential city of the truth of their beliefs. The men of that time were equal, and neither wealth nor status could protect someone from the illness; this disease was truly democratic in the devastation it wrought.\n\nThe passage of Thucydides that details the plague is comparatively brief within the historian’s lengthier narrative of the Peloponnesian War that ravaged the Greek world, but it loses none of its impact for its brevity. The historian is keen to stress how the disease stretched Athenian society to breaking point. In a world where life was short, rules and conventions fell, like the sick, by the roadside. In a pattern that is seen repeated throughout history and across different cultures – especially during the Black Death that ravaged Europe in the Middle Ages - the desperate plight of the Athenians led to a disintegration of the societal norms and rules that had pinned people together. The rampant speed with which the disease spread from person to person contributed to this breakdown, as the city’s population quickly gave up on providing care for either the living or the dead, unable to manage.\n\n“All previously observed funeral customs were confounded and burial was haphazard, any way that people could manage.” Thucydides, 2.52\n\nArchaeologists have uncovered mass graves in Athens, notably outside of the traditional cemetery at Kerameikos. Dating to between 430 and 426 BC the mass grave here is the final resting place of around 240 people, including several children. No order is discernible in burial patterns, suggesting that corpses were deposited here in a hurried panic, with a lack of typical custom being observed.",
+    "@plagueText": {
+      "plagueText": "plagueText"
+    },
+    "athenianText": "Ostracism is actually one of the most famous and significant developments of Athens and the advent of democracy. This was a procedure whereby any Athenian citizen could be expelled from the polis for a period of 10 years. The name of the procedure itself derives from the ostraka, the pottery shards, that the voters would inscribe the names of those they wished to expel from the city. Ostracisms could take place once a year, decided in the assembly. It was thought to be a way of protecting the polis from the tyranny of a particular individual, or it could be used to express the citizen’s anger, or indeed, as a useful pre-emptive political tool to neutralise rivals…\n\n A number of notable Athenians were ostracised over the 5th century, included Themistocles, the hero of the Persian Wars; Alcibiades, the leading citizen after Pericles’ death; and even Xanthippus, the father of Pericles! Despite the ostrakon below, Pericles himself avoided the fate of political exile that befell his father… ",
+    "@athenianText": {
+      "athenianText": "athenianText"
+    },      
+    "disposingText": "“All previously observed funeral customs were confounded and burial was haphazard, any way that people could manage.” Thucydides, 2.52\n\nThe plague of Athens, whatever this aggressive disease was, attacked care givers and doctors. This meant that people were scared to dispose of the bodies in the traditional manner. Dead bodies, and those nearing death, were often left to their fate, in violation of the strict contemporary burial rites.\n\nWhere people were buried, it was often with a view to pragmatism and expediency rather than custom. For example, archaeologists have uncovered mass graves in Athens, notably outside of the traditional cemetery at Kerameikos. Dating to between 430 and 426 BC the mass grave here is the final resting place of around 240 people, including several children. No order is discernible in burial patterns, suggesting that corpses were deposited here in a hurried panic, with a lack of typical reverence and ritual being observed.\n\nThe fear that surrounded the dead and dying was not helped by the observation of Thucydides that even the carrion feeders and scavengers who normally enjoyed plagues as periods of plenty, such as birds and dogs, died from the pestilence.\n\n“The birds and animals which feed on human flesh either kept away from the bodies, alth",
+    "@disposingText": {
+      "disposingText": "disposingText"
+    }, 
+    "abandondedText": "The ferocity of the disease, the way it killed so quickly and so indiscriminately, led to the Athenians confronting their relationship with the gods. The inability, or indeed unwillingness, of the gods to intervene on the behalf of those stricken with the illness ultimately led to a rejection of typical, traditional religious norms and beliefs.\n\n“Supplications in the temples, divinations and so forth were found equally futile, till the overwhelming nature of the disaster at last put a stop to them altogether…” (Thucydides)\n\nIndeed, it appears to have instead become more of a common belief that the Athenians themselves had been abandoned by the gods who, prior to the plague at least, seemed to have smiled upon the city. ",
+    "@abandondedText": {
+      "abandondedText": "abandondedText"
+    },
+    "hippocrates": "hippocrates",
+    "@hippocrates": {
+      "hippocrates": "hippocrates"
+    },
+    "asclepius": "Asclepius",
+    "@asclepius": {
+      "asclepius": "asclepius"
+    },
+    "asklepion": "asklepion",
+    "@asklepion": {
+      "asklepion": "asklepion"
+    },
+    "fourHumours": "Four Humours",
+    "@fourHumours": {
+      "fourHumours": "fourHumours"
+    },
+    "legacy": "Legacy",
+    "@legacy": {
+      "legacy": "legacy"
+    },
+    "legacyText": "This historical figure of Hippocrates, despite everything that is attributed to him, remains something of a mysterious figure. He did not found a school of medicine per se, nor do many of the treatises attributed to him appear to have been written directly by him. Nevertheless, he is widely regarded as one of the founding fathers of medicine as a discipline.\n\nThis legacy is in part thanks to the work of a Roman doctor, a man called Galen (ca. AD 129-200). Originally from Pergamon (in modern Turkey), Galen travelled around the empire before settling in Rome, where he worked as the court physician for the emperors Marcus Aurelius, and his son and successor, Commodus.\n\nAs a physician, Galen’s understanding of medicine was heavily influenced by the Hippocratic approach, including the theory of the Four Humours. He also studied anatomy, conducting dissections. However, this largely had to be on animals, because human vivisection was still a prohibited taboo; Galen settled for apes and pigs instead, and where possible, he encouraged his students to investigate the corpses of gladiators killed in the arena!\n\nGalen’s approach to medicine, which was recorded in a large number of texts, became central to much medical science for over a millennium, both in Europe and in the Arab world. It would take changes in society and technology to allow Galen’s works to be challenged and developed; it wasn’t until Andreas Vesalius was able to dissect human bodies and reproduce his anatomical drawings and diagrams with the printing press (his book, De humani corporis fabrica – On the fabric of the human body – was published in 1543), that the limitations of Galen’s work (as well as his successes) became more clearly known.\n\nIt is also curious to note that Galen himself likewise lived through a plague that devastated the ancient world. The Antonine Plague, named after the family name of the Roman emperors at the time, devastated the empire between AD 165-168. This disease was likely smallpox, with the descriptions of the symptoms recorded by Galen proving especially valuable to historians.",
+    "@legacyText": {
+      "legacyText": "legacyText"
+    },
+    "fourHumorsText": "The most famous medical theory that is often associated with Hippocrates is the idea of the Four Humours. In the absence of a detailed anatomical knowledge of the human body, it was believed that the human body was made up of four humours, which – when in balance – kept a person healthy. An imbalance in these humours was believed to lead to sickness. \n\nIn his interpretation of this approach, Hippocrates suggested that there were four humours, and that these were the vital bodily fluids: blood, phlegm, black bile, yellow bile. An imbalance in these humours would negatively affect the patient. If the imbalance was only mild, then this would affect the patient only in terms of their attitude. If the imbalance was more extreme, then the patient could become sick. This imbalance was referred to as dyscrasia, whilst the balance of the humours was called eucrasia.\n\n“The Human body contains blood, phlegm, yellow bile and black bile. These are the things that make up its constitution and cause its pains and health. Health is primarily that state in which these constituent substances are in the correct proportion to each other, both in strength and quantity, and are well mixed. Pain occurs when one of the substances presents either a deficiency or an excess or is separated in the body and not mixed with others” an extract from On the Nature of Man, one of the medical treatises attributed to Hippocrates. ",
+    "@fourHumorsText": {
+      "fourHumorsText": "fourHumorsText"
+    },
+    "asklepionText": "The ancien t Greeks did not have hospitals in the same way that modern societies do. However, they did have places dedicated to healing. These were the healing sanctuaries of Asclepius, the Asklepions. The Hippocratic approach to medicine was focused more so on prognosis, rather than diagnosis, and this approach is evident in the Asklepions around the Greek world too. They promoted a healthier approach to life, including clean, fresh air. As such, these sanctuaries were often built at secluded areas, usually in the hilly countryside and sometimes with close to thermal springs. Hippocrates himself is said to have received his medical training at the Asklepion at Kos. However, the most famous Asklepion in Greece was at Epidaurus, a small town in southern Greece, not far from the city of Argos. Nature was prominent throughout these sanctuaries, with snakes a common site (due to their association with the god Askelpius), as well as dogs who were often tasked with licking the wounds of patients (an approach to treatment not likely to be too popular with modern doctors!)\n\nDID YOU KNOW\n\nThe ancient Greeks often looked to nature when discussing medicine and health. When describing the plague of Athens, Thucydides offers the rather macabre detail that the disease even drove the birds away from the city. Any of the carrion eaters who braved the flesh of the dead were also said to have died shortly after… \n\n“Here is one particular point in which it showed that it was unlike the usual run of illnesses: the birds and animals which feed on human flesh either kept away from the bodies, although there were many unburied, or if they did taste them it proved fatal. To confirm this, there was an evident shortage of birds of that kind, which were not to be seen either near the victims or anywhere else.” (Thucydides, History of the Peloponnesian War)\n\nSleep was a very important part of the healing process at the Asklepion. First, patients would undergo a purification process known as Katharsis. This involved several days of good hygiene and bathing, good diet, and other methods of purging. Then, the patient would go to sleep in the special dormitory at the sanctuary, the Abaton or Enkoimeterion, where they would sleep in a hypnotic state. Dreams of visitations by Asclepius and his various daughters would follow, and the gods would reveal to the patients their prognosis. When they woke, the priests at the sanctuaries – master dream interpreters – would help the patient make sense of what they had experienced. \n\nOften, people who visited the Asklepions would dedicate offerings in the shape of the body part that was ailing them. These votive pieces – which could take the form of arms, feet and various other anatomical parts – would have been something of a token of gratitude to the healing god. They are often recovered by archaeologists at these sites, alongside a variety of medical and surgical instruments.",
+    "@asklepionText": {
+      "asklepionText": "asklepionText"
+    },
+    "asclepiusText": "The son of the god Apollo, Asclepius was the Greek god of medicine and healing. Doctors in the ancient Greek world, including Hippocrates – the “Father of Medicine” – were often referred to as Asclepiads, in recognition of their work being under the auspices of the god. \n\nAsclepius had a number of children, the names of which have given us a number of words that are now commonly associated with medicine and health. The most notable of these are his daughters: Hygieia (the goddess of cleanliness) and Panacea (the goddess of a universal remedy). These have obviously evolved into the words hygiene and panacea (which still means a universal remedy, or cure all).\n\nAsclepius is often easily identified in ancient artworks thanks to his holding the asklpeian, a rod entwined with snakes. This symbol is still closely associated with medicine and hospitals in modern societies. To the ancient Greeks, snakes were closely associated with wisdom and healing, and in one myth a snake is said to have licked Asclepius’ ears clean and imparted on him the knowledge of medicine.\n\nDID YOU KNOW\n\nAsclepius was said to have been trained in the arts of healing by the centaur Chiron. Ascelpius therefore had the same teacher as some of the most famous heroes of Greek myth, including most famously Achilles.",
+    "@asclepiusText": {
+      "asclepiusText": "asclepiusText"
+    },
+    "hippocratesText": "Born in around 460 BC on the island of Kos, Hippocrates is widely labelled as the father of Medicine. He was an “Asclepiad” – the term for a doctor used by Plato in several of his works, including Protagoras and Phaedrus. He lived during the Athenian Golden Age, a witness to Pericles’ Athens, the Peloponnesian War, and of course, the Plague of Athens. Little is known of Hippocrates’ actual biography, much of which was written long after his death, but his impact on medicine remains profound.\n\nAs a doctor, Hippocrates greatest convtribution was the idea that the diseases were caused naturally, rather than the product of superstition and the gods. This separation of medicine from religion was significant. It meant that the cause of illnesses could be searched for in the way people lived (their diets etc) and where they lived. The Hippocratic approach to music therefore was focused on prognosis, not diagnosis: the focus was on the care of the patient. Doctors following this process would be encouraged to observe a patient’s symptoms. Treatments would be based on these observations.\n\nThis is obviously very different to modern medicine. Today, the emphasis is on a specific diagnosis and a specialised treatment. However, we should remember that the understanding of anatomy at this time was very poor. Dissection was not allowed, so the internal workings of the human body were largely a mystery. \n\nHippocratic medicine was also significant for its professionalism; a Hippocratic doctor was exclusively that. He – and it would invariably be a male doctor – followed strict rules regarding his practice, especially with regard to observing and recording information about their patients. ",
+    "@hippocratesText": {
+      "hippocratesText": "hippocratesText"
+    },
+    "sourceAnalysis": "sourceAnalysis",
+    "@sourceAnalysis": {
+      "sourceAnalysis": "sourceAnalysis"
+    },
+    "medicalToolsKnowledge": "medical tools & knowledge",
+    "@medicalToolsKnowledge": {
+      "medicalToolsKnowledge": "medicalToolsKnowledge"
+    },
+    "legasyImageText": "Medicine in the Middle Ages, Velosos Salgado (1906) from the Faculty of Medical Sciences at the Universidade Nova de Lisboa. In this imagined scene, Galen is show centrally in the act of dissecting a monkey. Such experiments were the main way for the physician to gain an understanding of anatomy as the practice was not allowed on human subjects (even if there were plenty of dead bodies lying around after the gladiatorial games!)",
+    "@legasyImageText": {
+      "legasyImageText": "legasyImageText"
+    },
+    "fourHumorsImageText": "This is the so-called Peytel aryballos (dating to ca. 475 BC) is an example of Athenian red-figure pottery. It shows an ancient Greek physician treating a patient by the practice of phlebotomy, or bleeding. This could be done in an attempt to restore balance to the patient’s Humours.",
+    "@fourHumorsImageText": {
+      "fourHumorsImageText": "fourHumorsImageText"
+    },
+    "asklepionImageText": "Patients sleeping in the temple of Aesculapius at Epidaurus, Ernest Board",
+    "@asklepionImageText": {
+      "asklepionImageText": "asklepionImageText"
+    },
+    "asclepiusTextImage": "A marble relief from Italy in the second century AD (AD 100-200), showing the Greek god of medicine Asclepius seated, with his daughter Hygieia. From the Rijksmuseum in Amsterdam",
+    "@asclepiusTextImage": {
+      "asclepiusTextImage": "asclepiusTextImage"
+    },
+    "hippocratesImageText": "An engraving of Hippocrates as imagined by the Flemish artist Peter Paul Rubens, 1638",
+    "@hippocratesImageText": {
+      "hippocratesImageText": "hippocratesImageText"
+    },
+    "demokratiaImageText": "A terracotta lekythos (oil flask) from the late 6th century (ca. 550-530 BC), attributed to the Amasis painter. The main body of this lekythos depicts a number of women at work, weaving at a loom. Denied political equality within the Athenian democracy, women were typically meant to remain at home, caring for the house. This was often expressed in a number of stereotypical subjects, including weaving. ",
+    "@demokratiaImageText": {
+      "demokratiaImageText": "demokratiaImageText"
+    },
+    "plagueImageText": "A marble grave stele of a young girl from ca.450-440 BC. A touching monument erected to commemorate the memory of a small girl who has died too young, here cradling her pet doves. Monuments such as these would have been a usual fixture at the Athenian cemetery at Kerameikos, but such practices were abandoned in the face of necessity during the plague. ",
+    "@plagueImageText": {
+      "plagueImageText": "plagueImageText"
+    },
+    "athenianOstracismImageText": "An ostrakon inscribed with the name of Pericles (son of Xanthippos), the leading politician of Athens during the city’s 5th century Golden Age; even he was not safe from the ire of the Athenian citizens.",
+    "@athenianOstracismImageText": {
+      "athenianOstracismImageText": "athenianOstracismImageText"
+    },
+    "disposingOfTheDeadImageText": "A pinax, or decorated plaque, showing a scene of prothesis. This is a traditional feature of ancient Greek funerary practice, where the deceased was lying-in-state and visited by friends and family members. Usually, the female guests are shown tearing their hair in mourning. This particular pinax is a piece of archaic Greek art, meaning that it pre-dates the Golden Age of Athens, and comes from the second-half of the 6th century BC.",
+    "@disposingOfTheDeadImageText": {
+      "disposingOfTheDeadImageText": "disposingOfTheDeadImageText"
+    },
+    "abandondedImageText": "One of the most important gods in the ancient Greek pantheon, especially for health and medicine, was Apollo. The god had many guises, including that of ‘Apollo the Healer’ and ‘Apollo the Helper’. Some Athenians, caught in the deadly clutches of the plague, believed that this god had abandoned them and their city. It can’t have been for lack of trying to keep him onside however: there were temples to Apollo all over Greece. One of the most famous of these is actually kept under cover! High up on the slopes of the mountains of Arcadia (in the central Peloponnese), there is the temple of Apollo Epicurius (“Apollo the Helper”) at Bassae. Built in the mid-5th century BC, this is one of the best-preserved Greek temples, with the ancient Roman geographer Pausanias – who visited the temple centuries later in around AD 174 – claimed it was built by Iktinos, one of the architects responsible for the Athenian Parthenon.",
+    "@abandondedImageText": {
+      "abandondedImageText": "abandondedImageText"
+    },
+    "chapter1Athens5thCentury": "Chapter 1 / Athens, 5th Century BCE",
+    "@chapter1Athens5thCentury": {
+      "chapter1Athens5thCentury": "chapter1Athens5thCentury"
+    },
+    "timelineOfMainEvents": "timeline of main events",
+    "@timelineOfMainEvents": {
+      "timelineOfMainEvents": "timelineOfMainEvents"
+    },
+    "quitMedicicneText": "Nikos vowed never to heal again, as he was unworthy of Apollo’s gifts. He briefly considered removing his hands, the instruments of his treachery, from his body as penance, but he reasoned that would only anger Apollo further as he would need to use a knife against his own flesh to complete the deed. Instead, he walked out into the streets, into one of the mass pits that had been dug to deal with the plague dead. As he looked them in the eyes, he asked the gods for clarity on what he should do next.\n\nAt the moment, the sun broke through the clouds, and struck the golden figure of Athena that stood atop the Acropolis. The figure called Nikos to a new purpose. Nikos had failed Apollo, but he would not fail his former patron’s fair sister. Athens was at war and they needed men who knew how to end lives as well as save them. Nikos joined Athens in their campaign against Sparta, and was sent to fight in the Corinthian Gulf. In the end, it was a Spartan spear that killed Nikos, not the plague -- but the same could not be said for many of Nikos’ compatriots, as the plague seemed to follow the Athenian army wherever they went. Ultimately, the city state fell to Sparta in 404 BCE, 25 years after the death of Pericles.",
+    "@quitMedicicneText": {
+      "quitMedicicneText": "quitMedicicneText"
+    },
+    "keepGoingText": "Nikos’ guilt gnawed at him, but he still felt like what he had done was right. He pictured the pain in Calyx’s face as he asked Nikos to end his suffering. Let my wife bury a man she recognizes. The words echoed in the doctor’s ears. If his personal morality was what he had to sacrifice to end that man’s suffering, so be it.\n\nNikos continued to do what he felt must be done. Healing those who could be, and easing the passage to the Underworld for those who couldn’t. In dreams, Nikos saw himself conversing with Charon, the ferryman to the River Styx, bargaining with him over how many men could fit on his boat. One out of every four Athenians would board that ferry by the time the plague ended. And for many of them, Nikos’ was the last face they saw before ferryman’s.",
+    "@keepGoingText": {
+      "keepGoingText": "keepGoingText"
+    },
+    "medicineText": "Later that night, Nikos broke down in tears. He had betrayed his teacher and, by extension, Apollo. He knew not what to do. Should he continue practicing medicine or should he submit himself to the punishment of the gods?",
+    "@medicineText": {
+      "medicineText": "medicineText"
+    },
+    "medicine": "Should Nikos continue to practice medicine?",
+    "@medicine": {
+      "medicine": "medicine"
+    },
+    "keepGoing": "keep going",
+    "@keepGoing": {
+      "keepGoing": "keepGoing"
+    },
+    "quitMedicine": "quit medicine",
+    "@quitMedicine": {
+      "quitMedicine": "quitMedicine"
+    },
+
+    "y508": "c.508",
+    "@y508": {
+      "y508": "508"
+    },
+    "y508bodyText": "Democracy introduced at Athens following the reforms of Cleisthenes. These included the organisation of the Athenian citizens into ten demes based on where they lived. He also increased the size of the Boule (the Assembly) from 400 (as it was under Solon), to 500, with 10 representatives selected from each deme. He may also have introduced the practice of ostracism.",
+    "@y508bodyText": {
+      "y508bodyText": "508bodyText"
+    },
+
+    "y429": "c.429",
+    "@y429": {
+      "y429": "429"
+    },
+    "y429bodyTextTitle": "429 Death of Pericles in Athens.",
+    "@y429bodyTextTitle": {
+      "y429bodyTextTitle": "429bodyTextTitle"
+    },
+    "y429bodyText": "The great Athenian statesman succumbed to the plague that was ravaging his city, after the illness had already carried off both of his legitimate sons. His death was, according to Thucydides, as disaster, as his successors in Athenian politics could not avoid a series of costly disasters: “each grasping at supremacy, they ended by committing even the conduct of state affairs to the whims of the multitude. This, as might have been expected in a great and sovereign state, produced a host of blunders” … ",
+    "@y429bodyText": {
+      "y429bodyText": "508bodyText"
+    },
+
+    "y495": "c.495",
+    "@y495": {
+      "y495": "495"
+    },
+    "y495bodyText": " Pericles’ father was the politician Xanthippus, who was ostracised in 485-4.",
+    "@y495bodyText": {
+      "y495bodyText": "495bodyText"
+    },
+    "y495imageText": "A Roman marble copy of an earlier Greek original showing Pericles, wearing a Corinthian helmet pushed to the back of his head",
+    "@y495imageText": {
+      "y495imageText": "495imageText"
+    },
+
+    "y490": "c.490",
+    "@y490": {
+      "y490": "490"
+    },
+    "y490bodyText": "Combined Greek forces defeat the Persian invaders, led by Darius, at Marathon. Athenian, aided by Plataean allies defeated the invading Persians. It is famous for the myth of Athenian runner, Pheidippides, running from the battleground to Athens to announce the Greek victory, declaring “We’ve won”, at which point he dropped down dead of exhaustion (unfortunate for Pheidippides, seeing as he had survived the battle…). Today the battleground is marked by two tumuli (burial mounds), one apiece for the Athenian and Plataean dead.",
+    "@y490bodyText": {
+      "y490bodyText": "490bodyText"
+    },
+    "y490imageText": "Le soldat de Marathon (The Soldier of Marathon) by Luc-Olivier Merson (1869). Merson’s painting imagines the moment of Pheidippides’ arrival in Athens with news of the city’s victory.",
+    "@y490imageText": {
+      "y490imageText": "490imageText"
+    },
+    "y490bodyTextTitle": "490 battle of marathon",
+    "@y490bodyTextTitle": {
+      "y490bodyTextTitle": "490bodyTextTitle"
+    },
+
+    "y480": "c.480",
+    "@y480": {
+      "y480": "480"
+    },
+    "y480bodyText": "Battle of Thermopylae, where 300 Spartans led by Leonidas (as well as several thousand other Greek soldiers), attempt to block the Persian advance. Treachery leads the Persians around the Hoplite Phalanx, and the Greeks are massacred.\n\nAthens is sacked by the invading Persians, led by Xerxes. The Acropolis and the Agora are destroyed.",
+    "@y480bodyText": {
+      "y480bodyText": "480bodyText"
+    },
+    "y480imageText": "Jacques-Louis David, Leonidas at Thermopylae, (1814)",
+    "@y490imageText": {
+      "y480imageText": "480imageText"
+    },
+    "y480bodyTextTitle": "480 Battle of Thermopylae",
+    "@y480bodyTextTitle": {
+      "y480bodyTextTitle": "480bodyTextTitle"
+    },
+
+    "y479": "c.479",
+    "@y479": {
+      "y479": "479"
+    },
+    "y479bodyText": "Battle of Plataea, an alliance of Greeks, including both Sparta and Athens, defeat the invading Persians and drive them out of the country.",
+    "@y479bodyText": {
+      "y479bodyText": "479bodyText"
+    },
+    "y479imageText": "A red-figure kylix with a central image of a Greek hoplite in overcoming a Persian warrior on the inside of the bowl. Attributed to the Triptolemos painter in the 5th century BC (ca. 460 BC)",
+    "@y490imageText": {
+      "y479imageText": "479imageText"
+    },
+    "y479bodyTextTitle": "479  Battle of Plataea",
+    "@y479bodyTextTitle": {
+      "y479bodyTextTitle": "479bodyTextTitle"
+    },
+
+    "y477": "c.477",
+    "@y477": {
+      "y477": "477"
+    },
+    "y477bodyText": "It is based at the island of Delos, a place sacred to the god Apollo. The League is meant to ensure mutual protection and defence of the Greeks against Persian aggression.",
+    "@y477bodyText": {
+      "y477bodyText": "477bodyText"
+    },
+    "y477imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y477imageText": {
+      "y477imageText": "477imageText"
+    },
+    "y477bodyTextTitle": "477: Delian League established by Athens. ",
+    "@y477bodyTextTitle": {
+      "y477bodyTextTitle": "477bodyTextTitle"
+    },
+    
+    "y471": "c.471",
+    "@y471": {
+      "y471": "471"
+    },
+    "y471bodyText": "The Athenian general and statesman Themistocles, victor at the Battle of Salamis, is ostracised from Athens.",
+    "@y471bodyText": {
+      "y471bodyText": "471bodyText"
+    },
+    "y471imageText": "The so-called ‘Decree of Themistocles’, an inscription attributed to Themistocles that discusses the Greek strategy in the Persian War. The authenticity of the inscription is still debated – if it is real, then it contradicts Herodotus’ account – but if it is authentic, then it indicates that the abandonment of Athens in 480 BC was part of a strategy to draw the Persians into the straits of Salamis where they would be defeated. ",
+    "@y471imageText": {
+      "y471imageText": "471imageText"
+    },
+    "y471bodyTextTitle": "471 ",
+    "@y471bodyTextTitle": {
+      "y471bodyTextTitle": "471bodyTextTitle"
+    },
+
+
+    "y469": "c.469",
+    "@y469": {
+      "y469": "469"
+    },
+    "y469bodyText": "Birth of Socrates, one of the founding figures in Western philosophy, in Athens",
+    "@y469bodyText": {
+      "y469bodyText": "469bodyText"
+    },
+    "y469imageText": "The so-called ‘Decree of Themistocles’, an inscription attributed to Themistocles that discusses the Greek strategy in the Persian War. The authenticity of the inscription is still debated – if it is real, then it contradicts Herodotus’ account – but if it is authentic, then it indicates that the abandonment of Athens in 480 BC was part of a strategy to draw the Persians into the straits of Salamis where they would be defeated. ",
+    "@y469imageText": {
+      "y469imageText": "469imageText"
+    },
+    "y469bodyTextTitle": "469 Birth of Socrates ",
+    "@y469bodyTextTitle": {
+      "y469bodyTextTitle": "469bodyTextTitle"
+    },
+
+    "y462": "c.462",
+    "@y462": {
+      "y462": "462"
+    },
+    "y462bodyText": "Pericles introduces a decree leading to full democratic participation for all Athenian citizens. Remember, membership of Athenian citizenship was very limited: it was only for men of a certain age.",
+    "@y462bodyText": {
+      "y462bodyText": "462bodyText"
+    },
+    "y462imageText": "A view of the Pnyx in central Athens with the speaker’s platform in the centre. It was site of the popular assemblies where Athenian democracy was acted out. It was used as early as 508 BC after the reforms of Cleisthenes. ",
+    "@462imageText": {
+      "y462imageText": "462imageText"
+    },
+    "y462bodyTextTitle": "462 ",
+    "@y462bodyTextTitle": {
+      "y462bodyTextTitle": "462bodyTextTitle"
+    },
+
+    "y461": "c.461",
+    "@y461": {
+      "y461": "461"
+    },
+    "y461bodyText": "Pericles emerges as the leading political figure in Athens. ‘First Peloponnesian War’ begins with the Battle of Oenoe, where Spartan forces were defeated by an Athenian and Argive (from the city of Argos) alliance. The war was mainly prompted by the Spartan concerns over the growth of Athenian power, manifest in the emergence of their empire.",
+    "@y461bodyText": {
+      "y461bodyText": "461bodyText"
+    },
+    "y461imageText": "The fragment of a grave stele with a scene of Hoplites in Battle, dating to ca. 390 BC. This scene has a grim conclusion as both fallen soldier and his standing opponent are about to strike a fatal blow against their foe. ",
+    "@y461imageText": {
+      "y461imageText": "461imageText"
+    },
+    "y461bodyTextTitle": "461 ",
+    "@y462bodyTextTitle": {
+      "y462bodyTextTitle": "462bodyTextTitle"
+    },
+
+    "y458": "c.458",
+    "@y458": {
+      "y458": "458"
+    },
+    "y458bodyText": "This trilogy of tragedies includes Agamemnon, Libation Bearers, and Eumenides. This is the only surviving trilogy of Greek tragedy, and they deal with the House of Atreus and the curse that befell it in the aftermath of the Trojan War.",
+    "@y458bodyText": {
+      "y458bodyText": "458bodyText"
+    },
+    "y458imageText": "The so-called Mask of Agamemnon, depicting in gold sheet the face of a deceased noble man. Recovered from Mycenae in 1876 by Heinrich Schliemann (the notorious excavator or the site of Troy), the mask is commonly associated with Agamemnon, the King of Mycenae and leader of the Greeks at Troy, who meets a grisly end at the hands of his scorned wife, Clytemnestra, at the climax of Aeschylus’ Agamemnon…",
+    "@y458imageText": {
+      "y458imageText": "458imageText"
+    },
+    "y458bodyTextTitle": "458 Aeschylus produces the Oresteia ",
+    "@y458bodyTextTitle": {
+      "y458bodyTextTitle": "458bodyTextTitle"
+    },
+
+    "y457": "c.457",
+    "@y457": {
+      "y457": "457"
+    },
+    "y457bodyText": "The defensive fortifications that connected Athens to the port of Piraeus. These fortifications had been an important catalyst in escalating tensions between Athens and Sparta.",
+    "@y457bodyText": {
+      "y457bodyText": "457bodyText"
+    },
+    "y457imageText": "The Lenormant Trireme Relief, discovered atop the Acropolis in 1852. Dating to between 410 and 400 BC, this marble relief is an important contemporary depiction of the how a trireme (the main ship of the ancient Athenian navy) was organised, with banks of rowers. ",
+    "@y457imageText": {
+      "y457imageText": "457imageText"
+    },
+    "y457bodyTextTitle": "457 Completion of the 'Long Walls' ",
+    "@y457bodyTextTitle": {
+      "y457bodyTextTitle": "457bodyTextTitle"
+    },
+
+    "y454": "c.454",
+    "@y454": {
+      "y454": "454"
+    },
+    "y454bodyText": "The Athenians move the treasury of the Delian League from the island of Delos to Athens, a statement of empire.",
+    "@y454bodyText": {
+      "y454bodyText": "454bodyText"
+    },
+    "y454imageText": "A fragment of the Athenian tribute list. Dating to 425-4 BC, it records the tribute afforded to Athens by members of the Delian League, which was in effect, an Athenian empire. Here, one can see the assessments of Paros, Naxos, Andros, Melos, Siphnos, Eretria, and Thera. The amounts owed by these poleis are particularly high at this time because it is in the height of the Peloponnesian War, and Athens was likewise still reeling from the effects of the plague.",
+    "@y454imageText": {
+      "y454imageText": "454imageText"
+    },
+    "y454bodyTextTitle": "454 ",
+    "@y454bodyTextTitle": {
+      "y454bodyTextTitle": "454bodyTextTitle"
+    },
+
+    "y451": "c.451",
+    "@y451": {
+      "y451": "451"
+    },
+    "y451bodyText": "Birth of Alcibiades, the notable Athenian statesman, orator, and general, as well as a follower of Socrates. Following the death of Pericles, he would be one of the leading political figures in Athens, but would fall foul of the political instability in the latter years of the 5th century, not helped by his own propensity to change sides…",
+    "@y451bodyText": {
+      "y451bodyText": "451bodyText"
+    },
+    "y451imageText": "Jean-Baptiste Régnault, Socrates Tears Alcibiades from the Embrace of Sensual Pleasure, (1785) ",
+    "@y451imageText": {
+      "y451imageText": "451imageText"
+    },
+    "y451bodyTextTitle": "451 Birth of Alcibiades ",
+    "@y451bodyTextTitle": {
+      "y451bodyTextTitle": "451bodyTextTitle"
+    },
+
+    "y450": "c.450",
+    "@y450": {
+      "y450": "450"
+    },
+    "y450bodyText": "Pericles introduces payment in Athens for jury service; now, no citizen may be excluded from this important democratic function on the grounds of poverty.",
+    "@y450bodyText": {
+      "y450bodyText": "450bodyText"
+    },
+    "y450imageText": "A silver tetradrachm from Athens (454-404 BC). A helmeted head of Athena on the obverse is paired with the goddess’ owl and olive sprig on the reverse. The legend is ΑΘΕ, which stands for αθε[ναιον], or Athenaion, meaning <<of the Athenians>> ",
+    "@y450imageText": {
+      "y450imageText": "450imageText"
+    },
+    "y450bodyTextTitle": "450",
+    "@y450bodyTextTitle": {
+      "y450bodyTextTitle": "450bodyTextTitle"
+    },
+
+    "y447_432": "c.447-432",
+    "@y447_432": {
+      "y447_432": "447-432"
+    },
+    "y447_432bodyText": "The principal architects are Iktinos and Kallikrates, working under the direction of Phidias. The temple was dedicated to the Athena, the patron goddess of the city. The new temple was built over the remains of an earlier structure destroyed by the Persians in 480 BC.",
+    "@y447_432bodyText": {
+      "y447_432bodyText": "447-432bodyText"
+    },
+    "y447_432imageText": "A silver tetradrachm from Athens (454-404 BC). A helmeted head of Athena on the obverse is paired with the goddess’ owl and olive sprig on the reverse. The legend is ΑΘΕ, which stands for αθε[ναιον], or Athenaion, meaning <<of the Athenians>> ",
+    "@y447_432imageText": {
+      "y447_432imageText": "447-432imageText"
+    },
+    "y447_432bodyTextTitle": "447-432 Construction of the Parthenon.  ",
+    "@y447_432bodyTextTitle": {
+      "y447_432bodyTextTitle": "447-432bodyTextTitle"
+    },
+
+    "y446": "c.446",
+    "@y446": {
+      "y446": "446"
+    },
+    "y446bodyText": " A Thirty Year Peace is signed between Athens and Sparta. It would not last…",
+    "@y446bodyText": {
+      "y446bodyText": "446bodyText"
+    },
+    "y446imageText": "Parthenon on the Acropolis in Athens",
+    "@490imageText": {
+      "446imageText": "446imageText"
+    },
+    "y446bodyTextTitle": "446",
+    "@y446bodyTextTitle": {
+      "y446bodyTextTitle": "446bodyTextTitle"
+    },
+
+    "y443": "c.443",
+    "@y443": {
+      "y443": "443"
+    },
+    "y443bodyText": "Pericles is nominated by the assembly as the leading general of Athens. He will hold this post every year until his death.",
+    "@y443bodyText": {
+      "y443bodyText": "443bodyText"
+    },
+    "y443imageText": "Pericles Funeral Oration, Philipp Foltz (1852) ",
+    "@y443imageText": {
+      "y443imageText": "443imageText"
+    },
+    "y443bodyTextTitle": "443",
+    "@y443bodyTextTitle": {
+      "y443bodyTextTitle": "443bodyTextTitle"
+    },
+
+
+    "y441": "c.441",
+    "@y441": {
+      "y441": "441"
+    },
+    "y441bodyText": "Sophocles produces Antigone. One of the playwright’s Theban plays, which include Oedipus Rex (Oedipus the King), and centres on the events of a civil war between two of Oedipus’ sons at the ancient city of Thebes.",
+    "@y441bodyText": {
+      "y441bodyText": "441bodyText"
+    },
+    "y441imageText": "Oedipus and Antigone, Antoni Brodowski (1828). Having learnt of his fate – that he killed his father and married his mother – Oedipus, King of Thebes, has blinded himself in despair. Here, he is led away, into exile, by his daughter Antigone.",
+    "@y441imageText": {
+      "y441imageText": "441imageText"
+    },
+    "y441bodyTextTitle": "441",
+    "@y441bodyTextTitle": {
+      "y441bodyTextTitle": "441bodyTextTitle"
+    },
+
+    "y438": "c.438",
+    "@y438": {
+      "y438": "438"
+    },
+    "y438bodyText": "The colossal cult statue of Athena Parthenos is dedicated in the Parthenon of Athens.",
+    "@y438bodyText": {
+      "y438bodyText": "438bodyText"
+    },
+    "y438imageText": "A reconstruction of the Athena Parthenon statue of Phidias, designed by Alan LeQuire can be seen in a reproduction of the Athenian Parthenon that is found in Nashville, Tennessee. ",
+    "@y438imageText": {
+      "y438imageText": "438imageText"
+    },
+    "y438bodyTextTitle": "438",
+    "@y438bodyTextTitle": {
+      "y438bodyTextTitle": "438bodyTextTitle"
+    },
+
+    "y431": "c.431",
+    "@y431": {
+      "y431": "431"
+    },
+    "y431bodyText": "Re-start of the Peloponnesian War between Athens and allies against Sparta and allies. The entire Greek world is involved.\n\n Euripides produces Medea, a tragedy involving the princess Medea, scorned by Jason (leader of the Argonauts) and the terrible revenge she exacts.",
+    "@y431bodyText": {
+      "y431bodyText": "431bodyText"
+    },
+    "y431imageText": "Medea about to kill her children, Eugène Delacroix (1862). Seeking revenge against Jason, her husband who has abandoned her to marry the princess Creusa, Medea murders not only the princess, but also her children before fleeing to Athens. ",
+    "@y431imageText": {
+      "y431imageText": "431imageText"
+    },
+    "y431bodyTextTitle": "431",
+    "@y431bodyTextTitle": {
+      "y431bodyTextTitle": "431bodyTextTitle"
+    },
+
+    "y430": "c.430",
+    "@y430": {
+      "y430": "430"
+    },
+    "y430bodyText": "Plague arrives in Athens.",
+    "@y430bodyText": {
+      "y430bodyText": "430bodyText"
+    },
+    "y430imageText": "The plague of Ashdod, Nicolas Poussin (1630). Depicting a biblical episode from the Book of Samuel in the Old Testament, Poussin painted this scene during a plague that was ravaging Italy. This realistic sense of the devastation and the effect it had on people, coupled with the artist’s neo-classical style, lends an insight into what the plague of Athens may have looked like. ",
+    "@y430imageText": {
+      "y430imageText": "430imageText"
+    },
+    "y430bodyTextTitle": "430",
+    "@y430bodyTextTitle": {
+      "y430bodyTextTitle": "430bodyTextTitle"
+    },
+
+    "y427": "c.427",
+    "@y427": {
+      "y427": "427"
+    },
+    "y427bodyText": "Infamous Mytilene debate in the Athenian Assembly. The Athenians debate and agree to kill all the men captured on following the revolt at Mytilene, the capital of the island of Lesbos. A change of heart, and some heroic rowing, meant that replacement orders arrived just in time to spare the defeated Mytilineans.",
+    "@y427bodyText": {
+      "y427bodyText": "427bodyText"
+    },
+    "y427imageText": "A marble copy of a mid-4th century BC portrait of Plato ",
+    "@y427imageText": {
+      "y427imageText": "427imageText"
+    },
+    "y427bodyTextTitle": "427 Birth of Plato",
+    "@y427bodyTextTitle": {
+      "y427bodyTextTitle": "427bodyTextTitle"
+    },
+
+    "y421": "c.421",
+    "@y421": {
+      "y421": "421"
+    },
+    "y421bodyText": "Peace of Nicias is signed. A temporary peace is established between Athens and Sparta.",
+    "@y421bodyText": {
+      "y421bodyText": "421bodyText"
+    },
+    "y421imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y421imageText": {
+      "y421imageText": "421imageText"
+    },
+    "y421bodyTextTitle": "421",
+    "@y421bodyTextTitle": {
+      "y421bodyTextTitle": "421bodyTextTitle"
+    },
+
+    "y416": "c.416",
+    "@y416": {
+      "y416": "416"
+    },
+    "y416bodyText": "Despite being neutral during the war, the Athenians invaded Melos and demanded tribute, threatened the destruction of the people otherwise. The Melian’s refused, and after a siege in which the Athenians triumphed, the men were executed, the women and children enslaved.",
+    "@y416bodyText": {
+      "y416bodyText": "416bodyText"
+    },
+    "y416imageText": "An engraving showing the Odysseus throwing Astynax, the son of Hector, from the walls of Troy, whilst his mother, Andromache, watches on helplessly. The suffering of Andromache is a theme of Euripides’ tragedy The Trojan Women, produced in 415 BC. Some scholars see the play as a commentary on the suffering of people in war, explicitly in reference to the fate of the Melians. ",
+    "@y416imageText": {
+      "y416imageText": "416imageText"
+    },
+    "y416bodyTextTitle": "416  Siege of Melos.",
+    "@y416bodyTextTitle": {
+      "y416bodyTextTitle": "416bodyTextTitle"
+    },
+
+    "y415": "c.415",
+    "@y415": {
+      "y415": "415"
+    },
+    "y415bodyText": "The ‘Father of History’ dedicates each of his nine books (chapters) to one of the Greek muses. His narrative details the Persian Wars.",
+    "@y415bodyText": {
+      "y415bodyText": "415bodyText"
+    },
+    "y415imageText": " A marble portrait bust of Herodotus, dating to the Roman period (2nd century AD). ",
+    "@y415imageText": {
+      "y415imageText": "415imageText"
+    },
+    "y415bodyTextTitle": "415 Publication of Herodotus’ Histories. ",
+    "@y415bodyTextTitle": {
+      "y415bodyTextTitle": "415bodyTextTitle"
+    },
+
+    "y414": "c.414",
+    "@y414": {
+      "y414": "414"
+    },
+    "y414bodyText": "The Persians rekindle their interest in the politics of the Greek World. They provide funds to the Spartans, allowing them to construct a fleet to rival the Athenian.",
+    "@y414bodyText": {
+      "y414bodyText": "414bodyText"
+    },
+    "y414imageText": "Meeting between Cyrus the Younger and Lysander [right], Francesoco Antonio Grue (late 17th century). This maiolica (tin-glazed pottery) from Italy, was common during the Renaissance and often featured scenes from history and mythology. Here, the son of Darius II meets the Spartan general. ",
+    "@y414imageText": {
+      "y414imageText": "414imageText"
+    },
+    "y414bodyTextTitle": "414 ",
+    "@y414bodyTextTitle": {
+      "y414bodyTextTitle": "414bodyTextTitle"
+    },
+
+    "y413": "c.413",
+    "@y413": {
+      "y413": "413"
+    },
+    "y413bodyText": "An enormously costly  Athenian attack on Syracuse in Sicily. It ends in disaster, with the loss of hundreds of ships and thousands of soldiers.",
+    "@y413bodyText": {
+      "y413bodyText": "413bodyText"
+    },
+    "y413imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y413imageText": {
+      "y413imageText": "413imageText"
+    },
+    "y413bodyTextTitle": "413 sicilian expedition",
+    "@y413bodyTextTitle": {
+      "y413bodyTextTitle": "413bodyTextTitle"
+    },
+
+    "y411": "c.411",
+    "@y411": {
+      "y411": "411"
+    },
+    "y411bodyText": "Democracy is abandoned at Athens replaced by an oligarchy of 400 members. It is quickly replaced by an oligarchy of 5,000.",
+    "@y411bodyText": {
+      "y411bodyText": "411bodyText"
+    },
+    "y411imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y411imageText": {
+      "y411imageText": "411imageText"
+    },
+    "y411bodyTextTitle": "411 ",
+    "@y411bodyTextTitle": {
+      "y411bodyTextTitle": "411bodyTextTitle"
+    },
+
+    "y410": "c.410",
+    "@y410": {
+      "y410": "410"
+    },
+    "y410bodyText": "Alcibiades leads the Athenian fleet to victory over the Spartan forces at Cyzicus.",
+    "@y410bodyText": {
+      "y410bodyText": "410bodyText"
+    },
+    "y410imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos:  ",
+    "@y410imageText": {
+      "y410imageText": "410imageText"
+    },
+    "y410bodyTextTitle": "410 battle of cyzicus",
+    "@y410bodyTextTitle": {
+      "y410bodyTextTitle": "410bodyTextTitle"
+    },
+
+    "y407": "c.407",
+    "@y407": {
+      "y407": "407"
+    },
+    "y407bodyText": "The Athenian fleet is defeated by the Spartans, led by Lysander, at Notium.",
+    "@y407bodyText": {
+      "y407bodyText": "407bodyText"
+    },
+    "y407imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y407imageText": {
+      "y407imageText": "407imageText"
+    },
+    "y407bodyTextTitle": "407 battle of notium",
+    "@y407bodyTextTitle": {
+      "y407bodyTextTitle": "407bodyTextTitle"
+    },
+
+    "y404": "c.404",
+    "@y404": {
+      "y404": "404"
+    },
+    "y404bodyText": "End of the Peloponnesian War after the Spartans defeat the Athenians at Aigospotamoi. Athens is ruled by the ‘Thirty Tyrants’. Lysander attacks the port of Piraeus and tears down the Long Walls.",
+    "@y404bodyText": {
+      "y404bodyText": "404bodyText"
+    },
+    "y404imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y404imageText": {
+      "y404imageText": "404imageText"
+    },
+    "y404bodyTextTitle": "404 battle of aegospotami",
+    "@y404bodyTextTitle": {
+      "y404bodyTextTitle": "404bodyTextTitle"
+    },
+
+    "y403": "c.403",
+    "@y403": {
+      "y403": "403"
+    },
+    "y403bodyText": "Democracy is restored in Athens.",
+    "@y403bodyText": {
+      "y403bodyText": "403bodyText"
+    },
+    "y403imageText": "A 19th century artistic imagining of the Temple of the Delians, the largest of the three cult temples dedicated to Apollo on the island of Delos: ",
+    "@y403imageText": {
+      "y403imageText": "403imageText"
+    },
+    "y403bodyTextTitle": "403 ",
+    "@y403bodyTextTitle": {
+      "y403bodyTextTitle": "403bodyTextTitle"
+    },
+
+    "y399": "c.399",
+    "@y399": {
+      "y399": "399"
+    },
+    "y399bodyText": "Trial and death of Socrates in Athens.",
+    "@y399bodyText": {
+      "y399bodyText": "399bodyText"
+    },
+    "y399imageText": "Death of Socrates, Giambettino Cignaroli (1759). The philosopher is shown here surrounded by his devastated pupils and followers. ",
+    "@y399imageText": {
+      "y399imageText": "399imageText"
+    },
+    "y399bodyTextTitle": "399 ",
+    "@y399bodyTextTitle": {
+      "y399bodyTextTitle": "399bodyTextTitle"
+    },
+
+
+    "ebolaText": "Ebola, or a similar type of viral haemorrhagic fever (VHF), such as Marburg virus, has also been identified as a possible suspect for the plague of Athens. One of the main reasons behind this is the fact that the disease, at least according to Thucydides’ account, was particularly deadly to those responsible for caring for the sick (one of the main reasons for the breakdown in traditional practices at this time).\n\nEbola or similar viruses are nigh impossible to identifiable from archaeological evidence, unfortunately, meaning that there is a reliance on theoretical approaches and the literary sources. What can be said with some confidence, is that the disease could have spread from Africa to Greece as a result of the virus’ incubation period. Likewise, a number of the symptoms reported – notably, in Lucretius’ much later account – resemble those associated with VHFs, including bloody discharges from the body.",
+    "@ebolaText": {
+      "ebolaText": "ebolaText"
+    },
+
+    "smallpoxText": "Another disease that is sometimes attributed to the Plague of Athens. Although smallpox is responsible for killing masses of people throughout history, it does not appear to be the most likely suspect here…",
+    "@smallpoxText": {
+      "smallpoxText": "smallpoxText"
+    },
+
+    "typhiodText": "Perhaps the most likely suspect – along with Typhoid - at least according to archaeologists. DNA evidence drawn from the roots of teeth recovered from mass burial sites uncovered in the city of Athens have indicated that typhoid was the probable disease that devastated the ancient city. A number of the symptoms usually associated with Typhoid are recognisable from the historical narrative, including a high fever, diarrhoea, and headaches.\n\nGiven that typhoid is commonly spread through poor hygiene and sanitation, it is not hard to imagine this spreading through the cramped city, but its origins in Africa and spread to Athens is harder to explain.\n\nLikewise, this water-borne pathogen presents some other problems. For instance, Typhoid is not known to be lethal to scavenger animals or carrion feeders, which is an assertion of Thucydides. Likewise, the onset of the illness tends to be slower and more subtle than the lethal speed of the illness the ancient historian describes.",
+    "@typhiodText": {
+      "typhiodText": "typhiodText"
+    },
+
+    "typhusText": " A common culprit when investigating the plague of Athens, thanks in part to the similarity of known symptoms with those described by Thucydides and the manner in which this illness can spread rapidly in close quarters.\n\nTyphus is known to develop in places suffering the effects of war and shortages of space and other resources, which would resonate well with the cramped conditions in Athens as people from the surrounding countryside retreated behind the defensive walls for safety. Notably, this disease is also marked by some patients that survive the infection suffering gangrene in their extremities, another symptom from Thucydides’ account.",
+    "@typhusText": {
+      "typhusText": "typhusText"
+    },
+
+    "bubonicPlagueText": "The plague of Athens was for a long time attributed to a form of Bubonic Plague, the disease that devastated Europe in the Middle Ages. ",
+    "@bubonicPlagueText": {
+      "bubonicPlagueText": "bubonicPlagueText"
+    },
+
+    "introVirusText": "When dealing with ancient history there is always an issue of evidence to confront and overcome, and it is no different with the Plague of Athens. Historians have had to rely on the accounts of Thucydides and what can be pieced together from the archaeological evidence. This has led to at least 30 different theories as to what the disease actually was! Identifying the disease is further problematised by the simple fact that diseases, their symptoms and transmission, can of course evolve over time. Also significant is the fact that the increase in Athens’ population at this time would have reduced the hygiene levels in an already crowded ancient city, whilst leading to an increase in carriers of disease such as waste, rats, and lice; there is a very real possibility that more than one disease was moving through the populace at this time...\n\nLet’s take a look at the main suspects:",
+    "@introVirusText": {
+      "introVirusText": "introVirusText"
+    },
+    "sourceAnalysis": "source analysis",
+    "@sourceAnalysis": {
+      "sourceAnalysis": "source analysis"
+    },
+
+    "skin": "skin",
+    "@skin": {
+      "skin": "skin"
+    },
+    "throatText": "The illness then spread lower, affecting the throat which would become inflamed and painful. Sneezing, coughing, and general hoarseness followed soon after, along with a ferocious, debilitating cough.\n\nThucydides also describes that victims of the disease, with their throat inflamed, suffered from terrible breath, which became “unnatural and malodorous”.",
+    "@throatText": {
+      "throatText": "throatText"
+    },
+
+    "headText": "Thucydides describes how the disease began in the patient’s head. It could attack anyone, including those who were previously healthy. Eyes would become red and irritated, and a strong fever would set in, increasing the patient’s temperature.",
+    "@headText": {
+      "headText": "headText"
+    },
+
+    "chestText": "As they suffered from this debilitating coughing, the sufferers of the plague found themselves weakened further by constant retching. Thucydides describes how, “in a short time, the affliction descended to the chest… when it became established in the heart”. This demonstrates the limits of ancient medicine and anatomy, as the symptoms the historian describes do not point to cardiac symptoms, but rather the disease affecting the lungs.\n\nThe unfortunate patient would begin to vomit, bringing up bile (identified by the doctors in Thucydides’ account). This was apparently incredibly uncomfortable for the patients, who convulsed violently and quickly led to “empty retching”.",
+    "@chestText": {
+      "chestText": "chestText"
+    },
+
+    "skinText": "The illness, until now contained mostly within the body, then became visible. The skin of the patient erupted in a series of small blisters and sores, becoming red and inflamed. Soon, clothes became intolerable. There was no respite for the afflicted, who sought salvation in jumping into pools of cold water in desperate attempts to cool off. Rest and recovery became almost impossible at this point. After between the seventh and ninth day of this, Thucydides records, the patient would usually pass away.",
+    "@skinText": {
+      "skinText": "skinText"
+    },
+
+    "intrBodyText": "Whatever the pathogen was that devastated Athens in the 5th century BC, it was lethal, killing those who contracted the illness generally within a week. There are two evocative accounts of the symptoms of the symptoms. One is historical: the contemporary account of Thucydides, who himself contracted the disease but fortuitously survived. The second is a later poetic account, probably inspired in part by Thucydides: the poem, de rerum natura (“On the Nature of Things”), written by the Roman poet Lucretius in the 1st century BC. Both of these accounts present a horrific illness that attacked the body in stages, attacking the patient’s head first...\n",
+    "@intrBodyText": {
+      "intrBodyText": "intrBodyText"
+    },
+    "intrBodyTextItalic": "“The disease worked its way right through the body from the top, beginning with the affliction which first settled in the head. If anyone survived the worst symptoms, the disease left its mark by catching his extremities. It attacked the private parts, and the fingers and toes, and many people survived but lost these, while others lost their eyes. Others, on first recovering, suffered a total loss of memory, and were unable to recognize themselves and their relatives.” (Thucydides, History of the Peloponnesian War)",
+    "@intrBodyTextItalic": {
+      "intrBodyTextItalic": "intrBodyTextItalic"
+    },
+    "stomachText": "If (and it was far from certain) a patient survived the onset of the stomachlesions and fever, then they were not yet safe. Thucydides describes how the disease continued to work its way lower through the body. Now, it reached the stomach and people suffered from violent diarrhoea. Already weakened, and now purged of vital fluids and minerals, death soon followed…",
+    "@stomachText": {
+      "stomachText": "stomachext"
+    },
+    "hendsText": "Of course, a lucky number survived the illness, including Thucydides himself. But for some patients, their body was left with a permanent reminder of the long, arduous fight they had had with the plague. Thucydides records that the disease even reached the extremities of the body, attacking fingers, toes, and even the genitals. If someone was fortunate enough to ultimately survive the illness, they would often lose these extremities. Some even lost the use of their eyes, going blind.",
+    "@hendsText": {
+      "hendsText": "hendsText"
+    },
+
+    "glossaryDemocracytext": " Literally ‘people power’ (from the Greek words, demos, meaning ‘people’, and kratos, meaning ‘power’). This was a type of politics first invented by Cleisthenes in Athens in the 5th Century. It allowed the citizens of Athens to decide, in an assembly of their peers, how their city would be governed. Although all Athenian citizens had equality before the laws, this was still not an equal society. Only Athenian men over the age of 18 could participate: women were not allowed to take part.\n\nUnlike many modern democracies, which are representative - where citizens vote to elect a representative - Athenian democracglossaryD was direct, meaning that people could attend the assembly themselves to vote.  ",
+    "@glossaryDemocracytext": {
+      "glossaryDemocracytext": "glossaryDemocracytext"
+    },
+
+    "glossaryHumorsText": "The humours were the four fluids that were believed to be found in a person’s body. These were thought to determine a person’s health and temperament, meaning that an imbalance of humours could lead a person to become ill. There were four humours: blood, phlegm, choler (yellow bile) and black bile. Hippocrates is usually credited with applying this theory to medicine.",
+    "@glossaryHumorsText": {
+      "glossaryHumorsText": "glossaryHumorsText"
+    },
+
+    "glossaryOstracismText": "This was the process by which the Athenian democracy could vote to expel a citizen from the city for a period of upto ten years. In theory it was meant to stop a single citizen from monopolising power and becoming a tyrant, but it was also frequently used in factional politics or pre-emptively to remove rivals. The name ostracism derives from the ostraka which were used to vote. Thes",
+    "@glossaryOstracismText": {
+      "glossaryOstracismText": "glossaryOstracismText"
+    },
+    "glossaryTyphusText": "Typhus is an infectious disease that is spread through bacteria that can often be carried by fleas, lice, or mites which are themselves carried by small animals and on people. As a result, it is a disease that usually thrives in crowded areas, such as cities. It is often believed to be a likely culprit as the disease behind the plague of Athens, based on many shared symptoms including sickness and diarrhoea, rasping coughs, fevers, and rashes.",
+    "@glossaryTyphusText": {
+      "glossaryTyphusText": "glossaryTyphusText"
+    },
+
+    "glossaryPhilosophyText": "Meaning literally the ‘love of wisdom’, with philo meaning to love, and sophia being wisdom this is the pursuit of answers to big questions. It became a feature of life in Classical Athens, through figures such as Socrates and Plato. These men - philosophers -  asked questions such as what it meant to lead a good life, which were topics that we would understand as morality and ethics.",
+    "@glossaryPhilosophyText": {
+      "glossaryPhilosophyText": "glossaryPhilosophyText"
+    },
+
+    "documentIntroText": " As the “Father of Medicine”, Hippocrates is famous for changing the approach to medicine in the ancient world. He made the role of the doctor much more professional and put the care of the patient at the fore of his approach to medicine.\nThe Hippocratic approach to medicine is famously laid out in the Hippocratic oath. A form of this is still used by doctors in the modern world, and it is an ethic oath taken to express a doctor’s commitment to caring for the patient to the best of their abilities and to not cause harm.\nThe original oath, made by Hippocrates, exists only on partial fragments of papyrus, recovered from Egypt and dating to around AD 275 (almost 700 years after Hippocrates had practiced medicine!). This oath, or variants of it at least, are though to be the earliest expression of medical ethics in the western world, and many of the principles are still applicable to modern medicine. Although the oath is associated with Hippocrates, it remains unclear (and fiercely debated) as to whether the oath was ever actually written by Hippocrates himself… ",
+    "@documentIntroText": {
+      "documentIntroText": "documentIntroText"
+    },
+
+    "documentTranscriptionText": " A fragment of the Hippocratic oath on a fragment of 3rd century papyrus from Oxyrhynchus in Egypt (P. Oxy 2547).\n“I swear by (1) Apollo Healer, by Asclepius, by Hygieia, by Panacea, and by all the gods and goddesses, making them my witnesses, that I will carry out, according to my ability and judgment, this oath and this indenture.\nTo hold my teacher in this art equal to my own parents; to make him partner in (2) my livelihood; when he is in need of money to share mine with him; to consider his family as my own brothers, and to teach them this art, if they want to learn it, without fee or indenture; to impart precept, oral instruction, and all other instruction to my own sons, the sons of my teacher, and to indentured pupils who have taken the Healer’s oath, but to nobody else.\nI will use those (3) dietary regimens which will benefit my patients according to my greatest ability and judgment, and I will do no harm or injustice to them. (4) Neither will I administer a poison to anybody when asked to do so, nor will I suggest such a course. Similarly, I will not give to a woman a pessary to cause abortion. But I will keep pure and holy both my life and my art. I will not use the knife, not even, verily, on sufferers from stone, but I will give place to such as are craftsmen therein.\nInto whatsoever houses I enter, I will enter to help the sick, and I will abstain from all intentional wrong-doing and harm, especially from abusing the bodies of man or woman, bond or free. And whatsoever I shall see or hear in the course of my profession, as well as outside my profession in my intercourse with men, if it be what should not be published abroad, I will never divulge, holding such things to be holy secrets.\nNow if I carry out this oath, and break it not, may I gain for ever reputation among all men for my life and for my art; but if I break it and forswear myself, may the opposite befall me.”",
+    "@documentTranscriptionText": {
+      "documentTranscriptionText": "documentTranscriptionText"
+    },
+
+    "document1Text": "Here it becomes clear that although Hippocrates and his pupils established a new way of practicing medicine, that involved observation and diagnosis, the supernatural and the spiritual still fulfilled a prominent role in the treatment of illnesses. Apollo was a traditional healing god in the ancient Greek pantheon, whilst Asclepius was also soon recognised around the Greek world as a god of healing and medicine, as indicated by the spread of Asklepions as places of healing. \nThis religious aspect of the Hippocratic Oath also makes clear the debt that modern medical terminology owes to these ancient Greek ideals. It includes two of the Ascleptiadae, the sons and daughters of Asclepius. Hygieia, from whom the English word ‘hygiene’ is derived, was the goddess of health and cleanliness, whilst Panacea was a goddess of universal cure or remedy (the word ‘panacea’ still refers to a universal cure in modern terminology). Their siblings – not mentioned in this version of the oath – were Iaso (goddess of recuperation); Aceso (the goddess of the healing process); and Algaia. Notably, whilst Asclepius and Panacea may be more closely associated with the treatment of diseases, Hygieia was associated with the initial prevention of illness. \nMuch like her mythological father, Hygieia is remembered today in common pharmacological and medical iconography. The ‘bowl of Hygieia’ symbol is used around the world (especially Europe) to indicate medical care, and shows a snake entwined around the stem of a cup or chalice.",
+    "@document1Text": {
+      "document1Text": "document1Text"
+    },
+    "document2Text": "The very existence of an Hippocratic Oath, in the various forms that it was transmitted through various ancient Mediterranean societies, is indicative of another important aspect of Hippocratic medicine: professionalism. This was important. As a democracy, Athens had complex systems of legislation and organisation, there was no central authority on medicine or health, meaning that the onus was on the individual doctor(s).\nThe Oath does not, it must be said, suggest professionalism in the same sense as it is found in modern societies. Nevertheless, by swearing this oath – with its deeply religious tone established at the start (1) – the ancient medical practitioners are demonstrated to submitting their work to a higher power and a standard of care. Moreover, that the gods invoked at the start were recognisable to the people they were helping gave further weight to the oath and its meaning; the doctors were bound to the same gods as the patients, and everyone knew the potential perils involved in reneging on an agreement with the gods, as is emphasised by the warning at the end of the Oath.\nAfter all, there were some who believed that the Plague of Athens itself was a sign that the god Apollo had abandoned the city and lent his support to the Spartans…\n“And in their distress they recalled, as was natural, the following prophecy which their older men said had long ago been uttered:\n‘A Dorian war shall come, and pestilence with it’…” (Thucydides 2.54)",
+    "@document2Text": {
+      "document2Text": "document2Text"
+    },
+    "document3Text": "Although the gods are invoked at the start of this oath, the Hippocratic approach to medicine was marked by attempts to distance the attribution of illness to the gods and other superstitious factors. \nIllness was, the follows of this approach believed, the result of physical and environmental factors. This could include the environment in which one lived and worked, as well as what people ate. This approach is explicitly referred to in the Oath here, with the reference to dietary regimens as a way of treating a patient. These practices are also clear from the healing sanctuaries, the Asklpeions, where patients could retreat from a bustling polis to the quiet and calm of the Greek countryside.\n“Men regard its nature and cause [i.e., of diseases] as divine from ignorance and wonder” Hippocrates, On the Sacred Disease. This is one of the texts contained within the so-called Hippocratic Corpus, written about 400 BC. Although it is typically attributed to Hippocrates himself, the actual author remains unconfirmed and some approach the text with a healthy amount of scepticism. It nevertheless is a clear exponent of a search for naturalistic explanations, rather than divine, for illness.",
+    "@document3Text": {
+      "document3Text": "document3Text"
+    },
+    "document4Text": "This is perhaps one of the most important principles contained within the Hippocratic Oath, and underpins so much of medical ethics: the commitment not to cause harm to the patient. In more modern versions of the Hippocratic Oath, one can find this principle expressed in the term “First, do no harm” (or sometimes in Latin: primum non nocere). This is a much later expression, but as is clear from this papyrus document, the principle existed even in antiquity.\nThe refusal to harm patients could result in some quandaries for ancient doctors. The role of surgery appears to have been troublesome for instance. In a world without anaesthetics and antiseptics, invasive surgery would almost certainly be fatal, with patients dying of shock, blood-loss, and, if they survived that, probably infection. However, the express commitment not to use the knife on patients in the Oath contrasts with other texts in the Hippocratic Corpus (a collection of writings attributed, not without debate, to Hippocrates). These texts for instance provide guidance on how to perform some small operations, particularly for the removal of kidney and gallstones (Lithomoy). The Oath, as it is preserved here, explicitly states that such procedures should be left to “craftsmen” (i.e., surgeons) who are qualified to carry out these procedures.\nNotably, the text of the Oath preserved on this papyrus also refers to abortion, and explicitly prohibits it. This again is in contradiction to an earlier Hippocratic text, which describes a procedure without any suggestion that it was morally wrong.",
+    "@document4Text": {
+      "document4Text": "document4Text"
+    },
+
+    "documentIntro": "Intro",
+    "@documentIntro": {
+      "documentIntro": "Intro"
+    },
+    "documentTranscription": "transcription",
+    "@documentTranscription": {
+      "documentTranscription": "documentTranscription"
+    },
+
+    "document1": "#1",
+    "@document1": {
+      "document1": "#1"
+    },
+    "document2": "#2",
+    "@document2": {
+      "document2": "#2"
+    },
+    "document3": "#3",
+    "@document3": {
+      "document3": "#3"
+    },
+
+    "document4": "#4",
+    "@document4": {
+      "document4": "#4"
+    },
+    
+    "sourceAnalysisHippocraticOath": "Source analysis: Hippocratic Oath",
+    "@sourceAnalysisHippocraticOath": {
+      "sourceAnalysisHippocraticOath": "#sourceAnalysisHippocraticOath"
+    },
+
+    "chapter1MedicalToolsKnowledge": "Chapter 1 / Medical tools & Knowledge",
+    "@chapter1MedicalToolsKnowledge": {
+      "chapter1MedicalToolsKnowledge": "chapter1MedicalToolsKnowledge4"
+    },
+
+    "athenianDefeat": "Athenian Defeat",
+    "@athenianDefeat": {
+      "athenianDefeat": "athenianDefeat"
+    },
+    "timeOfTyrants": "A time of tyrants",
+    "@timeOfTyrants": {
+      "timeOfTyrants": "timeOfTyrants"
+    },
+    "deathPhilosopher": "Death of a philosopher",
+    "@deathPhilosopher": {
+      "deathPhilosopher": "deathPhilosopher"
+    },
+    "athenianDefeatText": "In the aftermath of Athens’ defeat and the recovery from the devastation wrought by both war and plague, the political landscape of the city fractured.\nAt first, democracy was a victim. Despite enduring through the year of plague, it had increasingly found starting to creak under the strain of war. In 406 BC for example, the Athenian navy had rallied, defeating the Spartans at the Battle of Arginusae. The failure of the commanders to capitalise on this victory however (through no fault of their own, merely bad weather), led to a trial in Athens at which six leading naval commanders were executed. This would severely undermine the capacity of the Athenian forces in future. \nBy a quirk of fortune, Socrates was holding public office at the time of this trial - the only time in his entire life. He was serving as an epistates, who fulfilled an executive function within the Boule. Although both Plato and the historian Xenophon records that Socrates declared that he would “do nothing contrary to the law”, factionalism and political maneuvering in the Athenian democracy led to all six commanders being unable to avoid their fate.\nQUOTE\n“At that time I was the only one who opposed doing anything contrary to the laws, and although the orators were ready to impeach and arrest me… I thought I must run the risk to the end with law and justice on my side, rather than join with you when your wishes were unjust, through fear of imprisonment or death” Socrates, recorded by Plato Apology 32b-c.",
+    "@athenianDefeatText": {
+      "athenianDefeatText": "athenianDefeatText"
+    },
+    "timeOfTyrantsText": "When the Athenians eventually surrendered to the Spartans in 404 BC, the democratic system of government was suspended. Instead, a reactionary regime of ‘Thirty Tyrants’ was set up, led by Critias. This group of oligarchs reduced the rights of many Athenian citizens, limiting participation in government to 3,000 selected men. Critias had actually once been a pupil or associate of Socrates, and this would have repercussions for the philosopher later… The reign of the Thirty Tyrants was notable for its violence and rapacity, with wealthy Athenians often put on trial on trumped up charges and executed, simply so that their assets could be stripped. The violence of these oligarchs quelled resistance until in 403 they were overthrown by an uprising led by an exiled Athenian, Thrasybulus.\nSocrates was one of the notable Athenians who chose to remain in the city under the control of the Thirty Tyrants, and this, coupled with his known association with Critias, led to his coming under increased scrutiny. It also did not help that Socrates’ teachings, and later those of Plato, were often critical of democracy as a form of political organization, nor that he had been close to Alcibiades, the general in charge of the Sicilian expedition who was recalled and removed before the disastrous expedition even left.",
+    "@timeOfTyrantsText": {
+      "timeOfTyrantsText": "timeOfTyrantsText"
+    },
+    "deathPhilosopherText": "He was put on trial in 399 BC, charged with impiety against the Athenian gods and with corrupting the youth of Athens through his teachings. The trial and its aftermath are documented by the historian Xenophon, and in several of the dialogues of Plato, particularly in the Apology of Socrates. Athenian trials had juries drawn from the citizen body by lots, often with a hundred or more jurors. Found guilty of his crimes (but not by an overwhelming majority), several punishments were suggested. Finally, the death sentence was proposed and passed through a vote (by a greater majority than had initially voted him guilty – some of Socrates’ responses had evidently angered the jurors…)\nAlthough his associates encouraged the philosopher to flee Athens, Socrates declined. Abiding until the end by the maxim of civic obedience to the law – the principal he had so often taught – Socrates faced his death. At the age of 70, and with his disciples gathered around, the philosopher drank a concoction that contained the poison hemlock. His courage in the face of death, and his commitment to his principles, provided the final lesson of a life lived in pursuit of knowledge, and serves as a fitting conclusion to the breakdown of a society in the face of war and disease.",
+    "@deathPhilosopherText": {
+      "deathPhilosopherText": "deathPhilosopherText"
+    },
+
+    "athenianDefeatImageText": "A marble portrait bust of Plato, the philosopher and follower of Socrates. It is through the writings of Plato that much of the beliefs of Socrates have been recorded, including the events of his trial and execution. ",
+    "@athenianDefeatImageText": {
+      "athenianDefeatImageText": "athenianDefeatImageText"
+    },
+    "timeOfTyrantsImageText": "François-André Vincent, Alcibiades receiving the lessons of Socrates, (1776). Now on display at the Musée Fabre, Montpellier. The philosopher’s relationship with Alcibiades, the Athenian general turned exile, did not engender goodwill towards Socrates in the aftermath of the war and the reign of the Thirty Tyrants.",
+    "@timeOfTyrantsImageText": {
+      "timeOfTyrantsImageText": "timeOfTyrantsImageText"
+    },
+    "deathPhilosopherImageText": "Jacques-Louis David, The Death of Socrates, 1787 (Metropolitan Museum of Art). This painting made by the French neo-classicist Jacques-Louis David captures the moment at which Socrates is about to drink the fatal hemlock after being sentenced to death by his fellow Athenians. It captures the contrast between the despair of his philosophical disciples and his courage in facing his fate. David has evidently seen the portrait’s identified as Socrates, as he has used the same flat nose in this painting too",
+    "@deathPhilosopherImageText": {
+      "deathPhilosopherImageText": "deathPhilosopherImageText"
+    },
+
+    "theWallsCrumble": "The Walls Crumble",
+    "@theWallsCrumble": {
+      "theWallsCrumble": "theWallsCrumble"
+    },
+    "theSicilianExpedition": "The Sicilian Expedition",
+    "@theSicilianExpedition": {
+      "theSicilianExpedition": "theSicilianExpedition"
+    },
+    "theAfterlifeOfClassicalAthens": "The Afterlife of Classical Athens",
+    "@theAfterlifeOfClassicalAthens": {
+      "theAfterlifeOfClassicalAthens": "theAfterlifeOfClassicalAthens"
+    },
+
+
+    "theSicilianExpeditionText": "The Peloponnesian War ebbed and flowed over the years, even arriving at a temporary intermission in 423 BC with the Peace of Nicias. Named for the Athenian general who had brokered it, it was meant to be a 50-year peace treaty: it lasted for 8! The war resumed in 415 BC, and a decisive blow was struck, not in Greece, but in Sicily. Athenian allies in Sicily sent requests to Athens for support against increasing clashes against the people of Syracuse (allies of Sparta). Athenian politics was split; one side, led by Nicias (who had brokered the fragile peace) warned that Athenian intervention would be interpreted as aggression; the other, led by Alcibiades, saw this as the opportune moment for the Athenians to score a victory against Spartan power.\nThucydides suggests that Nicias requested a larger force for the Athenian invasion, hoping to illustrate to the assembly instead that their goal was impossible. Instead, the opposite happened. Athens mobilised an extraordinarily large force and set out for Sicily. The vicissitudes of Athenian democracy were evident from the start, with Alcibiades, the leader of the expedition, summoned back on to Athens before the fleet had even departed. Despite the early successes of the Athenians, the Syracusans were soon bolstered by the arrival of their Spartan allies, led by Gylippus. The Athenians attempted to double-down on their setbacks with disastrous consequences. The nadir was reached when attempting a last-ditch evacuation of Syracuse: almost the entire expeditionary force was lost, either destroyed or captured by the Sicilians and sold into slavery.",
+    "@theSicilianExpeditionText": {
+      "theSicilianExpeditionText": "theSicilianExpeditionText"
+    },
+    "theWallsCrumbleText": "“And now, when he learned that the people of Athens were in a wretched plight from famine, he sailed into the Piraeus, and reduced the city, which was compelled to make terms on the basis of his commands.” Plutarch, Life of Lysander 14.3\n\nThe Sicilian Expedition didn’t bring an end to the war, but it had effectively crushed the Athenian capacity to recover. Their fate had effectively been sealed by a Spartan alliance with the Persians, which helped sow rebellion in the Athenian Empire, as well as providing the Spartans with the materials needed to pursue a naval campaign against the Athenians. Despite a string of naval victories over the next decade, the Athenian fleet was obliterated at the Battle of Aegospotami in 405 BC. By 404, the Spartan general Lysander was besieging the city of Athens itself. Inevitably, the city surrendered. \nThus ended the Golden Age of Athens. To their credit, the Spartans rejected the calls from their Corinthian and Theban allies to destroy the defeated city of Athens (although Lysander did oversee the destruction of the Long Walls).",
+    "@theWallsCrumbleText": {
+      "theWallsCrumbleText": "theWallsCrumbleText"
+    },
+    "theAfterlifeOfClassicalAthensText": "The triumph of Sparta over the Athenians and their empire effectively led to a period of Spartan hegemony over the Greek world. The Spartans took over swathes of territory that had previously been part of the Athenian empire, growing rich off the tribute that was now redirected to their coffers. \nSpartan hegemony would not be long lasting, however. The city of Thebes rose in the 4th century as a rival and, led by Epaminodas, they crushed Spartan power at the battle of Leuctra in 371 BC, The rise of Macedonian power with Philip II and later his son, Alexander (who would go on to be ‘Great’) in the later 4th century would effectively end the rivalry between Athens and Sparta.",
+    "@theAfterlifeOfClassicalAthensText": {
+      "theAfterlifeOfClassicalAthensText": "theAfterlifeOfClassicalAthensText"
+    },
+
+    "theSicilianExpeditionTextImage": "A Roman-era mosaic depicting a trireme, a warship with three banks of rowers which were the main combat vessels of the Athenian and Spartan navies during the Peloponnesian War. The ships fought by ramming into one another, dealing damage with heavy bronze prows at the front of the ship, whilst marines an board would hurl missiles at their enemies",
+    "@theSicilianExpeditionTextImage": {
+      "theSicilianExpeditionTextImage": "theSicilianExpeditionTextImage"
+    },
+    "theWallsCrumbleTextImage": "Lysander overseeing the demolition of Athens’ defensive walls, an illustration by an unknown artist in the late 19th century",
+    "@theWallsCrumbleTextImage": {
+      "theWallsCrumbleTextImage": "theWallsCrumbleTextImage"
+    },
+    "theAfterlifeOfClassicalAthensTextImage": "‘The Parthenon’ Frederic Edwin Church (1871), Met Museum. Although the city’s defeat in the Peloponnesian War brought an end to its golden age, the city has retained its allure throughout the ages.",
+    "@theAfterlifeOfClassicalAthensTextImage": {
+      "theAfterlifeOfClassicalAthensTextImage": "theAfterlifeOfClassicalAthensTextImage"
+    },
+    "plagueAndPersecution": "Plague and persecution",
+    "@plagueAndPersecution": {
+      "plagueAndPersecution": "plagueAndPersecution"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "endOfThePeloponneseanWar": "end of the peloponnesean war",
+    "@endOfThePeloponneseanWar": {
+      "endOfThePeloponneseanWar": "endOfThePeloponneseanWar"
+    },
+    "deathOfSocrates": "death of socrates",
+    "@deathOfSocrates": {
+      "deathOfSocrates": "deathOfSocrates"
+    },
+    "irlNikos": "#irl",
+    "@irlNikos": {
+      "irlNikos": "irlNikos"
+    },
+    "nikos": "nikos",
+    "@nikos": {
+      "nikos": "nikos"
+    },
+    "giana": "giana",
+    "@giana": {
+      "giana": "giana"
+    },
+    "aboutTheBook": "about the book",
+    "@aboutTheBook": {
+      "aboutTheBook": "aboutTheBook"
+    },
+    "credits": "credits",
+    "@credits": {
+      "credits": "credits"
+    },
+    "meetTheTeam": "meet the team",
+    "@meetTheTeam": {
+      "meetTheTeam": "meetTheTeam"
+    },
+    "sources": "sources",
+    "@sources": {
+      "sources": "sources"
+    },
+    "furtherReading": "further reading",
+    "@furtherReading": {
+      "furtherReading": "furtherReading"
+    },
+
+    "copyright": "copyright",
+    "@copyright": {
+      "copyright": "copyright"
+    },
+    "meetTheTeamText": "meet the interantional team of History Adventures representing 6 continents!",
+    "@meetTheTeamText": {
+      "meetTheTeamText": "meetTheTeamText"
+    },
+    "aboutVirusBodyPage": "“At first, they'd bear about\nA skull on fire with heat, and eyeballs twain\nRed with suffusion of blank glare...” ",
+    "@aboutVirusBodyPage": {
+      "aboutVirusBodyPage": "aboutVirusBodyPage"
+    },
+    "chapter1PlagueAndPersecution": "Chapter 1 / Plague and Persecution",
+    "@chapter1PlagueAndPersecution": {
+      "chapter1PlagueAndPersecution": "chapter1PlagueAndPersecution"
+    },
+
+    "chapter1EndOfWar": "Chapter 1 / End of War",
+    "@chapter1EndOfWar": {
+      "chapter1EndOfWar": "chapter1EndOfWar"
+    }
 }
+
