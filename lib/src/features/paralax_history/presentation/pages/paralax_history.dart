@@ -29,7 +29,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
   double rateTopClouds = 0;
   late double rateFire;
-  late double rateOne;
   late double rateBuilding;
   late double rateCharactersNikosGif;
   late double rateFour;
@@ -129,7 +128,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             }
           });
     _animationControllerForClouds?.forward();
-    rateOne = 0;
     rateBuilding = height * 2;
     rateFire = height * 1.9;
     rateSmoke = height * 3.1;
@@ -314,7 +312,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             onNotification: (v) {
               if (v is ScrollUpdateNotification) {
                 setState(() {
-                  rateOne = _scrollController.offset * 0.06;
                   rateCharacter_2 -= v.scrollDelta! / 2;
                   rateBottomClouds -= v.scrollDelta! / 2;
                   rateHand -= v.scrollDelta! / 2;
@@ -364,7 +361,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ),
                             ParallaxWidget(
                               isImage: false,
-                              paralaxText: locals.paralaxText1,
                               width: constraints.maxWidth / 3,
                               boxFit: BoxFit.contain,
                               top: rateCharactersNikosGif,
@@ -373,11 +369,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ),
                             ParallaxWidget(
                               isImage: false,
-                              paralaxText: locals.paralaxText1,
                               width: constraints.maxWidth / 3,
                               boxFit: BoxFit.contain,
                               top: rateFire,
-                              // color: Colors.red,
                               right: constraints.maxWidth * 0.1,
                               asset: AssetsPath.paralaxFireLottie,
                             ),
@@ -414,15 +408,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ),
                             ParallaxWidget(
                                 isImage: false,
-                                width: MediaQuery.of(context).size.width,
+                                width:constraints.maxWidth,
                                 boxFit: BoxFit.cover,
                                 top: rateCharacters_2,
                                 asset: AssetsPath.paralaxCrowdLottie),
                             ParallaxWidget(
                               isImage: false,
-                              width: MediaQuery.of(context).size.width / 3,
+                              width:constraints.maxWidth / 3,
                               top: rateCharacter_11,
-                              left: MediaQuery.of(context).size.width / 2,
+                              left:constraints.maxWidth / 2,
                               asset: AssetsPath.paralaxYoungManLottie,
                               boxFit: BoxFit.cover,
                             ),
@@ -433,15 +427,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 left: constraints.maxWidth * 0.2,
                                 asset: AssetsPath.paralaxCharacter_1,
                                 boxFit: BoxFit.contain),
-                            // ParallaxWidget(
-                            //     isImage: true,
-                            //     //gifController: gifControllerHand,
-                            //     width: constraints.maxWidth * 0.6,
-                            //     top: rateHand,
-                            //     left: constraints.maxWidth * 0.3,
-                            //     right: 0,
-                            //     asset: AssetsPath.gifHand,
-                            //     boxFit: BoxFit.contain),
+                            ParallaxWidget(
+                                isImage: false,
+                                width: constraints.maxWidth * 0.5,
+                                top: rateHand,
+                                right: 0,
+                                asset: AssetsPath.paralaxHotTubLottie,
+                                boxFit: BoxFit.contain),
                             ParallaxWidget(
                                 isImage: false,
                                 width: constraints.maxWidth,
@@ -452,7 +444,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 boxFit: BoxFit.cover),
                             ParallaxWidget(
                                 isImage: true,
-                                width: MediaQuery.of(context).size.width,
+                                width:constraints.maxWidth,
                                 bottom: -constraints.maxHeight * 0.3,
                                 asset: AssetsPath.paralaxCloud,
                                 boxFit: BoxFit.contain),

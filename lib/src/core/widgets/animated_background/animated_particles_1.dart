@@ -47,8 +47,8 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
 
   @override
   void didChangeDependencies() {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+    // width = MediaQuery.of(context).size.width;
+    // height = MediaQuery.of(context).size.height;
     _controller.addListener(_handleParticleAnimation);
     super.didChangeDependencies();
   }

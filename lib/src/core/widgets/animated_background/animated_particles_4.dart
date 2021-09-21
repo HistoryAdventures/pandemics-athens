@@ -171,13 +171,6 @@ class _AnimatedParticlesForthState extends State<AnimatedParticlesForth>
     if (_controller.isAnimating) {
       p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
       p2Counter < width * 3 ? p2Counter++ : p2Counter = 0;
-      // if (p2Counter < width * 3 && p2Counter != 0 ||
-      //     p2Counter == (-width ~/ 4)) {
-      //   p2Counter++;
-      // } else {
-      //   p2Counter = -width ~/ 2;
-      // }
-
       if (mounted) setState(() {});
     }
   }
