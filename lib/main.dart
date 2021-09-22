@@ -18,31 +18,35 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final _appRouter = FlutterRouter();
-  bool deviceIsMobile = false;
+  bool deviceIsMobileForWeb = false;
 
-  @override
-  Widget build(BuildContext context) {
+  bool checkTargetPlatform() {
     if (kIsWeb) {
       if ((defaultTargetPlatform == TargetPlatform.iOS) ||
           (defaultTargetPlatform == TargetPlatform.android)) {
         print('android.ios');
-        deviceIsMobile = true;
+        deviceIsMobileForWeb = true;
       } else if ((defaultTargetPlatform == TargetPlatform.linux) ||
           (defaultTargetPlatform == TargetPlatform.macOS) ||
           (defaultTargetPlatform == TargetPlatform.windows)) {
         print('desctop /////');
-        deviceIsMobile = false;
+        deviceIsMobileForWeb = false;
       } else {
         // Some web specific code there
         print(' other ');
-        deviceIsMobile = false;
+        deviceIsMobileForWeb = false;
       }
     }
-    return deviceIsMobile
+    return deviceIsMobileForWeb;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return checkTargetPlatform()
         ? const MaterialApp(
             home: Scaffold(
               body: Center(
-                child: Text("MOBILE"),
+                child: Text("OPEN IN MOBILE BROWSER"),
               ),
             ),
           )
