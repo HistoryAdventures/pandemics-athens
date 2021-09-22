@@ -12,7 +12,7 @@ environment:
 dependencies:
 
   
-  arrow_path: ^2.0.0
+  # arrow_path: ^2.0.0
   #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
   auto_route: ^2.2.0
   # forge2d: ^0.8.1
@@ -27,7 +27,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
 
-  dartz: ^0.10.0-nullsafety
   
   #A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
   # equatable: ^2.0.3
@@ -36,7 +35,7 @@ dependencies:
     sdk: flutter
   #Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
   #Built to be used with the bloc state management package.
-  flutter_bloc: ^7.1.0
+  flutter_bloc: ^7.3.0
 
   flutter_localizations:
     sdk: flutter
@@ -49,7 +48,7 @@ dependencies:
   # date and number formatting and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
 
-  just_audio: ^0.7.5
+  just_audio: ^0.9.11
   
 
 
@@ -110,6 +109,10 @@ flutter:
     - assets/map/
     - assets/paralax_new/
     - assets/paralax_new/crowd/
+    - assets/paralax_new/smoke/images/
+    - assets/paralax_new/smoke/
+    - assets/paralax_new/hottub/images/
+    - assets/paralax_new/hottub/
     - assets/paralax_new/crowd/images/
     - assets/paralax_new/tube2/
     - assets/paralax_new/tube2/images/

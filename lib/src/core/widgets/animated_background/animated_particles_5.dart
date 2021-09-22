@@ -181,20 +181,20 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
         //     widget.mouseY / -4 + widget.objWave / -4,
         //   ),
         // ),
-        AnimatedVirusBodies(
-          left: widget.constraints.maxWidth * 0.663,
-          top: widget.constraints.maxHeight * 0.856,
-          alignment: Alignment.centerLeft,
-          path: AssetsPath.animatedBack5Vbody6,
-          size: Size(
-            widget.constraints.maxWidth * 0.05,
-            widget.constraints.maxHeight * 0.08,
-          ),
-          targetOffset: Offset(
-            widget.mouseX / -4 + widget.objWave / 4,
-            widget.mouseY / 4 + widget.objWave / 4,
-          ),
-        ),
+        // AnimatedVirusBodies(
+        //   left: widget.constraints.maxWidth * 0.663,
+        //   top: widget.constraints.maxHeight * 0.856,
+        //   alignment: Alignment.centerLeft,
+        //   path: AssetsPath.animatedBack5Vbody6,
+        //   size: Size(
+        //     widget.constraints.maxWidth * 0.05,
+        //     widget.constraints.maxHeight * 0.08,
+        //   ),
+        //   targetOffset: Offset(
+        //     widget.mouseX / -4 + widget.objWave / 4,
+        //     widget.mouseY / 4 + widget.objWave / 4,
+        //   ),
+        // ),
         AnimatedVirusBodies(
           left: widget.constraints.maxWidth * 0.13,
           top: widget.constraints.maxHeight * 0.54,

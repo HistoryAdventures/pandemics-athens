@@ -13,7 +13,10 @@ class AuthorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 31),
+      padding: EdgeInsets.only(
+          left: 10,
+          right: MediaQuery.of(context).size.width * 0.0628,
+          bottom: 31),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
