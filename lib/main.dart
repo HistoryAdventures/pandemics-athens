@@ -1,4 +1,3 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,19 +22,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if ((defaultTargetPlatform == TargetPlatform.iOS) ||
-        (defaultTargetPlatform == TargetPlatform.android)) {
-      print('android.ios');
-      deviceIsMobile = true;
-    } else if ((defaultTargetPlatform == TargetPlatform.linux) ||
-        (defaultTargetPlatform == TargetPlatform.macOS) ||
-        (defaultTargetPlatform == TargetPlatform.windows)) {
-      print('desctop /////');
-      deviceIsMobile = false;
-    } else {
-      // Some web specific code there
-      print(' other ');
-      deviceIsMobile = false;
+    if (kIsWeb) {
+      if ((defaultTargetPlatform == TargetPlatform.iOS) ||
+          (defaultTargetPlatform == TargetPlatform.android)) {
+        print('android.ios');
+        deviceIsMobile = true;
+      } else if ((defaultTargetPlatform == TargetPlatform.linux) ||
+          (defaultTargetPlatform == TargetPlatform.macOS) ||
+          (defaultTargetPlatform == TargetPlatform.windows)) {
+        print('desctop /////');
+        deviceIsMobile = false;
+      } else {
+        // Some web specific code there
+        print(' other ');
+        deviceIsMobile = false;
+      }
     }
     return deviceIsMobile
         ? const MaterialApp(
