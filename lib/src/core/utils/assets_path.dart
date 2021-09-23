@@ -294,7 +294,8 @@ class AssetsPath {
 
   static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
   static const String paralaxFireLottie = 'assets/paralax_new/fire/fire.json';
-  static const String paralaxHotTubLottie = 'assets/paralax_new/hottub/hottub.json';
+  static const String paralaxHotTubLottie =
+      'assets/paralax_new/hottub/hottub.json';
   static const String paralaxCrowdLottie =
       'assets/paralax_new/crowd/crowd.json';
   static const String paralaxTube2Lottie =

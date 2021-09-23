@@ -1,5 +1,3 @@
-import 'dart:ui' as ui;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +16,7 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class LeandingPage extends StatefulWidget {
-  bool? navigateFromNavigatorPage = false;
+  bool? navigateFromNavigatorPage;
   LeandingPage({this.navigateFromNavigatorPage});
 
   @override
@@ -30,7 +28,7 @@ class _LeandingPageState extends State<LeandingPage>
   late AppLocalizations locales;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
-  bool isImageloaded = false;
+  bool isImageloaded = true;
   Offset offset = const Offset(0, 0);
   String loadingCount = '0';
 
@@ -42,36 +40,34 @@ class _LeandingPageState extends State<LeandingPage>
   @override
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
-    super.didChangeDependencies();
-  }
-
-  Future<void> init() async {
-    ui.Image? image;
-    for (int i = 0; i < AssetsPath.contentImages.length; i++) {
-      image = await getBytesFromAsset(AssetsPath.contentImages[i]);
-      setState(() {
-        loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
-            .toStringAsFixed(0);
-      });
-    }
-    if (image != null) {
-      setState(() {
-        isImageloaded = true;
-      });
-    } else {
-      setState(() {
-        isImageloaded = false;
-      });
-    }
-  }
-
-  @override
-  void initState() {
     if (widget.navigateFromNavigatorPage != null) {
       isImageloaded = widget.navigateFromNavigatorPage!;
     } else {
       init();
     }
+    super.didChangeDependencies();
+  }
+
+  Future<void> init() async {
+    setState(() {
+      isImageloaded = false;
+    });
+    for (int i = 0; i < AssetsPath.contentImages.length; i++) {
+      await precacheImage(AssetImage(AssetsPath.contentImages[i]), context);
+
+      setState(() {
+        loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
+            .toStringAsFixed(0);
+      });
+    }
+
+    setState(() {
+      isImageloaded = true;
+    });
+  }
+
+  @override
+  void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
     LeafDetails.currentVertex = 0;
     NavigationSharedPreferences.addCurrentVertexToSF(0);

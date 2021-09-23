@@ -36,7 +36,6 @@ class ParalaxTextWidget extends StatelessWidget {
                 child: AutoSizeText(
                   text,
                   strutStyle: const StrutStyle(
-                    fontSize: 16.0,
                     height: 1.5,
                   ),
                   style: Theme.of(context)

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     if (kIsWeb) {
       if ((defaultTargetPlatform == TargetPlatform.iOS) ||
           (defaultTargetPlatform == TargetPlatform.android)) {
-        print('android.ios');
+         ('android.ios');
         deviceIsMobileForWeb = true;
       } else if ((defaultTargetPlatform == TargetPlatform.linux) ||
           (defaultTargetPlatform == TargetPlatform.macOS) ||

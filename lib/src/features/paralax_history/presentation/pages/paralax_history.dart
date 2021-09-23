@@ -103,19 +103,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-
-    if (loadedAssets == true) {
-      isImageloaded = true;
-    } else {
-      isImageloaded = false;
-    }
+    await loadContent(contentImages);
   }
 
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
-    // init();
+    init();
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -294,15 +288,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void dispose() {
     _animationControllerForCharacterNikos?.dispose();
     _animationControllerForClouds?.dispose();
+    _animationControllerForProgressLeftFighters?.dispose();
+    _animationControllerForProgressRightFighters?.dispose();
+    _animationControllerForWalker?.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // if (isImageloaded == false) {
-    //   return LoadingWidget();
-    // }
-
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
@@ -375,14 +369,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               right: constraints.maxWidth * 0.1,
                               asset: AssetsPath.paralaxFireLottie,
                             ),
-                            // ParallaxWidget(
-                            //   isImage: false,
-                            //   width: constraints.maxWidth * 0.6,
-                            //   boxFit: BoxFit.contain,
-                            //   top: rateSmoke,
-                            //   right: constraints.maxWidth * 0.2,
-                            //   asset: AssetsPath.paralaxSmokeLottie,
-                            // ),
                             ParallaxWidget(
                               isImage: false,
                               width: constraints.maxWidth,
@@ -408,15 +394,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ),
                             ParallaxWidget(
                                 isImage: false,
-                                width:constraints.maxWidth,
+                                width: constraints.maxWidth,
                                 boxFit: BoxFit.cover,
                                 top: rateCharacters_2,
                                 asset: AssetsPath.paralaxCrowdLottie),
                             ParallaxWidget(
                               isImage: false,
-                              width:constraints.maxWidth / 3,
+                              width: constraints.maxWidth / 3,
                               top: rateCharacter_11,
-                              left:constraints.maxWidth / 2,
+                              left: constraints.maxWidth / 2,
                               asset: AssetsPath.paralaxYoungManLottie,
                               boxFit: BoxFit.cover,
                             ),
@@ -444,7 +430,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 boxFit: BoxFit.cover),
                             ParallaxWidget(
                                 isImage: true,
-                                width:constraints.maxWidth,
+                                width: constraints.maxWidth,
                                 bottom: -constraints.maxHeight * 0.3,
                                 asset: AssetsPath.paralaxCloud,
                                 boxFit: BoxFit.contain),
@@ -514,87 +500,87 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     ),
                   ),
                 ),
-                Positioned(
-                  top: constraints.maxHeight * 0.3,
-                  left: constraints.maxWidth * 0.05,
-                  child: SizedBox(
-                    width: constraints.maxWidth * 0.4,
-                    child: AnimatedOpacity(
-                      opacity: _topTextOpasyty,
-                      duration: Times.fast,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: AutoSizeText(locals.chapter1.toUpperCase()),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: AutoSizeText(locals.todoNoHarm.toUpperCase(),
-                                maxLines: 1,
-                                // minFontSize: 8,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                        fontSize: 80,
-                                        fontStyle: FontStyle.italic)),
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    left: BorderSide(
-                                        color: AppColors.red, width: 8))),
-                            child: AutoSizeText(
-                              locals.athens429Bc,
-                              maxLines: 1,
-                              // minFontSize: 8,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  ?.copyWith(
-                                    fontSize: 80,
-                                    fontWeight: FontWeight.w100,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                ParalaxTextWidget(
-                  text: locals.paralaxText1,
-                  alignment: Alignment.topRight,
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  opacity: _paralaxText1Opacity,
-                ),
-                ParalaxTextWidget(
-                  text: locals.paralaxText2,
-                  alignment: Alignment.bottomLeft,
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  opacity: _paralaxText2Opacity,
-                ),
-                ParalaxTextWidget(
-                  text: locals.paralaxText3,
-                  alignment: Alignment.centerRight,
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  opacity: _paralaxText3Opacity,
-                ),
-                ParalaxTextWidget(
-                  text: locals.paralaxText4,
-                  alignment: Alignment.centerLeft,
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  opacity: _paralaxText4Opacity,
-                ),
-                ParalaxTextWidget(
-                  text: locals.paralaxText5,
-                  alignment: Alignment.bottomLeft,
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  opacity: _paralaxText5Opacity,
-                ),
+                // Positioned(
+                //   top: constraints.maxHeight * 0.3,
+                //   left: constraints.maxWidth * 0.05,
+                //   child: SizedBox(
+                //     width: constraints.maxWidth * 0.4,
+                //     child: AnimatedOpacity(
+                //       opacity: _topTextOpasyty,
+                //       duration: Times.fast,
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         children: [
+                //           Padding(
+                //             padding: const EdgeInsets.only(left: 20),
+                //             child: AutoSizeText(locals.chapter1.toUpperCase()),
+                //           ),
+                //           Padding(
+                //             padding: const EdgeInsets.only(left: 20),
+                //             child: AutoSizeText(locals.todoNoHarm.toUpperCase(),
+                //                 maxLines: 1,
+                //                 // minFontSize: 8,
+                //                 style: Theme.of(context)
+                //                     .textTheme
+                //                     .bodyText2
+                //                     ?.copyWith(
+                //                         fontSize: 80,
+                //                         fontStyle: FontStyle.italic)),
+                //           ),
+                //           Container(
+                //             decoration: const BoxDecoration(
+                //                 border: Border(
+                //                     left: BorderSide(
+                //                         color: AppColors.red, width: 8))),
+                //             child: AutoSizeText(
+                //               locals.athens429Bc,
+                //               maxLines: 1,
+                //               // minFontSize: 8,
+                //               style: Theme.of(context)
+                //                   .textTheme
+                //                   .headline4
+                //                   ?.copyWith(
+                //                     fontSize: 80,
+                //                     fontWeight: FontWeight.w100,
+                //                   ),
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // ParalaxTextWidget(
+                //   text: locals.paralaxText1,
+                //   alignment: Alignment.topRight,
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   opacity: _paralaxText1Opacity,
+                // ),
+                // ParalaxTextWidget(
+                //   text: locals.paralaxText2,
+                //   alignment: Alignment.bottomLeft,
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   opacity: _paralaxText2Opacity,
+                // ),
+                // ParalaxTextWidget(
+                //   text: locals.paralaxText3,
+                //   alignment: Alignment.centerRight,
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   opacity: _paralaxText3Opacity,
+                // ),
+                // ParalaxTextWidget(
+                //   text: locals.paralaxText4,
+                //   alignment: Alignment.centerLeft,
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   opacity: _paralaxText4Opacity,
+                // ),
+                // ParalaxTextWidget(
+                //   text: locals.paralaxText5,
+                //   alignment: Alignment.bottomLeft,
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   opacity: _paralaxText5Opacity,
+                // ),
                 SoundAndMenuWidget(
                   widget: Clickable(
                     onPressed: () {
