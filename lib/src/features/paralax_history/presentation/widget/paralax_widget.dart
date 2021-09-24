@@ -13,6 +13,7 @@ class ParallaxWidget extends StatelessWidget {
   final String asset;
   final BoxFit boxFit;
   final double width;
+  final double? height;
   final double? right;
   final bool isImage;
   final Color? color;
@@ -28,6 +29,7 @@ class ParallaxWidget extends StatelessWidget {
       required this.isImage,
       this.gifController,
       this.color,
+      this.height,
       this.bottom,
       this.imageInfo,
       this.opacity,
@@ -47,6 +49,7 @@ class ParallaxWidget extends StatelessWidget {
         opacity: opacity ?? 1,
         child: Container(
           width: width,
+          height: height,
           color: color ?? AppColors.transpatent,
           child: isImage
               ? Image.asset(

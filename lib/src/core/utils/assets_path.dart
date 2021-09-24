@@ -309,10 +309,14 @@ class AssetsPath {
 
   static const String paralaxCharacterNikosLottie =
       'assets/paralax_new/character_nikos/character_nikos_lottie.json';
-  static const String paralaxCloud = 'assets/paralax_new/cloud.png';
+  static const String paralaxTubeCloud = 'assets/paralax_new/tube_cloud.png';
+  static const String paralaxTube2Cloud = 'assets/paralax_new/tube2_cloud.png';
   static const String paralaxCrows = 'assets/paralax_new/crows.png';
   static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
+  static const String paralaxCrowLottie = 'assets/paralax_new/crow/crow.json';
+  static const String paralaxCrowsLottie =
+      'assets/paralax_new/crows/crows.json';
   static const String paralaxFightersRightLottie =
       'assets/paralax_new/fighters_right/fighters_right.json';
   static const String paralaxSmokeLottie =
@@ -531,7 +535,8 @@ class AssetsPath {
     AssetsPath.gifBackground5,
     AssetsPath.gifBackground6,
     AssetsPath.paralaxWalker,
-    AssetsPath.paralaxCloud,
+    AssetsPath.paralaxTube2Cloud,
+    AssetsPath.paralaxTubeCloud,
     AssetsPath.paralaxClouds,
     AssetsPath.gifVirusTyphoid,
     AssetsPath.gifSmallpox,
