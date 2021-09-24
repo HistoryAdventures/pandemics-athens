@@ -303,7 +303,7 @@ class AssetsPath {
   static const String paralaxYoungManLottie =
       'assets/paralax_new/young_man/young_man.json';
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
-  static const String paralaxCharacter_1 = 'assets/paralax_new/walker.png';
+  static const String paralaxWalker = 'assets/paralax_new/walker.png';
 
   static const String gifHand = 'assets/paralax_new/hand.gif';
 
@@ -530,11 +530,8 @@ class AssetsPath {
     AssetsPath.gifBackground4,
     AssetsPath.gifBackground5,
     AssetsPath.gifBackground6,
-    AssetsPath.paralaxCharacter_1,
-    AssetsPath.gifHand,
+    AssetsPath.paralaxWalker,
     AssetsPath.paralaxCloud,
-    AssetsPath.paralaxCrows,
-    AssetsPath.paralaxDeadBodies,
     AssetsPath.paralaxClouds,
     AssetsPath.gifVirusTyphoid,
     AssetsPath.gifSmallpox,

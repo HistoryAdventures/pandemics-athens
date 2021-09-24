@@ -27,19 +27,16 @@ class ParalaxHistoryPage extends StatefulWidget {
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
-  double rateTopClouds = 0;
   late double rateFire;
   late double rateBuilding;
   late double rateCharactersNikosGif;
-  late double rateFour;
+  // late double rateFour;
   late double rateSmoke;
   late double rateLeftCrowd;
-  late double rateCharacters_2;
-  late double rateCharacter_12;
-  late double rateCharacter_11;
-  late double rateCharacter_1;
-  late double rateHand;
-  late double rateCharacter_2;
+  late double rateParalaxCrowdLottie;
+  late double rateParalaxYoungManLottie;
+  late double rateParalaxWalker;
+  late double rateParalaxHotTubLottie;
   late double rateBottomClouds;
 
   late double _scrollParalaxText1;
@@ -90,26 +87,26 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  List<String> contentImages = [
-    AssetsPath.paralaxBackground,
-    AssetsPath.paralaxBuilding,
-    AssetsPath.paralaxCharacter_1,
-  ];
 
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
+    height = MediaQuery.of(context).size.height;
+    rateBuilding = height * 1.1;
+    rateFire = height * 1.9;
+    rateCharactersNikosGif = height * 1.9;
+    rateLeftCrowd = height * 3.5;
+    rateParalaxCrowdLottie = height * 4.3;
+    rateParalaxYoungManLottie = height * 5.7;
+    rateParalaxWalker = height * 6.5;
+    rateParalaxHotTubLottie = height * 7.5;
     super.didChangeDependencies();
-  }
-
-  Future<void> init() async {
-    await loadContent(contentImages);
   }
 
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
-    init();
+
     _animationControllerForClouds =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
     animationForClouds = Tween<double>(begin: -500, end: 0)
@@ -122,27 +119,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             }
           });
     _animationControllerForClouds?.forward();
-    rateBuilding = height * 2;
-    rateFire = height * 1.9;
-    rateSmoke = height * 3.1;
-    rateCharactersNikosGif = height * 3;
-    rateFour = height * 3.5;
-    rateLeftCrowd = height * 5.2;
-    rateCharacters_2 = height * 6.6;
-    rateCharacter_12 = height * 6.5;
-    rateCharacter_11 = height * 9;
-    rateCharacter_1 = height * 9.5;
-    rateHand = height * 11;
-    rateCharacter_2 = height * 13.5;
-    rateBottomClouds = height * 14;
 
-    _scrollParalaxText2 = height * 2.3;
-    _scrollParalaxText1 = height * 1.7;
-    _scrollParalaxText3 = height * 3.5;
-    _scrollLearnMoreText = height * 3.8;
-    _scrollParalaxText4 = height * 5;
-    _scrollParalaxText4_4 = height * 5.8;
-    _scrollParalaxText5 = height * 7.5;
+    // _scrollParalaxText2 = height * 2.3;
+    // _scrollParalaxText1 = height * 1.7;
+    // _scrollParalaxText3 = height * 3.5;
+    // _scrollLearnMoreText = height * 3.8;
+    // _scrollParalaxText4 = height * 5;
+    // _scrollParalaxText4_4 = height * 5.8;
+    // _scrollParalaxText5 = height * 7.5;
 
     _scrollController.addListener(() {
       if (_scrollController.offset > 10) {
@@ -305,20 +289,20 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           child: NotificationListener(
             onNotification: (v) {
               if (v is ScrollUpdateNotification) {
-                setState(() {
-                  rateCharacter_2 -= v.scrollDelta! / 2;
-                  rateBottomClouds -= v.scrollDelta! / 2;
-                  rateHand -= v.scrollDelta! / 2;
-                  rateCharacter_1 -= v.scrollDelta! / 2;
-                  rateCharacter_11 -= v.scrollDelta! / 1.8;
-                  rateCharacter_12 -= v.scrollDelta! / 2;
-                  rateCharacters_2 -= v.scrollDelta! / 2;
-                  rateLeftCrowd -= v.scrollDelta! / 2;
-                  rateFour -= v.scrollDelta! / 2;
-                  rateCharactersNikosGif -= v.scrollDelta! / 2;
-                  rateBuilding -= v.scrollDelta! / 0.85;
-                  rateTopClouds -= v.scrollDelta! / 2.5;
-                });
+                // setState(() {
+                //   rateCharacter_2 -= v.scrollDelta! / 2;
+                //   rateBottomClouds -= v.scrollDelta! / 2;
+                //   rateHand -= v.scrollDelta! / 2;
+                //   rateCharacter_1 -= v.scrollDelta! / 2;
+                //   rateCharacter_11 -= v.scrollDelta! / 1.8;
+                //   rateCharacter_12 -= v.scrollDelta! / 2;
+                //   rateCharacters_2 -= v.scrollDelta! / 2;
+                //   rateLeftCrowd -= v.scrollDelta! / 2;
+                //   rateFour -= v.scrollDelta! / 2;
+                //   rateCharactersNikosGif -= v.scrollDelta! / 2;
+                //   rateBuilding -= v.scrollDelta! / 0.85;
+                //   rateTopClouds -= v.scrollDelta! / 2.5;
+                // });
               }
               return true;
             },
@@ -342,7 +326,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               isImage: true,
                               width: constraints.maxWidth,
                               boxFit: BoxFit.contain,
-                              top: rateTopClouds,
+                              top: 0,
                               left: _progressTopClouds,
                               asset: AssetsPath.paralaxClouds,
                             ),
@@ -396,12 +380,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 isImage: false,
                                 width: constraints.maxWidth,
                                 boxFit: BoxFit.cover,
-                                top: rateCharacters_2,
+                                top: rateParalaxCrowdLottie,
                                 asset: AssetsPath.paralaxCrowdLottie),
                             ParallaxWidget(
                               isImage: false,
                               width: constraints.maxWidth / 3,
-                              top: rateCharacter_11,
+                              top: rateParalaxYoungManLottie,
                               left: constraints.maxWidth / 2,
                               asset: AssetsPath.paralaxYoungManLottie,
                               boxFit: BoxFit.cover,
@@ -409,14 +393,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ParallaxWidget(
                                 isImage: true,
                                 width: _progressWeightWalker,
-                                top: rateCharacter_1,
+                                top: rateParalaxWalker,
                                 left: constraints.maxWidth * 0.2,
-                                asset: AssetsPath.paralaxCharacter_1,
+                                asset: AssetsPath.paralaxWalker,
                                 boxFit: BoxFit.contain),
                             ParallaxWidget(
                                 isImage: false,
                                 width: constraints.maxWidth * 0.5,
-                                top: rateHand,
+                                top: rateParalaxHotTubLottie,
                                 right: 0,
                                 asset: AssetsPath.paralaxHotTubLottie,
                                 boxFit: BoxFit.contain),
@@ -431,7 +415,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             ParallaxWidget(
                                 isImage: true,
                                 width: constraints.maxWidth,
-                                bottom: -constraints.maxHeight * 0.3,
+                                bottom: -constraints.maxHeight * 0.1,
                                 asset: AssetsPath.paralaxCloud,
                                 boxFit: BoxFit.contain),
                           ],
@@ -631,7 +615,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         decoration: BoxDecoration(boxShadow: Shadows.small),
-                        // color: AppColors.black100,
                         height: constraints.maxHeight * 0.1,
                         width: MediaQuery.of(context).size.width,
                         child: Clickable(
@@ -648,12 +631,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               textTitle: '',
                               textColor: AppColors.white,
                               onTap: () {
-                                ////????????
                                 LeafDetails.currentVertex = 4;
                                 LeafDetails.visitedVertexes.add(4);
-
-                                // LeafDetails.currentVertex = 9;
-                                // LeafDetails.visitedVertexes.add(9);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
                                 context.router.push(const MapPageRoute());
