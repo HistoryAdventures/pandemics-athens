@@ -38,10 +38,10 @@ class ArrowLeftWidget extends StatelessWidget {
           ),
           Flexible(
             flex: 3,
-            child: AutoSizeText(
+            child: Text(
               textSubTitle.toUpperCase(),
               textAlign: TextAlign.start,
-              minFontSize: 5,
+              // minFontSize: 5,
               maxLines: 1,
               style: Theme.of(context)
                   .textTheme

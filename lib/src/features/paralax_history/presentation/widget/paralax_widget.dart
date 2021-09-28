@@ -40,27 +40,25 @@ class ParallaxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: top,
-      left: left,
-      right: right,
-      bottom: bottom,
-      child: AnimatedOpacity(
-        duration: Times.medium,
-        opacity: opacity ?? 1,
-        child: Container(
-          width: width,
-          height: height,
-          color: color ?? AppColors.transpatent,
-          child: isImage
-              ? Image.asset(
-                  asset,
-                  fit: boxFit,
-                )
-              : Lottie.asset(
-                  asset,
-                ),
-        ),
-      ),
-    );
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+        child: AnimatedOpacity(
+            duration: Times.medium,
+            opacity: opacity ?? 1,
+            child: Container(
+              width: width,
+              height: height,
+              color: color ?? AppColors.transpatent,
+              child: isImage
+                  ? Image.asset(
+                      asset,
+                      fit: boxFit,
+                    )
+                  : Lottie.asset(
+                      asset,
+                    ),
+            )));
   }
 }

@@ -24,11 +24,11 @@ class ArrowRightWidget extends StatelessWidget {
       children: [
         Flexible(
           flex: 3,
-          child: AutoSizeText(
+          child: Text(
             textSubTitle.toUpperCase(),
             textAlign: TextAlign.end,
             maxLines: 1,
-            minFontSize: 5,
+            // minFontSize: 5,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   fontSize: 24,
                   color: textColor ?? Colors.black,

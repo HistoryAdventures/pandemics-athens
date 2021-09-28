@@ -21,6 +21,15 @@ class Shadows {
           offset: Offset(0, 1),
         ),
       ];
+
+  static List<BoxShadow> get smallWhite => const [
+        BoxShadow(
+          color: AppColors.white,
+          blurRadius: 10,
+          spreadRadius: 5,
+          offset: Offset(0, 1),
+        ),
+      ];
 }
 
 class HW {

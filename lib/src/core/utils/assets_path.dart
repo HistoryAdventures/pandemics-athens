@@ -289,6 +289,7 @@ class AssetsPath {
   static const String poitButtonArrowRight =
       'assets/document_view/pointer_button_icon.png';
   static const String irlNikos = 'assets/image_back/irl_nikos.png';
+  static const String irlGiana = 'assets/image_back/giana.png';
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 

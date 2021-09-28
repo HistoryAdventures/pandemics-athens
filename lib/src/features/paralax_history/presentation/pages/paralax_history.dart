@@ -134,7 +134,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForWalker = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1500));
     _animationControllerForClouds =
-        AnimationController(vsync: this, duration: const Duration(seconds: 20));
+        AnimationController(vsync: this, duration: const Duration(seconds: 30));
 
     animationForClouds = Tween<double>(begin: -width, end: width)
         .animate(_animationControllerForClouds)
@@ -350,14 +350,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ),
                           ParallaxWidget(
                             isImage: false,
-                            width: constraints.maxWidth / 3,
-                            boxFit: BoxFit.contain,
-                            top: rateCharactersNikosGif,
-                            left: _progressCaracterNikos,
-                            asset: AssetsPath.paralaxCharacterNikosLottie,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
                             width: constraints.maxWidth * 0.1,
                             boxFit: BoxFit.contain,
                             top: rateCharactersNikosGif,
@@ -371,6 +363,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             top: rateCharactersNikosGif,
                             right: _progressCrows,
                             asset: AssetsPath.paralaxCrowsLottie,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth / 3,
+                            boxFit: BoxFit.contain,
+                            top: rateCharactersNikosGif,
+                            left: _progressCaracterNikos,
+                            asset: AssetsPath.paralaxCharacterNikosLottie,
                           ),
                           ParallaxWidget(
                             isImage: false,
@@ -442,15 +442,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           ParallaxWidget(
                               isImage: false,
                               width: constraints.maxWidth,
-                              bottom: -constraints.maxWidth * 0.1,
-                              left: constraints.maxWidth * 0.1,
+                              bottom: -constraints.maxHeight * 0.05,
+                              left: constraints.maxWidth * 0.15,
                               right: constraints.maxWidth * 0.1,
                               asset: AssetsPath.paralaxTube2Lottie,
                               boxFit: BoxFit.cover),
                           ParallaxWidget(
                               isImage: true,
                               width: constraints.maxWidth,
-                              bottom: -constraints.maxHeight * 0.1,
+                              bottom: -constraints.maxHeight * 0.05,
                               left: _progressTopClouds,
                               asset: AssetsPath.paralaxTube2Cloud,
                               boxFit: BoxFit.cover),
@@ -458,68 +458,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       ),
                     )
                   ]),
-              Visibility(
-                visible: _bottomFieldVizibility,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                    duration: Times.slower,
-                    opacity: _bottomFieldOpasity,
-                    child: SizedBox(
-                      height: constraints.maxHeight * 0.1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: ArrowLeftWidget(
-                                arrowColor: Colors.black,
-                                textSubTitle: locals.stickToTheOath,
-                                textTitle: '',
-                                onTap: () {
-                                  LeafDetails.currentVertex = 8;
-                                  LeafDetails.visitedVertexes.add(8);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaLeftPageRoute());
-                                }),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: AutoSizeText(
-                              locals.whatNikosDo,
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: ArrowRightWidget(
-                                textSubTitle: locals.helpTheSenator,
-                                textTitle: '',
-                                arrowColor: Colors.black,
-                                onTap: () {
-                                  LeafDetails.currentVertex = 9;
-                                  LeafDetails.visitedVertexes.add(9);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaRightPageRoute());
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+
               // Positioned(
               //   top: constraints.maxHeight * 0.3,
               //   left: constraints.maxWidth * 0.05,
@@ -671,6 +610,69 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   .upDateShatedPreferences();
                               context.router.push(const MapPageRoute());
                             }),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: true,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedOpacity(
+                    duration: Times.slower,
+                    opacity: _bottomFieldOpasity,
+                    child: SizedBox(
+                      height: constraints.maxHeight * 0.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: ArrowLeftWidget(
+                                arrowColor: Colors.black,
+                                textSubTitle: locals.stickToTheOath,
+                                textTitle: '',
+                                onTap: () {
+                                  LeafDetails.currentVertex = 8;
+                                  LeafDetails.visitedVertexes.add(8);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
+                                  context.router
+                                      .push(const PanaromaLeftPageRoute());
+                                }),
+                          ),
+                          Flexible(
+                            flex: 3,
+                            child: Text(
+                              locals.whatNikosDo,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      fontSize: 36,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: ArrowRightWidget(
+                                textSubTitle: locals.helpTheSenator,
+                                textTitle: '',
+                                arrowColor: Colors.black,
+                                onTap: () {
+                                  LeafDetails.currentVertex = 9;
+                                  LeafDetails.visitedVertexes.add(9);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
+                                  context.router
+                                      .push(const PanaromaRightPageRoute());
+                                }),
+                          ),
+                        ],
                       ),
                     ),
                   ),

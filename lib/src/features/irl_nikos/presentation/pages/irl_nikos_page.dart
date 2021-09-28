@@ -131,7 +131,9 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 24, bottom: 24),
                 child: ArrowRightTextWidget(
-                  onTap: () {},
+                  onTap: () {
+                    context.router.push(const GianaPageRoute());
+                  },
                   textSubTitle: locals.giana,
                   textTitle: locals.giana,
                 ),

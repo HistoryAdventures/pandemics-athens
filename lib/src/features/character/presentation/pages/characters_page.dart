@@ -60,7 +60,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
         bodyText: locale.aristophanesAndSophoclesTextDescription,
       ),
     ];
-    
   }
 
   @override
@@ -164,7 +163,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                padding: const EdgeInsets.only(bottom: 10, left: 24),
+                padding: const EdgeInsets.only(bottom: 24, left: 24),
                 child: ArrowLeftTextWidget(
                     textSubTitle: locale.timelineOfMainEvents,
                     textTitle: locale.athens5thCentury,

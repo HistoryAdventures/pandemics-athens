@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:history_of_adventures/src/features/irl_nikos/presentation/pages/giana_page.dart';
 
 import '../features/about_book/presentation/pages/about_book_page.dart';
 import '../features/about_book/presentation/pages/copyright_page.dart';
@@ -109,6 +110,10 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
     CustomRoute(
         page: IrlNikosPage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
+        durationInMilliseconds: 500),
+    CustomRoute(
+        page: GianaPage,
+        transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
         page: AboutBookPage,
