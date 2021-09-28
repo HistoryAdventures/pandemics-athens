@@ -305,6 +305,7 @@ class AssetsPath {
       'assets/paralax_new/young_man/young_man.json';
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
   static const String paralaxWalker = 'assets/paralax_new/walker.png';
+  static const String paralaxClouds2 = 'assets/paralax_new/clouds2.png';
 
   static const String gifHand = 'assets/paralax_new/hand.gif';
 

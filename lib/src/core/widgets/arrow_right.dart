@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import 'clickable_widget.dart';
 
@@ -30,7 +31,7 @@ class ArrowRightWidget extends StatelessWidget {
             maxLines: 1,
             // minFontSize: 5,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontSize: 24,
+                  fontSize: TextFontSize.getHeight(24, context),
                   color: textColor ?? Colors.black,
                 ),
           ),

@@ -42,6 +42,11 @@ class HW {
   }
 }
 
+class TextFontSize {
+  static double getHeight(double value, BuildContext context) =>
+      value * MediaQuery.of(context).size.height / 1080;
+}
+
 /// Used for all animations in the  app
 class Times {
   static const Duration fastest = Duration(milliseconds: 150);
