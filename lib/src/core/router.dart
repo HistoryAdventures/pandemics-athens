@@ -113,7 +113,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: GianaPage,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideRight,
         durationInMilliseconds: 500),
     CustomRoute(
         page: AboutBookPage,

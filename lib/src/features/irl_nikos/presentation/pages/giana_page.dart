@@ -86,10 +86,10 @@ class _GianaPageState extends State<GianaPage> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.only(right: 24, bottom: 24),
-                child: ArrowRightTextWidget(
+                padding: const EdgeInsets.only(left: 24, bottom: 24),
+                child: ArrowLeftTextWidget(
                   onTap: () {},
                   textSubTitle: 'Xoquauhtli',
                   textTitle: "#IRL",
@@ -97,10 +97,10 @@ class _GianaPageState extends State<GianaPage> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 24),
-                child: ArrowLeftTextWidget(
+                padding: const EdgeInsets.only(right: 24, bottom: 24),
+                child: ArrowRightTextWidget(
                   onTap: () {
                     if (kIsWeb) {
                       html.window.history.back();

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import 'widgets.dart';
 
@@ -16,43 +17,41 @@ class ArrowRightTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Flexible(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Flexible(
-                child: AutoSizeText(
-                  textTitle.toUpperCase(),
-                  textAlign: TextAlign.right,
-                  maxLines: 1,
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption
-                      ?.copyWith(fontSize: 14, color: color ?? Colors.black),
+    return Clickable(
+      onPressed: onTap,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Flexible(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Text(
+                    textTitle.toUpperCase(),
+                    textAlign: TextAlign.right,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontSize: TextFontSize.getHeight(24, context),
+                        color: color ?? Colors.black),
+                  ),
                 ),
-              ),
-              Flexible(
-                child: AutoSizeText(
-                  textSubTitle.toUpperCase(),
-                  maxLines: 1,
-                  textAlign: TextAlign.right,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      ?.copyWith(fontSize: 26, color: color ?? Colors.black),
-                ),
-              )
-            ],
+                Flexible(
+                  child: Text(
+                    textSubTitle.toUpperCase(),
+                    maxLines: 1,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                        fontSize: TextFontSize.getHeight(30, context),
+                        color: color ?? Colors.black),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Flexible(
-          child: Clickable(
-            onPressed: onTap,
+          Flexible(
             child: Container(
               margin: const EdgeInsets.only(left: 24),
               height: 40,
@@ -64,8 +63,8 @@ class ArrowRightTextWidget extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

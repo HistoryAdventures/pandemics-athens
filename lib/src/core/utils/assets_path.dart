@@ -369,6 +369,15 @@ class AssetsPath {
   static const String virusLoc1 = 'assets/map/virus_loc_1.png';
   static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
+  static const String lottieAssetsTubeBottom =
+      'assets/paralax_new/tube2/images/tube2_bttm.png';
+
+  static const String lottieAssetsCrowd =
+      'assets/paralax_new/crowd/images/crowd_bg.png';
+
+  static const String lottieAssetsTube =
+      'assets/paralax_new/hottub/images/hottub_bottom.png';
+
   static const List<String> contentImages = [
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
@@ -561,54 +570,54 @@ class AssetsPath {
   ];
 }
 
-Future<bool> loadContent(List<String> context) async {
-  for (int i = 0; i < context.length; i++) {
-    await getBytesFromAsset(context[i]);
-  }
+// Future<bool> loadContent(List<String> context) async {
+//   for (int i = 0; i < context.length; i++) {
+//     await getBytesFromAsset(context[i]);
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
-Future<ui.Image> getBytesFromAsset(
-  String path,
-) async {
-  final data = await rootBundle.load(path);
+// Future<ui.Image> getBytesFromAsset(
+//   String path,
+// ) async {
+//   final data = await rootBundle.load(path);
 
-  final codec = await ui.instantiateImageCodec(
-    data.buffer.asUint8List(),
-  );
+//   final codec = await ui.instantiateImageCodec(
+//     data.buffer.asUint8List(),
+//   );
 
-  final fi = await codec.getNextFrame();
+//   final fi = await codec.getNextFrame();
 
-  final ui.Image byteData = fi.image;
-  return byteData;
-}
+//   final ui.Image byteData = fi.image;
+//   return byteData;
+// }
 
-Future<List<ImageInfo>> preloadImage({
-  required ImageProvider provider,
-  required BuildContext context,
-  int frameCount = 1,
-  Size? size,
-  ImageErrorListener? onError,
-}) async {
-  final ImageConfiguration config =
-      createLocalImageConfiguration(context, size: size);
-  final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
-  final ImageStream stream = provider.resolve(config);
-  final List<ImageInfo> ret = [];
+// Future<List<ImageInfo>> preloadImage({
+//   required ImageProvider provider,
+//   required BuildContext context,
+//   int frameCount = 1,
+//   Size? size,
+//   ImageErrorListener? onError,
+// }) async {
+//   final ImageConfiguration config =
+//       createLocalImageConfiguration(context, size: size);
+//   final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
+//   final ImageStream stream = provider.resolve(config);
+//   final List<ImageInfo> ret = [];
 
-  final ImageStreamListener imageStreamListener =
-      ImageStreamListener((ImageInfo image, bool sync) {
-    ret.add(image);
-    if (ret.length == frameCount) {
-      completer.complete(ret);
-    }
-  });
+//   final ImageStreamListener imageStreamListener =
+//       ImageStreamListener((ImageInfo image, bool sync) {
+//     ret.add(image);
+//     if (ret.length == frameCount) {
+//       completer.complete(ret);
+//     }
+//   });
 
-  stream.addListener(imageStreamListener);
-  completer.future.then((List<ImageInfo> _) {
-    stream.removeListener(imageStreamListener);
-  });
+//   stream.addListener(imageStreamListener);
+//   completer.future.then((List<ImageInfo> _) {
+//     stream.removeListener(imageStreamListener);
+//   });
 
-  return completer.future;
-}
+//   return completer.future;
+// }

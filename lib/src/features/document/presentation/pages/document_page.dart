@@ -219,206 +219,236 @@ class _DocumentPageState extends State<DocumentPage>
           builder: (BuildContext context, BoxConstraints constraints) {
             return Stack(
               children: [
-                AnimatedPositioned(
+                AnimatedContainer(
                   duration: Times.fastest,
                   height: constraints.maxHeight,
                   width: isInfoBorderOpen
                       ? constraints.maxWidth * 0.6
                       : constraints.maxWidth,
-                  child: InteractiveViewer(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    transformationController: _transformationController,
-                    onInteractionStart: _onInteractionStart,
-                    boundaryMargin: const EdgeInsets.all(double.infinity),
-                    minScale: 0.25,
-                    maxScale: 3,
-                    constrained: false,
+                  child: Container(
+                    margin: const EdgeInsets.all(1),
+                    width: isInfoBorderOpen
+                        ? constraints.maxWidth * 0.6
+                        : constraints.maxWidth,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.grey, width: 0.5),
+                    ),
                     child: Container(
-                      alignment: Alignment.centerLeft,
-                      height: constraints.maxHeight,
-                      width: constraints.maxWidth,
-                      decoration: const BoxDecoration(
-                          // color: Colors.red,
-                          image: DecorationImage(
-                              //alignment: Alignment.centerLeft,
-                              image: AssetImage(AssetsPath.document))),
-                      child: SizedBox(
-                        child: Stack(
-                            children: documentList.sublist(2, 6).map((data) {
-                          return Positioned(
-                            top: data.top,
-                            left: data.left,
-                            child: Clickable(
-                              onPressed: () {
-                                setState(() {
-                                  documentModel.chandeState(
-                                      data.name, data.text);
-                                });
-                              },
-                              child: PointWidget(
-                                color: documentModel.name == data.name
-                                    ? AppColors.orange
-                                    : Colors.black,
-                                text: data.name!.substring(1),
-                              ),
-                            ),
-                          );
-                        }).toList()),
+                      margin: const EdgeInsets.all(8),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.grey, width: 0.5),
+                      ),
+                      width: isInfoBorderOpen
+                          ? constraints.maxWidth * 0.6
+                          : constraints.maxWidth,
+                      child: InteractiveViewer(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        transformationController: _transformationController,
+                        onInteractionStart: _onInteractionStart,
+                        boundaryMargin: const EdgeInsets.all(double.infinity),
+                        minScale: 0.25,
+                        maxScale: 3,
+                        constrained: false,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          height: constraints.maxHeight,
+                          width: constraints.maxWidth,
+                          decoration: const BoxDecoration(
+                              // color: Colors.red,
+                              image: DecorationImage(
+                                  //alignment: Alignment.centerLeft,
+                                  image: AssetImage(AssetsPath.document))),
+                          child: SizedBox(
+                            child: Stack(
+                                children:
+                                    documentList.sublist(2, 6).map((data) {
+                              return Positioned(
+                                top: data.top,
+                                left: data.left,
+                                child: Clickable(
+                                  onPressed: () {
+                                    setState(() {
+                                      documentModel.chandeState(
+                                          data.name, data.text);
+                                    });
+                                  },
+                                  child: PointWidget(
+                                    color: documentModel.name == data.name
+                                        ? AppColors.orange
+                                        : Colors.black,
+                                    text: data.name!.substring(1),
+                                  ),
+                                ),
+                              );
+                            }).toList()),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                AnimatedPositioned(
-                  height: constraints.maxHeight,
-                  width: isInfoBorderOpen ? constraints.maxWidth * 0.4 : 0,
-                  right: 0,
-                  duration: Times.fastest,
-                  child: LayoutBuilder(builder: (context, constraines) {
-                    return Container(
-                        decoration: const BoxDecoration(
-                            gradient:
-                                AppColors.linearGradientForBackgroundDocument),
-                        child: Stack(children: [
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              height: constraines.maxHeight,
-                              padding: EdgeInsets.only(
-                                left: constraints.maxWidth * 0.064,
-                                right: constraints.maxWidth * 0.064,
-                                top: constraines.maxHeight * 0.05,
-                              ),
-                              child: Column(
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          bottom: constraines.maxHeight * 0.05),
-                                      child: Row(
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: AnimatedContainer(
+                    height: constraints.maxHeight,
+                    width: isInfoBorderOpen ? constraints.maxWidth * 0.4 : 0,
+                    duration: Times.fastest,
+                    child: LayoutBuilder(builder: (context, constraines) {
+                      return Container(
+                          decoration: const BoxDecoration(
+                              gradient: AppColors
+                                  .linearGradientForBackgroundDocument),
+                          child: Stack(children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: constraines.maxHeight,
+                                padding: EdgeInsets.only(
+                                  left: constraints.maxWidth * 0.064,
+                                  right: constraints.maxWidth * 0.064,
+                                  top: constraines.maxHeight * 0.05,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Flexible(
+                                      child: Container(
+                                        padding: EdgeInsets.only(
+                                            bottom:
+                                                constraines.maxHeight * 0.05),
+                                        child: Visibility(
+                                          visible: isInfoBorderOpen,
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Clickable(
+                                                onPressed: () {},
+                                                child:
+                                                    const Icon(Icons.volume_up),
+                                              ),
+                                              Clickable(
+                                                  onPressed: () {
+                                                    scaffoldkey.currentState!
+                                                        .openEndDrawer();
+                                                  },
+                                                  child: const Icon(Icons.menu))
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 6,
+                                      child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Clickable(
-                                            onPressed: () {},
-                                            child: const Icon(Icons.volume_up),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom:
+                                                        constraints.maxHeight *
+                                                            0.01),
+                                                child: AutoSizeText(
+                                                  locale
+                                                      .chapter1MedicalToolsKnowledge,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom:
+                                                        constraints.maxHeight *
+                                                            0.01),
+                                                child: AutoSizeText(
+                                                  locale
+                                                      .sourceAnalysisHippocraticOath,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          Clickable(
-                                              onPressed: () {
-                                                scaffoldkey.currentState!
-                                                    .openEndDrawer();
-                                              },
-                                              child: const Icon(Icons.menu))
+                                          Expanded(
+                                            flex: 6,
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  top: BorderSide(
+                                                      color: AppColors.grey,
+                                                      width: 1.2),
+                                                  bottom: BorderSide(
+                                                      color: AppColors.grey,
+                                                      width: 1.2),
+                                                ),
+                                              ),
+                                              child: SingleChildScrollView(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 16, right: 32),
+                                                  child: RichText(
+                                                      text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text:
+                                                          '${documentModel.name}\n\n'
+                                                              .toUpperCase(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                    TextSpan(
+                                                      text: documentModel.text,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ])),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            // height: 30,
+                                            child: SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                child: Row(
+                                                    children: documentList
+                                                        .map((data) =>
+                                                            documentInfoListWidgets(
+                                                                name: data.name,
+                                                                text: data.text,
+                                                                selected:
+                                                                    data.name))
+                                                        .toList())),
+                                          ),
+                                          const SizedBox(
+                                            height: 60,
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom:
-                                                      constraints.maxHeight *
-                                                          0.01),
-                                              child: AutoSizeText(
-                                                locale
-                                                    .chapter1MedicalToolsKnowledge,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom:
-                                                      constraints.maxHeight *
-                                                          0.01),
-                                              child: AutoSizeText(
-                                                locale
-                                                    .sourceAnalysisHippocraticOath,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline2,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Expanded(
-                                          flex: 6,
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              border: Border(
-                                                top: BorderSide(
-                                                    color: AppColors.grey,
-                                                    width: 1.2),
-                                                bottom: BorderSide(
-                                                    color: AppColors.grey,
-                                                    width: 1.2),
-                                              ),
-                                            ),
-                                            child: SingleChildScrollView(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 16, right: 32),
-                                                child: RichText(
-                                                    text: TextSpan(children: [
-                                                  TextSpan(
-                                                    text:
-                                                        '${documentModel.name}\n\n'
-                                                            .toUpperCase(),
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline3,
-                                                  ),
-                                                  TextSpan(
-                                                    text: documentModel.text,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText1,
-                                                  ),
-                                                ])),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          // height: 30,
-                                          child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                  children: documentList
-                                                      .map((data) =>
-                                                          documentInfoListWidgets(
-                                                              name: data.name,
-                                                              text: data.text,
-                                                              selected:
-                                                                  data.name))
-                                                      .toList())),
-                                        ),
-                                        const SizedBox(
-                                          height: 60,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ]));
-                  }),
+                          ]));
+                    }),
+                  ),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,

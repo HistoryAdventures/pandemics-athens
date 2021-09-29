@@ -58,6 +58,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   )),
             )),
             SoundAndMenuWidget(
+              color: AppColors.white,
               widget: Clickable(
                 onPressed: () {
                   LeafDetails.currentVertex = 17;
@@ -73,7 +74,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 child: const Icon(
                   Icons.arrow_upward_sharp,
                   size: 40,
-                  color: AppColors.blackB,
+                  color: AppColors.white,
                 ),
               ),
               icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
@@ -108,7 +109,10 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                       locals.irlNikos.toUpperCase(),
                       maxLines: 1,
                       minFontSize: 8,
-                      style: Theme.of(context).textTheme.overline,
+                      style: Theme.of(context)
+                          .textTheme
+                          .overline
+                          ?.copyWith(color: AppColors.white),
                     ),
                     Container(
                       decoration: const BoxDecoration(
@@ -119,7 +123,10 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                         ' ${locals.nikos.toLowerCase()}',
                         maxLines: 1,
                         minFontSize: 8,
-                        style: Theme.of(context).textTheme.caption,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.copyWith(color: AppColors.white),
                       ),
                     ),
                   ],
@@ -127,15 +134,16 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.only(right: 24, bottom: 24),
-                child: ArrowRightTextWidget(
+                padding: const EdgeInsets.only(left: 24, bottom: 24),
+                child: ArrowLeftTextWidget(
+                  color: AppColors.white,
                   onTap: () {
                     context.router.push(const GianaPageRoute());
                   },
                   textSubTitle: locals.giana,
-                  textTitle: locals.giana,
+                  textTitle: "#IRL",
                 ),
               ),
             ),
@@ -143,7 +151,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               alignment: Alignment.bottomCenter,
               child: IconButton(
                 padding: const EdgeInsets.only(bottom: 24),
-                color: AppColors.blackB,
+                color: AppColors.white,
                 iconSize: 40,
                 icon: const Icon(Icons.arrow_downward),
                 onPressed: () {

@@ -246,7 +246,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i23.GianaPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),

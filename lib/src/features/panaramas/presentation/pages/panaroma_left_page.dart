@@ -108,21 +108,21 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
 
-  Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
-      setState(() {
-        isImageloaded = true;
-        isSoundOn = true;
-        //backgroundplayer.play();
-      });
-    } else {
-      setState(() {
-        isSoundOn = false;
-        isImageloaded = false;
-      });
-    }
-  }
+  // Future<void> init() async {
+  //   final loadedAssets = await loadContent(contentImages);
+  //   if (loadedAssets == true) {
+  //     setState(() {
+  //       isImageloaded = true;
+  //       isSoundOn = true;
+  //       //backgroundplayer.play();
+  //     });
+  //   } else {
+  //     setState(() {
+  //       isSoundOn = false;
+  //       isImageloaded = false;
+  //     });
+  //   }
+  // }
 
   // void setSounds() async {
   //   backgroundSound =
@@ -134,7 +134,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
 
   @override
   void initState() {
-    init();
+    // init();
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }

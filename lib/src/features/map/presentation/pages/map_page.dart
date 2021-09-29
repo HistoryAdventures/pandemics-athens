@@ -334,18 +334,18 @@ class _MapPageState extends State<MapPage> {
     super.didChangeDependencies();
   }
 
-  Future<void> init() async {
-    final loadedAssets = await loadContent(contentImages);
-    if (loadedAssets == true) {
-      setState(() {
-        isImageloaded = true;
-      });
-    } else {
-      setState(() {
-        isImageloaded = false;
-      });
-    }
-  }
+  // Future<void> init() async {
+  //   final loadedAssets = await loadContent(contentImages);
+  //   if (loadedAssets == true) {
+  //     setState(() {
+  //       isImageloaded = true;
+  //     });
+  //   } else {
+  //     setState(() {
+  //       isImageloaded = false;
+  //     });
+  //   }
+  // }
 
   @override
   void initState() {

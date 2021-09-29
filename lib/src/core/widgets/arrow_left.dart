@@ -45,7 +45,7 @@ class ArrowLeftWidget extends StatelessWidget {
               // minFontSize: 5,
               maxLines: 1,
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontSize: TextFontSize.getHeight(24, context).clamp(0, 10),
+                  fontSize: TextFontSize.getHeight(35, context).clamp(0, 24),
                   color: textColor ?? Colors.black),
             ),
           )
