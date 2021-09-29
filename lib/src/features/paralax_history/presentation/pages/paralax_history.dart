@@ -337,7 +337,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       }
 
       if (_scrollController.offset > _scrollParalaxText4 + 200) {
-        animationForWalker = Tween<double>(begin: 0, end: width * 0.17)
+        animationForWalker = Tween<double>(begin: 0, end: width * 0.1)
             .animate(_animationControllerForWalker)
               ..addListener(() {
                 if (mounted) {
