@@ -95,10 +95,10 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                             child: CharacterModel(
                               key:
                                   ValueKey(characterModelNotifierprovider.name),
-                              name: characterModelNotifierprovider.name ?? "",
-                              photo: characterModelNotifierprovider.image ?? "",
+                              name: characterModelNotifierprovider.name,
+                              photo: characterModelNotifierprovider.image,
                               description:
-                                  characterModelNotifierprovider.bodyText ?? "",
+                                  characterModelNotifierprovider.bodyText,
                               onTap: () {
                                 if (kIsWeb) {
                                   html.window.history.back();
@@ -312,7 +312,10 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   }
 
   Widget charactersNameListWidget(
-      {String? name, String? selected, String? image, String? text}) {
+      {required String name,
+      required String selected,
+      required String image,
+      required String text}) {
     return Container(
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
@@ -322,7 +325,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   name: name, image: image, bodyText: text);
             });
           },
-          child: AutoSizeText(name!.toUpperCase(),
+          child: AutoSizeText(name.toUpperCase(),
               maxLines: 1,
               style: characterModelNotifierprovider.name == selected
                   ? Theme.of(context)

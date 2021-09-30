@@ -190,11 +190,15 @@ class AssetsPath {
   static const String arrowForwardImage = "assets/icons/arrow_forward.png";
   static const String arrowDounImage = 'assets/icons/arrow_down.png';
 
-  static const String periclesImage = "assets/characters/character_1.png";
-  static const String thucididesImage = "assets/characters/character_2.png";
-  static const String socratesImage = "assets/characters/character_3.png";
+  static const String periclesImage = "assets/characters/pericles.png";
+  static const String aristophanesSophoclesImage =
+      "assets/characters/aristophanes_sophocles.png";
+  static const String phidiasImage = "assets/characters/phidias.png";
 
-  static const String aristophanesImage = "assets/characters/character_4.png";
+  static const String socratesPlatoImage =
+      "assets/characters/socrates_plato.png";
+
+  static const String thucydidesImage = "assets/characters/thucydides.png";
 
   static const String spheresBackImage = 'assets/image_back/spheres.png';
   static const String scrollIcon = 'assets/icons/scroll.png';
@@ -379,6 +383,13 @@ class AssetsPath {
       'assets/paralax_new/hottub/images/hottub_bottom.png';
 
   static const List<String> contentImages = [
+    AssetsPath.periclesImage,
+    AssetsPath.irlGiana,
+    AssetsPath.irlNikos,
+    AssetsPath.socratesPlatoImage,
+    AssetsPath.aristophanesSophoclesImage,
+    AssetsPath.phidiasImage,
+    AssetsPath.thucydidesImage,
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
     AssetsPath.aboutBookMap,

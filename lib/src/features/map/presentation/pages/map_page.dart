@@ -63,10 +63,6 @@ class _MapPageState extends State<MapPage> {
     AssetsPath.mapImage413,
     AssetsPath.mapImage399,
     AssetsPath.periclesImage,
-    AssetsPath.thucididesImage,
-    AssetsPath.socratesImage,
-    AssetsPath.aristophanesImage,
-    AssetsPath.charactersBackgroundImage,
   ];
 
   @override

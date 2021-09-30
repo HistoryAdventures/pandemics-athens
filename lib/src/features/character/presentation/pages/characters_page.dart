@@ -32,32 +32,42 @@ class _CharacrterPageState extends State<CharacrterPage> {
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
-    setList();
+    setList(context);
 
     super.didChangeDependencies();
   }
 
-  void setList() {
+  void setList(BuildContext context) {
     list = [
       CharacterModelNotifier(
+        left: -30,
         bodyText: locale.periclesTextDescription,
         image: AssetsPath.periclesImage,
         name: locale.namePericles,
       ),
       CharacterModelNotifier(
-        image: AssetsPath.thucididesImage,
+        left: MediaQuery.of(context).size.width * 0.13,
+        image: AssetsPath.thucydidesImage,
         name: locale.thucididesName,
         bodyText: locale.thucydidesTextDescription,
       ),
       CharacterModelNotifier(
-        image: AssetsPath.socratesImage,
+        left: MediaQuery.of(context).size.width * 0.3,
+        image: AssetsPath.socratesPlatoImage,
         name: locale.socratesAndPlatoName,
         bodyText: locale.socratesAndPlatoTextDescription,
       ),
       CharacterModelNotifier(
-        image: AssetsPath.aristophanesImage,
+        left: MediaQuery.of(context).size.width * 0.55,
+        image: AssetsPath.aristophanesSophoclesImage,
         name: locale.aristophanesAndSophocles,
         bodyText: locale.aristophanesAndSophoclesTextDescription,
+      ),
+      CharacterModelNotifier(
+        left: MediaQuery.of(context).size.width * 0.8,
+        image: AssetsPath.phidiasImage,
+        name: locale.phidias,
+        bodyText: locale.phidiasTextDescription,
       ),
     ];
   }
@@ -136,28 +146,29 @@ class _CharacrterPageState extends State<CharacrterPage> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Container(
-                  height: constraints.maxHeight,
-                  margin: EdgeInsets.only(
-                      bottom: 80, top: constraints.maxHeight * 0.2),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: list
-                          .map((photo) => CharacterModel(
-                                name: photo.name!,
-                                photo: photo.image!,
-                                description: photo.bodyText!,
+              child: Container(
+                height: constraints.maxHeight,
+                margin: EdgeInsets.only(),
+                child: Stack(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: list
+                        .map((photo) => Positioned(
+                              top: constraints.maxHeight * 0.2,
+                              left: photo.left,
+                              bottom: 80,
+                              child: CharacterModel(
+                                name: photo.name,
+                                photo: photo.image,
+                                description: photo.bodyText,
                                 onTap: () {
                                   context.router.push(CharacterInfoPageRoute(
                                     listCharacters: list,
                                     photoHero: photo,
                                   ));
                                 },
-                              ))
-                          .toList()),
-                ),
+                              ),
+                            ))
+                        .toList()),
               ),
             ),
             Align(
