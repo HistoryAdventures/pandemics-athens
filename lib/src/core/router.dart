@@ -33,7 +33,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
   routes: <AutoRoute>[
     CustomRoute(
       page: LeandingPage,
-      initial: true,
+      // initial: true,
     ),
     CustomRoute(
         page: CharacrterPage,
@@ -53,6 +53,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: QuizPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -127,17 +128,21 @@ class _CharacrterPageState extends State<CharacrterPage> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: AutoSizeText(
+                      child: Text(
                         locale.athens5thCentury.toUpperCase(),
                         maxLines: 1,
-                        style: DefaultTheme.standard.textTheme.headline2,
+                        style: DefaultTheme.standard.textTheme.headline2
+                            ?.copyWith(
+                                fontSize: TextFontSize.getHeight(36, context)),
                       ),
                     ),
                     Expanded(
-                      child: AutoSizeText(
+                      child: Text(
                         locale.keyPeopleOfTheAge.toLowerCase(),
                         maxLines: 1,
-                        style: DefaultTheme.standard.textTheme.subtitle2,
+                        style: DefaultTheme.standard.textTheme.subtitle2
+                            ?.copyWith(
+                                fontSize: TextFontSize.getHeight(36, context)),
                       ),
                     )
                   ],

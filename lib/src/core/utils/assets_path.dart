@@ -10,6 +10,8 @@ class AssetsPath {
   static List<String> assetsBlobList = [];
 
   //static const String gifBackground = 'assets/image_back/backgif.gif';
+
+  static const String imageQuizPericles = 'assets/images_quiz/pericles.jpg';
   static const String gifBackground1 =
       'assets/animated_backgrounds/1/liquid.gif';
 
