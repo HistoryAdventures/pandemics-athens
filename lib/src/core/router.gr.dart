@@ -7,13 +7,13 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../features/about_book/presentation/pages/about_book_page.dart' as _i23;
-import '../features/about_book/presentation/pages/copyright_page.dart' as _i26;
-import '../features/about_book/presentation/pages/credits_page.dart' as _i24;
+import '../features/about_book/presentation/pages/about_book_page.dart' as _i24;
+import '../features/about_book/presentation/pages/copyright_page.dart' as _i27;
+import '../features/about_book/presentation/pages/credits_page.dart' as _i25;
 import '../features/about_book/presentation/pages/further_reading_page.dart'
-    as _i25;
-import '../features/about_book/presentation/pages/sources_page.dart' as _i27;
-import '../features/character/presentation/models/caracter_model.dart' as _i30;
+    as _i26;
+import '../features/about_book/presentation/pages/sources_page.dart' as _i28;
+import '../features/character/presentation/models/caracter_model.dart' as _i31;
 import '../features/character/presentation/pages/character_info_page.dart'
     as _i5;
 import '../features/character/presentation/pages/characters_page.dart' as _i4;
@@ -23,10 +23,11 @@ import '../features/dead_socrates/presentation/pages/end_of_war_page.dart'
     as _i21;
 import '../features/document/presentation/pages/document_page.dart' as _i19;
 import '../features/glossary/presentation/pages/glossary_page.dart' as _i10;
+import '../features/irl_nikos/presentation/pages/giana_page.dart' as _i23;
 import '../features/irl_nikos/presentation/pages/irl_nikos_page.dart' as _i22;
 import '../features/leanding/presentation/pages/leanding_page.dart' as _i3;
 import '../features/map/presentation/pages/map_page.dart' as _i7;
-import '../features/navigation/presentation/pages/navigation_page.dart' as _i28;
+import '../features/navigation/presentation/pages/navigation_page.dart' as _i29;
 import '../features/panaramas/presentation/pages/panaroma_left_page.dart'
     as _i11;
 import '../features/panaramas/presentation/pages/panaroma_right_page.dart'
@@ -38,7 +39,7 @@ import '../features/pandemic_info/presentation/pages/pathogen_profile_page.dart'
 import '../features/pandemic_info/presentation/pages/virus_loc_page.dart'
     as _i18;
 import '../features/pandemic_info/presentation/pages/virus_loc_second_page.dart'
-    as _i29;
+    as _i30;
 import '../features/pandemic_info/presentation/pages/viruses_info_page.dart'
     as _i6;
 import '../features/paralax_history/presentation/pages/paralax_history.dart'
@@ -240,10 +241,19 @@ class FlutterRouter extends _i1.RootStackRouter {
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
+    GianaPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i23.GianaPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false),
     AboutBookPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i23.AboutBookPage();
+          return const _i24.AboutBookPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500,
@@ -252,7 +262,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     CreditsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i24.CreditsPage();
+          return const _i25.CreditsPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
@@ -261,7 +271,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     FurtherReadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i25.FurtherReadingPage();
+          return const _i26.FurtherReadingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
@@ -270,7 +280,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     CopyrightPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i26.CopyrightPage();
+          return const _i27.CopyrightPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
@@ -279,7 +289,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     SoursePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i27.SoursePage();
+          return const _i28.SoursePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
@@ -288,7 +298,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     NavigationPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i28.NavigationPage();
+          return const _i29.NavigationPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideRight,
         durationInMilliseconds: 500,
@@ -297,7 +307,7 @@ class FlutterRouter extends _i1.RootStackRouter {
     VirusLocationSecondPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i29.VirusLocationSecondPage();
+          return const _i30.VirusLocationSecondPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 500,
@@ -335,6 +345,7 @@ class FlutterRouter extends _i1.RootStackRouter {
             path: '/dead-of-socrates-page'),
         _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
         _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
         _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book-page'),
         _i1.RouteConfig(CreditsPageRoute.name, path: '/credits-page'),
         _i1.RouteConfig(FurtherReadingPageRoute.name,
@@ -372,8 +383,8 @@ class CharacrterPageRoute extends _i1.PageRouteInfo {
 class CharacterInfoPageRoute
     extends _i1.PageRouteInfo<CharacterInfoPageRouteArgs> {
   CharacterInfoPageRoute(
-      {required _i30.CharacterModelNotifier photoHero,
-      required List<_i30.CharacterModelNotifier> listCharacters})
+      {required _i31.CharacterModelNotifier photoHero,
+      required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
             path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
@@ -386,9 +397,9 @@ class CharacterInfoPageRouteArgs {
   const CharacterInfoPageRouteArgs(
       {required this.photoHero, required this.listCharacters});
 
-  final _i30.CharacterModelNotifier photoHero;
+  final _i31.CharacterModelNotifier photoHero;
 
-  final List<_i30.CharacterModelNotifier> listCharacters;
+  final List<_i31.CharacterModelNotifier> listCharacters;
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
@@ -492,6 +503,12 @@ class IrlNikosPageRoute extends _i1.PageRouteInfo {
   const IrlNikosPageRoute() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageRoute';
+}
+
+class GianaPageRoute extends _i1.PageRouteInfo {
+  const GianaPageRoute() : super(name, path: '/giana-page');
+
+  static const String name = 'GianaPageRoute';
 }
 
 class AboutBookPageRoute extends _i1.PageRouteInfo {

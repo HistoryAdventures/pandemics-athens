@@ -24,16 +24,13 @@ class MyApp extends StatelessWidget {
     if (kIsWeb) {
       if ((defaultTargetPlatform == TargetPlatform.iOS) ||
           (defaultTargetPlatform == TargetPlatform.android)) {
-         ('android.ios');
         deviceIsMobileForWeb = true;
       } else if ((defaultTargetPlatform == TargetPlatform.linux) ||
           (defaultTargetPlatform == TargetPlatform.macOS) ||
           (defaultTargetPlatform == TargetPlatform.windows)) {
-        print('desctop /////');
         deviceIsMobileForWeb = false;
       } else {
         // Some web specific code there
-        print(' other ');
         deviceIsMobileForWeb = false;
       }
     }

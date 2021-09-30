@@ -1,15 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 class CharacterModelNotifier {
-  String? name;
-  String? bodyText;
-  String? image;
+  String name;
+  String bodyText;
+  String image;
+  int? flex;
+  double? left;
 
   CharacterModelNotifier({
+    this.left,
     required this.name,
     required this.bodyText,
     required this.image,
+    this.flex,
   });
 
-  void changeCaracterInfo({String? name, String? image, String? bodyText}) {
+  void changeCaracterInfo(
+      {required String name, required String image, required String bodyText}) {
     this.name = name;
     this.image = image;
     this.bodyText = bodyText;

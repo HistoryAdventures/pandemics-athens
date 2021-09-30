@@ -21,6 +21,15 @@ class Shadows {
           offset: Offset(0, 1),
         ),
       ];
+
+  static List<BoxShadow> get smallWhite => const [
+        BoxShadow(
+          color: AppColors.white,
+          blurRadius: 10,
+          spreadRadius: 5,
+          offset: Offset(0, 1),
+        ),
+      ];
 }
 
 class HW {
@@ -31,6 +40,11 @@ class HW {
   static double getWidth(double width, BuildContext context) {
     return width * MediaQuery.of(context).size.width / 1920;
   }
+}
+
+class TextFontSize {
+  static double getHeight(double value, BuildContext context) =>
+      value * MediaQuery.of(context).size.height / 1080;
 }
 
 /// Used for all animations in the  app

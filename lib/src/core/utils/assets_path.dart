@@ -190,11 +190,15 @@ class AssetsPath {
   static const String arrowForwardImage = "assets/icons/arrow_forward.png";
   static const String arrowDounImage = 'assets/icons/arrow_down.png';
 
-  static const String periclesImage = "assets/characters/character_1.png";
-  static const String thucididesImage = "assets/characters/character_2.png";
-  static const String socratesImage = "assets/characters/character_3.png";
+  static const String periclesImage = "assets/characters/pericles.png";
+  static const String aristophanesSophoclesImage =
+      "assets/characters/aristophanes_sophocles.png";
+  static const String phidiasImage = "assets/characters/phidias.png";
 
-  static const String aristophanesImage = "assets/characters/character_4.png";
+  static const String socratesPlatoImage =
+      "assets/characters/socrates_plato.png";
+
+  static const String thucydidesImage = "assets/characters/thucydides.png";
 
   static const String spheresBackImage = 'assets/image_back/spheres.png';
   static const String scrollIcon = 'assets/icons/scroll.png';
@@ -289,6 +293,7 @@ class AssetsPath {
   static const String poitButtonArrowRight =
       'assets/document_view/pointer_button_icon.png';
   static const String irlNikos = 'assets/image_back/irl_nikos.png';
+  static const String irlGiana = 'assets/image_back/giana.png';
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
@@ -303,16 +308,21 @@ class AssetsPath {
   static const String paralaxYoungManLottie =
       'assets/paralax_new/young_man/young_man.json';
   static const String paralaxBuilding = 'assets/paralax_new/building.png';
-  static const String paralaxCharacter_1 = 'assets/paralax_new/walker.png';
+  static const String paralaxWalker = 'assets/paralax_new/walker.png';
+  static const String paralaxClouds2 = 'assets/paralax_new/clouds2.png';
 
   static const String gifHand = 'assets/paralax_new/hand.gif';
 
   static const String paralaxCharacterNikosLottie =
       'assets/paralax_new/character_nikos/character_nikos_lottie.json';
-  static const String paralaxCloud = 'assets/paralax_new/cloud.png';
+  static const String paralaxTubeCloud = 'assets/paralax_new/tube_cloud.png';
+  static const String paralaxTube2Cloud = 'assets/paralax_new/tube2_cloud.png';
   static const String paralaxCrows = 'assets/paralax_new/crows.png';
   static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
+  static const String paralaxCrowLottie = 'assets/paralax_new/crow/crow.json';
+  static const String paralaxCrowsLottie =
+      'assets/paralax_new/crows/crows.json';
   static const String paralaxFightersRightLottie =
       'assets/paralax_new/fighters_right/fighters_right.json';
   static const String paralaxSmokeLottie =
@@ -363,7 +373,23 @@ class AssetsPath {
   static const String virusLoc1 = 'assets/map/virus_loc_1.png';
   static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
+  static const String lottieAssetsTubeBottom =
+      'assets/paralax_new/tube2/images/tube2_bttm.png';
+
+  static const String lottieAssetsCrowd =
+      'assets/paralax_new/crowd/images/crowd_bg.png';
+
+  static const String lottieAssetsTube =
+      'assets/paralax_new/hottub/images/hottub_bottom.png';
+
   static const List<String> contentImages = [
+    AssetsPath.periclesImage,
+    AssetsPath.irlGiana,
+    AssetsPath.irlNikos,
+    AssetsPath.socratesPlatoImage,
+    AssetsPath.aristophanesSophoclesImage,
+    AssetsPath.phidiasImage,
+    AssetsPath.thucydidesImage,
     AssetsPath.paralaxBackground,
     AssetsPath.gifBackground1,
     AssetsPath.aboutBookMap,
@@ -530,11 +556,9 @@ class AssetsPath {
     AssetsPath.gifBackground4,
     AssetsPath.gifBackground5,
     AssetsPath.gifBackground6,
-    AssetsPath.paralaxCharacter_1,
-    AssetsPath.gifHand,
-    AssetsPath.paralaxCloud,
-    AssetsPath.paralaxCrows,
-    AssetsPath.paralaxDeadBodies,
+    AssetsPath.paralaxWalker,
+    AssetsPath.paralaxTube2Cloud,
+    AssetsPath.paralaxTubeCloud,
     AssetsPath.paralaxClouds,
     AssetsPath.gifVirusTyphoid,
     AssetsPath.gifSmallpox,
@@ -557,54 +581,54 @@ class AssetsPath {
   ];
 }
 
-Future<bool> loadContent(List<String> context) async {
-  for (int i = 0; i < context.length; i++) {
-    await getBytesFromAsset(context[i]);
-  }
+// Future<bool> loadContent(List<String> context) async {
+//   for (int i = 0; i < context.length; i++) {
+//     await getBytesFromAsset(context[i]);
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
-Future<ui.Image> getBytesFromAsset(
-  String path,
-) async {
-  final data = await rootBundle.load(path);
+// Future<ui.Image> getBytesFromAsset(
+//   String path,
+// ) async {
+//   final data = await rootBundle.load(path);
 
-  final codec = await ui.instantiateImageCodec(
-    data.buffer.asUint8List(),
-  );
+//   final codec = await ui.instantiateImageCodec(
+//     data.buffer.asUint8List(),
+//   );
 
-  final fi = await codec.getNextFrame();
+//   final fi = await codec.getNextFrame();
 
-  final ui.Image byteData = fi.image;
-  return byteData;
-}
+//   final ui.Image byteData = fi.image;
+//   return byteData;
+// }
 
-Future<List<ImageInfo>> preloadImage({
-  required ImageProvider provider,
-  required BuildContext context,
-  int frameCount = 1,
-  Size? size,
-  ImageErrorListener? onError,
-}) async {
-  final ImageConfiguration config =
-      createLocalImageConfiguration(context, size: size);
-  final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
-  final ImageStream stream = provider.resolve(config);
-  final List<ImageInfo> ret = [];
+// Future<List<ImageInfo>> preloadImage({
+//   required ImageProvider provider,
+//   required BuildContext context,
+//   int frameCount = 1,
+//   Size? size,
+//   ImageErrorListener? onError,
+// }) async {
+//   final ImageConfiguration config =
+//       createLocalImageConfiguration(context, size: size);
+//   final Completer<List<ImageInfo>> completer = Completer<List<ImageInfo>>();
+//   final ImageStream stream = provider.resolve(config);
+//   final List<ImageInfo> ret = [];
 
-  final ImageStreamListener imageStreamListener =
-      ImageStreamListener((ImageInfo image, bool sync) {
-    ret.add(image);
-    if (ret.length == frameCount) {
-      completer.complete(ret);
-    }
-  });
+//   final ImageStreamListener imageStreamListener =
+//       ImageStreamListener((ImageInfo image, bool sync) {
+//     ret.add(image);
+//     if (ret.length == frameCount) {
+//       completer.complete(ret);
+//     }
+//   });
 
-  stream.addListener(imageStreamListener);
-  completer.future.then((List<ImageInfo> _) {
-    stream.removeListener(imageStreamListener);
-  });
+//   stream.addListener(imageStreamListener);
+//   completer.future.then((List<ImageInfo> _) {
+//     stream.removeListener(imageStreamListener);
+//   });
 
-  return completer.future;
-}
+//   return completer.future;
+// }

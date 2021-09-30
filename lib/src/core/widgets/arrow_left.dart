@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import 'clickable_widget.dart';
 
@@ -38,15 +39,14 @@ class ArrowLeftWidget extends StatelessWidget {
           ),
           Flexible(
             flex: 3,
-            child: AutoSizeText(
+            child: Text(
               textSubTitle.toUpperCase(),
               textAlign: TextAlign.start,
-              minFontSize: 5,
+              // minFontSize: 5,
               maxLines: 1,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2
-                  ?.copyWith(fontSize: 24, color: textColor ?? Colors.black),
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  fontSize: TextFontSize.getHeight(35, context).clamp(0, 24),
+                  color: textColor ?? Colors.black),
             ),
           )
         ],

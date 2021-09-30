@@ -55,6 +55,11 @@ class _LeandingPageState extends State<LeandingPage>
     for (int i = 0; i < AssetsPath.contentImages.length; i++) {
       await precacheImage(AssetImage(AssetsPath.contentImages[i]), context);
 
+      precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
+      precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
+      precacheImage(
+          const AssetImage(AssetsPath.lottieAssetsTubeBottom), context);
+
       setState(() {
         loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
             .toStringAsFixed(0);

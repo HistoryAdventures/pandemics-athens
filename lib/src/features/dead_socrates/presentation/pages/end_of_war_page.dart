@@ -108,7 +108,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10, left: 24),
+                  padding: const EdgeInsets.only(bottom: 24, left: 24),
                   child: ArrowLeftTextWidget(
                       textSubTitle: locale.deathOfSocrates,
                       textTitle: locale.plagueAndPersecution,
