@@ -422,7 +422,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         ),
                         ParallaxWidget(
                           isImage: false,
-                          width: constraints.maxWidth * 0.05,
+                          width: constraints.maxWidth * 0.03,
                           boxFit: BoxFit.contain,
                           top: _progressTopCrows,
                           right: _progressCrows,
@@ -430,19 +430,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         ),
                         ParallaxWidget(
                           isImage: false,
-                          width: constraints.maxWidth * 0.05,
+                          width: constraints.maxWidth * 0.03,
                           boxFit: BoxFit.contain,
                           top: _progressTopCrows + 150,
                           left: _progressCrows,
                           asset: AssetsPath.paralaxCrowLottie,
                         ),
                         ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth / 3,
+                          isImage: true,
+                          width: constraints.maxWidth / 2.5,
                           boxFit: BoxFit.contain,
                           top: rateCharactersNikosGif,
                           left: _progressCaracterNikos,
-                          asset: AssetsPath.paralaxCharacterNikosLottie,
+                          asset: AssetsPath.gifParalaxNikosGif,
                         ),
                         ParallaxWidget(
                           isImage: false,
