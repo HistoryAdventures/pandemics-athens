@@ -4,6 +4,8 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_words.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
 import 'package:just_audio/just_audio.dart';
@@ -42,6 +44,25 @@ class _QuizPageState extends State<QuizPage> {
     Answers(value: 3, text: "Cleisthenes"),
     Answers(value: 4, text: "Pericles"),
   ];
+  List<Answers> answersDD3 = [
+    Answers(value: 1, text: "slaves"),
+    Answers(value: 2, text: "demos"),
+    Answers(value: 3, text: "oligarchy"),
+    Answers(value: 4, text: "Women"),
+    Answers(value: 5, text: "metics"),
+    Answers(value: 6, text: "power"),
+    Answers(value: 7, text: "King"),
+    Answers(value: 8, text: "citizens"),
+  ];
+  List<Answers> answersDD7 = [
+    Answers(value: 1, text: "dissection"),
+    Answers(value: 2, text: "Roman"),
+    Answers(value: 3, text: "Renaissance"),
+    Answers(value: 4, text: "plague"),
+    Answers(value: 5, text: "Hippocrates"),
+    Answers(value: 6, text: "gladiators"),
+  ];
+
   late List<Widget> questionsWidgets;
   late AppLocalizations locals;
   int questionIndex = 0;
@@ -61,13 +82,22 @@ class _QuizPageState extends State<QuizPage> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     questionsWidgets = [
+      // Center(
+      //   child: Container(
+      //     child: const Text('Drag Drop Circles Question 1'),
+      //   ),
+      // ),
+      const QuizEditTextWidget(),
+      QuizDragDropWidget(
+        question: locals.question3,
+        questionIndex: 3,
+        answers: answersDD3,
+      ),
       Center(
         child: Container(
-          color: Colors.red,
-          child: const Text('question1'),
+          child: const Text('Drag Drop Circles Question 4'),
         ),
       ),
-      QuizEditTextWidget(),
       QuizRadioBottonWidget(
         quizWithImage: false,
         answers: answersForViruses,
@@ -80,14 +110,19 @@ class _QuizPageState extends State<QuizPage> {
         questionIndex: 6,
         question: locals.question6,
       ),
-      const Center(
-        child: Text('question3'),
+      QuizDragDropWidget(
+        question: locals.question7,
+        questionIndex: 7,
+        answers: answersDD7,
       ),
       const Center(
-        child: Text('question4'),
+        child: Text('Check Box Question8'),
       ),
       const Center(
-        child: Text('question5'),
+        child: Text('Drag Drop Circles Question 4'),
+      ),
+      const Center(
+        child: Text('Check Box Question10'),
       ),
     ];
     super.didChangeDependencies();

@@ -12,6 +12,8 @@ class AssetsPath {
   //static const String gifBackground = 'assets/image_back/backgif.gif';
 
   static const String imageQuizPericles = 'assets/images_quiz/pericles.jpg';
+  static const String gifParalaxNikosGif =
+      'assets/paralax_new/character_nikos_lottie.gif';
   static const String gifBackground1 =
       'assets/animated_backgrounds/1/liquid.gif';
 
@@ -387,6 +389,7 @@ class AssetsPath {
   static const List<String> contentImages = [
     AssetsPath.periclesImage,
     AssetsPath.irlGiana,
+    AssetsPath.gifParalaxNikosGif,
     AssetsPath.irlNikos,
     AssetsPath.socratesPlatoImage,
     AssetsPath.aristophanesSophoclesImage,

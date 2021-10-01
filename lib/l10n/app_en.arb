@@ -1361,7 +1361,17 @@
     "question6":"Who is this prominent Athenian?",
     "@question6": {
       "question6": "question6"
+    },
+    "question3":" In the 5th century BC, Athens was a democracy. Fill in the blanks to explain what this meant.",
+    "@question3": {
+      "question3": "question3"
+    },
+    "question7":"Much of what we know about Hippocrates and his approach to medicine is because of the works of Galen. Fill in the correct responses below.",
+    "@question7": {
+      "question7": "question7"
     }
-  
+
+
+ 
 }
 
