@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/string_utils.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/inputs.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
+import '../../../../core/utils/styles.dart';
+import 'custom_widgets/inputs.dart';
+import 'custom_widgets/text_question_widget.dart';
 
 class QuizEditTextWidget extends StatefulWidget {
-  QuizEditTextWidget({Key? key}) : super(key: key);
+  const QuizEditTextWidget({Key? key}) : super(key: key);
 
   @override
   _QuizEditTextWidgetState createState() => _QuizEditTextWidgetState();

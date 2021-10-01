@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
-import 'package:history_of_adventures/src/core/utils/string_utils.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/inputs.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
-import 'package:universal_html/html.dart';
+
+import '../../../../core/colors.dart';
+import '../../../../core/utils/assets_path.dart';
+import '../../../../core/utils/styles.dart';
 
 class QuizRadioBottonWidget extends StatefulWidget {
   bool? quizWithImage = false;

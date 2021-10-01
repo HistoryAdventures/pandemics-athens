@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -17,7 +16,6 @@ import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widget/paralax_text_widget.dart';
 import '../widget/paralax_widget.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {

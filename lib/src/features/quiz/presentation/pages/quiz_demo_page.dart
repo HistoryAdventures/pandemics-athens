@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets_demo/draggable_advanced_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets_demo/item.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -16,6 +14,8 @@ import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../../data/model/quiz_model.dart';
+import '../widgets_demo/draggable_advanced_widget.dart';
+import '../widgets_demo/item.dart';
 
 class QuizPage extends StatefulWidget {
   @override
