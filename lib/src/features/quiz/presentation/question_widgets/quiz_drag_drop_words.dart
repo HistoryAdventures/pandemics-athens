@@ -313,8 +313,9 @@ Widget buildTarget({
       height: 30,
       child: DragTarget<Answers>(
         builder: (context, candidateData, rejectedData) => Stack(
-          children:
-              answers.map((answer) => DraggableWidget(answer: answer)).toList(),
+          children: answers
+              .map((answer) => DraggableWidget(answers: answer))
+              .toList(),
         ),
         onWillAccept: (data) => true,
         onAccept: (data) {

@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_words.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
@@ -30,6 +31,45 @@ class _QuizPageState extends State<QuizPage> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  List<Answers> answersForQ1 = [
+    Answers(
+        value: 1,
+        text: "Battle of Thermopylae",
+        correctAnswers: CorrectAnswers.answer1),
+    Answers(
+        value: 2,
+        text: "Birth of Socrates",
+        correctAnswers: CorrectAnswers.answer2),
+    Answers(
+        value: 3,
+        text: "The Plague arrives in Athens",
+        correctAnswers: CorrectAnswers.answer3),
+    Answers(
+        value: 4,
+        text: "Death of Pericles",
+        correctAnswers: CorrectAnswers.answer4),
+    Answers(
+        value: 5,
+        text: "Herodotus writes his 'Histories'",
+        correctAnswers: CorrectAnswers.answer5),
+    Answers(
+        value: 6,
+        text: "End of the Peloponnesian War",
+        correctAnswers: CorrectAnswers.answer6),
+    Answers(
+        value: 7,
+        text: "Cleisthenes' reforms and the birth of Democracy",
+        correctAnswers: CorrectAnswers.answer7),
+  ];
+  List<Answers> variantsForQ1 = [
+    Answers(value: 2, text: "480 BC", correctAnswers: CorrectAnswers.answer2),
+    Answers(value: 1, text: "469 BC", correctAnswers: CorrectAnswers.answer1),
+    Answers(value: 3, text: "430 BC", correctAnswers: CorrectAnswers.answer3),
+    Answers(value: 4, text: "429 BC", correctAnswers: CorrectAnswers.answer4),
+    Answers(value: 5, text: "415 BC", correctAnswers: CorrectAnswers.answer5),
+    Answers(value: 6, text: "404 BC", correctAnswers: CorrectAnswers.answer6),
+    Answers(value: 7, text: "508 BC", correctAnswers: CorrectAnswers.answer7),
+  ];
   List<Answers> answersForViruses = [
     Answers(value: 1, text: "Ebola"),
     Answers(value: 2, text: "Bubonic Plague"),
@@ -87,6 +127,13 @@ class _QuizPageState extends State<QuizPage> {
       //     child: const Text('Drag Drop Circles Question 1'),
       //   ),
       // ),
+
+      QuizDragDropCirclesWidget(
+        variants: variantsForQ1,
+        answers: answersForQ1,
+        question: 'What happened when during the Golden Age of Athens? ',
+        questionIndex: 1,
+      ),
       const QuizEditTextWidget(),
       QuizDragDropWidget(
         question: locals.question3,
