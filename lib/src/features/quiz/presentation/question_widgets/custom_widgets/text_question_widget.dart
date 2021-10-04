@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
 
 class TextQuestion extends StatelessWidget {
   final String text;
@@ -7,7 +7,7 @@ class TextQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Text(
         text,
         maxLines: 1,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+import '../colors.dart';
 
 import '../utils/styles.dart';
 import 'animated_widgets/pulsing_widget.dart';

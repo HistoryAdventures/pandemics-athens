@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
+import '../../../../../core/colors.dart';
 
 class CustumInput extends StatelessWidget {
   final String hintText;
@@ -24,7 +24,7 @@ class CustumInput extends StatelessWidget {
         obscureText: obscureText,
         style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding:const EdgeInsets.all(10),
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(50)),
               borderSide: BorderSide(color: AppColors.blueDeep, width: 1)),
