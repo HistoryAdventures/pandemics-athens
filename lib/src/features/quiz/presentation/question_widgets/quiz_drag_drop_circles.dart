@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
@@ -10,7 +8,6 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets_demo/answer.dart';
 
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;
@@ -35,25 +32,8 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
 class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   @override
   void dispose() {
-    // print(answer1.first.text);
-    // print(answer2.first.text);
-    // print(answer3.first.text);
-    // print(answer4.first.text);
-    // print(answer5.first.text);
-    // print(answer6.first.text);
-    // print(answer7.first.text);
-    // print(answer8.first.text);
     super.dispose();
   }
-
-  final List<Answers> answer1 = [];
-  final List<Answers> answer2 = [];
-  final List<Answers> answer3 = [];
-  final List<Answers> answer4 = [];
-  final List<Answers> answer5 = [];
-  final List<Answers> answer6 = [];
-  final List<Answers> answer7 = [];
-  final List<Answers> answer8 = [];
 
   @override
   void initState() {
@@ -62,60 +42,70 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
 
   void removeAll(Answers toRemove) {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
-    answer1.removeWhere((answer) => answer.text == toRemove.text);
-    answer2.removeWhere((answer) => answer.text == toRemove.text);
-    answer3.removeWhere((answer) => answer.text == toRemove.text);
-    answer4.removeWhere((answer) => answer.text == toRemove.text);
-    answer5.removeWhere((answer) => answer.text == toRemove.text);
-    answer6.removeWhere((answer) => answer.text == toRemove.text);
-    answer7.removeWhere((answer) => answer.text == toRemove.text);
-    answer8.removeWhere((answer) => answer.text == toRemove.text);
   }
 
-  Offset lineOffset = const Offset(0, 0);
+  // void _getWidgetInfo(_) {
+  //   final RenderBox renderBox =
+  //       globalKeyStack.currentContext?.findRenderObject() as RenderBox;
 
+  //   final Size size = renderBox.size; // or _widgetKey.currentContext?.size
+  //   print('Size: ${size.width}, ${size.height}');
+
+  //   final Offset offset = renderBox.localToGlobal(Offset.zero);
+  //   print('Offset: ${offset.dx}, ${offset.dy}');
+  //   print(
+  //       'Position: ${(offset.dx + size.width) / 2}, ${(offset.dy + size.height) / 2}');
+  // }
+
+  Offset lineOffsetStart = Offset.zero;
+  Offset lineOffsetEnd = Offset.zero;
+  Offset mousePosition = Offset.zero;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        height: constraints.maxHeight,
-        margin: EdgeInsets.symmetric(
-          horizontal: constraints.maxWidth * 0.05,
-          vertical: 50,
-        ),
-        child: SingleChildScrollView(
-          child: Container(
-            height: 500,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: constraints.maxHeight * 0.01),
-                  child: Text(
-                    'QUESTION ${widget.questionIndex}',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                ),
-                Text(
-                  widget.question,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      ?.copyWith(fontSize: TextFontSize.getHeight(45, context)),
-                ),
-                Expanded(
-                  child: MouseRegion(
-                    onHover: (e) {
-                      setState(() {
-                        lineOffset = e.position;
-                      });
-                    },
-                    child: Stack(
-                      children: [
-                        Row(
+      return MouseRegion(
+        onHover: (e) {
+          setState(() {
+            mousePosition = e.position;
+          });
+        },
+        child: Stack(
+          children: [
+            CustomPaint(
+              painter: DrowLine(
+                strat: lineOffsetStart,
+                end: lineOffsetEnd,
+              ),
+            ),
+            Container(
+              height: constraints.maxHeight,
+              margin: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth * 0.05,
+                vertical: 50,
+              ),
+              child: SingleChildScrollView(
+                child: Container(
+                  height: 500,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: constraints.maxHeight * 0.01),
+                        child: Text(
+                          'QUESTION ${widget.questionIndex}',
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
+                      Text(
+                        widget.question,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(45, context)),
+                      ),
+                      Expanded(
+                        child: Row(
                           children: <Widget>[
-                            Expanded(
+                            Flexible(
                               child: Column(children: [
                                 ...widget.answers
                                     .map(
@@ -129,14 +119,32 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                             Flexible(
                                                 flex: 4,
                                                 child: Text(answer.text)),
-                                            Flexible(
-                                              child: buildTarget(
-                                                context: context,
-                                                answers: [answer],
-                                                onAccept: (data) =>
-                                                    setState(() {
-                                                  //print(widget.answers);
-                                                }),
+                                            Expanded(
+                                              child: Container(
+                                                child: buildTarget(
+                                                    getStartLineOffset:
+                                                        (mousePosition) {
+                                                      lineOffsetStart =
+                                                          mousePosition;
+                                                    },
+                                                    getEndLineOffset:
+                                                        (mousePosition) {
+                                                      setState(() {
+                                                        lineOffsetEnd =
+                                                            mousePosition;
+                                                      });
+                                                    },
+                                                    onWillAccept: false,
+                                                    onMove: (data) {
+                                                      setState(() {
+                                                        lineOffsetEnd =
+                                                            data.offset;
+                                                      });
+                                                    },
+                                                    context: context,
+                                                    answers: [answer],
+                                                    onAccept: (data) {},
+                                                    mouseOffset: mousePosition),
                                               ),
                                             ),
                                           ],
@@ -146,9 +154,6 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                     .toList(),
                               ]),
                             ),
-                            const SizedBox(
-                              width: 100,
-                            ),
                             Flexible(
                               child: Column(
                                 children: <Widget>[
@@ -156,35 +161,37 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                       .map(
                                         (variant) => Expanded(
                                           child: buildTarget(
+                                            onWillAccept: true,
+                                            onMove: (data) {
+                                              setState(() {
+                                                //  lineOffsetEnd = data.offset;
+                                                //  print(data.offset);
+                                              });
+                                            },
                                             isDraging: false,
                                             correctAnswers: [
                                               variant.correctAnswers!
                                             ],
                                             context: context,
                                             answers: [variant],
-                                            onAccept: (data) => setState(() {
-                                              print(widget.answers);
-                                            }),
+                                            onAccept: (data) {},
+                                            mouseOffset: mousePosition,
                                           ),
                                         ),
                                       )
                                       .toList(),
                                 ],
                               ),
-                            ),
+                            )
                           ],
                         ),
-                        CustomPaint(
-                          painter:
-                              DrowLine(end: lineOffset, strat: Offset(0, 0)),
-                        )
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       );
     });
@@ -196,15 +203,32 @@ Widget buildTarget({
   required BuildContext context,
   required List<Answers> answers,
   List<CorrectAnswers>? correctAnswers,
+  required bool onWillAccept,
+  required Offset mouseOffset,
   required DragTargetAccept<Answers> onAccept,
+  required DragTargetMove<Answers> onMove,
+  Function(Offset)? getEndLineOffset,
+  Function(Offset)? getStartLineOffset,
 }) =>
     Container(
       child: DragTarget<Answers>(
-        hitTestBehavior: HitTestBehavior.deferToChild,
+        onMove: (data) {
+          onMove(data);
+          // getEndLineOffset!(mouseOffset);
+        },
         builder: (context, candidateData, rejectedData) => Stack(
           children: answers
               .map((answer) => isDraging
-                  ? DraggableCirclesWidget(answer: answer)
+                  ? DraggableCirclesWidget(
+                      answer: answer,
+                      offset: mouseOffset,
+                      getStartLineOffset: (mouseOffset) {
+                        getStartLineOffset!(mouseOffset);
+                      },
+                      getEndLineOffset: (mouseOffset) {
+                        getEndLineOffset!(mouseOffset);
+                      },
+                    )
                   : Row(
                       children: [
                         Container(
@@ -227,7 +251,7 @@ Widget buildTarget({
                     ))
               .toList(),
         ),
-        onWillAccept: (data) => true,
+        onWillAccept: (data) => onWillAccept,
         onAccept: (data) {
           if (correctAnswers!.contains(data.correctAnswers)) {
             print('It is write ');
@@ -236,9 +260,6 @@ Widget buildTarget({
           }
 
           onAccept(data);
-        },
-        onLeave: (data) {
-          //  print(data);
         },
       ),
     );

@@ -6,7 +6,6 @@ import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.da
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets_demo/answer.dart';
 
 class QuizDragDropWidget extends StatefulWidget {
   final int questionIndex;

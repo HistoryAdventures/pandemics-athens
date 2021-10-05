@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/widgets_demo/answer.dart';
 
 class DraggableWidget extends StatelessWidget {
   final Answers answers;

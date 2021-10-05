@@ -5,14 +5,30 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 
 class DraggableCirclesWidget extends StatelessWidget {
   final Answers answer;
+  final Offset offset;
+  final Function(Offset) getStartLineOffset;
+  final Function(Offset) getEndLineOffset;
 
-  const DraggableCirclesWidget({
-    required this.answer,
-  });
+  DraggableCirclesWidget(
+      {required this.answer,
+      required this.offset,
+      required this.getStartLineOffset,
+      required this.getEndLineOffset});
 
   @override
   Widget build(BuildContext context) => Container(
         child: Draggable<Answers>(
+          onDragStarted: () {
+            print('start::::: $offset');
+            getStartLineOffset(offset);
+          },
+          // onDragCompleted: () {
+          //   print(offset);
+          // },
+          onDragEnd: (data) {
+            getEndLineOffset(data.offset);
+            print('end::::: ${data.offset}');
+          },
           data: answer,
           feedback: Material(
             color: Colors.transparent,
