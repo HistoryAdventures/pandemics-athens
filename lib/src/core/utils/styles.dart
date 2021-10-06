@@ -42,6 +42,15 @@ class HW {
   }
 }
 
+class GetOffset {
+  static Offset getOffset(Offset offset, BuildContext context) {
+    final dx = offset.dx * 100 / MediaQuery.of(context).size.width;
+    final dy = offset.dy * 100 / MediaQuery.of(context).size.height;
+    return Offset(dx / 100 * MediaQuery.of(context).size.width,
+        dy / 100 * MediaQuery.of(context).size.height);
+  }
+}
+
 class TextFontSize {
   static double getHeight(double value, BuildContext context) =>
       value * MediaQuery.of(context).size.height / 1080;

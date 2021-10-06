@@ -12,14 +12,16 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;
   final String question;
+  final bool quizWithImage;
 
   final List<Answers> answers;
   final List<Answers> variants;
 
-  QuizDragDropCirclesWidget(
+  const QuizDragDropCirclesWidget(
       {Key? key,
       required this.variants,
       required this.answers,
+      this.quizWithImage = false,
       required this.question,
       required this.questionIndex})
       : super(key: key);
@@ -44,19 +46,6 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
   }
 
-  // void _getWidgetInfo(_) {
-  //   final RenderBox renderBox =
-  //       globalKeyStack.currentContext?.findRenderObject() as RenderBox;
-
-  //   final Size size = renderBox.size; // or _widgetKey.currentContext?.size
-  //   print('Size: ${size.width}, ${size.height}');
-
-  //   final Offset offset = renderBox.localToGlobal(Offset.zero);
-  //   print('Offset: ${offset.dx}, ${offset.dy}');
-  //   print(
-  //       'Position: ${(offset.dx + size.width) / 2}, ${(offset.dy + size.height) / 2}');
-  // }
-
   Offset lineOffsetStart = Offset.zero;
   Offset lineOffsetEnd = Offset.zero;
   Offset mousePosition = Offset.zero;
@@ -78,117 +67,110 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
               ),
             ),
             Container(
-              height: constraints.maxHeight,
-              margin: EdgeInsets.symmetric(
-                horizontal: constraints.maxWidth * 0.05,
-                vertical: 50,
-              ),
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 500,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: constraints.maxHeight * 0.01),
-                        child: Text(
-                          'QUESTION ${widget.questionIndex}',
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                      ),
-                      Text(
-                        widget.question,
-                        style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: TextFontSize.getHeight(45, context)),
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: <Widget>[
-                            Flexible(
-                              child: Column(children: [
-                                ...widget.answers
-                                    .map(
-                                      (answer) => Expanded(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                                flex: 4,
-                                                child: Text(answer.text)),
-                                            Expanded(
-                                              child: Container(
-                                                child: buildTarget(
-                                                    getStartLineOffset:
-                                                        (mousePosition) {
-                                                      lineOffsetStart =
-                                                          mousePosition;
-                                                    },
-                                                    getEndLineOffset:
-                                                        (mousePosition) {
-                                                      setState(() {
-                                                        lineOffsetEnd =
-                                                            mousePosition;
-                                                      });
-                                                    },
-                                                    onWillAccept: false,
-                                                    onMove: (data) {
-                                                      setState(() {
-                                                        lineOffsetEnd =
-                                                            data.offset;
-                                                      });
-                                                    },
-                                                    context: context,
-                                                    answers: [answer],
-                                                    onAccept: (data) {},
-                                                    mouseOffset: mousePosition),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                              ]),
-                            ),
-                            Flexible(
-                              child: Column(
-                                children: <Widget>[
-                                  ...widget.variants
-                                      .map(
-                                        (variant) => Expanded(
-                                          child: buildTarget(
-                                            onWillAccept: true,
-                                            onMove: (data) {
-                                              setState(() {
-                                                //  lineOffsetEnd = data.offset;
-                                                //  print(data.offset);
-                                              });
-                                            },
-                                            isDraging: false,
-                                            correctAnswers: [
-                                              variant.correctAnswers!
-                                            ],
-                                            context: context,
-                                            answers: [variant],
-                                            onAccept: (data) {},
-                                            mouseOffset: mousePosition,
+              margin: const EdgeInsets.all(80),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: constraints.maxHeight * 0.01),
+                    child: Text(
+                      'QUESTION ${widget.questionIndex}',
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                  ),
+                  Text(
+                    widget.question,
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                        fontSize: TextFontSize.getHeight(45, context)),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: Column(children: [
+                            ...widget.answers
+                                .map(
+                                  (answer) => Expanded(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                            flex: 4, child: Text(answer.text)),
+                                        Flexible(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
+                                            child: buildTarget(
+                                                targetIsImage: false,
+                                                getStartLineOffset:
+                                                    (mousePosition) {
+                                                  lineOffsetStart =
+                                                      mousePosition;
+                                                },
+                                                getEndLineOffset:
+                                                    (mousePosition) {
+                                                  setState(() {
+                                                    lineOffsetEnd =
+                                                        mousePosition;
+                                                  });
+                                                },
+                                                onWillAccept: false,
+                                                onMove: (data) {
+                                                  setState(() {
+                                                    lineOffsetEnd = data.offset;
+                                                  });
+                                                },
+                                                context: context,
+                                                answers: [answer],
+                                                onAccept: (data) {},
+                                                mouseOffset: mousePosition),
                                           ),
                                         ),
-                                      )
-                                      .toList(),
-                                ],
-                              ),
-                            )
-                          ],
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ]),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Column(
+                            children: <Widget>[
+                              ...widget.variants
+                                  .map(
+                                    (variant) => Expanded(
+                                      child: buildTarget(
+                                        targetIsImage: widget.quizWithImage,
+                                        onWillAccept: true,
+                                        onMove: (data) {
+                                          setState(() {
+                                            //  lineOffsetEnd = data.offset;
+                                            //  print(data.offset);
+                                          });
+                                        },
+                                        isDraging: false,
+                                        correctAnswers: [
+                                          variant.correctAnswers!
+                                        ],
+                                        context: context,
+                                        answers: [variant],
+                                        onAccept: (data) {},
+                                        mouseOffset: mousePosition,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ],
@@ -205,6 +187,7 @@ Widget buildTarget({
   List<CorrectAnswers>? correctAnswers,
   required bool onWillAccept,
   required Offset mouseOffset,
+  bool targetIsImage = false,
   required DragTargetAccept<Answers> onAccept,
   required DragTargetMove<Answers> onMove,
   Function(Offset)? getEndLineOffset,
@@ -214,7 +197,6 @@ Widget buildTarget({
       child: DragTarget<Answers>(
         onMove: (data) {
           onMove(data);
-          // getEndLineOffset!(mouseOffset);
         },
         builder: (context, candidateData, rejectedData) => Stack(
           children: answers
@@ -229,25 +211,44 @@ Widget buildTarget({
                         getEndLineOffset!(mouseOffset);
                       },
                     )
-                  : Row(
-                      children: [
-                        Container(
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.blue, width: 3),
-                            color: Colors.white,
+                  : Container(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      height: double.infinity,
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(color: Colors.blue, width: 3),
+                                color: Colors.white,
+                              ),
+                              child: Center(
+                                child: Text('${answer.value}'),
+                              ),
+                            ),
                           ),
-                          child: Center(
-                            child: Text('${answer.value}'),
+                          const Flexible(
+                            child: SizedBox(
+                              width: 30,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Text(answer.text)
-                      ],
+                          if (targetIsImage)
+                            Flexible(
+                              child: SizedBox(
+                                  width: 200,
+                                  child: Image.asset(
+                                    answer.text,
+                                    fit: BoxFit.cover,
+                                  )),
+                            )
+                          else
+                            Flexible(child: Text(answer.text))
+                        ],
+                      ),
                     ))
               .toList(),
         ),
@@ -272,6 +273,7 @@ enum CorrectAnswers {
   answer5,
   answer6,
   answer7,
+  answer8,
 }
 
 class DrowLine extends CustomPainter {

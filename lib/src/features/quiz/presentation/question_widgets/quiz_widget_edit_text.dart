@@ -8,7 +8,9 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
 
 class QuizEditTextWidget extends StatefulWidget {
-  const QuizEditTextWidget({Key? key}) : super(key: key);
+  final int questionIndex;
+  const QuizEditTextWidget({Key? key, required this.questionIndex})
+      : super(key: key);
 
   @override
   _QuizEditTextWidgetState createState() => _QuizEditTextWidgetState();
@@ -82,7 +84,7 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
               padding:
                   EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.01),
               child: Text(
-                'QUESTION 2',
+                'QUESTION $widget.questionIndex',
                 style: Theme.of(context).textTheme.button,
               ),
             ),
