@@ -11,7 +11,7 @@ class QuizRadioBottonWidget extends StatefulWidget {
   final int questionIndex;
   final String question;
 
-  final List<Answers> answers;
+  final List<Answers<int>> answers;
 
   QuizRadioBottonWidget(
       {Key? key,

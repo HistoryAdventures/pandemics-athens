@@ -3,9 +3,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import '../../../../core/utils/styles.dart';
 import 'custom_widgets/inputs.dart';
 import 'custom_widgets/text_question_widget.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/inputs.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
 
 class QuizEditTextWidget extends StatefulWidget {
   final int questionIndex;
@@ -84,7 +81,7 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
               padding:
                   EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.01),
               child: Text(
-                'QUESTION $widget.questionIndex',
+                'QUESTION ${widget.questionIndex}',
                 style: Theme.of(context).textTheme.button,
               ),
             ),

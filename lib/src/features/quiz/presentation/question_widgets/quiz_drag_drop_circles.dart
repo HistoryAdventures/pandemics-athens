@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';
 
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;
@@ -264,17 +260,6 @@ Widget buildTarget({
         },
       ),
     );
-
-enum CorrectAnswers {
-  answer1,
-  answer2,
-  answer3,
-  answer4,
-  answer5,
-  answer6,
-  answer7,
-  answer8,
-}
 
 class DrowLine extends CustomPainter {
   final Offset strat;

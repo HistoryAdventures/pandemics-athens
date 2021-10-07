@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/data/model/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/text_question_widget.dart';

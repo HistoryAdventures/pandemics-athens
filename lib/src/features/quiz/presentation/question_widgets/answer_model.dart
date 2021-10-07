@@ -1,7 +1,7 @@
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 
-class Answers {
-  final int value;
+class Answers<T> {
+  T value;
   final String text;
   CorrectAnswers? correctAnswers;
 
