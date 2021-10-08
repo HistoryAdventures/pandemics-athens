@@ -1,4 +1,6 @@
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 
 import '../../../../core/colors.dart';
@@ -33,7 +35,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
   }
 
   // bool _value = false;
-  int val = -1;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -65,18 +67,44 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                   Flexible(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: widget.answers
-                            .map((e) => ListTile(
-                                  title: Text(e.text),
-                                  leading: Radio(
-                                    value: e.value,
-                                    groupValue: val,
-                                    onChanged: (int? value) {
-                                      setState(() {
-                                        val = value!;
-                                      });
-                                    },
-                                    activeColor: AppColors.blueDeep,
+                            .map((e) => Flexible(
+                                  child: Container(
+                                    width: 200,
+                                    margin: const EdgeInsets.all(12),
+                                    decoration: QuizData.showRightAnswers &&
+                                            e.value == 4
+                                        ? DottedDecoration(
+                                            shape: Shape.box,
+                                            strokeWidth: 1,
+                                            color: AppColors.greyDeep)
+                                        : null,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Radio(
+                                          value: e.value,
+                                          groupValue: widget.questionIndex == 5
+                                              ? QuizData.valueQ5
+                                              : QuizData.valueQ6,
+                                          onChanged: widget.questionIndex == 5
+                                              ? (int? value) {
+                                                  setState(() {
+                                                    QuizData.valueQ5 = value!;
+                                                  });
+                                                }
+                                              : (int? value) {
+                                                  setState(() {
+                                                    QuizData.valueQ6 = value!;
+                                                  });
+                                                },
+                                          activeColor: AppColors.blueDeep,
+                                        ),
+                                        Flexible(child: Text(e.text)),
+                                      ],
+                                    ),
                                   ),
                                 ))
                             .toList()),

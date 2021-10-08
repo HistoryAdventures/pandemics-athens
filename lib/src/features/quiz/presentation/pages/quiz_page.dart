@@ -37,6 +37,7 @@ class _QuizPageState extends State<QuizPage> {
   bool nextButtonisAvailibaleToPress = true;
   bool previousButtonisAvailibaleToPress = false;
   bool vizibility = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,13 +74,13 @@ class _QuizPageState extends State<QuizPage> {
       ),
       QuizRadioBottonWidget(
         quizWithImage: false,
-        answers: QuizData.answersForViruses,
+        answers: QuizData.answersForQ5,
         questionIndex: 5,
         question: locals.question5,
       ),
       QuizRadioBottonWidget(
         quizWithImage: true,
-        answers: QuizData.answersForKeyPeople,
+        answers: QuizData.answersForQ6,
         questionIndex: 6,
         question: locals.question6,
       ),
@@ -183,9 +184,11 @@ class _QuizPageState extends State<QuizPage> {
                       iconSize: 50,
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        setState(() {
-                          questionIndex--;
-                        });
+                        if (mounted) {
+                          setState(() {
+                            questionIndex--;
+                          });
+                        }
                       },
                       icon: const Icon(Icons.arrow_left),
                     ),
@@ -196,9 +199,11 @@ class _QuizPageState extends State<QuizPage> {
                       iconSize: 50,
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        setState(() {
-                          questionIndex++;
-                        });
+                        if (mounted) {
+                          setState(() {
+                            questionIndex++;
+                          });
+                        }
                       },
                       icon: const Icon(
                         Icons.arrow_right,
@@ -251,11 +256,19 @@ class _QuizPageState extends State<QuizPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButton(
-                          onPressed: () {
-                            QuizData.checkUerAnswers();
-                          },
-                          icon: Icon(Icons.done)),
+                      Visibility(
+                        visible: !QuizData.showRightAnswers,
+                        child: IconButton(
+                            onPressed: () {
+                              QuizData.checkUerAnswers();
+                              setState(() {
+                                QuizData.showRightAnswers =
+                                    !QuizData.showRightAnswers;
+                                questionIndex = 0;
+                              });
+                            },
+                            icon: Icon(Icons.done)),
+                      ),
                       IconButton(onPressed: () {}, icon: Icon(Icons.delete))
                     ],
                   ),

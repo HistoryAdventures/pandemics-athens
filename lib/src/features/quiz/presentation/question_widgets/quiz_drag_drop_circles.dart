@@ -28,16 +28,6 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
 }
 
 class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void removeAll(Answers toRemove) {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
   }

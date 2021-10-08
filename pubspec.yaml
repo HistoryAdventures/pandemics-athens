@@ -18,6 +18,9 @@ dependencies:
   # forge2d: ^0.8.1
   # flame: "^1.0.0-releasecandidate.11"
 
+  # Dotted line decoration is handly package to draw dotted divider, dotted border for rectangle, circle or rounded rectangle.
+  dotted_decoration: ^2.0.0
+
 
 
   # Flutter widget that automatically resizes text to fit perfectly within its bounds.

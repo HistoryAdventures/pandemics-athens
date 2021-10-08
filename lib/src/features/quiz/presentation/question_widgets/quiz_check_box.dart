@@ -20,13 +20,6 @@ class QuizCheckBox extends StatefulWidget {
 }
 
 class _QuizCheckBoxState extends State<QuizCheckBox> {
-  //bool val = false;
-  @override
-  void dispose() {
-    print(QuizData.usersAnswersForQ8);
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
