@@ -169,23 +169,7 @@ class QuizData {
   /// users Answer List and Correct Answers
   /// Controllers For EditTextWidget
   ///List for question body widget
-
-  static final List<String> usersAnswersForQ2 = [];
-  static final List<String> correctAnswersForQ2 = [
-    'humours',
-    'balanced',
-    'phlegm',
-    'black',
-    'bile',
-    'eucrasia',
-  ];
-  static String userAnswerText1 = '';
-  static String userAnswerText2 = '';
-  static String userAnswerText3 = '';
-  static String userAnswerText4 = '';
-  static String userAnswerText5 = '';
-  static String userAnswerText6 = '';
-
+  ///
   static final TextEditingController answerTextController1 =
       TextEditingController();
   static final TextEditingController answerTextController2 =
@@ -203,59 +187,57 @@ class QuizData {
   static final TextEditingController answerTextController6 =
       TextEditingController();
 
+  static List<dynamic> usersAnswersForQ2 = [];
+
   static final List<dynamic> listQuestionBody2 = [
     'Hippocrates suggested that the body contained four',
-    EditText(
-        controller: QuizData.answerTextController1,
-        userAnswer: QuizData.userAnswerText1),
+    EditTextWidget(controller: QuizData.answerTextController1, isRight: null),
     '. These were vital bodily fluids that kept people healthy if they were kept',
-    EditText(
-        controller: QuizData.answerTextController2,
-        userAnswer: QuizData.userAnswerText2),
+    EditTextWidget(controller: QuizData.answerTextController2, isRight: null),
     '. He studied the body through ',
-    EditText(
-        controller: QuizData.answerTextController3,
-        userAnswer: QuizData.userAnswerText3),
+    EditTextWidget(controller: QuizData.answerTextController3, isRight: null),
     '. They are: blood,',
-    EditText(
-        controller: QuizData.answerTextController4,
-        userAnswer: QuizData.userAnswerText5),
+    EditTextWidget(controller: QuizData.answerTextController4, isRight: null),
     ",",
     'bile, yellow',
-    EditText(
-        controller: QuizData.answerTextController5,
-        userAnswer: QuizData.userAnswerText5),
+    EditTextWidget(controller: QuizData.answerTextController5, isRight: null),
     'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
-    EditText(
-        controller: QuizData.answerTextController6,
-        userAnswer: QuizData.userAnswerText6),
+    EditTextWidget(controller: QuizData.answerTextController6, isRight: null),
+    ' in Greek.',
+  ];
+
+  static final List<dynamic> correctAnswersForQ2 = [
+    'Hippocrates suggested that the body contained four',
+    ['humours'],
+    '. These were vital bodily fluids that kept people healthy if they were kept',
+    ['balanced'],
+    '. He studied the body through ',
+    ['phlegm'],
+    '. They are: blood,',
+    ['black'],
+    ",",
+    'bile, yellow',
+    ['bile'],
+    'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
+    ['eucrasia'],
     ' in Greek.',
   ];
 
   ///[QUESTION 3]
   /// users Answer List and Correct Answers
   ///List for question body widget
-  static final List<DragWordsWidget> usersAnswersForQ3 = [];
-  static final List<String> correctAnswersForQ3 = [
-    'King',
-    'oligarchy',
-    'demos',
-    'power',
-    'citizens',
-    'Women',
-    'slaves',
-    'metics'
-  ];
-  static final List<Answers> userAnswer1ForQ3 = [];
-  static final List<Answers> userAnswer2ForQ3 = [];
-  static final List<Answers> userAnswer3ForQ3 = [];
-  static final List<Answers> userAnswer4ForQ3 = [];
-  static final List<Answers> userAnswer5ForQ3 = [];
-  static final List<Answers> userAnswer6ForQ3 = [];
-  static final List<Answers> userAnswer7ForQ3 = [];
-  static final List<Answers> userAnswer8ForQ3 = [];
+  static List<dynamic> usersAnswersForQ3 = [];
 
-  static final List<Answers> answersDD3 = [
+  static List<Answers> userAnswer1ForQ3 = [];
+  static List<Answers> userAnswer2ForQ3 = [];
+  static List<Answers> userAnswer3ForQ3 = [];
+  static List<Answers> userAnswer4ForQ3 = [];
+  static List<Answers> userAnswer5ForQ3 = [];
+  static List<Answers> userAnswer6ForQ3 = [];
+  static List<Answers> userAnswer7ForQ3 = [];
+  static List<Answers> userAnswer8ForQ3 = [];
+
+  static List<Answers> answersForDD3 = [
     Answers(value: 1, text: "slaves"),
     Answers(value: 2, text: "demos"),
     Answers(value: 3, text: "oligarchy"),
@@ -270,58 +252,70 @@ class QuizData {
     "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
     DragWordsWidget(
       answers: QuizData.userAnswer1ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     ", nor was it ruled by a small band of aritocrats (an ",
     DragWordsWidget(
       answers: QuizData.userAnswer2ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
     DragWordsWidget(
       answers: QuizData.userAnswer3ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     " meaning people, and kratos, which means ",
     DragWordsWidget(
       answers: QuizData.userAnswer4ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     "Athenian democracy was very different to modern democracy, however. Only adult male ",
     DragWordsWidget(
       answers: QuizData.userAnswer5ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     " could take part. ",
     DragWordsWidget(
       answers: QuizData.userAnswer6ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     " and non-Athenians ",
     DragWordsWidget(
       answers: QuizData.userAnswer7ForQ3,
-      isRight: false,
+      isRight: null,
     ),
     " were excluded. ",
     DragWordsWidget(
       answers: QuizData.userAnswer8ForQ3,
-      isRight: false,
+      isRight: null,
     ),
+  ];
+
+  static final List<dynamic> correctAnswersForQ3 = [
+    "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
+    ['King'],
+    ", nor was it ruled by a small band of aritocrats (an ",
+    ['oligarchy'],
+    "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
+    ['demos'],
+    " meaning people, and kratos, which means ",
+    ['power'],
+    "Athenian democracy was very different to modern democracy, however. Only adult male ",
+    ['citizens'],
+    " could take part. ",
+    ['Women'],
+    " and non-Athenians ",
+    ['slaves'],
+    " were excluded. ",
+    ['metics'],
   ];
 
   ///[QUESTION 7]
   /// users Answer List and Correct Answers
   ///List for question body widget
-  static final List<List<Answers>> usersAnswersForQ7 = [];
-  static final List<String> correctAnswersForQ7 = [
-    'Roman',
-    'Hippocrates',
-    'dissection',
-    'gladiators',
-    'plague',
-    'Renaissance',
-  ];
-  static final List<Answers> answersDD7 = [
+  static List<dynamic> usersAnswersForQ7 = [];
+
+  static List<Answers> answersForDD7 = [
     Answers(value: 1, text: "dissection"),
     Answers(value: 2, text: "Roman"),
     Answers(value: 3, text: "Renaissance"),
@@ -330,62 +324,114 @@ class QuizData {
     Answers(value: 6, text: "gladiators"),
   ];
 
-  static final List<Answers> userAnswer1ForQ7 = [];
-  static final List<Answers> userAnswer2ForQ7 = [];
-  static final List<Answers> userAnswer3ForQ7 = [];
-  static final List<Answers> userAnswer4ForQ7 = [];
-  static final List<Answers> userAnswer5ForQ7 = [];
-  static final List<Answers> userAnswer6ForQ7 = [];
+  static List<Answers> userAnswer1ForQ7 = [];
+  static List<Answers> userAnswer2ForQ7 = [];
+  static List<Answers> userAnswer3ForQ7 = [];
+  static List<Answers> userAnswer4ForQ7 = [];
+  static List<Answers> userAnswer5ForQ7 = [];
+  static List<Answers> userAnswer6ForQ7 = [];
 
   static final List<dynamic> listQuestionBody7 = [
     'Galen was a  ',
-    QuizData.userAnswer1ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer1ForQ7,
+      isRight: null,
+    ),
     ' doctor who was influenced by and developed the theories of ',
-    QuizData.userAnswer2ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer2ForQ7,
+      isRight: null,
+    ),
     '. He studied the body through ',
-    QuizData.userAnswer3ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer3ForQ7,
+      isRight: null,
+    ),
     '. Because this was illegal, he encouraged his students to investigate the corpses of ',
-    QuizData.userAnswer4ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer4ForQ7,
+      isRight: null,
+    ),
     "'!\n'",
     'Galen also lived through a ',
-    QuizData.userAnswer5ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer5ForQ7,
+      isRight: null,
+    ),
     "  . His ideas were very influential, and were only challenged and developed during the ",
-    QuizData.userAnswer6ForQ7,
+    DragWordsWidget(
+      answers: QuizData.userAnswer6ForQ7,
+      isRight: null,
+    ),
+  ];
+
+  static final List<dynamic> correctAnswersForQ7 = [
+    'Galen was a  ',
+    ['Roman'],
+    ' doctor who was influenced by and developed the theories of ',
+    ['Hippocrates'],
+    '. He studied the body through ',
+    ['dissection'],
+    '. Because this was illegal, he encouraged his students to investigate the corpses of ',
+    ['gladiators'],
+    "'!\n'",
+    'Galen also lived through a ',
+    ['plague'],
+    "  . His ideas were very influential, and were only challenged and developed during the ",
+    ['Renaissance'],
   ];
 
   ///[QUESTION 8]
   /// users Answer List and Correct Answers
-  static List<CorrectAnswers> usersAnswersForQ8 = [];
+  static List<CheckBoxWidget<bool>> usersAnswersForQ8 = [];
   static final List<CorrectAnswers> correctAnswersForQ8 = [
     CorrectAnswers.answer2,
     CorrectAnswers.answer4,
     CorrectAnswers.answer5
   ];
-  static final List<Answers<bool>> answersForQuestion8 = [
-    Answers(
-        value: false,
-        text: "This paiting is called the 'Death of Plato'.",
-        correctAnswers: CorrectAnswers.answer1),
-    Answers(
-        value: false,
-        text: "This painting is all about Socrates.",
-        correctAnswers: CorrectAnswers.answer2),
-    Answers(
-        value: false,
-        text: "This was painted by Jacques-Louis Davi",
-        correctAnswers: CorrectAnswers.answer3),
-    Answers(
-        value: false,
-        text: "This is a painting by Leonardo da Vinci.",
-        correctAnswers: CorrectAnswers.answer4),
-    Answers(
-        value: false,
-        text: "Socrates was a famous historian.",
-        correctAnswers: CorrectAnswers.answer5),
-    Answers(
-        value: false,
-        text: "Socrates was sentecend to death for murder.",
-        correctAnswers: CorrectAnswers.answer6),
+  static final List<CheckBoxWidget<bool>> answersForQuestion8 = [
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "This paiting is called the 'Death of Plato'.",
+          correctAnswers: CorrectAnswers.answer1),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "This painting is all about Socrates.",
+          correctAnswers: CorrectAnswers.answer2),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "This was painted by Jacques-Louis Davi",
+          correctAnswers: CorrectAnswers.answer3),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "This is a painting by Leonardo da Vinci.",
+          correctAnswers: CorrectAnswers.answer4),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "Socrates was a famous historian.",
+          correctAnswers: CorrectAnswers.answer5),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "Socrates was sentecend to death for murder.",
+          correctAnswers: CorrectAnswers.answer6),
+      isRight: null,
+    ),
   ];
 
   ///[QUESTION 5]
@@ -417,16 +463,34 @@ class QuizData {
     Answers(value: 4, text: "Pericles"),
   ];
 
+  //[CLEAR ALL ANSWERS]
+
+  ///[SCORE]
+  static int rightAnswersForQ3 = 0;
+  static int rightAnswersForQ2 = 0;
+  static int rightAnswersForQ5 = 0;
+  static int rightAnswersForQ6 = 0;
+  static int rightAnswersForQ8 = 0;
+  static int rightAnswersForQ7 = 0;
+
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
-    int rightAnswersForQ3 = 0;
-    int rightAnswersForQ2 = 0;
-    int rightAnswersForQ5 = 0;
-    int rightAnswersForQ6 = 0;
-    int rightAnswersForQ8 = 0;
-    int rightAnswersForQ7 = 0;
+    listQuestionBody2.forEach((element) {
+      if (element is EditTextWidget) {
+        if (element.controller.text.isEmpty) {
+          usersAnswersForQ2.add(EditTextWidget(
+              controller: TextEditingController(), isRight: false));
+          //  print('add null');
+        } else {
+          // print("EditText::::: ${element.controller.text}");
+          usersAnswersForQ2.add(element);
+        }
+      } else {
+        // print('Text:::: $element');
+        usersAnswersForQ2.add(element);
+      }
+    });
     listQuestionBody3.forEach((element) {
-      print(element);
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
           usersAnswersForQ3.add(DragWordsWidget(
@@ -434,6 +498,21 @@ class QuizData {
         } else {
           usersAnswersForQ3.add(element);
         }
+      } else {
+        usersAnswersForQ3.add(element);
+      }
+    });
+
+    listQuestionBody7.forEach((element) {
+      if (element is DragWordsWidget) {
+        if (element.answers.isEmpty) {
+          usersAnswersForQ7.add(DragWordsWidget(
+              answers: [Answers(value: 0, text: '')], isRight: false));
+        } else {
+          usersAnswersForQ7.add(element);
+        }
+      } else {
+        usersAnswersForQ7.add(element);
       }
     });
 
@@ -445,55 +524,119 @@ class QuizData {
       rightAnswersForQ6++;
     }
 
-    listQuestionBody7.forEach((element) {
-      if (element is List<Answers<dynamic>>) {
-        if (element.isEmpty) {
-          usersAnswersForQ7.add([Answers(value: 0, text: '')]);
+    // listQuestionBody2.forEach((element) {
+    //   if (element is EditText) {
+    //     usersAnswersForQ2.add(element.userAnswer);
+    //   }
+    // });
+
+    for (var i = 0; i < usersAnswersForQ2.length; i++) {
+      if (usersAnswersForQ2[i] is EditTextWidget &&
+          correctAnswersForQ2[i] is List<String>) {
+        if (correctAnswersForQ2[i].first == usersAnswersForQ2[i].controller.text) {
+          usersAnswersForQ2[i].isRight = true;
+          rightAnswersForQ2++;
         } else {
-          usersAnswersForQ7.add(element);
+          usersAnswersForQ2[i].isRight = false;
         }
       }
-    });
-
-    listQuestionBody2.forEach((element) {
-      if (element is EditText) {
-        usersAnswersForQ2.add(element.userAnswer);
-      }
-    });
+    }
 
     for (var i = 0; i < usersAnswersForQ3.length; i++) {
-      if (correctAnswersForQ3[i] == usersAnswersForQ3[i].answers.first.text) {
-        usersAnswersForQ3[i].isRight = true;
-        rightAnswersForQ3++;
+      if (usersAnswersForQ3[i] is DragWordsWidget &&
+          correctAnswersForQ3[i] is List<String>) {
+        if (correctAnswersForQ3[i].first ==
+            usersAnswersForQ3[i].answers.first.text) {
+          usersAnswersForQ3[i].isRight = true;
+          rightAnswersForQ3++;
+        } else {
+          usersAnswersForQ3[i].isRight = false;
+        }
       }
     }
 
     for (var i = 0; i < usersAnswersForQ7.length; i++) {
-      if (correctAnswersForQ7[i] == usersAnswersForQ7[i].first.text) {
-        rightAnswersForQ7++;
+      if (usersAnswersForQ7[i] is DragWordsWidget &&
+          correctAnswersForQ7[i] is List<String>) {
+        if (correctAnswersForQ7[i].first ==
+            usersAnswersForQ7[i].answers.first.text) {
+          usersAnswersForQ7[i].isRight = true;
+          rightAnswersForQ7++;
+        } else {
+          usersAnswersForQ7[i].isRight = false;
+        }
       }
     }
 
-    for (var i = 0; i < usersAnswersForQ2.length; i++) {
-      if (correctAnswersForQ2[i] == usersAnswersForQ2[i]) {
-        usersAnswersForQ2[i];
-        rightAnswersForQ2++;
-      }
-    }
 
-    correctAnswersForQ8.forEach((CorrectAnswers element) {
-      if (usersAnswersForQ8.contains(element)) {
+
+    for (var i = 0; i < usersAnswersForQ8.length; i++) {
+      if (correctAnswersForQ8
+          .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
+        usersAnswersForQ8[i].isRight = true;
         rightAnswersForQ8++;
       } else {
-        print('not ok');
+        usersAnswersForQ8[i].isRight = false;
       }
-    });
+    }
+    // correctAnswersForQ8.forEach((CorrectAnswers element) {
+    //   if (usersAnswersForQ8.contains(element)) {
+    //     rightAnswersForQ8++;
+    //   } else {
+    //     print('not ok');
+    //   }
+    // });
     print("Score Question 2 $rightAnswersForQ2");
     print('Score Question 3 $rightAnswersForQ3');
     print("Score Question 5 $rightAnswersForQ5");
     print("Score Question 6 $rightAnswersForQ6");
     print('Score Question 7 $rightAnswersForQ7');
     print("Score Question 8 $rightAnswersForQ8");
+  }
+
+  static void clearAnswers() {
+    print(answersForDD3);
+    rightAnswersForQ3 = 0;
+    rightAnswersForQ2 = 0;
+    rightAnswersForQ5 = 0;
+    rightAnswersForQ6 = 0;
+    rightAnswersForQ8 = 0;
+    rightAnswersForQ7 = 0;
+
+    usersAnswersForQ2 = [];
+
+    usersAnswersForQ7 = [];
+
+    usersAnswersForQ8 = [];
+
+    usersAnswersForQ3 = [];
+
+    listQuestionBody3.forEach((element) {
+      if (element is DragWordsWidget) {
+        if (element.answers.isNotEmpty) {
+          answersForDD3.add(element.answers.first);
+          element.answers.removeLast();
+        }
+      }
+    });
+    print(answersForDD3);
+    listQuestionBody7.forEach((element) {
+      if (element is DragWordsWidget) {
+        if (element.answers.isNotEmpty) {
+          answersForDD7.add(element.answers.first);
+          element.answers.removeLast();
+        }
+      }
+    });
+
+    valueQ5 = -1;
+    valueQ6 = -1;
+    answerTextController1.clear();
+    answerTextController2.clear();
+    answerTextController3.clear();
+    answerTextController4.clear();
+    answerTextController5.clear();
+    answerTextController6.clear();
   }
 }
 
@@ -520,10 +663,30 @@ class EditText {
 
 class DragWordsWidget {
   final List<Answers> answers;
-  bool isRight;
+  bool? isRight;
 
   DragWordsWidget({
     required this.answers,
     required this.isRight,
+  });
+}
+
+class CheckBoxWidget<T> {
+  final Answers<T> answers;
+  bool? isRight;
+
+  CheckBoxWidget({
+    required this.answers,
+    required this.isRight,
+  });
+}
+
+class EditTextWidget {
+  final TextEditingController controller;
+  bool? isRight;
+
+  EditTextWidget({
+    required this.controller,
+    this.isRight,
   });
 }

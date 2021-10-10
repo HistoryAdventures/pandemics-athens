@@ -56,6 +56,7 @@ class _QuizPageState extends State<QuizPage> {
         answers: QuizData.answersForQ1,
         question: 'What happened when during the Golden Age of Athens? ',
         questionIndex: 1,
+        score: 0,
       ),
       const QuizEditTextWidget(
         questionIndex: 2,
@@ -63,7 +64,8 @@ class _QuizPageState extends State<QuizPage> {
       QuizDragDropWidget(
         question: locals.question3,
         questionIndex: 3,
-        answers: QuizData.answersDD3,
+        answers: QuizData.answersForDD3,
+        score: 8,
       ),
       QuizDragDropCirclesWidget(
         quizWithImage: true,
@@ -71,6 +73,7 @@ class _QuizPageState extends State<QuizPage> {
         answers: QuizData.answersDD4,
         question: 'What happened where? Match the event to the correct map. ',
         questionIndex: 4,
+        score: 8,
       ),
       QuizRadioBottonWidget(
         quizWithImage: false,
@@ -87,7 +90,8 @@ class _QuizPageState extends State<QuizPage> {
       QuizDragDropWidget(
         question: locals.question7,
         questionIndex: 7,
-        answers: QuizData.answersDD7,
+        answers: QuizData.answersForDD7,
+        score: 6,
       ),
       QuizCheckBox(
         answers: QuizData.answersForQuestion8,
@@ -101,6 +105,7 @@ class _QuizPageState extends State<QuizPage> {
         question:
             "The 5th century BC was the 'Golden Age' of Athens, when culture flourished in the ancient polis and the city was dominant in the Greek world. Match the individual to their achievement below.",
         questionIndex: 9,
+        score: 0,
       ),
       QuizCheckBox(
         questionIndex: 10,
@@ -260,8 +265,8 @@ class _QuizPageState extends State<QuizPage> {
                         visible: !QuizData.showRightAnswers,
                         child: IconButton(
                             onPressed: () {
-                              QuizData.checkUerAnswers();
                               setState(() {
+                                QuizData.checkUerAnswers();
                                 QuizData.showRightAnswers =
                                     !QuizData.showRightAnswers;
                                 questionIndex = 0;
@@ -269,7 +274,19 @@ class _QuizPageState extends State<QuizPage> {
                             },
                             icon: Icon(Icons.done)),
                       ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+                      Visibility(
+                        visible: QuizData.showRightAnswers,
+                        child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                QuizData.clearAnswers();
+                                QuizData.showRightAnswers =
+                                    !QuizData.showRightAnswers;
+                                questionIndex = 0;
+                              });
+                            },
+                            icon: Icon(Icons.delete)),
+                      )
                     ],
                   ),
                 )

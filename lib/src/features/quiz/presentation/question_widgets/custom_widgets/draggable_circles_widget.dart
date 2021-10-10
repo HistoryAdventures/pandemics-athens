@@ -39,18 +39,13 @@ class DraggableCirclesWidget extends StatelessWidget {
         ),
       );
 
-  Widget buildText(BuildContext context, String text, bool isFeedBak) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 35,
-            width: 35,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.blue, width: 3),
-              color: Colors.white,
-            ),
-          ),
-        ],
-      );
+  Widget buildText(BuildContext context, String text, bool isFeedBak) => Container(
+    height: 35,
+    width: 35,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      border: Border.all(color: Colors.blue, width: 3),
+      color: Colors.white,
+    ),
+  );
 }

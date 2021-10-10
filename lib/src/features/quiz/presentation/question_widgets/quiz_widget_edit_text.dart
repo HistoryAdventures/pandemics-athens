@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import '../../../../core/utils/styles.dart';
 import 'custom_widgets/inputs.dart';
@@ -7,8 +8,10 @@ import 'custom_widgets/text_question_widget.dart';
 
 class QuizEditTextWidget extends StatefulWidget {
   final int questionIndex;
-  const QuizEditTextWidget({Key? key, required this.questionIndex})
-      : super(key: key);
+  const QuizEditTextWidget({
+    Key? key,
+    required this.questionIndex,
+  }) : super(key: key);
 
   @override
   _QuizEditTextWidgetState createState() => _QuizEditTextWidgetState();
@@ -25,30 +28,14 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
 
   final _formStateSingIn = GlobalKey<FormState>();
 
-  void onSignIn() {
+  void onSave() {
     if (!_formStateSingIn.currentState!.validate()) {
       return;
     }
     _formStateSingIn.currentState?.save();
   }
 
-  @override
-  void dispose() {
-    QuizData.userAnswerText1 =
-        QuizData.answerTextController1.text.toLowerCase();
-    QuizData.userAnswerText2 =
-        QuizData.answerTextController2.text.toLowerCase();
-    QuizData.userAnswerText3 =
-        QuizData.answerTextController3.text.toLowerCase();
-    QuizData.userAnswerText4 =
-        QuizData.answerTextController4.text.toLowerCase();
-    QuizData.userAnswerText5 =
-        QuizData.answerTextController5.text.toLowerCase();
-    QuizData.userAnswerText6 =
-        QuizData.answerTextController6.text.toLowerCase();
-
-    super.dispose();
-  }
+  List<String> userAnswer = [];
 
   @override
   Widget build(BuildContext context) {
@@ -58,53 +45,138 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
           horizontal: constraints.maxWidth * 0.05,
           vertical: 50,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.01),
-              child: Text(
-                'QUESTION ${widget.questionIndex}',
-                style: Theme.of(context).textTheme.button,
-              ),
-            ),
-            Text(
-              locals.question2,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline2
-                  ?.copyWith(fontSize: TextFontSize.getHeight(45, context)),
-            ),
-            Flexible(
-              child: Container(
-                //  color: Colors.blue,
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  direction: Axis.horizontal,
-                  children: [
-                    ...QuizData.listQuestionBody2.map((element) {
-                      if (element is EditText) {
-                        return CustumInput(
-                          controller: element.controller,
-                          hintText: '',
-                          onSaved: (v) => element.userAnswer = v!,
-                          // validator: (v) => v!.isEmpty
-                          //     ? "Email is required!"
-                          //     : StringUtils.isEmail(v)
-                          //         ? null
-                          //         : "Invalid email",
-                          obscureText: false,
-                        );
-                      } else {
-                        return TextQuestion(text: element as String);
-                      }
-                    })
-                  ],
+        child: SingleChildScrollView(
+          child: Container(
+            height: constraints.maxHeight,
+            width: constraints.maxWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: constraints.maxHeight * 0.01),
+                  child: Text(
+                    'QUESTION ${widget.questionIndex}',
+                    style: Theme.of(context).textTheme.button,
+                  ),
                 ),
-              ),
-            )
-          ],
+                Padding(
+                  padding: const EdgeInsets.only(right: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          locals.question2,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(
+                                  fontSize:
+                                      TextFontSize.getHeight(45, context)),
+                        ),
+                      ),
+                      Flexible(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 3, horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: AppColors.grey,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Text("${QuizData.rightAnswersForQ2} / 6"),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: Container(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      direction: Axis.horizontal,
+                      children: QuizData.showRightAnswers
+                          ? [
+                              ...QuizData.usersAnswersForQ2.map((element) {
+                                if (element is EditTextWidget) {
+                                  return Container(
+                                    width: 120,
+                                    child: CustumInput(
+                                      controller: element.controller,
+                                      hintText: '',
+                                      onSaved: (v) => userAnswer.add(v!),
+                                      // validator: (v) => v!.isEmpty
+                                      //     ? "Email is required!"
+                                      //     : StringUtils.isEmail(v)
+                                      //         ? null
+                                      //         : "Invalid email",
+                                      isCorrect: element.isRight,
+                                    ),
+                                  );
+                                } else {
+                                  return TextQuestion(text: element as String);
+                                }
+                              })
+                            ]
+                          : [
+                              ...QuizData.listQuestionBody2.map((element) {
+                                if (element is EditTextWidget) {
+                                  return Container(
+                                    width: 120,
+                                    child: CustumInput(
+                                      controller: element.controller,
+                                      hintText: '',
+                                      onSaved: (v) => userAnswer.add(v!),
+                                      // validator: (v) => v!.isEmpty
+                                      //     ? "Email is required!"
+                                      //     : StringUtils.isEmail(v)
+                                      //         ? null
+                                      //         : "Invalid email",
+                                    ),
+                                  );
+                                } else {
+                                  return TextQuestion(text: element as String);
+                                }
+                              })
+                            ],
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: QuizData.showRightAnswers,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 100),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.black100, width: 1),
+                    ),
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        ...QuizData.correctAnswersForQ2.map((element) {
+                          if (element is List<String>) {
+                            return Text(
+                              element.first,
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize:
+                                      TextFontSize.getHeight(35, context)),
+                            );
+                          } else {
+                            return Text(
+                              element as String,
+                              style: TextStyle(
+                                  fontSize:
+                                      TextFontSize.getHeight(35, context)),
+                            );
+                          }
+                        })
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       );
     });

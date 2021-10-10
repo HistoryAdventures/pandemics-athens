@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
@@ -8,6 +9,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;
   final String question;
+  final int score;
   final bool quizWithImage;
 
   final List<Answers> answers;
@@ -17,6 +19,7 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
       {Key? key,
       required this.variants,
       required this.answers,
+      required this.score,
       this.quizWithImage = false,
       required this.question,
       required this.questionIndex})
@@ -65,10 +68,39 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                       style: Theme.of(context).textTheme.button,
                     ),
                   ),
-                  Text(
-                    widget.question,
-                    style: Theme.of(context).textTheme.headline2?.copyWith(
-                        fontSize: TextFontSize.getHeight(45, context)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 50),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 5,
+                          child: Text(
+                            widget.question,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(
+                                    fontSize:
+                                        TextFontSize.getHeight(45, context)),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 5),
+                            decoration: BoxDecoration(
+                                color: AppColors.grey,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: widget.questionIndex == 1
+                                ? Text(
+                                    "${0} / ${widget.answers.length}")
+                                : Text(
+                                    "${0} / ${widget.answers.length}"),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Row(
@@ -89,7 +121,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding: const EdgeInsets.only(
-                                                bottom: 8),
+                                                bottom: 8, right: 60),
                                             child: buildTarget(
                                                 targetIsImage: false,
                                                 getStartLineOffset:

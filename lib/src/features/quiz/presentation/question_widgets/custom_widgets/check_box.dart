@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 
 class CheckboxText extends StatefulWidget {
   bool value;
-  final String text;
+  final Text text;
   final Function(bool val) onTap;
 
   CheckboxText({
@@ -35,6 +37,7 @@ class _CheckboxTextState extends State<CheckboxText> {
         // });
       },
       child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             height: 30,
@@ -50,11 +53,8 @@ class _CheckboxTextState extends State<CheckboxText> {
           const SizedBox(
             width: 30,
           ),
-          SizedBox(
-            child: Text(
-              widget.text,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
+          Flexible(
+            child: widget.text,
           )
         ],
       ),

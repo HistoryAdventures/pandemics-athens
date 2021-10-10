@@ -59,10 +59,33 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                       style: Theme.of(context).textTheme.button,
                     ),
                   ),
-                  Text(
-                    widget.question,
-                    style: Theme.of(context).textTheme.headline2?.copyWith(
-                        fontSize: TextFontSize.getHeight(45, context)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.question,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(
+                                  fontSize:
+                                      TextFontSize.getHeight(45, context)),
+                        ),
+                      ),
+                      Flexible(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 3, horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: AppColors.grey,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: widget.questionIndex == 6
+                              ? Text("${QuizData.rightAnswersForQ6} / 1")
+                              : Text("${QuizData.rightAnswersForQ5} / 1"),
+                        ),
+                      )
+                    ],
                   ),
                   Flexible(
                     child: Column(

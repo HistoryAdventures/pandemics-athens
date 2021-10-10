@@ -10,12 +10,14 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizDragDropWidget extends StatefulWidget {
   final int questionIndex;
   final String question;
+  final int score;
 
   final List<Answers> answers;
 
   QuizDragDropWidget(
       {Key? key,
       required this.answers,
+      required this.score,
       required this.question,
       required this.questionIndex})
       : super(key: key);
@@ -29,6 +31,8 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   void initState() {
     super.initState();
   }
+
+  late List<dynamic> correctAnswers;
 
   void removeAll(Answers toRemove) {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
@@ -64,6 +68,16 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   }
 
   @override
+  void didChangeDependencies() {
+    if (widget.questionIndex == 3) {
+      correctAnswers = QuizData.correctAnswersForQ3;
+    } else {
+      correctAnswers = QuizData.correctAnswersForQ7;
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
@@ -84,48 +98,135 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                   style: Theme.of(context).textTheme.button,
                 ),
               ),
-              Text(
-                widget.question,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline2
-                    ?.copyWith(fontSize: TextFontSize.getHeight(45, context)),
+              Padding(
+                padding: const EdgeInsets.only(right: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.question,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(45, context)),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 3, horizontal: 5),
+                        decoration: BoxDecoration(
+                            color: AppColors.grey,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: widget.questionIndex == 3
+                            ? Text(
+                                "${QuizData.rightAnswersForQ3} / ${widget.score}")
+                            : Text(
+                                "${QuizData.rightAnswersForQ7} / ${widget.score}"),
+                      ),
+                    )
+                  ],
+                ),
               ),
-              Column(
-                children: <Widget>[
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      // padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.blueDeep)),
-                      child: Row(children: [
-                        ...widget.answers
-                            .map(
-                              (answer) => Expanded(
-                                child: buildTarget(
-                                  inTopContainer: true,
-                                  context: context,
-                                  answers: [answer],
-                                  onAccept: (data) => setState(() {
-                                    removeAll(data);
-                                    widget.answers.add(data);
-                                  }),
+              Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        // padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.blueDeep)),
+                        child: Row(children: [
+                          ...widget.answers
+                              .map(
+                                (answer) => Expanded(
+                                  child: buildTarget(
+                                    inTopContainer: true,
+                                    context: context,
+                                    answers: [answer],
+                                    onAccept: (data) => setState(() {
+                                      removeAll(data);
+                                      widget.answers.add(data);
+                                    }),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                      ])),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  if (widget.questionIndex == 3)
-                    Wrap(
-                      direction: Axis.horizontal,
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      children: QuizData.showRightAnswers
-                          ? [
-                              ...QuizData.usersAnswersForQ3.map(
-                                (element) {
+                              )
+                              .toList(),
+                        ])),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    if (widget.questionIndex == 3)
+                      Wrap(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        children: QuizData.showRightAnswers
+                            ? [
+                                ...QuizData.usersAnswersForQ3.map(
+                                  (element) {
+                                    if (element is DragWordsWidget) {
+                                      return buildTarget(
+                                        context: context,
+                                        answers: element.answers,
+                                        onAccept: (data) => setState(() {
+                                          removeAll(data);
+                                          element.answers.add(data);
+                                        }),
+                                        isCorrect: element.isRight,
+                                      );
+                                    } else {
+                                      return TextQuestion(
+                                          text: element as String);
+                                    }
+                                  },
+                                )
+                              ]
+                            : [
+                                ...QuizData.listQuestionBody3.map((element) {
+                                  if (element is DragWordsWidget) {
+                                    return buildTarget(
+                                      context: context,
+                                      answers: element.answers,
+                                      onAccept: (data) => setState(() {
+                                        removeAll(data);
+                                        element.answers.add(data);
+                                        print(element.answers.first);
+                                      }),
+                                    );
+                                  } else {
+                                    return TextQuestion(
+                                        text: element as String);
+                                  }
+                                })
+                              ],
+                      ),
+                    if (widget.questionIndex == 7)
+                      Wrap(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        children: QuizData.showRightAnswers
+                            ? [
+                                ...QuizData.usersAnswersForQ7.map(
+                                  (element) {
+                                    if (element is DragWordsWidget) {
+                                      return buildTarget(
+                                        context: context,
+                                        answers: element.answers,
+                                        onAccept: (data) => setState(() {
+                                          removeAll(data);
+                                          element.answers.add(data);
+                                        }),
+                                        isCorrect: element.isRight,
+                                      );
+                                    } else {
+                                      return TextQuestion(
+                                          text: element as String);
+                                    }
+                                  },
+                                )
+                              ]
+                            : [
+                                ...QuizData.listQuestionBody7.map((element) {
                                   if (element is DragWordsWidget) {
                                     return buildTarget(
                                       context: context,
@@ -134,212 +235,48 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                         removeAll(data);
                                         element.answers.add(data);
                                       }),
-                                      isCorrect: element.isRight,
                                     );
                                   } else {
                                     return TextQuestion(
                                         text: element as String);
                                   }
-                                },
-                              )
-                            ]
-                          : [
-                              ...QuizData.listQuestionBody3.map((element) {
-                                if (element is DragWordsWidget) {
-                                  return buildTarget(
-                                    context: context,
-                                    answers: element.answers,
-                                    onAccept: (data) => setState(() {
-                                      removeAll(data);
-                                      element.answers.add(data);
-                                    }),
-                                  );
-                                } else {
-                                  return TextQuestion(text: element as String);
-                                }
-                              })
-                            ],
-                    ),
-
-                  // Wrap(
-                  //   direction: Axis.horizontal,
-                  //   crossAxisAlignment: WrapCrossAlignment.start,
-                  //   children: <Widget>[
-                  //     const TextQuestion(
-                  //         text:
-                  //             'In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer1ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer1ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             ', nor was it ruled by a small band of aritocrats (an '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer2ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer2ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             '). Instead, the people represented themselves.\n Democracy derives from two Greek words '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer3ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer3ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text: ' meaning people, and kratos, which means '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer4ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer4ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             'Athenian democracy was very different to modern democracy, however. Only adult male '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer5ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer5ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(text: ' could take part. '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer6ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer6ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(text: ' could take part. '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer7ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer7ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(text: ' and non-Athenians '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer8ForQ3,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer8ForQ3.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(text: ' were excluded. '),
-                  //   ],
-                  // ),
-
-                  if (widget.questionIndex == 7)
-                    Wrap(
-                      direction: Axis.horizontal,
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      children: QuizData.listQuestionBody7.map((element) {
-                        if (element is DragWordsWidget) {
-                          return buildTarget(
-                            context: context,
-                            answers: element.answers,
-                            onAccept: (data) => setState(() {
-                              removeAll(data);
-                              element.answers.add(data);
-                            }),
+                                })
+                              ],
+                      )
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: QuizData.showRightAnswers,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 100),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.black100, width: 1),
+                  ),
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children: [
+                      ...correctAnswers.map((element) {
+                        if (element is List<String>) {
+                          return Text(
+                            element.first,
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: TextFontSize.getHeight(35, context)),
                           );
                         } else {
-                          return TextQuestion(text: element as String);
+                          return Text(
+                            element as String,
+                            style: TextStyle(
+                                fontSize: TextFontSize.getHeight(35, context)),
+                          );
                         }
-                      }).toList(),
-                    ),
-
-                  // Wrap(
-                  //   direction: Axis.horizontal,
-                  //   crossAxisAlignment: WrapCrossAlignment.start,
-                  //   children: <Widget>[
-                  //     const TextQuestion(text: 'Galen was a  '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer1ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer1ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             ' doctor who was influenced by and developed the theories of '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer2ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer2ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text: '. He studied the body through '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer3ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer3ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             '. Because this was illegal, he encouraged his students to investigate the corpses of '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer4ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer4ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(text: '!\n'),
-                  //     const TextQuestion(text: 'Galen also lived through a '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer5ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer5ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //     const TextQuestion(
-                  //         text:
-                  //             ' . His ideas were very influential, and were only challenged and developed during the '),
-                  //     buildTarget(
-                  //       context: context,
-                  //       answers: QuizData.userAnswer6ForQ7,
-                  //       onAccept: (data) => setState(() {
-                  //         removeAll(data);
-                  //         QuizData.userAnswer6ForQ7.add(data);
-                  //       }),
-                  //     ),
-                  //   ],
-                  // ),
-                ],
-              ),
+                      })
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -350,7 +287,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
 
 Widget buildTarget({
   bool inTopContainer = false,
-  bool isCorrect = false,
+  bool? isCorrect,
   required BuildContext context,
   required List<Answers> answers,
   List<CorrectAnswers>? correctAnswers,
@@ -360,7 +297,12 @@ Widget buildTarget({
       decoration: BoxDecoration(
         border: inTopContainer
             ? null
-            : Border.all(color: isCorrect ? AppColors.green : AppColors.red),
+            : Border.all(
+                color: isCorrect == null
+                    ? AppColors.blueDeep
+                    : isCorrect
+                        ? AppColors.green
+                        : AppColors.red),
         boxShadow: inTopContainer
             ? null
             : const [
