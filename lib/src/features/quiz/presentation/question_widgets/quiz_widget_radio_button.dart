@@ -38,113 +38,117 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: constraints.maxWidth * 0.05,
-          vertical: 50,
-        ),
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: constraints.maxHeight * 0.01),
-                    child: Text(
-                      'QUESTION ${widget.questionIndex}',
-                      style: Theme.of(context).textTheme.button,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          widget.question,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              ?.copyWith(
-                                  fontSize:
-                                      TextFontSize.getHeight(45, context)),
-                        ),
+    return AbsorbPointer(
+      absorbing: QuizData.showRightAnswers,
+      child: LayoutBuilder(builder: (context, constraints) {
+        return Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: constraints.maxWidth * 0.05,
+            vertical: 50,
+          ),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: constraints.maxHeight * 0.01),
+                      child: Text(
+                        'QUESTION ${widget.questionIndex}',
+                        style: Theme.of(context).textTheme.button,
                       ),
-                      Flexible(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 3, horizontal: 5),
-                          decoration: BoxDecoration(
-                              color: AppColors.grey,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: widget.questionIndex == 6
-                              ? Text("${QuizData.rightAnswersForQ6} / 1")
-                              : Text("${QuizData.rightAnswersForQ5} / 1"),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.question,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(
+                                    fontSize:
+                                        TextFontSize.getHeight(45, context)),
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                  Flexible(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: widget.answers
-                            .map((e) => Flexible(
-                                  child: Container(
-                                    width: 200,
-                                    margin: const EdgeInsets.all(12),
-                                    decoration: QuizData.showRightAnswers &&
-                                            e.value == 4
-                                        ? DottedDecoration(
-                                            shape: Shape.box,
-                                            strokeWidth: 1,
-                                            color: AppColors.greyDeep)
-                                        : null,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Radio(
-                                          value: e.value,
-                                          groupValue: widget.questionIndex == 5
-                                              ? QuizData.valueQ5
-                                              : QuizData.valueQ6,
-                                          onChanged: widget.questionIndex == 5
-                                              ? (int? value) {
-                                                  setState(() {
-                                                    QuizData.valueQ5 = value!;
-                                                  });
-                                                }
-                                              : (int? value) {
-                                                  setState(() {
-                                                    QuizData.valueQ6 = value!;
-                                                  });
-                                                },
-                                          activeColor: AppColors.blueDeep,
-                                        ),
-                                        Flexible(child: Text(e.text)),
-                                      ],
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 5),
+                            decoration: BoxDecoration(
+                                color: AppColors.grey,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: widget.questionIndex == 6
+                                ? Text("${QuizData.rightAnswersForQ6} / 1")
+                                : Text("${QuizData.rightAnswersForQ5} / 1"),
+                          ),
+                        )
+                      ],
+                    ),
+                    Flexible(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.answers
+                              .map((e) => Flexible(
+                                    child: Container(
+                                      width: 200,
+                                      margin: const EdgeInsets.all(12),
+                                      decoration: QuizData.showRightAnswers &&
+                                              e.value == 4
+                                          ? DottedDecoration(
+                                              shape: Shape.box,
+                                              strokeWidth: 1,
+                                              color: AppColors.greyDeep)
+                                          : null,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Radio(
+                                            value: e.value,
+                                            groupValue:
+                                                widget.questionIndex == 5
+                                                    ? QuizData.valueQ5
+                                                    : QuizData.valueQ6,
+                                            onChanged: widget.questionIndex == 5
+                                                ? (int? value) {
+                                                    setState(() {
+                                                      QuizData.valueQ5 = value!;
+                                                    });
+                                                  }
+                                                : (int? value) {
+                                                    setState(() {
+                                                      QuizData.valueQ6 = value!;
+                                                    });
+                                                  },
+                                            activeColor: AppColors.blueDeep,
+                                          ),
+                                          Flexible(child: Text(e.text)),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ))
-                            .toList()),
-                  ),
-                ],
+                                  ))
+                              .toList()),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Visibility(
-                visible: widget.quizWithImage!,
-                child: Image.asset(AssetsPath.imageQuizPericles),
-              ),
-            )
-          ],
-        ),
-      );
-    });
+              Align(
+                alignment: Alignment.center,
+                child: Visibility(
+                  visible: widget.quizWithImage!,
+                  child: Image.asset(AssetsPath.imageQuizPericles),
+                ),
+              )
+            ],
+          ),
+        );
+      }),
+    );
   }
 }

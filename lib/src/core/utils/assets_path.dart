@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AssetsPath {
@@ -7,6 +6,12 @@ class AssetsPath {
   static List<String> assetsBlobList = [];
 
   //static const String gifBackground = 'assets/image_back/backgif.gif';
+
+  static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
+  static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
+
+  static const String quizImage3 = 'assets/images_quiz/quiz3.jpg';
+  static const String quizImage4 = 'assets/images_quiz/quiz4.jpg';
 
   static const String imageQuizPericles = 'assets/images_quiz/pericles.jpg';
   static const String gifParalaxNikosGif =

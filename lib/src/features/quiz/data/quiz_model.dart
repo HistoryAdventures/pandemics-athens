@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 
 class QuizData {
   static bool showRightAnswers = false;
-  static final List<Answers> answersForQ1 = [
+
+  ///[QUESTION 1]
+  ///
+  static final List<Answers<int>> answersForQ1 = [
     Answers(
         value: 1,
         text: "Battle of Thermopylae",
@@ -33,7 +38,7 @@ class QuizData {
         text: "Cleisthenes' reforms and the birth of Democracy",
         correctAnswers: CorrectAnswers.answer7),
   ];
-  static final List<Answers> variantsForQ1 = [
+  static final List<Answers<int>> variantsForQ1 = [
     Answers(value: 3, text: "430 BC", correctAnswers: CorrectAnswers.answer3),
     Answers(value: 4, text: "429 BC", correctAnswers: CorrectAnswers.answer4),
     Answers(value: 5, text: "415 BC", correctAnswers: CorrectAnswers.answer5),
@@ -42,6 +47,9 @@ class QuizData {
     Answers(value: 1, text: "480 BC", correctAnswers: CorrectAnswers.answer1),
     Answers(value: 7, text: "508 BC", correctAnswers: CorrectAnswers.answer7),
   ];
+  static List<DrowLineWidget> userAnswerWithCheckForQ1 = [];
+  static List<DrowLineWidget> userAnswerForQ1 = [];
+  static bool valueForDrowColoredLineFor = false;
 
   static final List<Answers<int>> answersForKeyPeople6 = [
     Answers(value: 1, text: "Thucydides"),
@@ -50,7 +58,13 @@ class QuizData {
     Answers(value: 4, text: "Pericles"),
   ];
 
-  static final List<Answers> answersDD4 = [
+  ///[QUESTION 4]
+  ///
+  ///
+  static List<DrowLineWidget> userAnswerWithCheckForQ4 = [];
+  static List<DrowLineWidget> userAnswerForQ4 = [];
+
+  static final List<Answers<int>> answersDD4 = [
     Answers(
         value: 1,
         text:
@@ -77,7 +91,7 @@ class QuizData {
         correctAnswers: CorrectAnswers.answer5),
   ];
 
-  static final List<Answers> variantsDD4 = [
+  static final List<Answers<int>> variantsDD4 = [
     Answers(
         value: 5,
         text: "assets/map/map477image.png",
@@ -100,7 +114,14 @@ class QuizData {
         correctAnswers: CorrectAnswers.answer4),
   ];
 
-  static final List<Answers> answersDD9 = [
+  ///[QUESTION 9]
+  ///
+  ///
+  ///
+  static List<DrowLineWidget> userAnswerWithCheckForQ9 = [];
+  static List<DrowLineWidget> userAnswerForQ9 = [];
+
+  static final List<Answers<int>> answersDD9 = [
     Answers(
         value: 1,
         text: "Themistocles ",
@@ -128,7 +149,7 @@ class QuizData {
         value: 8, text: "Herodotus", correctAnswers: CorrectAnswers.answer8),
   ];
 
-  static final List<Answers> variantsDD9 = [
+  static final List<Answers<int>> variantsDD9 = [
     Answers(
         value: 7,
         text: "The Allegory of the Cave",
@@ -389,6 +410,72 @@ class QuizData {
     CorrectAnswers.answer4,
     CorrectAnswers.answer5
   ];
+
+  static List<CheckBoxWidget<bool>> usersAnswersForQ10 = [];
+  static final List<CorrectAnswers> correctAnswersForQ10 = [
+    CorrectAnswers.answer2,
+  ];
+
+  ///[QUESTION 5]
+  /// users Answer List and Correct Answers
+  ///List for question body widget
+
+  static int valueQ5 = -1;
+
+  static const int correctAnswerQ5 = 4;
+
+  static final List<Answers<int>> answersForQ5 = [
+    Answers(value: 1, text: "Ebola"),
+    Answers(value: 2, text: "Bubonic Plague"),
+    Answers(value: 3, text: "Typhis"),
+    Answers(value: 4, text: "Typhoid"),
+    Answers(value: 5, text: "Smallpox"),
+  ];
+
+  ///[QUESTION 6]
+  /// users Answer List and Correct Answers
+  ///List for question body widget
+  static const int correctAnswerQ6 = 4;
+  static int valueQ6 = -1;
+
+  static final List<Answers<int>> answersForQ6 = [
+    Answers(value: 1, text: "Thucydides"),
+    Answers(value: 2, text: "Socrates"),
+    Answers(value: 3, text: "Cleisthenes"),
+    Answers(value: 4, text: "Pericles"),
+  ];
+
+  ///[question 10]
+  static final List<CheckBoxWidget<bool>> answersForQuestion10 = [
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: AssetsPath.quizImage1,
+          correctAnswers: CorrectAnswers.answer1),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: AssetsPath.quizImage2,
+          correctAnswers: CorrectAnswers.answer2),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: AssetsPath.quizImage3,
+          correctAnswers: CorrectAnswers.answer3),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: AssetsPath.quizImage4,
+          correctAnswers: CorrectAnswers.answer4),
+      isRight: null,
+    ),
+  ];
   static final List<CheckBoxWidget<bool>> answersForQuestion8 = [
     CheckBoxWidget(
       answers: Answers(
@@ -434,35 +521,6 @@ class QuizData {
     ),
   ];
 
-  ///[QUESTION 5]
-  /// users Answer List and Correct Answers
-  ///List for question body widget
-
-  static int valueQ5 = -1;
-
-  static const int correctAnswerQ5 = 4;
-
-  static final List<Answers<int>> answersForQ5 = [
-    Answers(value: 1, text: "Ebola"),
-    Answers(value: 2, text: "Bubonic Plague"),
-    Answers(value: 3, text: "Typhis"),
-    Answers(value: 4, text: "Typhoid"),
-    Answers(value: 5, text: "Smallpox"),
-  ];
-
-  ///[QUESTION 6]
-  /// users Answer List and Correct Answers
-  ///List for question body widget
-  static const int correctAnswerQ6 = 4;
-  static int valueQ6 = -1;
-
-  static final List<Answers<int>> answersForQ6 = [
-    Answers(value: 1, text: "Thucydides"),
-    Answers(value: 2, text: "Socrates"),
-    Answers(value: 3, text: "Cleisthenes"),
-    Answers(value: 4, text: "Pericles"),
-  ];
-
   //[CLEAR ALL ANSWERS]
 
   ///[SCORE]
@@ -472,9 +530,33 @@ class QuizData {
   static int rightAnswersForQ6 = 0;
   static int rightAnswersForQ8 = 0;
   static int rightAnswersForQ7 = 0;
+  static int rightAnswersForQ4 = 0;
+
+  static int rightAnswersForQ1 = 0;
+
+  static int rightAnswersForQ9 = 0;
+  static int rightAnswersForQ10 = 0;
 
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
+    for (var i = 0; i < userAnswerWithCheckForQ1.length; i++) {
+      if (userAnswerWithCheckForQ1[i].isRight == true) {
+        rightAnswersForQ1++;
+      }
+    }
+
+    for (var i = 0; i < userAnswerWithCheckForQ4.length; i++) {
+      if (userAnswerWithCheckForQ4[i].isRight == true) {
+        rightAnswersForQ4++;
+      }
+    }
+
+    for (var i = 0; i < userAnswerWithCheckForQ9.length; i++) {
+      if (userAnswerWithCheckForQ9[i].isRight == true) {
+        rightAnswersForQ9++;
+      }
+    }
+
     listQuestionBody2.forEach((element) {
       if (element is EditTextWidget) {
         if (element.controller.text.isEmpty) {
@@ -533,7 +615,8 @@ class QuizData {
     for (var i = 0; i < usersAnswersForQ2.length; i++) {
       if (usersAnswersForQ2[i] is EditTextWidget &&
           correctAnswersForQ2[i] is List<String>) {
-        if (correctAnswersForQ2[i].first == usersAnswersForQ2[i].controller.text) {
+        if (correctAnswersForQ2[i].first ==
+            usersAnswersForQ2[i].controller.text) {
           usersAnswersForQ2[i].isRight = true;
           rightAnswersForQ2++;
         } else {
@@ -568,8 +651,6 @@ class QuizData {
       }
     }
 
-
-
     for (var i = 0; i < usersAnswersForQ8.length; i++) {
       if (correctAnswersForQ8
           .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
@@ -579,19 +660,24 @@ class QuizData {
         usersAnswersForQ8[i].isRight = false;
       }
     }
-    // correctAnswersForQ8.forEach((CorrectAnswers element) {
-    //   if (usersAnswersForQ8.contains(element)) {
-    //     rightAnswersForQ8++;
-    //   } else {
-    //     print('not ok');
-    //   }
-    // });
+    for (var i = 0; i < usersAnswersForQ10.length; i++) {
+      if (correctAnswersForQ8
+          .contains(usersAnswersForQ10[i].answers.correctAnswers)) {
+        usersAnswersForQ10[i].isRight = true;
+        rightAnswersForQ10++;
+      } else {
+        usersAnswersForQ10[i].isRight = false;
+      }
+    }
     print("Score Question 2 $rightAnswersForQ2");
     print('Score Question 3 $rightAnswersForQ3');
     print("Score Question 5 $rightAnswersForQ5");
     print("Score Question 6 $rightAnswersForQ6");
     print('Score Question 7 $rightAnswersForQ7');
     print("Score Question 8 $rightAnswersForQ8");
+    print("Score Question 1 $rightAnswersForQ1");
+    print('Score Question 4 $rightAnswersForQ4');
+    print("Score Question 9 $rightAnswersForQ9");
   }
 
   static void clearAnswers() {
@@ -602,14 +688,21 @@ class QuizData {
     rightAnswersForQ6 = 0;
     rightAnswersForQ8 = 0;
     rightAnswersForQ7 = 0;
+    rightAnswersForQ1 = 0;
+
+    rightAnswersForQ4 = 0;
+
+    rightAnswersForQ9 = 0;
 
     usersAnswersForQ2 = [];
 
     usersAnswersForQ7 = [];
 
-    usersAnswersForQ8 = [];
+    usersAnswersForQ8.clear();
 
     usersAnswersForQ3 = [];
+
+    usersAnswersForQ10.clear();
 
     listQuestionBody3.forEach((element) {
       if (element is DragWordsWidget) {
@@ -637,6 +730,15 @@ class QuizData {
     answerTextController4.clear();
     answerTextController5.clear();
     answerTextController6.clear();
+
+    userAnswerWithCheckForQ1.clear();
+    userAnswerForQ1.clear();
+
+    userAnswerWithCheckForQ4.clear();
+    userAnswerForQ4.clear();
+
+    userAnswerWithCheckForQ9.clear();
+    userAnswerForQ9.clear();
   }
 }
 

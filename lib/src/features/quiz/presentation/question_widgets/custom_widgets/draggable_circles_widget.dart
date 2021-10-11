@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 
 class DraggableCirclesWidget extends StatelessWidget {
@@ -6,10 +7,14 @@ class DraggableCirclesWidget extends StatelessWidget {
   final Offset offset;
   final Function(Offset) getStartLineOffset;
   final Function(Offset) getEndLineOffset;
+  final Function() onDragCompleted;
+  final Function(DraggableDetails) onDragEnd;
 
   DraggableCirclesWidget(
       {required this.answer,
       required this.offset,
+      required this.onDragEnd,
+      required this.onDragCompleted,
       required this.getStartLineOffset,
       required this.getEndLineOffset});
 
@@ -19,15 +24,17 @@ class DraggableCirclesWidget extends StatelessWidget {
           Container(
             child: Draggable<Answers>(
               onDragStarted: () {
-                print('start::::: $offset');
+                // print('start::::: $offset');
                 getStartLineOffset(offset);
               },
-              // onDragCompleted: () {
-              //   print(offset);
-              // },
+              onDragCompleted: () {
+                onDragCompleted();
+                // print('on Drag Complete');
+              },
               onDragEnd: (data) {
                 getEndLineOffset(data.offset);
-                print('end::::: ${data.offset}');
+                // print('end::::: ${data.offset}');
+                onDragEnd(data);
               },
               data: answer,
               feedback: Material(

@@ -1,4 +1,6 @@
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
@@ -6,12 +8,18 @@ import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 class CheckboxText extends StatefulWidget {
   bool value;
   final Text text;
+  final String? image;
+  final bool isImage;
+  BoxDecoration decoration;
   final Function(bool val) onTap;
 
   CheckboxText({
     Key? key,
     required this.value,
     required this.text,
+    required this.isImage,
+    required this.image,
+    required this.decoration,
     required this.onTap,
   }) : super(key: key);
 
@@ -36,28 +44,41 @@ class _CheckboxTextState extends State<CheckboxText> {
         //   widget.value = !widget.value;
         // });
       },
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(5)),
-            child: Visibility(
-              visible: widget.value,
-              child: const Icon(Icons.done),
+      child: widget.isImage
+          ? Container(
+              decoration: widget.value
+                  ? DottedDecoration(
+                      color: AppColors.grey, shape: Shape.box, strokeWidth: 2)
+                  : null,
+              child: Container(
+                decoration: widget.decoration,
+                height: 200,
+                width: 200,
+                child: Image.asset(widget.image!),
+              ),
+            )
+          : Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Visibility(
+                    visible: widget.value,
+                    child: const Icon(Icons.done),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+                Flexible(
+                  child: widget.text,
+                )
+              ],
             ),
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Flexible(
-            child: widget.text,
-          )
-        ],
-      ),
     );
   }
 }

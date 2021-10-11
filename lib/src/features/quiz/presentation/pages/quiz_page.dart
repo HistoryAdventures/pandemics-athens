@@ -57,6 +57,8 @@ class _QuizPageState extends State<QuizPage> {
         question: 'What happened when during the Golden Age of Athens? ',
         questionIndex: 1,
         score: 0,
+        userAnswer: QuizData.userAnswerForQ1,
+        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ1,
       ),
       const QuizEditTextWidget(
         questionIndex: 2,
@@ -74,6 +76,8 @@ class _QuizPageState extends State<QuizPage> {
         question: 'What happened where? Match the event to the correct map. ',
         questionIndex: 4,
         score: 8,
+        userAnswer: QuizData.userAnswerForQ4,
+        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
       ),
       QuizRadioBottonWidget(
         quizWithImage: false,
@@ -98,6 +102,7 @@ class _QuizPageState extends State<QuizPage> {
         question:
             "Look at the painting below. Which of the following statements is true about it and it's subject?",
         questionIndex: 8,
+        userAnswers: QuizData.usersAnswersForQ8,
       ),
       QuizDragDropCirclesWidget(
         variants: QuizData.variantsDD9,
@@ -106,12 +111,16 @@ class _QuizPageState extends State<QuizPage> {
             "The 5th century BC was the 'Golden Age' of Athens, when culture flourished in the ancient polis and the city was dominant in the Greek world. Match the individual to their achievement below.",
         questionIndex: 9,
         score: 0,
+        userAnswer: QuizData.userAnswerForQ9,
+        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ9,
       ),
       QuizCheckBox(
         questionIndex: 10,
+        withImages: true,
         question:
             "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
-        answers: [],
+        answers: QuizData.answersForQuestion10,
+        userAnswers: QuizData.usersAnswersForQ10,
       ),
     ];
     super.didChangeDependencies();
