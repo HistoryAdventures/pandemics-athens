@@ -5,6 +5,9 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 
 class QuizData {
   static bool showRightAnswers = false;
+  static int questionIndex = 0;
+
+  static int finalScore = 0;
 
   ///[QUESTION 1]
   ///
@@ -667,9 +670,21 @@ class QuizData {
     print('Score Question 4 $rightAnswersForQ4');
     print("Score Question 9 $rightAnswersForQ9");
     print("Score Question 9 $rightAnswersForQ10");
+
+    finalScore = rightAnswersForQ1 +
+        rightAnswersForQ2 +
+        rightAnswersForQ3 +
+        rightAnswersForQ4 +
+        rightAnswersForQ5 +
+        rightAnswersForQ6 +
+        rightAnswersForQ7 +
+        rightAnswersForQ8 +
+        rightAnswersForQ9 +
+        rightAnswersForQ10;
   }
 
   static void clearAnswers() {
+    finalScore = 0;
     rightAnswersForQ3 = 0;
     rightAnswersForQ2 = 0;
     rightAnswersForQ5 = 0;

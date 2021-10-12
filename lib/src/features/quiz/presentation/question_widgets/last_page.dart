@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/show_dialog.dart';
 
 class QuizLastPage extends StatefulWidget {
-  int questionIndex;
-
+  void Function()? onPressed;
   QuizLastPage({
     Key? key,
-    required this.questionIndex,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -21,24 +21,13 @@ class _QuizLastPageState extends State<QuizLastPage> {
       child: Column(
         children: [
           Text(QuizData.showRightAnswers
-              ? "Your score is score / 44"
+              ? "Your score is: ${QuizData.finalScore} / 44"
               : 'Click the button to see the correct answers or go back to review your answers.'),
           const SizedBox(
             height: 50,
           ),
           ElevatedButton(
-              onPressed: QuizData.showRightAnswers
-                  ? () {
-                      setState(() {
-                        widget.questionIndex = 0;
-                      });
-                    }
-                  : () {
-                      setState(() {
-                        QuizData.checkUerAnswers();
-                        QuizData.showRightAnswers = !QuizData.showRightAnswers;
-                      });
-                    },
+              onPressed: widget.onPressed,
               child: Text(QuizData.showRightAnswers ? "<<" : 'Show Answers'))
         ],
       ),
