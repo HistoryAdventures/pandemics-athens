@@ -39,59 +39,60 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: QuizData.showRightAnswers,
-      child: LayoutBuilder(builder: (context, constraints) {
-        return Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: constraints.maxWidth * 0.05,
-            vertical: 50,
-          ),
-          child: SingleChildScrollView(
-            child: Container(
-              height: constraints.maxHeight,
-              width: constraints.maxWidth,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: constraints.maxHeight * 0.01),
-                    child: Text(
-                      'QUESTION ${widget.questionIndex}',
-                      style: Theme.of(context).textTheme.button,
-                    ),
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: constraints.maxWidth * 0.05,
+          vertical: 50,
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            height: constraints.maxHeight,
+            width: constraints.maxWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: constraints.maxHeight * 0.01),
+                  child: Text(
+                    'QUESTION ${widget.questionIndex}',
+                    style: Theme.of(context).textTheme.button,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 50),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            locals.question2,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline2
-                                ?.copyWith(
-                                    fontSize:
-                                        TextFontSize.getHeight(45, context)),
-                          ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          locals.question2,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(
+                                  fontSize:
+                                      TextFontSize.getHeight(45, context)),
                         ),
-                        Flexible(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: AppColors.grey,
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Text("${QuizData.rightAnswersForQ2} / 6"),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Flexible(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 3, horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: AppColors.grey,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Text("${QuizData.rightAnswersForQ2} / 6"),
+                        ),
+                      )
+                    ],
                   ),
-                  Flexible(
+                ),
+                Flexible(
+                  child: AbsorbPointer(
+                    absorbing: QuizData.showRightAnswers,
                     child: Container(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
@@ -145,45 +146,45 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
                       ),
                     ),
                   ),
-                  Visibility(
-                    visible: QuizData.showRightAnswers,
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 100),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.black100, width: 1),
-                      ),
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        children: [
-                          ...QuizData.correctAnswersForQ2.map((element) {
-                            if (element is List<String>) {
-                              return Text(
-                                element.first,
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    fontSize:
-                                        TextFontSize.getHeight(35, context)),
-                              );
-                            } else {
-                              return Text(
-                                element as String,
-                                style: TextStyle(
-                                    fontSize:
-                                        TextFontSize.getHeight(35, context)),
-                              );
-                            }
-                          })
-                        ],
-                      ),
+                ),
+                Visibility(
+                  visible: QuizData.showRightAnswers,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 100),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.black100, width: 1),
                     ),
-                  )
-                ],
-              ),
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        ...QuizData.correctAnswersForQ2.map((element) {
+                          if (element is List<String>) {
+                            return Text(
+                              element.first,
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize:
+                                      TextFontSize.getHeight(35, context)),
+                            );
+                          } else {
+                            return Text(
+                              element as String,
+                              style: TextStyle(
+                                  fontSize:
+                                      TextFontSize.getHeight(35, context)),
+                            );
+                          }
+                        })
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 }

@@ -140,32 +140,32 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: QuizData.showRightAnswers,
-      child: LayoutBuilder(builder: (context, constraints) {
-        return MouseRegion(
-          onHover: (e) {
-            setState(() {
-              mousePosition = e.position;
-            });
-          },
-          child: SingleChildScrollView(
-            child: Container(
-              height: constraints.maxHeight,
-              child: Stack(
-                children: [
-                  ...widget.userAnswer
+    return LayoutBuilder(builder: (context, constraints) {
+      return MouseRegion(
+        onHover: (e) {
+          setState(() {
+            mousePosition = e.position;
+          });
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            height: constraints.maxHeight,
+            child: Stack(
+              children: [
+                ...widget.userAnswer
+                    .map((customPaint) => customPaint.customPaint),
+                if (QuizData.showRightAnswers)
+                  ...widget.userAnswerWithCheck
                       .map((customPaint) => customPaint.customPaint),
-                  if (QuizData.showRightAnswers)
-                    ...widget.userAnswerWithCheck
-                        .map((customPaint) => customPaint.customPaint),
-                  CustomPaint(
-                    painter: DrowLine(
-                      strat: drowingLineStartOffset,
-                      end: drowingLineEndOffset,
-                    ),
+                CustomPaint(
+                  painter: DrowLine(
+                    strat: drowingLineStartOffset,
+                    end: drowingLineEndOffset,
                   ),
-                  Container(
+                ),
+                AbsorbPointer(
+                  absorbing: QuizData.showRightAnswers,
+                  child: Container(
                     margin: const EdgeInsets.all(80),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,13 +351,13 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 }
 

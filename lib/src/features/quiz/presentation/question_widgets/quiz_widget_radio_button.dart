@@ -65,6 +65,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
+                          flex: 5,
                           child: Text(
                             widget.question,
                             style: Theme.of(context)
@@ -90,50 +91,56 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                       ],
                     ),
                     Flexible(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: widget.answers
-                              .map((e) => Flexible(
-                                    child: Container(
-                                      width: 200,
-                                      margin: const EdgeInsets.all(12),
-                                      decoration: QuizData.showRightAnswers &&
-                                              e.value == 4
-                                          ? DottedDecoration(
-                                              shape: Shape.box,
-                                              strokeWidth: 1,
-                                              color: AppColors.greyDeep)
-                                          : null,
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Radio(
-                                            value: e.value,
-                                            groupValue:
-                                                widget.questionIndex == 5
-                                                    ? QuizData.valueQ5
-                                                    : QuizData.valueQ6,
-                                            onChanged: widget.questionIndex == 5
-                                                ? (int? value) {
-                                                    setState(() {
-                                                      QuizData.valueQ5 = value!;
-                                                    });
-                                                  }
-                                                : (int? value) {
-                                                    setState(() {
-                                                      QuizData.valueQ6 = value!;
-                                                    });
-                                                  },
-                                            activeColor: AppColors.blueDeep,
-                                          ),
-                                          Flexible(child: Text(e.text)),
-                                        ],
+                      child: AbsorbPointer(
+                        absorbing: QuizData.showRightAnswers,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.answers
+                                .map((e) => Flexible(
+                                      child: Container(
+                                        width: 200,
+                                        margin: const EdgeInsets.all(12),
+                                        decoration: QuizData.showRightAnswers &&
+                                                e.value == 4
+                                            ? DottedDecoration(
+                                                shape: Shape.box,
+                                                strokeWidth: 1,
+                                                color: AppColors.greyDeep)
+                                            : null,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Radio(
+                                              value: e.value,
+                                              groupValue:
+                                                  widget.questionIndex == 5
+                                                      ? QuizData.valueQ5
+                                                      : QuizData.valueQ6,
+                                              onChanged:
+                                                  widget.questionIndex == 5
+                                                      ? (int? value) {
+                                                          setState(() {
+                                                            QuizData.valueQ5 =
+                                                                value!;
+                                                          });
+                                                        }
+                                                      : (int? value) {
+                                                          setState(() {
+                                                            QuizData.valueQ6 =
+                                                                value!;
+                                                          });
+                                                        },
+                                              activeColor: AppColors.blueDeep,
+                                            ),
+                                            Flexible(child: Text(e.text)),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ))
-                              .toList()),
+                                    ))
+                                .toList()),
+                      ),
                     ),
                   ],
                 ),

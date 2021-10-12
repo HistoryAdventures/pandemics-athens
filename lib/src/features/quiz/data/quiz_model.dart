@@ -228,16 +228,16 @@ class QuizData {
   ];
 
   static final List<dynamic> correctAnswersForQ2 = [
-    'Hippocrates suggested that the body contained four',
+    'Hippocrates suggested that the body contained four ',
     ['humours'],
-    '. These were vital bodily fluids that kept people healthy if they were kept',
+    '. These were vital bodily fluids that kept people healthy if they were kept ',
     ['balanced'],
-    '. He studied the body through ',
+    ' . He studied the body through ',
     ['phlegm'],
-    '. They are: blood,',
+    '. They are: blood, ',
     ['black'],
-    ",",
-    'bile, yellow',
+    " , ",
+    ' bile, yellow',
     ['bile'],
     'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
     ['eucrasia'],
@@ -411,71 +411,6 @@ class QuizData {
     CorrectAnswers.answer5
   ];
 
-  static List<CheckBoxWidget<bool>> usersAnswersForQ10 = [];
-  static final List<CorrectAnswers> correctAnswersForQ10 = [
-    CorrectAnswers.answer2,
-  ];
-
-  ///[QUESTION 5]
-  /// users Answer List and Correct Answers
-  ///List for question body widget
-
-  static int valueQ5 = -1;
-
-  static const int correctAnswerQ5 = 4;
-
-  static final List<Answers<int>> answersForQ5 = [
-    Answers(value: 1, text: "Ebola"),
-    Answers(value: 2, text: "Bubonic Plague"),
-    Answers(value: 3, text: "Typhis"),
-    Answers(value: 4, text: "Typhoid"),
-    Answers(value: 5, text: "Smallpox"),
-  ];
-
-  ///[QUESTION 6]
-  /// users Answer List and Correct Answers
-  ///List for question body widget
-  static const int correctAnswerQ6 = 4;
-  static int valueQ6 = -1;
-
-  static final List<Answers<int>> answersForQ6 = [
-    Answers(value: 1, text: "Thucydides"),
-    Answers(value: 2, text: "Socrates"),
-    Answers(value: 3, text: "Cleisthenes"),
-    Answers(value: 4, text: "Pericles"),
-  ];
-
-  ///[question 10]
-  static final List<CheckBoxWidget<bool>> answersForQuestion10 = [
-    CheckBoxWidget(
-      answers: Answers(
-          value: false,
-          text: AssetsPath.quizImage1,
-          correctAnswers: CorrectAnswers.answer1),
-      isRight: null,
-    ),
-    CheckBoxWidget(
-      answers: Answers(
-          value: false,
-          text: AssetsPath.quizImage2,
-          correctAnswers: CorrectAnswers.answer2),
-      isRight: null,
-    ),
-    CheckBoxWidget(
-      answers: Answers(
-          value: false,
-          text: AssetsPath.quizImage3,
-          correctAnswers: CorrectAnswers.answer3),
-      isRight: null,
-    ),
-    CheckBoxWidget(
-      answers: Answers(
-          value: false,
-          text: AssetsPath.quizImage4,
-          correctAnswers: CorrectAnswers.answer4),
-      isRight: null,
-    ),
-  ];
   static final List<CheckBoxWidget<bool>> answersForQuestion8 = [
     CheckBoxWidget(
       answers: Answers(
@@ -519,6 +454,72 @@ class QuizData {
           correctAnswers: CorrectAnswers.answer6),
       isRight: null,
     ),
+  ];
+
+  ///[QUESTION 5]
+  /// users Answer List and Correct Answers
+  ///List for question body widget
+
+  static int valueQ5 = -1;
+  static int valueQ10 = -1;
+
+  static const int correctAnswerQ5 = 4;
+
+  static final List<Answers<int>> answersForQ5 = [
+    Answers(value: 1, text: "Ebola"),
+    Answers(value: 2, text: "Bubonic Plague"),
+    Answers(value: 3, text: "Typhis"),
+    Answers(value: 4, text: "Typhoid"),
+    Answers(value: 5, text: "Smallpox"),
+  ];
+
+  ///[QUESTION 6]
+  /// users Answer List and Correct Answers
+  ///List for question body widget
+  static const int correctAnswerQ6 = 4;
+  static int valueQ6 = -1;
+
+  static final List<Answers<int>> answersForQ6 = [
+    Answers(value: 1, text: "Thucydides"),
+    Answers(value: 2, text: "Socrates"),
+    Answers(value: 3, text: "Cleisthenes"),
+    Answers(value: 4, text: "Pericles"),
+  ];
+
+  ///[question 10]
+  static final List<CheckBoxWidget<int>> answersForQuestion10 = [
+    CheckBoxWidget(
+      answers: Answers(
+          value: 1,
+          text: AssetsPath.quizImage1,
+          correctAnswers: CorrectAnswers.answer1),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: 2,
+          text: AssetsPath.quizImage2,
+          correctAnswers: CorrectAnswers.answer2),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: 3,
+          text: AssetsPath.quizImage3,
+          correctAnswers: CorrectAnswers.answer3),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: 4,
+          text: AssetsPath.quizImage4,
+          correctAnswers: CorrectAnswers.answer4),
+      isRight: null,
+    ),
+  ];
+  static int usersAnswersForQ10 = 0;
+  static final List<CorrectAnswers> correctAnswersForQ10 = [
+    CorrectAnswers.answer2,
   ];
 
   //[CLEAR ALL ANSWERS]
@@ -606,12 +607,6 @@ class QuizData {
       rightAnswersForQ6++;
     }
 
-    // listQuestionBody2.forEach((element) {
-    //   if (element is EditText) {
-    //     usersAnswersForQ2.add(element.userAnswer);
-    //   }
-    // });
-
     for (var i = 0; i < usersAnswersForQ2.length; i++) {
       if (usersAnswersForQ2[i] is EditTextWidget &&
           correctAnswersForQ2[i] is List<String>) {
@@ -654,21 +649,14 @@ class QuizData {
     for (var i = 0; i < usersAnswersForQ8.length; i++) {
       if (correctAnswersForQ8
           .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
+        print('answwer is true  correctAnswersForQ8');
         usersAnswersForQ8[i].isRight = true;
         rightAnswersForQ8++;
       } else {
         usersAnswersForQ8[i].isRight = false;
       }
     }
-    for (var i = 0; i < usersAnswersForQ10.length; i++) {
-      if (correctAnswersForQ8
-          .contains(usersAnswersForQ10[i].answers.correctAnswers)) {
-        usersAnswersForQ10[i].isRight = true;
-        rightAnswersForQ10++;
-      } else {
-        usersAnswersForQ10[i].isRight = false;
-      }
-    }
+
     print("Score Question 2 $rightAnswersForQ2");
     print('Score Question 3 $rightAnswersForQ3');
     print("Score Question 5 $rightAnswersForQ5");
@@ -678,10 +666,10 @@ class QuizData {
     print("Score Question 1 $rightAnswersForQ1");
     print('Score Question 4 $rightAnswersForQ4');
     print("Score Question 9 $rightAnswersForQ9");
+    print("Score Question 9 $rightAnswersForQ10");
   }
 
   static void clearAnswers() {
-    print(answersForDD3);
     rightAnswersForQ3 = 0;
     rightAnswersForQ2 = 0;
     rightAnswersForQ5 = 0;
@@ -702,7 +690,20 @@ class QuizData {
 
     usersAnswersForQ3 = [];
 
-    usersAnswersForQ10.clear();
+    usersAnswersForQ10 = 0;
+
+    answersForQuestion8.forEach((element) {
+      if (element is CheckBoxWidget) {
+        element.answers.value = false;
+        element.isRight = null;
+      }
+    });
+
+    answersForQuestion10.forEach((element) {
+      if (element is CheckBoxWidget) {
+        element.isRight = null;
+      }
+    });
 
     listQuestionBody3.forEach((element) {
       if (element is DragWordsWidget) {
@@ -712,7 +713,7 @@ class QuizData {
         }
       }
     });
-    print(answersForDD3);
+
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isNotEmpty) {
@@ -724,6 +725,7 @@ class QuizData {
 
     valueQ5 = -1;
     valueQ6 = -1;
+    valueQ10 = -1;
     answerTextController1.clear();
     answerTextController2.clear();
     answerTextController3.clear();

@@ -2,11 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/last_page.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_check_box.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_words.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_select_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
 import 'package:just_audio/just_audio.dart';
@@ -114,14 +117,24 @@ class _QuizPageState extends State<QuizPage> {
         userAnswer: QuizData.userAnswerForQ9,
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ9,
       ),
-      QuizCheckBox(
+      // QuizCheckBox(
+      //   questionIndex: 10,
+      //   withImages: true,
+      //   question:
+      //       "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
+      //   answers: QuizData.answersForQuestion10,
+      //   userAnswers: QuizData.usersAnswersForQ10,
+      // ),
+      QuizSelectImage(
         questionIndex: 10,
-        withImages: true,
         question:
             "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
         answers: QuizData.answersForQuestion10,
         userAnswers: QuizData.usersAnswersForQ10,
       ),
+      QuizLastPage(
+        questionIndex: 11,
+      )
     ];
     super.didChangeDependencies();
   }
@@ -157,18 +170,6 @@ class _QuizPageState extends State<QuizPage> {
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: IconButton(
-              onPressed: () {
-                LeafDetails.currentVertex = 18;
-                LeafDetails.visitedVertexes.add(18);
-                NavigationSharedPreferences.upDateShatedPreferences();
-                context.router.push(const IrlNikosPageRoute());
-              },
-              icon: const Icon(Icons.south),
-            ),
-          ),
           Align(
             alignment: Alignment.center,
             child: AnimatedSwitcher(
@@ -274,12 +275,84 @@ class _QuizPageState extends State<QuizPage> {
                         visible: !QuizData.showRightAnswers,
                         child: IconButton(
                             onPressed: () {
-                              setState(() {
-                                QuizData.checkUerAnswers();
-                                QuizData.showRightAnswers =
-                                    !QuizData.showRightAnswers;
-                                questionIndex = 0;
-                              });
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Scaffold(
+                                      backgroundColor: Colors.transparent,
+                                      body: Center(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: AppColors.blueDeep,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          width: 500,
+                                          padding: EdgeInsets.all(10),
+                                          child: Wrap(
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.center,
+                                            children: [
+                                              const Text(
+                                                'Clear the answers and start over?',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              const Text(
+                                                'The answers will be permanently deleted and cannot be recovered. Are you sure?',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              const SizedBox(
+                                                height: 60,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              primary: AppColors
+                                                                  .red),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          QuizData
+                                                              .checkUerAnswers();
+                                                          QuizData.showRightAnswers =
+                                                              !QuizData
+                                                                  .showRightAnswers;
+                                                          questionIndex = 0;
+                                                        });
+                                                      },
+                                                      child: const Text(
+                                                          'Yes,clear')),
+                                                  ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              side:
+                                                                  const BorderSide(
+                                                                width: 1,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              primary: AppColors
+                                                                  .transpatent),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: const Text(
+                                                          'No, keep'))
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
                             },
                             icon: Icon(Icons.done)),
                       ),
@@ -300,6 +373,18 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 )
               ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: IconButton(
+              onPressed: () {
+                LeafDetails.currentVertex = 18;
+                LeafDetails.visitedVertexes.add(18);
+                NavigationSharedPreferences.upDateShatedPreferences();
+                context.router.push(const IrlNikosPageRoute());
+              },
+              icon: const Icon(Icons.south),
             ),
           ),
         ],

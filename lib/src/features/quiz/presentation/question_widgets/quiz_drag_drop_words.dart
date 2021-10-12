@@ -33,6 +33,8 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   }
 
   late List<dynamic> correctAnswers;
+  late List<dynamic> usersAnswers;
+  late List<dynamic> listQuestionBody;
 
   void removeAll(Answers toRemove) {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
@@ -71,69 +73,70 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   void didChangeDependencies() {
     if (widget.questionIndex == 3) {
       correctAnswers = QuizData.correctAnswersForQ3;
+      usersAnswers = QuizData.usersAnswersForQ3;
+      listQuestionBody = QuizData.listQuestionBody3;
     } else {
       correctAnswers = QuizData.correctAnswersForQ7;
+      usersAnswers = QuizData.usersAnswersForQ7;
+      listQuestionBody = QuizData.listQuestionBody7;
     }
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: QuizData.showRightAnswers,
-      child: LayoutBuilder(builder: (context, constraints) {
-        return Container(
-          height: constraints.maxHeight,
-          margin: EdgeInsets.symmetric(
-            horizontal: constraints.maxWidth * 0.05,
-            vertical: 50,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: constraints.maxHeight * 0.01),
-                  child: Text(
-                    'QUESTION ${widget.questionIndex}',
-                    style: Theme.of(context).textTheme.button,
-                  ),
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        height: constraints.maxHeight,
+        margin: EdgeInsets.symmetric(
+          horizontal: constraints.maxWidth * 0.05,
+          vertical: 50,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: constraints.maxHeight * 0.01),
+                child: Text(
+                  'QUESTION ${widget.questionIndex}',
+                  style: Theme.of(context).textTheme.button,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          widget.question,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              ?.copyWith(
-                                  fontSize:
-                                      TextFontSize.getHeight(45, context)),
-                        ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Text(
+                        widget.question,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(45, context)),
                       ),
-                      Flexible(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 3, horizontal: 5),
-                          decoration: BoxDecoration(
-                              color: AppColors.grey,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: widget.questionIndex == 3
-                              ? Text(
-                                  "${QuizData.rightAnswersForQ3} / ${widget.score}")
-                              : Text(
-                                  "${QuizData.rightAnswersForQ7} / ${widget.score}"),
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 3, horizontal: 5),
+                        decoration: BoxDecoration(
+                            color: AppColors.grey,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: widget.questionIndex == 3
+                            ? Text(
+                                "${QuizData.rightAnswersForQ3} / ${widget.score}")
+                            : Text(
+                                "${QuizData.rightAnswersForQ7} / ${widget.score}"),
+                      ),
+                    )
+                  ],
                 ),
-                Container(
+              ),
+              AbsorbPointer(
+                absorbing: QuizData.showRightAnswers,
+                child: Container(
                   margin: const EdgeInsets.only(top: 50),
                   child: Column(
                     children: <Widget>[
@@ -151,6 +154,11 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                       context: context,
                                       answers: [answer],
                                       onAccept: (data) => setState(() {
+                                        // if (widget.answers.contains(
+                                        //     Answers(value: 0, text: ''))) {
+                                        print("List ${widget.answers}");
+                                        //   }
+                                        print(data.text);
                                         removeAll(data);
                                         widget.answers.add(data);
                                       }),
@@ -162,135 +170,113 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                       const SizedBox(
                         height: 60,
                       ),
-                      if (widget.questionIndex == 3)
-                        Wrap(
-                          direction: Axis.horizontal,
-                          crossAxisAlignment: WrapCrossAlignment.start,
-                          children: QuizData.showRightAnswers
-                              ? [
-                                  ...QuizData.usersAnswersForQ3.map(
-                                    (element) {
-                                      if (element is DragWordsWidget) {
-                                        return buildTarget(
+                      Wrap(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        children: QuizData.showRightAnswers
+                            ? [
+                                ...usersAnswers.map(
+                                  (element) {
+                                    if (element is DragWordsWidget) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8.0),
+                                        child: buildTarget(
                                           context: context,
                                           answers: element.answers,
                                           onAccept: (data) => setState(() {
                                             removeAll(data);
+                                            // print(data.text);
                                             element.answers.add(data);
                                           }),
                                           isCorrect: element.isRight,
-                                        );
-                                      } else {
-                                        return TextQuestion(
-                                            text: element as String);
-                                      }
-                                    },
-                                  )
-                                ]
-                              : [
-                                  ...QuizData.listQuestionBody3.map((element) {
-                                    if (element is DragWordsWidget) {
-                                      return buildTarget(
-                                        context: context,
-                                        answers: element.answers,
-                                        onAccept: (data) => setState(() {
-                                          removeAll(data);
-                                          element.answers.add(data);
-                                          print(element.answers.first);
-                                        }),
+                                        ),
                                       );
                                     } else {
                                       return TextQuestion(
                                           text: element as String);
                                     }
-                                  })
-                                ],
-                        ),
-                      if (widget.questionIndex == 7)
-                        Wrap(
-                          direction: Axis.horizontal,
-                          crossAxisAlignment: WrapCrossAlignment.start,
-                          children: QuizData.showRightAnswers
-                              ? [
-                                  ...QuizData.usersAnswersForQ7.map(
-                                    (element) {
-                                      if (element is DragWordsWidget) {
-                                        return buildTarget(
-                                          context: context,
-                                          answers: element.answers,
-                                          onAccept: (data) => setState(() {
-                                            removeAll(data);
-                                            element.answers.add(data);
-                                          }),
-                                          isCorrect: element.isRight,
-                                        );
-                                      } else {
-                                        return TextQuestion(
-                                            text: element as String);
-                                      }
-                                    },
-                                  )
-                                ]
-                              : [
-                                  ...QuizData.listQuestionBody7.map((element) {
-                                    if (element is DragWordsWidget) {
-                                      return buildTarget(
+                                  },
+                                )
+                              ]
+                            : [
+                                ...listQuestionBody.map((element) {
+                                  if (element is DragWordsWidget) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child: buildTarget(
                                         context: context,
                                         answers: element.answers,
                                         onAccept: (data) => setState(() {
                                           removeAll(data);
-                                          element.answers.add(data);
+                                          if (element.answers.isEmpty) {
+                                            element.answers.add(data);
+                                          } else {
+                                            widget.answers
+                                                .add(element.answers.last);
+                                            element.answers.removeLast();
+                                            element.answers.add(data);
+                                          }
+                                          if (widget.answers.isEmpty) {
+                                            // print(widget.answers);
+                                            widget.answers.add(
+                                                Answers(value: 0, text: ''));
+                                          }
                                         }),
-                                      );
-                                    } else {
-                                      return TextQuestion(
-                                          text: element as String);
-                                    }
-                                  })
-                                ],
-                        )
+                                      ),
+                                    );
+                                  } else {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child:
+                                          TextQuestion(text: element as String),
+                                    );
+                                  }
+                                })
+                              ],
+                      ),
                     ],
                   ),
                 ),
-                Visibility(
-                  visible: QuizData.showRightAnswers,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 100),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.black100, width: 1),
-                    ),
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      children: [
-                        ...correctAnswers.map((element) {
-                          if (element is List<String>) {
-                            return Text(
-                              element.first,
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize:
-                                      TextFontSize.getHeight(35, context)),
-                            );
-                          } else {
-                            return Text(
-                              element as String,
-                              style: TextStyle(
-                                  fontSize:
-                                      TextFontSize.getHeight(35, context)),
-                            );
-                          }
-                        })
-                      ],
-                    ),
+              ),
+              Visibility(
+                visible: QuizData.showRightAnswers,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 100),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.black100, width: 1),
                   ),
-                )
-              ],
-            ),
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children: [
+                      ...correctAnswers.map((element) {
+                        if (element is List<String>) {
+                          return Text(
+                            element.first,
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: TextFontSize.getHeight(35, context)),
+                          );
+                        } else {
+                          return Text(
+                            element as String,
+                            style: TextStyle(
+                                fontSize: TextFontSize.getHeight(35, context)),
+                          );
+                        }
+                      })
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 }
 
