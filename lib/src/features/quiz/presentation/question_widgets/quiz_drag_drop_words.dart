@@ -90,7 +90,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
         height: constraints.maxHeight,
         margin: EdgeInsets.symmetric(
           horizontal: constraints.maxWidth * 0.05,
-          vertical: 50,
+          vertical: 100,
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -149,19 +149,21 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                             ...widget.answers
                                 .map(
                                   (answer) => Expanded(
-                                    child: buildTarget(
-                                      inTopContainer: true,
-                                      context: context,
-                                      answers: [answer],
-                                      onAccept: (data) => setState(() {
-                                        // if (widget.answers.contains(
-                                        //     Answers(value: 0, text: ''))) {
-                                        print("List ${widget.answers}");
-                                        //   }
-                                        print(data.text);
-                                        removeAll(data);
-                                        widget.answers.add(data);
-                                      }),
+                                    child: InkWell(
+                                      child: buildTarget(
+                                        inTopContainer: true,
+                                        context: context,
+                                        answers: [answer],
+                                        onAccept: (data) => setState(() {
+                                          // if (widget.answers.contains(
+                                          //     Answers(value: 0, text: ''))) {
+                                          print("List ${widget.answers}");
+                                          //   }
+                                          print(data.text);
+                                          removeAll(data);
+                                          widget.answers.add(data);
+                                        }),
+                                      ),
                                     ),
                                   ),
                                 )
@@ -180,7 +182,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                     if (element is DragWordsWidget) {
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
+                                            vertical: 0),
                                         child: buildTarget(
                                           context: context,
                                           answers: element.answers,
@@ -219,7 +221,6 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                             element.answers.add(data);
                                           }
                                           if (widget.answers.isEmpty) {
-                                            // print(widget.answers);
                                             widget.answers.add(
                                                 Answers(value: 0, text: ''));
                                           }
@@ -310,20 +311,24 @@ Widget buildTarget({
         color: inTopContainer ? null : AppColors.white,
       ),
       width: inTopContainer ? null : 100,
-      height: 30,
-      child: DragTarget<Answers>(
-        builder: (context, candidateData, rejectedData) => Stack(
-          children: answers
-              .map((answer) => DraggableWidget(answers: answer))
-              .toList(),
+      height: 35,
+      alignment: Alignment.center,
+      child: InkWell(
+        onTap: () {},
+        child: DragTarget<Answers>(
+          builder: (context, candidateData, rejectedData) => Stack(
+            children: answers
+                .map((answer) => DraggableWidget(answers: answer))
+                .toList(),
+          ),
+          onWillAccept: (data) => true,
+          onAccept: (data) {
+            //    print(data.text);
+            onAccept(data);
+          },
+          onLeave: (data) {
+            //  print(data);
+          },
         ),
-        onWillAccept: (data) => true,
-        onAccept: (data) {
-          //    print(data.text);
-          onAccept(data);
-        },
-        onLeave: (data) {
-          //  print(data);
-        },
       ),
     );

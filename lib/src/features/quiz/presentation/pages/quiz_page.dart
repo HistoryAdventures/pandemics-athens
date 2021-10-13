@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/pagination_dialog.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/show_dialog.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/last_page.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_check_box.dart';
@@ -143,7 +144,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _body() {
-    if (QuizData.questionIndex == questionsWidgets.length - 1) {
+    if (QuizData.questionIndex == questionsWidgets.length) {
       setState(() {
         nextButtonisAvailibaleToPress = false;
       });
@@ -176,7 +177,7 @@ class _QuizPageState extends State<QuizPage> {
                 );
               },
               duration: Times.fast,
-              child: QuizData.questionIndex == 9
+              child: QuizData.questionIndex == 10
                   ? QuizLastPage(
                       onPressed: QuizData.showRightAnswers
                           ? () {
@@ -295,74 +296,139 @@ class _QuizPageState extends State<QuizPage> {
                     scaffoldkey.currentState!.openEndDrawer();
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(color: AppColors.grey, width: 1))),
+                  child: Stack(
                     children: [
-                      Visibility(
-                        visible: !QuizData.showRightAnswers,
-                        child: IconButton(
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return ShowDialogWidget(
-                                      accept: 'Yes',
-                                      cancel: 'No',
-                                      onTapAccept: () {
-                                        setState(() {
-                                          QuizData.checkUerAnswers();
-                                          QuizData.showRightAnswers =
-                                              !QuizData.showRightAnswers;
-                                          QuizData.questionIndex = 0;
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                      onTapCancel: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      subTitle:
-                                          'Are you done and do you want to show the answers?',
-                                      title: 'Show Answers',
-                                    );
-                                  });
-                            },
-                            icon: Icon(Icons.done)),
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Pandemic Assesment",
+                          style: TextStyle(
+                              color: AppColors.blueDeep, fontSize: 25),
+                        ),
                       ),
-                      Visibility(
-                        visible: QuizData.showRightAnswers,
-                        child: IconButton(
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return ShowDialogWidget(
-                                      accept: 'Yes, clear',
-                                      cancel: 'No, keep',
-                                      onTapAccept: () {
-                                        setState(() {
-                                          setState(() {
-                                            QuizData.clearAnswers();
-                                            QuizData.showRightAnswers =
-                                                !QuizData.showRightAnswers;
-                                            QuizData.questionIndex = 0;
+                      Padding(
+                        padding: const EdgeInsets.only(right: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Visibility(
+                                visible: !QuizData.showRightAnswers,
+                                child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return ShowDialogWidget(
+                                              accept: 'Yes',
+                                              cancel: 'No',
+                                              onTapAccept: () {
+                                                setState(() {
+                                                  QuizData.checkUerAnswers();
+                                                  QuizData.showRightAnswers =
+                                                      !QuizData
+                                                          .showRightAnswers;
+                                                  QuizData.questionIndex = 0;
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                              onTapCancel: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              subTitle:
+                                                  'Are you done and do you want to show the answers?',
+                                              title: 'Show Answers',
+                                            );
                                           });
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                      onTapCancel: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      subTitle:
-                                          'The answers will be permanently deleted and cannot be recovered. Are you sure?',
-                                      title:
-                                          'Clear the answers and start over?',
-                                    );
-                                  });
-                            },
-                            icon: Icon(Icons.delete)),
-                      )
+                                    },
+                                    icon: Icon(Icons.done)),
+                              ),
+                            ),
+                            Visibility(
+                              visible: QuizData.showRightAnswers,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return ShowDialogWidget(
+                                              accept: 'Yes, clear',
+                                              cancel: 'No, keep',
+                                              onTapAccept: () {
+                                                setState(() {
+                                                  setState(() {
+                                                    QuizData.clearAnswers();
+                                                    QuizData.showRightAnswers =
+                                                        !QuizData
+                                                            .showRightAnswers;
+                                                    QuizData.questionIndex = 0;
+                                                  });
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                              onTapCancel: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              subTitle:
+                                                  'The answers will be permanently deleted and cannot be recovered. Are you sure?',
+                                              title:
+                                                  'Clear the answers and start over?',
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(Icons.delete)),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return ShowPadinationWidget(
+                                        onTap: (e) {
+                                          setState(() {
+                                            QuizData.questionIndex = e - 1;
+                                          });
+                                          Navigator.of(context).pop();
+                                        },
+                                      );
+                                    });
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border:
+                                        Border.all(color: AppColors.blueDeep)),
+                                child: Stack(
+                                  children: [
+                                    Transform.rotate(
+                                      angle: QuizData.questionIndex.toDouble() /
+                                          1.5,
+                                      child: const CircularProgressIndicator(
+                                        value: 0.1,
+                                      ),
+                                    ),
+                                    Align(
+                                      child: Text(QuizData.questionIndex == 10
+                                          ? "i"
+                                          : "${QuizData.questionIndex + 1}"),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -378,7 +444,7 @@ class _QuizPageState extends State<QuizPage> {
                 NavigationSharedPreferences.upDateShatedPreferences();
                 context.router.push(const IrlNikosPageRoute());
               },
-              icon: const Icon(Icons.south),
+              icon: const Icon(Icons.arrow_downward),
             ),
           ),
         ],

@@ -44,7 +44,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
         return Container(
           margin: EdgeInsets.symmetric(
             horizontal: constraints.maxWidth * 0.05,
-            vertical: 50,
+            vertical: 100,
           ),
           child: Stack(
             children: [

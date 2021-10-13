@@ -4,6 +4,7 @@ import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
 import 'package:universal_html/html.dart';
 
@@ -144,216 +145,253 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
       return MouseRegion(
         onHover: (e) {
           setState(() {
-            mousePosition = e.position;
+            final position = Offset(e.position.dx, e.position.dy - 25);
+            mousePosition = position;
           });
         },
-        child: SingleChildScrollView(
-          child: Container(
-            height: constraints.maxHeight,
-            child: Stack(
-              children: [
-                ...widget.userAnswer
+        child: Container(
+          margin: const EdgeInsets.only(top: 30),
+          height: constraints.maxHeight,
+          child: Stack(
+            children: [
+              ...widget.userAnswer
+                  .map((customPaint) => customPaint.customPaint),
+              if (QuizData.showRightAnswers)
+                ...widget.userAnswerWithCheck
                     .map((customPaint) => customPaint.customPaint),
-                if (QuizData.showRightAnswers)
-                  ...widget.userAnswerWithCheck
-                      .map((customPaint) => customPaint.customPaint),
-                CustomPaint(
-                  painter: DrowLine(
-                    strat: drowingLineStartOffset,
-                    end: drowingLineEndOffset,
-                  ),
+              CustomPaint(
+                painter: DrowLine(
+                  strat: drowingLineStartOffset,
+                  end: drowingLineEndOffset,
                 ),
-                AbsorbPointer(
-                  absorbing: QuizData.showRightAnswers,
-                  child: Container(
-                    margin: const EdgeInsets.all(80),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: constraints.maxHeight * 0.01),
-                          child: Text(
-                            'QUESTION ${widget.questionIndex}',
-                            style: Theme.of(context).textTheme.button,
-                          ),
+              ),
+              AbsorbPointer(
+                absorbing: QuizData.showRightAnswers,
+                child: Container(
+                  margin: const EdgeInsets.all(80),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: constraints.maxHeight * 0.01),
+                        child: Text(
+                          'QUESTION ${widget.questionIndex}',
+                          style: Theme.of(context).textTheme.button,
                         ),
-                        Padding(
-                            padding: const EdgeInsets.only(right: 50),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                      flex: 5,
-                                      child: Text(widget.question,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2
-                                              ?.copyWith(
-                                                fontSize:
-                                                    TextFontSize.getHeight(
-                                                        45, context),
-                                              ))),
-                                  Flexible(
-                                      child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 3, horizontal: 5),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.grey,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: score(),
-                                  ))
-                                ])),
-                        Expanded(
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(right: 50),
                           child: Row(
-                            children: <Widget>[
-                              Flexible(
-                                child: Column(children: [
-                                  ...widget.answers
-                                      .map(
-                                        (answer) => Expanded(
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                  flex: 3,
-                                                  child: Text(answer.text)),
-                                              Flexible(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    bottom: 8,
-                                                  ),
-                                                  child: buildTarget(
-                                                    onDragCompleted: () {
-                                                      setState(() {
-                                                        drowingLineEndOffset =
-                                                            Offset.zero;
-                                                        drowingLineStartOffset =
-                                                            Offset.zero;
-                                                      });
-                                                      addUserAnswers(
-                                                          answer.value,
-                                                          targetValue);
-                                                      addUserAnswersWithCheck(
-                                                          answer.value,
-                                                          targetValue);
-                                                    },
-                                                    targetIsImage: false,
-                                                    getStartLineOffset:
-                                                        (mousePosition) {
-                                                      drowingLineStartOffset =
-                                                          mousePosition;
-
-                                                      lineOffsetStart =
-                                                          mousePosition;
-                                                    },
-                                                    getEndLineOffset:
-                                                        (mousePosition) {
-                                                      setState(() {
-                                                        lineOffsetEnd =
-                                                            mousePosition;
-
-                                                        drowingLineEndOffset =
-                                                            mousePosition;
-                                                      });
-                                                    },
-                                                    onWillAccept: false,
-                                                    onMove: (data) {
-                                                      setState(() {
-                                                        lineOffsetEnd =
-                                                            data.offset;
-
-                                                        drowingLineEndOffset =
-                                                            data.offset;
-                                                      });
-                                                    },
-                                                    context: context,
-                                                    answers: [answer],
-                                                    onAccept: (data) {
-                                                      print(data.value);
-                                                    },
-                                                    onDragEnd: () {
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    flex: 5,
+                                    child: Text(widget.question,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2
+                                            ?.copyWith(
+                                              fontSize: TextFontSize.getHeight(
+                                                  45, context),
+                                            ))),
+                                Flexible(
+                                    child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 3, horizontal: 5),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.grey,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: score(),
+                                ))
+                              ])),
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            Flexible(
+                              child: Column(children: [
+                                ...widget.answers
+                                    .map(
+                                      (answer) => Expanded(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                                flex: 3,
+                                                child: Text(answer.text)),
+                                            Flexible(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  bottom: 8,
+                                                ),
+                                                child: buildTarget(
+                                                  onDragCompleted: () {
+                                                    print('onDragCompleted');
+                                                    setState(() {
                                                       drowingLineEndOffset =
                                                           Offset.zero;
                                                       drowingLineStartOffset =
                                                           Offset.zero;
-                                                      // print(
-                                                      //     drowingLineEndOffset);
-                                                      // print(
-                                                      //     drowingLineStartOffset);
-                                                    },
-                                                    mouseOffset: mousePosition,
-                                                  ),
+                                                    });
+                                                    addUserAnswers(answer.value,
+                                                        targetValue);
+                                                    addUserAnswersWithCheck(
+                                                        answer.value,
+                                                        targetValue);
+                                                  },
+                                                  targetIsImage: false,
+                                                  getStartLineOffset:
+                                                      (mousePosition) {
+                                                    drowingLineStartOffset =
+                                                        mousePosition;
+
+                                                    lineOffsetStart =
+                                                        mousePosition;
+                                                  },
+                                                  getEndLineOffset:
+                                                      (mousePosition) {
+                                                    setState(() {
+                                                      lineOffsetEnd =
+                                                          mousePosition;
+
+                                                      drowingLineEndOffset =
+                                                          mousePosition;
+                                                    });
+                                                  },
+                                                  onWillAccept: false,
+                                                  onMove: (data) {
+                                                    setState(() {
+                                                      lineOffsetEnd =
+                                                          data.offset;
+
+                                                      drowingLineEndOffset =
+                                                          data.offset;
+                                                    });
+                                                  },
+                                                  context: context,
+                                                  answers: [answer],
+                                                  onAccept: (data) {
+                                                    print('onAccept');
+                                                    print(data.value);
+                                                  },
+                                                  onDragEnd: () {
+                                                    drowingLineEndOffset =
+                                                        Offset.zero;
+                                                    drowingLineStartOffset =
+                                                        Offset.zero;
+                                                    // print(
+                                                    //     drowingLineEndOffset);
+                                                    // print(
+                                                    //     drowingLineStartOffset);
+                                                  },
+                                                  mouseOffset: mousePosition,
                                                 ),
                                               ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                              ]),
+                            ),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  ...widget.variants
+                                      .map(
+                                        (variant) => Flexible(
+                                          child: Row(
+                                            children: [
+                                              Flexible(
+                                                child: buildTarget(
+                                                  targetIsImage:
+                                                      widget.quizWithImage,
+                                                  onWillAccept: true,
+                                                  onMove: (data) {
+                                                    setState(() {
+                                                      // lineOffsetEnd = data.offset;
+                                                      //  print(data.offset);
+                                                    });
+                                                  },
+                                                  isDraging: false,
+                                                  correctAnswers: [
+                                                    variant.correctAnswers!
+                                                  ],
+                                                  context: context,
+                                                  answers: [variant],
+                                                  onAccept: (data) {
+                                                    if (variant
+                                                            .correctAnswers! ==
+                                                        data.correctAnswers) {
+                                                      QuizData.valueForDrowColoredLineFor =
+                                                          true;
+                                                      targetValue =
+                                                          variant.value;
+                                                      print(
+                                                          'It is write :::TargetValue $targetValue');
+                                                    } else {
+                                                      QuizData.valueForDrowColoredLineFor =
+                                                          false;
+                                                      targetValue =
+                                                          variant.value;
+
+                                                      print(
+                                                          'It is  wrong :::TargetValue $targetValue');
+                                                    }
+                                                  },
+                                                  mouseOffset: mousePosition,
+                                                ),
+                                              ),
+                                              if (widget.quizWithImage)
+                                                Flexible(
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return DialoigMapImage(
+                                                              image:
+                                                                  variant.text,
+                                                            );
+                                                          });
+                                                    },
+                                                    child: Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                10, 0, 0, 8),
+                                                        width: 200,
+                                                        child: Image.asset(
+                                                          variant.text,
+                                                          fit: BoxFit.cover,
+                                                        )),
+                                                  ),
+                                                )
+                                              else
+                                                Flexible(
+                                                    child: Text(
+                                                        "  ${variant.text}")),
                                             ],
                                           ),
                                         ),
                                       )
                                       .toList(),
-                                ]),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    ...widget.variants
-                                        .map(
-                                          (variant) => Expanded(
-                                            child: buildTarget(
-                                              targetIsImage:
-                                                  widget.quizWithImage,
-                                              onWillAccept: true,
-                                              onMove: (data) {
-                                                setState(() {
-                                                  // lineOffsetEnd = data.offset;
-                                                  //  print(data.offset);
-                                                });
-                                              },
-                                              isDraging: false,
-                                              correctAnswers: [
-                                                variant.correctAnswers!
-                                              ],
-                                              context: context,
-                                              answers: [variant],
-                                              onAccept: (data) {
-                                                if (variant.correctAnswers! ==
-                                                    data.correctAnswers) {
-                                                  QuizData.valueForDrowColoredLineFor =
-                                                      true;
-                                                  targetValue = variant.value;
-                                                  print(
-                                                      'It is write :::TargetValue $targetValue');
-                                                } else {
-                                                  QuizData.valueForDrowColoredLineFor =
-                                                      false;
-                                                  targetValue = variant.value;
-
-                                                  print(
-                                                      'It is  wrong :::TargetValue $targetValue');
-                                                }
-                                              },
-                                              mouseOffset: mousePosition,
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
@@ -400,47 +438,22 @@ Widget buildTarget(
                       },
                     )
                   : Container(
-                      padding: const EdgeInsets.only(bottom: 8),
                       height: double.infinity,
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: Container(
-                              height: 35,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: Colors.blue, width: 3),
-                                color: Colors.white,
-                              ),
-                              child: Center(
-                                child: Text('${answer.value}'),
-                              ),
-                            ),
-                          ),
-                          const Flexible(
-                            child: SizedBox(
-                              width: 30,
-                            ),
-                          ),
-                          if (targetIsImage)
-                            Flexible(
-                              child: SizedBox(
-                                  width: 200,
-                                  child: Image.asset(
-                                    answer.text,
-                                    fit: BoxFit.cover,
-                                  )),
-                            )
-                          else
-                            Flexible(child: Text(answer.text))
-                        ],
+                      child: Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.blue, width: 3),
+                          color: Colors.white,
+                        ),
                       ),
                     ))
               .toList(),
         ),
-        onWillAccept: (data) => onWillAccept,
+        onWillAccept: (data) {
+          return onWillAccept;
+        },
         onAccept: (data) {
           // if (correctAnswers!.contains(data.correctAnswers)) {
           //   QuizData.valueForDrowColoredLineFor = true;

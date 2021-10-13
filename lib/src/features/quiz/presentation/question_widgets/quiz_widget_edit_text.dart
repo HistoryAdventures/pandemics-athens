@@ -43,7 +43,7 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
       return Container(
         margin: EdgeInsets.symmetric(
           horizontal: constraints.maxWidth * 0.05,
-          vertical: 50,
+          vertical: 100,
         ),
         child: SingleChildScrollView(
           child: Container(

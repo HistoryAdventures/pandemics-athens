@@ -43,7 +43,7 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         height: constraints.maxHeight,
-        margin: const EdgeInsets.all(80),
+        margin: const EdgeInsets.all(100),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

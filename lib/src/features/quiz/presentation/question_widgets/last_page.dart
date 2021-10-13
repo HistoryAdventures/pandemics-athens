@@ -17,7 +17,7 @@ class _QuizLastPageState extends State<QuizLastPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 120),
       child: Column(
         children: [
           Text(QuizData.showRightAnswers

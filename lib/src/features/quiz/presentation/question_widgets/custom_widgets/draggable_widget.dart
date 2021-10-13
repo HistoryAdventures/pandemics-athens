@@ -18,14 +18,8 @@ class DraggableWidget extends StatelessWidget {
         //childWhenDragging: Container(height: size),
       );
   Widget buildText() => Container(
-        width: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          color: Colors.transparent,
-        ),
         child: Text(
           answers.text,
-          textAlign: TextAlign.center,
         ),
       );
 }
