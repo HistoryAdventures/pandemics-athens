@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
@@ -349,8 +350,8 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                               ),
                                               if (widget.quizWithImage)
                                                 Flexible(
-                                                  child: InkWell(
-                                                    onTap: () {
+                                                  child: Clickable(
+                                                    onPressed: () {
                                                       showDialog(
                                                           context: context,
                                                           builder: (context) {

@@ -386,8 +386,8 @@ class _QuizPageState extends State<QuizPage> {
                                     icon: Icon(Icons.delete)),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
+                            Clickable(
+                              onPressed: () {
                                 showDialog(
                                     context: context,
                                     builder: (context) {
