@@ -51,13 +51,14 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
 
   int targetValue = 0;
 
-  addUserAnswersWithCheck(int answerValue, int targetValue) {
-    var newLine = DrowLineWidget(
+  void addUserAnswersWithCheck(int answerValue, int targetValue) {
+    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy - 10);
+    final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
           isRightLine: QuizData.valueForDrowColoredLineFor,
           strat: lineOffsetStart,
-          end: lineOffsetEnd,
+          end: lineOffsetEndUpdate,
         ),
       ),
       isRight: QuizData.valueForDrowColoredLineFor,
@@ -84,14 +85,15 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     }
   }
 
-  addUserAnswers(int answerValue, int targetValue) {
-    print(answerValue);
+  void addUserAnswers(int answerValue, int targetValue) {
+    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy - 10);
+
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
           isRightLine: null,
           strat: lineOffsetStart,
-          end: lineOffsetEnd,
+          end: lineOffsetEndUpdate,
         ),
       ),
       isRight: null,
