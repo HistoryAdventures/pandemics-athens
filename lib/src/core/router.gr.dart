@@ -286,10 +286,10 @@ class FlutterRouter extends _i1.RootStackRouter {
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
-    SoursePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    SourcePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i28.SoursePage();
+          return const _i28.SourcePage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
@@ -317,13 +317,13 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
-        _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageRoute.name, path: '/'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
@@ -351,7 +351,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(FurtherReadingPageRoute.name,
             path: '/further-reading-page'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
-        _i1.RouteConfig(SoursePageRoute.name, path: '/sourse-page'),
+        _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
         _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
             path: '/virus-location-second-page')
@@ -361,7 +361,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/',
+            path: '/leanding-page',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -415,7 +415,7 @@ class MapPageRoute extends _i1.PageRouteInfo {
 }
 
 class QuizPageRoute extends _i1.PageRouteInfo {
-  const QuizPageRoute() : super(name, path: '/quiz-page');
+  const QuizPageRoute() : super(name, path: '/');
 
   static const String name = 'QuizPageRoute';
 }
@@ -535,10 +535,10 @@ class CopyrightPageRoute extends _i1.PageRouteInfo {
   static const String name = 'CopyrightPageRoute';
 }
 
-class SoursePageRoute extends _i1.PageRouteInfo {
-  const SoursePageRoute() : super(name, path: '/sourse-page');
+class SourcePageRoute extends _i1.PageRouteInfo {
+  const SourcePageRoute() : super(name, path: '/source-page');
 
-  static const String name = 'SoursePageRoute';
+  static const String name = 'SourcePageRoute';
 }
 
 class NavigationPageRoute extends _i1.PageRouteInfo {

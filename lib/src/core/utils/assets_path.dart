@@ -333,8 +333,7 @@ class AssetsPath {
       'assets/paralax_new/crows/crows.json';
   static const String paralaxFightersRightLottie =
       'assets/paralax_new/fighters_right/fighters_right.json';
-  static const String paralaxSmokeLottie =
-      'assets/paralax_new/smoke/smoke.json';
+
   static const String paralaxFightersLeftLottie =
       'assets/paralax_new/fighters_left/fighters_left.json';
   static const String paralaxFightersLeft =
@@ -381,14 +380,10 @@ class AssetsPath {
   static const String virusLoc1 = 'assets/map/virus_loc_1.png';
   static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
-  static const String lottieAssetsTubeBottom =
-      'assets/paralax_new/tube2/images/tube2_bttm.png';
+  static const String lottieAssetsTube = 'assets/paralax_new/tube2.png';
 
   static const String lottieAssetsCrowd =
       'assets/paralax_new/crowd/images/crowd_bg.png';
-
-  static const String lottieAssetsTube =
-      'assets/paralax_new/hottub/images/hottub_bottom.png';
 
   static const List<String> contentImages = [
     AssetsPath.periclesImage,

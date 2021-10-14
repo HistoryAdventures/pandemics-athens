@@ -130,7 +130,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                 LeafDetails.visitedVertexes.add(21);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
-                                context.router.push(const SoursePageRoute());
+                                context.router.push(const SourcePageRoute());
                               }),
                         ),
                       ],

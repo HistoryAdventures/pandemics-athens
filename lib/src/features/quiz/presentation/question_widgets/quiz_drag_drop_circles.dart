@@ -52,7 +52,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   int targetValue = 0;
 
   void addUserAnswersWithCheck(int answerValue, int targetValue) {
-    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy - 10);
+    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy);
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
@@ -86,7 +86,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   }
 
   void addUserAnswers(int answerValue, int targetValue) {
-    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy - 10);
+    final lineOffsetEndUpdate = Offset(lineOffsetEnd.dx, lineOffsetEnd.dy);
 
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
@@ -148,88 +148,100 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
       return MouseRegion(
         onHover: (e) {
           setState(() {
-            final position = Offset(e.position.dx, e.position.dy - 25);
+            final position = Offset(e.position.dx, e.position.dy);
             mousePosition = position;
           });
         },
-        child: Container(
-          margin: const EdgeInsets.only(top: 30),
-          height: constraints.maxHeight,
-          child: Stack(
-            children: [
-              ...widget.userAnswer
-                  .map((customPaint) => customPaint.customPaint),
-              if (QuizData.showRightAnswers)
-                ...widget.userAnswerWithCheck
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            width: constraints.maxWidth,
+            height: 1000,
+            child: Stack(
+              children: [
+                ...widget.userAnswer
                     .map((customPaint) => customPaint.customPaint),
-              CustomPaint(
-                painter: DrowLine(
-                  strat: drowingLineStartOffset,
-                  end: drowingLineEndOffset,
+                if (QuizData.showRightAnswers)
+                  ...widget.userAnswerWithCheck
+                      .map((customPaint) => customPaint.customPaint),
+                CustomPaint(
+                  painter: DrowLine(
+                    strat: drowingLineStartOffset,
+                    end: drowingLineEndOffset,
+                  ),
                 ),
-              ),
-              AbsorbPointer(
-                absorbing: QuizData.showRightAnswers,
-                child: Container(
-                  margin: const EdgeInsets.all(80),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: constraints.maxHeight * 0.01),
-                        child: Text(
-                          'QUESTION ${widget.questionIndex}',
-                          style: Theme.of(context).textTheme.button,
+                AbsorbPointer(
+                  absorbing: QuizData.showRightAnswers,
+                  child: Container(
+                    height: 1000,
+                    margin:
+                        const EdgeInsets.only(top: 120, left: 20, right: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: constraints.maxHeight * 0.01),
+                          child: Text(
+                            'QUESTION ${widget.questionIndex}',
+                            style: Theme.of(context).textTheme.button,
+                          ),
                         ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(right: 50),
+                        Padding(
+                            padding: const EdgeInsets.only(right: 50),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 5,
+                                      child: Text(widget.question,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              ?.copyWith(
+                                                fontSize:
+                                                    TextFontSize.getHeight(
+                                                        45, context),
+                                              ))),
+                                  Flexible(
+                                      child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 3, horizontal: 5),
+                                    decoration: BoxDecoration(
+                                        color: AppColors.grey,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: score(),
+                                  ))
+                                ])),
+                        Container(
                           child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 5,
-                                    child: Text(widget.question,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2
-                                            ?.copyWith(
-                                              fontSize: TextFontSize.getHeight(
-                                                  45, context),
-                                            ))),
-                                Flexible(
-                                    child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 5),
-                                  decoration: BoxDecoration(
-                                      color: AppColors.grey,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: score(),
-                                ))
-                              ])),
-                      Expanded(
-                        child: Row(
-                          children: <Widget>[
-                            Flexible(
-                              child: Column(children: [
-                                ...widget.answers
-                                    .map(
-                                      (answer) => Expanded(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                                flex: 3,
-                                                child: Text(answer.text)),
-                                            Flexible(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 8,
-                                                ),
+                            children: <Widget>[
+                              Container(
+                                width: 700,
+                                child: Column(children: [
+                                  ...widget.answers
+                                      .map(
+                                        (answer) => Container(
+                                          width: 700,
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  width: 500,
+                                                  height: widget.quizWithImage
+                                                      ? 110
+                                                      : 50,
+                                                  child: Text(answer.text)),
+                                              Container(
+                                                alignment: Alignment.centerLeft,
+                                                height: 50,
+                                                width: 150,
                                                 child: buildTarget(
                                                   onDragCompleted: () {
                                                     print('onDragCompleted');
@@ -293,66 +305,70 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                                   mouseOffset: mousePosition,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                    .toList(),
-                              ]),
-                            ),
-                            Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  ...widget.variants
-                                      .map(
-                                        (variant) => Flexible(
-                                          child: Row(
-                                            children: [
-                                              Flexible(
-                                                child: buildTarget(
-                                                  targetIsImage:
-                                                      widget.quizWithImage,
-                                                  onWillAccept: true,
-                                                  onMove: (data) {
-                                                    setState(() {
-                                                      // lineOffsetEnd = data.offset;
-                                                      //  print(data.offset);
-                                                    });
-                                                  },
-                                                  isDraging: false,
-                                                  correctAnswers: [
-                                                    variant.correctAnswers!
-                                                  ],
-                                                  context: context,
-                                                  answers: [variant],
-                                                  onAccept: (data) {
-                                                    if (variant
-                                                            .correctAnswers! ==
-                                                        data.correctAnswers) {
-                                                      QuizData.valueForDrowColoredLineFor =
-                                                          true;
-                                                      targetValue =
-                                                          variant.value;
-                                                      print(
-                                                          'It is write :::TargetValue $targetValue');
-                                                    } else {
-                                                      QuizData.valueForDrowColoredLineFor =
-                                                          false;
-                                                      targetValue =
-                                                          variant.value;
+                                      )
+                                      .toList(),
+                                ]),
+                              ),
+                              Container(
+                                width: 600,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    ...widget.variants
+                                        .map(
+                                          (variant) => Container(
+                                            width: 700,
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  height: 50,
+                                                  width: 50,
+                                                  child: buildTarget(
+                                                    targetIsImage:
+                                                        widget.quizWithImage,
+                                                    onWillAccept: true,
+                                                    onMove: (data) {
+                                                      setState(() {
+                                                        // lineOffsetEnd = data.offset;
+                                                        //  print(data.offset);
+                                                      });
+                                                    },
+                                                    isDraging: false,
+                                                    correctAnswers: [
+                                                      variant.correctAnswers!
+                                                    ],
+                                                    context: context,
+                                                    answers: [variant],
+                                                    onAccept: (data) {
+                                                      if (variant
+                                                              .correctAnswers! ==
+                                                          data.correctAnswers) {
+                                                        QuizData.valueForDrowColoredLineFor =
+                                                            true;
+                                                        targetValue =
+                                                            variant.value;
+                                                        print(
+                                                            'It is write :::TargetValue $targetValue');
+                                                      } else {
+                                                        QuizData.valueForDrowColoredLineFor =
+                                                            false;
+                                                        targetValue =
+                                                            variant.value;
 
-                                                      print(
-                                                          'It is  wrong :::TargetValue $targetValue');
-                                                    }
-                                                  },
-                                                  mouseOffset: mousePosition,
+                                                        print(
+                                                            'It is  wrong :::TargetValue $targetValue');
+                                                      }
+                                                    },
+                                                    mouseOffset: mousePosition,
+                                                  ),
                                                 ),
-                                              ),
-                                              if (widget.quizWithImage)
-                                                Flexible(
-                                                  child: Clickable(
+                                                if (widget.quizWithImage)
+                                                  Clickable(
                                                     onPressed: () {
                                                       showDialog(
                                                           context: context,
@@ -366,35 +382,37 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                                     child: Container(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .fromLTRB(
-                                                                10, 0, 0, 8),
+                                                                    .only(
+                                                                bottom: 8),
                                                         width: 200,
+                                                        height: 110,
                                                         child: Image.asset(
                                                           variant.text,
                                                           fit: BoxFit.cover,
                                                         )),
-                                                  ),
-                                                )
-                                              else
-                                                Flexible(
-                                                    child: Text(
-                                                        "  ${variant.text}")),
-                                            ],
+                                                  )
+                                                else
+                                                  Container(
+                                                      height: 50,
+                                                      child: Text(
+                                                          "  ${variant.text}")),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      )
-                                      .toList(),
-                                ],
-                              ),
-                            )
-                          ],
+                                        )
+                                        .toList(),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

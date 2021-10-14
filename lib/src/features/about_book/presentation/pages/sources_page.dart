@@ -15,14 +15,14 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../widgets/author_widget.dart';
 
-class SoursePage extends StatefulWidget {
-  const SoursePage({Key? key}) : super(key: key);
+class SourcePage extends StatefulWidget {
+  const SourcePage({Key? key}) : super(key: key);
 
   @override
-  _SoursePageState createState() => _SoursePageState();
+  _SourcePageState createState() => _SourcePageState();
 }
 
-class _SoursePageState extends State<SoursePage> {
+class _SourcePageState extends State<SourcePage> {
   late AppLocalizations locale;
 
   final backgroundplayer = AudioPlayer();

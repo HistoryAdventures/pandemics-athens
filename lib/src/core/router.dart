@@ -32,7 +32,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
-      initial: true,
       page: LeandingPage,
     ),
     CustomRoute(
@@ -53,6 +52,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: QuizPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -132,7 +132,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
-        page: SoursePage,
+        page: SourcePage,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
