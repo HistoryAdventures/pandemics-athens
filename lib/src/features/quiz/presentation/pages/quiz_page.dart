@@ -62,6 +62,7 @@ class _QuizPageState extends State<QuizPage> {
         score: 0,
         userAnswer: QuizData.userAnswerForQ1,
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ1,
+        listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion1,
       ),
       const QuizEditTextWidget(
         questionIndex: 2,
@@ -81,6 +82,7 @@ class _QuizPageState extends State<QuizPage> {
         score: 8,
         userAnswer: QuizData.userAnswerForQ4,
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
+        listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
       ),
       QuizRadioBottonWidget(
         quizWithImage: false,
@@ -108,15 +110,15 @@ class _QuizPageState extends State<QuizPage> {
         userAnswers: QuizData.usersAnswersForQ8,
       ),
       QuizDragDropCirclesWidget(
-        variants: QuizData.variantsDD9,
-        answers: QuizData.answersDD9,
-        question:
-            "The 5th century BC was the 'Golden Age' of Athens, when culture flourished in the ancient polis and the city was dominant in the Greek world. Match the individual to their achievement below.",
-        questionIndex: 9,
-        score: 0,
-        userAnswer: QuizData.userAnswerForQ9,
-        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ9,
-      ),
+          variants: QuizData.variantsDD9,
+          answers: QuizData.answersDD9,
+          question:
+              "The 5th century BC was the 'Golden Age' of Athens, when culture flourished in the ancient polis and the city was dominant in the Greek world. Match the individual to their achievement below.",
+          questionIndex: 9,
+          score: 0,
+          userAnswer: QuizData.userAnswerForQ9,
+          userAnswerWithCheck: QuizData.userAnswerWithCheckForQ9,
+          listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion9),
       // QuizCheckBox(
       //   QuizData.questionIndex: 10,
       //   withImages: true,
@@ -261,183 +263,202 @@ class _QuizPageState extends State<QuizPage> {
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                SoundAndMenuWidget(
-                  widget: IconButton(
-                    onPressed: () {
-                      LeafDetails.currentVertex = 15;
-                      NavigationSharedPreferences.upDateShatedPreferences();
+            child: Container(
+              // color: AppColors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SoundAndMenuWidget(
+                    widget: IconButton(
+                      onPressed: () {
+                        LeafDetails.currentVertex = 15;
+                        NavigationSharedPreferences.upDateShatedPreferences();
 
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    },
-                    icon: const Icon(Icons.arrow_upward),
-                  ),
-                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                  onTapVolume: isSoundOn
-                      ? () {
-                          setState(() {
-                            isSoundOn = !isSoundOn;
-                            backgroundplayer.pause();
-                          });
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
                         }
-                      : () {
-                          setState(() {
-                            isSoundOn = !isSoundOn;
-                            backgroundplayer.play();
-                          });
-                        },
-                  onTapMenu: () {
-                    scaffoldkey.currentState!.openEndDrawer();
-                  },
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(color: AppColors.grey, width: 1))),
-                  child: Stack(
-                    children: [
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Pandemic Assesment",
-                          style: TextStyle(
-                              color: AppColors.blueDeep, fontSize: 25),
+                      },
+                      icon: const Icon(Icons.arrow_upward),
+                    ),
+                    icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                    onTapVolume: isSoundOn
+                        ? () {
+                            setState(() {
+                              isSoundOn = !isSoundOn;
+                              backgroundplayer.pause();
+                            });
+                          }
+                        : () {
+                            setState(() {
+                              isSoundOn = !isSoundOn;
+                              backgroundplayer.play();
+                            });
+                          },
+                    onTapMenu: () {
+                      scaffoldkey.currentState!.openEndDrawer();
+                    },
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom:
+                                BorderSide(color: AppColors.grey, width: 1))),
+                    child: Stack(
+                      children: [
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Pandemic Assesment",
+                            style: TextStyle(
+                                color: AppColors.blueDeep, fontSize: 25),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Visibility(
-                                visible: !QuizData.showRightAnswers,
-                                child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return ShowDialogWidget(
-                                              accept: 'Yes',
-                                              cancel: 'No',
-                                              onTapAccept: () {
-                                                setState(() {
-                                                  QuizData.checkUerAnswers();
-                                                  QuizData.showRightAnswers =
-                                                      !QuizData
-                                                          .showRightAnswers;
-                                                  QuizData.questionIndex = 0;
-                                                });
-                                                Navigator.of(context).pop();
-                                              },
-                                              onTapCancel: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              subTitle:
-                                                  'Are you done and do you want to show the answers?',
-                                              title: 'Show Answers',
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(Icons.done)),
-                              ),
-                            ),
-                            Visibility(
-                              visible: QuizData.showRightAnswers,
-                              child: Align(
+                        Padding(
+                          padding: const EdgeInsets.only(right: 24),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Align(
                                 alignment: Alignment.centerRight,
-                                child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return ShowDialogWidget(
-                                              accept: 'Yes, clear',
-                                              cancel: 'No, keep',
-                                              onTapAccept: () {
-                                                setState(() {
+                                child: Visibility(
+                                  visible: !QuizData.showRightAnswers,
+                                  child: IconButton(
+                                      hoverColor: AppColors.transpatent,
+                                      splashColor: AppColors.transpatent,
+                                      focusColor: AppColors.transpatent,
+                                      highlightColor: AppColors.transpatent,
+                                      onPressed: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return ShowDialogWidget(
+                                                accept: 'Yes',
+                                                cancel: 'No',
+                                                onTapAccept: () {
                                                   setState(() {
-                                                    QuizData.clearAnswers();
+                                                    QuizData.checkUerAnswers();
                                                     QuizData.showRightAnswers =
                                                         !QuizData
                                                             .showRightAnswers;
                                                     QuizData.questionIndex = 0;
                                                   });
-                                                });
-                                                Navigator.of(context).pop();
-                                              },
-                                              onTapCancel: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              subTitle:
-                                                  'The answers will be permanently deleted and cannot be recovered. Are you sure?',
-                                              title:
-                                                  'Clear the answers and start over?',
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(Icons.delete)),
-                              ),
-                            ),
-                            Clickable(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return ShowPadinationWidget(
-                                        onTap: (e) {
-                                          setState(() {
-                                            QuizData.questionIndex = e - 1;
-                                          });
-                                          Navigator.of(context).pop();
-                                        },
-                                      );
-                                    });
-                              },
-                              child: Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border:
-                                        Border.all(color: AppColors.blueDeep)),
-                                child: Stack(
-                                  children: [
-                                    Transform.rotate(
-                                      angle: QuizData.questionIndex.toDouble() /
-                                          1.5,
-                                      child: const CircularProgressIndicator(
-                                        value: 0.1,
-                                      ),
-                                    ),
-                                    Align(
-                                      child: Text(QuizData.questionIndex == 10
-                                          ? "i"
-                                          : "${QuizData.questionIndex + 1}"),
-                                    )
-                                  ],
+                                                  Navigator.of(context).pop();
+                                                },
+                                                onTapCancel: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                subTitle:
+                                                    'Are you done and do you want to show the answers?',
+                                                title: 'Show Answers',
+                                              );
+                                            });
+                                      },
+                                      icon: Icon(Icons.done)),
                                 ),
                               ),
-                            ),
-                          ],
+                              Visibility(
+                                visible: QuizData.showRightAnswers,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: IconButton(
+                                      hoverColor: AppColors.transpatent,
+                                      splashColor: AppColors.transpatent,
+                                      focusColor: AppColors.transpatent,
+                                      highlightColor: AppColors.transpatent,
+                                      onPressed: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return ShowDialogWidget(
+                                                accept: 'Yes, clear',
+                                                cancel: 'No, keep',
+                                                onTapAccept: () {
+                                                  setState(() {
+                                                    setState(() {
+                                                      QuizData.clearAnswers();
+                                                      QuizData.showRightAnswers =
+                                                          !QuizData
+                                                              .showRightAnswers;
+                                                      QuizData.questionIndex =
+                                                          0;
+                                                    });
+                                                  });
+                                                  Navigator.of(context).pop();
+                                                },
+                                                onTapCancel: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                subTitle:
+                                                    'The answers will be permanently deleted and cannot be recovered. Are you sure?',
+                                                title:
+                                                    'Clear the answers and start over?',
+                                              );
+                                            });
+                                      },
+                                      icon: const Icon(Icons.delete)),
+                                ),
+                              ),
+                              Clickable(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return ShowPadinationWidget(
+                                          onTap: (e) {
+                                            setState(() {
+                                              QuizData.questionIndex = e - 1;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                        );
+                                      });
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: AppColors.blueDeep)),
+                                  child: Stack(
+                                    children: [
+                                      Transform.rotate(
+                                        angle:
+                                            QuizData.questionIndex.toDouble() /
+                                                1.5,
+                                        child: const CircularProgressIndicator(
+                                          value: 0.1,
+                                        ),
+                                      ),
+                                      Align(
+                                        child: Text(QuizData.questionIndex == 10
+                                            ? "i"
+                                            : "${QuizData.questionIndex + 1}"),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: IconButton(
+              hoverColor: AppColors.transpatent,
+              splashColor: AppColors.transpatent,
+              focusColor: AppColors.transpatent,
+              highlightColor: AppColors.transpatent,
               onPressed: () {
                 LeafDetails.currentVertex = 18;
                 LeafDetails.visitedVertexes.add(18);

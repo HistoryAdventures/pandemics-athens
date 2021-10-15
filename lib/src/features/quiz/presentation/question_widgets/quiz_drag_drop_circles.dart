@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 
@@ -16,6 +18,7 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
   final bool quizWithImage;
   final List<DrowLineWidget> userAnswer;
   final List<DrowLineWidget> userAnswerWithCheck;
+  final List<DrowLineWidget> listCorrectrAnswers;
 
   final List<Answers<int>> answers;
   final List<Answers<int>> variants;
@@ -26,6 +29,7 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
       required this.answers,
       required this.score,
       required this.userAnswer,
+      required this.listCorrectrAnswers,
       required this.userAnswerWithCheck,
       this.quizWithImage = false,
       required this.question,
@@ -49,6 +53,9 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   Offset drowingLineStartOffset = Offset.zero;
   Offset drowingLineEndOffset = Offset.zero;
 
+  final ScrollController _verticalController = ScrollController();
+  final ScrollController _horizontalController = ScrollController();
+
   int targetValue = 0;
 
   void addUserAnswersWithCheck(int answerValue, int targetValue) {
@@ -56,6 +63,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
+          color: AppColors.blueDeep,
           isRightLine: QuizData.valueForDrowColoredLineFor,
           strat: lineOffsetStart,
           end: lineOffsetEndUpdate,
@@ -91,6 +99,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
+          color: AppColors.blueDeep,
           isRightLine: null,
           strat: lineOffsetStart,
           end: lineOffsetEndUpdate,
@@ -121,12 +130,32 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    print(QuizData.rightAnswersForQ4);
-    print(QuizData.rightAnswersForQ1);
-    print(QuizData.rightAnswersForQ9);
+  void correctrAnswers() {
+    widget.answers.forEach((answers) {
+      widget.variants.forEach((variants) {
+        if (answers.correctAnswers == variants.correctAnswers) {
+          final RenderBox startRenderBox = answers.globalKey?.currentContext
+              ?.findRenderObject() as RenderBox;
+          final Offset startposition =
+              startRenderBox.localToGlobal(const Offset(20, 20));
+          final RenderBox endRenderBox = variants.globalKey?.currentContext
+              ?.findRenderObject() as RenderBox;
+          final Offset endposition =
+              endRenderBox.localToGlobal(const Offset(15, 15));
+          widget.listCorrectrAnswers.add(DrowLineWidget(
+              customPaint: CustomPaint(
+                painter: DrowLine(
+                  strat: startposition,
+                  end: endposition,
+                  color: AppColors.grey,
+                ),
+              ),
+              isRight: false,
+              value: 0,
+              targetValue: targetValue));
+        }
+      });
+    });
   }
 
   Widget score() {
@@ -144,274 +173,337 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (!QuizData.showRightAnswers) {
+      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+        correctrAnswers();
+      });
+    }
     return LayoutBuilder(builder: (context, constraints) {
       return MouseRegion(
         onHover: (e) {
           setState(() {
-            final position = Offset(e.position.dx, e.position.dy);
+            final position = Offset(
+                e.position.dx + _horizontalController.offset,
+                e.position.dy + _verticalController.offset);
             mousePosition = position;
           });
         },
         child: SingleChildScrollView(
+          controller: _verticalController,
           scrollDirection: Axis.vertical,
           child: Container(
-            width: constraints.maxWidth,
+            alignment: Alignment.centerLeft,
+            width: ui.window.physicalSize.width,
             height: 1000,
-            child: Stack(
-              children: [
-                ...widget.userAnswer
-                    .map((customPaint) => customPaint.customPaint),
-                if (QuizData.showRightAnswers)
-                  ...widget.userAnswerWithCheck
-                      .map((customPaint) => customPaint.customPaint),
-                CustomPaint(
-                  painter: DrowLine(
-                    strat: drowingLineStartOffset,
-                    end: drowingLineEndOffset,
-                  ),
-                ),
-                AbsorbPointer(
-                  absorbing: QuizData.showRightAnswers,
-                  child: Container(
-                    height: 1000,
-                    margin:
-                        const EdgeInsets.only(top: 120, left: 20, right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: constraints.maxHeight * 0.01),
-                          child: Text(
-                            'QUESTION ${widget.questionIndex}',
-                            style: Theme.of(context).textTheme.button,
-                          ),
-                        ),
-                        Padding(
-                            padding: const EdgeInsets.only(right: 50),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                      flex: 5,
-                                      child: Text(widget.question,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2
-                                              ?.copyWith(
-                                                fontSize:
-                                                    TextFontSize.getHeight(
-                                                        45, context),
-                                              ))),
-                                  Flexible(
-                                      child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 3, horizontal: 5),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.grey,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: score(),
-                                  ))
-                                ])),
-                        Container(
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 700,
-                                child: Column(children: [
-                                  ...widget.answers
-                                      .map(
-                                        (answer) => Container(
-                                          width: 700,
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  width: 500,
-                                                  height: widget.quizWithImage
-                                                      ? 110
-                                                      : 50,
-                                                  child: Text(answer.text)),
-                                              Container(
-                                                alignment: Alignment.centerLeft,
-                                                height: 50,
-                                                width: 150,
-                                                child: buildTarget(
-                                                  onDragCompleted: () {
-                                                    print('onDragCompleted');
-                                                    setState(() {
-                                                      drowingLineEndOffset =
-                                                          Offset.zero;
-                                                      drowingLineStartOffset =
-                                                          Offset.zero;
-                                                    });
-                                                    addUserAnswers(answer.value,
-                                                        targetValue);
-                                                    addUserAnswersWithCheck(
-                                                        answer.value,
-                                                        targetValue);
-                                                  },
-                                                  targetIsImage: false,
-                                                  getStartLineOffset:
-                                                      (mousePosition) {
-                                                    drowingLineStartOffset =
-                                                        mousePosition;
-
-                                                    lineOffsetStart =
-                                                        mousePosition;
-                                                  },
-                                                  getEndLineOffset:
-                                                      (mousePosition) {
-                                                    setState(() {
-                                                      lineOffsetEnd =
-                                                          mousePosition;
-
-                                                      drowingLineEndOffset =
-                                                          mousePosition;
-                                                    });
-                                                  },
-                                                  onWillAccept: false,
-                                                  onMove: (data) {
-                                                    setState(() {
-                                                      lineOffsetEnd =
-                                                          data.offset;
-
-                                                      drowingLineEndOffset =
-                                                          data.offset;
-                                                    });
-                                                  },
-                                                  context: context,
-                                                  answers: [answer],
-                                                  onAccept: (data) {
-                                                    print('onAccept');
-                                                    print(data.value);
-                                                  },
-                                                  onDragEnd: () {
-                                                    drowingLineEndOffset =
-                                                        Offset.zero;
-                                                    drowingLineStartOffset =
-                                                        Offset.zero;
-                                                    // print(
-                                                    //     drowingLineEndOffset);
-                                                    // print(
-                                                    //     drowingLineStartOffset);
-                                                  },
-                                                  mouseOffset: mousePosition,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                ]),
+            child: SingleChildScrollView(
+              controller: _horizontalController,
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                width: 1300,
+                height: 1000,
+                child: Stack(
+                  children: [
+                    ...widget.userAnswer
+                        .map((customPaint) => customPaint.customPaint),
+                    if (QuizData.showRightAnswers)
+                      ...widget.userAnswerWithCheck
+                          .map((customPaint) => customPaint.customPaint),
+                    if (QuizData.showRightAnswers)
+                      ...widget.listCorrectrAnswers
+                          .map((customPaint) => customPaint.customPaint),
+                    CustomPaint(
+                      painter: DrowLine(
+                        color: AppColors.blueDeep,
+                        strat: drowingLineStartOffset,
+                        end: drowingLineEndOffset,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: AbsorbPointer(
+                        absorbing: QuizData.showRightAnswers,
+                        child: Container(
+                          height: 1000,
+                          margin: const EdgeInsets.only(
+                              top: 120, left: 20, right: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: constraints.maxHeight * 0.01),
+                                child: Text(
+                                  'QUESTION ${widget.questionIndex}',
+                                  style: Theme.of(context).textTheme.button,
+                                ),
                               ),
-                              Container(
-                                width: 600,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    ...widget.variants
-                                        .map(
-                                          (variant) => Container(
-                                            width: 700,
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  height: 50,
-                                                  width: 50,
-                                                  child: buildTarget(
-                                                    targetIsImage:
-                                                        widget.quizWithImage,
-                                                    onWillAccept: true,
-                                                    onMove: (data) {
-                                                      setState(() {
-                                                        // lineOffsetEnd = data.offset;
-                                                        //  print(data.offset);
-                                                      });
-                                                    },
-                                                    isDraging: false,
-                                                    correctAnswers: [
-                                                      variant.correctAnswers!
-                                                    ],
-                                                    context: context,
-                                                    answers: [variant],
-                                                    onAccept: (data) {
-                                                      if (variant
-                                                              .correctAnswers! ==
-                                                          data.correctAnswers) {
-                                                        QuizData.valueForDrowColoredLineFor =
-                                                            true;
-                                                        targetValue =
-                                                            variant.value;
+                              Padding(
+                                  padding: const EdgeInsets.only(right: 50),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                            flex: 5,
+                                            child: Text(widget.question,
+                                                maxLines: 2,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2
+                                                    ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              45, context),
+                                                    ))),
+                                        Flexible(
+                                            child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 3, horizontal: 5),
+                                          decoration: BoxDecoration(
+                                              color: AppColors.grey,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: score(),
+                                        ))
+                                      ])),
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 700,
+                                    child: Column(children: [
+                                      ...widget.answers
+                                          .map(
+                                            (answer) => Container(
+                                              width: 700,
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      width: 500,
+                                                      height:
+                                                          widget.quizWithImage
+                                                              ? 110
+                                                              : 50,
+                                                      child: Text(answer.text)),
+                                                  Container(
+                                                    key: answer.globalKey,
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    height: 50,
+                                                    width: 150,
+                                                    child: buildTarget(
+                                                      onDragCompleted: () {
                                                         print(
-                                                            'It is write :::TargetValue $targetValue');
-                                                      } else {
-                                                        QuizData.valueForDrowColoredLineFor =
-                                                            false;
-                                                        targetValue =
-                                                            variant.value;
+                                                            'onDragCompleted');
+                                                        setState(() {
+                                                          drowingLineEndOffset =
+                                                              Offset.zero;
+                                                          drowingLineStartOffset =
+                                                              Offset.zero;
+                                                        });
+                                                        addUserAnswers(
+                                                            answer.value,
+                                                            targetValue);
+                                                        addUserAnswersWithCheck(
+                                                            answer.value,
+                                                            targetValue);
+                                                      },
+                                                      targetIsImage: false,
+                                                      getStartLineOffset:
+                                                          (mousePosition) {
+                                                        drowingLineStartOffset =
+                                                            mousePosition;
 
-                                                        print(
-                                                            'It is  wrong :::TargetValue $targetValue');
-                                                      }
-                                                    },
-                                                    mouseOffset: mousePosition,
+                                                        lineOffsetStart =
+                                                            mousePosition;
+                                                      },
+                                                      getEndLineOffset:
+                                                          (mousePosition) {
+                                                        setState(() {
+                                                          lineOffsetEnd = mousePosition +
+                                                              Offset(
+                                                                  _horizontalController
+                                                                      .offset,
+                                                                  _verticalController
+                                                                      .offset);
+
+                                                          drowingLineEndOffset =
+                                                              mousePosition +
+                                                                  Offset(
+                                                                      _horizontalController
+                                                                          .offset,
+                                                                      _verticalController
+                                                                          .offset);
+                                                        });
+                                                      },
+                                                      onWillAccept: false,
+                                                      onMove: (data) {
+                                                        setState(() {
+                                                          var withScroolOfset = data
+                                                                  .offset +
+                                                              Offset(
+                                                                  _horizontalController
+                                                                      .offset,
+                                                                  _verticalController
+                                                                      .offset);
+                                                          lineOffsetEnd =
+                                                              withScroolOfset;
+
+                                                          drowingLineEndOffset =
+                                                              withScroolOfset;
+                                                        });
+                                                      },
+                                                      context: context,
+                                                      answers: [answer],
+                                                      onAccept: (data) {
+                                                        print('onAccept');
+                                                        print(data.value);
+                                                      },
+                                                      onDragEnd: () {
+                                                        drowingLineEndOffset =
+                                                            Offset.zero;
+                                                        drowingLineStartOffset =
+                                                            Offset.zero;
+                                                        // print(
+                                                        //     drowingLineEndOffset);
+                                                        // print(
+                                                        //     drowingLineStartOffset);
+                                                      },
+                                                      mouseOffset:
+                                                          mousePosition,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ]),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      width: 400,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          ...widget.variants
+                                              .map(
+                                                (variant) => Container(
+                                                  width: 700,
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        key: variant.globalKey,
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        height: 50,
+                                                        width: 50,
+                                                        child: buildTarget(
+                                                          targetIsImage: widget
+                                                              .quizWithImage,
+                                                          onWillAccept: true,
+                                                          onMove: (data) {
+                                                            setState(() {
+                                                              // lineOffsetEnd = data.offset;
+                                                              //  print(data.offset);
+                                                            });
+                                                          },
+                                                          isDraging: false,
+                                                          correctAnswers: [
+                                                            variant
+                                                                .correctAnswers!
+                                                          ],
+                                                          context: context,
+                                                          answers: [variant],
+                                                          onAccept: (data) {
+                                                            if (variant
+                                                                    .correctAnswers! ==
+                                                                data.correctAnswers) {
+                                                              QuizData.valueForDrowColoredLineFor =
+                                                                  true;
+                                                              targetValue =
+                                                                  variant.value;
+                                                              print(
+                                                                  'It is write :::TargetValue $targetValue');
+                                                            } else {
+                                                              QuizData.valueForDrowColoredLineFor =
+                                                                  false;
+                                                              targetValue =
+                                                                  variant.value;
+
+                                                              print(
+                                                                  'It is  wrong :::TargetValue $targetValue');
+                                                            }
+                                                          },
+                                                          mouseOffset:
+                                                              mousePosition,
+                                                        ),
+                                                      ),
+                                                      if (widget.quizWithImage)
+                                                        Clickable(
+                                                          onPressed: () {
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return DialoigMapImage(
+                                                                    image: variant
+                                                                        .text,
+                                                                  );
+                                                                });
+                                                          },
+                                                          child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          8),
+                                                              width: 200,
+                                                              height: 110,
+                                                              child:
+                                                                  Image.asset(
+                                                                variant.text,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )),
+                                                        )
+                                                      else
+                                                        Flexible(
+                                                          child: Container(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              height: 50,
+                                                              child: Text(
+                                                                "  ${variant.text}",
+                                                                maxLines: 2,
+                                                              )),
+                                                        ),
+                                                    ],
                                                   ),
                                                 ),
-                                                if (widget.quizWithImage)
-                                                  Clickable(
-                                                    onPressed: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return DialoigMapImage(
-                                                              image:
-                                                                  variant.text,
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                bottom: 8),
-                                                        width: 200,
-                                                        height: 110,
-                                                        child: Image.asset(
-                                                          variant.text,
-                                                          fit: BoxFit.cover,
-                                                        )),
-                                                  )
-                                                else
-                                                  Container(
-                                                      height: 50,
-                                                      child: Text(
-                                                          "  ${variant.text}")),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                  ],
-                                ),
-                              )
+                                              )
+                                              .toList(),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
@@ -492,26 +584,56 @@ class DrowLine extends CustomPainter {
   final Offset strat;
   final Offset end;
   final bool? isRightLine;
+  final Color color;
 
-  DrowLine({
-    //required this.color,
-    required this.strat,
-    required this.end,
-    this.isRightLine,
-    // required this.currentColor,
-  });
+  DrowLine(
+      {
+      //required this.color,
+      required this.strat,
+      required this.end,
+      this.isRightLine,
+      required this.color
+      // required this.currentColor,
+      });
   @override
   void paint(Canvas canvas, Size size) {
     final p1 = strat;
     final p2 = end;
     final paint = Paint()
+      ..strokeCap = StrokeCap.round
       ..color = isRightLine == null
-          ? AppColors.blueDeep
+          ? color
           : isRightLine!
               ? AppColors.green
               : AppColors.red
       ..strokeWidth = 2.5;
-    canvas.drawLine(p1, p2, paint);
+
+    canvas.drawLine(strat, end, paint);
+  }
+
+  void _drawDashedLine(Canvas canvas, Offset start, Offset end, Paint paint) {
+    // Chage to your preferred size
+    const int dashWidth = 4;
+    const int dashSpace = 4;
+
+    // Start to draw from left size.
+    // Of course, you can change it to match your requirement.
+    double startX = start.dx;
+    double startY = start.dy;
+    double y = 10;
+
+    // Repeat drawing until we reach the right edge.
+    // In our example, size.with = 300 (from the SizedBox)
+
+    // Draw a small line.
+    while (startX < end.dx) {
+      // Draw a small line.
+      canvas.drawLine(Offset(startX, start.dy),
+          Offset(startX + dashWidth, end.dy + dashWidth), paint);
+
+      // Update the starting X
+      startX += dashWidth + dashSpace;
+    }
   }
 
   @override

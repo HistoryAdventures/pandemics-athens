@@ -11,44 +11,103 @@ class QuizData {
 
   ///[QUESTION 1]
   ///
+  static List<DrowLineWidget> listCorrectrAnswersQuestion1 = [];
+  static List<DrowLineWidget> listCorrectrAnswersQuestion4 = [];
+  static List<DrowLineWidget> listCorrectrAnswersQuestion9 = [];
+  static final GlobalKey globalKeyA1Q1 = GlobalKey();
+  static final GlobalKey globalKeyA2Q1 = GlobalKey();
+  static final GlobalKey globalKeyA3Q1 = GlobalKey();
+  static final GlobalKey globalKeyA4Q1 = GlobalKey();
+  static final GlobalKey globalKeyA5Q1 = GlobalKey();
+  static final GlobalKey globalKeyA6Q1 = GlobalKey();
+  static final GlobalKey globalKeyA7Q1 = GlobalKey();
+  static final GlobalKey globalKeyV1Q1 = GlobalKey();
+  static final GlobalKey globalKeyV2Q1 = GlobalKey();
+  static final GlobalKey globalKeyV3Q1 = GlobalKey();
+  static final GlobalKey globalKeyV4Q1 = GlobalKey();
+  static final GlobalKey globalKeyV5Q1 = GlobalKey();
+  static final GlobalKey globalKeyV6Q1 = GlobalKey();
+  static final GlobalKey globalKeyV7Q1 = GlobalKey();
   static final List<Answers<int>> answersForQ1 = [
     Answers(
+        globalKey: globalKeyA1Q1,
         value: 1,
         text: "Battle of Thermopylae",
         correctAnswers: CorrectAnswers.answer1),
     Answers(
         value: 2,
+        globalKey: globalKeyA2Q1,
         text: "Birth of Socrates",
         correctAnswers: CorrectAnswers.answer2),
     Answers(
         value: 3,
+        globalKey: globalKeyA3Q1,
         text: "The Plague arrives in Athens",
         correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 4,
+        globalKey: globalKeyA4Q1,
         text: "Death of Pericles",
         correctAnswers: CorrectAnswers.answer4),
     Answers(
         value: 5,
+        globalKey: globalKeyA5Q1,
         text: "Herodotus writes his 'Histories'",
         correctAnswers: CorrectAnswers.answer5),
     Answers(
         value: 6,
+        globalKey: globalKeyA6Q1,
         text: "End of the Peloponnesian War",
         correctAnswers: CorrectAnswers.answer6),
     Answers(
         value: 7,
+        globalKey: globalKeyA7Q1,
         text: "Cleisthenes' reforms and the birth of Democracy",
         correctAnswers: CorrectAnswers.answer7),
   ];
   static final List<Answers<int>> variantsForQ1 = [
-    Answers(value: 3, text: "430 BC", correctAnswers: CorrectAnswers.answer3),
-    Answers(value: 4, text: "429 BC", correctAnswers: CorrectAnswers.answer4),
-    Answers(value: 5, text: "415 BC", correctAnswers: CorrectAnswers.answer5),
-    Answers(value: 2, text: "469 BC", correctAnswers: CorrectAnswers.answer2),
-    Answers(value: 6, text: "404 BC", correctAnswers: CorrectAnswers.answer6),
-    Answers(value: 1, text: "480 BC", correctAnswers: CorrectAnswers.answer1),
-    Answers(value: 7, text: "508 BC", correctAnswers: CorrectAnswers.answer7),
+    Answers(
+      value: 3,
+      globalKey: globalKeyV3Q1,
+      text: "430 BC",
+      correctAnswers: CorrectAnswers.answer3,
+    ),
+    Answers(
+      value: 4,
+      globalKey: globalKeyV4Q1,
+      text: "429 BC",
+      correctAnswers: CorrectAnswers.answer4,
+    ),
+    Answers(
+      value: 5,
+      globalKey: globalKeyV5Q1,
+      text: "415 BC",
+      correctAnswers: CorrectAnswers.answer5,
+    ),
+    Answers(
+      value: 2,
+      globalKey: globalKeyV2Q1,
+      text: "469 BC",
+      correctAnswers: CorrectAnswers.answer2,
+    ),
+    Answers(
+      value: 6,
+      globalKey: globalKeyV6Q1,
+      text: "404 BC",
+      correctAnswers: CorrectAnswers.answer6,
+    ),
+    Answers(
+      value: 1,
+      globalKey: globalKeyV1Q1,
+      text: "480 BC",
+      correctAnswers: CorrectAnswers.answer1,
+    ),
+    Answers(
+      value: 7,
+      globalKey: globalKeyV7Q1,
+      text: "508 BC",
+      correctAnswers: CorrectAnswers.answer7,
+    ),
   ];
   static List<DrowLineWidget> userAnswerWithCheckForQ1 = [];
   static List<DrowLineWidget> userAnswerForQ1 = [];
@@ -64,31 +123,48 @@ class QuizData {
   ///[QUESTION 4]
   ///
   ///
+  static final GlobalKey globalKeyA1Q4 = GlobalKey();
+  static final GlobalKey globalKeyA2Q4 = GlobalKey();
+  static final GlobalKey globalKeyA3Q4 = GlobalKey();
+  static final GlobalKey globalKeyA4Q4 = GlobalKey();
+  static final GlobalKey globalKeyA5Q4 = GlobalKey();
+
+  static final GlobalKey globalKeyV1Q4 = GlobalKey();
+  static final GlobalKey globalKeyV2Q4 = GlobalKey();
+  static final GlobalKey globalKeyV3Q4 = GlobalKey();
+  static final GlobalKey globalKeyV4Q4 = GlobalKey();
+  static final GlobalKey globalKeyV5Q4 = GlobalKey();
   static List<DrowLineWidget> userAnswerWithCheckForQ4 = [];
   static List<DrowLineWidget> userAnswerForQ4 = [];
 
   static final List<Answers<int>> answersDD4 = [
     Answers(
-        value: 1,
-        text:
-            "Construction of the Parthenon in 447-432 BC. (ATHENS - Slide 25)",
-        correctAnswers: CorrectAnswers.answer1),
+      value: 1,
+      text: "Construction of the Parthenon in 447-432 BC. (ATHENS - Slide 25)",
+      correctAnswers: CorrectAnswers.answer1,
+      globalKey: globalKeyA1Q4,
+    ),
     Answers(
-        value: 2,
-        text:
-            "The 'First' Peloponnesian War begins in 461. (ATHENS, SPARTA, OENOE - Slide 19)",
-        correctAnswers: CorrectAnswers.answer2),
+      value: 2,
+      text:
+          "The 'First' Peloponnesian War begins in 461. (ATHENS, SPARTA, OENOE - Slide 19)",
+      correctAnswers: CorrectAnswers.answer2,
+      globalKey: globalKeyA2Q4,
+    ),
     Answers(
         value: 3,
+        globalKey: globalKeyA3Q4,
         text: "The Sicilian Expedition in 413 BC. (SICILY)",
         correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 4,
+        globalKey: globalKeyA4Q4,
         text:
             "The Greeks defeat the Persians at the Battle of Marathon in 490 BC. (MARATHON - SLIDE 12)",
         correctAnswers: CorrectAnswers.answer4),
     Answers(
         value: 5,
+        globalKey: globalKeyA5Q4,
         text:
             "The Athenians establlish the Delian League in 477 BC. (DELOS - Slide 15)",
         correctAnswers: CorrectAnswers.answer5),
@@ -97,22 +173,27 @@ class QuizData {
   static final List<Answers<int>> variantsDD4 = [
     Answers(
         value: 5,
+        globalKey: globalKeyV5Q4,
         text: "assets/map/map477image.png",
         correctAnswers: CorrectAnswers.answer5),
     Answers(
         value: 3,
+        globalKey: globalKeyV3Q4,
         text: "assets/map/map413image.png",
         correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 2,
+        globalKey: globalKeyV2Q4,
         text: "assets/map/map461image.png",
         correctAnswers: CorrectAnswers.answer2),
     Answers(
         value: 1,
+        globalKey: globalKeyV1Q4,
         text: "assets/map/map447_432image.png",
         correctAnswers: CorrectAnswers.answer1),
     Answers(
         value: 4,
+        globalKey: globalKeyV4Q4,
         text: "assets/map/map490image.png",
         correctAnswers: CorrectAnswers.answer4),
   ];
@@ -121,72 +202,118 @@ class QuizData {
   ///
   ///
   ///
+  ///
+  static final GlobalKey globalKeyA1Q9 = GlobalKey();
+  static final GlobalKey globalKeyA2Q9 = GlobalKey();
+  static final GlobalKey globalKeyA3Q9 = GlobalKey();
+  static final GlobalKey globalKeyA4Q9 = GlobalKey();
+  static final GlobalKey globalKeyA5Q9 = GlobalKey();
+  static final GlobalKey globalKeyA6Q9 = GlobalKey();
+  static final GlobalKey globalKeyA7Q9 = GlobalKey();
+  static final GlobalKey globalKeyA8Q9 = GlobalKey();
+
+  static final GlobalKey globalKeyV1Q9 = GlobalKey();
+  static final GlobalKey globalKeyV2Q9 = GlobalKey();
+  static final GlobalKey globalKeyV3Q9 = GlobalKey();
+  static final GlobalKey globalKeyV4Q9 = GlobalKey();
+  static final GlobalKey globalKeyV5Q9 = GlobalKey();
+  static final GlobalKey globalKeyV6Q9 = GlobalKey();
+  static final GlobalKey globalKeyV7Q9 = GlobalKey();
+  static final GlobalKey globalKeyV8Q9 = GlobalKey();
+
   static List<DrowLineWidget> userAnswerWithCheckForQ9 = [];
   static List<DrowLineWidget> userAnswerForQ9 = [];
 
   static final List<Answers<int>> answersDD9 = [
     Answers(
         value: 1,
+        globalKey: globalKeyA1Q9,
         text: "Themistocles ",
         correctAnswers: CorrectAnswers.answer1),
     Answers(
-        value: 2, text: "Thucydides ", correctAnswers: CorrectAnswers.answer2),
+        value: 2,
+        globalKey: globalKeyA2Q9,
+        text: "Thucydides ",
+        correctAnswers: CorrectAnswers.answer2),
     Answers(
-        value: 3, text: "Aeschylus ", correctAnswers: CorrectAnswers.answer3),
+        value: 3,
+        globalKey: globalKeyA3Q9,
+        text: "Aeschylus ",
+        correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 4,
+        globalKey: globalKeyA4Q9,
         text: "Iktinos, Kallikrates, and Phidias",
         correctAnswers: CorrectAnswers.answer4),
     Answers(
       value: 5,
+      globalKey: globalKeyA5Q9,
       text: "Sophocles",
       correctAnswers: CorrectAnswers.answer5,
     ),
     Answers(
       value: 6,
+      globalKey: globalKeyA6Q9,
       text: "Euripides ",
       correctAnswers: CorrectAnswers.answer6,
     ),
-    Answers(value: 7, text: "Plato", correctAnswers: CorrectAnswers.answer7),
     Answers(
-        value: 8, text: "Herodotus", correctAnswers: CorrectAnswers.answer8),
+        value: 7,
+        globalKey: globalKeyA7Q9,
+        text: "Plato",
+        correctAnswers: CorrectAnswers.answer7),
+    Answers(
+        value: 8,
+        globalKey: globalKeyA8Q9,
+        text: "Herodotus",
+        correctAnswers: CorrectAnswers.answer8),
   ];
 
   static final List<Answers<int>> variantsDD9 = [
     Answers(
         value: 7,
+        globalKey: globalKeyV7Q9,
         text: "The Allegory of the Cave",
         correctAnswers: CorrectAnswers.answer7),
     Answers(
         value: 4,
+        globalKey: globalKeyV4Q9,
         text: "The Parthenon",
         correctAnswers: CorrectAnswers.answer4),
     Answers(
       value: 5,
+      globalKey: globalKeyV5Q9,
       text: "Antigone ",
       correctAnswers: CorrectAnswers.answer5,
     ),
     Answers(
         value: 3,
+        globalKey: globalKeyV3Q9,
         text:
             "The Orestia (the Agammemnon, Libation Bearers, and the Eumenides)",
         correctAnswers: CorrectAnswers.answer3),
     Answers(
       value: 6,
+      globalKey: globalKeyV6Q9,
       text: "Medea",
       correctAnswers: CorrectAnswers.answer6,
     ),
     Answers(
       value: 1,
+      globalKey: globalKeyV1Q9,
       text: "Victory at the Battle of Salamis ",
       correctAnswers: CorrectAnswers.answer1,
     ),
     Answers(
         value: 2,
+        globalKey: globalKeyV2Q9,
         text: "Hiistory of the Peloponnesian War",
         correctAnswers: CorrectAnswers.answer2),
     Answers(
-        value: 8, text: "Histories", correctAnswers: CorrectAnswers.answer8),
+        value: 8,
+        globalKey: globalKeyV8Q9,
+        text: "Histories",
+        correctAnswers: CorrectAnswers.answer8),
   ];
 
   // [QUESTION 2]
@@ -684,6 +811,11 @@ class QuizData {
   }
 
   static void clearAnswers() {
+    listCorrectrAnswersQuestion1 = [];
+    listCorrectrAnswersQuestion4 = [];
+
+    listCorrectrAnswersQuestion9 = [];
+
     finalScore = 0;
     rightAnswersForQ3 = 0;
     rightAnswersForQ2 = 0;
