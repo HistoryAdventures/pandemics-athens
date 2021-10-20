@@ -21,6 +21,12 @@ dependencies:
   # Dotted line decoration is handly package to draw dotted divider, dotted border for rectangle, circle or rounded rectangle.
   dotted_decoration: ^2.0.0
 
+  video_player: ^2.2.0
+
+  video_player_web: ^2.0.4
+
+
+
 
 
   # Flutter widget that automatically resizes text to fit perfectly within its bounds.
@@ -98,6 +104,7 @@ flutter:
   assets:
     - assets/characters/
     - assets/icons/
+    - assets/paralax_video.mp4
     - assets/image_back/
     - assets/images_quiz/
     - assets/man_body/

@@ -264,7 +264,7 @@ class _QuizPageState extends State<QuizPage> {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              // color: AppColors.white,
+              color: AppColors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

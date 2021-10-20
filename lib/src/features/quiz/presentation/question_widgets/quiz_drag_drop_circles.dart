@@ -206,10 +206,10 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                     ...widget.userAnswer
                         .map((customPaint) => customPaint.customPaint),
                     if (QuizData.showRightAnswers)
-                      ...widget.userAnswerWithCheck
+                      ...widget.listCorrectrAnswers
                           .map((customPaint) => customPaint.customPaint),
                     if (QuizData.showRightAnswers)
-                      ...widget.listCorrectrAnswers
+                      ...widget.userAnswerWithCheck
                           .map((customPaint) => customPaint.customPaint),
                     CustomPaint(
                       painter: DrowLine(
