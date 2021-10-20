@@ -1,6 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/styles.dart';
+import '../utils/styles.dart';
 
 import 'widgets.dart';
 

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:history_of_adventures/src/features/irl_nikos/presentation/pages/giana_page.dart';
 
 import '../features/about_book/presentation/pages/about_book_page.dart';
 import '../features/about_book/presentation/pages/copyright_page.dart';
@@ -12,6 +11,7 @@ import '../features/dead_socrates/presentation/pages/dead_of_socrates.dart';
 import '../features/dead_socrates/presentation/pages/end_of_war_page.dart';
 import '../features/document/presentation/pages/document_page.dart';
 import '../features/glossary/presentation/pages/glossary_page.dart';
+import '../features/irl_nikos/presentation/pages/giana_page.dart';
 import '../features/irl_nikos/presentation/pages/irl_nikos_page.dart';
 import '../features/leanding/presentation/pages/leanding_page.dart';
 import '../features/map/presentation/pages/map_page.dart';
@@ -32,8 +32,8 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
+      initial: true,
       page: LeandingPage,
-      // initial: true,
     ),
     CustomRoute(
         page: CharacrterPage,
@@ -53,7 +53,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: QuizPage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -133,7 +132,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
-        page: SoursePage,
+        page: SourcePage,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(

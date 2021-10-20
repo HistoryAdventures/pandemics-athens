@@ -1,8 +1,4 @@
-import 'dart:async';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AssetsPath {
   static final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -11,7 +7,17 @@ class AssetsPath {
 
   //static const String gifBackground = 'assets/image_back/backgif.gif';
 
+  static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
+  static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
+
+  static const String quizImage8 = 'assets/images_quiz/image_quiz8.jpg';
+
+  static const String quizImage3 = 'assets/images_quiz/quiz3.jpg';
+  static const String quizImage4 = 'assets/images_quiz/quiz4.jpg';
+
   static const String imageQuizPericles = 'assets/images_quiz/pericles.jpg';
+  static const String gifParalaxNikosGif =
+      'assets/paralax_new/character_nikos_lottie.gif';
   static const String gifBackground1 =
       'assets/animated_backgrounds/1/liquid.gif';
 
@@ -327,8 +333,7 @@ class AssetsPath {
       'assets/paralax_new/crows/crows.json';
   static const String paralaxFightersRightLottie =
       'assets/paralax_new/fighters_right/fighters_right.json';
-  static const String paralaxSmokeLottie =
-      'assets/paralax_new/smoke/smoke.json';
+
   static const String paralaxFightersLeftLottie =
       'assets/paralax_new/fighters_left/fighters_left.json';
   static const String paralaxFightersLeft =
@@ -375,18 +380,15 @@ class AssetsPath {
   static const String virusLoc1 = 'assets/map/virus_loc_1.png';
   static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
-  static const String lottieAssetsTubeBottom =
-      'assets/paralax_new/tube2/images/tube2_bttm.png';
+  static const String lottieAssetsTube = 'assets/paralax_new/tube2.png';
 
   static const String lottieAssetsCrowd =
       'assets/paralax_new/crowd/images/crowd_bg.png';
 
-  static const String lottieAssetsTube =
-      'assets/paralax_new/hottub/images/hottub_bottom.png';
-
   static const List<String> contentImages = [
     AssetsPath.periclesImage,
     AssetsPath.irlGiana,
+    AssetsPath.gifParalaxNikosGif,
     AssetsPath.irlNikos,
     AssetsPath.socratesPlatoImage,
     AssetsPath.aristophanesSophoclesImage,

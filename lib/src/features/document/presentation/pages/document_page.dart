@@ -325,17 +325,22 @@ class _DocumentPageState extends State<DocumentPage>
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Clickable(
-                                                onPressed: () {},
-                                                child:
-                                                    const Icon(Icons.volume_up),
+                                              Flexible(
+                                                child: Clickable(
+                                                  onPressed: () {},
+                                                  child: const Icon(
+                                                      Icons.volume_up),
+                                                ),
                                               ),
-                                              Clickable(
-                                                  onPressed: () {
-                                                    scaffoldkey.currentState!
-                                                        .openEndDrawer();
-                                                  },
-                                                  child: const Icon(Icons.menu))
+                                              Flexible(
+                                                child: Clickable(
+                                                    onPressed: () {
+                                                      scaffoldkey.currentState!
+                                                          .openEndDrawer();
+                                                    },
+                                                    child:
+                                                        const Icon(Icons.menu)),
+                                              )
                                             ],
                                           ),
                                         ),

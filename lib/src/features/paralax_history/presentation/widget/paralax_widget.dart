@@ -37,11 +37,7 @@ class ParallaxWidget extends StatelessWidget {
       this.left,
       this.animation,
       this.paralaxText});
-  void onLosaded() {
-    var a = Lottie.asset(
-      asset,
-    ).onLoaded;
-  }
+
 
   @override
   Widget build(BuildContext context) {

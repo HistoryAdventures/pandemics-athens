@@ -520,7 +520,7 @@ class _NavigationPageState extends State<NavigationPage> {
         Vertex(
             index: 21,
             visited: LeafDetails.visitedVertexes.contains(21),
-            path: SoursePageRoute.name,
+            path: SourcePageRoute.name,
             adjacentEdges: [22],
             currentVertex: LeafDetails.currentVertex),
         pointOffset: const Offset(300, 535),
@@ -528,7 +528,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 21;
           LeafDetails.visitedVertexes.add(21);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const SoursePageRoute());
+          context.router.replace(const SourcePageRoute());
         },
         lineStartOffset: const Offset(3, 5),
         lineEndOffset: const Offset(-29, -19),
