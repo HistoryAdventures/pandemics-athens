@@ -9,7 +9,6 @@ import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
-import 'package:universal_html/html.dart';
 
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;

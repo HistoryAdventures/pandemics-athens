@@ -46,6 +46,9 @@ dependencies:
   #Built to be used with the bloc state management package.
   flutter_bloc: ^7.3.0
 
+
+
+
   flutter_localizations:
     sdk: flutter
 
@@ -63,7 +66,7 @@ dependencies:
 
   # Render After Effects animations natively on Flutter.
   # This package is a pure Dart implementation of a Lottie player.
-  lottie: ^1.0.1
+  lottie: ^1.2.1
 
   
 
@@ -103,8 +106,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/characters/
+    - assets/map_lottie/map_01/
+    - assets/map_lottie/map_02/
+    - assets/map_lottie/map_03/
+    - assets/map_lottie/map_04/
+    - assets/arrow.gif
+    - assets/arrow_lottie.json
     - assets/icons/
     - assets/paralax_video.mp4
+    - assets/test.svg
+    - assets/test2.svg
     - assets/image_back/
     - assets/images_quiz/
     - assets/man_body/
@@ -173,3 +184,5 @@ flutter:
       fonts:
         - asset: fonts/Lora-Italic.ttf
         - asset: fonts/Lora-Regular.ttf
+    
+  

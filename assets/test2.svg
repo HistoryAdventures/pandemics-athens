@@ -1,0 +1,255 @@
+<svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<polyline id="arrow" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="9.55 9.55 0 0 9.55 -9.55"/>
+<path id="arrow_path" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="3" d="M1387.54 543.52s-62.07 32.84-107.2 79.77c-48.84 50.79-85.97 123.57-85.97 123.57"/>
+<polyline id="arrow2" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="9.55 9.55 0 0 9.55 -9.55"/>
+<path id="arrow_path2" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="3" d="M1408.44 539.41c-1.01 14.47-4.55 117.09-61.56 195.6-61.94 85.29-156.81 106.8-242.38 110.48"/>
+
+<g transform="translate(1400 540)">
+<path id="weapon1" fill="#C60000" d="M1-19s1-3.5 1-4v-2c0-1.5-2-5-2-5s-2 3.5-2 5v2c0 .5 1 4 1 4v14l-1 1 2 4 2-4-1-1v-14z"/>
+</g>
+<g transform="translate(1421 540)">
+<path id="weapon2" fill="#C60000" d="M1-19s1-3.5 1-4v-2c0-1.5-2-5-2-5s-2 3.5-2 5v2c0 .5 1 4 1 4v14l-1 1 2 4 2-4-1-1v-14z"/>
+</g>
+
+<g transform="translate(1190 755)" fill="#ff8a00" stroke="none">
+<circle id="city_point1_1" cx="0" cy="0" r="5" />
+<circle id="city_point1_2" cx="0" cy="0" r="5" />
+</g>
+<g transform="translate(1095 845)" fill="#ff8a00" stroke="none">
+<circle id="city_point2_1" cx="0" cy="0" r="5" />
+<circle id="city_point2_2" cx="0" cy="0" r="5" />
+</g>
+<style>
+/* <![CDATA[ */
+
+#city_point1_1, #city_point1_2, #city_point2_1, #city_point2_2 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.play #city_point1_1, .play #city_point2_1 {
+  visibility: visible;
+  animation: city_point 1s -.5s ease-in forwards;
+}
+
+.play #city_point1_2, .play #city_point2_2 {
+  visibility: visible;
+  animation: city_point 1s 0s ease-in forwards;
+}
+
+@keyframes city_point {
+  0%, 100% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(4);
+  }
+}
+
+#weapon1 {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity .2s linear;
+}
+
+.play #weapon1 {
+  opacity: 1;
+  animation: weapon1 .5s 2.8s ease-in-out forwards;
+}
+
+@keyframes weapon1 {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+#weapon2 {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity .2s linear;
+}
+
+.play #weapon2 {
+  opacity: 1;
+  animation: weapon2 .5s 2.8s ease-in-out forwards;
+}
+
+@keyframes weapon2 {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+#arrow { opacity: 0; transition: opacity .2s linear }
+
+.play #arrow { opacity: 1; animation: anim_arrow 3s linear forwards }
+
+@keyframes anim_arrow {
+0% { transform: matrix(-0.459572, 0.88814, -0.88814, -0.459572, 1194.37, 746.86) }
+3.33% { transform: matrix(-0.462286, 0.886731, -0.886731, -0.462286, 1194.66, 746.297) }
+6.67% { transform: matrix(-0.465455, 0.885072, -0.885072, -0.465455, 1195.54, 744.614) }
+10.00% { transform: matrix(-0.471918, 0.881642, -0.881642, -0.471918, 1197.03, 741.818) }
+13.33% { transform: matrix(-0.479989, 0.877274, -0.877274, -0.479989, 1199.15, 737.923) }
+16.67% { transform: matrix(-0.488759, 0.872419, -0.872419, -0.488759, 1201.92, 732.938) }
+20.00% { transform: matrix(-0.497821, 0.86728, -0.86728, -0.497821, 1205.36, 726.88) }
+23.33% { transform: matrix(-0.508433, 0.861101, -0.861101, -0.508433, 1209.51, 719.768) }
+26.67% { transform: matrix(-0.520121, 0.854092, -0.854092, -0.520121, 1214.4, 711.621) }
+30.00% { transform: matrix(-0.532821, 0.846228, -0.846228, -0.532821, 1220.08, 702.47) }
+33.33% { transform: matrix(-0.546759, 0.83729, -0.83729, -0.546759, 1226.59, 692.346) }
+36.67% { transform: matrix(-0.566252, 0.824232, -0.824232, -0.566252, 1234, 681.298) }
+40.00% { transform: matrix(-0.584617, 0.81131, -0.81131, -0.584617, 1242.38, 669.382) }
+43.33% { transform: matrix(-0.609363, 0.792892, -0.792892, -0.609363, 1251.85, 656.683) }
+46.67% { transform: matrix(-0.63734, 0.770582, -0.770582, -0.63734, 1262.51, 643.315) }
+50.00% { transform: matrix(-0.673092, 0.739559, -0.739559, -0.673092, 1274.57, 629.453) }
+53.33% { transform: matrix(-0.715449, 0.698665, -0.698665, -0.715449, 1287.34, 616.251) }
+56.67% { transform: matrix(-0.748943, 0.662634, -0.662634, -0.748943, 1299.88, 604.628) }
+60.00% { transform: matrix(-0.774161, 0.632988, -0.632988, -0.774161, 1311.96, 594.386) }
+63.33% { transform: matrix(-0.794162, 0.607706, -0.607706, -0.794162, 1323.4, 585.362) }
+66.67% { transform: matrix(-0.809306, 0.587387, -0.587387, -0.809306, 1334.08, 577.434) }
+70.00% { transform: matrix(-0.823743, 0.566964, -0.566964, -0.823743, 1343.92, 570.503) }
+73.33% { transform: matrix(-0.833849, 0.551993, -0.551993, -0.833849, 1352.85, 564.488) }
+76.67% { transform: matrix(-0.843893, 0.536512, -0.536512, -0.843893, 1360.83, 559.328) }
+80.00% { transform: matrix(-0.85206, 0.523443, -0.523443, -0.85206, 1367.82, 554.968) }
+83.33% { transform: matrix(-0.858954, 0.512053, -0.512053, -0.858954, 1373.78, 551.363) }
+86.67% { transform: matrix(-0.864835, 0.502056, -0.502056, -0.864835, 1378.7, 548.476) }
+90.00% { transform: matrix(-0.870648, 0.491906, -0.491906, -0.870648, 1382.55, 546.276) }
+93.33% { transform: matrix(-0.874784, 0.484513, -0.484513, -0.874784, 1385.31, 544.731) }
+96.67% { transform: matrix(-0.878594, 0.477569, -0.477569, -0.878594, 1386.98, 543.82) }
+100.00% { transform: matrix(-0.880467, 0.474107, -0.474107, -0.880467, 1387.54, 543.52) }
+}
+
+#arrow_path {stroke-dasharray: 285.07px; opacity: 0}
+
+.play #arrow_path { opacity: 1; animation: anim_path 3s linear forwards }
+
+@keyframes anim_path {
+0% { stroke-dashoffset: 285.067px }
+3.33% { stroke-dashoffset: 285.7px }
+6.67% { stroke-dashoffset: 287.601px }
+10.00% { stroke-dashoffset: 290.768px }
+13.33% { stroke-dashoffset: 295.203px }
+16.67% { stroke-dashoffset: 300.904px }
+20.00% { stroke-dashoffset: 307.872px }
+23.33% { stroke-dashoffset: 316.107px }
+26.67% { stroke-dashoffset: 325.61px }
+30.00% { stroke-dashoffset: 336.379px }
+33.33% { stroke-dashoffset: 348.415px }
+36.67% { stroke-dashoffset: 361.718px }
+40.00% { stroke-dashoffset: 376.288px }
+43.33% { stroke-dashoffset: 392.125px }
+46.67% { stroke-dashoffset: 409.229px }
+50.00% { stroke-dashoffset: 427.6px }
+53.33% { stroke-dashoffset: 445.971px }
+56.67% { stroke-dashoffset: 463.075px }
+60.00% { stroke-dashoffset: 478.912px }
+63.33% { stroke-dashoffset: 493.482px }
+66.67% { stroke-dashoffset: 506.785px }
+70.00% { stroke-dashoffset: 518.822px }
+73.33% { stroke-dashoffset: 529.591px }
+76.67% { stroke-dashoffset: 539.093px }
+80.00% { stroke-dashoffset: 547.328px }
+83.33% { stroke-dashoffset: 554.297px }
+86.67% { stroke-dashoffset: 559.998px }
+90.00% { stroke-dashoffset: 564.432px }
+93.33% { stroke-dashoffset: 567.6px }
+96.67% { stroke-dashoffset: 569.5px }
+100.00% { stroke-dashoffset: 570.134px }
+}
+
+#arrow2 { opacity: 0; transition: opacity .2s linear }
+
+.play #arrow2 { opacity: 1; animation: anim_arrow2 3s linear forwards }
+
+@keyframes anim_arrow2 {
+0% { transform: matrix(-0.999007, 0.0445548, -0.0445548, -0.999007, 1104.5, 845.49) }
+3.33% { transform: matrix(-0.999007, 0.0445548, -0.0445548, -0.999007, 1105.57, 845.442) }
+6.67% { transform: matrix(-0.998813, 0.0487078, -0.0487078, -0.998813, 1108.8, 845.29) }
+10.00% { transform: matrix(-0.998328, 0.0577954, -0.0577954, -0.998328, 1114.17, 844.997) }
+13.33% { transform: matrix(-0.997403, 0.0720277, -0.0720277, -0.997403, 1121.69, 844.505) }
+16.67% { transform: matrix(-0.996021, 0.0891159, -0.0891159, -0.996021, 1131.34, 843.721) }
+20.00% { transform: matrix(-0.993763, 0.11151, -0.11151, -0.993763, 1143.11, 842.519) }
+23.33% { transform: matrix(-0.989794, 0.142506, -0.142506, -0.989794, 1156.98, 840.722) }
+26.67% { transform: matrix(-0.983384, 0.181538, -0.181538, -0.983384, 1172.9, 838.1) }
+30.00% { transform: matrix(-0.973735, 0.227685, -0.227685, -0.973735, 1190.8, 834.353) }
+33.33% { transform: matrix(-0.958566, 0.284872, -0.284872, -0.958566, 1210.56, 829.098) }
+36.67% { transform: matrix(-0.935256, 0.353971, -0.353971, -0.935256, 1231.95, 821.856) }
+40.00% { transform: matrix(-0.900424, 0.435014, -0.435014, -0.900424, 1254.67, 812.063) }
+43.33% { transform: matrix(-0.85022, 0.526428, -0.526428, -0.85022, 1278.22, 799.091) }
+46.67% { transform: matrix(-0.781714, 0.623638, -0.623638, -0.781714, 1301.92, 782.327) }
+50.00% { transform: matrix(-0.694204, 0.719778, -0.719778, -0.694204, 1324.93, 761.287) }
+53.33% { transform: matrix(-0.598554, 0.801083, -0.801083, -0.598554, 1345.06, 737.478) }
+56.67% { transform: matrix(-0.505365, 0.862905, -0.862905, -0.505365, 1361.05, 713.241) }
+60.00% { transform: matrix(-0.423079, 0.906093, -0.906093, -0.423079, 1373.48, 689.399) }
+63.33% { transform: matrix(-0.351819, 0.936068, -0.936068, -0.351819, 1383.04, 666.58) }
+66.67% { transform: matrix(-0.292971, 0.956121, -0.956121, -0.292971, 1390.31, 645.193) }
+70.00% { transform: matrix(-0.244517, 0.969645, -0.969645, -0.244517, 1395.78, 625.498) }
+73.33% { transform: matrix(-0.201782, 0.97943, -0.97943, -0.201782, 1399.83, 607.663) }
+76.67% { transform: matrix(-0.165527, 0.986205, -0.986205, -0.165527, 1402.77, 591.796) }
+80.00% { transform: matrix(-0.13513, 0.990828, -0.990828, -0.13513, 1404.85, 577.966) }
+83.33% { transform: matrix(-0.108033, 0.994147, -0.994147, -0.108033, 1406.28, 566.218) }
+86.67% { transform: matrix(-0.0880149, 0.996119, -0.996119, -0.0880149, 1407.23, 556.581) }
+90.00% { transform: matrix(-0.0717806, 0.99742, -0.99742, -0.0717806, 1407.82, 549.073) }
+93.33% { transform: matrix(-0.0622566, 0.99806, -0.99806, -0.0622566, 1408.17, 543.705) }
+96.67% { transform: matrix(-0.0615233, 0.998106, -0.998106, -0.0615233, 1408.37, 540.484) }
+100.00% { transform: matrix(-0.0653077, 0.997865, -0.997865, -0.0653077, 1408.44, 539.41) }
+}
+
+#arrow_path2 {stroke-dasharray: 484.16px; opacity: 0}
+
+.play #arrow_path2 { opacity: 1; animation: anim_path2 3s linear forwards }
+
+@keyframes anim_path2 {
+0% { stroke-dashoffset: 484.156px }
+3.33% { stroke-dashoffset: 485.232px }
+6.67% { stroke-dashoffset: 488.459px }
+10.00% { stroke-dashoffset: 493.839px }
+13.33% { stroke-dashoffset: 501.37px }
+16.67% { stroke-dashoffset: 511.053px }
+20.00% { stroke-dashoffset: 522.888px }
+23.33% { stroke-dashoffset: 536.875px }
+26.67% { stroke-dashoffset: 553.014px }
+30.00% { stroke-dashoffset: 571.304px }
+33.33% { stroke-dashoffset: 591.746px }
+36.67% { stroke-dashoffset: 614.34px }
+40.00% { stroke-dashoffset: 639.086px }
+43.33% { stroke-dashoffset: 665.983px }
+46.67% { stroke-dashoffset: 695.033px }
+50.00% { stroke-dashoffset: 726.234px }
+53.33% { stroke-dashoffset: 757.435px }
+56.67% { stroke-dashoffset: 786.484px }
+60.00% { stroke-dashoffset: 813.382px }
+63.33% { stroke-dashoffset: 838.128px }
+66.67% { stroke-dashoffset: 860.721px }
+70.00% { stroke-dashoffset: 881.164px }
+73.33% { stroke-dashoffset: 899.454px }
+76.67% { stroke-dashoffset: 915.593px }
+80.00% { stroke-dashoffset: 929.579px }
+83.33% { stroke-dashoffset: 941.414px }
+86.67% { stroke-dashoffset: 951.097px }
+90.00% { stroke-dashoffset: 958.629px }
+93.33% { stroke-dashoffset: 964.008px }
+96.67% { stroke-dashoffset: 967.236px }
+100.00% { stroke-dashoffset: 968.312px }
+}
+
+/* ]]> */
+</style>
+</svg>

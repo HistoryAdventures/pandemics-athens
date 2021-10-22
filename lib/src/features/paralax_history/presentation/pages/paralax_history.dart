@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
+import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/paralax_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:video_player/video_player.dart';
@@ -83,7 +84,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _progressRightHotTube = -200;
   double _progressWeightWalker = 0;
   double _progressCrows = 100;
-  // double _topTextOpasyty = 1;
+  //double _topTextOpasyty = 1;
   double _progressClouds = 0;
   double _progressTopCrows = 0;
 
@@ -101,7 +102,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   late AppLocalizations locals;
 
-  late VideoPlayerController videoController;
+  late VideoPlayerController _videoController;
   bool isImageloaded = false;
   bool _lernMoreVisibility = false;
   bool _bottomFieldVizibility = false;
@@ -138,10 +139,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   @override
   void initState() {
-    videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
+    _videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
       ..initialize().then((_) => setState(() {}));
-    videoController.setVolume(0.0);
-    videoController.play();
+    _videoController.setVolume(0.0);
+    _videoController.play();
     NavigationSharedPreferences.getNavigationListFromSF();
     _animationControllerForMovingLeftAndRightCrows =
         AnimationController(vsync: this, duration: const Duration(seconds: 20));
@@ -283,15 +284,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       // } else {
       //   _paralaxText4Opacity = 0;
       // }
-      if (_scrollController.offset > _scrollLearnMoreText &&
-          _scrollController.offset < _scrollLearnMoreText + 500) {
-        _lernMoreOpasyty = 1;
-        _lernMoreVisibility = true;
-      } else {
-        _lernMoreOpasyty = 0;
-        _lernMoreVisibility = false;
-      }
-      // if (_scrollController.offset > _scrollParalaxText5 &&
+      //       if (_scrollController.offset > _scrollParalaxText5 &&
       //     _scrollController.offset < _scrollParalaxText5 + 350) {
       //   _paralaxText5Opacity = 1;
       // } else {
@@ -304,6 +297,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       // } else {
       //   _paralaxText1Opacity = 0;
       // }
+
+      if (_scrollController.offset > _scrollLearnMoreText &&
+          _scrollController.offset < _scrollLearnMoreText + 500) {
+        _lernMoreOpasyty = 1;
+        _lernMoreVisibility = true;
+      } else {
+        _lernMoreOpasyty = 0;
+        _lernMoreVisibility = false;
+      }
 
       if (_scrollController.offset > _scrollParalaxText1) {
         animationForCharacterNikos = Tween<double>(begin: -200, end: 0)
@@ -397,6 +399,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForProgressRightFighters.dispose();
     _animationControllerForWalker.dispose();
     _animationControllerForMovingTopCrows.dispose();
+    _videoController.dispose();
 
     super.dispose();
   }
@@ -406,15 +409,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body: videoController.value.isPlaying
-          ? videoController.value.isInitialized
+      body: _videoController.value.isPlaying
+          ? _videoController.value.isInitialized
               ? SizedBox.expand(
                   child: FittedBox(
                     fit: BoxFit.cover,
                     child: SizedBox(
-                      width: videoController.value.size.width,
-                      height: videoController.value.size.height,
-                      child: VideoPlayer(videoController),
+                      width: _videoController.value.size.width,
+                      height: _videoController.value.size.height,
+                      child: VideoPlayer(_videoController),
                     ),
                   ),
                 )
@@ -580,7 +583,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         )
                       ],
                     ),
-
                     // Positioned(
                     //   top: constraints.maxHeight * 0.3,
                     //   left: constraints.maxWidth * 0.05,
@@ -595,18 +597,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     //         children: [
                     //           Padding(
                     //             padding: const EdgeInsets.only(left: 20),
-                    //             child: AutoSizeText(locals.chapter1.toUpperCase()),
+                    //             child: Text(locals.chapter1.toUpperCase()),
                     //           ),
                     //           Padding(
                     //             padding: const EdgeInsets.only(left: 20),
-                    //             child: AutoSizeText(locals.todoNoHarm.toUpperCase(),
+                    //             child: Text(locals.todoNoHarm.toUpperCase(),
                     //                 maxLines: 1,
                     //                 // minFontSize: 8,
                     //                 style: Theme.of(context)
                     //                     .textTheme
                     //                     .bodyText2
                     //                     ?.copyWith(
-                    //                         fontSize: 80,
+                    //                         fontSize: TextFontSize.getHeight(
+                    //                             80, context),
                     //                         fontStyle: FontStyle.italic)),
                     //           ),
                     //           Container(
@@ -614,7 +617,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     //                 border: Border(
                     //                     left: BorderSide(
                     //                         color: AppColors.red, width: 8))),
-                    //             child: AutoSizeText(
+                    //             child: Text(
                     //               locals.athens429Bc,
                     //               maxLines: 1,
                     //               // minFontSize: 8,
@@ -622,7 +625,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     //                   .textTheme
                     //                   .headline4
                     //                   ?.copyWith(
-                    //                     fontSize: 80,
+                    //                     fontSize:
+                    //                         TextFontSize.getHeight(80, context),
                     //                     fontWeight: FontWeight.w100,
                     //                   ),
                     //             ),
@@ -662,6 +666,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     //   size: Size(constraints.maxWidth, constraints.maxHeight),
                     //   opacity: _paralaxText5Opacity,
                     // ),
+
                     SoundAndMenuWidget(
                       widget: Clickable(
                         onPressed: () {

@@ -35,6 +35,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
             ),
           ),
           Flexible(
+            flex: 3,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

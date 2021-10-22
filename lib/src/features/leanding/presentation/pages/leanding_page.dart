@@ -122,13 +122,16 @@ class _LeandingPageState extends State<LeandingPage>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Flexible(
-                                      child: AutoSizeText(
+                                      child: Text(
                                           locales.spencerStrikerName
                                               .toUpperCase(),
                                           maxLines: 1,
                                           style: DefaultTheme
                                               .standard.textTheme.headline1
-                                              ?.copyWith(fontSize: 24))),
+                                              ?.copyWith(
+                                                  fontSize:
+                                                      TextFontSize.getHeight(
+                                                          24, context)))),
                                   Flexible(
                                     child: AutoSizeText(
                                       locales.historyAdventures.toUpperCase(),

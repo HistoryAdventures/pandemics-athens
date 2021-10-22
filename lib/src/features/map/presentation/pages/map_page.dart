@@ -3,7 +3,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+
 import 'package:just_audio/just_audio.dart';
+import 'package:lottie/lottie.dart';
+// import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -69,6 +72,7 @@ class _MapPageState extends State<MapPage> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     mapInfoModel = MapInfoModel(
+      lottie: AssetsPath.mapLottie1,
       imageDescription: '',
       image: '',
       text: locals.y508bodyText,
@@ -78,6 +82,7 @@ class _MapPageState extends State<MapPage> {
     );
     mapInfoList = [
       MapInfoModel(
+        lottie: AssetsPath.mapLottie1,
         imageDescription: '',
         image: '',
         text: locals.y508bodyText,
@@ -86,6 +91,7 @@ class _MapPageState extends State<MapPage> {
         mapImage: AssetsPath.map508,
       ),
       MapInfoModel(
+        lottie: AssetsPath.mapLottie2,
         imageDescription: locals.y495imageText,
         image: AssetsPath.mapImage495,
         text: locals.y495bodyText,
@@ -94,6 +100,7 @@ class _MapPageState extends State<MapPage> {
         mapImage: AssetsPath.map495,
       ),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie3,
           imageDescription: locals.y490imageText,
           image: AssetsPath.mapImage490,
           text: locals.y490bodyText,
@@ -101,6 +108,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y490,
           mapImage: AssetsPath.map490),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y480imageText,
           image: AssetsPath.mapImage480,
           text: locals.y480bodyText,
@@ -108,6 +116,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y480,
           mapImage: AssetsPath.map480),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y479imageText,
           image: AssetsPath.mapImage479,
           text: locals.y479bodyText,
@@ -115,6 +124,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y479,
           mapImage: AssetsPath.map479),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y477imageText,
           image: AssetsPath.mapImage477,
           text: locals.y477bodyText,
@@ -122,6 +132,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y477,
           mapImage: AssetsPath.map477),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y471imageText,
           image: AssetsPath.mapImage471,
           text: locals.y471bodyText,
@@ -129,6 +140,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y471,
           mapImage: AssetsPath.map471),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y469imageText,
           image: AssetsPath.mapImage469,
           text: locals.y469bodyText,
@@ -136,6 +148,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y469,
           mapImage: AssetsPath.map469),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y462imageText,
           image: AssetsPath.mapImage462,
           text: locals.y462bodyText,
@@ -143,6 +156,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y462,
           mapImage: AssetsPath.map462),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y461imageText,
           image: AssetsPath.mapImage461,
           text: locals.y461bodyText,
@@ -150,6 +164,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y461,
           mapImage: AssetsPath.map461),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y458imageText,
           image: AssetsPath.mapImage458,
           text: locals.y458bodyText,
@@ -157,6 +172,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y458,
           mapImage: AssetsPath.map458),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y457imageText,
           image: AssetsPath.mapImage457,
           text: locals.y457bodyText,
@@ -164,6 +180,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y457,
           mapImage: AssetsPath.map457),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y454imageText,
           image: AssetsPath.mapImage454,
           text: locals.y454bodyText,
@@ -171,6 +188,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y454,
           mapImage: AssetsPath.map454),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y451imageText,
           image: AssetsPath.mapImage451,
           text: locals.y451bodyText,
@@ -178,6 +196,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y451,
           mapImage: AssetsPath.map451),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y450imageText,
           image: AssetsPath.mapImage450,
           text: locals.y450bodyText,
@@ -185,6 +204,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y450,
           mapImage: AssetsPath.map450),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y447_432imageText,
           image: AssetsPath.mapImage447_432,
           text: locals.y447_432bodyText,
@@ -192,6 +212,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y447_432,
           mapImage: AssetsPath.map447_432),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y446imageText,
           image: AssetsPath.mapImage446,
           text: locals.y446bodyText,
@@ -199,6 +220,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y446,
           mapImage: AssetsPath.map446),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y443imageText,
           image: AssetsPath.mapImage443,
           text: locals.y443bodyText,
@@ -206,6 +228,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y443,
           mapImage: AssetsPath.map443),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y441imageText,
           image: AssetsPath.mapImage441,
           text: locals.y441bodyText,
@@ -213,6 +236,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y441,
           mapImage: AssetsPath.map441),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y438imageText,
           image: AssetsPath.mapImage438,
           text: locals.y438bodyText,
@@ -220,6 +244,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y438,
           mapImage: AssetsPath.map438),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y431imageText,
           image: AssetsPath.mapImage431,
           text: locals.y431bodyText,
@@ -227,6 +252,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y431,
           mapImage: AssetsPath.map431),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y430imageText,
           image: AssetsPath.mapImage430,
           text: locals.y430bodyText,
@@ -234,6 +260,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y430,
           mapImage: AssetsPath.map430),
       MapInfoModel(
+        lottie: AssetsPath.mapLottie1,
         imageDescription: '',
         image: '',
         text: locals.y429bodyText,
@@ -242,6 +269,7 @@ class _MapPageState extends State<MapPage> {
         mapImage: AssetsPath.map429,
       ),
       MapInfoModel(
+        lottie: AssetsPath.mapLottie1,
         mapImage: AssetsPath.map427,
         imageDescription: locals.y427imageText,
         image: AssetsPath.mapImage427,
@@ -250,6 +278,7 @@ class _MapPageState extends State<MapPage> {
         year: locals.y427,
       ),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y421imageText,
           image: AssetsPath.mapImage421,
           text: locals.y421bodyText,
@@ -257,6 +286,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y421,
           mapImage: AssetsPath.map421),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y416imageText,
           image: AssetsPath.mapImage416,
           text: locals.y416bodyText,
@@ -264,6 +294,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y416,
           mapImage: AssetsPath.map416),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y415imageText,
           image: AssetsPath.mapImage415,
           text: locals.y415bodyText,
@@ -271,6 +302,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y415,
           mapImage: AssetsPath.map415),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y414imageText,
           image: AssetsPath.mapImage414,
           text: locals.y414bodyText,
@@ -278,6 +310,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y414,
           mapImage: AssetsPath.map414),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y413imageText,
           image: AssetsPath.mapImage421,
           text: locals.y413bodyText,
@@ -285,6 +318,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y413,
           mapImage: AssetsPath.map413),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y411imageText,
           image: AssetsPath.mapImage413,
           text: locals.y411bodyText,
@@ -292,6 +326,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y411,
           mapImage: AssetsPath.map411),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y410imageText,
           image: AssetsPath.mapImage413,
           text: locals.y410bodyText,
@@ -299,6 +334,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y410,
           mapImage: AssetsPath.map410),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y407imageText,
           image: AssetsPath.mapImage413,
           text: locals.y407bodyText,
@@ -306,6 +342,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y407,
           mapImage: AssetsPath.map407),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y404imageText,
           image: AssetsPath.mapImage413,
           text: locals.y404bodyText,
@@ -313,6 +350,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y404,
           mapImage: AssetsPath.map404),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y403imageText,
           image: AssetsPath.mapImage413,
           text: locals.y403bodyText,
@@ -320,6 +358,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y403,
           mapImage: AssetsPath.map403),
       MapInfoModel(
+          lottie: AssetsPath.mapLottie1,
           imageDescription: locals.y399imageText,
           image: AssetsPath.mapImage399,
           text: locals.y399bodyText,
@@ -382,6 +421,9 @@ class _MapPageState extends State<MapPage> {
                       image: AssetImage(mapInfoModel.mapImage),
                       fit: BoxFit.cover),
                 ),
+                child: Lottie.asset(
+                  mapInfoModel.lottie,
+                ),
               ),
             ),
             Align(
@@ -389,15 +431,6 @@ class _MapPageState extends State<MapPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: AppColors.linearGradientForBackground,
-                    //boxShadow: Shadows.universal
-                    // BoxShadow(
-                    //     offset: Offset(1, 0),
-                    //     color: AppColors.grey.withOpacity(0.5),
-                    //     blurRadius: 5),
-                    // BoxShadow(
-                    //     offset: Offset(1, -1),
-                    //     color: AppColors.grey.withOpacity(0.5),
-                    //     blurRadius: 5),
                   ),
                   padding: const EdgeInsets.all(24),
                   margin: EdgeInsets.only(
@@ -708,6 +741,7 @@ class _MapPageState extends State<MapPage> {
                                     itemCount: mapInfoList.length,
                                     itemBuilder: (context, index) {
                                       return yearsWidget(
+                                          lottie: mapInfoList[index].lottie,
                                           year: mapInfoList[index].year,
                                           image: mapInfoList[index].image,
                                           text: mapInfoList[index].text,
@@ -782,6 +816,7 @@ class _MapPageState extends State<MapPage> {
       String? imageText,
       String? text,
       String? map,
+      String? lottie,
       String? title}) {
     return Container(
       alignment: Alignment.bottomCenter,
@@ -790,6 +825,7 @@ class _MapPageState extends State<MapPage> {
         onPressed: () {
           setState(() {
             mapInfoModel.chandeState(
+              lottie: lottie,
               image: image,
               text: text,
               title: title,

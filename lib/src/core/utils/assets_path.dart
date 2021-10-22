@@ -338,6 +338,14 @@ class AssetsPath {
       'assets/paralax_new/fighters_left/fighters_left.json';
   static const String paralaxFightersLeft =
       'assets/paralax_new/fighters_left.png';
+  static const String mapLottie1 = 'assets/arrow_lottie.json';
+
+  static const String mapLottie2 = 'assets/map_lottie/map_02/data.json';
+
+  static const String mapLottie3 = 'assets/map_lottie/map_03/data.json';
+
+  static const String mapLottie4 = 'assets/map_lottie/map_04/data.json';
+
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
   static const String map490 = 'assets/map/map490image.png';

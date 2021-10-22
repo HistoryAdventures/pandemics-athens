@@ -19,10 +19,11 @@ class ArrowRightTextWidget extends StatelessWidget {
     return Clickable(
       onPressed: onTap,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Flexible(
+            flex: 3,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,

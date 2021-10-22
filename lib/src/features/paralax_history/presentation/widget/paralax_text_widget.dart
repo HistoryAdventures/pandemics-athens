@@ -33,15 +33,15 @@ class ParalaxTextWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: AutoSizeText(
+                child: Text(
                   text,
                   strutStyle: const StrutStyle(
                     height: 1.5,
                   ),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      ?.copyWith(color: AppColors.white),
+                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                        color: AppColors.white,
+                        fontSize: TextFontSize.getHeight(24, context),
+                      ),
                 ))),
       ),
     );

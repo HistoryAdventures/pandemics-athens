@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 class MapInfoModel {
   String image;
   String title;
@@ -5,6 +8,7 @@ class MapInfoModel {
   String year;
   String mapImage;
   String imageDescription;
+  String lottie;
 
   MapInfoModel(
       {required this.image,
@@ -12,6 +16,7 @@ class MapInfoModel {
       required this.text,
       required this.mapImage,
       required this.imageDescription,
+      required this.lottie,
       required this.year});
   void chandeState({
     required String? image,
@@ -19,7 +24,9 @@ class MapInfoModel {
     required String? title,
     required String? imageDescription,
     required String? mapImage,
+    required String? lottie,
   }) {
+    this.lottie = lottie!;
     this.mapImage = mapImage!;
     this.title = title!;
     this.image = image!;
