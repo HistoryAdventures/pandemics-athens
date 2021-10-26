@@ -38,7 +38,6 @@ class ParallaxWidget extends StatelessWidget {
       this.animation,
       this.paralaxText});
 
-
   @override
   Widget build(BuildContext context) {
     return Positioned(

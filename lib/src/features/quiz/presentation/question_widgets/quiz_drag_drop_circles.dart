@@ -7,6 +7,7 @@ import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/circle_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
 
@@ -98,7 +99,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     final newLine = DrowLineWidget(
       customPaint: CustomPaint(
         painter: DrowLine(
-          color: AppColors.blueDeep,
+          color: AppColors.grey,
           isRightLine: null,
           strat: lineOffsetStart,
           end: lineOffsetEndUpdate,
@@ -212,7 +213,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                           .map((customPaint) => customPaint.customPaint),
                     CustomPaint(
                       painter: DrowLine(
-                        color: AppColors.blueDeep,
+                        color: AppColors.grey,
                         strat: drowingLineStartOffset,
                         end: drowingLineEndOffset,
                       ),
@@ -295,7 +296,8 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                                         Alignment.centerLeft,
                                                     height: 50,
                                                     width: 150,
-                                                    child: buildTarget(
+                                                    child: CircleWidget(
+                                                      isDraging: true,
                                                       onDragCompleted: () {
                                                         print(
                                                             'onDragCompleted');
@@ -403,7 +405,7 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                                             .centerLeft,
                                                         height: 50,
                                                         width: 50,
-                                                        child: buildTarget(
+                                                        child: CircleWidget(
                                                           targetIsImage: widget
                                                               .quizWithImage,
                                                           onWillAccept: true,
@@ -511,74 +513,6 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   }
 }
 
-Widget buildTarget(
-        {bool isDraging = true,
-        required BuildContext context,
-        required List<Answers<int>> answers,
-        List<CorrectAnswers>? correctAnswers,
-        required bool onWillAccept,
-        required Offset mouseOffset,
-        bool targetIsImage = false,
-        required DragTargetAccept<Answers<int>> onAccept,
-        required DragTargetMove<Answers> onMove,
-        Function(Offset)? getEndLineOffset,
-        Function(Offset)? getStartLineOffset,
-        Function()? onDragCompleted,
-        Function()? onDragEnd}) =>
-    Container(
-      child: DragTarget<Answers<int>>(
-        onMove: (data) {
-          onMove(data);
-        },
-        builder: (context, candidateData, rejectedData) => Stack(
-          children: answers
-              .map((answer) => isDraging
-                  ? DraggableCirclesWidget(
-                      answer: answer,
-                      offset: mouseOffset,
-                      getStartLineOffset: (mouseOffset) {
-                        getStartLineOffset!(mouseOffset);
-                      },
-                      getEndLineOffset: (mouseOffset) {
-                        getEndLineOffset!(mouseOffset);
-                      },
-                      onDragCompleted: () {
-                        onDragCompleted!();
-                      },
-                      onDragEnd: (draggableDetails) {
-                        onDragEnd!();
-                      },
-                    )
-                  : Container(
-                      height: double.infinity,
-                      child: Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.blue, width: 3),
-                          color: Colors.white,
-                        ),
-                      ),
-                    ))
-              .toList(),
-        ),
-        onWillAccept: (data) {
-          return onWillAccept;
-        },
-        onAccept: (data) {
-          // if (correctAnswers!.contains(data.correctAnswers)) {
-          //   QuizData.valueForDrowColoredLineFor = true;
-          //   print('It is write,target value:::${data.value} ');
-          // } else {
-          //   QuizData.valueForDrowColoredLineFor = false;
-          //   print('It is  wrong,target value:::${data.value} ');
-          // }
-          onAccept(data);
-        },
-      ),
-    );
-
 class DrowLine extends CustomPainter {
   final Offset strat;
   final Offset end;
@@ -605,7 +539,7 @@ class DrowLine extends CustomPainter {
           : isRightLine!
               ? AppColors.green
               : AppColors.red
-      ..strokeWidth = 2.5;
+      ..strokeWidth = 1.5;
 
     canvas.drawLine(strat, end, paint);
   }

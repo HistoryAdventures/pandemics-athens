@@ -409,408 +409,410 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body: _videoController.value.isPlaying
-          ? _videoController.value.isInitialized
-              ? SizedBox.expand(
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(
-                      width: _videoController.value.size.width,
-                      height: _videoController.value.size.height,
-                      child: VideoPlayer(_videoController),
+      body:
+          // _videoController.value.isPlaying
+          //     ? _videoController.value.isInitialized
+          //         ? SizedBox.expand(
+          //             child: FittedBox(
+          //               fit: BoxFit.cover,
+          //               child: SizedBox(
+          //                 width: _videoController.value.size.width,
+          //                 height: _videoController.value.size.height,
+          //                 child: VideoPlayer(_videoController),
+          //               ),
+          //             ),
+          //           )
+          //         : const LoadingVideoWidget()
+          //     :
+          LayoutBuilder(
+        builder: (constex, constraints) => SizedBox(
+          child: Stack(
+            children: <Widget>[
+              ListView(
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                controller: _scrollController,
+                children: <Widget>[
+                  Container(
+                    height: constraints.maxHeight * 10,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AssetsPath.paralaxBackground),
+                          fit: BoxFit.cover),
                     ),
-                  ),
-                )
-              : const LoadingVideoWidget()
-          : LayoutBuilder(
-              builder: (constex, constraints) => SizedBox(
-                child: Stack(
-                  children: <Widget>[
-                    ListView(
-                      physics: const ClampingScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                      controller: _scrollController,
-                      children: <Widget>[
-                        Container(
-                          height: constraints.maxHeight * 10,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(AssetsPath.paralaxBackground),
-                                fit: BoxFit.cover),
-                          ),
-                          child: Stack(
-                            children: [
-                              ParallaxWidget(
-                                isImage: true,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: 0,
-                                left: _progressTopClouds,
-                                asset: AssetsPath.paralaxClouds,
-                              ),
-                              ParallaxWidget(
-                                isImage: true,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: rateBuilding,
-                                asset: AssetsPath.paralaxBuilding,
-                              ),
-                              ParallaxWidget(
-                                isImage: true,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: rateBuilding,
-                                asset: AssetsPath.paralaxBuilding,
-                              ),
-                              ParallaxWidget(
-                                isImage: true,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: rateCharactersNikosClouds,
-                                left: _progressTopClouds,
-                                asset: AssetsPath.paralaxClouds2,
-                              ),
-                              ParallaxWidget(
-                                isImage: false,
-                                width: constraints.maxWidth * 0.03,
-                                boxFit: BoxFit.contain,
-                                top: _progressTopCrows,
-                                right: _progressCrows,
-                                asset: AssetsPath.paralaxCrowsLottie,
-                              ),
-                              ParallaxWidget(
-                                isImage: false,
-                                width: constraints.maxWidth * 0.03,
-                                boxFit: BoxFit.contain,
-                                top: _progressTopCrows + 150,
-                                left: _progressCrows,
-                                asset: AssetsPath.paralaxCrowLottie,
-                              ),
-                              ParallaxWidget(
-                                // color: Colors.red,
-                                isImage: true,
-                                width: constraints.maxWidth / 2,
-                                boxFit: BoxFit.cover,
-                                top: rateCharactersNikosGif,
-                                left: _progressCaracterNikos,
-                                asset: AssetsPath.gifParalaxNikosGif,
-                              ),
-                              ParallaxWidget(
-                                isImage: false,
-                                width: constraints.maxWidth / 3,
-                                boxFit: BoxFit.contain,
-                                top: rateFire,
-                                right: constraints.maxWidth * 0.1,
-                                asset: AssetsPath.paralaxFireLottie,
-                              ),
-                              ParallaxWidget(
-                                isImage: false,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: rateLeftCrowd,
-                                right: _progressRightFighters,
-                                asset: AssetsPath.paralaxFightersRightLottie,
-                              ),
-                              ParallaxWidget(
-                                isImage: true,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                left: _progressLeftFighters,
-                                top: rateLeftCrowd,
-                                asset: AssetsPath.paralaxFightersLeft,
-                              ),
-                              ParallaxWidget(
-                                isImage: false,
-                                width: constraints.maxWidth,
-                                boxFit: BoxFit.contain,
-                                top: rateLeftCrowd,
-                                asset: AssetsPath.paralaxFightersLeftLottie,
-                              ),
-                              ParallaxWidget(
-                                  isImage: false,
-                                  width: constraints.maxWidth,
-                                  boxFit: BoxFit.cover,
-                                  top: rateParalaxCrowdLottie,
-                                  asset: AssetsPath.paralaxCrowdLottie),
-                              ParallaxWidget(
-                                isImage: false,
-                                opacity: youngManOpacity,
-                                width: constraints.maxWidth / 3,
-                                height: constraints.maxHeight,
-                                top: rateParalaxYoungManLottie,
-                                left: constraints.maxWidth / 2,
-                                asset: AssetsPath.paralaxYoungManLottie,
-                                boxFit: BoxFit.cover,
-                              ),
-                              ParallaxWidget(
-                                  isImage: true,
-                                  width: _progressWeightWalker,
-                                  top: rateParalaxWalker,
-                                  left: constraints.maxWidth * 0.2,
-                                  asset: AssetsPath.paralaxWalker,
-                                  boxFit: BoxFit.contain),
-                              ParallaxWidget(
-                                  isImage: false,
-                                  width: constraints.maxWidth * 0.5,
-                                  top: rateParalaxHotTubLottie - 100,
-                                  right: _progressRightHotTube,
-                                  asset: AssetsPath.paralaxHotTubLottie,
-                                  boxFit: BoxFit.contain),
-                              ParallaxWidget(
-                                  isImage: true,
-                                  width: constraints.maxWidth,
-                                  top: rateParalaxHotTubLottie + 100,
-                                  left: _progressClouds,
-                                  asset: AssetsPath.paralaxTubeCloud,
-                                  boxFit: BoxFit.contain),
-                              ParallaxWidget(
-                                  isImage: true,
-                                  width: constraints.maxWidth,
-                                  bottom: 0,
-                                  left: constraints.maxWidth * 0.1,
-                                  right: constraints.maxWidth * 0.1,
-                                  asset: AssetsPath.lottieAssetsTube,
-                                  boxFit: BoxFit.contain),
-                              ParallaxWidget(
-                                  isImage: true,
-                                  width: constraints.maxWidth,
-                                  bottom: 0,
-                                  left: _progressClouds,
-                                  asset: AssetsPath.paralaxTube2Cloud,
-                                  boxFit: BoxFit.contain),
-                            ],
-                          ),
-                        )
+                    child: Stack(
+                      children: [
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight * 0.5,
+                          boxFit: BoxFit.fitWidth,
+                          top: 0,
+                          left: _progressTopClouds,
+                          asset: AssetsPath.paralaxClouds,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateBuilding,
+                          asset: AssetsPath.paralaxBuilding,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateBuilding,
+                          asset: AssetsPath.paralaxBuilding,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight * 0.4,
+                          boxFit: BoxFit.cover,
+                          top: rateCharactersNikosClouds,
+                          left: _progressTopClouds,
+                          asset: AssetsPath.paralaxClouds2,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth * 0.03,
+                          boxFit: BoxFit.contain,
+                          top: _progressTopCrows,
+                          right: _progressCrows,
+                          asset: AssetsPath.paralaxCrowsLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth * 0.03,
+                          boxFit: BoxFit.contain,
+                          top: _progressTopCrows + 150,
+                          left: _progressCrows,
+                          asset: AssetsPath.paralaxCrowLottie,
+                        ),
+                        ParallaxWidget(
+                          // color: Colors.red,
+                          isImage: true,
+                          width: constraints.maxWidth / 2,
+                          boxFit: BoxFit.cover,
+                          top: rateCharactersNikosGif,
+                          left: _progressCaracterNikos,
+                          asset: AssetsPath.gifParalaxNikosGif,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth / 3,
+                          boxFit: BoxFit.contain,
+                          top: rateFire,
+                          right: constraints.maxWidth * 0.1,
+                          asset: AssetsPath.paralaxFireLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateLeftCrowd,
+                          right: _progressRightFighters,
+                          asset: AssetsPath.paralaxFightersRightLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          left: _progressLeftFighters,
+                          top: rateLeftCrowd,
+                          asset: AssetsPath.paralaxFightersLeft,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateLeftCrowd,
+                          asset: AssetsPath.paralaxFightersLeftLottie,
+                        ),
+                        ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.cover,
+                            top: rateParalaxCrowdLottie,
+                            asset: AssetsPath.paralaxCrowdLottie),
+                        ParallaxWidget(
+                          isImage: false,
+                          opacity: youngManOpacity,
+                          width: constraints.maxWidth / 3,
+                          height: constraints.maxHeight,
+                          top: rateParalaxYoungManLottie,
+                          left: constraints.maxWidth / 2,
+                          asset: AssetsPath.paralaxYoungManLottie,
+                          boxFit: BoxFit.cover,
+                        ),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: _progressWeightWalker,
+                            top: rateParalaxWalker,
+                            left: constraints.maxWidth * 0.2,
+                            asset: AssetsPath.paralaxWalker,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth * 0.5,
+                            top: rateParalaxHotTubLottie - 100,
+                            right: _progressRightHotTube,
+                            asset: AssetsPath.paralaxHotTubLottie,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            top: rateParalaxHotTubLottie + 100,
+                            left: _progressClouds,
+                            asset: AssetsPath.paralaxTubeCloud,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            bottom: 0,
+                            left: constraints.maxWidth * 0.1,
+                            right: constraints.maxWidth * 0.1,
+                            asset: AssetsPath.lottieAssetsTube,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            bottom: 0,
+                            left: _progressClouds,
+                            asset: AssetsPath.paralaxTube2Cloud,
+                            boxFit: BoxFit.contain),
                       ],
                     ),
-                    // Positioned(
-                    //   top: constraints.maxHeight * 0.3,
-                    //   left: constraints.maxWidth * 0.05,
-                    //   child: SizedBox(
-                    //     width: constraints.maxWidth * 0.4,
-                    //     child: AnimatedOpacity(
-                    //       opacity: _topTextOpasyty,
-                    //       duration: Times.fast,
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 20),
-                    //             child: Text(locals.chapter1.toUpperCase()),
-                    //           ),
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 20),
-                    //             child: Text(locals.todoNoHarm.toUpperCase(),
-                    //                 maxLines: 1,
-                    //                 // minFontSize: 8,
-                    //                 style: Theme.of(context)
-                    //                     .textTheme
-                    //                     .bodyText2
-                    //                     ?.copyWith(
-                    //                         fontSize: TextFontSize.getHeight(
-                    //                             80, context),
-                    //                         fontStyle: FontStyle.italic)),
-                    //           ),
-                    //           Container(
-                    //             decoration: const BoxDecoration(
-                    //                 border: Border(
-                    //                     left: BorderSide(
-                    //                         color: AppColors.red, width: 8))),
-                    //             child: Text(
-                    //               locals.athens429Bc,
-                    //               maxLines: 1,
-                    //               // minFontSize: 8,
-                    //               style: Theme.of(context)
-                    //                   .textTheme
-                    //                   .headline4
-                    //                   ?.copyWith(
-                    //                     fontSize:
-                    //                         TextFontSize.getHeight(80, context),
-                    //                     fontWeight: FontWeight.w100,
-                    //                   ),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // ParalaxTextWidget(
-                    //   text: locals.paralaxText1,
-                    //   alignment: Alignment.topRight,
-                    //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                    //   opacity: _paralaxText1Opacity,
-                    // ),
-                    // ParalaxTextWidget(
-                    //   text: locals.paralaxText2,
-                    //   alignment: Alignment.bottomLeft,
-                    //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                    //   opacity: _paralaxText2Opacity,
-                    // ),
-                    // ParalaxTextWidget(
-                    //   text: locals.paralaxText3,
-                    //   alignment: Alignment.centerRight,
-                    //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                    //   opacity: _paralaxText3Opacity,
-                    // ),
-                    // ParalaxTextWidget(
-                    //   text: locals.paralaxText4,
-                    //   alignment: Alignment.centerLeft,
-                    //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                    //   opacity: _paralaxText4Opacity,
-                    // ),
-                    // ParalaxTextWidget(
-                    //   text: locals.paralaxText5,
-                    //   alignment: Alignment.bottomLeft,
-                    //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                    //   opacity: _paralaxText5Opacity,
-                    // ),
+                  )
+                ],
+              ),
+              // Positioned(
+              //   top: constraints.maxHeight * 0.3,
+              //   left: constraints.maxWidth * 0.05,
+              //   child: SizedBox(
+              //     width: constraints.maxWidth * 0.4,
+              //     child: AnimatedOpacity(
+              //       opacity: _topTextOpasyty,
+              //       duration: Times.fast,
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 20),
+              //             child: Text(locals.chapter1.toUpperCase()),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 20),
+              //             child: Text(locals.todoNoHarm.toUpperCase(),
+              //                 maxLines: 1,
+              //                 // minFontSize: 8,
+              //                 style: Theme.of(context)
+              //                     .textTheme
+              //                     .bodyText2
+              //                     ?.copyWith(
+              //                         fontSize: TextFontSize.getHeight(
+              //                             80, context),
+              //                         fontStyle: FontStyle.italic)),
+              //           ),
+              //           Container(
+              //             decoration: const BoxDecoration(
+              //                 border: Border(
+              //                     left: BorderSide(
+              //                         color: AppColors.red, width: 8))),
+              //             child: Text(
+              //               locals.athens429Bc,
+              //               maxLines: 1,
+              //               // minFontSize: 8,
+              //               style: Theme.of(context)
+              //                   .textTheme
+              //                   .headline4
+              //                   ?.copyWith(
+              //                     fontSize:
+              //                         TextFontSize.getHeight(80, context),
+              //                     fontWeight: FontWeight.w100,
+              //                   ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // ParalaxTextWidget(
+              //   text: locals.paralaxText1,
+              //   alignment: Alignment.topRight,
+              //   size: Size(constraints.maxWidth, constraints.maxHeight),
+              //   opacity: _paralaxText1Opacity,
+              // ),
+              // ParalaxTextWidget(
+              //   text: locals.paralaxText2,
+              //   alignment: Alignment.bottomLeft,
+              //   size: Size(constraints.maxWidth, constraints.maxHeight),
+              //   opacity: _paralaxText2Opacity,
+              // ),
+              // ParalaxTextWidget(
+              //   text: locals.paralaxText3,
+              //   alignment: Alignment.centerRight,
+              //   size: Size(constraints.maxWidth, constraints.maxHeight),
+              //   opacity: _paralaxText3Opacity,
+              // ),
+              // ParalaxTextWidget(
+              //   text: locals.paralaxText4,
+              //   alignment: Alignment.centerLeft,
+              //   size: Size(constraints.maxWidth, constraints.maxHeight),
+              //   opacity: _paralaxText4Opacity,
+              // ),
+              // ParalaxTextWidget(
+              //   text: locals.paralaxText5,
+              //   alignment: Alignment.bottomLeft,
+              //   size: Size(constraints.maxWidth, constraints.maxHeight),
+              //   opacity: _paralaxText5Opacity,
+              // ),
 
-                    SoundAndMenuWidget(
-                      widget: Clickable(
-                        onPressed: () {
-                          LeafDetails.currentVertex = 1;
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(
-                              Icons.arrow_upward_sharp,
-                              color: AppColors.black54,
-                            ),
-                            Text("BOOK INTO"),
-                          ],
-                        ),
+              SoundAndMenuWidget(
+                widget: Clickable(
+                  onPressed: () {
+                    LeafDetails.currentVertex = 1;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.arrow_upward_sharp,
+                        color: AppColors.black54,
                       ),
-                      icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                      onTapVolume: isSoundOn
-                          ? () {
-                              setState(() {
-                                isSoundOn = !isSoundOn;
-                                backgroundplayer.pause();
-                              });
-                            }
-                          : () {
-                              setState(() {
-                                isSoundOn = !isSoundOn;
-                                backgroundplayer.play();
-                              });
-                            },
-                      onTapMenu: () {
-                        scaffoldkey.currentState!.openEndDrawer();
+                      Text("BOOK INTO"),
+                    ],
+                  ),
+                ),
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
                       },
-                    ),
-                    Visibility(
-                      visible: _lernMoreVisibility,
-                      child: AnimatedOpacity(
-                        duration: Times.medium,
-                        opacity: _lernMoreOpasyty,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            decoration: BoxDecoration(boxShadow: Shadows.small),
-                            height: constraints.maxHeight * 0.1,
-                            width: MediaQuery.of(context).size.width,
-                            child: Clickable(
-                              onPressed: () {
-                                LeafDetails.visitedVertexes.add(4);
-                                LeafDetails.currentVertex = 4;
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
-                                context.router.push(const MapPageRoute());
-                              },
-                              child: ArrowRightWidget(
-                                  textSubTitle:
-                                      locals.athens5thCentury.toUpperCase(),
-                                  textTitle: '',
-                                  textColor: AppColors.white,
-                                  onTap: () {
-                                    LeafDetails.currentVertex = 4;
-                                    LeafDetails.visitedVertexes.add(4);
-                                    NavigationSharedPreferences
-                                        .upDateShatedPreferences();
-                                    context.router.push(const MapPageRoute());
-                                  }),
-                            ),
-                          ),
-                        ),
+                onTapMenu: () {
+                  scaffoldkey.currentState!.openEndDrawer();
+                },
+              ),
+              Visibility(
+                visible: _lernMoreVisibility,
+                child: AnimatedOpacity(
+                  duration: Times.medium,
+                  opacity: _lernMoreOpasyty,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      decoration: BoxDecoration(boxShadow: Shadows.small),
+                      height: constraints.maxHeight * 0.1,
+                      width: MediaQuery.of(context).size.width,
+                      child: Clickable(
+                        onPressed: () {
+                          LeafDetails.visitedVertexes.add(4);
+                          LeafDetails.currentVertex = 4;
+                          NavigationSharedPreferences.upDateShatedPreferences();
+                          context.router.push(const MapPageRoute());
+                        },
+                        child: ArrowRightWidget(
+                            textSubTitle: locals.athens5thCentury.toUpperCase(),
+                            textTitle: '',
+                            textColor: AppColors.white,
+                            onTap: () {
+                              LeafDetails.currentVertex = 4;
+                              LeafDetails.visitedVertexes.add(4);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router.push(const MapPageRoute());
+                            }),
                       ),
                     ),
-                    Visibility(
-                      visible: _bottomFieldVizibility,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: AnimatedOpacity(
-                          duration: Times.slower,
-                          opacity: _bottomFieldOpasity,
-                          child: SizedBox(
-                            height: constraints.maxHeight * 0.1,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: ArrowLeftWidget(
-                                      arrowColor: Colors.black,
-                                      textSubTitle: locals.stickToTheOath,
-                                      textTitle: '',
-                                      onTap: () {
-                                        LeafDetails.currentVertex = 8;
-                                        LeafDetails.visitedVertexes.add(8);
-                                        NavigationSharedPreferences
-                                            .upDateShatedPreferences();
-                                        context.router.push(
-                                            const PanaromaLeftPageRoute());
-                                      }),
-                                ),
-                                Flexible(
-                                  flex: 3,
-                                  child: Text(
-                                    locals.whatNikosDo,
-                                    maxLines: 1,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                            fontSize: 36,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: ArrowRightWidget(
-                                      textSubTitle: locals.helpTheSenator,
-                                      textTitle: '',
-                                      arrowColor: Colors.black,
-                                      onTap: () {
-                                        LeafDetails.currentVertex = 9;
-                                        LeafDetails.visitedVertexes.add(9);
-                                        NavigationSharedPreferences
-                                            .upDateShatedPreferences();
-                                        context.router.push(
-                                            const PanaromaRightPageRoute());
-                                      }),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              Visibility(
+                visible: _bottomFieldVizibility,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedOpacity(
+                    duration: Times.slower,
+                    opacity: _bottomFieldOpasity,
+                    child: SizedBox(
+                      height: constraints.maxHeight * 0.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: ArrowLeftWidget(
+                                arrowColor: Colors.black,
+                                textSubTitle: locals.stickToTheOath,
+                                textTitle: '',
+                                onTap: () {
+                                  LeafDetails.currentVertex = 8;
+                                  LeafDetails.visitedVertexes.add(8);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
+                                  context.router
+                                      .push(const PanaromaLeftPageRoute());
+                                }),
+                          ),
+                          Flexible(
+                            flex: 3,
+                            child: Text(
+                              locals.whatNikosDo,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      fontSize: 36,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: ArrowRightWidget(
+                                textSubTitle: locals.helpTheSenator,
+                                textTitle: '',
+                                arrowColor: Colors.black,
+                                onTap: () {
+                                  LeafDetails.currentVertex = 9;
+                                  LeafDetails.visitedVertexes.add(9);
+                                  NavigationSharedPreferences
+                                      .upDateShatedPreferences();
+                                  context.router
+                                      .push(const PanaromaRightPageRoute());
+                                }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
