@@ -53,12 +53,19 @@ class _ChapterNavigationTreeState extends State<ChapterNavigationTree> {
               child: SizedBox(
                 child: CustomPaint(
                   painter: DrowCircleAndLine(
-                    currentColor: widget.details.vertex.isCurrent
+                    circleColor: widget.details.vertex.visited
+                        ? AppColors.black100
+                        : AppColors.transpatent,
+                    currentColorCircle: widget.details.vertex.isCurrent
                         ? Colors.white
                         : Colors.transparent,
-                    color: widget.details.vertex.visited ? Colors.white : color,
+                    colorIsAbleToNavigate:
+                        widget.details.vertex.visited ? Colors.white : color,
                     strat: widget.details.start ?? const Offset(8, 30),
                     end: widget.details.end ?? const Offset(8, 60),
+                    lineColor: AppColors.black100,
+                    isAbleToNavigate: widget.isAbleToNavigate,
+                    visited: widget.details.vertex.visited,
                   ),
                   child: const SizedBox(
                     height: 15,

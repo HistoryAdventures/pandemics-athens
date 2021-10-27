@@ -120,9 +120,9 @@ class _NavigationPageState extends State<NavigationPage> {
           context.router
               .replace(LeandingPageRoute(navigateFromNavigatorPage: true));
         },
-        pointOffset: const Offset(140, 0),
-        lineStartOffset: const Offset(12, 12),
-        lineEndOffset: const Offset(20, 50),
+        pointOffset: const Offset(150, 0),
+        lineStartOffset: const Offset(5, 5),
+        lineEndOffset: const Offset(10, 49),
         alignment: Alignment.centerLeft,
         title: 'home',
       ),
@@ -140,8 +140,8 @@ class _NavigationPageState extends State<NavigationPage> {
           context.router.replace(const GlossaryPageRoute());
         },
         pointOffset: const Offset(155, 50),
-        lineStartOffset: const Offset(12, 12),
-        lineEndOffset: const Offset(-21, 60),
+        lineStartOffset: const Offset(10, 15),
+        lineEndOffset: const Offset(-10, 52),
         alignment: Alignment.centerRight,
         title: 'glossary',
       ),
@@ -160,8 +160,8 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
-        lineStartOffset: const Offset(9, 12),
-        lineEndOffset: const Offset(25, 60),
+        lineStartOffset: const Offset(10, 14),
+        lineEndOffset: const Offset(25, 55),
         alignment: Alignment.centerLeft,
         title: 'to do no harm',
       ),

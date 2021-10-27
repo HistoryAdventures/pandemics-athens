@@ -28,9 +28,9 @@ class _NavigationTreeState extends State<NavigationTree> {
   @override
   void initState() {
     if (widget.isAbleToNavigate == false) {
-      color = Colors.black;
+      color = Colors.transparent;
     } else {
-      color = AppColors.orange;
+      color = AppColors.grey;
     }
     super.initState();
   }
@@ -62,13 +62,24 @@ class _NavigationTreeState extends State<NavigationTree> {
               child: CustomPaint(
                 size: MediaQuery.of(context).size,
                 painter: DrowCircleAndLine(
-                    currentColor: widget.details.vertex.isCurrent
-                        ? Colors.white
-                        : Colors.transparent,
-                    color: widget.details.vertex.visited ? Colors.white : color,
-                    strat: widget.details.lineStartOffset,
-                    end: widget.details.lineEndOffset),
-                child: const SizedBox(height: 15, width: 15),
+                  lineColor: widget.details.vertex.visited
+                      ? AppColors.black100
+                      : AppColors.grey,
+                  currentColorCircle: widget.details.vertex.isCurrent
+                      ? AppColors.orange
+                      : Colors.transparent,
+                  colorIsAbleToNavigate: widget.isAbleToNavigate
+                      ? AppColors.black100
+                      : AppColors.grey,
+                  strat: widget.details.lineStartOffset,
+                  end: widget.details.lineEndOffset,
+                  circleColor: widget.details.vertex.visited
+                      ? AppColors.black100
+                      : AppColors.transpatent,
+                  isAbleToNavigate: widget.isAbleToNavigate,
+                  visited: widget.details.vertex.visited,
+                ),
+                child: const SizedBox(height: 10, width: 10),
               ),
             ),
           ),

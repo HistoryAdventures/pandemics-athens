@@ -108,7 +108,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   //     horizontal: constraints.maxWidth * 0.1),
                   width: constraints.maxWidth * 0.8,
                   height: constraints.maxHeight * 0.5,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: AppColors.white,
                     boxShadow: Shadows.universal,
                   ),
