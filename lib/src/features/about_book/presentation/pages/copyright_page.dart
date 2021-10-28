@@ -105,6 +105,27 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   ),
                 ),
                 Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: ArrowLeftTextWidget(
+                        textSubTitle: locale.furtherReading,
+                        textTitle: locale.aboutTheBook,
+                        onTap: () {
+                          LeafDetails.currentVertex = 22;
+                          LeafDetails.currentVertex = 0;
+                          NavigationSharedPreferences.upDateShatedPreferences();
+
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
+                        }),
+                  ),
+                ),
+                Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.all(24),

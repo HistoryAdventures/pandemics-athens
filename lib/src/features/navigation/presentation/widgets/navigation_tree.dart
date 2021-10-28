@@ -42,11 +42,11 @@ class _NavigationTreeState extends State<NavigationTree> {
         Positioned(
           left: getCoordinate(context).dx,
           top: getCoordinate(context).dy,
-          child: Text(widget.details.title,
-              style: Theme.of(context)
-                  .primaryTextTheme
-                  .subtitle1
-                  ?.copyWith(color: AppColors.black100, fontSize: 10)),
+          child: Text(widget.details.title.toUpperCase(),
+              style: Theme.of(context).textTheme.headline1?.copyWith(
+                  color: AppColors.black100,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold)),
         ),
         Positioned(
           left: widget.details.pointOffset.dx,
@@ -64,13 +64,13 @@ class _NavigationTreeState extends State<NavigationTree> {
                 painter: DrowCircleAndLine(
                   lineColor: widget.details.vertex.visited
                       ? AppColors.black100
-                      : AppColors.grey,
+                      : AppColors.grey35,
                   currentColorCircle: widget.details.vertex.isCurrent
                       ? AppColors.orange
                       : Colors.transparent,
                   colorIsAbleToNavigate: widget.isAbleToNavigate
                       ? AppColors.black100
-                      : AppColors.grey,
+                      : AppColors.grey35,
                   strat: widget.details.lineStartOffset,
                   end: widget.details.lineEndOffset,
                   circleColor: widget.details.vertex.visited
@@ -97,14 +97,14 @@ class _NavigationTreeState extends State<NavigationTree> {
 
     if (widget.details.alignment == Alignment.bottomCenter) {
       offset = Offset(widget.details.pointOffset.dx + 7.5 - size.width / 2,
-          widget.details.pointOffset.dy + size.height + 10);
+          widget.details.pointOffset.dy + size.height + 2);
     } else if (widget.details.alignment == Alignment.topCenter) {
       offset = Offset(widget.details.pointOffset.dx + 7.5 - size.width / 2,
           widget.details.pointOffset.dy - size.height - 5);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerLeft) {
-      offset = Offset((widget.details.pointOffset.dx - size.width) - 10,
-          (widget.details.pointOffset.dy - size.height / 4) + 5);
+      offset = Offset((widget.details.pointOffset.dx - 7.5 - size.width) - 10,
+          (widget.details.pointOffset.dy - size.height / 4) + 1);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerRight) {
       offset = Offset(widget.details.pointOffset.dx + 25,

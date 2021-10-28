@@ -840,6 +840,8 @@ class _MapPageState extends State<MapPage> {
                             onTap: () {
                               LeafDetails.visitedVertexes.add(5);
                               LeafDetails.currentVertex = 5;
+                              print(LeafDetails.currentVertex);
+                              print(LeafDetails.visitedVertexes);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
                               context.router.push(const CharacrterPageRoute());

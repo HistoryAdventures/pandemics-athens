@@ -126,7 +126,7 @@ class _SourcePageState extends State<SourcePage> {
                               textSubTitle: locale.credits,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 20;
+                                LeafDetails.currentVertex = 25;
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
 
@@ -156,8 +156,8 @@ class _SourcePageState extends State<SourcePage> {
                               textSubTitle: locale.furtherReading,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 22;
-                                LeafDetails.visitedVertexes.add(22);
+                                LeafDetails.currentVertex = 27;
+                                LeafDetails.visitedVertexes.add(27);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
                                 context.router

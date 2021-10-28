@@ -43,7 +43,7 @@ class _LeandingPageState extends State<LeandingPage>
     if (widget.navigateFromNavigatorPage != null) {
       isImageloaded = widget.navigateFromNavigatorPage!;
     } else {
-      init();
+      //init();
     }
     super.didChangeDependencies();
   }

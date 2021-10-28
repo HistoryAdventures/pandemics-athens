@@ -409,184 +409,183 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body:
-          // _videoController.value.isPlaying
-          //     ? _videoController.value.isInitialized
-          //         ? SizedBox.expand(
-          //             child: FittedBox(
-          //               fit: BoxFit.cover,
-          //               child: SizedBox(
-          //                 width: _videoController.value.size.width,
-          //                 height: _videoController.value.size.height,
-          //                 child: VideoPlayer(_videoController),
-          //               ),
-          //             ),
-          //           )
-          //         : const LoadingVideoWidget()
-          //     :
-          LayoutBuilder(
+      body: LayoutBuilder(
         builder: (constex, constraints) => SizedBox(
           child: Stack(
             children: <Widget>[
-              ListView(
-                physics: const ClampingScrollPhysics(),
-                padding: EdgeInsets.zero,
-                controller: _scrollController,
-                children: <Widget>[
-                  Container(
-                    height: constraints.maxHeight * 10,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AssetsPath.paralaxBackground),
-                          fit: BoxFit.cover),
-                    ),
-                    child: Stack(
-                      children: [
-                        ParallaxWidget(
-                          isImage: true,
-                          width: constraints.maxWidth,
-                          height: constraints.maxHeight * 0.5,
-                          boxFit: BoxFit.fitWidth,
-                          top: 0,
-                          left: _progressTopClouds,
-                          asset: AssetsPath.paralaxClouds,
+              if (_videoController.value.isPlaying)
+                _videoController.value.isInitialized
+                    ? SizedBox.expand(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: SizedBox(
+                            width: _videoController.value.size.width,
+                            height: _videoController.value.size.height,
+                            child: VideoPlayer(_videoController),
+                          ),
                         ),
-                        ParallaxWidget(
-                          isImage: true,
-                          width: constraints.maxWidth,
-                          boxFit: BoxFit.contain,
-                          top: rateBuilding,
-                          asset: AssetsPath.paralaxBuilding,
-                        ),
-                        ParallaxWidget(
-                          isImage: true,
-                          width: constraints.maxWidth,
-                          boxFit: BoxFit.contain,
-                          top: rateBuilding,
-                          asset: AssetsPath.paralaxBuilding,
-                        ),
-                        ParallaxWidget(
-                          isImage: true,
-                          width: constraints.maxWidth,
-                          height: constraints.maxHeight * 0.4,
-                          boxFit: BoxFit.cover,
-                          top: rateCharactersNikosClouds,
-                          left: _progressTopClouds,
-                          asset: AssetsPath.paralaxClouds2,
-                        ),
-                        ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth * 0.03,
-                          boxFit: BoxFit.contain,
-                          top: _progressTopCrows,
-                          right: _progressCrows,
-                          asset: AssetsPath.paralaxCrowsLottie,
-                        ),
-                        ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth * 0.03,
-                          boxFit: BoxFit.contain,
-                          top: _progressTopCrows + 150,
-                          left: _progressCrows,
-                          asset: AssetsPath.paralaxCrowLottie,
-                        ),
-                        ParallaxWidget(
-                          // color: Colors.red,
-                          isImage: true,
-                          width: constraints.maxWidth / 2,
-                          boxFit: BoxFit.cover,
-                          top: rateCharactersNikosGif,
-                          left: _progressCaracterNikos,
-                          asset: AssetsPath.gifParalaxNikosGif,
-                        ),
-                        ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth / 3,
-                          boxFit: BoxFit.contain,
-                          top: rateFire,
-                          right: constraints.maxWidth * 0.1,
-                          asset: AssetsPath.paralaxFireLottie,
-                        ),
-                        ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth,
-                          boxFit: BoxFit.contain,
-                          top: rateLeftCrowd,
-                          right: _progressRightFighters,
-                          asset: AssetsPath.paralaxFightersRightLottie,
-                        ),
-                        ParallaxWidget(
-                          isImage: true,
-                          width: constraints.maxWidth,
-                          boxFit: BoxFit.contain,
-                          left: _progressLeftFighters,
-                          top: rateLeftCrowd,
-                          asset: AssetsPath.paralaxFightersLeft,
-                        ),
-                        ParallaxWidget(
-                          isImage: false,
-                          width: constraints.maxWidth,
-                          boxFit: BoxFit.contain,
-                          top: rateLeftCrowd,
-                          asset: AssetsPath.paralaxFightersLeftLottie,
-                        ),
-                        ParallaxWidget(
-                            isImage: false,
+                      )
+                    : const LoadingVideoWidget()
+              else
+                ListView(
+                  physics: const ClampingScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  controller: _scrollController,
+                  children: <Widget>[
+                    Container(
+                      height: constraints.maxHeight * 10,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(AssetsPath.paralaxBackground),
+                            fit: BoxFit.cover),
+                      ),
+                      child: Stack(
+                        children: [
+                          ParallaxWidget(
+                            isImage: true,
                             width: constraints.maxWidth,
+                            height: constraints.maxHeight * 0.5,
+                            boxFit: BoxFit.fitWidth,
+                            top: 0,
+                            left: _progressTopClouds,
+                            asset: AssetsPath.paralaxClouds,
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.contain,
+                            top: rateBuilding,
+                            asset: AssetsPath.paralaxBuilding,
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.contain,
+                            top: rateBuilding,
+                            asset: AssetsPath.paralaxBuilding,
+                          ),
+                          ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            height: constraints.maxHeight * 0.4,
                             boxFit: BoxFit.cover,
-                            top: rateParalaxCrowdLottie,
-                            asset: AssetsPath.paralaxCrowdLottie),
-                        ParallaxWidget(
-                          isImage: false,
-                          opacity: youngManOpacity,
-                          width: constraints.maxWidth / 3,
-                          height: constraints.maxHeight,
-                          top: rateParalaxYoungManLottie,
-                          left: constraints.maxWidth / 2,
-                          asset: AssetsPath.paralaxYoungManLottie,
-                          boxFit: BoxFit.cover,
-                        ),
-                        ParallaxWidget(
-                            isImage: true,
-                            width: _progressWeightWalker,
-                            top: rateParalaxWalker,
-                            left: constraints.maxWidth * 0.2,
-                            asset: AssetsPath.paralaxWalker,
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
+                            top: rateCharactersNikosClouds,
+                            left: _progressTopClouds,
+                            asset: AssetsPath.paralaxClouds2,
+                          ),
+                          ParallaxWidget(
                             isImage: false,
-                            width: constraints.maxWidth * 0.5,
-                            top: rateParalaxHotTubLottie - 100,
-                            right: _progressRightHotTube,
-                            asset: AssetsPath.paralaxHotTubLottie,
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
+                            width: constraints.maxWidth * 0.03,
+                            boxFit: BoxFit.contain,
+                            top: _progressTopCrows,
+                            right: _progressCrows,
+                            asset: AssetsPath.paralaxCrowsLottie,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth * 0.03,
+                            boxFit: BoxFit.contain,
+                            top: _progressTopCrows + 150,
+                            left: _progressCrows,
+                            asset: AssetsPath.paralaxCrowLottie,
+                          ),
+                          ParallaxWidget(
+                            // color: Colors.red,
                             isImage: true,
-                            width: constraints.maxWidth,
-                            top: rateParalaxHotTubLottie + 100,
-                            left: _progressClouds,
-                            asset: AssetsPath.paralaxTubeCloud,
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            bottom: 0,
-                            left: constraints.maxWidth * 0.1,
+                            width: constraints.maxWidth / 2,
+                            boxFit: BoxFit.cover,
+                            top: rateCharactersNikosGif,
+                            left: _progressCaracterNikos,
+                            asset: AssetsPath.gifParalaxNikosGif,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth / 3,
+                            boxFit: BoxFit.contain,
+                            top: rateFire,
                             right: constraints.maxWidth * 0.1,
-                            asset: AssetsPath.lottieAssetsTube,
-                            boxFit: BoxFit.contain),
-                        ParallaxWidget(
+                            asset: AssetsPath.paralaxFireLottie,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.contain,
+                            top: rateLeftCrowd,
+                            right: _progressRightFighters,
+                            asset: AssetsPath.paralaxFightersRightLottie,
+                          ),
+                          ParallaxWidget(
                             isImage: true,
                             width: constraints.maxWidth,
-                            bottom: 0,
-                            left: _progressClouds,
-                            asset: AssetsPath.paralaxTube2Cloud,
-                            boxFit: BoxFit.contain),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                            boxFit: BoxFit.contain,
+                            left: _progressLeftFighters,
+                            top: rateLeftCrowd,
+                            asset: AssetsPath.paralaxFightersLeft,
+                          ),
+                          ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.contain,
+                            top: rateLeftCrowd,
+                            asset: AssetsPath.paralaxFightersLeftLottie,
+                          ),
+                          ParallaxWidget(
+                              isImage: false,
+                              width: constraints.maxWidth,
+                              boxFit: BoxFit.cover,
+                              top: rateParalaxCrowdLottie,
+                              asset: AssetsPath.paralaxCrowdLottie),
+                          ParallaxWidget(
+                            isImage: false,
+                            opacity: youngManOpacity,
+                            width: constraints.maxWidth / 3,
+                            height: constraints.maxHeight,
+                            top: rateParalaxYoungManLottie,
+                            left: constraints.maxWidth / 2,
+                            asset: AssetsPath.paralaxYoungManLottie,
+                            boxFit: BoxFit.cover,
+                          ),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: _progressWeightWalker,
+                              top: rateParalaxWalker,
+                              left: constraints.maxWidth * 0.2,
+                              asset: AssetsPath.paralaxWalker,
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: false,
+                              width: constraints.maxWidth * 0.5,
+                              top: rateParalaxHotTubLottie - 100,
+                              right: _progressRightHotTube,
+                              asset: AssetsPath.paralaxHotTubLottie,
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: constraints.maxWidth,
+                              top: rateParalaxHotTubLottie + 100,
+                              left: _progressClouds,
+                              asset: AssetsPath.paralaxTubeCloud,
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: constraints.maxWidth,
+                              bottom: 0,
+                              left: constraints.maxWidth * 0.1,
+                              right: constraints.maxWidth * 0.1,
+                              asset: AssetsPath.lottieAssetsTube,
+                              boxFit: BoxFit.contain),
+                          ParallaxWidget(
+                              isImage: true,
+                              width: constraints.maxWidth,
+                              bottom: 0,
+                              // left: _progressClouds,
+                              asset: AssetsPath.paralaxTube2Cloud,
+                              boxFit: BoxFit.contain),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               // Positioned(
               //   top: constraints.maxHeight * 0.3,
               //   left: constraints.maxWidth * 0.05,

@@ -28,11 +28,11 @@ class DrowCircleAndLine extends CustomPainter {
     final rect = Rect.fromLTRB(0.0, 0.0, size.width, size.height);
     final circleSize = rect.width / 2;
     final area = circleSize * circleSize;
-    final radius1 = sqrt(area * 2);
-    final radius2 = sqrt(area);
-    final radius3 = sqrt(area);
+    final radiusCurrentCircle = sqrt(area * 2);
 
-    final paint1 = Paint()
+    final radiusPainCircle = sqrt(area);
+
+    final paintCurrentCircle = Paint()
       ..color = currentColorCircle
       ..strokeWidth = 1
       ..style = PaintingStyle.fill
@@ -59,7 +59,7 @@ class DrowCircleAndLine extends CustomPainter {
     final b1 = strat;
     final b2 = end;
     final paintLine2 = Paint()
-      ..color = AppColors.grey
+      ..color = AppColors.grey35
       ..strokeWidth = 1;
 
     final c1 = strat;
@@ -68,21 +68,17 @@ class DrowCircleAndLine extends CustomPainter {
       ..color = AppColors.black100
       ..strokeWidth = 1;
 
-    canvas.drawCircle(rect.center, radius3, paint3);
-    canvas.drawCircle(rect.center, radius3, paint2);
     if (isAbleToNavigate) {
       _drawDashedLine(2, 2, a1, a2, canvas, size, paintLine1);
     } else if (visited) {
       canvas.drawLine(c1, c2, paintLine3);
     } else {
       canvas.drawLine(b1, b2, paintLine2);
-      ;
     }
 
-    // _drawDashedLine(2, 2, b1, b2, canvas, size, paintLine2);
-    // _drawDashedLine(2, 2, c1, c2, canvas, size, paintLine3);
-
-    canvas.drawCircle(rect.center, radius1, paint1);
+    canvas.drawCircle(rect.center, radiusPainCircle, paint3);
+    canvas.drawCircle(rect.center, radiusPainCircle, paint2);
+    canvas.drawCircle(rect.center, radiusCurrentCircle, paintCurrentCircle);
   }
 
   @override

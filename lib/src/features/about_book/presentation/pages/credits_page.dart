@@ -96,7 +96,7 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.meetTheTeam,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 19;
+                                LeafDetails.currentVertex = 23;
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
 
@@ -126,8 +126,8 @@ class _CreditsPageState extends State<CreditsPage> {
                               textSubTitle: locale.sources,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 21;
-                                LeafDetails.visitedVertexes.add(21);
+                                LeafDetails.currentVertex = 25;
+                                LeafDetails.visitedVertexes.add(25);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
                                 context.router.push(const SourcePageRoute());

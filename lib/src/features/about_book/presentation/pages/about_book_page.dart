@@ -106,8 +106,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         textSubTitle: locale.credits,
                         textTitle: locale.aboutTheBook,
                         onTap: () {
-                          LeafDetails.currentVertex = 20;
-                          LeafDetails.visitedVertexes.add(20);
+                          LeafDetails.currentVertex = 24;
+                          LeafDetails.visitedVertexes.add(24);
                           NavigationSharedPreferences.upDateShatedPreferences();
                           context.router.push(const CreditsPageRoute());
                         }),

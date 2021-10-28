@@ -155,8 +155,8 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 iconSize: 40,
                 icon: const Icon(Icons.arrow_downward),
                 onPressed: () {
-                  LeafDetails.currentVertex = 19;
-                  LeafDetails.visitedVertexes.add(19);
+                  LeafDetails.currentVertex = 24;
+                  LeafDetails.visitedVertexes.add(24);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.push(const AboutBookPageRoute());
                 },
