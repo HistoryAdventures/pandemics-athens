@@ -3,6 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/navigation/presentation/widgets/drow_circle_line.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/pagination_dialog.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/show_dialog.dart';
@@ -57,7 +61,7 @@ class _QuizPageState extends State<QuizPage> {
       QuizDragDropCirclesWidget(
         variants: QuizData.variantsForQ1,
         answers: QuizData.answersForQ1,
-        question: 'What happened when during the Golden Age of Athens? ',
+        question: 'What happened during the Golden Age of Athens?',
         questionIndex: 1,
         score: 0,
         userAnswer: QuizData.userAnswerForQ1,
@@ -66,9 +70,10 @@ class _QuizPageState extends State<QuizPage> {
       ),
       const QuizEditTextWidget(
         questionIndex: 2,
+        question: 'Hippocrates is famous for his theory of the Four Humours...',
       ),
       QuizDragDropWidget(
-        question: locals.question3,
+        question: 'Fill in the blanks...',
         questionIndex: 3,
         answers: QuizData.answersForDD3,
         score: 8,
@@ -77,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
         quizWithImage: true,
         variants: QuizData.variantsDD4,
         answers: QuizData.answersDD4,
-        question: 'What happened where? Match the event to the correct map. ',
+        question: 'What happened where?',
         questionIndex: 4,
         score: 8,
         userAnswer: QuizData.userAnswerForQ4,
@@ -88,49 +93,24 @@ class _QuizPageState extends State<QuizPage> {
         quizWithImage: false,
         answers: QuizData.answersForQ5,
         questionIndex: 5,
-        question: locals.question5,
+        question: 'Which of the pathogens...',
       ),
       QuizRadioBottonWidget(
         quizWithImage: true,
         answers: QuizData.answersForQ6,
         questionIndex: 6,
-        question: locals.question6,
-      ),
-      QuizDragDropWidget(
-        question: locals.question7,
-        questionIndex: 7,
-        answers: QuizData.answersForDD7,
-        score: 6,
+        question: 'What is the prominent Athenian?',
       ),
       QuizCheckBox(
         answers: QuizData.answersForQuestion8,
-        question:
-            "Look at the painting below. Which of the following statements is true about it and it's subject?",
-        questionIndex: 8,
+        question: "Look at... Which of the following statements is true...",
+        questionIndex: 7,
         userAnswers: QuizData.usersAnswersForQ8,
       ),
-      QuizDragDropCirclesWidget(
-          variants: QuizData.variantsDD9,
-          answers: QuizData.answersDD9,
-          question:
-              "The 5th century BC was the 'Golden Age' of Athens, when culture flourished in the ancient polis and the city was dominant in the Greek world. Match the individual to their achievement below.",
-          questionIndex: 9,
-          score: 0,
-          userAnswer: QuizData.userAnswerForQ9,
-          userAnswerWithCheck: QuizData.userAnswerWithCheckForQ9,
-          listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion9),
-      // QuizCheckBox(
-      //   QuizData.questionIndex: 10,
-      //   withImages: true,
-      //   question:
-      //       "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
-      //   answers: QuizData.answersForQuestion10,
-      //   userAnswers: QuizData.usersAnswersForQ10,
-      // ),
       QuizSelectImage(
-        questionIndex: 10,
+        questionIndex: 8,
         question:
-            "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non?",
         answers: QuizData.answersForQuestion10,
         userAnswers: QuizData.usersAnswersForQ10,
       ),
@@ -146,7 +126,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _body() {
-    if (QuizData.questionIndex == questionsWidgets.length) {
+    if (QuizData.questionIndex == questionsWidgets.length - 1) {
       setState(() {
         nextButtonisAvailibaleToPress = false;
       });
@@ -164,172 +144,58 @@ class _QuizPageState extends State<QuizPage> {
         previousButtonisAvailibaleToPress = true;
       });
     }
-    return SizedBox(
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(AssetsPath.quizBackground), fit: BoxFit.cover)),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: [
           Align(
             alignment: Alignment.center,
-            child: AnimatedSwitcher(
-              transitionBuilder: (child, animation) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: child,
-                );
-              },
-              duration: Times.fast,
-              child: QuizData.questionIndex == 10
-                  ? QuizLastPage(
-                      onPressed: QuizData.showRightAnswers
-                          ? () {
-                              setState(() {
-                                QuizData.questionIndex = 0;
-                              });
-                            }
-                          : () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return ShowDialogWidget(
-                                      accept: 'Yes',
-                                      cancel: 'No',
-                                      onTapAccept: () {
-                                        setState(() {
-                                          QuizData.checkUerAnswers();
-                                          QuizData.showRightAnswers =
-                                              !QuizData.showRightAnswers;
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                      onTapCancel: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      subTitle:
-                                          'Are you done and do you want to show the answers?',
-                                      title: 'Show Answers',
-                                    );
-                                  });
-                            },
-                    )
-                  : Container(
-                      key: ValueKey(QuizData.questionIndex),
-                      child: questionsWidgets[QuizData.questionIndex],
-                    ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Visibility(
-                    visible: previousButtonisAvailibaleToPress,
-                    child: IconButton(
-                      iconSize: 50,
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        if (mounted) {
-                          setState(() {
-                            QuizData.questionIndex--;
-                          });
-                        }
-                      },
-                      icon: const Icon(Icons.arrow_left),
-                    ),
-                  ),
-                  Visibility(
-                    visible: nextButtonisAvailibaleToPress,
-                    child: IconButton(
-                      iconSize: 50,
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        if (mounted) {
-                          setState(() {
-                            QuizData.questionIndex++;
-                          });
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.arrow_right,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
             child: Container(
-              color: AppColors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+              width: HW.getWidth(1200, context),
+              height: HW.getHeight(788, context),
+              decoration: BoxDecoration(
+                  boxShadow: Shadows.allBorders, color: AppColors.white),
+              child: Stack(
                 children: [
-                  SoundAndMenuWidget(
-                    widget: IconButton(
-                      onPressed: () {
-                        LeafDetails.currentVertex = 15;
-                        NavigationSharedPreferences.upDateShatedPreferences();
-
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
-                      },
-                      icon: const Icon(Icons.arrow_upward),
-                    ),
-                    icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                    onTapVolume: isSoundOn
-                        ? () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.pause();
-                            });
-                          }
-                        : () {
-                            setState(() {
-                              isSoundOn = !isSoundOn;
-                              backgroundplayer.play();
-                            });
-                          },
-                    onTapMenu: () {
-                      scaffoldkey.currentState!.openEndDrawer();
-                    },
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: AppColors.grey, width: 1))),
-                    child: Stack(
-                      children: [
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Pandemic Assesment",
-                            style: TextStyle(
-                                color: AppColors.blueDeep, fontSize: 25),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Visibility(
-                                  visible: !QuizData.showRightAnswers,
-                                  child: IconButton(
-                                      hoverColor: AppColors.transpatent,
-                                      splashColor: AppColors.transpatent,
-                                      focusColor: AppColors.transpatent,
-                                      highlightColor: AppColors.transpatent,
+                  Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            color: AppColors.white,
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: AppColors.grey, width: 1))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  'QUESTION ${QuizData.questionIndex + 1}/7',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            const Expanded(
+                              child: Text(
+                                "Assessment",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  IconButtonWidget(
                                       onPressed: () {
                                         showDialog(
                                             context: context,
@@ -357,17 +223,7 @@ class _QuizPageState extends State<QuizPage> {
                                             });
                                       },
                                       icon: Icon(Icons.done)),
-                                ),
-                              ),
-                              Visibility(
-                                visible: QuizData.showRightAnswers,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: IconButton(
-                                      hoverColor: AppColors.transpatent,
-                                      splashColor: AppColors.transpatent,
-                                      focusColor: AppColors.transpatent,
-                                      highlightColor: AppColors.transpatent,
+                                  IconButtonWidget(
                                       onPressed: () {
                                         showDialog(
                                             context: context,
@@ -399,53 +255,165 @@ class _QuizPageState extends State<QuizPage> {
                                             });
                                       },
                                       icon: const Icon(Icons.delete)),
-                                ),
+                                ],
                               ),
-                              Clickable(
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return ShowPadinationWidget(
-                                          onTap: (e) {
-                                            setState(() {
-                                              QuizData.questionIndex = e - 1;
-                                            });
-                                            Navigator.of(context).pop();
-                                          },
-                                        );
-                                      });
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.blueDeep)),
-                                  child: Stack(
-                                    children: [
-                                      Transform.rotate(
-                                        angle:
-                                            QuizData.questionIndex.toDouble() /
-                                                1.5,
-                                        child: const CircularProgressIndicator(
-                                          value: 0.1,
-                                        ),
-                                      ),
-                                      Align(
-                                        child: Text(QuizData.questionIndex == 10
-                                            ? "i"
-                                            : "${QuizData.questionIndex + 1}"),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
+                      )),
+                  Align(
+                    alignment: Alignment.center,
+                    child: AnimatedSwitcher(
+                      transitionBuilder: (child, animation) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                      duration: Times.fast,
+                      child:
+                          //  QuizData.questionIndex == 10
+                          //     ? QuizLastPage(
+                          //         onPressed: QuizData.showRightAnswers
+                          //             ? () {
+                          //                 setState(() {
+                          //                   QuizData.questionIndex = 0;
+                          //                 });
+                          //               }
+                          //             : () {
+                          //                 showDialog(
+                          //                     context: context,
+                          //                     builder: (context) {
+                          //                       return ShowDialogWidget(
+                          //                         accept: 'Yes',
+                          //                         cancel: 'No',
+                          //                         onTapAccept: () {
+                          //                           setState(() {
+                          //                             QuizData.checkUerAnswers();
+                          //                             QuizData.showRightAnswers =
+                          //                                 !QuizData
+                          //                                     .showRightAnswers;
+                          //                           });
+                          //                           Navigator.of(context).pop();
+                          //                         },
+                          //                         onTapCancel: () {
+                          //                           Navigator.of(context).pop();
+                          //                         },
+                          //                         subTitle:
+                          //                             'Are you done and do you want to show the answers?',
+                          //                         title: 'Show Answers',
+                          //                       );
+                          //                     });
+                          //               },
+                          //       )
+                          //     :
+                          Container(
+                        key: ValueKey(QuizData.questionIndex),
+                        child: questionsWidgets[QuizData.questionIndex],
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButtonWidget(
+                              iconSize: 50,
+                              onPressed: previousButtonisAvailibaleToPress
+                                  ? () {
+                                      if (mounted) {
+                                        setState(() {
+                                          QuizData.questionIndex--;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              icon: const Icon(Icons.arrow_left),
+                            ),
+                            Row(
+                                children: questionsWidgets
+                                    .asMap()
+                                    .entries
+                                    .map((entry) {
+                              final int index = entry.key;
+                              return Container(
+                                height: 20,
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  height: 16,
+                                  width: 16,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: QuizData.questionIndex == index
+                                              ? AppColors.transpatent
+                                              : AppColors.grey35),
+                                      shape: BoxShape.circle,
+                                      color: QuizData.questionIndex == index
+                                          ? AppColors.orange
+                                          : AppColors.transpatent),
+                                ),
+                              );
+                            }).toList()
+                                // .asMap()
+                                // .map<Widget>((key, value) => Container())
+                                // .toList(),
+                                )
+                            // Container(
+                            //   height: 30,
+                            //   child: ListView.builder(
+                            //       scrollDirection: Axis.horizontal,
+                            //       itemCount: questionsWidgets.length,
+                            //       itemBuilder: (context, index) {
+                            //         return Wrap(
+                            //           direction: Axis.vertical,
+                            //           children: [
+                            //             Container(
+                            //               margin: EdgeInsets.symmetric(
+                            //                   horizontal: 10),
+                            //               height: 20,
+                            //               width: 20,
+                            //               decoration: BoxDecoration(
+                            //                   border: Border.all(
+                            //                       color: QuizData
+                            //                                   .questionIndex ==
+                            //                               index
+                            //                           ? AppColors.transpatent
+                            //                           : AppColors.grey35),
+                            //                   shape: BoxShape.circle,
+                            //                   color: QuizData.questionIndex ==
+                            //                           index
+                            //                       ? AppColors.orange
+                            //                       : AppColors.transpatent),
+                            //             ),
+                            //           ],
+                            //         );
+                            //       }),
+                            // ),
+
+                            ,
+                            IconButtonWidget(
+                              iconSize: 50,
+                              onPressed: nextButtonisAvailibaleToPress
+                                  ? () {
+                                      if (mounted) {
+                                        setState(() {
+                                          QuizData.questionIndex++;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              icon: const Icon(
+                                Icons.arrow_right,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   )
                 ],
@@ -453,19 +421,55 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
-            child: IconButton(
-              hoverColor: AppColors.transpatent,
-              splashColor: AppColors.transpatent,
-              focusColor: AppColors.transpatent,
-              highlightColor: AppColors.transpatent,
-              onPressed: () {
-                LeafDetails.currentVertex = 18;
-                LeafDetails.visitedVertexes.add(18);
-                NavigationSharedPreferences.upDateShatedPreferences();
-                context.router.push(const IrlNikosPageRoute());
+            alignment: Alignment.topCenter,
+            child: SoundAndMenuWidget(
+              widget: IconButtonWidget(
+                onPressed: () {
+                  LeafDetails.currentVertex = 15;
+                  NavigationSharedPreferences.upDateShatedPreferences();
+
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
+                },
+                icon: const Icon(Icons.arrow_upward),
+              ),
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {
+                scaffoldkey.currentState!.openEndDrawer();
               },
-              icon: const Icon(Icons.arrow_downward),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              height: HW.getHeight(111, context),
+              child: ArrowTextBottomWidget(
+                onPressed: () {
+                  LeafDetails.currentVertex = 18;
+                  LeafDetails.visitedVertexes.add(18);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const IrlNikosPageRoute());
+                },
+                textChapter: locals.chapter1,
+                textChapterName: locals.todoNoHarm,
+              ),
             ),
           ),
         ],

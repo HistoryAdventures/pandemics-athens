@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/paralax_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -687,9 +688,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     children: const [
                       Icon(
                         Icons.arrow_upward_sharp,
-                        color: AppColors.black54,
+                        color: AppColors.black100,
                       ),
-                      Text("BOOK INTO"),
+                      Text(
+                        "BOOK INTO",
+                        style: TextStyle(color: AppColors.black100),
+                      ),
                     ],
                   ),
                 ),
@@ -808,6 +812,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   ),
                 ),
               ),
+              Visibility(
+                visible: _videoController.value.isPlaying,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: IconButtonWidget(
+                    iconSize: 30,
+                    onPressed: () {
+                      setState(() {
+                        _videoController.pause();
+                      });
+                    },
+                    icon: Icon(Icons.arrow_downward),
+                  ),
+                ),
+              )
             ],
           ),
         ),

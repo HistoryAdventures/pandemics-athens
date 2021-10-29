@@ -47,14 +47,6 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: constraints.maxHeight * 0.01),
-                child: Text(
-                  'QUESTION ${widget.questionIndex}',
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(right: 50),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,18 +55,8 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                       flex: 5,
                       child: Text(
                         widget.question,
-                        style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: TextFontSize.getHeight(45, context)),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 3, horizontal: 5),
-                        decoration: BoxDecoration(
-                            color: AppColors.grey,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Text("$score / 1"),
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                            fontSize: TextFontSize.getHeight(24, context)),
                       ),
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
@@ -774,7 +775,7 @@ class _MapPageState extends State<MapPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Flexible(
-                              child: IconButton(
+                              child: IconButtonWidget(
                                 onPressed: () {
                                   _scrollController.animateTo(
                                     0.0,
@@ -818,7 +819,7 @@ class _MapPageState extends State<MapPage> {
                               ),
                             ),
                             Flexible(
-                              child: IconButton(
+                              child: IconButtonWidget(
                                 onPressed: () {
                                   _scrollController.animateTo(
                                     _scrollController.position.maxScrollExtent,

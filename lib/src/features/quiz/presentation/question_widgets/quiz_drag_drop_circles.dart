@@ -158,18 +158,18 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     });
   }
 
-  Widget score() {
-    switch (widget.questionIndex) {
-      case 1:
-        return Text("${QuizData.rightAnswersForQ1} / ${widget.answers.length}");
-      case 4:
-        return Text("${QuizData.rightAnswersForQ4} / ${widget.answers.length}");
-      case 9:
-        return Text("${QuizData.rightAnswersForQ9} / ${widget.answers.length}");
-      default:
-        return Text("${QuizData.rightAnswersForQ1} / ${widget.answers.length}");
-    }
-  }
+  // Widget score() {
+  //   switch (widget.questionIndex) {
+  //     case 1:
+  //       return Text("${QuizData.rightAnswersForQ1} / ${widget.answers.length}");
+  //     case 4:
+  //       return Text("${QuizData.rightAnswersForQ4} / ${widget.answers.length}");
+  //     case 9:
+  //       return Text("${QuizData.rightAnswersForQ9} / ${widget.answers.length}");
+  //     default:
+  //       return Text("${QuizData.rightAnswersForQ1} / ${widget.answers.length}");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -230,14 +230,6 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: constraints.maxHeight * 0.01),
-                                child: Text(
-                                  'QUESTION ${widget.questionIndex}',
-                                  style: Theme.of(context).textTheme.button,
-                                ),
-                              ),
-                              Padding(
                                   padding: const EdgeInsets.only(right: 50),
                                   child: Row(
                                       mainAxisAlignment:
@@ -249,22 +241,12 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
                                                 maxLines: 2,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2
+                                                    .subtitle1
                                                     ?.copyWith(
                                                       fontSize: TextFontSize
                                                           .getHeight(
-                                                              45, context),
+                                                              24, context),
                                                     ))),
-                                        Flexible(
-                                            child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 3, horizontal: 5),
-                                          decoration: BoxDecoration(
-                                              color: AppColors.grey,
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: score(),
-                                        ))
                                       ])),
                               Row(
                                 children: <Widget>[

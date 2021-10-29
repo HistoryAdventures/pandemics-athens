@@ -22,6 +22,13 @@ class Shadows {
         ),
       ];
 
+  static List<BoxShadow> get allBorders => const [
+        BoxShadow(offset: Offset(0, 1), color: AppColors.grey, blurRadius: 1),
+        BoxShadow(offset: Offset(1, 0), color: AppColors.grey, blurRadius: 1),
+        BoxShadow(offset: Offset(1, -1), color: AppColors.grey, blurRadius: 1),
+        BoxShadow(offset: Offset(-1, -1), color: AppColors.grey, blurRadius: 1),
+      ];
+
   static List<BoxShadow> get smallWhite => const [
         BoxShadow(
           color: AppColors.white,

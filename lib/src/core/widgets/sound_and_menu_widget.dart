@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 class SoundAndMenuWidget extends StatelessWidget {
   final Function() onTapVolume;
@@ -25,7 +27,7 @@ class SoundAndMenuWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
+            IconButtonWidget(
               onPressed: onTapVolume,
               icon: Icon(
                 icons,
@@ -34,7 +36,7 @@ class SoundAndMenuWidget extends StatelessWidget {
               color: color ?? Colors.black,
             ),
             widget ?? const SizedBox(),
-            IconButton(
+            IconButtonWidget(
                 iconSize: 30,
                 onPressed: onTapMenu,
                 icon: Icon(

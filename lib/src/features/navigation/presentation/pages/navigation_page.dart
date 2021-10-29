@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -707,7 +708,7 @@ class _NavigationPageState extends State<NavigationPage> {
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: IconButton(
+                child: IconButtonWidget(
                   icon: const Icon(Icons.close),
                   onPressed: () {
                     context.router.pop();

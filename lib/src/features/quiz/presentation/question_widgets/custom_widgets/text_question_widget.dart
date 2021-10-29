@@ -11,10 +11,7 @@ class TextQuestion extends StatelessWidget {
       child: Text(
         text,
         maxLines: 1,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText1
-            ?.copyWith(fontSize: TextFontSize.getHeight(40, context)),
+        style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 16),
       ),
     );
   }

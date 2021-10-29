@@ -5,7 +5,7 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
-  //static const String gifBackground = 'assets/image_back/backgif.gif';
+  static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';

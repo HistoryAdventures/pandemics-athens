@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import '../../../../core/utils/styles.dart';
@@ -8,8 +9,10 @@ import 'custom_widgets/text_question_widget.dart';
 
 class QuizEditTextWidget extends StatefulWidget {
   final int questionIndex;
+  final String question;
   const QuizEditTextWidget({
     Key? key,
+    required this.question,
     required this.questionIndex,
   }) : super(key: key);
 
@@ -53,14 +56,6 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: constraints.maxHeight * 0.01),
-                  child: Text(
-                    'QUESTION ${widget.questionIndex}',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.only(right: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,25 +63,15 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
                       Expanded(
                         flex: 5,
                         child: Text(
-                          locals.question2,
+                          widget.question,
                           style: Theme.of(context)
                               .textTheme
-                              .headline2
+                              .subtitle1
                               ?.copyWith(
                                   fontSize:
-                                      TextFontSize.getHeight(45, context)),
+                                      TextFontSize.getHeight(24, context)),
                         ),
                       ),
-                      Flexible(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 3, horizontal: 5),
-                          decoration: BoxDecoration(
-                              color: AppColors.grey,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Text("${QuizData.rightAnswersForQ2} / 6"),
-                        ),
-                      )
                     ],
                   ),
                 ),

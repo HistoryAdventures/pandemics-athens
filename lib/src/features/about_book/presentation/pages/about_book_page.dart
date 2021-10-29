@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -114,7 +115,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   ),
                 ),
                 SoundAndMenuWidget(
-                  widget: IconButton(
+                  widget: IconButtonWidget(
                       onPressed: () {
                         LeafDetails.currentVertex = 18;
                         NavigationSharedPreferences.upDateShatedPreferences();

@@ -49,15 +49,6 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: constraints.maxHeight * 0.01),
-                child: Text(
-                  'QUESTION ${widget.questionIndex}',
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(right: 50),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,20 +57,10 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                       flex: 5,
                       child: Text(
                         widget.question,
-                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
                             fontSize: TextFontSize.getHeight(45, context)),
                       ),
                     ),
-                    Flexible(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 3, horizontal: 5),
-                        decoration: BoxDecoration(
-                            color: AppColors.grey,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Text("$score / 1"),
-                      ),
-                    )
                   ],
                 ),
               ),

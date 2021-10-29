@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -196,49 +197,15 @@ class _GlossaryPageState extends State<GlossaryPage> {
 
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  child: SizedBox(
-                    child: Clickable(
-                      onPressed: () {
-                        LeafDetails.visitedVertexes.add(2);
-                        LeafDetails.currentVertex = 2;
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const ParalaxHistoryPageRoute());
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Flexible(
-                                  child: AutoSizeText(
-                                    locales.chapter1.toUpperCase(),
-                                    style:
-                                        Theme.of(context).textTheme.subtitle2,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: AutoSizeText(
-                                    locales.todoNoHarm,
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 45,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                child: ArrowTextBottomWidget(
+                  onPressed: () {
+                    LeafDetails.visitedVertexes.add(2);
+                    LeafDetails.currentVertex = 2;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const ParalaxHistoryPageRoute());
+                  },
+                  textChapter: locales.chapter1,
+                  textChapterName: locales.todoNoHarm,
                 ),
               ),
               SoundAndMenuWidget(
