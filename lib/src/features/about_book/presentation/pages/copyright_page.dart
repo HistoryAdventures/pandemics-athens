@@ -3,6 +3,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/features/about_book/presentation/pages/further_reading_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -84,63 +86,60 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   },
                 ),
                 Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: ArrowLeftTextWidget(
-                        textSubTitle: locale.furtherReading,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          LeafDetails.currentVertex = 22;
-                          LeafDetails.currentVertex = 0;
-                          NavigationSharedPreferences.upDateShatedPreferences();
-
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
-                        }),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: ArrowLeftTextWidget(
-                        textSubTitle: locale.furtherReading,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          LeafDetails.currentVertex = 22;
-                          LeafDetails.currentVertex = 0;
-                          NavigationSharedPreferences.upDateShatedPreferences();
-
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
-                        }),
-                  ),
-                ),
-                Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.all(24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Flexible(child: Image.asset(AssetsPath.socilaIcons)),
-                        const Flexible(
-                          child: AutoSizeText(
-                            'www.historyadventures.co',
-                            maxLines: 1,
+                        Flexible(
+                          child: ArrowLeftTextWidget(
+                              textSubTitle: locale.sources,
+                              textTitle: locale.aboutTheBook,
+                              onTap: () {
+                                LeafDetails.currentVertex = 25;
+                                LeafDetails.currentVertex = 0;
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
+
+                                if (kIsWeb) {
+                                  html.window.history.back();
+                                  context.router.pop();
+                                } else {
+                                  context.router.pop();
+                                }
+                              }),
+                        ),
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                  child: Image.asset(AssetsPath.socilaIcons)),
+                              const Flexible(
+                                child: AutoSizeText(
+                                  'www.historyadventures.co',
+                                  maxLines: 1,
+                                ),
+                              )
+                            ],
                           ),
-                        )
+                        ),
+                        Flexible(
+                          child: ArrowRightTextWidget(
+                              textSubTitle: locale.furtherReading,
+                              textTitle: locale.aboutTheBook,
+                              onTap: () {
+                                LeafDetails.currentVertex = 27;
+                                LeafDetails.visitedVertexes.add(27);
+                                NavigationSharedPreferences
+                                    .upDateShatedPreferences();
+                                context.router
+                                    .push(const FurtherReadingPageRoute());
+                              }),
+                        ),
                       ],
                     ),
                   ),

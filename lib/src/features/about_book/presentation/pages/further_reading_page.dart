@@ -94,10 +94,10 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                       children: [
                         Flexible(
                           child: ArrowLeftTextWidget(
-                              textSubTitle: locale.sources,
+                              textSubTitle: locale.copyright,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 21;
+                                LeafDetails.currentVertex = 26;
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
 
@@ -122,18 +122,18 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                             ],
                           ),
                         ),
-                        Flexible(
-                          child: ArrowRightTextWidget(
-                              textSubTitle: locale.copyright,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.visitedVertexes.add(23);
-                                LeafDetails.currentVertex = 23;
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
-                                context.router.push(const CopyrightPageRoute());
-                              }),
-                        ),
+                        // Flexible(
+                        //   child: ArrowRightTextWidget(
+                        //       textSubTitle: locale.copyright,
+                        //       textTitle: locale.aboutTheBook,
+                        //       onTap: () {
+                        //         LeafDetails.visitedVertexes.add(23);
+                        //         LeafDetails.currentVertex = 23;
+                        //         NavigationSharedPreferences
+                        //             .upDateShatedPreferences();
+                        //         context.router.push(const CopyrightPageRoute());
+                        //       }),
+                        // ),
                       ],
                     ),
                   ),

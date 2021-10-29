@@ -37,51 +37,33 @@ class _ChapterNavigationTreeState extends State<ChapterNavigationTree> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 60),
+      padding: const EdgeInsets.only(bottom: 32),
       child: Row(
         children: [
-          Text(widget.details.numberOfChapter),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Clickable(
-              isAbleToPress:
-                  widget.isAbleToNavigate || widget.details.vertex.visited,
-              onPressed:
-                  widget.isAbleToNavigate || widget.details.vertex.visited
-                      ? widget.onTap
-                      : null,
-              child: SizedBox(
-                child: CustomPaint(
-                  painter: DrowCircleAndLine(
-                    circleColor: widget.details.vertex.visited
-                        ? AppColors.black100
-                        : AppColors.transpatent,
-                    currentColorCircle: widget.details.vertex.isCurrent
-                        ? Colors.white
-                        : Colors.transparent,
-                    colorIsAbleToNavigate:
-                        widget.details.vertex.visited ? Colors.white : color,
-                    strat: widget.details.start ?? const Offset(8, 30),
-                    end: widget.details.end ?? const Offset(8, 60),
-                    lineColor: AppColors.black100,
-                    isAbleToNavigate: widget.isAbleToNavigate,
-                    visited: widget.details.vertex.visited,
-                  ),
-                  child: const SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Center(
-                      child: Text(
-                        "",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
+          Clickable(
+            isAbleToPress:
+                widget.isAbleToNavigate || widget.details.vertex.visited,
+            onPressed: widget.isAbleToNavigate || widget.details.vertex.visited
+                ? widget.onTap
+                : null,
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 3,
+                          color: widget.details.vertex.isCurrent
+                              ? AppColors.orange
+                              : AppColors.transpatent))),
+              child: Text(
+                widget.details.numberOfChapter,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .overline
+                    ?.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          Text(widget.details.nameOfChapter),
         ],
       ),
     );

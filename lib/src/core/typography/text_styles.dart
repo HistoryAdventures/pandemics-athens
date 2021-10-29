@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../colors.dart';
-import 'font_family.dart';
-import 'font_weight.dart';
+import 'typography.dart';
 
 /// History of Adventures Text Style Definitions
 class AppTextStyle {
@@ -66,7 +65,7 @@ class AppTextStyle {
   /// Headline 5 Text Style
   static TextStyle get headline5 {
     return _baseTextStyle.copyWith(
-      fontSize: 36,
+      fontSize: 24,
       //fontWeight: AppFontWeight.medium,
     );
   }

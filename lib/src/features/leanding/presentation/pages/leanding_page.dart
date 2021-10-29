@@ -183,7 +183,7 @@ class _LeandingPageState extends State<LeandingPage>
                       child: IconButton(
                         color: AppColors.blackB,
                         iconSize: 40,
-                        icon: const Icon(Icons.south),
+                        icon: const Icon(Icons.arrow_downward),
                         onPressed: () async {
                           LeafDetails.visitedVertexes.add(1);
                           LeafDetails.currentVertex = 1;

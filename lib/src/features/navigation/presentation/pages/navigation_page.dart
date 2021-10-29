@@ -47,8 +47,7 @@ class _NavigationPageState extends State<NavigationPage> {
           onTap: () {
             // print('0');
           },
-          nameOfChapter: ' to do no harm',
-          numberOfChapter: 'chapter1 '),
+          numberOfChapter: 'chapter 1 '),
       ChapterDetails(
           vertex: Vertex(
             index: 1,
@@ -60,8 +59,7 @@ class _NavigationPageState extends State<NavigationPage> {
           onTap: () {
             // print('1');
           },
-          nameOfChapter: ' forty days',
-          numberOfChapter: 'chapter2 '),
+          numberOfChapter: 'chapter 2 '),
       ChapterDetails(
           vertex: Vertex(
             index: 2,
@@ -73,8 +71,7 @@ class _NavigationPageState extends State<NavigationPage> {
           onTap: () {
             // print('2');
           },
-          nameOfChapter: ' beard of life',
-          numberOfChapter: 'chapter3 '),
+          numberOfChapter: 'chapter 3 '),
       ChapterDetails(
           vertex: Vertex(
             index: 3,
@@ -86,8 +83,7 @@ class _NavigationPageState extends State<NavigationPage> {
           onTap: () {
             // print('3');
           },
-          nameOfChapter: ' red pepper and black pepper',
-          numberOfChapter: 'chapter4 '),
+          numberOfChapter: 'chapter 4 '),
       ChapterDetails(
         vertex: Vertex(
           index: 4,
@@ -98,8 +94,7 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           // print('4');
         },
-        nameOfChapter: ' positive',
-        numberOfChapter: 'chapter5 ',
+        numberOfChapter: 'chapter 5 ',
         end: const Offset(0, 0),
         start: const Offset(0, 0),
       ),
@@ -483,13 +478,13 @@ class _NavigationPageState extends State<NavigationPage> {
         pointOffset: const Offset(310, 470),
         lineStartOffset: const Offset(5, 0),
         lineEndOffset: const Offset(12, -44),
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         title: '#irl',
       ),
       LeafDetails(
         Vertex(
             index: 19,
-            visited: LeafDetails.visitedVertexes.contains(18),
+            visited: LeafDetails.visitedVertexes.contains(19),
             path: IrlNikosPageRoute.name,
             adjacentEdges: [20],
             currentVertex: LeafDetails.currentVertex),
@@ -499,16 +494,16 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(310, 470),
-        lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(12, -44),
-        alignment: Alignment.centerLeft,
+        pointOffset: const Offset(255, 480),
+        lineStartOffset: const Offset(10, 5),
+        lineEndOffset: const Offset(54, -4),
+        alignment: Alignment.bottomCenter,
         title: 'giana',
       ),
       LeafDetails(
         Vertex(
             index: 20,
-            visited: LeafDetails.visitedVertexes.contains(18),
+            visited: LeafDetails.visitedVertexes.contains(20),
             path: IrlNikosPageRoute.name,
             adjacentEdges: [21],
             currentVertex: LeafDetails.currentVertex),
@@ -518,16 +513,16 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(310, 470),
-        lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(12, -44),
-        alignment: Alignment.centerLeft,
+        pointOffset: const Offset(200, 470),
+        lineStartOffset: const Offset(10, 5),
+        lineEndOffset: const Offset(55, 15),
+        alignment: Alignment.topCenter,
         title: 'Xoquauhtli',
       ),
       LeafDetails(
         Vertex(
             index: 21,
-            visited: LeafDetails.visitedVertexes.contains(18),
+            visited: LeafDetails.visitedVertexes.contains(21),
             path: IrlNikosPageRoute.name,
             adjacentEdges: [22],
             currentVertex: LeafDetails.currentVertex),
@@ -537,16 +532,16 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(310, 470),
-        lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(12, -44),
-        alignment: Alignment.centerLeft,
+        pointOffset: const Offset(150, 480),
+        lineStartOffset: const Offset(10, 5),
+        lineEndOffset: const Offset(50, -5),
+        alignment: Alignment.bottomCenter,
         title: 'achraj',
       ),
       LeafDetails(
         Vertex(
             index: 22,
-            visited: LeafDetails.visitedVertexes.contains(18),
+            visited: LeafDetails.visitedVertexes.contains(22),
             path: IrlNikosPageRoute.name,
             adjacentEdges: [23],
             currentVertex: LeafDetails.currentVertex),
@@ -556,16 +551,16 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(310, 470),
-        lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(12, -44),
-        alignment: Alignment.centerLeft,
+        pointOffset: const Offset(110, 475),
+        lineStartOffset: const Offset(10, 5),
+        lineEndOffset: const Offset(39, 10),
+        alignment: Alignment.topCenter,
         title: 'brian',
       ),
       LeafDetails(
         Vertex(
             index: 23,
-            visited: LeafDetails.visitedVertexes.contains(19),
+            visited: LeafDetails.visitedVertexes.contains(23),
             path: AboutBookPageRoute.name,
             adjacentEdges: [24],
             currentVertex: LeafDetails.currentVertex),
@@ -584,7 +579,7 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 24,
-            visited: LeafDetails.visitedVertexes.contains(20),
+            visited: LeafDetails.visitedVertexes.contains(24),
             path: CreditsPageRoute.name,
             adjacentEdges: [25],
             currentVertex: LeafDetails.currentVertex),
@@ -604,7 +599,7 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 25,
-            visited: LeafDetails.visitedVertexes.contains(21),
+            visited: LeafDetails.visitedVertexes.contains(25),
             path: SourcePageRoute.name,
             adjacentEdges: [26],
             currentVertex: LeafDetails.currentVertex),
@@ -623,7 +618,7 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 26,
-            visited: LeafDetails.visitedVertexes.contains(23),
+            visited: LeafDetails.visitedVertexes.contains(26),
             path: CopyrightPageRoute.name,
             adjacentEdges: [27],
             currentVertex: LeafDetails.currentVertex),
@@ -642,7 +637,7 @@ class _NavigationPageState extends State<NavigationPage> {
       LeafDetails(
         Vertex(
             index: 27,
-            visited: LeafDetails.visitedVertexes.contains(22),
+            visited: LeafDetails.visitedVertexes.contains(27),
             path: FurtherReadingPageRoute.name,
             currentVertex: LeafDetails.currentVertex),
         onTap: () {

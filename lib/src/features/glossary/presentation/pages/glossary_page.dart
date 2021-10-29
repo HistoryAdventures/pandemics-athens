@@ -104,10 +104,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   )),
               Align(
                 child: Container(
-                  // margin: EdgeInsets.symmetric(
-                  //     horizontal: constraints.maxWidth * 0.1),
-                  width: constraints.maxWidth * 0.8,
-                  height: constraints.maxHeight * 0.5,
+                  height: HW.getHeight(500, context),
+                  width: HW.getWidth(1000, context),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     boxShadow: Shadows.universal,
@@ -115,73 +113,131 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: constraints.maxWidth * 0.03),
-                          child: AnimatedSwitcher(
-                            duration: Times.medium,
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: HW.getWidth(48, context),
+                            vertical: HW.getHeight(48, context)),
+                        height: HW.getHeight(500, context),
+                        width: HW.getWidth(500, context),
+                        child: AnimatedSwitcher(
+                          duration: Times.medium,
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          child: Column(
+                            key: ValueKey(_selectedtItem),
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                _selectedtItem.substring(2),
+                                maxLines: 1,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .overline
+                                    ?.copyWith(fontSize: 24),
+                              ),
+                              Expanded(
+                                  child: SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 18.0, top: 18),
+                                  child: Text(
+                                    _selectedtText,
+                                    style:
+                                        Theme.of(context).textTheme.subtitle1,
+                                  ),
+                                ),
+                              ))
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                          height: HW.getHeight(500, context),
+                          width: HW.getWidth(500, context),
+                          child: Wrap(
+                            children: category
+                                .map(
+                                  (item) => SizedBox(
+                                    height: HW.getHeight(100, context),
+                                    width: HW.getWidth(100, context),
+                                    child: gridViewCard(
+                                        name: item.title,
+                                        text: item.text,
+                                        category: item.title),
+                                  ),
+                                )
+                                .toList(),
+                          )
+                          //  GridView.builder(
+                          //   physics: const NeverScrollableScrollPhysics(),
+                          //   gridDelegate:
+                          //       SliverGridDelegateWithMaxCrossAxisExtent(
+                          //           maxCrossAxisExtent: HW.getWidth(100, context),
+                          //           crossAxisSpacing: 1,
+                          //           mainAxisSpacing: 1),
+                          //   itemCount: 25,
+                          //   itemBuilder: (context, index) {
+                          //     return gridViewCard(
+                          //         name: category[index].title,
+                          //         text: category[index].text,
+                          //         category: category[index].title);
+                          //   },
+                          // ),
+                          ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  child: SizedBox(
+                    child: Clickable(
+                      onPressed: () {
+                        LeafDetails.visitedVertexes.add(2);
+                        LeafDetails.currentVertex = 2;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.push(const ParalaxHistoryPageRoute());
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
                             child: Column(
-                              key: ValueKey(_selectedtItem),
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Flexible(
-                                    child: AutoSizeText(
-                                  _selectedtItem.substring(2),
-                                  maxLines: 1,
-                                  minFontSize: 5,
-                                  style: Theme.of(context).textTheme.headline5,
-                                )),
-                                Flexible(
-                                    child: SingleChildScrollView(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 18.0, top: 18),
-                                    child: Text(
-                                      _selectedtText,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          ?.copyWith(fontSize: 20),
-                                    ),
+                                  child: AutoSizeText(
+                                    locales.chapter1.toUpperCase(),
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
                                   ),
-                                ))
+                                ),
+                                Flexible(
+                                  child: AutoSizeText(
+                                    locales.todoNoHarm,
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ),
-                      Flexible(
-                        child: SizedBox(
-                          height: constraints.maxHeight * 0.5,
-                          width: constraints.maxHeight * 0.5,
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                                    maxCrossAxisExtent:
-                                        constraints.maxHeight * 0.5 / 5,
-                                    crossAxisSpacing: 1,
-                                    mainAxisSpacing: 1),
-                            itemCount: 25,
-                            itemBuilder: (context, index) {
-                              return gridViewCard(
-                                  name: category[index].title,
-                                  text: category[index].text,
-                                  category: category[index].title);
-                            },
+                          const Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 45,
+                            color: Colors.black,
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -199,6 +255,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   },
                   child: const Icon(
                     Icons.arrow_upward_sharp,
+                    size: 30,
                     color: Colors.black,
                   ),
                 ),
@@ -220,48 +277,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   scaffoldKey.currentState!.openEndDrawer();
                 },
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    child: Clickable(
-                      onPressed: () {
-                        LeafDetails.visitedVertexes.add(2);
-                        LeafDetails.currentVertex = 2;
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const ParalaxHistoryPageRoute());
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Flexible(
-                            child: AutoSizeText(
-                              locales.chapter1.toUpperCase(),
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
-                          ),
-                          Flexible(
-                            child: AutoSizeText(
-                              locales.todoNoHarm,
-                              style: Theme.of(context).textTheme.headline2,
-                            ),
-                          ),
-                          Flexible(
-                            child: Icon(
-                              Icons.arrow_downward,
-                              size: constraints.maxHeight * 0.04,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         );

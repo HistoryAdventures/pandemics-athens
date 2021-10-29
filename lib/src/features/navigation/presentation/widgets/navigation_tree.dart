@@ -25,6 +25,7 @@ class NavigationTree extends StatefulWidget {
 
 class _NavigationTreeState extends State<NavigationTree> {
   Color color = AppColors.orange;
+  Color colorText = AppColors.grey35;
   @override
   void initState() {
     if (widget.isAbleToNavigate == false) {
@@ -32,7 +33,18 @@ class _NavigationTreeState extends State<NavigationTree> {
     } else {
       color = AppColors.grey;
     }
+    getTextColor();
+
     super.initState();
+  }
+
+  void getTextColor() {
+    if (widget.isAbleToNavigate || widget.details.vertex.visited) {
+      colorText = AppColors.black100;
+    }
+    if (widget.details.vertex.isCurrent) {
+      colorText = AppColors.orange;
+    }
   }
 
   @override
@@ -42,11 +54,14 @@ class _NavigationTreeState extends State<NavigationTree> {
         Positioned(
           left: getCoordinate(context).dx,
           top: getCoordinate(context).dy,
-          child: Text(widget.details.title.toUpperCase(),
-              style: Theme.of(context).textTheme.headline1?.copyWith(
-                  color: AppColors.black100,
-                  fontSize: 9,
-                  fontWeight: FontWeight.bold)),
+          child: Container(
+            // color: AppColors.red,
+            child: Text(widget.details.title.toUpperCase(),
+                style: Theme.of(context).textTheme.headline1?.copyWith(
+                    color: colorText,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold)),
+          ),
         ),
         Positioned(
           left: widget.details.pointOffset.dx,
@@ -67,6 +82,9 @@ class _NavigationTreeState extends State<NavigationTree> {
                       : AppColors.grey35,
                   currentColorCircle: widget.details.vertex.isCurrent
                       ? AppColors.orange
+                      : Colors.transparent,
+                  currentColorCircleBorder: widget.details.vertex.isCurrent
+                      ? AppColors.black100
                       : Colors.transparent,
                   colorIsAbleToNavigate: widget.isAbleToNavigate
                       ? AppColors.black100
@@ -96,14 +114,14 @@ class _NavigationTreeState extends State<NavigationTree> {
         Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 10));
 
     if (widget.details.alignment == Alignment.bottomCenter) {
-      offset = Offset(widget.details.pointOffset.dx + 7.5 - size.width / 2,
+      offset = Offset(widget.details.pointOffset.dx - size.width / 2,
           widget.details.pointOffset.dy + size.height + 2);
     } else if (widget.details.alignment == Alignment.topCenter) {
-      offset = Offset(widget.details.pointOffset.dx + 7.5 - size.width / 2,
+      offset = Offset(widget.details.pointOffset.dx - 5 - size.width / 2,
           widget.details.pointOffset.dy - size.height - 5);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerLeft) {
-      offset = Offset((widget.details.pointOffset.dx - 7.5 - size.width) - 10,
+      offset = Offset((widget.details.pointOffset.dx - 18 - size.width) - 10,
           (widget.details.pointOffset.dy - size.height / 4) + 1);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerRight) {

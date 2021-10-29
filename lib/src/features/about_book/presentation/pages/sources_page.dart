@@ -126,7 +126,7 @@ class _SourcePageState extends State<SourcePage> {
                               textSubTitle: locale.credits,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 25;
+                                LeafDetails.currentVertex = 24;
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
 
@@ -153,15 +153,14 @@ class _SourcePageState extends State<SourcePage> {
                         ),
                         Flexible(
                           child: ArrowRightTextWidget(
-                              textSubTitle: locale.furtherReading,
+                              textSubTitle: locale.copyright,
                               textTitle: locale.aboutTheBook,
                               onTap: () {
-                                LeafDetails.currentVertex = 27;
-                                LeafDetails.visitedVertexes.add(27);
+                                LeafDetails.currentVertex = 26;
+                                LeafDetails.visitedVertexes.add(26);
                                 NavigationSharedPreferences
                                     .upDateShatedPreferences();
-                                context.router
-                                    .push(const FurtherReadingPageRoute());
+                                context.router.push(const CopyrightPageRoute());
                               }),
                         ),
                       ],

@@ -27,11 +27,15 @@ class SoundAndMenuWidget extends StatelessWidget {
           children: [
             IconButton(
               onPressed: onTapVolume,
-              icon: Icon(icons),
+              icon: Icon(
+                icons,
+              ),
+              iconSize: 30,
               color: color ?? Colors.black,
             ),
             widget ?? const SizedBox(),
             IconButton(
+                iconSize: 30,
                 onPressed: onTapMenu,
                 icon: Icon(
                   Icons.menu,

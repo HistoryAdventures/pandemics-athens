@@ -8,21 +8,24 @@ class DrowCircleAndLine extends CustomPainter {
   final Color colorIsAbleToNavigate;
   final Color lineColor;
   final Color currentColorCircle;
+  final Color currentColorCircleBorder;
   final Color circleColor;
   final bool isAbleToNavigate;
   final bool visited;
   final Offset strat;
   final Offset end;
 
-  DrowCircleAndLine(
-      {required this.colorIsAbleToNavigate,
-      required this.strat,
-      required this.end,
-      required this.isAbleToNavigate,
-      required this.visited,
-      required this.circleColor,
-      required this.lineColor,
-      required this.currentColorCircle});
+  DrowCircleAndLine({
+    required this.colorIsAbleToNavigate,
+    required this.strat,
+    required this.end,
+    required this.isAbleToNavigate,
+    required this.visited,
+    required this.circleColor,
+    required this.lineColor,
+    required this.currentColorCircleBorder,
+    required this.currentColorCircle,
+  });
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Rect.fromLTRB(0.0, 0.0, size.width, size.height);
@@ -32,10 +35,15 @@ class DrowCircleAndLine extends CustomPainter {
 
     final radiusPainCircle = sqrt(area);
 
-    final paintCurrentCircle = Paint()
+    final paintCurrentCirclefill = Paint()
       ..color = currentColorCircle
       ..strokeWidth = 1
       ..style = PaintingStyle.fill
+      ..strokeCap = StrokeCap.round;
+    final paintCurrentCircleStoke = Paint()
+      ..color = currentColorCircleBorder
+      ..strokeWidth = 1.5
+      ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
     final paint2 = Paint()
@@ -78,7 +86,10 @@ class DrowCircleAndLine extends CustomPainter {
 
     canvas.drawCircle(rect.center, radiusPainCircle, paint3);
     canvas.drawCircle(rect.center, radiusPainCircle, paint2);
-    canvas.drawCircle(rect.center, radiusCurrentCircle, paintCurrentCircle);
+
+    canvas.drawCircle(rect.center, radiusCurrentCircle, paintCurrentCirclefill);
+    canvas.drawCircle(
+        rect.center, radiusCurrentCircle, paintCurrentCircleStoke);
   }
 
   @override
