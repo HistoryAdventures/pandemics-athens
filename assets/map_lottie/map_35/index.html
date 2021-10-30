@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Map</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+    #lottie {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+<img src="map_35.png">
+<div id="lottie"></div>
+<script>
+  var animation = bodymovin.loadAnimation({
+  container: document.getElementById('lottie'),
+  path: 'data.json',
+  renderer: 'svg',
+  loop: false,
+  autoplay: true
+});
+</script>
+</body>
+</html>

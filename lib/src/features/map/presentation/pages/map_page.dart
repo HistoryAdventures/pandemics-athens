@@ -7,6 +7,7 @@ import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 // import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:webviewx/webviewx.dart';
@@ -21,6 +22,7 @@ import '../../../../core/widgets/zoom_in_notes_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
+import 'dart:ui' as ui;
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -43,36 +45,7 @@ class _MapPageState extends State<MapPage> {
 
   OverlayEntry? overlayEntry;
   final LayerLink layerLink = LayerLink();
-
-  List<String> contentImages = [
-    AssetsPath.mapImage495,
-    AssetsPath.mapImage490,
-    AssetsPath.mapImage480,
-    AssetsPath.mapImage479,
-    AssetsPath.mapImage477,
-    AssetsPath.mapImage471,
-    AssetsPath.mapImage469,
-    AssetsPath.mapImage462,
-    AssetsPath.mapImage458,
-    AssetsPath.mapImage457,
-    AssetsPath.mapImage454,
-    AssetsPath.mapImage451,
-    AssetsPath.mapImage450,
-    AssetsPath.mapImage446,
-    AssetsPath.mapImage443,
-    AssetsPath.mapImage441,
-    AssetsPath.mapImage438,
-    AssetsPath.mapImage431,
-    AssetsPath.mapImage430,
-    AssetsPath.mapImage427,
-    AssetsPath.mapImage421,
-    AssetsPath.mapImage416,
-    AssetsPath.mapImage415,
-    AssetsPath.mapImage414,
-    AssetsPath.mapImage413,
-    AssetsPath.mapImage399,
-    AssetsPath.periclesImage,
-  ];
+  String viewID = "your-view-id";
 
   @override
   void didChangeDependencies() {
@@ -86,6 +59,15 @@ class _MapPageState extends State<MapPage> {
       year: locals.y508,
       mapImage: AssetsPath.map508,
     );
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        viewID,
+        (int id) => html.IFrameElement()
+          ..width = MediaQuery.of(context).size.width.toString()
+          ..height = MediaQuery.of(context).size.height.toString()
+          ..src = mapInfoModel.lottie
+          ..style.border = 'none');
+
     mapInfoList = [
       MapInfoModel(
         lottie: AssetsPath.mapLottie1,
@@ -114,7 +96,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y490,
           mapImage: AssetsPath.map490),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie4,
           imageDescription: locals.y480imageText,
           image: AssetsPath.mapImage480,
           text: locals.y480bodyText,
@@ -122,7 +104,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y480,
           mapImage: AssetsPath.map480),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie5,
           imageDescription: locals.y479imageText,
           image: AssetsPath.mapImage479,
           text: locals.y479bodyText,
@@ -130,7 +112,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y479,
           mapImage: AssetsPath.map479),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie6,
           imageDescription: locals.y477imageText,
           image: AssetsPath.mapImage477,
           text: locals.y477bodyText,
@@ -138,7 +120,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y477,
           mapImage: AssetsPath.map477),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie7,
           imageDescription: locals.y471imageText,
           image: AssetsPath.mapImage471,
           text: locals.y471bodyText,
@@ -146,7 +128,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y471,
           mapImage: AssetsPath.map471),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie8,
           imageDescription: locals.y469imageText,
           image: AssetsPath.mapImage469,
           text: locals.y469bodyText,
@@ -154,7 +136,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y469,
           mapImage: AssetsPath.map469),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie9,
           imageDescription: locals.y462imageText,
           image: AssetsPath.mapImage462,
           text: locals.y462bodyText,
@@ -162,7 +144,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y462,
           mapImage: AssetsPath.map462),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie10,
           imageDescription: locals.y461imageText,
           image: AssetsPath.mapImage461,
           text: locals.y461bodyText,
@@ -170,7 +152,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y461,
           mapImage: AssetsPath.map461),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie11,
           imageDescription: locals.y458imageText,
           image: AssetsPath.mapImage458,
           text: locals.y458bodyText,
@@ -178,7 +160,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y458,
           mapImage: AssetsPath.map458),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie12,
           imageDescription: locals.y457imageText,
           image: AssetsPath.mapImage457,
           text: locals.y457bodyText,
@@ -186,7 +168,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y457,
           mapImage: AssetsPath.map457),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie13,
           imageDescription: locals.y454imageText,
           image: AssetsPath.mapImage454,
           text: locals.y454bodyText,
@@ -194,7 +176,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y454,
           mapImage: AssetsPath.map454),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie14,
           imageDescription: locals.y451imageText,
           image: AssetsPath.mapImage451,
           text: locals.y451bodyText,
@@ -202,7 +184,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y451,
           mapImage: AssetsPath.map451),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie15,
           imageDescription: locals.y450imageText,
           image: AssetsPath.mapImage450,
           text: locals.y450bodyText,
@@ -210,7 +192,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y450,
           mapImage: AssetsPath.map450),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie16,
           imageDescription: locals.y447_432imageText,
           image: AssetsPath.mapImage447_432,
           text: locals.y447_432bodyText,
@@ -218,7 +200,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y447_432,
           mapImage: AssetsPath.map447_432),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie17,
           imageDescription: locals.y446imageText,
           image: AssetsPath.mapImage446,
           text: locals.y446bodyText,
@@ -226,7 +208,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y446,
           mapImage: AssetsPath.map446),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie18,
           imageDescription: locals.y443imageText,
           image: AssetsPath.mapImage443,
           text: locals.y443bodyText,
@@ -234,7 +216,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y443,
           mapImage: AssetsPath.map443),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie19,
           imageDescription: locals.y441imageText,
           image: AssetsPath.mapImage441,
           text: locals.y441bodyText,
@@ -242,7 +224,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y441,
           mapImage: AssetsPath.map441),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie20,
           imageDescription: locals.y438imageText,
           image: AssetsPath.mapImage438,
           text: locals.y438bodyText,
@@ -250,7 +232,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y438,
           mapImage: AssetsPath.map438),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie21,
           imageDescription: locals.y431imageText,
           image: AssetsPath.mapImage431,
           text: locals.y431bodyText,
@@ -258,7 +240,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y431,
           mapImage: AssetsPath.map431),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie22,
           imageDescription: locals.y430imageText,
           image: AssetsPath.mapImage430,
           text: locals.y430bodyText,
@@ -266,7 +248,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y430,
           mapImage: AssetsPath.map430),
       MapInfoModel(
-        lottie: AssetsPath.mapLottie1,
+        lottie: AssetsPath.mapLottie23,
         imageDescription: '',
         image: '',
         text: locals.y429bodyText,
@@ -275,7 +257,7 @@ class _MapPageState extends State<MapPage> {
         mapImage: AssetsPath.map429,
       ),
       MapInfoModel(
-        lottie: AssetsPath.mapLottie1,
+        lottie: AssetsPath.mapLottie24,
         mapImage: AssetsPath.map427,
         imageDescription: locals.y427imageText,
         image: AssetsPath.mapImage427,
@@ -284,7 +266,7 @@ class _MapPageState extends State<MapPage> {
         year: locals.y427,
       ),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie25,
           imageDescription: locals.y421imageText,
           image: AssetsPath.mapImage421,
           text: locals.y421bodyText,
@@ -300,7 +282,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y416,
           mapImage: AssetsPath.map416),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie26,
           imageDescription: locals.y415imageText,
           image: AssetsPath.mapImage415,
           text: locals.y415bodyText,
@@ -308,7 +290,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y415,
           mapImage: AssetsPath.map415),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie27,
           imageDescription: locals.y414imageText,
           image: AssetsPath.mapImage414,
           text: locals.y414bodyText,
@@ -316,7 +298,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y414,
           mapImage: AssetsPath.map414),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie28,
           imageDescription: locals.y413imageText,
           image: AssetsPath.mapImage421,
           text: locals.y413bodyText,
@@ -324,7 +306,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y413,
           mapImage: AssetsPath.map413),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie29,
           imageDescription: locals.y411imageText,
           image: AssetsPath.mapImage413,
           text: locals.y411bodyText,
@@ -332,7 +314,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y411,
           mapImage: AssetsPath.map411),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie30,
           imageDescription: locals.y410imageText,
           image: AssetsPath.mapImage413,
           text: locals.y410bodyText,
@@ -340,7 +322,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y410,
           mapImage: AssetsPath.map410),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie31,
           imageDescription: locals.y407imageText,
           image: AssetsPath.mapImage413,
           text: locals.y407bodyText,
@@ -348,7 +330,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y407,
           mapImage: AssetsPath.map407),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie32,
           imageDescription: locals.y404imageText,
           image: AssetsPath.mapImage413,
           text: locals.y404bodyText,
@@ -356,7 +338,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y404,
           mapImage: AssetsPath.map404),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie33,
           imageDescription: locals.y403imageText,
           image: AssetsPath.mapImage413,
           text: locals.y403bodyText,
@@ -364,7 +346,7 @@ class _MapPageState extends State<MapPage> {
           year: locals.y403,
           mapImage: AssetsPath.map403),
       MapInfoModel(
-          lottie: AssetsPath.mapLottie1,
+          lottie: AssetsPath.mapLottie34,
           imageDescription: locals.y399imageText,
           image: AssetsPath.mapImage399,
           text: locals.y399bodyText,
@@ -375,24 +357,9 @@ class _MapPageState extends State<MapPage> {
     super.didChangeDependencies();
   }
 
-  // Future<void> init() async {
-  //   final loadedAssets = await loadContent(contentImages);
-  //   if (loadedAssets == true) {
-  //     setState(() {
-  //       isImageloaded = true;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       isImageloaded = false;
-  //     });
-  //   }
-  // }
-
   @override
   void initState() {
-    // init();
     NavigationSharedPreferences.getNavigationListFromSF();
-
     super.initState();
   }
 
@@ -403,19 +370,15 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    // if (isImageloaded == false) {
-    //   return LoadingWidget();
-    // }
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
-        return GestureDetector(
-          onTap: () {
-            print('high level');
-          },
-          child: Stack(
-            children: [
-              AnimatedSwitcher(
+        return Stack(
+          children: [
+            IgnorePointer(
+              ignoringSemantics: true,
+              ignoring: true,
+              child: AnimatedSwitcher(
                 duration: Times.medium,
                 transitionBuilder: (child, animation) {
                   return FadeTransition(
@@ -426,457 +389,401 @@ class _MapPageState extends State<MapPage> {
                 child: Container(
                   key: ValueKey(mapInfoModel.title),
                   color: Colors.transparent,
-                  child: WebViewX(
-                    ignoreAllGestures: true,
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight,
-                    initialContent: '<h2> Hello, world! </h2>',
-                    initialSourceType: SourceType.html,
-                    onWebViewCreated: (controller) {
-                      webviewController = controller;
-                      webviewController.loadContent(
-                        """
-                          <!DOCTYPE html>
-                <html>
-                <head>
-                <meta charset="utf-8">
-                <title>Map</title>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-                <style>
-                  html, body {
-                    margin: 0;
-                    padding: 0;
-                  }
-                  img {
-                    display: block;
-                    width: 100%;
-                  }
-                  #lottie {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    z-index: 2;
-                  }
-                </style>
-                <style type="text/css"> flt-scene-host { pointer-events: auto !important; } </style>
-                </head>
-                <body>
-                <img src="assets/map_lottie/map_01/map_01.png">
-                <div id="lottie"></div>
-                <script>
-                var animation = bodymovin.loadAnimation({
-                container: document.getElementById('lottie'),
-                path: 'assets/map_lottie/map_01/data.json',
-                renderer: 'svg',
-                loop: false,
-                autoplay: true
-                });
-                </script>
-                </body>
-                </html>
-                          """,
-                        SourceType.html,
-                      );
+                  child: _iframeIgnorePointer(viewID: viewID),
+                ),
+              ),
+            ),
+            _yearDescriptionField(constraints),
+            _timeLineWidget(constraints),
+            SoundAndMenuWidget(
+              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              onTapVolume: isSoundOn
+                  ? () {
+                      print('appbar');
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      print('appbar');
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        backgroundplayer.play();
+                      });
                     },
-                  ),
-                  // Lottie.asset(
-                  //   mapInfoModel.lottie,
-                  // ),
-                ),
-              ),
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: AppColors.linearGradientForBackground,
-                    ),
-                    padding: const EdgeInsets.all(24),
-                    margin: EdgeInsets.only(
-                        left: 50, top: constraints.maxHeight * 0.18),
-                    height: constraints.maxHeight * 0.5,
-                    width: constraints.maxWidth * 0.5,
-                    child: mapInfoModel.image != ''
-                        ? Row(
-                            children: [
-                              Expanded(
-                                child: SizedBox(
-                                  height: constraints.maxHeight,
-                                  child: AnimatedSwitcher(
-                                    duration: Times.medium,
-                                    transitionBuilder: (child, animation) {
-                                      return FadeTransition(
-                                        opacity: animation,
-                                        child: child,
-                                      );
-                                    },
-                                    child: Container(
-                                      key: ValueKey(mapInfoModel.title),
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(mapInfoModel.image),
-                                        fit: BoxFit.cover,
-                                      )),
-                                      child: Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Clickable(
-                                            onPressed: () {
-                                              print('dialog');
-                                              showGeneralDialog(
-                                                  context: context,
-                                                  barrierColor: Colors.black
-                                                      .withOpacity(0.5),
-                                                  transitionBuilder:
-                                                      (BuildContext context,
-                                                          Animation<double>
-                                                              animation,
-                                                          Animation<double>
-                                                              secondaryAnimation,
-                                                          Widget child) {
-                                                    return LayoutBuilder(
-                                                        builder: (context,
-                                                                constraints) =>
-                                                            DialogImageWidget(
-                                                              animation:
-                                                                  animation,
-                                                              selectedImage:
-                                                                  mapInfoModel
-                                                                      .image,
-                                                              selectedImageText:
-                                                                  mapInfoModel
-                                                                      .imageDescription,
-                                                              constraints:
-                                                                  constraints,
-                                                            ));
-                                                  },
-                                                  transitionDuration:
-                                                      Times.fast,
-                                                  barrierDismissible: true,
-                                                  barrierLabel: '',
-                                                  pageBuilder: (context,
-                                                      animation1, animation2) {
-                                                    return Container();
-                                                  });
-                                            },
-                                            child: const ZoomInNotesWidget()),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Flexible(
-                                          child: Container(
-                                            width: constraints.maxWidth,
-                                            decoration: const BoxDecoration(
-                                                border: Border(
-                                                    bottom: BorderSide(
-                                                        color: AppColors.grey,
-                                                        width: 1.2))),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Flexible(
-                                                  child: AutoSizeText(
-                                                    "${locals.chapter1Athens5thCentury}\n",
-                                                    maxLines: 2,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1
-                                                        ?.copyWith(
-                                                            color:
-                                                                AppColors.grey),
-                                                  ),
-                                                ),
-                                                Flexible(
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: constraints
-                                                                .maxHeight *
-                                                            0.01),
-                                                    child: AutoSizeText(
-                                                      '${locals.timelineOfMainEvents}\n'
-                                                          .toUpperCase(),
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline2,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 3,
-                                          child: Scrollbar(
-                                            child: ListView(
-                                                shrinkWrap: true,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10.0,
-                                                            right: 30),
-                                                    child: RichText(
-                                                        text:
-                                                            TextSpan(children: [
-                                                      TextSpan(
-                                                          text:
-                                                              "${mapInfoModel.title}\n\n"
-                                                                  .toUpperCase(),
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline3),
-                                                      TextSpan(
-                                                        text: mapInfoModel.text,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText1,
-                                                      ),
-                                                    ])),
-                                                  )
-                                                ]),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ],
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Container(
-                                    width: constraints.maxWidth,
-                                    decoration: const BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2))),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Flexible(
-                                            flex: 2,
-                                            child: AutoSizeText(
-                                              "${locals.chapter1Athens5thCentury}\n",
-                                              maxLines: 2,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(
-                                                      color: AppColors.grey),
-                                            )),
-                                        Flexible(
-                                          flex: 2,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                bottom: constraints.maxHeight *
-                                                    0.01),
-                                            child: AutoSizeText(
-                                              locals.timelineOfMainEvents
-                                                  .toUpperCase(),
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline2,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 3,
-                                  child: Scrollbar(
-                                    child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10.0, right: 30),
-                                        child: RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                              text: "${mapInfoModel.title}\n\n"
-                                                  .toUpperCase(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline3),
-                                          TextSpan(
-                                            text: mapInfoModel.text,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
-                                        ])),
-                                      )
-                                    ]),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                  )),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  height: constraints.maxHeight * 0.137,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                          offset: Offset(1, -1),
-                          color: AppColors.grey,
-                          blurRadius: 5),
-                    ],
-                    gradient: AppColors.linearGradientForBackground,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: ArrowLeftTextWidget(
-                            textSubTitle: locals.todoNoHarm,
-                            textTitle: locals.chapter1,
-                            onTap: () {
-                              LeafDetails.currentVertex = 2;
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
-
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
-                            }),
-                      ),
-                      Expanded(
-                        flex: 6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              child: IconButtonWidget(
-                                onPressed: () {
-                                  _scrollController.animateTo(
-                                    0.0,
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 300),
-                                  );
-                                },
-                                icon: const Icon(
-                                  Icons.navigate_before,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 6,
-                              child: Container(
-                                alignment: Alignment.topCenter,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                height: 50,
-                                child: Scrollbar(
-                                  isAlwaysShown: true,
-                                  child: ListView.builder(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10),
-                                      controller: _scrollController,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: mapInfoList.length,
-                                      itemBuilder: (context, index) {
-                                        return yearsWidget(
-                                            lottie: mapInfoList[index].lottie,
-                                            year: mapInfoList[index].year,
-                                            image: mapInfoList[index].image,
-                                            text: mapInfoList[index].text,
-                                            map: mapInfoList[index].mapImage,
-                                            title: mapInfoList[index].title,
-                                            imageText: mapInfoList[index]
-                                                .imageDescription);
-                                      }),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              child: IconButtonWidget(
-                                onPressed: () {
-                                  _scrollController.animateTo(
-                                    _scrollController.position.maxScrollExtent,
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 300),
-                                  );
-                                },
-                                icon: const Icon(Icons.navigate_next),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: ArrowRightTextWidget(
-                            textSubTitle: locals.keyPeopleOfTheAge,
-                            textTitle: locals.athens5thCentury,
-                            onTap: () {
-                              LeafDetails.visitedVertexes.add(5);
-                              LeafDetails.currentVertex = 5;
-                              print(LeafDetails.currentVertex);
-                              print(LeafDetails.visitedVertexes);
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
-                              context.router.push(const CharacrterPageRoute());
-                            }),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SoundAndMenuWidget(
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                onTapVolume: isSoundOn
-                    ? () {
-                        print('appbar');
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
-                      }
-                    : () {
-                        print('appbar');
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
-                      },
-                onTapMenu: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              ),
-            ],
-          ),
+              onTapMenu: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          ],
         );
       }),
+    );
+  }
+
+  Widget _iframeIgnorePointer({
+    bool ignoring = true,
+    required String viewID,
+  }) {
+    return Stack(
+      children: [
+        AbsorbPointer(
+          child: RepaintBoundary(
+            child: HtmlElementView(
+              viewType: viewID,
+            ),
+          ),
+        ),
+        if (ignoring)
+          Positioned.fill(
+            child: PointerInterceptor(
+              child: Container(),
+            ),
+          )
+        else
+          const SizedBox.shrink(),
+      ],
+    );
+  }
+
+  Widget _yearDescriptionField(BoxConstraints constraints) {
+    return Align(
+        alignment: Alignment.topLeft,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.linearGradientForBackground,
+          ),
+          padding: const EdgeInsets.all(24),
+          margin: EdgeInsets.only(left: 50, top: constraints.maxHeight * 0.18),
+          height: constraints.maxHeight * 0.5,
+          width: constraints.maxWidth * 0.5,
+          child: mapInfoModel.image != ''
+              ? Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: constraints.maxHeight,
+                        child: AnimatedSwitcher(
+                          duration: Times.medium,
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          child: Container(
+                            key: ValueKey(mapInfoModel.title),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(mapInfoModel.image),
+                              fit: BoxFit.cover,
+                            )),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Clickable(
+                                  onPressed: () {
+                                    print('dialog');
+                                    showGeneralDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        transitionBuilder:
+                                            (BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double>
+                                                    secondaryAnimation,
+                                                Widget child) {
+                                          return LayoutBuilder(
+                                              builder: (context, constraints) =>
+                                                  DialogImageWidget(
+                                                    animation: animation,
+                                                    selectedImage:
+                                                        mapInfoModel.image,
+                                                    selectedImageText:
+                                                        mapInfoModel
+                                                            .imageDescription,
+                                                    constraints: constraints,
+                                                  ));
+                                        },
+                                        transitionDuration: Times.fast,
+                                        barrierDismissible: true,
+                                        barrierLabel: '',
+                                        pageBuilder:
+                                            (context, animation1, animation2) {
+                                          return Container();
+                                        });
+                                  },
+                                  child: const ZoomInNotesWidget()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  width: constraints.maxWidth,
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: AppColors.grey,
+                                              width: 1.2))),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          "${locals.chapter1Athens5thCentury}\n",
+                                          maxLines: 2,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1
+                                              ?.copyWith(color: AppColors.grey),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  constraints.maxHeight * 0.01),
+                                          child: AutoSizeText(
+                                            '${locals.timelineOfMainEvents}\n'
+                                                .toUpperCase(),
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 3,
+                                child: Scrollbar(
+                                  child: ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 10.0, right: 30),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: "${mapInfoModel.title}\n\n"
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline3),
+                                        TextSpan(
+                                          text: mapInfoModel.text,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
+                                        ),
+                                      ])),
+                                    )
+                                  ]),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                  ],
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Container(
+                          width: constraints.maxWidth,
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: AppColors.grey, width: 1.2))),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                  flex: 2,
+                                  child: AutoSizeText(
+                                    "${locals.chapter1Athens5thCentury}\n",
+                                    maxLines: 2,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(color: AppColors.grey),
+                                  )),
+                              Flexible(
+                                flex: 2,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: constraints.maxHeight * 0.01),
+                                  child: AutoSizeText(
+                                    locals.timelineOfMainEvents.toUpperCase(),
+                                    maxLines: 1,
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: Scrollbar(
+                          child: ListView(shrinkWrap: true, children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, right: 30),
+                              child: RichText(
+                                  text: TextSpan(children: [
+                                TextSpan(
+                                    text: "${mapInfoModel.title}\n\n"
+                                        .toUpperCase(),
+                                    style:
+                                        Theme.of(context).textTheme.headline3),
+                                TextSpan(
+                                  text: mapInfoModel.text,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                              ])),
+                            )
+                          ]),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        ));
+  }
+
+  Widget _timeLineWidget(BoxConstraints constraints) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        height: constraints.maxHeight * 0.137,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                offset: Offset(1, -1), color: AppColors.grey, blurRadius: 5),
+          ],
+          gradient: AppColors.linearGradientForBackground,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              flex: 2,
+              child: ArrowLeftTextWidget(
+                  textSubTitle: locals.todoNoHarm,
+                  textTitle: locals.chapter1,
+                  onTap: () {
+                    LeafDetails.currentVertex = 2;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
+            ),
+            Expanded(
+              flex: 6,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: IconButtonWidget(
+                      onPressed: () {
+                        _scrollController.animateTo(
+                          0.0,
+                          curve: Curves.easeOut,
+                          duration: const Duration(milliseconds: 300),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.navigate_before,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      height: 50,
+                      child: Scrollbar(
+                        isAlwaysShown: true,
+                        child: ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            controller: _scrollController,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: mapInfoList.length,
+                            itemBuilder: (context, index) {
+                              return yearsWidget(
+                                  lottie: mapInfoList[index].lottie,
+                                  year: mapInfoList[index].year,
+                                  image: mapInfoList[index].image,
+                                  text: mapInfoList[index].text,
+                                  map: mapInfoList[index].mapImage,
+                                  title: mapInfoList[index].title,
+                                  imageText:
+                                      mapInfoList[index].imageDescription);
+                            }),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: IconButtonWidget(
+                      onPressed: () {
+                        _scrollController.animateTo(
+                          _scrollController.position.maxScrollExtent,
+                          curve: Curves.easeOut,
+                          duration: const Duration(milliseconds: 300),
+                        );
+                      },
+                      icon: const Icon(Icons.navigate_next),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: ArrowRightTextWidget(
+                  textSubTitle: locals.keyPeopleOfTheAge,
+                  textTitle: locals.athens5thCentury,
+                  onTap: () {
+                    LeafDetails.visitedVertexes.add(5);
+                    LeafDetails.currentVertex = 5;
+                    print(LeafDetails.currentVertex);
+                    print(LeafDetails.visitedVertexes);
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const CharacrterPageRoute());
+                  }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

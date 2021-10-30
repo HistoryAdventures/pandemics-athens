@@ -75,6 +75,8 @@ dependencies:
   panorama: ^0.4.1
   platform: ^3.0.0
   shared_preferences: ^2.0.6
+  pointer_interceptor: ^0.9.0+1
+
   universal_html: ^2.0.8
   # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
   url_launcher: ^6.0.6
@@ -113,7 +115,42 @@ flutter:
     - assets/map_lottie/map_02/
     - assets/map_lottie/map_03/
     - assets/map_lottie/map_04/
-    - assets/icons/
+    - assets/map_lottie/map_05/
+    - assets/map_lottie/map_06/
+    - assets/map_lottie/map_07/
+    - assets/map_lottie/map_08/
+    - assets/map_lottie/map_09/
+    - assets/map_lottie/map_10/
+    - assets/map_lottie/map_11/
+    - assets/map_lottie/map_12/
+    - assets/map_lottie/map_13/
+    - assets/map_lottie/map_14/
+    - assets/map_lottie/map_15/
+    - assets/map_lottie/map_16/
+    - assets/map_lottie/map_17/
+    - assets/map_lottie/map_18/
+    - assets/map_lottie/map_19/
+    - assets/map_lottie/map_20/
+    - assets/map_lottie/map_21/
+    - assets/map_lottie/map_22/
+    - assets/map_lottie/map_23/
+    - assets/map_lottie/map_24/
+    - assets/map_lottie/map_25/
+    - assets/map_lottie/map_26/
+    - assets/map_lottie/map_25/
+    - assets/map_lottie/map_26/
+    - assets/map_lottie/map_27/
+    - assets/map_lottie/map_28/
+    - assets/map_lottie/map_29/
+    - assets/map_lottie/map_30/
+    - assets/map_lottie/map_31/
+    - assets/map_lottie/map_32/
+    - assets/map_lottie/map_33/
+    - assets/map_lottie/map_34/
+    - assets/map_lottie/map_35/
+    - assets/map_lottie/map_36/
+    - assets/map_lottie/map_37/
+
     - assets/paralax_video.mp4
     - assets/image_back/
     - assets/images_quiz/
