@@ -617,8 +617,9 @@ class _MapPageState extends State<MapPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 2,
+            Container(
+              width: HW.getWidth(338, context),
+              height: HW.getHeight(52, context),
               child: ArrowLeftTextWidget(
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
@@ -635,12 +636,11 @@ class _MapPageState extends State<MapPage> {
                   }),
             ),
             Expanded(
-              flex: 6,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: IconButtonWidget(
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButtonWidget(
                       onPressed: () {
                         _scrollController.animateTo(
                           0.0,
@@ -652,13 +652,11 @@ class _MapPageState extends State<MapPage> {
                         Icons.navigate_before,
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Container(
+                    Container(
                       alignment: Alignment.topCenter,
                       margin: const EdgeInsets.symmetric(horizontal: 10),
-                      height: 50,
+                      height: HW.getHeight(53, context),
+                      width: HW.getWidth(910, context),
                       child: Scrollbar(
                         isAlwaysShown: true,
                         child: ListView.builder(
@@ -666,7 +664,7 @@ class _MapPageState extends State<MapPage> {
                             controller: _scrollController,
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: mapInfoList?.length,
+                            itemCount:mapInfoList?.length ,
                             itemBuilder: (context, index) {
                               return yearsWidget(
                                   lottie: mapInfoList![index].lottie,
@@ -680,9 +678,7 @@ class _MapPageState extends State<MapPage> {
                             }),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: IconButtonWidget(
+                    IconButtonWidget(
                       onPressed: () {
                         _scrollController.animateTo(
                           _scrollController.position.maxScrollExtent,
@@ -692,12 +688,13 @@ class _MapPageState extends State<MapPage> {
                       },
                       icon: const Icon(Icons.navigate_next),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            Expanded(
-              flex: 2,
+            Container(
+              width: HW.getWidth(338, context),
+              height: HW.getHeight(52, context),
               child: ArrowRightTextWidget(
                   textSubTitle: locals.keyPeopleOfTheAge,
                   textTitle: locals.athens5thCentury,
@@ -726,7 +723,8 @@ class _MapPageState extends State<MapPage> {
       String? title}) {
     return Container(
       alignment: Alignment.bottomCenter,
-      margin: const EdgeInsets.only(left: 30),
+      padding: EdgeInsets.fromLTRB(HW.getWidth(50, context),
+          HW.getHeight(11.5, context), 0, HW.getHeight(11.5, context)),
       child: Clickable(
         onPressed: () {
           setState(() {
@@ -744,11 +742,11 @@ class _MapPageState extends State<MapPage> {
           year!,
           textAlign: TextAlign.end,
           style: mapInfoModel?.title == title
-              ? const TextStyle(
-                  color: AppColors.orange,
-                  fontSize: 36,
-                )
-              : const TextStyle(color: AppColors.blackB, fontSize: 15),
+              ? Theme.of(context)
+                  .textTheme
+                  .headline5
+                  ?.copyWith(color: AppColors.orange, fontSize: 36)
+              : Theme.of(context).textTheme.headline5,
         ),
       ),
     );

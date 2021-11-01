@@ -10,6 +10,11 @@ class AppTextStyle {
       color: AppColors.blackB,
       fontStyle: FontStyle.normal);
 
+      static const _robotoTextStayle = TextStyle(
+      fontFamily: AppFontFamily.roboto,
+      color: AppColors.black54,
+      fontStyle: FontStyle.normal);
+
   static const _titleTextStyleItalic = TextStyle(
       fontFamily: AppFontFamily.openSans,
       color: AppColors.blackB,
@@ -64,8 +69,8 @@ class AppTextStyle {
 
   /// Headline 5 Text Style
   static TextStyle get headline5 {
-    return _baseTextStyle.copyWith(
-      fontSize: 24,
+    return _robotoTextStayle.copyWith(
+      fontSize: 16,
       //fontWeight: AppFontWeight.medium,
     );
   }
