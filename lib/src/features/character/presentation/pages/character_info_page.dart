@@ -57,256 +57,223 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return Stack(
-            children: [
-              Container(
-                height: constraints.maxHeight,
-                width: constraints.maxWidth,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AssetsPath.charactersBackgroundImage),
-                      fit: BoxFit.cover),
-                ),
-              ),
-              Align(
-                child: Container(
-                  margin: EdgeInsets.only(
-                    bottom: 80,
-                    top: constraints.maxHeight * 0.18,
-                    left: constraints.maxWidth * 0.1,
-                    right: constraints.maxWidth * 0.1,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: SizedBox(
-                          height: constraints.maxHeight,
-                          child: AnimatedSwitcher(
-                            duration: Times.medium,
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                            child: CharacterModel(
-                              key:
-                                  ValueKey(characterModelNotifierprovider.name),
-                              name: characterModelNotifierprovider.name,
-                              photo: characterModelNotifierprovider.image,
-                              description:
-                                  characterModelNotifierprovider.bodyText,
-                              onTap: () {
-                                if (kIsWeb) {
-                                  html.window.history.back();
-                                  context.router.pop();
-                                } else {
-                                  context.router.pop();
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: constraints.maxWidth * 0.05,
-                              vertical: constraints.maxHeight * 0.03),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              boxShadow: Shadows.universal),
-                          padding:
-                              EdgeInsets.all(constraints.maxHeight * 0.024),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                flex: 10,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2))),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AssetsPath.charactersBackgroundImage),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          Positioned(
+            top: HW.getHeight(202, context),
+            right: HW.getWidth(160, context),
+            left: HW.getWidth(960, context),
+            child: Container(
+              height: HW.getHeight(676, context),
+              width: HW.getWidth(800, context),
+              decoration: BoxDecoration(
+                  color: AppColors.white, boxShadow: Shadows.universal),
+              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: HW.getHeight(68, context),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  flex: 3,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Flexible(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              flex: 3,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Flexible(
-                                                    child: AutoSizeText(
-                                                      "${locale.chapter1Athens5thCentury}\n",
-                                                      maxLines: 2,
-                                                      minFontSize: 10,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline1
-                                                          ?.copyWith(
-                                                              color: AppColors
-                                                                  .black54),
-                                                    ),
-                                                  ),
-                                                  Flexible(
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: constraints
-                                                                  .maxHeight *
-                                                              0.01),
-                                                      child: AutoSizeText(
-                                                          locale
-                                                              .keyPeopleOfTheAge,
-                                                          minFontSize: 13,
-                                                          maxLines: 1,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline2),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      if (kIsWeb) {
-                                                        html.window.history
-                                                            .back();
-                                                        context.router.pop();
-                                                      } else {
-                                                        context.router.pop();
-                                                      }
-                                                    },
-                                                    child: const Icon(
-                                                        Icons.clear)))
-                                          ],
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: HW.getHeight(8, context)),
+                                          child: AutoSizeText(
+                                            "${locale.chapter1Athens5thCentury}\n",
+                                            maxLines: 1,
+                                            minFontSize: 10,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1
+                                                ?.copyWith(
+                                                    color: AppColors.black54),
+                                          ),
                                         ),
                                       ),
-                                      Expanded(
-                                        flex: 5,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              border: Border(
-                                            top: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2),
-                                          )),
-                                          child: ListView(
-                                              shrinkWrap: true,
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 24, top: 16),
-                                                  child: RichText(
-                                                      text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text:
-                                                          '${characterModelNotifierprovider.name}\n\n'
-                                                              .toUpperCase(),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline3
-                                                          ?.copyWith(
-                                                              color: AppColors
-                                                                  .black54),
-                                                    ),
-                                                    TextSpan(
-                                                      text:
-                                                          characterModelNotifierprovider
-                                                              .bodyText,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1,
-                                                    ),
-                                                  ])),
-                                                )
-                                              ]),
-                                        ),
+                                      Flexible(
+                                        child: AutoSizeText(
+                                            locale.keyPeopleOfTheAge,
+                                            minFontSize: 13,
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ),
-                              Flexible(
-                                child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                        children: widget.listCharacters
-                                            .map((data) =>
-                                                charactersNameListWidget(
-                                                    name: data.name,
-                                                    image: data.image,
-                                                    text: data.bodyText,
-                                                    selected: data.name))
-                                            .toList())),
-                              )
-                            ],
+                                Flexible(
+                                    child: Clickable(
+                                        onPressed: () {
+                                          if (kIsWeb) {
+                                            html.window.history.back();
+                                            context.router.pop();
+                                          } else {
+                                            context.router.pop();
+                                          }
+                                        },
+                                        child: const Icon(Icons.clear)))
+                              ],
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: HW.getHeight(16, context),
+                                bottom: HW.getHeight(16, context),
+                              ),
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                      color: AppColors.grey, width: 1.2),
+                                  bottom: BorderSide(
+                                      color: AppColors.grey, width: 1.2),
+                                ),
+                              ),
+                              child: ListView(shrinkWrap: true, children: [
+                                Container(
+                                  padding:
+                                      const EdgeInsets.only(right: 24, top: 16),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                      text:
+                                          '${characterModelNotifierprovider.name}\n\n'
+                                              .toUpperCase(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline3
+                                          ?.copyWith(color: AppColors.black54),
+                                    ),
+                                    TextSpan(
+                                      text: characterModelNotifierprovider
+                                          .bodyText,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ])),
+                                )
+                              ]),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                  ),
+                  Container(
+                    height: HW.getHeight(19, context),
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                            children: widget.listCharacters
+                                .map((data) => charactersNameListWidget(
+                                    name: data.name,
+                                    image: data.image,
+                                    text: data.bodyText,
+                                    selected: data.name))
+                                .toList())),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: HW.getHeight(190, context),
+            bottom: HW.getHeight(190, context),
+            left: HW.getWidth(200, context),
+            right: HW.getWidth(1000, context),
+            child: Container(
+              // color: Colors.red,
+              child: SizedBox(
+                child: AnimatedSwitcher(
+                  duration: Times.medium,
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                  child: CharacterModel(
+                    key: ValueKey(characterModelNotifierprovider.name),
+                    name: characterModelNotifierprovider.name,
+                    photo: characterModelNotifierprovider.image,
+                    description: characterModelNotifierprovider.bodyText,
+                    onTap: () {
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    },
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 24, left: 24),
-                  child: ArrowLeftTextWidget(
-                      textSubTitle: locale.timelineOfMainEvents,
-                      textTitle: locale.athens5thCentury,
-                      onTap: () {
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
-                      }),
-                ),
-              ),
-              SoundAndMenuWidget(
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                onTapVolume: isSoundOn
-                    ? () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
-                      }
-                    : () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
-                      },
-                onTapMenu: () {
-                  scaffoldkey.currentState!.openEndDrawer();
-                },
-              ),
-            ],
-          );
-        },
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 24, left: 24),
+              child: ArrowLeftTextWidget(
+                  textSubTitle: locale.timelineOfMainEvents,
+                  textTitle: locale.athens5thCentury,
+                  onTap: () {
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
+            ),
+          ),
+          SoundAndMenuWidget(
+            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            onTapVolume: isSoundOn
+                ? () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.pause();
+                    });
+                  }
+                : () {
+                    setState(() {
+                      isSoundOn = !isSoundOn;
+                      backgroundplayer.play();
+                    });
+                  },
+            onTapMenu: () {
+              scaffoldkey.currentState!.openEndDrawer();
+            },
+          ),
+        ],
       ),
     );
   }

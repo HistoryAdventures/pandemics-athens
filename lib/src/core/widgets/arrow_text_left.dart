@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../utils/styles.dart';
 
@@ -25,12 +26,10 @@ class ArrowLeftTextWidget extends StatelessWidget {
           Flexible(
             child: Container(
               margin: const EdgeInsets.only(right: 24),
-              height: 40,
-              width: 40,
               child: Icon(
                 Icons.arrow_back,
                 color: color ?? Colors.black,
-                size: 40,
+                size: HW.getWidth(37, context),
               ),
             ),
           ),
@@ -41,22 +40,25 @@ class ArrowLeftTextWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     textTitle.toUpperCase(),
                     textAlign: TextAlign.left,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.caption?.copyWith(
-                        fontSize: TextFontSize.getHeight(24, context),
-                        color: color ?? Colors.black),
+                    maxFontSize: 14,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.copyWith(fontSize: 14, color: color ?? Colors.black),
                   ),
                 ),
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     textSubTitle.toUpperCase(),
                     textAlign: TextAlign.left,
+                    maxFontSize: 24,
                     maxLines: 1,
                     style: Theme.of(context).textTheme.headline2?.copyWith(
-                          fontSize: TextFontSize.getHeight(30, context),
+                          fontSize: 24,
                           color: color ?? Colors.black,
                         ),
                   ),
