@@ -59,20 +59,36 @@
     "@namePericles": {
       "description": "Pericles"
     },
-    "thucididesName": "thucidides",
+    "thucididesName": "thucydides",
     "@thucididesName": {
-      "thucidides": "thucidides"
+      "thucidides": "thucydides"
     },
     "socratesAndPlatoName": "socrates and plato",
     "@socratesAndPlatoName": {
       "description": "socrates and plato"
     },
+    "subTitleSocratesAndPlatoName": "Philosophers: Socrates and Plato",
+    "@socratesAndPlatoName": {
+      "description": "socrates and plato"
+    },
+    "introTimeLineText": "Today, Athens is the capital of the modern nation of Greece. In the year 500 BC, however, it was just one of a number of cities, a polis, in Hellas. These cities including Athens, Sparta, Corinth, Thebes, Argos and dozens of others shared much, including culture, language and religion, but they were also highly competitive.\n\n The philosopher Socrates: “I believe that the earth is very large and that we who dwell between the pillars of Hercules [Gibraltar] and the river Phasis [Georgia] [i.e. the Greeks] live in a small part of it about the sea, like frogs about a pond” Plato, Phaedo, 109a-b\n\n The history of Ancient Greece can be defined by periods where one or more of these cities achieved a level of dominance. The first half of the 5th century BC was Athens’ moment in the spotlight: this was the city’s Golden Age.\n\nCulture flourished, and the city was made beautiful with magnificent buildings and artworks, whilst the people of the city could enjoy themselves by enjoying the comic and tragic plays of Aristophanes, Sophocles and Euripides, on stage. The bustling heart of the city, the agora (the marketplace), saw new ideas voiced and debated, led by some of history’s most famous philosophers, including Socrates and Plato. In the wider Greek world Athens was dominant. Her role in the defeat of the Persian forces led by Xerxes in 478 BC had afforded her power and riches. At the head of a group of cities, the Delian League, Athens ruled the waves at the head of a burgeoning empire.\n\n  However, shadows were growing in the distance. Athenian hegemony could not be tolerated by the Greek cities, least of all Sparta. War was coming, and with it would come the devastation of plague.\n\n ",
+    "@introTimeLineText": {
+      "description": "introTimeLineText"
+    },
     "aristophanesAndSophocles": "Aristophanes and Sophocles",
     "@aristophanesAndSophocles": {
       "description": "Aristophanes and Sophocles"
     },
-    
+    "subTitleAristophanesAndSophocles": "Laughter and Tears on Stage: Aristophanes and Sophocles",
+    "@aristophanesAndSophocles": {
+      "description": "Aristophanes and Sophocles"
+    },
     "phidias": "Phidias",
+    "@phidias ": {
+      "description": "Phidias"
+    },
+
+    "subTitlePhidias": "Building a Golden City: Phidias",
     "@phidias ": {
       "description": "Phidias"
     },

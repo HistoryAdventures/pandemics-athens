@@ -106,7 +106,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
               Align(
                 child: Container(
                   height: HW.getHeight(500, context),
-                  width: HW.getWidth(1000, context),
+                  width: HW.getWidth(1216, context),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     boxShadow: Shadows.universal,
@@ -119,7 +119,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                             horizontal: HW.getWidth(48, context),
                             vertical: HW.getHeight(48, context)),
                         height: HW.getHeight(500, context),
-                        width: HW.getWidth(500, context),
+                        width: HW.getWidth(716, context),
                         child: AnimatedSwitcher(
                           duration: Times.medium,
                           transitionBuilder: (child, animation) {

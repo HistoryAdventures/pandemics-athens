@@ -10,7 +10,7 @@ class AppTextStyle {
       color: AppColors.blackB,
       fontStyle: FontStyle.normal);
 
-      static const _robotoTextStayle = TextStyle(
+  static const _robotoTextStayle = TextStyle(
       fontFamily: AppFontFamily.roboto,
       color: AppColors.black54,
       fontStyle: FontStyle.normal);
@@ -71,7 +71,7 @@ class AppTextStyle {
   static TextStyle get headline5 {
     return _robotoTextStayle.copyWith(
       fontSize: 16,
-      //fontWeight: AppFontWeight.medium,
+      fontWeight: FontWeight.normal,
     );
   }
 

@@ -52,12 +52,12 @@ class _MapPageState extends State<MapPage> {
 
     if (mapInfoModel == null) {
       mapInfoModel = MapInfoModel(
-        lottie: AssetsPath.mapLottie1,
+        lottie: AssetsPath.mapIntroImage,
         imageDescription: '',
         image: '',
-        text: locals.y508bodyText,
-        title: locals.y508,
-        year: locals.y508,
+        text: locals.introTimeLineText,
+        title: '',
+        year: '',
         mapImage: AssetsPath.map508,
       );
 
@@ -390,11 +390,18 @@ class _MapPageState extends State<MapPage> {
                     child: child,
                   );
                 },
-                child: Container(
-                  key: ValueKey(mapInfoModel?.title),
-                  color: Colors.transparent,
-                  child: _iframeIgnorePointer(viewID: viewID),
-                ),
+                child: mapInfoModel!.text == locals.introTimeLineText
+                    ? Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(AssetsPath.mapIntroImage),
+                                fit: BoxFit.cover)),
+                      )
+                    : Container(
+                        key: ValueKey(mapInfoModel?.title),
+                        color: Colors.transparent,
+                        child: _iframeIgnorePointer(viewID: viewID),
+                      ),
               ),
             ),
             _yearDescriptionField(constraints),
@@ -453,14 +460,21 @@ class _MapPageState extends State<MapPage> {
 
   Widget _yearDescriptionField(BoxConstraints constraints) {
     return Positioned(
-        top: HW.getHeight(341, context),
+        top: mapInfoModel!.text == locals.introTimeLineText
+            ? HW.getHeight(192, context)
+            : HW.getHeight(341, context),
         left: HW.getWidth(128, context),
         child: Container(
-            decoration: BoxDecoration(
-              gradient: AppColors.linearGradientForBackground,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AssetsPath.mapDialogBlur),
+                  fit: BoxFit.cover),
+              //gradient: AppColors.linearGradientForBackground,
             ),
             padding: EdgeInsets.all(HW.getHeight(24, context)),
-            height: HW.getHeight(398, context),
+            height: mapInfoModel!.text == locals.introTimeLineText
+                ? HW.getHeight(676, context)
+                : HW.getHeight(398, context),
             width: HW.getWidth(768, context),
             child: Row(
               children: [
@@ -527,42 +541,47 @@ class _MapPageState extends State<MapPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: Container(
-                          width: constraints.maxWidth,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      bottom: HW.getHeight(8, context)),
-                                  child: AutoSizeText(
-                                    "${locals.chapter1Athens5thCentury}\n",
-                                    maxLines: 1,
-                                    maxFontSize: 16,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(color: AppColors.grey),
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                child: AutoSizeText(
-                                  '${locals.timelineOfMainEvents}\n'
-                                      .toUpperCase(),
+                      Container(
+                        height: HW.getHeight(68, context),
+                        width: constraints.maxWidth,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                    bottom: HW.getHeight(8, context)),
+                                child: Text(
+                                  "${locals.chapter1Athens5thCentury}\n",
                                   maxLines: 1,
-                                  maxFontSize: 32,
-                                  style: Theme.of(context).textTheme.headline2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                          color: AppColors.grey,
+                                          fontSize: TextFontSize.getHeight(
+                                              16, context)),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Flexible(
+                              child: Text(
+                                '${locals.timelineOfMainEvents}\n'
+                                    .toUpperCase(),
+                                maxLines: 1,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2
+                                    ?.copyWith(
+                                        fontSize: TextFontSize.getHeight(
+                                            32, context)),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         flex: 3,
                         child: Container(
                           margin:
@@ -605,21 +624,23 @@ class _MapPageState extends State<MapPage> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(
+          horizontal: HW.getWidth(54, context),
+        ),
         height: HW.getHeight(149, context),
-        decoration: BoxDecoration(
-          boxShadow: const [
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(AssetsPath.mapTimeLineBlur), fit: BoxFit.cover),
+          boxShadow: [
             BoxShadow(
                 offset: Offset(1, -1), color: AppColors.grey, blurRadius: 5),
           ],
-          gradient: AppColors.linearGradientForBackground,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               width: HW.getWidth(338, context),
-              height: HW.getHeight(52, context),
               child: ArrowLeftTextWidget(
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
@@ -635,36 +656,34 @@ class _MapPageState extends State<MapPage> {
                     }
                   }),
             ),
-            Expanded(
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButtonWidget(
-                      onPressed: () {
-                        _scrollController.animateTo(
-                          0.0,
-                          curve: Curves.easeOut,
-                          duration: const Duration(milliseconds: 300),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.navigate_before,
-                      ),
+            Container(
+              width: HW.getWidth(980, context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButtonWidget(
+                    onPressed: () {
+                      _scrollController.animateTo(
+                        0.0,
+                        curve: Curves.easeOut,
+                        duration: const Duration(milliseconds: 300),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.navigate_before,
                     ),
-                    Container(
-                      alignment: Alignment.topCenter,
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      height: HW.getHeight(53, context),
-                      width: HW.getWidth(910, context),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: HW.getHeight(42, context),
+                      width: HW.getWidth(930, context),
                       child: Scrollbar(
                         isAlwaysShown: true,
                         child: ListView.builder(
-                            padding: const EdgeInsets.only(bottom: 10),
                             controller: _scrollController,
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount:mapInfoList?.length ,
+                            itemCount: mapInfoList?.length,
                             itemBuilder: (context, index) {
                               return yearsWidget(
                                   lottie: mapInfoList![index].lottie,
@@ -678,23 +697,22 @@ class _MapPageState extends State<MapPage> {
                             }),
                       ),
                     ),
-                    IconButtonWidget(
-                      onPressed: () {
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          curve: Curves.easeOut,
-                          duration: const Duration(milliseconds: 300),
-                        );
-                      },
-                      icon: const Icon(Icons.navigate_next),
-                    ),
-                  ],
-                ),
+                  ),
+                  IconButtonWidget(
+                    onPressed: () {
+                      _scrollController.animateTo(
+                        _scrollController.position.maxScrollExtent,
+                        curve: Curves.easeOut,
+                        duration: const Duration(milliseconds: 300),
+                      );
+                    },
+                    icon: const Icon(Icons.navigate_next),
+                  ),
+                ],
               ),
             ),
             Container(
               width: HW.getWidth(338, context),
-              height: HW.getHeight(52, context),
               child: ArrowRightTextWidget(
                   textSubTitle: locals.keyPeopleOfTheAge,
                   textTitle: locals.athens5thCentury,
@@ -722,9 +740,9 @@ class _MapPageState extends State<MapPage> {
       String? lottie,
       String? title}) {
     return Container(
-      alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.fromLTRB(HW.getWidth(50, context),
-          HW.getHeight(11.5, context), 0, HW.getHeight(11.5, context)),
+      height: HW.getHeight(50, context),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () {
           setState(() {

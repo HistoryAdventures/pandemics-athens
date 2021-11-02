@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../colors.dart';
 
 class CharacterModel extends StatelessWidget {
   final String photo;
-
+  final String subTitle;
   final VoidCallback? onTap;
 
   final String name;
@@ -17,6 +18,7 @@ class CharacterModel extends StatelessWidget {
       {Key? key,
       required this.photo,
       required this.name,
+      required this.subTitle,
       required this.description,
       this.onTapHends,
       this.onTap,

@@ -7,6 +7,10 @@ class AssetsPath {
 
   static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
+  static const String mapDialogBlur = 'assets/image_back/blur_map_dialog.png';
+  static const String mapTimeLineBlur =
+      'assets/image_back/blur_map_timeline.png';
+
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
 
@@ -338,6 +342,7 @@ class AssetsPath {
       'assets/paralax_new/fighters_left/fighters_left.json';
   static const String paralaxFightersLeft =
       'assets/paralax_new/fighters_left.png';
+  static const String mapIntroImage = 'assets/map_lottie/map_01/map_01.png';
   static const String mapLottie1 = 'assets/map_lottie/map_01/index.html';
 
   static const String mapLottie2 = 'assets/map_lottie/map_02/index.html';

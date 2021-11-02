@@ -44,37 +44,47 @@ class _CharacrterPageState extends State<CharacrterPage> {
       CharacterModelNotifier(
         left: 24,
         top: 16,
+        bottom: 116,
         bodyText: locale.periclesTextDescription,
         image: AssetsPath.periclesImage,
         name: locale.namePericles,
+        subTitle: locale.namePericles,
       ),
       CharacterModelNotifier(
         top: 24,
         left: 307,
+        bottom: 18,
         image: AssetsPath.thucydidesImage,
         name: locale.thucididesName,
         bodyText: locale.thucydidesTextDescription,
+        subTitle: locale.thucididesName,
       ),
       CharacterModelNotifier(
         left: 562,
         top: 24,
+        bottom: 110,
         image: AssetsPath.socratesPlatoImage,
         name: locale.socratesAndPlatoName,
         bodyText: locale.socratesAndPlatoTextDescription,
+        subTitle: locale.subTitleSocratesAndPlatoName,
       ),
       CharacterModelNotifier(
         top: 43,
         left: 883,
+        bottom: 0,
         image: AssetsPath.aristophanesSophoclesImage,
         name: locale.aristophanesAndSophocles,
         bodyText: locale.aristophanesAndSophoclesTextDescription,
+        subTitle: locale.subTitleAristophanesAndSophocles,
       ),
       CharacterModelNotifier(
         top: 0,
         left: 1318,
+        bottom: 64,
         image: AssetsPath.phidiasImage,
         name: locale.phidias,
         bodyText: locale.phidiasTextDescription,
+        subTitle: locale.subTitlePhidias,
       ),
     ];
   }
@@ -156,7 +166,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
               ),
             ),
             Positioned(
-              left: HW.getWidth(160, context),
+              left: HW.getWidth(160.03, context),
               right: HW.getWidth(148, context),
               top: HW.getHeight(359, context),
               child: Container(
@@ -168,8 +178,9 @@ class _CharacrterPageState extends State<CharacrterPage> {
                         .map((photo) => Positioned(
                               top: HW.getHeight(photo.top!, context),
                               left: HW.getWidth(photo.left!, context),
-                              bottom: 80,
+                              bottom: HW.getHeight(photo.bottom!, context),
                               child: CharacterModel(
+                                subTitle: photo.subTitle,
                                 name: photo.name,
                                 photo: photo.image,
                                 description: photo.bodyText,

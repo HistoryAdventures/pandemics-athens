@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -37,18 +38,18 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
-    characterModelNotifierprovider = CharacterModelNotifier(
-      bodyText: widget.photoHero.bodyText,
-      image: widget.photoHero.image,
-      name: widget.photoHero.name,
-    );
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
-
+    characterModelNotifierprovider = CharacterModelNotifier(
+      bodyText: widget.photoHero.bodyText,
+      image: widget.photoHero.image,
+      name: widget.photoHero.name,
+      subTitle: widget.photoHero.subTitle,
+    );
     super.initState();
   }
 
@@ -112,18 +113,23 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                                 .textTheme
                                                 .headline1
                                                 ?.copyWith(
-                                                    color: AppColors.black54),
+                                                    color: AppColors.black54,
+                                                    fontSize:
+                                                        TextFontSize.getHeight(
+                                                            16, context)),
                                           ),
                                         ),
                                       ),
-                                      Flexible(
-                                        child: AutoSizeText(
-                                            locale.keyPeopleOfTheAge,
-                                            minFontSize: 13,
+                                      Expanded(
+                                        child: Text(locale.keyPeopleOfTheAge,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline2),
+                                                .headline2
+                                                ?.copyWith(
+                                                    fontSize:
+                                                        TextFontSize.getHeight(
+                                                            32, context))),
                                       ),
                                     ],
                                   ),
@@ -138,7 +144,10 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                             context.router.pop();
                                           }
                                         },
-                                        child: const Icon(Icons.clear)))
+                                        child: const Icon(
+                                          Icons.clear,
+                                          color: AppColors.black54,
+                                        )))
                               ],
                             ),
                           ),
@@ -164,7 +173,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       text: TextSpan(children: [
                                     TextSpan(
                                       text:
-                                          '${characterModelNotifierprovider.name}\n\n'
+                                          '${characterModelNotifierprovider.subTitle}\n\n'
                                               .toUpperCase(),
                                       style: Theme.of(context)
                                           .textTheme
@@ -196,7 +205,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                     name: data.name,
                                     image: data.image,
                                     text: data.bodyText,
-                                    selected: data.name))
+                                    selected: data.name,
+                                    subTitle: data.subTitle))
                                 .toList())),
                   )
                 ],
@@ -220,6 +230,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                     );
                   },
                   child: CharacterModel(
+                    subTitle: characterModelNotifierprovider.subTitle,
                     key: ValueKey(characterModelNotifierprovider.name),
                     name: characterModelNotifierprovider.name,
                     photo: characterModelNotifierprovider.image,
@@ -246,8 +257,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   textTitle: locale.athens5thCentury,
                   onTap: () {
                     if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
+                      html.window.history.go(-2);
+                      context.router.popUntilRouteWithName('MapPageRoute');
                     } else {
                       context.router.pop();
                     }
@@ -282,6 +293,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
       {required String name,
       required String selected,
       required String image,
+      required String subTitle,
       required String text}) {
     return Container(
         margin: const EdgeInsets.only(right: 30),
@@ -289,7 +301,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           onPressed: () {
             setState(() {
               characterModelNotifierprovider.changeCaracterInfo(
-                  name: name, image: image, bodyText: text);
+                  name: name, image: image, bodyText: text, subTitle: subTitle);
             });
           },
           child: AutoSizeText(name.toUpperCase(),
