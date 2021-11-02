@@ -4,7 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
+import 'dart:ui' as ui;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -26,6 +28,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
   late AppLocalizations locals;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  String viewID = "virusLocationPage-view-id";
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -35,6 +39,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        viewID,
+        (int id) => html.IFrameElement()
+          ..width = MediaQuery.of(context).size.width.toString()
+          ..height = MediaQuery.of(context).size.height.toString()
+          ..src = AssetsPath.virusLoc1
+          ..style.border = 'none');
     super.initState();
   }
 
@@ -45,6 +57,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
+            IgnorePointer(
+              ignoringSemantics: true,
+              ignoring: true,
+              child: Container(
+                color: Colors.transparent,
+                child: _iframeIgnorePointer(viewID: viewID),
+              ),
+            ),
             Container(
               width: constraints.maxWidth,
               height: constraints.maxHeight,
@@ -205,6 +225,31 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
           ],
         );
       }),
+    );
+  }
+
+  Widget _iframeIgnorePointer({
+    bool ignoring = true,
+    required String viewID,
+  }) {
+    return Stack(
+      children: [
+        AbsorbPointer(
+          child: RepaintBoundary(
+            child: HtmlElementView(
+              viewType: viewID,
+            ),
+          ),
+        ),
+        if (ignoring)
+          Positioned.fill(
+            child: PointerInterceptor(
+              child: Container(),
+            ),
+          )
+        else
+          const SizedBox.shrink(),
+      ],
     );
   }
 }

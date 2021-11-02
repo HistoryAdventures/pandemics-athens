@@ -343,71 +343,72 @@ class AssetsPath {
   static const String paralaxFightersLeft =
       'assets/paralax_new/fighters_left.png';
   static const String mapIntroImage = 'assets/map_lottie/map_01/map_01.png';
-  static const String mapLottie1 = 'assets/map_lottie/map_01/index.html';
 
-  static const String mapLottie2 = 'assets/map_lottie/map_02/index.html';
+  static const String virusLoc1 = 'assets/map_lottie/map_01/index.html';
 
-  static const String mapLottie3 = 'assets/map_lottie/map_03/index.html';
+  static const String mapLottie410 = 'assets/map_lottie/map_02/index.html';
 
-  static const String mapLottie4 = 'assets/map_lottie/map_04/index.html';
-  static const String mapLottie5 = 'assets/map_lottie/map_05/index.html';
+  static const String mapLottie413 = 'assets/map_lottie/map_03/index.html';
 
-  static const String mapLottie6 = 'assets/map_lottie/map_06/index.html';
+  static const String mapLottie414 = 'assets/map_lottie/map_04/index.html';
+  static const String mapLottie427 = 'assets/map_lottie/map_05/index.html';
 
-  static const String mapLottie7 = 'assets/map_lottie/map_07/index.html';
+  static const String mapLottie431 = 'assets/map_lottie/map_06/index.html';
 
-  static const String mapLottie8 = 'assets/map_lottie/map_08/index.html';
-  static const String mapLottie9 = 'assets/map_lottie/map_09/index.html';
+  static const String mapLottie454 = 'assets/map_lottie/map_07/index.html';
 
-  static const String mapLottie10 = 'assets/map_lottie/map_10/index.html';
+  static const String mapLottie404 = 'assets/map_lottie/map_08/index.html';
+  static const String mapLottie407 = 'assets/map_lottie/map_09/index.html';
 
-  static const String mapLottie11 = 'assets/map_lottie/map_11/index.html';
+  static const String mapLottie477 = 'assets/map_lottie/map_10/index.html';
 
-  static const String mapLottie12 = 'assets/map_lottie/map_12/index.html';
-  static const String mapLottie13 = 'assets/map_lottie/map_13/index.html';
+  static const String mapLottie495 = 'assets/map_lottie/map_11/index.html';
 
-  static const String mapLottie14 = 'assets/map_lottie/map_14/index.html';
+  static const String mapLottie490 = 'assets/map_lottie/map_12/index.html';
+  static const String mapLottie480 = 'assets/map_lottie/map_13/index.html';
 
-  static const String mapLottie15 = 'assets/map_lottie/map_15/index.html';
+  static const String mapLottie479 = 'assets/map_lottie/map_14/index.html';
 
-  static const String mapLottie16 = 'assets/map_lottie/map_16/index.html';
-  static const String mapLottie17 = 'assets/map_lottie/map_17/index.html';
+  static const String mapLottie471 = 'assets/map_lottie/map_15/index.html';
 
-  static const String mapLottie18 = 'assets/map_lottie/map_18/index.html';
+  static const String mapLottie469 = 'assets/map_lottie/map_16/index.html';
+  static const String mapLottie461 = 'assets/map_lottie/map_17/index.html';
 
-  static const String mapLottie19 = 'assets/map_lottie/map_19/index.html';
+  static const String mapLottie451 = 'assets/map_lottie/map_18/index.html';
 
-  static const String mapLottie20 = 'assets/map_lottie/map_20/index.html';
-  static const String mapLottie21 = 'assets/map_lottie/map_21/index.html';
+  static const String mapLottie450 = 'assets/map_lottie/map_19/index.html';
 
-  static const String mapLottie22 = 'assets/map_lottie/map_22/index.html';
+  static const String mapLottie446 = 'assets/map_lottie/map_20/index.html';
+  static const String mapLottie443 = 'assets/map_lottie/map_21/index.html';
 
-  static const String mapLottie23 = 'assets/map_lottie/map_23/index.html';
+  static const String mapLottie429 = 'assets/map_lottie/map_22/index.html';
 
-  static const String mapLottie24 = 'assets/map_lottie/map_24/index.html';
-  static const String mapLottie25 = 'assets/map_lottie/map_25/index.html';
+  static const String mapLottie421 = 'assets/map_lottie/map_23/index.html';
 
-  static const String mapLottie26 = 'assets/map_lottie/map_26/index.html';
+  static const String mapLottie416 = 'assets/map_lottie/map_24/index.html';
+  static const String mapLottie415 = 'assets/map_lottie/map_25/index.html';
 
-  static const String mapLottie27 = 'assets/map_lottie/map_27/index.html';
+  static const String mapLottie508 = 'assets/map_lottie/map_26/index.html';
 
-  static const String mapLottie28 = 'assets/map_lottie/map_28/index.html';
+  static const String mapLottie462 = 'assets/map_lottie/map_27/index.html';
 
-  static const String mapLottie29 = 'assets/map_lottie/map_29/index.html';
-  static const String mapLottie30 = 'assets/map_lottie/map_30/index.html';
+  static const String mapLottie458 = 'assets/map_lottie/map_28/index.html';
 
-  static const String mapLottie31 = 'assets/map_lottie/map_31/index.html';
+  static const String mapLottie457 = 'assets/map_lottie/map_29/index.html';
+  static const String mapLottie447_432 = 'assets/map_lottie/map_30/index.html';
 
-  static const String mapLottie32 = 'assets/map_lottie/map_32/index.html';
+  static const String mapLottie441 = 'assets/map_lottie/map_31/index.html';
 
-  static const String mapLottie33 = 'assets/map_lottie/map_33/index.html';
-  static const String mapLottie34 = 'assets/map_lottie/map_34/index.html';
+  static const String mapLottie438 = 'assets/map_lottie/map_32/index.html';
 
-  static const String mapLottie35 = 'assets/map_lottie/map_35/index.html';
+  static const String mapLottie430 = 'assets/map_lottie/map_33/index.html';
+  static const String mapLottie411 = 'assets/map_lottie/map_34/index.html';
 
-  static const String mapLottie36 = 'assets/map_lottie/map_36/index.html';
+  static const String mapLottie403 = 'assets/map_lottie/map_35/index.html';
 
-  static const String mapLottie37 = 'assets/map_lottie/map_37/index.html';
+  static const String mapLottie399 = 'assets/map_lottie/map_36/index.html';
+
+  static const String virusLoc2 = 'assets/map_lottie/map_37/index.html';
 
   static const String map508 = 'assets/map/map411image.png';
   static const String map495 = 'assets/map/map495image.png';
@@ -448,8 +449,8 @@ class AssetsPath {
   static const String map404 = 'assets/map/map404image.png';
   static const String map403 = 'assets/map/map403image.png';
   static const String map399 = 'assets/map/map399image.png';
-  static const String virusLoc1 = 'assets/map/virus_loc_1.png';
-  static const String virusLoc2 = 'assets/map/virus_loc_2.png';
+  // static const String virusLoc1 = 'assets/map/virus_loc_1.png';
+  // static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
   static const String lottieAssetsTube = 'assets/paralax_new/tube2.png';
 
