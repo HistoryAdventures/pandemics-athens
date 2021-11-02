@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../colors.dart';
 
 class CharacterModel extends StatelessWidget {
   final String photo;
-
+  final String subTitle;
   final VoidCallback? onTap;
 
   final String name;
@@ -17,6 +18,7 @@ class CharacterModel extends StatelessWidget {
       {Key? key,
       required this.photo,
       required this.name,
+      required this.subTitle,
       required this.description,
       this.onTapHends,
       this.onTap,
@@ -25,23 +27,20 @@ class CharacterModel extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Hero(
-        tag: photo,
-        child: Material(
-          color: AppColors.transpatent,
-          child: InkWell(
-            splashColor: AppColors.transpatent,
-            highlightColor: AppColors.transpatent,
-            focusColor: AppColors.transpatent,
-            hoverColor: AppColors.transpatent,
-            onTap: onTap,
-            child: SizedBox(
-              child: Image.asset(
-                photo,
-                fit: BoxFit.contain,
-              ),
+    return Hero(
+      tag: photo,
+      child: Material(
+        color: AppColors.transpatent,
+        child: InkWell(
+          splashColor: AppColors.transpatent,
+          highlightColor: AppColors.transpatent,
+          focusColor: AppColors.transpatent,
+          hoverColor: AppColors.transpatent,
+          onTap: onTap,
+          child: SizedBox(
+            child: Image.asset(
+              photo,
+              fit: BoxFit.contain,
             ),
           ),
         ),

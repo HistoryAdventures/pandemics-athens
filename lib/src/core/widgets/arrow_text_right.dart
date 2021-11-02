@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../utils/styles.dart';
 
@@ -29,23 +30,27 @@ class ArrowRightTextWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     textTitle.toUpperCase(),
+                    maxFontSize: 14,
                     textAlign: TextAlign.right,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.caption?.copyWith(
-                        fontSize: TextFontSize.getHeight(24, context),
-                        color: color ?? Colors.black),
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.copyWith(fontSize: 14, color: color ?? Colors.black),
                   ),
                 ),
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     textSubTitle.toUpperCase(),
+                    maxFontSize: 24,
                     maxLines: 1,
                     textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.headline2?.copyWith(
-                        fontSize: TextFontSize.getHeight(30, context),
-                        color: color ?? Colors.black),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        ?.copyWith(fontSize: 24, color: color ?? Colors.black),
                   ),
                 )
               ],
@@ -54,12 +59,10 @@ class ArrowRightTextWidget extends StatelessWidget {
           Flexible(
             child: Container(
               margin: const EdgeInsets.only(left: 24),
-              height: 40,
-              width: 40,
               child: Icon(
                 Icons.arrow_forward,
                 color: color ?? Colors.black,
-                size: 40,
+                size: HW.getHeight(37, context),
               ),
             ),
           ),

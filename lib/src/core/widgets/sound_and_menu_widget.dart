@@ -32,12 +32,12 @@ class SoundAndMenuWidget extends StatelessWidget {
               icon: Icon(
                 icons,
               ),
-              iconSize: 30,
+              iconSize: 36,
               color: color ?? Colors.black,
             ),
             widget ?? const SizedBox(),
             IconButtonWidget(
-                iconSize: 30,
+                iconSize: 36,
                 onPressed: onTapMenu,
                 icon: Icon(
                   Icons.menu,

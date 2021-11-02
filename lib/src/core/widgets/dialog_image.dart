@@ -57,13 +57,16 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                       Expanded(
                         child: SizedBox(
                           width: snapshot.data?.width,
-                          child: SingleChildScrollView(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 20),
-                            child: Text(
-                              widget.selectedImageText,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.subtitle1,
+                          child: Scrollbar(
+                            isAlwaysShown: true,
+                            child: SingleChildScrollView(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 20),
+                              child: Text(
+                                widget.selectedImageText,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
                             ),
                           ),
                         ),

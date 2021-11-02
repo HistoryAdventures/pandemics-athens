@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -40,34 +42,49 @@ class _CharacrterPageState extends State<CharacrterPage> {
   void setList(BuildContext context) {
     list = [
       CharacterModelNotifier(
-        left: -30,
+        left: 24,
+        top: 16,
+        bottom: 116,
         bodyText: locale.periclesTextDescription,
         image: AssetsPath.periclesImage,
         name: locale.namePericles,
+        subTitle: locale.namePericles,
       ),
       CharacterModelNotifier(
-        left: MediaQuery.of(context).size.width * 0.13,
+        top: 24,
+        left: 307,
+        bottom: 18,
         image: AssetsPath.thucydidesImage,
         name: locale.thucididesName,
         bodyText: locale.thucydidesTextDescription,
+        subTitle: locale.thucididesName,
       ),
       CharacterModelNotifier(
-        left: MediaQuery.of(context).size.width * 0.3,
+        left: 562,
+        top: 24,
+        bottom: 110,
         image: AssetsPath.socratesPlatoImage,
         name: locale.socratesAndPlatoName,
         bodyText: locale.socratesAndPlatoTextDescription,
+        subTitle: locale.subTitleSocratesAndPlatoName,
       ),
       CharacterModelNotifier(
-        left: MediaQuery.of(context).size.width * 0.55,
+        top: 43,
+        left: 883,
+        bottom: 0,
         image: AssetsPath.aristophanesSophoclesImage,
         name: locale.aristophanesAndSophocles,
         bodyText: locale.aristophanesAndSophoclesTextDescription,
+        subTitle: locale.subTitleAristophanesAndSophocles,
       ),
       CharacterModelNotifier(
-        left: MediaQuery.of(context).size.width * 0.8,
+        top: 0,
+        left: 1318,
+        bottom: 64,
         image: AssetsPath.phidiasImage,
         name: locale.phidias,
         bodyText: locale.phidiasTextDescription,
+        subTitle: locale.subTitlePhidias,
       ),
     ];
   }
@@ -118,12 +135,12 @@ class _CharacrterPageState extends State<CharacrterPage> {
               },
             ),
             Positioned(
-              left: 100,
-              right: 100,
+              top: HW.getHeight(196, context),
+              left: 0,
+              right: 0,
               child: Container(
-                height: constraints.maxHeight * 0.1,
-                width: constraints.maxWidth * 0.1,
-                margin: EdgeInsets.only(top: constraints.maxHeight * 0.1),
+                height: HW.getHeight(76, context),
+                width: HW.getWidth(276, context),
                 child: Column(
                   children: [
                     Expanded(
@@ -141,26 +158,29 @@ class _CharacrterPageState extends State<CharacrterPage> {
                         maxLines: 1,
                         style: DefaultTheme.standard.textTheme.subtitle2
                             ?.copyWith(
-                                fontSize: TextFontSize.getHeight(36, context)),
+                                fontSize: TextFontSize.getHeight(24, context)),
                       ),
                     )
                   ],
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: constraints.maxHeight,
-               
+            Positioned(
+              left: HW.getWidth(160.03, context),
+              right: HW.getWidth(148, context),
+              top: HW.getHeight(359, context),
+              child: Container(
+                width: HW.getWidth(1611, context),
+                height: HW.getHeight(666, context),
                 child: Stack(
                     //mainAxisAlignment: MainAxisAlignment.center,
                     children: list
                         .map((photo) => Positioned(
-                              top: constraints.maxHeight * 0.2,
-                              left: photo.left,
-                              bottom: 80,
+                              top: HW.getHeight(photo.top!, context),
+                              left: HW.getWidth(photo.left!, context),
+                              bottom: HW.getHeight(photo.bottom!, context),
                               child: CharacterModel(
+                                subTitle: photo.subTitle,
                                 name: photo.name,
                                 photo: photo.image,
                                 description: photo.bodyText,

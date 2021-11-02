@@ -221,4 +221,9 @@ flutter:
         - asset: fonts/Lora-Italic.ttf
         - asset: fonts/Lora-Regular.ttf
     
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+        
+    
   
