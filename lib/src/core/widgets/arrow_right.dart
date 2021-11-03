@@ -30,7 +30,7 @@ class ArrowRightWidget extends StatelessWidget {
             maxLines: 1,
             // minFontSize: 5,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontSize: TextFontSize.getHeight(35, context).clamp(0, 24),
+                  fontSize: TextFontSize.getHeight(24, context).clamp(0, 24),
                   color: textColor ?? Colors.black,
                 ),
           ),
@@ -40,12 +40,12 @@ class ArrowRightWidget extends StatelessWidget {
             onPressed: onTap,
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              height: 40,
-              width: 40,
+              height: 37,
+              width: 37,
               child: Icon(
                 Icons.arrow_forward,
                 color: arrowColor ?? Colors.white,
-                size: 40,
+                size: 37,
               ),
             ),
           ),

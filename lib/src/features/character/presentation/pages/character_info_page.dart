@@ -75,7 +75,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
             left: HW.getWidth(960, context),
             child: Container(
               height: HW.getHeight(676, context),
-              width: HW.getWidth(800, context),
+              width: HW.getWidth(768, context),
               decoration: BoxDecoration(
                   color: AppColors.white, boxShadow: Shadows.universal),
               padding: EdgeInsets.all(HW.getHeight(24, context)),

@@ -106,7 +106,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
               Align(
                 child: Container(
                   height: HW.getHeight(500, context),
-                  width: HW.getWidth(1216, context),
+                  width: HW.getWidth(1000, context),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     boxShadow: Shadows.universal,
@@ -119,7 +119,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                             horizontal: HW.getWidth(48, context),
                             vertical: HW.getHeight(48, context)),
                         height: HW.getHeight(500, context),
-                        width: HW.getWidth(716, context),
+                        width: HW.getWidth(500, context),
                         child: AnimatedSwitcher(
                           duration: Times.medium,
                           transitionBuilder: (child, animation) {
@@ -163,13 +163,15 @@ class _GlossaryPageState extends State<GlossaryPage> {
                           child: Wrap(
                             children: category
                                 .map(
-                                  (item) => SizedBox(
-                                    height: HW.getHeight(100, context),
-                                    width: HW.getWidth(100, context),
-                                    child: gridViewCard(
-                                        name: item.title,
-                                        text: item.text,
-                                        category: item.title),
+                                  (item) => InkWell(
+                                    child: SizedBox(
+                                      height: HW.getHeight(100, context),
+                                      width: HW.getWidth(100, context),
+                                      child: gridViewCard(
+                                          name: item.title,
+                                          text: item.text,
+                                          category: item.title),
+                                    ),
                                   ),
                                 )
                                 .toList(),
@@ -258,22 +260,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
     });
   }
 
-  var value = false;
-
   Widget gridViewCard(
       {required String name, required String category, required String text}) {
     return InkWell(
-      onHover: (val) {
-        if (val) {
-          setState(() {
-            value = val;
-          });
-        } else {
-          setState(() {
-            value = val;
-          });
-        }
-      },
       borderRadius: BorderRadius.circular(15),
       onTap: category == ""
           ? null
@@ -283,7 +272,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.3),
-            gradient: value || _selectedtItem == name
+            gradient: _selectedtItem == name
                 ? AppColors.linearGradient1
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),
