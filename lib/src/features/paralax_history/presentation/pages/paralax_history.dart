@@ -66,9 +66,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   late AnimationController _animationControllerForCloudsTop;
   Animation<double>? animationForCloudsTop;
 
-  late AnimationController _animationControllerForClouds;
-  Animation<double>? animationForClouds;
-
   late AnimationController _animationControllerForProgressRightFighters;
   Animation<double>? animationForProgressRightFighters;
 
@@ -85,17 +82,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _progressRightHotTube = -200;
   double _progressWeightWalker = 0;
   double _progressCrows = 100;
-  //double _topTextOpasyty = 1;
-  double _progressClouds = 0;
+  double _topTextOpasyty = 1;
   double _progressTopCrows = 0;
 
   double _bottomFieldOpasity = 0;
   double youngManOpacity = 0;
-  // double _paralaxText2Opacity = 0;
-  // double _paralaxText3Opacity = 0;
-  // double _paralaxText4Opacity = 0;
-  // double _paralaxText5Opacity = 0;
-  // double _paralaxText1Opacity = 0;
+
   double _lernMoreOpasyty = 0;
 
   bool isSoundOn = false;
@@ -117,7 +109,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     height = MediaQuery.of(context).size.height;
     rateBuilding = height;
     rateFire = height * 1.9;
-    rateCharactersNikosGif = height * 1.9;
+    rateCharactersNikosGif = height * 1.7;
     rateCrows = height * 2.5;
 
     rateCharactersNikosClouds = height * 1.7;
@@ -168,9 +160,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForCloudsTop =
         AnimationController(vsync: this, duration: const Duration(seconds: 60));
 
-    _animationControllerForClouds =
-        AnimationController(vsync: this, duration: const Duration(seconds: 60));
-
     animationForCloudsTop = Tween<double>(begin: -width, end: width)
         .animate(_animationControllerForCloudsTop)
           ..addListener(() {
@@ -186,24 +175,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _animationControllerForCloudsTop.repeat();
       } else if (status == AnimationStatus.dismissed) {
         _animationControllerForCloudsTop.forward();
-      }
-    });
-
-    animationForClouds = Tween<double>(begin: width, end: -width)
-        .animate(_animationControllerForCloudsTop)
-          ..addListener(() {
-            if (mounted) {
-              setState(() {
-                _progressClouds = animationForClouds!.value;
-              });
-            }
-          });
-
-    animationForCloudsTop?.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _animationControllerForClouds.repeat();
-      } else if (status == AnimationStatus.dismissed) {
-        _animationControllerForClouds.forward();
       }
     });
 
@@ -249,11 +220,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     _animationControllerForMovingTopCrows.forward();
 
     _scrollController.addListener(() {
-      // if (_scrollController.offset > 10) {
-      //   _topTextOpasyty = 0;
-      // } else {
-      //   _topTextOpasyty = 1;
-      // }
+      if (_scrollController.offset > 10) {
+        _topTextOpasyty = 0;
+      } else {
+        _topTextOpasyty = 1;
+      }
       if (_scrollController.offset <=
               _scrollController.position.maxScrollExtent &&
           _scrollController.offset >=
@@ -266,38 +237,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
         _bottomFieldOpasity = 0;
       }
-
-      // if (_scrollController.offset > _scrollParalaxText2 &&
-      //     _scrollController.offset < _scrollParalaxText2 + 400) {
-      //   _paralaxText2Opacity = 1;
-      // } else {
-      //   _paralaxText2Opacity = 0;
-      // }
-      // if (_scrollController.offset > _scrollParalaxText3 &&
-      //     _scrollController.offset < _scrollLearnMoreText) {
-      //   _paralaxText3Opacity = 1;
-      // } else {
-      //   _paralaxText3Opacity = 0;
-      // }
-      // if (_scrollController.offset > _scrollParalaxText4 + 400 &&
-      //     _scrollController.offset < _scrollParalaxText4_4) {
-      //   _paralaxText4Opacity = 1;
-      // } else {
-      //   _paralaxText4Opacity = 0;
-      // }
-      //       if (_scrollController.offset > _scrollParalaxText5 &&
-      //     _scrollController.offset < _scrollParalaxText5 + 350) {
-      //   _paralaxText5Opacity = 1;
-      // } else {
-      //   _paralaxText5Opacity = 0;
-      // }
-
-      // if (_scrollController.offset > _scrollParalaxText1 &&
-      //     _scrollController.offset < _scrollParalaxText1 + 200) {
-      //   _paralaxText1Opacity = 1;
-      // } else {
-      //   _paralaxText1Opacity = 0;
-      // }
 
       if (_scrollController.offset > _scrollLearnMoreText &&
           _scrollController.offset < _scrollLearnMoreText + 500) {
@@ -394,7 +333,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void dispose() {
     _animationControllerForCharacterNikos.dispose();
     _animationControllerForCloudsTop.dispose();
-    _animationControllerForClouds.dispose();
     _animationControllerForMovingLeftAndRightCrows.dispose();
     _animationControllerForProgressLeftFighters.dispose();
     _animationControllerForProgressRightFighters.dispose();
@@ -414,262 +352,265 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         builder: (constex, constraints) => SizedBox(
           child: Stack(
             children: <Widget>[
-              if (_videoController.value.isPlaying)
-                _videoController.value.isInitialized
-                    ? SizedBox.expand(
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: SizedBox(
-                            width: _videoController.value.size.width,
-                            height: _videoController.value.size.height,
-                            child: VideoPlayer(_videoController),
-                          ),
-                        ),
-                      )
-                    : const LoadingVideoWidget()
-              else
-                ListView(
-                  physics: const ClampingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  controller: _scrollController,
-                  children: <Widget>[
-                    Container(
-                      height: constraints.maxHeight * 10,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AssetsPath.paralaxBackground),
-                            fit: BoxFit.cover),
-                      ),
-                      child: Stack(
-                        children: [
-                          ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            height: constraints.maxHeight * 0.5,
-                            boxFit: BoxFit.fitWidth,
-                            top: 0,
-                            left: _progressTopClouds,
-                            asset: AssetsPath.paralaxClouds,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            boxFit: BoxFit.contain,
-                            top: rateBuilding,
-                            asset: AssetsPath.paralaxBuilding,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            boxFit: BoxFit.contain,
-                            top: rateBuilding,
-                            asset: AssetsPath.paralaxBuilding,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            height: constraints.maxHeight * 0.4,
-                            boxFit: BoxFit.cover,
-                            top: rateCharactersNikosClouds,
-                            left: _progressTopClouds,
-                            asset: AssetsPath.paralaxClouds2,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            width: constraints.maxWidth * 0.03,
-                            boxFit: BoxFit.contain,
-                            top: _progressTopCrows,
-                            right: _progressCrows,
-                            asset: AssetsPath.paralaxCrowsLottie,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            width: constraints.maxWidth * 0.03,
-                            boxFit: BoxFit.contain,
-                            top: _progressTopCrows + 150,
-                            left: _progressCrows,
-                            asset: AssetsPath.paralaxCrowLottie,
-                          ),
-                          ParallaxWidget(
-                            // color: Colors.red,
-                            isImage: true,
-                            width: constraints.maxWidth / 2,
-                            boxFit: BoxFit.cover,
-                            top: rateCharactersNikosGif,
-                            left: _progressCaracterNikos,
-                            asset: AssetsPath.gifParalaxNikosGif,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            width: constraints.maxWidth / 3,
-                            boxFit: BoxFit.contain,
-                            top: rateFire,
-                            right: constraints.maxWidth * 0.1,
-                            asset: AssetsPath.paralaxFireLottie,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            width: constraints.maxWidth,
-                            boxFit: BoxFit.contain,
-                            top: rateLeftCrowd,
-                            right: _progressRightFighters,
-                            asset: AssetsPath.paralaxFightersRightLottie,
-                          ),
-                          ParallaxWidget(
-                            isImage: true,
-                            width: constraints.maxWidth,
-                            boxFit: BoxFit.contain,
-                            left: _progressLeftFighters,
-                            top: rateLeftCrowd,
-                            asset: AssetsPath.paralaxFightersLeft,
-                          ),
-                          ParallaxWidget(
-                            isImage: false,
-                            width: constraints.maxWidth,
-                            boxFit: BoxFit.contain,
-                            top: rateLeftCrowd,
-                            asset: AssetsPath.paralaxFightersLeftLottie,
-                          ),
-                          ParallaxWidget(
-                              isImage: false,
-                              width: constraints.maxWidth,
-                              boxFit: BoxFit.cover,
-                              top: rateParalaxCrowdLottie,
-                              asset: AssetsPath.paralaxCrowdLottie),
-                          ParallaxWidget(
-                            isImage: false,
-                            opacity: youngManOpacity,
-                            width: constraints.maxWidth / 3,
-                            height: constraints.maxHeight,
-                            top: rateParalaxYoungManLottie,
-                            left: constraints.maxWidth / 2,
-                            asset: AssetsPath.paralaxYoungManLottie,
-                            boxFit: BoxFit.cover,
-                          ),
-                          ParallaxWidget(
-                              isImage: true,
-                              width: _progressWeightWalker,
-                              top: rateParalaxWalker,
-                              left: constraints.maxWidth * 0.2,
-                              asset: AssetsPath.paralaxWalker,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
-                              isImage: false,
-                              width: constraints.maxWidth * 0.5,
-                              top: rateParalaxHotTubLottie - 100,
-                              right: _progressRightHotTube,
-                              asset: AssetsPath.paralaxHotTubLottie,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
-                              isImage: true,
-                              width: constraints.maxWidth,
-                              top: rateParalaxHotTubLottie + 100,
-                              left: _progressClouds,
-                              asset: AssetsPath.paralaxTubeCloud,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
-                              isImage: true,
-                              width: constraints.maxWidth,
-                              bottom: 0,
-                              left: constraints.maxWidth * 0.1,
-                              right: constraints.maxWidth * 0.1,
-                              asset: AssetsPath.lottieAssetsTube,
-                              boxFit: BoxFit.contain),
-                          ParallaxWidget(
-                              isImage: true,
-                              width: constraints.maxWidth,
-                              bottom: 0,
-                              // left: _progressClouds,
-                              asset: AssetsPath.paralaxTube2Cloud,
-                              boxFit: BoxFit.contain),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              // Positioned(
-              //   top: constraints.maxHeight * 0.3,
-              //   left: constraints.maxWidth * 0.05,
-              //   child: SizedBox(
-              //     width: constraints.maxWidth * 0.4,
-              //     child: AnimatedOpacity(
-              //       opacity: _topTextOpasyty,
-              //       duration: Times.fast,
-              //       child: Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: [
-              //           Padding(
-              //             padding: const EdgeInsets.only(left: 20),
-              //             child: Text(locals.chapter1.toUpperCase()),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.only(left: 20),
-              //             child: Text(locals.todoNoHarm.toUpperCase(),
-              //                 maxLines: 1,
-              //                 // minFontSize: 8,
-              //                 style: Theme.of(context)
-              //                     .textTheme
-              //                     .bodyText2
-              //                     ?.copyWith(
-              //                         fontSize: TextFontSize.getHeight(
-              //                             80, context),
-              //                         fontStyle: FontStyle.italic)),
-              //           ),
-              //           Container(
-              //             decoration: const BoxDecoration(
-              //                 border: Border(
-              //                     left: BorderSide(
-              //                         color: AppColors.red, width: 8))),
-              //             child: Text(
-              //               locals.athens429Bc,
-              //               maxLines: 1,
-              //               // minFontSize: 8,
-              //               style: Theme.of(context)
-              //                   .textTheme
-              //                   .headline4
-              //                   ?.copyWith(
-              //                     fontSize:
-              //                         TextFontSize.getHeight(80, context),
-              //                     fontWeight: FontWeight.w100,
-              //                   ),
+              // if (_videoController.value.isPlaying)
+              //   _videoController.value.isInitialized
+              //       ? SizedBox.expand(
+              //           child: FittedBox(
+              //             fit: BoxFit.cover,
+              //             child: SizedBox(
+              //               width: _videoController.value.size.width,
+              //               height: _videoController.value.size.height,
+              //               child: VideoPlayer(_videoController),
               //             ),
               //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // ParalaxTextWidget(
-              //   text: locals.paralaxText1,
-              //   alignment: Alignment.topRight,
-              //   size: Size(constraints.maxWidth, constraints.maxHeight),
-              //   opacity: _paralaxText1Opacity,
-              // ),
-              // ParalaxTextWidget(
-              //   text: locals.paralaxText2,
-              //   alignment: Alignment.bottomLeft,
-              //   size: Size(constraints.maxWidth, constraints.maxHeight),
-              //   opacity: _paralaxText2Opacity,
-              // ),
-              // ParalaxTextWidget(
-              //   text: locals.paralaxText3,
-              //   alignment: Alignment.centerRight,
-              //   size: Size(constraints.maxWidth, constraints.maxHeight),
-              //   opacity: _paralaxText3Opacity,
-              // ),
-              // ParalaxTextWidget(
-              //   text: locals.paralaxText4,
-              //   alignment: Alignment.centerLeft,
-              //   size: Size(constraints.maxWidth, constraints.maxHeight),
-              //   opacity: _paralaxText4Opacity,
-              // ),
-              // ParalaxTextWidget(
-              //   text: locals.paralaxText5,
-              //   alignment: Alignment.bottomLeft,
-              //   size: Size(constraints.maxWidth, constraints.maxHeight),
-              //   opacity: _paralaxText5Opacity,
-              // ),
+              //         )
+              //       : const LoadingVideoWidget()
+              // else
+              ListView(
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                controller: _scrollController,
+                children: <Widget>[
+                  Container(
+                    height: constraints.maxHeight * 10,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AssetsPath.paralaxBackground),
+                          fit: BoxFit.cover),
+                    ),
+                    child: Stack(
+                      children: [
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth * 2,
+                          height: constraints.maxHeight * 0.8,
+                          boxFit: BoxFit.contain,
+                          top: 0,
+                          left: _progressTopClouds,
+                          asset: AssetsPath.paralaxClouds,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateBuilding,
+                          asset: AssetsPath.paralaxBuilding,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateBuilding,
+                          asset: AssetsPath.paralaxBuilding,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth * 2,
+                          height: constraints.maxHeight * 0.4,
+                          boxFit: BoxFit.contain,
+                          top: rateCharactersNikosClouds,
+                          left: _progressTopClouds,
+                          asset: AssetsPath.paralaxClouds2,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth * 0.03,
+                          boxFit: BoxFit.contain,
+                          top: _progressTopCrows,
+                          right: _progressCrows,
+                          asset: AssetsPath.paralaxCrowsLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth * 0.03,
+                          boxFit: BoxFit.contain,
+                          top: _progressTopCrows + 150,
+                          left: _progressCrows,
+                          asset: AssetsPath.paralaxCrowLottie,
+                        ),
+                        ParallaxWidget(
+                          // color: Colors.red,
+                          isImage: true,
+                          width: constraints.maxWidth / 2,
+                          boxFit: BoxFit.cover,
+                          top: rateCharactersNikosGif,
+                          left: _progressCaracterNikos,
+                          asset: AssetsPath.gifParalaxNikosGif,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth / 3,
+                          boxFit: BoxFit.contain,
+                          top: rateFire,
+                          right: constraints.maxWidth * 0.1,
+                          asset: AssetsPath.paralaxFireLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateLeftCrowd,
+                          right: _progressRightFighters,
+                          asset: AssetsPath.paralaxFightersRightLottie,
+                        ),
+                        ParallaxWidget(
+                          isImage: true,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          left: _progressLeftFighters,
+                          top: rateLeftCrowd,
+                          asset: AssetsPath.paralaxFightersLeft,
+                        ),
+                        ParallaxWidget(
+                          isImage: false,
+                          width: constraints.maxWidth,
+                          boxFit: BoxFit.contain,
+                          top: rateLeftCrowd,
+                          asset: AssetsPath.paralaxFightersLeftLottie,
+                        ),
+                        ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth,
+                            boxFit: BoxFit.cover,
+                            top: rateParalaxCrowdLottie,
+                            asset: AssetsPath.paralaxCrowdLottie),
+                        ParallaxWidget(
+                          isImage: false,
+                          opacity: youngManOpacity,
+                          width: constraints.maxWidth / 3,
+                          height: constraints.maxHeight,
+                          top: rateParalaxYoungManLottie,
+                          left: constraints.maxWidth / 2,
+                          asset: AssetsPath.paralaxYoungManLottie,
+                          boxFit: BoxFit.cover,
+                        ),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: _progressWeightWalker,
+                            top: rateParalaxWalker,
+                            left: constraints.maxWidth * 0.2,
+                            asset: AssetsPath.paralaxWalker,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: false,
+                            width: constraints.maxWidth * 0.5,
+                            top: rateParalaxHotTubLottie - 100,
+                            right: _progressRightHotTube,
+                            asset: AssetsPath.paralaxHotTubLottie,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth * 2,
+                            top: rateParalaxHotTubLottie,
+                            asset: AssetsPath.paralaxTubeCloud,
+                            left: HW.getWidth(-700, context),
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            bottom: 0,
+                            left: constraints.maxWidth * 0.1,
+                            right: constraints.maxWidth * 0.1,
+                            asset: AssetsPath.lottieAssetsTube,
+                            boxFit: BoxFit.contain),
+                        ParallaxWidget(
+                            isImage: true,
+                            width: constraints.maxWidth,
+                            bottom: 0,
+                            asset: AssetsPath.paralaxTube2Cloud,
+                            boxFit: BoxFit.contain),
+                        ParalaxTextWidget(
+                          right: HW.getWidth(238, context),
+                          top: rateCharactersNikosClouds + 100,
+                          text: locals.paralaxText1,
+                          size: Size(HW.getWidth(760, context),
+                              HW.getHeight(324, context)),
+                        ),
+                        ParalaxTextWidget(
+                          top: rateLeftCrowd - 300,
+                          size: Size(HW.getWidth(794, context),
+                              HW.getHeight(240, context)),
+                          left: HW.getWidth(120, context),
+                          text: locals.paralaxText2,
+                        ),
+                        ParalaxTextWidget(
+                          top: rateParalaxCrowdLottie + 200,
+                          right: HW.getWidth(108, context),
+                          size: Size(HW.getWidth(717, context),
+                              HW.getHeight(316, context)),
+                          text: locals.paralaxText3,
+                        ),
+                        ParalaxTextWidget(
+                          top: rateParalaxWalker - 700,
+                          left: HW.getWidth(225, context),
+                          text: locals.paralaxText4,
+                          size: Size(HW.getWidth(760, context),
+                              HW.getHeight(364, context)),
+                        ),
+                        ParalaxTextWidget(
+                          top: rateParalaxHotTubLottie + 1200,
+                          left: HW.getWidth(165, context),
+                          text: locals.paralaxText5,
+                          size: Size(HW.getWidth(760, context),
+                              HW.getHeight(364, context)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Positioned(
+                top: constraints.maxHeight * 0.3,
+                left: constraints.maxWidth * 0.05,
+                child: SizedBox(
+                  width: constraints.maxWidth * 0.4,
+                  child: AnimatedOpacity(
+                    opacity: _topTextOpasyty,
+                    duration: Times.fast,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(locals.chapter1.toUpperCase()),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(locals.todoNoHarm.toUpperCase(),
+                              maxLines: 1,
+                              // minFontSize: 8,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      fontSize:
+                                          TextFontSize.getHeight(80, context),
+                                      fontStyle: FontStyle.italic)),
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  left: BorderSide(
+                                      color: AppColors.red, width: 8))),
+                          child: Text(
+                            locals.athens429Bc,
+                            maxLines: 1,
+                            // minFontSize: 8,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                ?.copyWith(
+                                  fontSize: TextFontSize.getHeight(80, context),
+                                  fontWeight: FontWeight.w100,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
               SoundAndMenuWidget(
                 widget: Clickable(
@@ -689,10 +630,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       Icon(
                         Icons.arrow_upward_sharp,
                         color: AppColors.black100,
-                      ),
-                      Text(
-                        "BOOK INTO",
-                        style: TextStyle(color: AppColors.black100),
                       ),
                     ],
                   ),
@@ -826,7 +763,18 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     icon: Icon(Icons.arrow_downward),
                   ),
                 ),
-              )
+              ),
+              Visibility(
+                  visible: !_videoController.value.isPlaying,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                        margin:
+                            EdgeInsets.only(bottom: HW.getHeight(48, context)),
+                        height: HW.getHeight(52, context),
+                        width: HW.getWidth(24, context),
+                        child: Image.asset(AssetsPath.scrollIcon)),
+                  ))
             ],
           ),
         ),

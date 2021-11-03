@@ -31,7 +31,7 @@ class _LeandingPageState extends State<LeandingPage>
   final backgroundplayer = AudioPlayer();
   bool isImageloaded = true;
   Offset offset = const Offset(0, 0);
-  String loadingCount = '0';
+  String? loadingCount = '0';
 
   double objWave = 0;
   int direction = 1;
@@ -44,7 +44,9 @@ class _LeandingPageState extends State<LeandingPage>
     if (widget.navigateFromNavigatorPage != null) {
       isImageloaded = widget.navigateFromNavigatorPage!;
     } else {
-      init();
+      if (loadingCount == '0') {
+        init();
+      }
     }
     super.didChangeDependencies();
   }
@@ -221,7 +223,7 @@ class _LeandingPageState extends State<LeandingPage>
         ),
         if (isImageloaded == false)
           LoadingWidget(
-            loadingCound: loadingCount,
+            loadingCound: loadingCount!,
           ),
       ],
     );

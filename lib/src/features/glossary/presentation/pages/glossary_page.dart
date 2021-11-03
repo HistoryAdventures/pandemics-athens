@@ -258,9 +258,22 @@ class _GlossaryPageState extends State<GlossaryPage> {
     });
   }
 
+  var value = false;
+
   Widget gridViewCard(
       {required String name, required String category, required String text}) {
     return InkWell(
+      onHover: (val) {
+        if (val) {
+          setState(() {
+            value = val;
+          });
+        } else {
+          setState(() {
+            value = val;
+          });
+        }
+      },
       borderRadius: BorderRadius.circular(15),
       onTap: category == ""
           ? null
@@ -270,7 +283,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.3),
-            gradient: _selectedtItem == name
+            gradient: value || _selectedtItem == name
                 ? AppColors.linearGradient1
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),

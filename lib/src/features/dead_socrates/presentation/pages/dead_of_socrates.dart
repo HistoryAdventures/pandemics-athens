@@ -131,7 +131,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10, right: 24),
+                  padding: const EdgeInsets.only(bottom: 24, right: 24),
                   child: ArrowRightTextWidget(
                       textSubTitle: locale.endOfThePeloponneseanWar,
                       textTitle: locale.plagueAndPersecution,

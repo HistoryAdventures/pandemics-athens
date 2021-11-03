@@ -322,10 +322,9 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
-        _i1.RouteConfig(MapPageRoute.name, path: '/'),
+        _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
-        _i1.RouteConfig(ParalaxHistoryPageRoute.name,
-            path: '/paralax-history-page'),
+        _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
             path: '/panaroma-left-page'),
@@ -409,7 +408,7 @@ class VirusesInfoPageRoute extends _i1.PageRouteInfo {
 }
 
 class MapPageRoute extends _i1.PageRouteInfo {
-  const MapPageRoute() : super(name, path: '/');
+  const MapPageRoute() : super(name, path: '/map-page');
 
   static const String name = 'MapPageRoute';
 }
@@ -421,7 +420,7 @@ class QuizPageRoute extends _i1.PageRouteInfo {
 }
 
 class ParalaxHistoryPageRoute extends _i1.PageRouteInfo {
-  const ParalaxHistoryPageRoute() : super(name, path: '/paralax-history-page');
+  const ParalaxHistoryPageRoute() : super(name, path: '/');
 
   static const String name = 'ParalaxHistoryPageRoute';
 }
