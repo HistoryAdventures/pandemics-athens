@@ -130,18 +130,15 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 24, right: 24),
-                  child: ArrowRightTextWidget(
-                      textSubTitle: locale.endOfThePeloponneseanWar,
-                      textTitle: locale.plagueAndPersecution,
-                      onTap: () {
-                        LeafDetails.currentVertex = 16;
-                        LeafDetails.visitedVertexes.add(16);
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const EndOfWarPageRoute());
-                      }),
-                ),
+                child: ArrowRightTextWidget(
+                    textSubTitle: locale.endOfThePeloponneseanWar,
+                    textTitle: locale.plagueAndPersecution,
+                    onTap: () {
+                      LeafDetails.currentVertex = 16;
+                      LeafDetails.visitedVertexes.add(16);
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      context.router.push(const EndOfWarPageRoute());
+                    }),
               ),
               SoundAndMenuWidget(
                 widget: Clickable(

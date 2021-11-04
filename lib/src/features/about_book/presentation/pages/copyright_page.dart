@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/about_book/presentation/pages/further_reading_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -54,16 +55,17 @@ class _CopyrightPageState extends State<CopyrightPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Align(
-                    alignment: Alignment.topCenter,
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: HW.getHeight(128, context),
                     child: Container(
-                      height: constraints.maxHeight * 0.09,
-                      margin: EdgeInsets.only(
-                        top: constraints.maxHeight * 0.12,
-                      ),
-                      child: AutoSizeText(
+                      alignment: Alignment.center,
+                      height: HW.getHeight(43, context),
+                      child: Text(
                         locale.copyright.toUpperCase(),
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(36, context)),
                       ),
                     )),
                 SoundAndMenuWidget(
@@ -87,61 +89,58 @@ class _CopyrightPageState extends State<CopyrightPage> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: ArrowLeftTextWidget(
-                              textSubTitle: locale.sources,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.currentVertex = 25;
-                                LeafDetails.currentVertex = 0;
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: ArrowLeftTextWidget(
+                            textSubTitle: locale.sources,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 25;
+                              LeafDetails.currentVertex = 0;
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
 
-                                if (kIsWeb) {
-                                  html.window.history.back();
-                                  context.router.pop();
-                                } else {
-                                  context.router.pop();
-                                }
-                              }),
+                              if (kIsWeb) {
+                                html.window.history.back();
+                                context.router.pop();
+                              } else {
+                                context.router.pop();
+                              }
+                            }),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                                child: Image.asset(AssetsPath.socilaIcons)),
+                            const Flexible(
+                              child: AutoSizeText(
+                                'www.historyadventures.co',
+                                maxLines: 1,
+                              ),
+                            )
+                          ],
                         ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                  child: Image.asset(AssetsPath.socilaIcons)),
-                              const Flexible(
-                                child: AutoSizeText(
-                                  'www.historyadventures.co',
-                                  maxLines: 1,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          child: ArrowRightTextWidget(
-                              textSubTitle: locale.furtherReading,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.currentVertex = 27;
-                                LeafDetails.visitedVertexes.add(27);
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
-                                context.router
-                                    .push(const FurtherReadingPageRoute());
-                              }),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Flexible(
+                        child: ArrowRightTextWidget(
+                            textSubTitle: locale.furtherReading,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 27;
+                              LeafDetails.visitedVertexes.add(27);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router
+                                  .push(const FurtherReadingPageRoute());
+                            }),
+                      ),
+                    ],
                   ),
                 ),
                 Align(

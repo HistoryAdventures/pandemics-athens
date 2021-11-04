@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -44,7 +45,7 @@ class _SourcePageState extends State<SourcePage> {
     super.initState();
   }
 
-  List<String> characters = ["Nikos", 'Eduardo', "Greg", "Arlene", "Collen"];
+  List<String> characters = ["Nikos", 'Giana', "Xoquauhtli", "Achraj", "Brian"];
 
   @override
   Widget build(BuildContext context) {
@@ -60,25 +61,32 @@ class _SourcePageState extends State<SourcePage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      height: constraints.maxHeight * 0.2,
-                      margin: EdgeInsets.only(
-                        top: constraints.maxHeight * 0.12,
-                      ),
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: HW.getHeight(128, context),
+                    child: SizedBox(
+                      height: HW.getHeight(97, context),
                       child: Column(
                         children: [
-                          Flexible(
-                            child: AutoSizeText(
+                          Container(
+                            alignment: Alignment.center,
+                            height: HW.getHeight(43, context),
+                            child: Text(
                               locale.sources.toUpperCase(),
-                              style: Theme.of(context).textTheme.headline2,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2
+                                  ?.copyWith(
+                                      fontSize:
+                                          TextFontSize.getHeight(36, context)),
                             ),
                           ),
-                          SizedBox(
-                            height: constraints.maxHeight * 0.05,
-                          ),
-                          Flexible(
+                          Container(
+                            margin: EdgeInsets.only(
+                              top: HW.getHeight(24, context),
+                            ),
+                            height: HW.getHeight(30, context),
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: characters
@@ -88,9 +96,6 @@ class _SourcePageState extends State<SourcePage> {
                                         image: data,
                                         selected: data))
                                     .toList()),
-                          ),
-                          SizedBox(
-                            height: constraints.maxHeight * 0.05,
                           ),
                         ],
                       ),
@@ -116,66 +121,61 @@ class _SourcePageState extends State<SourcePage> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: ArrowLeftTextWidget(
-                              textSubTitle: locale.credits,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.currentVertex = 24;
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: ArrowLeftTextWidget(
+                            textSubTitle: locale.credits,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 24;
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
 
-                                if (kIsWeb) {
-                                  html.window.history.back();
-                                  context.router.pop();
-                                } else {
-                                  context.router.pop();
-                                }
-                              }),
+                              if (kIsWeb) {
+                                html.window.history.back();
+                                context.router.pop();
+                              } else {
+                                context.router.pop();
+                              }
+                            }),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(AssetsPath.socilaIcons),
+                            const AutoSizeText(
+                              'www.historyadventures.co',
+                              maxLines: 1,
+                            )
+                          ],
                         ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Image.asset(AssetsPath.socilaIcons),
-                              const AutoSizeText(
-                                'www.historyadventures.co',
-                                maxLines: 1,
-                              )
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          child: ArrowRightTextWidget(
-                              textSubTitle: locale.copyright,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.currentVertex = 26;
-                                LeafDetails.visitedVertexes.add(26);
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
-                                context.router.push(const CopyrightPageRoute());
-                              }),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Flexible(
+                        child: ArrowRightTextWidget(
+                            textSubTitle: locale.copyright,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 26;
+                              LeafDetails.visitedVertexes.add(26);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router.push(const CopyrightPageRoute());
+                            }),
+                      ),
+                    ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
+                Positioned(
+                  top: HW.getHeight(289, context),
+                  left: HW.getWidth(160, context),
+                  right: HW.getWidth(160, context),
+                  bottom: 80,
                   child: Container(
-                      height: constraints.maxHeight * 0.8,
-                      margin: EdgeInsets.only(
-                          left: constraints.maxWidth * 0.1,
-                          right: constraints.maxWidth * 0.1,
-                          bottom: 80,
-                          top: constraints.maxHeight * 0.3),
+                      height: HW.getHeight(597, context),
                       child: Scrollbar(
                         showTrackOnHover: false,
                         child: SingleChildScrollView(
@@ -192,34 +192,25 @@ class _SourcePageState extends State<SourcePage> {
                                         CrossAxisAlignment.start,
                                     children: const [
                                       AuthorWidget(
-                                        border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.grey, width: 1),
-                                        ),
                                         peoples: [
-                                          'Analysing Potential Problems'
+                                          "The Soldier of Marathon",
+                                          "Leonidas at Thermopylae",
+                                          "Temple of the Delians",
+                                          "Decree of Themistocles",
+                                          "Mask of Agamemnon",
+                                          "Socrates Tears Alcibiades from the  Embrace of Sensual Pleasure",
+                                          "A silver tetradrachm from Athens",
+                                          "Pericles Funeral Oration",
+                                          "Athena Parthenos",
+                                          "The Trojan Women",
+                                          "Meeting between Cyrus the Younger  and Lysander",
+                                          "An engraving of Hippocrates",
+                                          "Patients sleeping in the temple of  Aesculapius at Epidaurus",
+                                          "A fragment of the Hippocratic oath",
+                                          "Alcibades being taught by Socrates",
+                                          "Lysander outside the walls of Athens",
                                         ],
-                                        profession: 'bridge',
-                                      ),
-                                      AuthorWidget(
-                                        border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.grey, width: 1),
-                                        ),
-                                        peoples: [
-                                          'Analysing Potential Problems'
-                                        ],
-                                        profession: 'bridge',
-                                      ),
-                                      AuthorWidget(
-                                        border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.grey, width: 1),
-                                        ),
-                                        peoples: [
-                                          'Analysing Potential Problems'
-                                        ],
-                                        profession: 'bridge',
+                                        profession: 'wikimedia',
                                       ),
                                     ],
                                   ),
@@ -231,23 +222,102 @@ class _SourcePageState extends State<SourcePage> {
                                         CrossAxisAlignment.start,
                                     children: const [
                                       AuthorWidget(
-                                        border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.black100,
-                                              width: 1),
-                                        ),
                                         peoples: [
-                                          'Are you ready for your big date?',
-                                          'I do not know how to spell a lot of thin...',
-                                          'Does he write an email?',
-                                          "Don't go there!",
-                                          'Is this big enough for you?',
-                                          'Guess what, I am broke.',
-                                          'That class was so hard!',
-                                          'How big was your contribution?',
-                                          "I'm hoping for a really big discount."
+                                          "Pnyx hill, Athens.",
+                                          "The Lenormant Trireme Relief",
+                                          "Grave relief of Dexileos, son of Lysanias,  of Thorikos",
+                                          "Medea about to kill her children",
+                                          "The plague of Ashdod",
+                                          "Death of Socrates, Giambettino Cignaroli",
+                                          "A marble portrait of Plato",
+                                          "The Death of Socrates",
+                                          "Peytel aryballos",
+                                          "Medicine in the Middle Ages",
+                                          "A pinax, or decorated plaque",
+                                          "A Roman-era mosaic depicting a trireme",
                                         ],
                                         profession: 'wikimedia',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      AuthorWidget(
+                                        peoples: [
+                                          "Grave stele with Hoplite Battle Scene",
+                                          "Athenian tribute list",
+                                          "A Marble bust of Herodotos",
+                                          "A terracotta lekythos (oil flask) from the  late 6th century",
+                                          "A marble grave stele of a young girl",
+                                          "The Parthenon’",
+                                        ],
+                                        profession: 'the met museum',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "Marble portrait bust: Pericles wearing a  helmet pushed back on his head. ",
+                                          "Marble statuette of Socrates."
+                                        ],
+                                        profession: 'British museum',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "Parthenon on the Acropolis in Athens",
+                                          "A marble relief from Italy in the second century AD"
+                                        ],
+                                        profession: 'Rijks Museum',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "The Plague Athens",
+                                          "Plato, Apology"
+                                        ],
+                                        profession: 'Perseus Digital Library',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      AuthorWidget(
+                                        peoples: [
+                                          "Temple of Apollo Epicurius at Bassae",
+                                        ],
+                                        profession: 'UNESCO',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "An ostrakon inscribed with the name of Pericles",
+                                        ],
+                                        profession:
+                                            'World History Encyclopedia',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: ["Portrait of Plato"],
+                                        profession:
+                                            'Neues Museum, Staatliche Museen zu Berlin',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "A red-figure kylix ",
+                                        ],
+                                        profession: 'National Museums Scotland',
+                                      ),
+                                      AuthorWidget(
+                                        peoples: [
+                                          "Oedipus and Antigone",
+                                        ],
+                                        profession:
+                                            'Digital National Museum in Warsaw',
                                       ),
                                     ],
                                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -136,30 +137,30 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 24),
-                child: ArrowLeftTextWidget(
-                  color: AppColors.white,
-                  onTap: () {
-                    context.router.push(const GianaPageRoute());
-                  },
-                  textSubTitle: locals.giana,
-                  textTitle: "#IRL",
-                ),
+              child: ArrowLeftTextWidget(
+                color: AppColors.white,
+                onTap: () {
+                  context.router.push(const GianaPageRoute());
+                },
+                textSubTitle: locals.giana,
+                textTitle: "#IRL",
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: IconButtonWidget(
-                color: AppColors.white,
-                iconSize: 40,
-                icon: const Icon(Icons.arrow_downward),
-                onPressed: () {
-                  LeafDetails.currentVertex = 24;
-                  LeafDetails.visitedVertexes.add(24);
-                  NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const AboutBookPageRoute());
-                },
+              child: Padding(
+                padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
+                child: IconButtonWidget(
+                  color: AppColors.white,
+                  iconSize: 40,
+                  icon: const Icon(Icons.arrow_downward),
+                  onPressed: () {
+                    LeafDetails.currentVertex = 24;
+                    LeafDetails.visitedVertexes.add(24);
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const AboutBookPageRoute());
+                  },
+                ),
               ),
             ),
           ],

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -55,29 +56,40 @@ class _AboutBookPageState extends State<AboutBookPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: HW.getHeight(128, context),
                   child: Container(
-                    height: constraints.maxHeight * 0.15,
-                    margin: EdgeInsets.only(top: constraints.maxHeight * 0.2),
+                    height: HW.getHeight(98, context),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Flexible(
-                          child: AutoSizeText(
+                          child: Text(
                             locale.aboutTheBook.toUpperCase(),
                             maxLines: 1,
-                            style: DefaultTheme.standard.textTheme.headline2,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(
+                                    fontSize:
+                                        TextFontSize.getHeight(36, context)),
                           ),
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsets.only(
-                                top: constraints.maxWidth * 0.01),
-                            child: AutoSizeText(
+                            padding:
+                                EdgeInsets.only(top: HW.getHeight(15, context)),
+                            child: Text(
                               locale.meetTheTeamText.toLowerCase(),
                               maxLines: 1,
-                              style: DefaultTheme.standard.textTheme.subtitle2,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle2
+                                  ?.copyWith(
+                                      fontSize:
+                                          TextFontSize.getHeight(24, context)),
                             ),
                           ),
                         ),
@@ -101,18 +113,15 @@ class _AboutBookPageState extends State<AboutBookPage> {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 24, right: 24),
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.credits,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          LeafDetails.currentVertex = 24;
-                          LeafDetails.visitedVertexes.add(24);
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.push(const CreditsPageRoute());
-                        }),
-                  ),
+                  child: ArrowRightTextWidget(
+                      textSubTitle: locale.credits,
+                      textTitle: locale.aboutTheBook,
+                      onTap: () {
+                        LeafDetails.currentVertex = 24;
+                        LeafDetails.visitedVertexes.add(24);
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.push(const CreditsPageRoute());
+                      }),
                 ),
                 SoundAndMenuWidget(
                   widget: IconButtonWidget(

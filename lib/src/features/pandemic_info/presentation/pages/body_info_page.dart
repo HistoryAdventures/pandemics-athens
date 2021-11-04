@@ -415,23 +415,20 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: ArrowLeftTextWidget(
-                        textSubTitle: locale.whereDidItComeFrom,
-                        textTitle: locale.pathogenProfile,
-                        onTap: () {
-                          LeafDetails.currentVertex = 11;
-                          NavigationSharedPreferences.upDateShatedPreferences();
+                  child: ArrowLeftTextWidget(
+                      textSubTitle: locale.whereDidItComeFrom,
+                      textTitle: locale.pathogenProfile,
+                      onTap: () {
+                        LeafDetails.currentVertex = 11;
+                        NavigationSharedPreferences.upDateShatedPreferences();
 
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
-                        }),
-                  ),
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
                 ),
                 SoundAndMenuWidget(
                   icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
@@ -454,18 +451,15 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.whatWasIt,
-                        textTitle: locale.pathogenProfile,
-                        onTap: () {
-                          LeafDetails.currentVertex = 13;
-                          LeafDetails.visitedVertexes.add(13);
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.push(const VirusesInfoPageRoute());
-                        }),
-                  ),
+                  child: ArrowRightTextWidget(
+                      textSubTitle: locale.whatWasIt,
+                      textTitle: locale.pathogenProfile,
+                      onTap: () {
+                        LeafDetails.currentVertex = 13;
+                        LeafDetails.visitedVertexes.add(13);
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.push(const VirusesInfoPageRoute());
+                      }),
                 ),
               ],
             );

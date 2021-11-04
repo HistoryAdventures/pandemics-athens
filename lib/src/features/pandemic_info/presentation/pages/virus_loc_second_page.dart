@@ -170,46 +170,39 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                 )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ArrowLeftTextWidget(
-                            textSubTitle: locals.pathogenProfile,
-                            textTitle: locals.chapter1,
-                            onTap: () {
-                              LeafDetails.currentVertex = 11;
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
-                            }),
-                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ArrowLeftTextWidget(
+                          textSubTitle: locals.pathogenProfile,
+                          textTitle: locals.chapter1,
+                          onTap: () {
+                            LeafDetails.currentVertex = 11;
+                            if (kIsWeb) {
+                              html.window.history.back();
+                              context.router.pop();
+                            } else {
+                              context.router.pop();
+                            }
+                          }),
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ArrowRightTextWidget(
-                            textSubTitle: locals.whatDidItDo,
-                            textTitle: locals.pathogenProfile,
-                            onTap: () {
-                              LeafDetails.currentVertex = 12;
-                              LeafDetails.visitedVertexes.add(12);
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
-                              context.router.push(const BodyInfoPageRoute());
-                            }),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  Flexible(
+                    child: ArrowRightTextWidget(
+                        textSubTitle: locals.whatDidItDo,
+                        textTitle: locals.pathogenProfile,
+                        onTap: () {
+                          LeafDetails.currentVertex = 12;
+                          LeafDetails.visitedVertexes.add(12);
+                          NavigationSharedPreferences.upDateShatedPreferences();
+                          context.router.push(const BodyInfoPageRoute());
+                        }),
+                  ),
+                ],
               ),
             ),
             SoundAndMenuWidget(

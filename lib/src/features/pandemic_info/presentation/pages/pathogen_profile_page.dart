@@ -176,18 +176,15 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                   )),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: ArrowRightTextWidget(
-                      textSubTitle: locals.whereDidItComeFrom,
-                      textTitle: locals.pathogenProfile,
-                      onTap: () {
-                        LeafDetails.currentVertex = 11;
-                        LeafDetails.visitedVertexes.add(11);
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const VirusLocationPageRoute());
-                      }),
-                ),
+                child: ArrowRightTextWidget(
+                    textSubTitle: locals.whereDidItComeFrom,
+                    textTitle: locals.pathogenProfile,
+                    onTap: () {
+                      LeafDetails.currentVertex = 11;
+                      LeafDetails.visitedVertexes.add(11);
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      context.router.push(const VirusLocationPageRoute());
+                    }),
               ),
               Align(
                 alignment: Alignment.bottomCenter,

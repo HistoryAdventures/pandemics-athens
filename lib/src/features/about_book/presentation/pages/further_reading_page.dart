@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -54,16 +55,17 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Align(
-                    alignment: Alignment.topCenter,
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: HW.getHeight(128, context),
                     child: Container(
-                      height: constraints.maxHeight * 0.09,
-                      margin: EdgeInsets.only(
-                        top: constraints.maxHeight * 0.12,
-                      ),
-                      child: AutoSizeText(
+                      alignment: Alignment.center,
+                      height: HW.getHeight(43, context),
+                      child: Text(
                         locale.furtherReading.toUpperCase(),
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(36, context)),
                       ),
                     )),
                 SoundAndMenuWidget(
@@ -86,54 +88,35 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                   },
                 ),
                 Align(
+                  alignment: Alignment.bottomLeft,
+                  child: ArrowLeftTextWidget(
+                      textSubTitle: locale.copyright,
+                      textTitle: locale.aboutTheBook,
+                      onTap: () {
+                        LeafDetails.currentVertex = 26;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
+                ),
+                Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    padding: EdgeInsets.only(bottom: HW.getHeight(45, context)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Flexible(
-                          child: ArrowLeftTextWidget(
-                              textSubTitle: locale.copyright,
-                              textTitle: locale.aboutTheBook,
-                              onTap: () {
-                                LeafDetails.currentVertex = 26;
-                                NavigationSharedPreferences
-                                    .upDateShatedPreferences();
-
-                                if (kIsWeb) {
-                                  html.window.history.back();
-                                  context.router.pop();
-                                } else {
-                                  context.router.pop();
-                                }
-                              }),
-                        ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Image.asset(AssetsPath.socilaIcons),
-                              const AutoSizeText(
-                                'www.historyadventures.co',
-                                maxLines: 1,
-                              )
-                            ],
-                          ),
-                        ),
-                        // Flexible(
-                        //   child: ArrowRightTextWidget(
-                        //       textSubTitle: locale.copyright,
-                        //       textTitle: locale.aboutTheBook,
-                        //       onTap: () {
-                        //         LeafDetails.visitedVertexes.add(23);
-                        //         LeafDetails.currentVertex = 23;
-                        //         NavigationSharedPreferences
-                        //             .upDateShatedPreferences();
-                        //         context.router.push(const CopyrightPageRoute());
-                        //       }),
-                        // ),
+                        Image.asset(AssetsPath.socilaIcons),
+                        const AutoSizeText(
+                          'www.historyadventures.co',
+                          maxLines: 1,
+                        )
                       ],
                     ),
                   ),
@@ -162,14 +145,19 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: const [
-                                      AuthorWidget(
-                                          border: Border(
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1),
-                                          ),
-                                          peoples: ['Darrell Steward'],
-                                          profession: 'books')
+                                      AuthorWidget(peoples: [
+                                        'The Little Prince',
+                                        'To Kill a Mockingbird',
+                                        'A Game of Thrones',
+                                        'Siddhartha',
+                                        'A Game of Thrones',
+                                        'To Kill a Mockingbird',
+                                        'Candide',
+                                        'The Girl with the Dragon Tattoo',
+                                        'Candide',
+                                        'The Alchemist',
+                                        'The Count of Monte Cristo',
+                                      ], profession: 'books')
                                     ],
                                   ),
                                 ),
@@ -180,46 +168,42 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                         CrossAxisAlignment.start,
                                     children: const [
                                       AuthorWidget(
-                                          border: Border(
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1),
-                                          ),
-                                          peoples: [
-                                            'Darrell Steward',
-                                            'Jerome Bell',
-                                            'Kristin Watson',
-                                            'Kathryn Murphy',
-                                            'Robert Fox',
-                                            'Marvin McKinney',
-                                            'Leslie Alexander'
-                                          ],
-                                          profession: 'movie & TV')
-                                    ],
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        border: Border(
-                                          bottom: BorderSide(
-                                              color: AppColors.grey, width: 1),
-                                        ),
                                         peoples: [
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                          'Esther Howard',
-                                          'Bessie Cooper',
-                                          'Wade Warren'
+                                          "Charlie's Angels",
+                                          'Splitting Adam',
+                                          'Star Trek: Nemesis',
+                                          'Barbarella',
+                                          'To Catch a Thief',
+                                          'Star Trek IV: The Voyage Home',
+                                          'Changing Lanes',
+                                          'The Score',
+                                          'Sunset Boulevard',
                                         ],
-                                        profession: 'video games',
+                                        profession: 'Movie & tv',
                                       )
+                                    ],
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      AuthorWidget(peoples: [
+                                        "​Call Of Duty: Modern Warfare",
+                                        '​Street Fighter V',
+                                        'League of Legends',
+                                        '​Arte',
+                                        'Ragnarok Online',
+                                        'VALORANT​',
+                                        "Don't Starve",
+                                        '​Dragon Ball FighterZ',
+                                        '​Monster Hunter: World',
+                                        '​Counter-Strike: Global Offensive',
+                                        '​Música',
+                                        '​Comes e bebes',
+                                      ], profession: 'video games')
                                     ],
                                   ),
                                 ),

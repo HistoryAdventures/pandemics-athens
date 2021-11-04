@@ -233,24 +233,21 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: ArrowLeftTextWidget(
-                  color: AppColors.white,
-                  textSubTitle: locals.todoNoHarm,
-                  textTitle: locals.chapter1,
-                  onTap: () {
-                    LeafDetails.currentVertex = 2;
-                    NavigationSharedPreferences.upDateShatedPreferences();
+            child: ArrowLeftTextWidget(
+                color: AppColors.white,
+                textSubTitle: locals.todoNoHarm,
+                textTitle: locals.chapter1,
+                onTap: () {
+                  LeafDetails.currentVertex = 2;
+                  NavigationSharedPreferences.upDateShatedPreferences();
 
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  }),
-            ),
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
+                }),
           ),
           Align(
             alignment: Alignment.bottomCenter,

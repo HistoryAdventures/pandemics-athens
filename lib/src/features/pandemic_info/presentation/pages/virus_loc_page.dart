@@ -161,46 +161,36 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ArrowLeftTextWidget(
-                            textSubTitle: locals.pathogenProfile,
-                            textTitle: locals.chapter1,
-                            onTap: () {
-                              LeafDetails.currentVertex = 10;
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: ArrowLeftTextWidget(
+                        textSubTitle: locals.pathogenProfile,
+                        textTitle: locals.chapter1,
+                        onTap: () {
+                          LeafDetails.currentVertex = 10;
+                          NavigationSharedPreferences.upDateShatedPreferences();
 
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
-                            }),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ArrowRightTextWidget(
-                            textSubTitle: locals.whatDidItDo,
-                            textTitle: locals.pathogenProfile,
-                            onTap: () {
-                              context.router
-                                  .push(const VirusLocationSecondPageRoute());
-                            }),
-                      ),
-                    ),
-                  ],
-                ),
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
+                        }),
+                  ),
+                  Flexible(
+                    child: ArrowRightTextWidget(
+                        textSubTitle: locals.whatDidItDo,
+                        textTitle: locals.pathogenProfile,
+                        onTap: () {
+                          context.router
+                              .push(const VirusLocationSecondPageRoute());
+                        }),
+                  ),
+                ],
               ),
             ),
             SoundAndMenuWidget(

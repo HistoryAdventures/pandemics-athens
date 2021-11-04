@@ -107,23 +107,20 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                   subTitleText: locale.endOfThePeloponneseanWar),
               Align(
                 alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 24, left: 24),
-                  child: ArrowLeftTextWidget(
-                      textSubTitle: locale.deathOfSocrates,
-                      textTitle: locale.plagueAndPersecution,
-                      onTap: () {
-                        LeafDetails.currentVertex = 15;
-                        NavigationSharedPreferences.upDateShatedPreferences();
+                child: ArrowLeftTextWidget(
+                    textSubTitle: locale.deathOfSocrates,
+                    textTitle: locale.plagueAndPersecution,
+                    onTap: () {
+                      LeafDetails.currentVertex = 15;
+                      NavigationSharedPreferences.upDateShatedPreferences();
 
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
-                      }),
-                ),
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    }),
               ),
               SoundAndMenuWidget(
                 icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,

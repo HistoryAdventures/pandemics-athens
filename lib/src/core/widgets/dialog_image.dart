@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../colors.dart';
 
@@ -39,7 +40,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
               return Container(
                 color: AppColors.green,
                 width: snapshot.data?.width,
-                height: MediaQuery.of(context).size.width,
+                // height: MediaQuery.of(context).size.height,
                 child: Scaffold(
                   body: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -65,7 +66,12 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                               child: Text(
                                 widget.selectedImageText,
                                 textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    ?.copyWith(
+                                        fontSize: TextFontSize.getHeight(
+                                            24, context)),
                               ),
                             ),
                           ),

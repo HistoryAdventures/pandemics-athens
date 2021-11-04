@@ -363,23 +363,20 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               ),
               Align(
                 alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: ArrowLeftTextWidget(
-                      textSubTitle: locals.whatDidItDo,
-                      textTitle: locals.pathogenProfile,
-                      onTap: () {
-                        LeafDetails.currentVertex = 12;
-                        NavigationSharedPreferences.upDateShatedPreferences();
+                child: ArrowLeftTextWidget(
+                    textSubTitle: locals.whatDidItDo,
+                    textTitle: locals.pathogenProfile,
+                    onTap: () {
+                      LeafDetails.currentVertex = 12;
+                      NavigationSharedPreferences.upDateShatedPreferences();
 
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
-                      }),
-                ),
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    }),
               ),
               SoundAndMenuWidget(
                 icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,

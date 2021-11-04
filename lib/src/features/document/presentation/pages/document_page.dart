@@ -457,24 +457,20 @@ class _DocumentPageState extends State<DocumentPage>
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 10, right: 16, top: 16),
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.medicalToolsKnowledge,
-                        textTitle: locale.chapter1,
-                        onTap: () {
-                          LeafDetails.currentVertex = 8;
-                          NavigationSharedPreferences.upDateShatedPreferences();
+                  child: ArrowRightTextWidget(
+                      textSubTitle: locale.medicalToolsKnowledge,
+                      textTitle: locale.chapter1,
+                      onTap: () {
+                        LeafDetails.currentVertex = 8;
+                        NavigationSharedPreferences.upDateShatedPreferences();
 
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
-                        }),
-                  ),
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
                 ),
               ],
             );

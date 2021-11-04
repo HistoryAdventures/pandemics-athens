@@ -53,21 +53,18 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
             )),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: ArrowLeftTextWidget(
-                    color: AppColors.white,
-                    textSubTitle: locals.todoNoHarm,
-                    textTitle: locals.chapter1,
-                    onTap: () {
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    }),
-              ),
+              child: ArrowLeftTextWidget(
+                  color: AppColors.white,
+                  textSubTitle: locals.todoNoHarm,
+                  textTitle: locals.chapter1,
+                  onTap: () {
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
             ),
             SoundAndMenuWidget(
               color: AppColors.white,

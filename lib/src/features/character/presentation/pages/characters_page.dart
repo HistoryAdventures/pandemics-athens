@@ -197,22 +197,19 @@ class _CharacrterPageState extends State<CharacrterPage> {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Container(
-                padding: const EdgeInsets.only(bottom: 24, left: 24),
-                child: ArrowLeftTextWidget(
-                    textSubTitle: locale.timelineOfMainEvents,
-                    textTitle: locale.athens5thCentury,
-                    onTap: () {
-                      LeafDetails.currentVertex = 4;
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    }),
-              ),
+              child: ArrowLeftTextWidget(
+                  textSubTitle: locale.timelineOfMainEvents,
+                  textTitle: locale.athens5thCentury,
+                  onTap: () {
+                    LeafDetails.currentVertex = 4;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
             ),
           ],
         ),

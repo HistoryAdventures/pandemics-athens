@@ -196,7 +196,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                     ),
                   ),
                   Container(
-                    height: HW.getHeight(19, context),
+                    height: HW.getHeight(22, context),
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -250,20 +250,17 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 24, left: 24),
-              child: ArrowLeftTextWidget(
-                  textSubTitle: locale.timelineOfMainEvents,
-                  textTitle: locale.athens5thCentury,
-                  onTap: () {
-                    if (kIsWeb) {
-                      html.window.history.go(-2);
-                      context.router.popUntilRouteWithName('MapPageRoute');
-                    } else {
-                      context.router.pop();
-                    }
-                  }),
-            ),
+            child: ArrowLeftTextWidget(
+                textSubTitle: locale.timelineOfMainEvents,
+                textTitle: locale.athens5thCentury,
+                onTap: () {
+                  if (kIsWeb) {
+                    html.window.history.go(-2);
+                    context.router.popUntilRouteWithName('MapPageRoute');
+                  } else {
+                    context.router.pop();
+                  }
+                }),
           ),
           SoundAndMenuWidget(
             icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
@@ -307,14 +304,12 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           child: AutoSizeText(name.toUpperCase(),
               maxLines: 1,
               style: characterModelNotifierprovider.name == selected
-                  ? Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.greyDeep)),
+                  ? Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppColors.orange,
+                      fontSize: TextFontSize.getHeight(16, context))
+                  : Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppColors.greyDeep,
+                      fontSize: TextFontSize.getHeight(16, context))),
         ));
   }
 }

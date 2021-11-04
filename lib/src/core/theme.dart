@@ -15,7 +15,6 @@ class DefaultTheme {
         crossAxisMargin: 1,
         mainAxisMargin: 1,
         minThumbLength: 119,
-        isAlwaysShown: true,
         thickness: MaterialStateProperty.all(4),
         trackColor: MaterialStateProperty.all(AppColors.green),
         trackBorderColor: MaterialStateProperty.all(AppColors.grey),

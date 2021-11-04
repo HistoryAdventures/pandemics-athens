@@ -640,7 +640,6 @@ class _MapPageState extends State<MapPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: HW.getWidth(338, context),
               child: ArrowLeftTextWidget(
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
@@ -711,20 +710,17 @@ class _MapPageState extends State<MapPage> {
                 ],
               ),
             ),
-            Container(
-              width: HW.getWidth(338, context),
-              child: ArrowRightTextWidget(
-                  textSubTitle: locals.keyPeopleOfTheAge,
-                  textTitle: locals.athens5thCentury,
-                  onTap: () {
-                    LeafDetails.visitedVertexes.add(5);
-                    LeafDetails.currentVertex = 5;
-                    print(LeafDetails.currentVertex);
-                    print(LeafDetails.visitedVertexes);
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const CharacrterPageRoute());
-                  }),
-            ),
+            ArrowRightTextWidget(
+                textSubTitle: locals.keyPeopleOfTheAge,
+                textTitle: locals.athens5thCentury,
+                onTap: () {
+                  LeafDetails.visitedVertexes.add(5);
+                  LeafDetails.currentVertex = 5;
+                  print(LeafDetails.currentVertex);
+                  print(LeafDetails.visitedVertexes);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const CharacrterPageRoute());
+                }),
           ],
         ),
       ),

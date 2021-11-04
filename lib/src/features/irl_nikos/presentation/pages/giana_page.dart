@@ -88,31 +88,25 @@ class _GianaPageState extends State<GianaPage> {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 24),
-                child: ArrowLeftTextWidget(
-                  onTap: () {},
-                  textSubTitle: 'Xoquauhtli',
-                  textTitle: "#IRL",
-                ),
+              child: ArrowLeftTextWidget(
+                onTap: () {},
+                textSubTitle: 'Xoquauhtli',
+                textTitle: "#IRL",
               ),
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 24, bottom: 24),
-                child: ArrowRightTextWidget(
-                  onTap: () {
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  },
-                  textSubTitle: 'nikos',
-                  textTitle: "#IRL",
-                ),
+              child: ArrowRightTextWidget(
+                onTap: () {
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
+                },
+                textSubTitle: 'nikos',
+                textTitle: "#IRL",
               ),
             ),
             Align(

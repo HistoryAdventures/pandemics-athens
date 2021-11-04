@@ -53,21 +53,18 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
             )),
             Align(
               alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: ArrowRightTextWidget(
-                    color: AppColors.white,
-                    textSubTitle: locals.todoNoHarm,
-                    textTitle: locals.chapter1,
-                    onTap: () {
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    }),
-              ),
+              child: ArrowRightTextWidget(
+                  color: AppColors.white,
+                  textSubTitle: locals.todoNoHarm,
+                  textTitle: locals.chapter1,
+                  onTap: () {
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
             ),
             SoundAndMenuWidget(
               color: AppColors.white,

@@ -52,204 +52,210 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.constraints.maxWidth,
-      height: widget.constraints.maxHeight,
-      margin: EdgeInsets.symmetric(
-          horizontal: widget.constraints.maxWidth * 0.2,
-          vertical: widget.constraints.maxHeight * 0.15),
-      child: Scaffold(
-          backgroundColor: AppColors.white.withOpacity(0.9),
-          body: Container(
-            padding: EdgeInsets.all(widget.constraints.maxHeight * 0.024),
-            child: Row(
-              children: [
-                Expanded(
-                    child: SizedBox(
-                  height: widget.constraints.maxHeight,
-                  child: AnimatedSwitcher(
-                    duration: Times.medium,
-                    transitionBuilder: (child, animation) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
-                    child: Container(
-                        key: ValueKey(socratesInfoModel.name),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(socratesInfoModel.image),
-                                fit: BoxFit.cover)),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Clickable(
-                              onPressed: () {
-                                showGeneralDialog(
-                                    context: context,
-                                    barrierColor: Colors.black.withOpacity(0.5),
-                                    transitionBuilder: (BuildContext context,
-                                        Animation<double> animation,
-                                        Animation<double> secondaryAnimation,
-                                        Widget child) {
-                                      return LayoutBuilder(
-                                          builder: (context, constraints) =>
-                                              DialogImageWidget(
-                                                animation: animation,
-                                                selectedImage:
-                                                    socratesInfoModel.image,
-                                                selectedImageText:
-                                                    socratesInfoModel
-                                                        .description,
-                                                constraints: constraints,
-                                              ));
-                                    },
-                                    transitionDuration: Times.fast,
-                                    barrierDismissible: true,
-                                    barrierLabel: '',
-                                    pageBuilder:
-                                        (context, animation1, animation2) {
-                                      return Container();
-                                    });
-                              },
-                              child: const ZoomInNotesWidget()),
-                        )),
+    return Align(
+      child: Container(
+        width: HW.getWidth(1200, context),
+        height: HW.getHeight(676, context),
+        // margin: EdgeInsets.symmetric(
+        //     horizontal: widget.constraints.maxWidth * 0.2,
+        //     vertical: widget.constraints.maxHeight * 0.15),
+        child: Scaffold(
+            backgroundColor: AppColors.white.withOpacity(0.9),
+            body: Container(
+              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: HW.getHeight(628, context),
+                    width: HW.getWidth(400, context),
+                    child: AnimatedSwitcher(
+                      duration: Times.medium,
+                      transitionBuilder: (child, animation) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                      child: Container(
+                          key: ValueKey(socratesInfoModel.name),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(socratesInfoModel.image),
+                                  fit: BoxFit.cover)),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Clickable(
+                                onPressed: () {
+                                  showGeneralDialog(
+                                      context: context,
+                                      barrierColor:
+                                          Colors.black.withOpacity(0.5),
+                                      transitionBuilder: (BuildContext context,
+                                          Animation<double> animation,
+                                          Animation<double> secondaryAnimation,
+                                          Widget child) {
+                                        return LayoutBuilder(
+                                            builder: (context, constraints) =>
+                                                DialogImageWidget(
+                                                  animation: animation,
+                                                  selectedImage:
+                                                      socratesInfoModel.image,
+                                                  selectedImageText:
+                                                      socratesInfoModel
+                                                          .description,
+                                                  constraints: constraints,
+                                                ));
+                                      },
+                                      transitionDuration: Times.fast,
+                                      barrierDismissible: true,
+                                      barrierLabel: '',
+                                      pageBuilder:
+                                          (context, animation1, animation2) {
+                                        return Container();
+                                      });
+                                },
+                                child: const ZoomInNotesWidget()),
+                          )),
+                    ),
                   ),
-                )),
-                Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 10,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          color: AppColors.grey, width: 1.2))),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    flex: 1,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          flex: 2,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                  "${widget.titleText}\n",
-                                                  maxLines: 2,
-                                                  minFontSize: 10,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          color: AppColors
-                                                              .black54),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      bottom: widget.constraints
-                                                              .maxHeight *
-                                                          0.01),
-                                                  child: AutoSizeText(
-                                                      widget.subTitleText,
-                                                      minFontSize: 13,
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline2),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 5,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                          border: Border(
-                                        top: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
-                                      )),
-                                      child:
-                                          ListView(shrinkWrap: true, children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 16, right: 38, bottom: 16),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 16),
-                                                child: AutoSizeText(
-                                                    socratesInfoModel.name
-                                                        .toUpperCase(),
+                  Expanded(
+                      child: Container(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: HW.getHeight(68, context),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Flexible(
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    bottom: HW.getHeight(
+                                                        8, context)),
+                                                child: Text(
+                                                    "${widget.titleText}\n",
+                                                    maxLines: 2,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .headline3),
+                                                        .headline1
+                                                        ?.copyWith(
+                                                            fontSize:
+                                                                TextFontSize
+                                                                    .getHeight(
+                                                                        16,
+                                                                        context),
+                                                            color: AppColors
+                                                                .black54)),
                                               ),
-                                              AutoSizeText(
-                                                socratesInfoModel.description,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1,
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ]),
-                                    ),
+                                            ),
+                                            Flexible(
+                                              child: Text(widget.subTitleText,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2
+                                                      ?.copyWith(
+                                                          fontSize: TextFontSize
+                                                              .getHeight(32,
+                                                                  context))),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                      top: HW.getHeight(16, context),
+                                      bottom: HW.getHeight(16, context),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                      border: Border(
+                                        top: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                        bottom: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                      ),
+                                    ),
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 24, top: 16),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 16),
+                                              child: AutoSizeText(
+                                                  socratesInfoModel.name
+                                                      .toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3),
+                                            ),
+                                            AutoSizeText(
+                                              socratesInfoModel.description,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ]),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Flexible(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                  children: widget.listDialogInfo
-                                      .map((data) => buttomItemsList(
-                                            name: data.name,
-                                            image: data.image,
-                                            text: data.description,
-                                            subTitle: data.name,
-                                            imageText: data.imageText,
-                                            selected: data.name,
-                                          ))
-                                      .toList()),
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
-              ],
-            ),
-          )),
+                        ),
+                        Container(
+                          height: HW.getHeight(22, context),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                children: widget.listDialogInfo
+                                    .map((data) => buttomItemsList(
+                                          name: data.name,
+                                          image: data.image,
+                                          text: data.description,
+                                          subTitle: data.name,
+                                          imageText: data.imageText,
+                                          selected: data.name,
+                                        ))
+                                    .toList()),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+                ],
+              ),
+            )),
+      ),
     );
   }
 
@@ -272,17 +278,15 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                 imageText: imageText);
           });
         },
-        child: AutoSizeText(name.toUpperCase(),
+        child: Text(name.toUpperCase(),
             maxLines: 1,
             style: socratesInfoModel.name == selected
-                ? Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.orange)
-                : Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: AppColors.grey)),
+                ? Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: AppColors.orange,
+                    fontSize: TextFontSize.getHeight(16, context))
+                : Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: AppColors.grey,
+                    fontSize: TextFontSize.getHeight(16, context))),
       ),
     );
   }

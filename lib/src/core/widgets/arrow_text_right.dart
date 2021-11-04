@@ -17,56 +17,56 @@ class ArrowRightTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Clickable(
-      onPressed: onTap,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Flexible(
-            flex: 3,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Flexible(
-                  child: AutoSizeText(
-                    textTitle.toUpperCase(),
-                    maxFontSize: 14,
-                    textAlign: TextAlign.right,
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption
-                        ?.copyWith(fontSize: 14, color: color ?? Colors.black),
+    return Padding(
+      padding: EdgeInsets.only(
+          right: HW.getWidth(64, context), bottom: HW.getHeight(48, context)),
+      child: Clickable(
+        onPressed: onTap,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Flexible(
+              flex: 3,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: AutoSizeText(
+                      textTitle.toUpperCase(),
+                      maxFontSize: 14,
+                      textAlign: TextAlign.right,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.caption?.copyWith(
+                          fontSize: 14, color: color ?? Colors.black),
+                    ),
                   ),
-                ),
-                Flexible(
-                  child: AutoSizeText(
-                    textSubTitle.toUpperCase(),
-                    maxFontSize: 24,
-                    maxLines: 1,
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2
-                        ?.copyWith(fontSize: 24, color: color ?? Colors.black),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Flexible(
-            child: Container(
-              margin: const EdgeInsets.only(left: 24),
-              child: Icon(
-                Icons.arrow_forward,
-                color: color ?? Colors.black,
-                size: HW.getHeight(37, context),
+                  Flexible(
+                    child: AutoSizeText(
+                      textSubTitle.toUpperCase(),
+                      maxFontSize: 24,
+                      maxLines: 1,
+                      textAlign: TextAlign.right,
+                      style: Theme.of(context).textTheme.headline2?.copyWith(
+                          fontSize: 24, color: color ?? Colors.black),
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
-        ],
+            Flexible(
+              child: Container(
+                margin: const EdgeInsets.only(left: 24),
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: color ?? Colors.black,
+                  size: HW.getHeight(37, context),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
