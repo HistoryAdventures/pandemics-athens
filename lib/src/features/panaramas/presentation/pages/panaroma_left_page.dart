@@ -209,17 +209,13 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           }).toList(),
           child: Image.asset(AssetsPath.panaramaBackgroundImageLeft),
         ),
-        Align(
-          alignment: Alignment.centerLeft,
+        Positioned(
+          top: HW.getHeight(348, context),
+          left: HW.getWidth(180, context),
           child: Container(
               color: AppColors.blackG.withOpacity(0.75),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.06,
-                  top: MediaQuery.of(context).size.height * 0.25,
-                  bottom: MediaQuery.of(context).size.height * 0.3,
-                  right: MediaQuery.of(context).size.width * 0.5),
+              width: HW.getWidth(772, context),
+              height: HW.getHeight(384, context),
               child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: ListView(
