@@ -279,23 +279,23 @@
     "@learnMore": {
       "learnMore": "learnMore"
     },
-    "periclesTextDescription": "Although the point of democracy was that the citizen body of Athens at large decided upon their political fate, the democratic system was still dominated by certain individuals. The most famous of these is Pericles, the man Thucydides described as the “first citizen of Athens” (H.P.W, 2.65). Pericles was a general, a statesman, and an orator, and effectively led the Athenian state during its Golden Age, between the Persian and the Peloponnesian Wars (c. 461 to 429 BC).\n\n He was responsible for overseeing much of the cultural embellishment of Athens which has helped bolster its historical reputation. It was under his supervision that the ambitious building project atop the city’s Acropolis, including the Parthenon, was carried out. Pericles had also ordered the famous long walls of Athens to be rebuilt to protect the city and its harbour (the Piraeus). Many of these building projects were funded by the treasury of the Delian League, increasing tensions between Athens and her ostensible allies (really, they were effectively subjects).Pericles’ reputation in history is as a powerful orator and a champion of the democratic principles of the Athens he knew. However, because of his control of Athenian politics at this time, some have labelled Pericles a demagogue or a populist. Demagoguery, the manipulation of people (often derisively referred to as the ‘mob’) is one of the oldest criticisms of democracy as a form of politics.The most famous of Pericles’ speeches is the ‘Funeral Oration’ recorded by Thucydides, in which the Athenian statesman commemorated those who had died in the first year of the Peloponnesian War, as well as the glory of Athens and her democracy.“I have dwelt upon the greatness of Athens because I want to show you that we are contending for a higher prize than those who enjoy none of these privileges... Make them your examples, and, esteeming courage to be freedom and freedom to be happiness, do not weigh too nicely the perils of war.” (Thucydides, History of the Peloponnesian War)Pericles’ own funeral would not be long in arriving. He would lose his life to the plague that devastated his city in 429 BC.A bust of Pericles, a Roman marble copy of a Greek original from c.430BC, now in the Museo Pio-Clementino in the Vatican",
+    "periclesTextDescription": "Although the point of democracy was that the citizen body of Athens at large decided upon their political fate, the democratic system was still dominated by certain individuals. The most famous of these is Pericles, the man Thucydides described as the “first citizen of Athens” (H.P.W, 2.65). /n/nPericles was a general, a statesman, and an orator, and effectively led the Athenian state during its Golden Age, between the Persian and the Peloponnesian Wars (c. 461 to 429 BC).\n\nHe was responsible for overseeing much of the cultural embellishment of Athens which has helped bolster its historical reputation. It was under his supervision that the ambitious building project atop the city’s Acropolis, including the Parthenon, was carried out. Pericles had also ordered the famous long walls of Athens to be rebuilt to protect the city and its harbour (the Piraeus). Many of these building projects were funded by the treasury of the Delian League, increasing tensions between Athens and her ostensible allies (really, they were effectively subjects).\n\nPericles’ reputation in history is as a powerful orator and a champion of the democratic principles of the Athens he knew. However, because of his control of Athenian politics at this time, some have labelled Pericles a demagogue or a populist. Demagoguery, the manipulation of people (often derisively referred to as the ‘mob’) is one of the oldest criticisms of democracy as a form of politics.\n\nThe most famous of Pericles’ speeches is the ‘Funeral Oration’ recorded by Thucydides, in which the Athenian statesman commemorated those who had died in the first year of the Peloponnesian War, as well as the glory of Athens and her democracy.\n\n“I have dwelt upon the greatness of Athens because I want to show you that we are contending for a higher prize than those who enjoy none of these privileges... Make them your examples, and, esteeming courage to be freedom and freedom to be happiness, do not weigh too nicely the perils of war.” (Thucydides, History of the Peloponnesian War)\n\nPericles’ own funeral would not be long in arriving. He would lose his life to the plague that devastated his city in 429 BC.\n\nA bust of Pericles, a Roman marble copy of a Greek original from c.430BC, now in the Museo Pio-Clementino in the Vatican",
     "@periclesTextDescription": {
       "periclesTextDescription": "periclesTextDescription"
     },
-    "thucydidesTextDescription": "Along with Herodotus, Thucydides is often labelled as the “Father of History”. He was an Athenian general who lived between c.460 and 400 BC and is most well known for his History of the Peloponnesian War, the account of the war between Athens and Sparta. Although he was slightly later than Herodotus, whose Histories describe the Persian Wars, Thucydides historical methods are more scientific: he aspires to a level of impartiality and evidence (beyond the gods) that is not always evident in Herodotus’ work… Thucydides’ narrative of the Peloponnesian War begins in 431 BC and it ends in 411 BC, with the crushing Athenian defeat at Syracuse in Sicily. Although it misses the final years of the war (which ended in 404), it is a precious source for historians and archaeologists. He was, as he writes, a firsthand witness to the struggles of his age: he fought in the war, contracted the plague (but survived), and was even exiled from his city! As a result, Thucydides is the primary source we have for the plague. The historian gives an evocative account of the devastation the pestilence wrought on the Athenians, whilst his descriptions have helped historians establish what the disease may have been. “The nature of the disease was beyond description, and the sufferings that it brought to each victim were greater than human nature can bear… So the Athenians had fallen into the great misfortune and were being ground down by it” (Thucydides, History of the Peloponnesian War)",
+    "thucydidesTextDescription": "Along with Herodotus, Thucydides is often labelled as the “Father of History”. He was an Athenian general who lived between c.460 and 400 BC and is most well known for his History of the Peloponnesian War, the account of the war between Athens and Sparta. Although he was slightly later than Herodotus, whose Histories describe the Persian Wars, Thucydides historical methods are more scientific: he aspires to a level of impartiality and evidence (beyond the gods) that is not always evident in Herodotus’ work… \n\nThucydides’ narrative of the Peloponnesian War begins in 431 BC and it ends in 411 BC, with the crushing Athenian defeat at Syracuse in Sicily. Although it misses the final years of the war (which ended in 404), it is a precious source for historians and archaeologists. He was, as he writes, a firsthand witness to the struggles of his age: he fought in the war, contracted the plague (but survived), and was even exiled from his city! \n\nAs a result, Thucydides is the primary source we have for the plague. The historian gives an evocative account of the devastation the pestilence wrought on the Athenians, whilst his descriptions have helped historians establish what the disease may have been. \n\n“The nature of the disease was beyond description, and the sufferings that it brought to each victim were greater than human nature can bear… So the Athenians had fallen into the great misfortune and were being ground down by it” (Thucydides, History of the Peloponnesian War)",
     "@thucydidesTextDescription": {
       "thucydidesTextDescription": "thucydidesTextDescription"
     },
-    "socratesAndPlatoTextDescription": "Athens’ Golden Age was the time of some of the most important philosophers in European history. The two most well-known are certainty Socrates (c.470-399), and his student Plato (c.428-348).Much of what is known about Socrates today is filtered through the dialogues of Plato, in which Socrates is the central character (more of an antagonist, in the sense that his constant questioning of the Athenian citizens must have stretched patience quite thin sometimes!). Because of this, what exactly Socrates taught to the people of Athens is something of a mystery; we are presented with a Socrates as presented by Plato, and to a slightly lesser extent, the historian Xenophon.Socrates’ early life might strike many as quite surprising for a philosopher; he was a distinguished soldier, serving the Athenian army and even saving the life of the General Alcibiades at the Battle of Potidaea in 432 BC. The story of Socrates the Philosopher (which literally means a ‘lover of wisdom’, philo meaning to love, and sophia being wisdom), begins at the Oracle at Delphi. Socrates asked the Oracle whether anyone was wiser than he, to which they responded “No”. Perplexed, Socrates set about proving the Oracle wrong by questioning those regarded to be wise. None, to his dismay, stood up to his scrutiny. In questioning these wise men around Athens, Socrates soon developed a following of like-minded philosophers, including Plato. Much of what he discussed concerned the living of a good life; what may be termed today as ethics and morality. Like his teacher Socrates, Plato evidently had pursuits we would not perhaps associate with a philosopher: Plato is actually a nickname, meaning broad, which he was allegedly given because of his broad shoulders and wrestling prowess. Plato is the source of much modern knowledge of Socrates, whose teachings and wisdoms are recorded in his Dialogues. These are, generally, concerned with the search for Truth and its nature, and an understanding of what it is to be Good. His most famous philosophical idea is the Theory of the Forms, explained in his Allegory of the Cave. This argued that ideas existed in a higher realm of truth, and the understanding of something as good, in the human world, corresponded to a reflection of this higher Form of good. The Theory of the Forms is argued in Plato’s Republic, his other famous work. In the Republic, the philosopher outlines his ideas for how to create a perfect society, a utopia; unsurprisingly, the philosophers would be important in this ideal society… There was no happy ending to this tale of a philosophical awakening in Athens. Socrates’ questioning of Athenian customs angered people in the city. With Athenian fortunes on the wane, the city having been devastated by plague and being roundly defeated in the Peloponnesian War, the Athenian’s rounded on Socrates, viewing him as a source of instability. He was famously accused of corrupting the youth of Athens with his philosophy. He was put on trial in 399 BC and found guilty. His punishment was death. Famously, Socrates faced his end with courage, drinking a poisonous concoction that included hemlock. The death of Socrates was recorded by Plato in his Phaedo, and it has inspired artists ever since. His last words were, allegedly, a reminder of his debt to the healing god Asclepius: “Crito, we owe a cockerel to Asclepius”.There’s a good chance that some of you reading this deal with the legacy of these philosophers every day. A lot of modern teaching makes use of the so-called Socratic method. This was outlined in Plato’s dialogues, and it involves the breaking down of a problem into a series of questions, which would allow one to work towards the answer.",
+    "socratesAndPlatoTextDescription": "Athens’ Golden Age was the time of some of the most important philosophers in European history. The two most well-known are certainty Socrates (c.470-399), and his student Plato (c.428-348).\n\nMuch of what is known about Socrates today is filtered through the dialogues of Plato, in which Socrates is the central character (more of an antagonist, in the sense that his constant questioning of the Athenian citizens must have stretched patience quite thin sometimes!). Because of this, what exactly Socrates taught to the people of Athens is something of a mystery; we are presented with a Socrates as presented by Plato, and to a slightly lesser extent, the historian Xenophon.\n\nSocrates’ early life might strike many as quite surprising for a philosopher; he was a distinguished soldier, serving the Athenian army and even saving the life of the General Alcibiades at the Battle of Potidaea in 432 BC. The story of Socrates the Philosopher (which literally means a ‘lover of wisdom’, philo meaning to love, and sophia being wisdom), begins at the Oracle at Delphi. Socrates asked the Oracle whether anyone was wiser than he, to which they responded “No”. Perplexed, Socrates set about proving the Oracle wrong by questioning those regarded to be wise. None, to his dismay, stood up to his scrutiny. In questioning these wise men around Athens, Socrates soon developed a following of like-minded philosophers, including Plato. Much of what he discussed concerned the living of a good life; what may be termed today as ethics and morality. \n\nLike his teacher Socrates, Plato evidently had pursuits we would not perhaps associate with a philosopher: Plato is actually a nickname, meaning broad, which he was allegedly given because of his broad shoulders and wrestling prowess. Plato is the source of much modern knowledge of Socrates, whose teachings and wisdoms are recorded in his Dialogues. These are, generally, concerned with the search for Truth and its nature, and an understanding of what it is to be Good. His most famous philosophical idea is the Theory of the Forms, explained in his Allegory of the Cave. This argued that ideas existed in a higher realm of truth, and the understanding of something as good, in the human world, corresponded to a reflection of this higher Form of good. The Theory of the Forms is argued in Plato’s Republic, his other famous work. In the Republic, the philosopher outlines his ideas for how to create a perfect society, a utopia; unsurprisingly, the philosophers would be important in this ideal society… \n\nThere was no happy ending to this tale of a philosophical awakening in Athens. Socrates’ questioning of Athenian customs angered people in the city. With Athenian fortunes on the wane, the city having been devastated by plague and being roundly defeated in the Peloponnesian War, the Athenian’s rounded on Socrates, viewing him as a source of instability. He was famously accused of corrupting the youth of Athens with his philosophy. He was put on trial in 399 BC and found guilty. His punishment was death. Famously, Socrates faced his end with courage, drinking a poisonous concoction that included hemlock. The death of Socrates was recorded by Plato in his Phaedo, and it has inspired artists ever since. His last words were, allegedly, a reminder of his debt to the healing god Asclepius: “Crito, we owe a cockerel to Asclepius”.\n\nThere’s a good chance that some of you reading this deal with the legacy of these philosophers every day. A lot of modern teaching makes use of the so-called Socratic method. This was outlined in Plato’s dialogues, and it involves the breaking down of a problem into a series of questions, which would allow one to work towards the answer.",
     "@socratesAndPlatoTextDescription": {
       "socratesAndPlatoTextDescription": "socratesAndPlatoTextDescription"
     },
-    "phidiasTextDescription": "Phidias was something of a polymath: he was a jack of all trades and seemingly a master of them all too. Born in around 480 BC, this sculptor, painter, and architect was responsible for Athens looking like a city worthy of enjoying a Golden Age. It wasn’t just Athens that benefitted from Phidias’ prodigious artistic talents however, as his endeavours were sought out across the Greek world. Today he is remembered in Art History as a leading figure in the emergence of the Classical style, particularly in terms of sculpture. In Athens, it is generally believed that Phidias was on good terms with the political elite of the 5th century. The biographer Plutarch, writing during the 1st century AD (under the Roman Empire), describes how Phidias had a close friendship with Pericles. The biographer even records the gossip that Phidias was guilty of syphoning money set aside for the Athenian state into his own coffers (although this might well just be gossip). The most famous of Phidias’ work in Athens remains the statue of Athena Parthenos inside the Parthenon, and the Athena Promachos, a colossal bronze statue on the Acropolis, stood between the Parthenon and the Propylaea (the monumental gateway to the hilltop sanctuary). Plutarch likewise suggests that Phidias oversaw the works that were being executed on the Acropolis, including supervising Iktinos and Kallkrates, the architects responsible for the Parthenon itself which was built between 447 and 432 BC.Outside of Athens, Phidias’ name is associated with the Panhellenic sanctuary at Olympia on the Peloponnese. Panhellenic sanctuaries were sacred spaces open to all Greeks, and this one is famous as the site of the Olympic Games which began in the 8th century BC. Here, archaeologists have uncovered Phidias’ workshop. Unusually, they know that this was Phidias’ workshop because he left his name there: a small cup discovered here was inscribed on the base with the words ‘Pheidiou eimi’, or, ‘I belong to Phidias’. In the sanctuary, Phidias achieved immortality as the artist responsible for the Statue of Olympian Zeus. This monumental statue, showing the King of the Gods seated, holding a winged Nike, was famous as one of the Seven Wonders of the Ancient World.",
+    "phidiasTextDescription": "Phidias was something of a polymath: he was a jack of all trades and seemingly a master of them all too. Born in around 480 BC, this sculptor, painter, and architect was responsible for Athens looking like a city worthy of enjoying a Golden Age. It wasn’t just Athens that benefitted from Phidias’ prodigious artistic talents however, as his endeavours were sought out across the Greek world. Today he is remembered in Art History as a leading figure in the emergence of the Classical style, particularly in terms of sculpture. \n\nIn Athens, it is generally believed that Phidias was on good terms with the political elite of the 5th century. The biographer Plutarch, writing during the 1st century AD (under the Roman Empire), describes how Phidias had a close friendship with Pericles. The biographer even records the gossip that Phidias was guilty of syphoning money set aside for the Athenian state into his own coffers (although this might well just be gossip). The most famous of Phidias’ work in Athens remains the statue of Athena Parthenos inside the Parthenon, and the Athena Promachos, a colossal bronze statue on the Acropolis, stood between the Parthenon and the Propylaea (the monumental gateway to the hilltop sanctuary). Plutarch likewise suggests that Phidias oversaw the works that were being executed on the Acropolis, including supervising Iktinos and Kallkrates, the architects responsible for the Parthenon itself which was built between 447 and 432 BC.\n\nOutside of Athens, Phidias’ name is associated with the Panhellenic sanctuary at Olympia on the Peloponnese. Panhellenic sanctuaries were sacred spaces open to all Greeks, and this one is famous as the site of the Olympic Games which began in the 8th century BC. Here, archaeologists have uncovered Phidias’ workshop. Unusually, they know that this was Phidias’ workshop because he left his name there: a small cup discovered here was inscribed on the base with the words ‘Pheidiou eimi’, or, ‘I belong to Phidias’. In the sanctuary, Phidias achieved immortality as the artist responsible for the Statue of Olympian Zeus. This monumental statue, showing the King of the Gods seated, holding a winged Nike, was famous as one of the Seven Wonders of the Ancient World.",
     "@phidiasTextDescription": {
       "phidiasTextDescription": "phidiasTextDescription"
     },
-    "aristophanesAndSophoclesTextDescription": "When looking at the importance of 5th century Athens as a place and time in history, it soon becomes clear that the city took centre stage for a staggering number of developments – political, social, and cultural – which are still significant to this day. Notable amongst these, and an important medium for exploring the politics of the period in particular, is theatre. There was nothing that the citizens of Athens enjoyed more than a trip to the theatre to cry – either tears of joy or sorrow – at the comedies and tragedies that graced the stages in the city.Athens was home to a number of the most famous playwrights in history, including Aeschylus and Euripides. Perhaps the most important however, was Sophocles. Born in around 496, he is responsible for producing some of the most enduring tragedies, may of which are still performed in modern theatres. These plays would typically be performed in competitions as part of religious festivals, such as the Dionysia festival at Athens, before being staged around Greece. Sophocles is known to have been an incredibly prolific playwright, producing around 120 plays. Unfortunately, a great number of these now survive only in fragmentary form. Seven Sophoclean tragedies have survived intact, and these include Oedipus the King, Electra, and Antigone. Many of his plays draw on well-known figures from Greek mythology. They often centred less on what happened, and instead how or why, typically featuring a central hero whose over-confidence and pride (their hubris) leads to a tragic ending for the character and a cautionary tale for the audience. Sophocles is also known to have been an active and important member of the Athenian polis, contributing to the democratic politics of the period. He worked alongside Pericles to quash a revolt on Samos in c.441 BC for instance.When it came to contemporary politics however, it was comedy that focused on the heroes and villains of the present – rather than mythology – most keenly. Few did it better, or with more bite, than Aristophanes. Born in around 460 BC, he is the best-known writer of Comedy from the Ancient Greek world, and he is still celebrated for his uproarious, though perceptive, portrayals of the turbulences of Athenian politics. Not much is known of Aristophanes the man, although he does feature in one of Plato’s dialogues; he is scalded by the philosopher for encouraging the public distrust of Socrates, the victim of Aristophanes’ lampooning (most famously in his play, The Clouds, written in around 423 BC). His grasp of the nature of Athenian politics and his ability to read the pulse of society is suggested by the plots of the plays that have survived however, and some of the most famous confront the Athenian state directly. For example, The Wasps (c. 422 BC) takes aim at the Athenian jury system, whilst the Lysistrata tells the tale of the women of Greece going on a sex strike to compel men to make peace with each other!",
+    "aristophanesAndSophoclesTextDescription": "When looking at the importance of 5th century Athens as a place and time in history, it soon becomes clear that the city took centre stage for a staggering number of developments – political, social, and cultural – which are still significant to this day. Notable amongst these, and an important medium for exploring the politics of the period in particular, is theatre. There was nothing that the citizens of Athens enjoyed more than a trip to the theatre to cry – either tears of joy or sorrow – at the comedies and tragedies that graced the stages in the city.\n\nAthens was home to a number of the most famous playwrights in history, including Aeschylus and Euripides. Perhaps the most important however, was Sophocles. Born in around 496, he is responsible for producing some of the most enduring tragedies, may of which are still performed in modern theatres. These plays would typically be performed in competitions as part of religious festivals, such as the Dionysia festival at Athens, before being staged around Greece. Sophocles is known to have been an incredibly prolific playwright, producing around 120 plays. Unfortunately, a great number of these now survive only in fragmentary form. Seven Sophoclean tragedies have survived intact, and these include Oedipus the King, Electra, and Antigone. Many of his plays draw on well-known figures from Greek mythology. They often centred less on what happened, and instead how or why, typically featuring a central hero whose over-confidence and pride (their hubris) leads to a tragic ending for the character and a cautionary tale for the audience. Sophocles is also known to have been an active and important member of the Athenian polis, contributing to the democratic politics of the period. He worked alongside Pericles to quash a revolt on Samos in c.441 BC for instance.\n\nWhen it came to contemporary politics however, it was comedy that focused on the heroes and villains of the present – rather than mythology – most keenly. Few did it better, or with more bite, than Aristophanes. Born in around 460 BC, he is the best-known writer of Comedy from the Ancient Greek world, and he is still celebrated for his uproarious, though perceptive, portrayals of the turbulences of Athenian politics. \n\nNot much is known of Aristophanes the man, although he does feature in one of Plato’s dialogues; he is scalded by the philosopher for encouraging the public distrust of Socrates, the victim of Aristophanes’ lampooning (most famously in his play, The Clouds, written in around 423 BC). His grasp of the nature of Athenian politics and his ability to read the pulse of society is suggested by the plots of the plays that have survived however, and some of the most famous confront the Athenian state directly. For example, The Wasps (c. 422 BC) takes aim at the Athenian jury system, whilst the Lysistrata tells the tale of the women of Greece going on a sex strike to compel men to make peace with each other!",
     "@aristophanesAndSophoclesTextDescription": {
       "aristophanesAndSophoclesTextDescription": "aristophanesAndSophoclesTextDescription"
     },
@@ -478,7 +478,7 @@
       "y508bodyText": "508bodyText"
     },
 
-    "y429": "c.429",
+    "y429": "429",
     "@y429": {
       "y429": "429"
     },
@@ -504,7 +504,7 @@
       "y495imageText": "495imageText"
     },
 
-    "y490": "c.490",
+    "y490": "490",
     "@y490": {
       "y490": "490"
     },
@@ -521,7 +521,7 @@
       "y490bodyTextTitle": "490bodyTextTitle"
     },
 
-    "y480": "c.480",
+    "y480": "480",
     "@y480": {
       "y480": "480"
     },
@@ -538,7 +538,7 @@
       "y480bodyTextTitle": "480bodyTextTitle"
     },
 
-    "y479": "c.479",
+    "y479": "479",
     "@y479": {
       "y479": "479"
     },
@@ -555,7 +555,7 @@
       "y479bodyTextTitle": "479bodyTextTitle"
     },
 
-    "y477": "c.477",
+    "y477": "477",
     "@y477": {
       "y477": "477"
     },
@@ -607,7 +607,7 @@
       "y469bodyTextTitle": "469bodyTextTitle"
     },
 
-    "y462": "c.462",
+    "y462": "462",
     "@y462": {
       "y462": "462"
     },
@@ -743,7 +743,7 @@
       "y447_432bodyTextTitle": "447-432bodyTextTitle"
     },
 
-    "y446": "c.446",
+    "y446": "446",
     "@y446": {
       "y446": "446"
     },
@@ -760,7 +760,7 @@
       "y446bodyTextTitle": "446bodyTextTitle"
     },
 
-    "y443": "c.443",
+    "y443": "443",
     "@y443": {
       "y443": "443"
     },
@@ -778,7 +778,7 @@
     },
 
 
-    "y441": "c.441",
+    "y441": "441",
     "@y441": {
       "y441": "441"
     },
@@ -795,7 +795,7 @@
       "y441bodyTextTitle": "441bodyTextTitle"
     },
 
-    "y438": "c.438",
+    "y438": "438",
     "@y438": {
       "y438": "438"
     },
@@ -812,7 +812,7 @@
       "y438bodyTextTitle": "438bodyTextTitle"
     },
 
-    "y431": "c.431",
+    "y431": "431",
     "@y431": {
       "y431": "431"
     },
@@ -829,7 +829,7 @@
       "y431bodyTextTitle": "431bodyTextTitle"
     },
 
-    "y430": "c.430",
+    "y430": "430",
     "@y430": {
       "y430": "430"
     },
@@ -846,7 +846,7 @@
       "y430bodyTextTitle": "430bodyTextTitle"
     },
 
-    "y427": "c.427",
+    "y427": "427",
     "@y427": {
       "y427": "427"
     },
@@ -863,7 +863,7 @@
       "y427bodyTextTitle": "427bodyTextTitle"
     },
 
-    "y421": "c.421",
+    "y421": "421",
     "@y421": {
       "y421": "421"
     },
@@ -880,7 +880,7 @@
       "y421bodyTextTitle": "421bodyTextTitle"
     },
 
-    "y416": "c.416",
+    "y416": "416",
     "@y416": {
       "y416": "416"
     },
@@ -897,7 +897,7 @@
       "y416bodyTextTitle": "416bodyTextTitle"
     },
 
-    "y415": "c.415",
+    "y415": "415",
     "@y415": {
       "y415": "415"
     },
@@ -914,7 +914,7 @@
       "y415bodyTextTitle": "415bodyTextTitle"
     },
 
-    "y414": "c.414",
+    "y414": "414",
     "@y414": {
       "y414": "414"
     },
@@ -931,7 +931,7 @@
       "y414bodyTextTitle": "414bodyTextTitle"
     },
 
-    "y413": "c.413",
+    "y413": "413",
     "@y413": {
       "y413": "413"
     },
@@ -948,7 +948,7 @@
       "y413bodyTextTitle": "413bodyTextTitle"
     },
 
-    "y411": "c.411",
+    "y411": "411",
     "@y411": {
       "y411": "411"
     },
@@ -965,7 +965,7 @@
       "y411bodyTextTitle": "411bodyTextTitle"
     },
 
-    "y410": "c.410",
+    "y410": "410",
     "@y410": {
       "y410": "410"
     },
@@ -982,7 +982,7 @@
       "y410bodyTextTitle": "410bodyTextTitle"
     },
 
-    "y407": "c.407",
+    "y407": "407",
     "@y407": {
       "y407": "407"
     },
@@ -999,7 +999,7 @@
       "y407bodyTextTitle": "407bodyTextTitle"
     },
 
-    "y404": "c.404",
+    "y404": "404",
     "@y404": {
       "y404": "404"
     },
@@ -1016,7 +1016,7 @@
       "y404bodyTextTitle": "404bodyTextTitle"
     },
 
-    "y403": "c.403",
+    "y403": "403",
     "@y403": {
       "y403": "403"
     },
@@ -1033,7 +1033,7 @@
       "y403bodyTextTitle": "403bodyTextTitle"
     },
 
-    "y399": "c.399",
+    "y399": "399",
     "@y399": {
       "y399": "399"
     },

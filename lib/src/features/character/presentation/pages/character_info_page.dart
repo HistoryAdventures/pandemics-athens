@@ -153,6 +153,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                           ),
                           Expanded(
                             child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               margin: EdgeInsets.only(
                                 top: HW.getHeight(16, context),
                                 bottom: HW.getHeight(16, context),

@@ -9,17 +9,22 @@ class ArrowRightTextWidget extends StatelessWidget {
   final String textSubTitle;
   final Color? color;
   final Function() onTap;
-  const ArrowRightTextWidget(
+  double? right;
+  double? bottom;
+  ArrowRightTextWidget(
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
+      this.right = 64,
+      this.bottom = 48,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          right: HW.getWidth(64, context), bottom: HW.getHeight(48, context)),
+          right: HW.getWidth(right!, context),
+          bottom: HW.getHeight(bottom!, context)),
       child: Clickable(
         onPressed: onTap,
         child: Row(

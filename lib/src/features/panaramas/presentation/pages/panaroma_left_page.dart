@@ -189,8 +189,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                             Widget child) {
                           return LayoutBuilder(
                               builder: (context, constraints) => DialogWidget(
-                                    titleText:
-                                        locals.chapter1MedicalToolsKnowledge,
+                                    titleText: locals.chapter1,
                                     subTitleText: locals.medicalToolsKnowledge,
                                     animation: animation,
                                     slectedInfoDialog: info,

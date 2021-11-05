@@ -245,7 +245,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                   child: SingleChildScrollView(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 18.0, top: 18),
+                                      right: 18.0, top: 16),
                                   child: Text(
                                     _selectedtText,
                                     style:
@@ -287,23 +287,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                   ),
                                 )
                                 .toList(),
-                          )
-                          //  GridView.builder(
-                          //   physics: const NeverScrollableScrollPhysics(),
-                          //   gridDelegate:
-                          //       SliverGridDelegateWithMaxCrossAxisExtent(
-                          //           maxCrossAxisExtent: HW.getWidth(100, context),
-                          //           crossAxisSpacing: 1,
-                          //           mainAxisSpacing: 1),
-                          //   itemCount: 25,
-                          //   itemBuilder: (context, index) {
-                          //     return gridViewCard(
-                          //         name: category[index].title,
-                          //         text: category[index].text,
-                          //         category: category[index].title);
-                          //   },
-                          // ),
-                          ),
+                          )),
                     ],
                   ),
                 ),

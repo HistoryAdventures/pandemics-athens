@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 import 'package:just_audio/just_audio.dart';
@@ -584,6 +585,7 @@ class _MapPageState extends State<MapPage> {
                       Expanded(
                         flex: 3,
                         child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           margin:
                               EdgeInsets.only(top: HW.getHeight(16, context)),
                           decoration: const BoxDecoration(
@@ -639,22 +641,22 @@ class _MapPageState extends State<MapPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              child: ArrowLeftTextWidget(
-                  textSubTitle: locals.todoNoHarm,
-                  textTitle: locals.chapter1,
-                  onTap: () {
-                    LeafDetails.currentVertex = 2;
-                    NavigationSharedPreferences.upDateShatedPreferences();
+            ArrowLeftTextWidget(
+                left: 0,
+                bottom: 0,
+                textSubTitle: locals.todoNoHarm,
+                textTitle: locals.chapter1,
+                onTap: () {
+                  LeafDetails.currentVertex = 2;
+                  NavigationSharedPreferences.upDateShatedPreferences();
 
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  }),
-            ),
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
+                }),
             Container(
               width: HW.getWidth(980, context),
               child: Row(
@@ -676,8 +678,10 @@ class _MapPageState extends State<MapPage> {
                     child: Container(
                       height: HW.getHeight(42, context),
                       width: HW.getWidth(930, context),
-                      child: Scrollbar(
+                      child: HAScrollbar(
+                        controller: _scrollController,
                         isAlwaysShown: true,
+                        showTrackOnHover: true,
                         child: ListView.builder(
                             controller: _scrollController,
                             shrinkWrap: true,
@@ -712,6 +716,8 @@ class _MapPageState extends State<MapPage> {
             ),
             ArrowRightTextWidget(
                 textSubTitle: locals.keyPeopleOfTheAge,
+                right: 0,
+                bottom: 0,
                 textTitle: locals.athens5thCentury,
                 onTap: () {
                   LeafDetails.visitedVertexes.add(5);

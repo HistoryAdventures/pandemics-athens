@@ -223,68 +223,47 @@ class _DocumentPageState extends State<DocumentPage>
                   duration: Times.fastest,
                   height: constraints.maxHeight,
                   width: isInfoBorderOpen
-                      ? constraints.maxWidth * 0.6
+                      ? HW.getHeight(1120, context)
                       : constraints.maxWidth,
-                  child: Container(
-                    margin: const EdgeInsets.all(1),
-                    width: isInfoBorderOpen
-                        ? constraints.maxWidth * 0.6
-                        : constraints.maxWidth,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.grey, width: 0.5),
-                    ),
+                  child: InteractiveViewer(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    transformationController: _transformationController,
+                    onInteractionStart: _onInteractionStart,
+                    boundaryMargin: const EdgeInsets.all(double.infinity),
+                    minScale: 0.25,
+                    maxScale: 3,
+                    constrained: false,
                     child: Container(
-                      margin: const EdgeInsets.all(8),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.grey, width: 0.5),
-                      ),
-                      width: isInfoBorderOpen
-                          ? constraints.maxWidth * 0.6
-                          : constraints.maxWidth,
-                      child: InteractiveViewer(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        transformationController: _transformationController,
-                        onInteractionStart: _onInteractionStart,
-                        boundaryMargin: const EdgeInsets.all(double.infinity),
-                        minScale: 0.25,
-                        maxScale: 3,
-                        constrained: false,
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          height: constraints.maxHeight,
-                          width: constraints.maxWidth,
-                          decoration: const BoxDecoration(
-                              // color: Colors.red,
-                              image: DecorationImage(
-                                  //alignment: Alignment.centerLeft,
-                                  image: AssetImage(AssetsPath.document))),
-                          child: SizedBox(
-                            child: Stack(
-                                children:
-                                    documentList.sublist(2, 6).map((data) {
-                              return Positioned(
-                                top: data.top,
-                                left: data.left,
-                                child: Clickable(
-                                  onPressed: () {
-                                    setState(() {
-                                      documentModel.chandeState(
-                                          data.name, data.text);
-                                    });
-                                  },
-                                  child: PointWidget(
-                                    color: documentModel.name == data.name
-                                        ? AppColors.orange
-                                        : Colors.black,
-                                    text: data.name!.substring(1),
-                                  ),
-                                ),
-                              );
-                            }).toList()),
-                          ),
-                        ),
+                      alignment: Alignment.centerLeft,
+                      height: constraints.maxHeight,
+                      width: constraints.maxWidth,
+                      decoration: const BoxDecoration(
+                          // color: Colors.red,
+                          image: DecorationImage(
+                              //alignment: Alignment.centerLeft,
+                              image: AssetImage(AssetsPath.document))),
+                      child: SizedBox(
+                        child: Stack(
+                            children: documentList.sublist(2, 6).map((data) {
+                          return Positioned(
+                            top: data.top,
+                            left: data.left,
+                            child: Clickable(
+                              onPressed: () {
+                                setState(() {
+                                  documentModel.chandeState(
+                                      data.name, data.text);
+                                });
+                              },
+                              child: PointWidget(
+                                color: documentModel.name == data.name
+                                    ? AppColors.orange
+                                    : Colors.black,
+                                text: data.name!.substring(1),
+                              ),
+                            ),
+                          );
+                        }).toList()),
                       ),
                     ),
                   ),
@@ -293,7 +272,7 @@ class _DocumentPageState extends State<DocumentPage>
                   alignment: Alignment.centerRight,
                   child: AnimatedContainer(
                     height: constraints.maxHeight,
-                    width: isInfoBorderOpen ? constraints.maxWidth * 0.4 : 0,
+                    width: isInfoBorderOpen ? HW.getWidth(800, context) : 0,
                     duration: Times.fastest,
                     child: LayoutBuilder(builder: (context, constraines) {
                       return Container(
@@ -306,43 +285,40 @@ class _DocumentPageState extends State<DocumentPage>
                               child: Container(
                                 height: constraines.maxHeight,
                                 padding: EdgeInsets.only(
-                                  left: constraints.maxWidth * 0.064,
-                                  right: constraints.maxWidth * 0.064,
-                                  top: constraines.maxHeight * 0.05,
-                                ),
+                                    left: HW.getWidth(64, context),
+                                    right: HW.getWidth(64, context),
+                                    top: HW.getHeight(50, context),
+                                    bottom: HW.getHeight(148, context)),
                                 child: Column(
                                   children: [
-                                    Flexible(
-                                      child: Container(
-                                        padding: EdgeInsets.only(
-                                            bottom:
-                                                constraines.maxHeight * 0.05),
-                                        child: Visibility(
-                                          visible: isInfoBorderOpen,
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Flexible(
-                                                child: Clickable(
-                                                  onPressed: () {},
-                                                  child: const Icon(
-                                                      Icons.volume_up),
-                                                ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          bottom: constraines.maxHeight * 0.05),
+                                      child: Visibility(
+                                        visible: isInfoBorderOpen,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Flexible(
+                                              child: Clickable(
+                                                onPressed: () {},
+                                                child:
+                                                    const Icon(Icons.volume_up),
                                               ),
-                                              Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      scaffoldkey.currentState!
-                                                          .openEndDrawer();
-                                                    },
-                                                    child:
-                                                        const Icon(Icons.menu)),
-                                              )
-                                            ],
-                                          ),
+                                            ),
+                                            Flexible(
+                                              child: Clickable(
+                                                  onPressed: () {
+                                                    scaffoldkey.currentState!
+                                                        .openEndDrawer();
+                                                  },
+                                                  child:
+                                                      const Icon(Icons.menu)),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -390,6 +366,9 @@ class _DocumentPageState extends State<DocumentPage>
                                           Expanded(
                                             flex: 6,
                                             child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
                                               decoration: const BoxDecoration(
                                                 border: Border(
                                                   top: BorderSide(
@@ -426,8 +405,8 @@ class _DocumentPageState extends State<DocumentPage>
                                               ),
                                             ),
                                           ),
-                                          Flexible(
-                                            // height: 30,
+                                          Container(
+                                            height: HW.getHeight(19, context),
                                             child: SingleChildScrollView(
                                                 scrollDirection:
                                                     Axis.horizontal,

@@ -206,10 +206,14 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                           .pop();
                                                     },
                                                     child: const Icon(
-                                                        Icons.clear)))
+                                                      Icons.clear,
+                                                      color: AppColors.grey35,
+                                                    )))
                                           ])),
                                   Expanded(
                                     child: Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10),
                                       margin: EdgeInsets.only(
                                         top: HW.getHeight(16, context),
                                         bottom: HW.getHeight(16, context),

@@ -6,6 +6,7 @@ abstract class AppColors {
   static const Color white = Color(0xffffffff);
 
   static const Color blackB = Color(0xff201a29);
+  static const Color trackColorScrollBar = Color(0xff343434);
 
   /// Black
   static const Color blackG = Color(0xFF202124);
