@@ -33,6 +33,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
   final globalKey = GlobalKey();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  int? hoveredItemIndex;
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
@@ -45,32 +46,131 @@ class _GlossaryPageState extends State<GlossaryPage> {
     _selectedtItem = 'DMDemocracy';
     _selectedtText = locales.glossaryDemocracytext;
     category = [
-      GlossaryModel(title: "DMDemocracy", text: locales.glossaryDemocracytext),
-      GlossaryModel(title: "HMHumours", text: locales.glossaryHumorsText),
-      GlossaryModel(title: "OSOstracism", text: locales.glossaryOstracismText),
       GlossaryModel(
-          title: "PHPhilosophy", text: locales.glossaryPhilosophyText),
-      GlossaryModel(title: "TYTyphus", text: locales.glossaryTyphusText),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
-      GlossaryModel(title: "", text: ""),
+        title: "DMDemocracy",
+        text: locales.glossaryDemocracytext,
+        index: 0,
+      ),
+      GlossaryModel(
+        title: "HMHumours",
+        text: locales.glossaryHumorsText,
+        index: 1,
+      ),
+      GlossaryModel(
+        title: "OSOstracism",
+        text: locales.glossaryOstracismText,
+        index: 2,
+      ),
+      GlossaryModel(
+        title: "PHPhilosophy",
+        text: locales.glossaryPhilosophyText,
+        index: 3,
+      ),
+      GlossaryModel(
+        title: "TYTyphus",
+        text: locales.glossaryTyphusText,
+        index: 4,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 5,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 6,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 7,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 8,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 9,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 10,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 11,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 12,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 13,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 14,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 15,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 16,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 17,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 18,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 19,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 20,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 21,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 22,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 23,
+      ),
+      GlossaryModel(
+        title: "",
+        text: "",
+        index: 24,
+      ),
     ];
     super.didChangeDependencies();
   }
@@ -163,14 +263,26 @@ class _GlossaryPageState extends State<GlossaryPage> {
                           child: Wrap(
                             children: category
                                 .map(
-                                  (item) => InkWell(
-                                    child: SizedBox(
-                                      height: HW.getHeight(100, context),
-                                      width: HW.getWidth(100, context),
-                                      child: gridViewCard(
-                                          name: item.title,
-                                          text: item.text,
-                                          category: item.title),
+                                  (item) => MouseRegion(
+                                    onHover: (_) {
+                                      hoveredItemIndex = item.index;
+                                      setState(() {});
+                                    },
+                                    onExit: (_) {
+                                      hoveredItemIndex = null;
+                                      setState(() {});
+                                    },
+                                    child: InkWell(
+                                      child: SizedBox(
+                                        height: HW.getHeight(100, context),
+                                        width: HW.getWidth(100, context),
+                                        child: gridViewCard(
+                                            isHovered:
+                                                hoveredItemIndex == item.index,
+                                            name: item.title,
+                                            text: item.text,
+                                            category: item.title),
+                                      ),
                                     ),
                                   ),
                                 )
@@ -260,8 +372,12 @@ class _GlossaryPageState extends State<GlossaryPage> {
     });
   }
 
-  Widget gridViewCard(
-      {required String name, required String category, required String text}) {
+  Widget gridViewCard({
+    required String name,
+    required String category,
+    required String text,
+    bool isHovered = false,
+  }) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       onTap: category == ""
@@ -272,7 +388,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.3),
-            gradient: _selectedtItem == name
+            gradient: _selectedtItem == name || isHovered
                 ? AppColors.linearGradient1
                 : AppColors.linearGradient2,
             borderRadius: BorderRadius.circular(5)),
