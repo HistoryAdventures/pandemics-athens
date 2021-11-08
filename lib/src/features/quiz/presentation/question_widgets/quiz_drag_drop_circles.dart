@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 
@@ -10,6 +11,10 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/circle_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/circle_button.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_drop_models.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_object.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/painter.dart';
 
 class QuizDragDropCirclesWidget extends StatefulWidget {
   final int questionIndex;
@@ -172,326 +177,22 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   // }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (!QuizData.showRightAnswers) {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        correctrAnswers();
-      });
-    }
-    return LayoutBuilder(builder: (context, constraints) {
-      return MouseRegion(
-        onHover: (e) {
-          setState(() {
-            final position = Offset(
-                e.position.dx + _horizontalController.offset,
-                e.position.dy + _verticalController.offset);
-            mousePosition = position;
-          });
-        },
-        child: SingleChildScrollView(
-          controller: _verticalController,
-          scrollDirection: Axis.vertical,
-          child: Container(
-            alignment: Alignment.centerLeft,
-            width: ui.window.physicalSize.width,
-            height: 1000,
-            child: SingleChildScrollView(
-              controller: _horizontalController,
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                width: 1300,
-                height: 1000,
-                child: Stack(
-                  children: [
-                    ...widget.userAnswer
-                        .map((customPaint) => customPaint.customPaint),
-                    if (QuizData.showRightAnswers)
-                      ...widget.listCorrectrAnswers
-                          .map((customPaint) => customPaint.customPaint),
-                    if (QuizData.showRightAnswers)
-                      ...widget.userAnswerWithCheck
-                          .map((customPaint) => customPaint.customPaint),
-                    CustomPaint(
-                      painter: DrowLine(
-                        color: AppColors.grey,
-                        strat: drowingLineStartOffset,
-                        end: drowingLineEndOffset,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: AbsorbPointer(
-                        absorbing: QuizData.showRightAnswers,
-                        child: Container(
-                          height: 1000,
-                          margin: const EdgeInsets.only(
-                              top: 120, left: 20, right: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.only(right: 50),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                            flex: 5,
-                                            child: Text(widget.question,
-                                                maxLines: 2,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .subtitle1
-                                                    ?.copyWith(
-                                                      fontSize: TextFontSize
-                                                          .getHeight(
-                                                              24, context),
-                                                    ))),
-                                      ])),
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 700,
-                                    child: Column(children: [
-                                      ...widget.answers
-                                          .map(
-                                            (answer) => Container(
-                                              width: 700,
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      width: 500,
-                                                      height:
-                                                          widget.quizWithImage
-                                                              ? 110
-                                                              : 50,
-                                                      child: Text(answer.text)),
-                                                  Container(
-                                                    key: answer.globalKey,
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    height: 50,
-                                                    width: 150,
-                                                    child: CircleWidget(
-                                                      isDraging: true,
-                                                      onDragCompleted: () {
-                                                        print(
-                                                            'onDragCompleted');
-                                                        setState(() {
-                                                          drowingLineEndOffset =
-                                                              Offset.zero;
-                                                          drowingLineStartOffset =
-                                                              Offset.zero;
-                                                        });
-                                                        addUserAnswers(
-                                                            answer.value,
-                                                            targetValue);
-                                                        addUserAnswersWithCheck(
-                                                            answer.value,
-                                                            targetValue);
-                                                      },
-                                                      targetIsImage: false,
-                                                      getStartLineOffset:
-                                                          (mousePosition) {
-                                                        drowingLineStartOffset =
-                                                            mousePosition;
-
-                                                        lineOffsetStart =
-                                                            mousePosition;
-                                                      },
-                                                      getEndLineOffset:
-                                                          (mousePosition) {
-                                                        setState(() {
-                                                          lineOffsetEnd = mousePosition +
-                                                              Offset(
-                                                                  _horizontalController
-                                                                      .offset,
-                                                                  _verticalController
-                                                                      .offset);
-
-                                                          drowingLineEndOffset =
-                                                              mousePosition +
-                                                                  Offset(
-                                                                      _horizontalController
-                                                                          .offset,
-                                                                      _verticalController
-                                                                          .offset);
-                                                        });
-                                                      },
-                                                      onWillAccept: false,
-                                                      onMove: (data) {
-                                                        setState(() {
-                                                          var withScroolOfset = data
-                                                                  .offset +
-                                                              Offset(
-                                                                  _horizontalController
-                                                                      .offset,
-                                                                  _verticalController
-                                                                      .offset);
-                                                          lineOffsetEnd =
-                                                              withScroolOfset;
-
-                                                          drowingLineEndOffset =
-                                                              withScroolOfset;
-                                                        });
-                                                      },
-                                                      context: context,
-                                                      answers: [answer],
-                                                      onAccept: (data) {
-                                                        print('onAccept');
-                                                        print(data.value);
-                                                      },
-                                                      onDragEnd: () {
-                                                        drowingLineEndOffset =
-                                                            Offset.zero;
-                                                        drowingLineStartOffset =
-                                                            Offset.zero;
-                                                        // print(
-                                                        //     drowingLineEndOffset);
-                                                        // print(
-                                                        //     drowingLineStartOffset);
-                                                      },
-                                                      mouseOffset:
-                                                          mousePosition,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                          .toList(),
-                                    ]),
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                      width: 400,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          ...widget.variants
-                                              .map(
-                                                (variant) => Container(
-                                                  width: 700,
-                                                  child: Row(
-                                                    children: [
-                                                      Container(
-                                                        key: variant.globalKey,
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        height: 50,
-                                                        width: 50,
-                                                        child: CircleWidget(
-                                                          targetIsImage: widget
-                                                              .quizWithImage,
-                                                          onWillAccept: true,
-                                                          onMove: (data) {
-                                                            setState(() {
-                                                              // lineOffsetEnd = data.offset;
-                                                              //  print(data.offset);
-                                                            });
-                                                          },
-                                                          isDraging: false,
-                                                          correctAnswers: [
-                                                            variant
-                                                                .correctAnswers!
-                                                          ],
-                                                          context: context,
-                                                          answers: [variant],
-                                                          onAccept: (data) {
-                                                            if (variant
-                                                                    .correctAnswers! ==
-                                                                data.correctAnswers) {
-                                                              QuizData.valueForDrowColoredLineFor =
-                                                                  true;
-                                                              targetValue =
-                                                                  variant.value;
-                                                              print(
-                                                                  'It is write :::TargetValue $targetValue');
-                                                            } else {
-                                                              QuizData.valueForDrowColoredLineFor =
-                                                                  false;
-                                                              targetValue =
-                                                                  variant.value;
-
-                                                              print(
-                                                                  'It is  wrong :::TargetValue $targetValue');
-                                                            }
-                                                          },
-                                                          mouseOffset:
-                                                              mousePosition,
-                                                        ),
-                                                      ),
-                                                      if (widget.quizWithImage)
-                                                        Clickable(
-                                                          onPressed: () {
-                                                            showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return DialoigMapImage(
-                                                                    image: variant
-                                                                        .text,
-                                                                  );
-                                                                });
-                                                          },
-                                                          child: Container(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      bottom:
-                                                                          8),
-                                                              width: 200,
-                                                              height: 110,
-                                                              child:
-                                                                  Image.asset(
-                                                                variant.text,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              )),
-                                                        )
-                                                      else
-                                                        Flexible(
-                                                          child: Container(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              height: 50,
-                                                              child: Text(
-                                                                "  ${variant.text}",
-                                                                maxLines: 2,
-                                                              )),
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    });
+    // if (!QuizData.showRightAnswers) {
+    //   WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    //     correctrAnswers();
+    //   });
+    // }
+    return const SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: _DragDropQuizBody(),
+    );
   }
 }
 
@@ -566,4 +267,402 @@ class DrowLineWidget {
       required this.isRight,
       required this.value,
       required this.targetValue});
+}
+
+class _DragDropQuizBody extends StatefulWidget {
+  const _DragDropQuizBody({Key? key}) : super(key: key);
+
+  @override
+  __DragDropQuizBodyState createState() => __DragDropQuizBodyState();
+}
+
+class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
+  List<Line> lines = [];
+  List<QuizItem> questions = [];
+  List<LineToSave> savedLines = [];
+  Line? drawingLine;
+
+  double circleButtonWidth = 0;
+  Offset offset = Offset(0, 0);
+  Offset startOffset = Offset(0, 0);
+
+  double canvasWidth = 0;
+  double canvasHeight = 0;
+  double screenWidth = 0;
+  double screenHeight = 0;
+  bool shouldPaint = false;
+  bool accepted = false;
+  int curentIndex = 0;
+  double smallScreenWidthFactor = 0;
+  double smallScreenHeightFactor = 0;
+  GlobalKey dropKey = GlobalKey();
+  double h = 0;
+  double w = 0;
+
+  Size get _screenSize => Size(screenWidth, screenHeight);
+
+  void checkAnswers() {
+    print("Check answers");
+    savedLines.forEach((element) {
+      element.color = Colors.red;
+      element.strokeWidth = 4;
+    });
+    int a = savedLines.indexWhere((element) =>
+        element.line.startKey == questions[0].question.key &&
+        element.line.endKey == questions[2].target.key);
+    int b = savedLines.indexWhere((element) =>
+        element.line.startKey == questions[1].question.key &&
+        element.line.endKey == questions[1].target.key);
+    int c = savedLines.indexWhere((element) =>
+        element.line.startKey == questions[2].question.key &&
+        element.line.endKey == questions[0].target.key);
+    if (a > -1) {
+      print("code is here a");
+
+      savedLines[a].color = Colors.green;
+    }
+    if (b > -1) {
+      print("code is here");
+      savedLines[b].color = Colors.green;
+    }
+    if (c > -1) {
+      print("code is here b");
+
+      savedLines[c].color = Colors.green;
+    }
+    print("a $a,b$b,c$c");
+    startOffset = Offset.zero;
+    offset = Offset.zero;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    questions.add(
+      QuizItem(
+        question: Question(key: GlobalKey()),
+        target: Target(
+          key: GlobalKey(),
+        ),
+      ),
+    );
+    questions.add(
+      QuizItem(
+        question: Question(key: GlobalKey()),
+        target: Target(
+          key: GlobalKey(),
+        ),
+      ),
+    );
+
+    questions.add(
+      QuizItem(
+        question: Question(
+          key: GlobalKey(),
+        ),
+        target: Target(
+          key: GlobalKey(),
+        ),
+      ),
+    );
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Future.delayed(Duration(milliseconds: 1000)).then((v) {
+      h = dropKey.currentContext!.size!.height;
+      w = dropKey.currentContext!.size!.width;
+      setState(() {});
+    });
+    screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context).size.width;
+    smallScreenWidthFactor =
+        (screenWidth - w + (HW.getWidth(1200, context) - w)) / 2;
+    smallScreenHeightFactor =
+        (screenHeight - h + (HW.getHeight(788, context) - h)) / 2;
+    circleButtonWidth = HW.getWidth(18, context);
+    canvasHeight = screenHeight * 0.3;
+    canvasWidth = screenHeight * 0.3;
+    if (lines.length > 0) {
+      lines[0].start = offsetForKey(lines[0].startKey);
+      lines[0].end = offsetForKey(lines[0].endKey);
+    }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(HW.getHeight(24, context)),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              children: [
+                AutoSizeText(
+                  "What happened during the Golden Age of Athens?",
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: HW.getHeight(24, context),
+                      ),
+                  textAlign: TextAlign.start,
+                ),
+                RaisedButton(
+                    onPressed: () {
+                      checkAnswers();
+                    },
+                    child: Text("check")),
+              ],
+            ),
+            AutoSizeText(
+              "*drag nodes from one column to another, to match the anwsers",
+              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                    fontSize: HW.getHeight(12, context),
+                  ),
+            ),
+          ]),
+        ),
+        Expanded(
+          key: dropKey,
+          child: CustomPaint(
+            painter: MyPainter(
+              smallScreenHeightFactor: smallScreenHeightFactor,
+              smallScreenWidthFactor: smallScreenWidthFactor,
+              accepted: accepted,
+              circleButtonWidth: circleButtonWidth,
+              lines: lines,
+              startOffset: startOffset,
+              endOffset: offset,
+              shouldPaint: shouldPaint,
+              quizItem: questions[curentIndex],
+              savedLines: savedLines,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      _draggable(
+                        questions[0].question,
+                        0,
+                        "Battke of Thermopylae",
+                      ),
+                      divider38(context),
+                      _draggable(
+                        questions[1].question,
+                        1,
+                        "Birth of Socrates",
+                      ),
+                      divider38(context),
+                      _draggable(
+                        questions[2].question,
+                        2,
+                        "The Plague arrives in Athens",
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: HW.getWidth(210, context),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      _target(
+                        questions[0].target,
+                        "Battke of Thermopylae",
+                      ),
+                      divider38(context),
+                      _target(
+                        questions[1].target,
+                        "Birth of Socrates",
+                      ),
+                      divider38(context),
+                      _target(
+                        questions[2].target,
+                        "The Plague arrives in Athens",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void onDragUpdate(DragUpdateDetails d) {
+    offset = Offset(
+      d.globalPosition.dx - smallScreenWidthFactor,
+      d.globalPosition.dy - smallScreenHeightFactor,
+    );
+
+    setState(() {});
+  }
+
+  void onDragStart() {
+    startOffset = _startOffset();
+    offset = _startOffset();
+    lines.clear();
+    int indexInSaved = savedLines.indexWhere(
+      (element) => element.line.startKey == questions[curentIndex].question.key,
+    );
+    if (indexInSaved > -1) {
+      savedLines.removeAt(indexInSaved);
+    }
+    accepted = true;
+    setState(() {});
+    shouldPaint = true;
+  }
+
+  Offset _startOffset() {
+    RenderBox box = questions[curentIndex]
+        .question
+        .key
+        .currentContext!
+        .findRenderObject() as RenderBox;
+    Offset position = box.localToGlobal(
+      Offset(
+        smallScreenWidthFactor * -1,
+        smallScreenHeightFactor * -1,
+      ),
+    ); //this is global position
+    double y = position.dy + circleButtonWidth / 2;
+    double x = position.dx + circleButtonWidth / 2;
+    return Offset(x, y);
+  }
+
+  Offset offsetForKey(GlobalKey key) {
+    RenderBox box = key.currentContext!.findRenderObject() as RenderBox;
+    Offset position = box.localToGlobal(Offset.zero); //this is global position
+    double y = position.dy + circleButtonWidth / 2;
+    double x = position.dx + circleButtonWidth / 2;
+    return Offset(x, y);
+  }
+
+  Widget _draggable(
+    Question question,
+    int index,
+    String questionText,
+  ) =>
+      Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: HW.getWidth(24, context)),
+            child: Text(questionText),
+          ),
+          const Spacer(),
+          Draggable(
+            data: "data",
+            onDragUpdate: onDragUpdate,
+            onDragStarted: () {
+              curentIndex = index;
+              onDragStart();
+            },
+            onDragEnd: (_) {
+              startOffset = Offset.zero;
+              offset = Offset.zero;
+              setState(() {});
+            },
+            onDraggableCanceled: (_, o) {},
+            dragAnchorStrategy: (_, c, o) {
+              return Offset(
+                  0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
+            },
+            feedback: CircleButton(
+              color: Colors.transparent,
+              width: circleButtonWidth,
+            ),
+            child: CircleButton(
+              key: question.key,
+              color: savedLines.indexWhere(
+                        (element) => element.line.startKey == question.key,
+                      ) ==
+                      -1
+                  ? Colors.transparent
+                  : Colors.orange[800]!,
+              width: circleButtonWidth,
+            ),
+          ),
+        ],
+      );
+
+  Widget _target(Target target, String answerText) => Row(
+        children: [
+          DragTarget(
+            onMove: (_) {
+              drawingLine = Line(
+                startOffset,
+                offset,
+                Size(screenWidth, screenHeight),
+                questions[curentIndex].question.key,
+                target.key,
+                false,
+              );
+              lines.add(drawingLine!);
+              accepted = false;
+              setState(() {});
+            },
+            onLeave: (_) {
+              lines.removeWhere(
+                (element) =>
+                    element.startKey == questions[curentIndex].question.key,
+              );
+
+              accepted = true;
+              setState(() {});
+            },
+            onAccept: (d) {
+              savedLines.removeWhere(
+                (element) => element.line.endKey == drawingLine!.endKey,
+              );
+              savedLines.add(
+                LineToSave(
+                  line: drawingLine!,
+                  curveOffset: MyPainter.curveChangingOffset,
+                ),
+              );
+
+              lines.clear();
+              startOffset = Offset.zero;
+              offset = Offset.zero;
+              setState(() {});
+            },
+            builder: (
+              c,
+              obj,
+              dyn,
+            ) {
+              return CircleButton(
+                key: target.key,
+                color: savedLines.indexWhere(
+                          (element) => element.line.endKey == target.key,
+                        ) ==
+                        -1
+                    ? Colors.transparent
+                    : Colors.orange[800]!,
+                width: circleButtonWidth,
+              );
+            },
+          ),
+          SizedBox(
+            width: HW.getWidth(24, context),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: HW.getWidth(24, context)),
+            child: Text(answerText),
+          ),
+        ],
+      );
+
+  Widget divider38(BuildContext context) => SizedBox(
+        height: HW.getHeight(38, context),
+      );
 }

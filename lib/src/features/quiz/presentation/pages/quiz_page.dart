@@ -161,300 +161,44 @@ class _QuizPageState extends State<QuizPage> {
                   boxShadow: Shadows.allBorders, color: AppColors.white),
               child: Stack(
                 children: [
-                  Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
+                  Column(
+                    children: [
+                      Container(
                         decoration: const BoxDecoration(
                             color: AppColors.white,
                             border: Border(
                                 bottom: BorderSide(
                                     color: AppColors.grey, width: 1))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  'QUESTION ${QuizData.questionIndex + 1}/7',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1
-                                      ?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            const Expanded(
-                              child: Text(
-                                "Assessment",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  IconButtonWidget(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return ShowDialogWidget(
-                                                accept: 'Yes',
-                                                cancel: 'No',
-                                                onTapAccept: () {
-                                                  setState(() {
-                                                    QuizData.checkUerAnswers();
-                                                    QuizData.showRightAnswers =
-                                                        !QuizData
-                                                            .showRightAnswers;
-                                                    QuizData.questionIndex = 0;
-                                                  });
-                                                  Navigator.of(context).pop();
-                                                },
-                                                onTapCancel: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                subTitle:
-                                                    'Are you done and do you want to show the answers?',
-                                                title: 'Show Answers',
-                                              );
-                                            });
-                                      },
-                                      icon: Icon(Icons.done)),
-                                  IconButtonWidget(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return ShowDialogWidget(
-                                                accept: 'Yes, clear',
-                                                cancel: 'No, keep',
-                                                onTapAccept: () {
-                                                  setState(() {
-                                                    setState(() {
-                                                      QuizData.clearAnswers();
-                                                      QuizData.showRightAnswers =
-                                                          !QuizData
-                                                              .showRightAnswers;
-                                                      QuizData.questionIndex =
-                                                          0;
-                                                    });
-                                                  });
-                                                  Navigator.of(context).pop();
-                                                },
-                                                onTapCancel: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                subTitle:
-                                                    'The answers will be permanently deleted and cannot be recovered. Are you sure?',
-                                                title:
-                                                    'Clear the answers and start over?',
-                                              );
-                                            });
-                                      },
-                                      icon: const Icon(Icons.delete)),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                  Align(
-                    alignment: Alignment.center,
-                    child: AnimatedSwitcher(
-                      transitionBuilder: (child, animation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        );
-                      },
-                      duration: Times.fast,
-                      child:
-                          //  QuizData.questionIndex == 10
-                          //     ? QuizLastPage(
-                          //         onPressed: QuizData.showRightAnswers
-                          //             ? () {
-                          //                 setState(() {
-                          //                   QuizData.questionIndex = 0;
-                          //                 });
-                          //               }
-                          //             : () {
-                          //                 showDialog(
-                          //                     context: context,
-                          //                     builder: (context) {
-                          //                       return ShowDialogWidget(
-                          //                         accept: 'Yes',
-                          //                         cancel: 'No',
-                          //                         onTapAccept: () {
-                          //                           setState(() {
-                          //                             QuizData.checkUerAnswers();
-                          //                             QuizData.showRightAnswers =
-                          //                                 !QuizData
-                          //                                     .showRightAnswers;
-                          //                           });
-                          //                           Navigator.of(context).pop();
-                          //                         },
-                          //                         onTapCancel: () {
-                          //                           Navigator.of(context).pop();
-                          //                         },
-                          //                         subTitle:
-                          //                             'Are you done and do you want to show the answers?',
-                          //                         title: 'Show Answers',
-                          //                       );
-                          //                     });
-                          //               },
-                          //       )
-                          //     :
-                          Container(
-                        key: ValueKey(QuizData.questionIndex),
-                        child: questionsWidgets[QuizData.questionIndex],
+                        child: _header,
                       ),
-                    ),
+                      Expanded(
+                        child: AnimatedSwitcher(
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          duration: Times.fast,
+                          child: Container(
+                            key: ValueKey(QuizData.questionIndex),
+                            child: questionsWidgets[QuizData.questionIndex],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconButtonWidget(
-                              iconSize: 50,
-                              onPressed: previousButtonisAvailibaleToPress
-                                  ? () {
-                                      if (mounted) {
-                                        setState(() {
-                                          QuizData.questionIndex--;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              icon: const Icon(Icons.arrow_left),
-                            ),
-                            Row(
-                                children: questionsWidgets
-                                    .asMap()
-                                    .entries
-                                    .map((entry) {
-                              final int index = entry.key;
-                              return Container(
-                                height: 20,
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  height: 16,
-                                  width: 16,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: QuizData.questionIndex == index
-                                              ? AppColors.transpatent
-                                              : AppColors.grey35),
-                                      shape: BoxShape.circle,
-                                      color: QuizData.questionIndex == index
-                                          ? AppColors.orange
-                                          : AppColors.transpatent),
-                                ),
-                              );
-                            }).toList()
-                                // .asMap()
-                                // .map<Widget>((key, value) => Container())
-                                // .toList(),
-                                )
-                            // Container(
-                            //   height: 30,
-                            //   child: ListView.builder(
-                            //       scrollDirection: Axis.horizontal,
-                            //       itemCount: questionsWidgets.length,
-                            //       itemBuilder: (context, index) {
-                            //         return Wrap(
-                            //           direction: Axis.vertical,
-                            //           children: [
-                            //             Container(
-                            //               margin: EdgeInsets.symmetric(
-                            //                   horizontal: 10),
-                            //               height: 20,
-                            //               width: 20,
-                            //               decoration: BoxDecoration(
-                            //                   border: Border.all(
-                            //                       color: QuizData
-                            //                                   .questionIndex ==
-                            //                               index
-                            //                           ? AppColors.transpatent
-                            //                           : AppColors.grey35),
-                            //                   shape: BoxShape.circle,
-                            //                   color: QuizData.questionIndex ==
-                            //                           index
-                            //                       ? AppColors.orange
-                            //                       : AppColors.transpatent),
-                            //             ),
-                            //           ],
-                            //         );
-                            //       }),
-                            // ),
-
-                            ,
-                            IconButtonWidget(
-                              iconSize: 50,
-                              onPressed: nextButtonisAvailibaleToPress
-                                  ? () {
-                                      if (mounted) {
-                                        setState(() {
-                                          QuizData.questionIndex++;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              icon: const Icon(
-                                Icons.arrow_right,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
+                    child: _indicator,
+                  ),
                 ],
               ),
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: SoundAndMenuWidget(
-              widget: IconButtonWidget(
-                onPressed: () {
-                  LeafDetails.currentVertex = 15;
-                  NavigationSharedPreferences.upDateShatedPreferences();
-
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
-                },
-                icon: const Icon(Icons.arrow_upward),
-              ),
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-              onTapVolume: isSoundOn
-                  ? () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
-                      });
-                    }
-                  : () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
-                      });
-                    },
-              onTapMenu: () {
-                scaffoldkey.currentState!.openEndDrawer();
-              },
-            ),
+            child: _menu,
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -476,4 +220,196 @@ class _QuizPageState extends State<QuizPage> {
       ),
     );
   }
+
+  Widget get _menu => SoundAndMenuWidget(
+        widget: IconButtonWidget(
+          onPressed: () {
+            LeafDetails.currentVertex = 15;
+            NavigationSharedPreferences.upDateShatedPreferences();
+
+            if (kIsWeb) {
+              html.window.history.back();
+              context.router.pop();
+            } else {
+              context.router.pop();
+            }
+          },
+          icon: const Icon(Icons.arrow_upward),
+        ),
+        icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+        onTapVolume: isSoundOn
+            ? () {
+                setState(() {
+                  isSoundOn = !isSoundOn;
+                  backgroundplayer.pause();
+                });
+              }
+            : () {
+                setState(() {
+                  isSoundOn = !isSoundOn;
+                  backgroundplayer.play();
+                });
+              },
+        onTapMenu: () {
+          scaffoldkey.currentState!.openEndDrawer();
+        },
+      );
+
+  Widget get _indicator => Container(
+        height: HW.getHeight(150, context),
+        padding: const EdgeInsets.all(24),
+        child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButtonWidget(
+                iconSize: 50,
+                onPressed: previousButtonisAvailibaleToPress
+                    ? () {
+                        if (mounted) {
+                          setState(() {
+                            QuizData.questionIndex--;
+                          });
+                        }
+                      }
+                    : null,
+                icon: const Icon(Icons.arrow_left),
+              ),
+              Row(
+                  children: questionsWidgets.asMap().entries.map((entry) {
+                final int index = entry.key;
+                return Container(
+                  height: 20,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    height: 16,
+                    width: 16,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: QuizData.questionIndex == index
+                                ? AppColors.transpatent
+                                : AppColors.grey35),
+                        shape: BoxShape.circle,
+                        color: QuizData.questionIndex == index
+                            ? AppColors.orange
+                            : AppColors.transpatent),
+                  ),
+                );
+              }).toList()),
+              IconButtonWidget(
+                iconSize: 50,
+                onPressed: nextButtonisAvailibaleToPress
+                    ? () {
+                        if (mounted) {
+                          setState(() {
+                            QuizData.questionIndex++;
+                          });
+                        }
+                      }
+                    : null,
+                icon: const Icon(
+                  Icons.arrow_right,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Widget get _header => Container(
+        height: HW.getHeight(100, context),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(
+                  HW.getHeight(24, context),
+                ),
+                child: Text(
+                  'QUESTION ${QuizData.questionIndex + 1}/7',
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        fontSize: HW.getHeight(18, context),
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Text(
+                "Assessment",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: HW.getHeight(32, context),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButtonWidget(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ShowDialogWidget(
+                                accept: 'Yes',
+                                cancel: 'No',
+                                onTapAccept: () {
+                                  setState(() {
+                                    QuizData.checkUerAnswers();
+                                    QuizData.showRightAnswers =
+                                        !QuizData.showRightAnswers;
+                                    QuizData.questionIndex = 0;
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                                onTapCancel: () {
+                                  Navigator.of(context).pop();
+                                },
+                                subTitle:
+                                    'Are you done and do you want to show the answers?',
+                                title: 'Show Answers',
+                              );
+                            });
+                      },
+                      icon: Icon(Icons.done)),
+                  IconButtonWidget(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ShowDialogWidget(
+                                accept: 'Yes, clear',
+                                cancel: 'No, keep',
+                                onTapAccept: () {
+                                  setState(() {
+                                    setState(() {
+                                      QuizData.clearAnswers();
+                                      QuizData.showRightAnswers =
+                                          !QuizData.showRightAnswers;
+                                      QuizData.questionIndex = 0;
+                                    });
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                                onTapCancel: () {
+                                  Navigator.of(context).pop();
+                                },
+                                subTitle:
+                                    'The answers will be permanently deleted and cannot be recovered. Are you sure?',
+                                title: 'Clear the answers and start over?',
+                              );
+                            });
+                      },
+                      icon: const Icon(Icons.delete)),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
 }
