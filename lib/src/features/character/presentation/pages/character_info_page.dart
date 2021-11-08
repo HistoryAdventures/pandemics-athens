@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -166,30 +167,33 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       color: AppColors.grey, width: 1.2),
                                 ),
                               ),
-                              child: ListView(shrinkWrap: true, children: [
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(right: 24, top: 16),
-                                  child: RichText(
-                                      text: TextSpan(children: [
-                                    TextSpan(
-                                      text:
-                                          '${characterModelNotifierprovider.subTitle}\n\n'
-                                              .toUpperCase(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline3
-                                          ?.copyWith(color: AppColors.black54),
-                                    ),
-                                    TextSpan(
-                                      text: characterModelNotifierprovider
-                                          .bodyText,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    ),
-                                  ])),
-                                )
-                              ]),
+                              child: HAScrollbar(
+                                isAlwaysShown: true,
+                                child: ListView(shrinkWrap: true, children: [
+                                  Container(
+                                    padding:
+                                        const EdgeInsets.only(right: 24, top: 16),
+                                    child: RichText(
+                                        text: TextSpan(children: [
+                                      TextSpan(
+                                        text:
+                                            '${characterModelNotifierprovider.subTitle}\n\n'
+                                                .toUpperCase(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline3
+                                            ?.copyWith(color: AppColors.black54),
+                                      ),
+                                      TextSpan(
+                                        text: characterModelNotifierprovider
+                                            .bodyText,
+                                        style:
+                                            Theme.of(context).textTheme.bodyText1,
+                                      ),
+                                    ])),
+                                  )
+                                ]),
+                              ),
                             ),
                           ),
                         ],

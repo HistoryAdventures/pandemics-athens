@@ -82,8 +82,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         image: AssetsPath.panaramaImage7,
         latitude: -45.0,
         longitude: 15.0,
-        width: 60,
-        height: 60,
+        width: 90,
+        height: 75,
       ),
       InfoDialogModel(
         imageDescription: locals.legasyImageText,

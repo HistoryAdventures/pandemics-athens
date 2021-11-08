@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -142,57 +143,138 @@ class _CreditsPageState extends State<CreditsPage> {
                   right: HW.getWidth(360, context),
                   child: Container(
                       height: HW.getHeight(675, context),
-                      child: Scrollbar(
-                        showTrackOnHover: false,
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                          textDecoration: TextDecoration.none,
-                                          peoples: ['Darrell Steward'],
-                                          profession: 'creator'),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Bessie Cooper',
-                                          'Wade Warren',
-                                          'Ralph Edwards'
-                                        ],
-                                        profession: 'producers',
-                                      ),
-                                      AuthorWidget(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
                                         textDecoration: TextDecoration.none,
                                         peoples: ['Darrell Steward'],
-                                        profession: 'art director',
-                                      ),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Jerome Bell',
-                                          'Kristin Watson'
-                                        ],
-                                        profession: 'narrators',
-                                      ),
-                                    ],
-                                  ),
+                                        profession: 'creator'),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Bessie Cooper',
+                                        'Wade Warren',
+                                        'Ralph Edwards'
+                                      ],
+                                      profession: 'producers',
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: ['Darrell Steward'],
+                                      profession: 'art director',
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Jerome Bell',
+                                        'Kristin Watson'
+                                      ],
+                                      profession: 'narrators',
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Darrell Steward',
+                                        'Jerome Bell',
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                        'Leslie Alexander',
+                                        'Esther Howard',
+                                        'Bessie Cooper'
+                                      ],
+                                      profession: 'illustrators',
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Darrell Steward',
+                                        'Jerome Bell',
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                        'Leslie Alexander'
+                                      ],
+                                      profession: 'writers',
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Darrell Steward',
+                                        'Jerome Bell',
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                      ],
+                                      profession: 'animators',
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Darrell Steward',
+                                        'Jerome Bell',
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                      ],
+                                      profession: 'developers',
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                        'Esther Howard',
+                                        'Bessie Cooper',
+                                        'Wade Warren'
+                                      ],
+                                      profession: 'marketing & PR',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
                                         textDecoration: TextDecoration.none,
                                         peoples: [
                                           'Darrell Steward',
@@ -205,112 +287,28 @@ class _CreditsPageState extends State<CreditsPage> {
                                           'Esther Howard',
                                           'Bessie Cooper'
                                         ],
-                                        profession: 'illustrators',
-                                      ),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Darrell Steward',
-                                          'Jerome Bell',
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                          'Leslie Alexander'
-                                        ],
-                                        profession: 'writers',
-                                      )
-                                    ],
-                                  ),
+                                        profession: 'supported by'),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      peoples: [
+                                        'Darrell Steward',
+                                        'Jerome Bell',
+                                        'Kristin Watson',
+                                        'Kathryn Murphy',
+                                        'Robert Fox',
+                                        'Marvin McKinney',
+                                        'Leslie Alexander',
+                                        'Esther Howard',
+                                        'Bessie Cooper',
+                                        'Esther Howard',
+                                        'Bessie Cooper'
+                                      ],
+                                      profession: 'special thanks',
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Darrell Steward',
-                                          'Jerome Bell',
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                        ],
-                                        profession: 'animators',
-                                      ),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Darrell Steward',
-                                          'Jerome Bell',
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                        ],
-                                        profession: 'developers',
-                                      ),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                          'Esther Howard',
-                                          'Bessie Cooper',
-                                          'Wade Warren'
-                                        ],
-                                        profession: 'marketing & PR',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                          textDecoration: TextDecoration.none,
-                                          peoples: [
-                                            'Darrell Steward',
-                                            'Jerome Bell',
-                                            'Kristin Watson',
-                                            'Kathryn Murphy',
-                                            'Robert Fox',
-                                            'Marvin McKinney',
-                                            'Leslie Alexander',
-                                            'Esther Howard',
-                                            'Bessie Cooper'
-                                          ],
-                                          profession: 'supported by'),
-                                      AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Darrell Steward',
-                                          'Jerome Bell',
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                          'Leslie Alexander',
-                                          'Esther Howard',
-                                          'Bessie Cooper',
-                                          'Esther Howard',
-                                          'Bessie Cooper'
-                                        ],
-                                        profession: 'special thanks',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       )),

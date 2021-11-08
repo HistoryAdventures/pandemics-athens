@@ -44,6 +44,7 @@ abstract class AppColors {
   static const Color greyDeep = Color(0xff2E2E2E);
 
   static const Color grey35 = Color.fromRGBO(0, 0, 0, 0.35);
+  static const Color grey10 = Color.fromRGBO(0, 0, 0, 0.1);
 
   // Transparent
   static const Color transpatent = Colors.transparent;
@@ -80,6 +81,17 @@ abstract class AppColors {
     colors: [
       Color.fromRGBO(255, 255, 255, 0.8),
       Color.fromRGBO(255, 255, 255, 0.8),
+      // Color.fromRGBO(255, 255, 255, 0.5),
+
+      //radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4)
+    ],
+    end: Alignment.bottomLeft,
+  );
+
+  static const LinearGradient linearGradientBlueBK = LinearGradient(
+    colors: [
+      Color(0xff394051),
+      Color(0xff252935),
       // Color.fromRGBO(255, 255, 255, 0.5),
 
       //radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4)

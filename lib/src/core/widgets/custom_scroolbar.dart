@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 
 // import 'color_scheme.dart';
 // import 'material_state.dart';
@@ -166,7 +167,15 @@ class _MaterialScrollbarState extends RawScrollbarState<_MaterialScrollbar> {
   bool _dragIsActive = false;
   bool _hoverIsActive = false;
   late ColorScheme _colorScheme;
-  late ScrollbarThemeData _scrollbarTheme;
+  ScrollbarThemeData _scrollbarTheme = ScrollbarThemeData(
+      radius: const Radius.circular(2),
+      crossAxisMargin: 1,
+      minThumbLength: 119,
+      thickness: MaterialStateProperty.all(4),
+      trackColor: MaterialStateProperty.all(AppColors.trackColorScrollBar),
+      trackBorderColor: MaterialStateProperty.all(AppColors.transpatent),
+      thumbColor: MaterialStateProperty.all(AppColors.orange),
+      showTrackOnHover: true);
   // On Android, scrollbars should match native appearance.
   late bool _useAndroidScrollbar;
 

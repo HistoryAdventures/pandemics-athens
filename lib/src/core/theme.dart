@@ -15,7 +15,7 @@ class DefaultTheme {
           crossAxisMargin: 1,
           minThumbLength: 119,
           thickness: MaterialStateProperty.all(4),
-          trackColor: MaterialStateProperty.all(AppColors.grey35),
+          trackColor: MaterialStateProperty.all(AppColors.grey10),
           trackBorderColor: MaterialStateProperty.all(AppColors.transpatent),
           thumbColor: MaterialStateProperty.all(AppColors.orange),
           showTrackOnHover: true),

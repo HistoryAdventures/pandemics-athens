@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -176,154 +177,151 @@ class _SourcePageState extends State<SourcePage> {
                   bottom: 80,
                   child: Container(
                       height: HW.getHeight(597, context),
-                      child: Scrollbar(
-                        showTrackOnHover: false,
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        peoples: [
-                                          "The Soldier of Marathon",
-                                          "Leonidas at Thermopylae",
-                                          "Temple of the Delians",
-                                          "Decree of Themistocles",
-                                          "Mask of Agamemnon",
-                                          "Socrates Tears Alcibiades from the  Embrace of Sensual Pleasure",
-                                          "A silver tetradrachm from Athens",
-                                          "Pericles Funeral Oration",
-                                          "Athena Parthenos",
-                                          "The Trojan Women",
-                                          "Meeting between Cyrus the Younger  and Lysander",
-                                          "An engraving of Hippocrates",
-                                          "Patients sleeping in the temple of  Aesculapius at Epidaurus",
-                                          "A fragment of the Hippocratic oath",
-                                          "Alcibades being taught by Socrates",
-                                          "Lysander outside the walls of Athens",
-                                        ],
-                                        profession: 'wikimedia',
-                                      ),
-                                    ],
-                                  ),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      peoples: [
+                                        "The Soldier of Marathon",
+                                        "Leonidas at Thermopylae",
+                                        "Temple of the Delians",
+                                        "Decree of Themistocles",
+                                        "Mask of Agamemnon",
+                                        "Socrates Tears Alcibiades from the  Embrace of Sensual Pleasure",
+                                        "A silver tetradrachm from Athens",
+                                        "Pericles Funeral Oration",
+                                        "Athena Parthenos",
+                                        "The Trojan Women",
+                                        "Meeting between Cyrus the Younger  and Lysander",
+                                        "An engraving of Hippocrates",
+                                        "Patients sleeping in the temple of  Aesculapius at Epidaurus",
+                                        "A fragment of the Hippocratic oath",
+                                        "Alcibades being taught by Socrates",
+                                        "Lysander outside the walls of Athens",
+                                      ],
+                                      profession: 'wikimedia',
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Pnyx hill, Athens.",
-                                          "The Lenormant Trireme Relief",
-                                          "Grave relief of Dexileos, son of Lysanias,  of Thorikos",
-                                          "Medea about to kill her children",
-                                          "The plague of Ashdod",
-                                          "Death of Socrates, Giambettino Cignaroli",
-                                          "A marble portrait of Plato",
-                                          "The Death of Socrates",
-                                          "Peytel aryballos",
-                                          "Medicine in the Middle Ages",
-                                          "A pinax, or decorated plaque",
-                                          "A Roman-era mosaic depicting a trireme",
-                                        ],
-                                        profession: 'wikimedia',
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Pnyx hill, Athens.",
+                                        "The Lenormant Trireme Relief",
+                                        "Grave relief of Dexileos, son of Lysanias,  of Thorikos",
+                                        "Medea about to kill her children",
+                                        "The plague of Ashdod",
+                                        "Death of Socrates, Giambettino Cignaroli",
+                                        "A marble portrait of Plato",
+                                        "The Death of Socrates",
+                                        "Peytel aryballos",
+                                        "Medicine in the Middle Ages",
+                                        "A pinax, or decorated plaque",
+                                        "A Roman-era mosaic depicting a trireme",
+                                      ],
+                                      profession: 'wikimedia',
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Grave stele with Hoplite Battle Scene",
-                                          "Athenian tribute list",
-                                          "A Marble bust of Herodotos",
-                                          "A terracotta lekythos (oil flask) from the  late 6th century",
-                                          "A marble grave stele of a young girl",
-                                          "The Parthenon’",
-                                        ],
-                                        profession: 'the met museum',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Marble portrait bust: Pericles wearing a  helmet pushed back on his head. ",
-                                          "Marble statuette of Socrates."
-                                        ],
-                                        profession: 'British museum',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Parthenon on the Acropolis in Athens",
-                                          "A marble relief from Italy in the second century AD"
-                                        ],
-                                        profession: 'Rijks Museum',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "The Plague Athens",
-                                          "Plato, Apology"
-                                        ],
-                                        profession: 'Perseus Digital Library',
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Grave stele with Hoplite Battle Scene",
+                                        "Athenian tribute list",
+                                        "A Marble bust of Herodotos",
+                                        "A terracotta lekythos (oil flask) from the  late 6th century",
+                                        "A marble grave stele of a young girl",
+                                        "The Parthenon’",
+                                      ],
+                                      profession: 'the met museum',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Marble portrait bust: Pericles wearing a  helmet pushed back on his head. ",
+                                        "Marble statuette of Socrates."
+                                      ],
+                                      profession: 'British museum',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Parthenon on the Acropolis in Athens",
+                                        "A marble relief from Italy in the second century AD"
+                                      ],
+                                      profession: 'Rijks Museum',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "The Plague Athens",
+                                        "Plato, Apology"
+                                      ],
+                                      profession: 'Perseus Digital Library',
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Temple of Apollo Epicurius at Bassae",
-                                        ],
-                                        profession: 'UNESCO',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "An ostrakon inscribed with the name of Pericles",
-                                        ],
-                                        profession:
-                                            'World History Encyclopedia',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: ["Portrait of Plato"],
-                                        profession:
-                                            'Neues Museum, Staatliche Museen zu Berlin',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "A red-figure kylix ",
-                                        ],
-                                        profession: 'National Museums Scotland',
-                                      ),
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Oedipus and Antigone",
-                                        ],
-                                        profession:
-                                            'Digital National Museum in Warsaw',
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Temple of Apollo Epicurius at Bassae",
+                                      ],
+                                      profession: 'UNESCO',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "An ostrakon inscribed with the name of Pericles",
+                                      ],
+                                      profession:
+                                          'World History Encyclopedia',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: ["Portrait of Plato"],
+                                      profession:
+                                          'Neues Museum, Staatliche Museen zu Berlin',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "A red-figure kylix ",
+                                      ],
+                                      profession: 'National Museums Scotland',
+                                    ),
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Oedipus and Antigone",
+                                      ],
+                                      profession:
+                                          'Digital National Museum in Warsaw',
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       )),
@@ -369,3 +367,4 @@ class _SourcePageState extends State<SourcePage> {
     );
   }
 }
+

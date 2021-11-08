@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -130,85 +131,82 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                           right: constraints.maxWidth * 0.1,
                           bottom: 80,
                           top: constraints.maxHeight * 0.25),
-                      child: Scrollbar(
-                        showTrackOnHover: false,
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(peoples: [
-                                        'The Little Prince',
-                                        'To Kill a Mockingbird',
-                                        'A Game of Thrones',
-                                        'Siddhartha',
-                                        'A Game of Thrones',
-                                        'To Kill a Mockingbird',
-                                        'Candide',
-                                        'The Girl with the Dragon Tattoo',
-                                        'Candide',
-                                        'The Alchemist',
-                                        'The Count of Monte Cristo',
-                                      ], profession: 'books')
-                                    ],
-                                  ),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(peoples: [
+                                      'The Little Prince',
+                                      'To Kill a Mockingbird',
+                                      'A Game of Thrones',
+                                      'Siddhartha',
+                                      'A Game of Thrones',
+                                      'To Kill a Mockingbird',
+                                      'Candide',
+                                      'The Girl with the Dragon Tattoo',
+                                      'Candide',
+                                      'The Alchemist',
+                                      'The Count of Monte Cristo',
+                                    ], profession: 'books')
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(
-                                        peoples: [
-                                          "Charlie's Angels",
-                                          'Splitting Adam',
-                                          'Star Trek: Nemesis',
-                                          'Barbarella',
-                                          'To Catch a Thief',
-                                          'Star Trek IV: The Voyage Home',
-                                          'Changing Lanes',
-                                          'The Score',
-                                          'Sunset Boulevard',
-                                        ],
-                                        profession: 'Movie & tv',
-                                      )
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(
+                                      peoples: [
+                                        "Charlie's Angels",
+                                        'Splitting Adam',
+                                        'Star Trek: Nemesis',
+                                        'Barbarella',
+                                        'To Catch a Thief',
+                                        'Star Trek IV: The Voyage Home',
+                                        'Changing Lanes',
+                                        'The Score',
+                                        'Sunset Boulevard',
+                                      ],
+                                      profession: 'Movie & tv',
+                                    )
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      AuthorWidget(peoples: [
-                                        "​Call Of Duty: Modern Warfare",
-                                        '​Street Fighter V',
-                                        'League of Legends',
-                                        '​Arte',
-                                        'Ragnarok Online',
-                                        'VALORANT​',
-                                        "Don't Starve",
-                                        '​Dragon Ball FighterZ',
-                                        '​Monster Hunter: World',
-                                        '​Counter-Strike: Global Offensive',
-                                        '​Música',
-                                        '​Comes e bebes',
-                                      ], profession: 'video games')
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: const [
+                                    AuthorWidget(peoples: [
+                                      "​Call Of Duty: Modern Warfare",
+                                      '​Street Fighter V',
+                                      'League of Legends',
+                                      '​Arte',
+                                      'Ragnarok Online',
+                                      'VALORANT​',
+                                      "Don't Starve",
+                                      '​Dragon Ball FighterZ',
+                                      '​Monster Hunter: World',
+                                      '​Counter-Strike: Global Offensive',
+                                      '​Música',
+                                      '​Comes e bebes',
+                                    ], profession: 'video games')
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       )),

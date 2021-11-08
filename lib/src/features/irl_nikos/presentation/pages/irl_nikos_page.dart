@@ -139,9 +139,10 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               alignment: Alignment.bottomLeft,
               child: ArrowLeftTextWidget(
                 color: AppColors.white,
-                onTap: () {
-                  context.router.push(const GianaPageRoute());
-                },
+                onTap: null,
+                //  () {
+                //   context.router.push(const GianaPageRoute());
+                // },
                 textSubTitle: locals.giana,
                 textTitle: "#IRL",
               ),

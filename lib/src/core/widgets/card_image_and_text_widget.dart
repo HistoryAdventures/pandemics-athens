@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
 import '../../features/dead_socrates/presentation/modesl/socrates_info_model.dart';
 import '../colors.dart';
@@ -185,6 +186,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                 ),
                                 Expanded(
                                   child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 10),
                                     margin: EdgeInsets.only(
                                       top: HW.getHeight(16, context),
                                       bottom: HW.getHeight(16, context),
@@ -198,34 +200,37 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                       ),
                                     ),
                                     child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 24, top: 16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 16),
-                                              child: AutoSizeText(
-                                                  socratesInfoModel.name
-                                                      .toUpperCase(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3),
-                                            ),
-                                            AutoSizeText(
-                                              socratesInfoModel.description,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ],
+                                        HAScrollbar(
+                                          isAlwaysShown: true,
+                                          child: ListView(shrinkWrap: true, children: [
+                                                                              Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 24, top: 16),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 16),
+                                                child: AutoSizeText(
+                                                    socratesInfoModel.name
+                                                        .toUpperCase(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline3),
+                                              ),
+                                              AutoSizeText(
+                                                socratesInfoModel.description,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              ),
+                                            ],
+                                          ),
+                                                                              )
+                                                                            ]),
                                         ),
-                                      )
-                                    ]),
                                   ),
                                 ),
                               ],

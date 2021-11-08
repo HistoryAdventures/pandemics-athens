@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -319,71 +320,75 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                         Expanded(
                                           flex: 3,
                                           child: Container(
+                                            padding: EdgeInsets.symmetric(vertical: 10),
                                             decoration: const BoxDecoration(
                                                 border: Border(
                                               top: BorderSide(
                                                   color: AppColors.grey,
                                                   width: 1.2),
                                             )),
-                                            child: ListView(
-                                                shrinkWrap: true,
-                                                children: [
-                                                  Container(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 38,
-                                                              top: 16),
-                                                      child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              '${bodyModel.title}\n'
-                                                                  .toUpperCase(),
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline3,
-                                                            ),
-                                                            if (bodyModel
-                                                                    .title ==
-                                                                locale
-                                                                    .bodyIntro)
-                                                              Column(
-                                                                children: [
-                                                                  Text(
-                                                                    locale
-                                                                        .intrBodyText,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyText1,
-                                                                  ),
-                                                                  Text(
-                                                                    locale
-                                                                        .intrBodyTextItalic,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .subtitle2
-                                                                        ?.copyWith(
-                                                                            fontSize:
-                                                                                18),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            else
+                                            child: HAScrollbar(
+                                              isAlwaysShown: true,
+                                              child: ListView(
+                                                  shrinkWrap: true,
+                                                  children: [
+                                                    Container(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                right: 38,
+                                                                top: 16),
+                                                        child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
                                                               Text(
-                                                                bodyModel
-                                                                    .descriptiion,
+                                                                '${bodyModel.title}\n'
+                                                                    .toUpperCase(),
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
-                                                                    .bodyText1,
+                                                                    .headline3,
                                                               ),
-                                                          ])),
-                                                ]),
+                                                              if (bodyModel
+                                                                      .title ==
+                                                                  locale
+                                                                      .bodyIntro)
+                                                                Column(
+                                                                  children: [
+                                                                    Text(
+                                                                      locale
+                                                                          .intrBodyText,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyText1,
+                                                                    ),
+                                                                    Text(
+                                                                      locale
+                                                                          .intrBodyTextItalic,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .subtitle2
+                                                                          ?.copyWith(
+                                                                              fontSize:
+                                                                                  18),
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              else
+                                                                Text(
+                                                                  bodyModel
+                                                                      .descriptiion,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyText1,
+                                                                ),
+                                                            ])),
+                                                  ]),
+                                            ),
                                           ),
                                         ),
                                       ],

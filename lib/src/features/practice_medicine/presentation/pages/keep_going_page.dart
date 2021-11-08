@@ -38,98 +38,106 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
-        return Stack(
-          children: [
-            SizedBox.expand(
-                child: FittedBox(
+        return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AssetsPath.keepGoing),
               fit: BoxFit.cover,
-              child: SizedBox(
-                  width: constraints.maxWidth,
-                  height: constraints.maxHeight,
-                  child: Image.asset(
-                    AssetsPath.keepGoing,
-                    fit: BoxFit.cover,
-                  )),
-            )),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: ArrowLeftTextWidget(
-                  color: AppColors.white,
-                  textSubTitle: locals.todoNoHarm,
-                  textTitle: locals.chapter1,
-                  onTap: () {
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  }),
             ),
-            SoundAndMenuWidget(
-              color: AppColors.white,
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-              onTapVolume: isSoundOn
-                  ? () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
-                      });
-                    }
-                  : () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
-                      });
-                    },
-              onTapMenu: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                color: AppColors.black06,
-                margin: EdgeInsets.only(
-                    top: constraints.maxHeight * 0.05,
-                    left: constraints.maxWidth * 0.05),
-                width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          child: Stack(
+            children: [
+              // SizedBox.expand(
+              //     child: FittedBox(
+              //   fit: BoxFit.cover,
+              //   child: SizedBox(
+              //       width: constraints.maxWidth,
+              //       height: constraints.maxHeight,
+              //       child: Image.asset(
+              //         AssetsPath.keepGoing,
+              //         fit: BoxFit.cover,
+              //       )),
+              //)),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: ArrowLeftTextWidget(
+                    color: AppColors.white,
+                    textSubTitle: locals.todoNoHarm,
+                    textTitle: locals.chapter1,
+                    onTap: () {
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    }),
+              ),
+              SoundAndMenuWidget(
+                color: AppColors.white,
+                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                onTapVolume: isSoundOn
+                    ? () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
+                    : () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      },
+                onTapMenu: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  color: AppColors.black06,
+                  margin: EdgeInsets.only(
+                      top: constraints.maxHeight * 0.05,
+                      left: constraints.maxWidth * 0.05),
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Wrap(
+                        children: [
+                          AutoSizeText(
+                            locals.keepGoingText,
+                            minFontSize: 5,
+                            // maxLines: 20,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
                 child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Wrap(
-                      children: [
-                        AutoSizeText(
-                          locals.keepGoingText,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    )),
+                  padding: const EdgeInsets.all(24),
+                  child: IconButtonWidget(
+                      onPressed: () {
+                        LeafDetails.currentVertex = 15;
+                        LeafDetails.visitedVertexes.add(15);
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.push(const DeadOfSocratesPageRoute());
+                      },
+                      icon: const Icon(
+                        Icons.south,
+                        size: 30,
+                        color: AppColors.white,
+                      )),
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: IconButtonWidget(
-                    onPressed: () {
-                      LeafDetails.currentVertex = 15;
-                      LeafDetails.visitedVertexes.add(15);
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const DeadOfSocratesPageRoute());
-                    },
-                    icon: const Icon(
-                      Icons.south,
-                      size: 30,
-                      color: AppColors.white,
-                    )),
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       }),
     );

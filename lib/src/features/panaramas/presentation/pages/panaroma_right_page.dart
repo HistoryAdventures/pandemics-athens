@@ -56,8 +56,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
         image: AssetsPath.panaramaImage2,
         latitude: -45.0,
         longitude: 15.0,
-        width: 60,
-        height: 60,
+        width: 90,
+        height: 75,
       ),
       InfoDialogModel(
         imageDescription: locals.athenianOstracismImageText,

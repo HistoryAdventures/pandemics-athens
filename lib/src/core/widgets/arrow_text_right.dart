@@ -8,7 +8,7 @@ class ArrowRightTextWidget extends StatelessWidget {
   final String textTitle;
   final String textSubTitle;
   final Color? color;
-  final Function() onTap;
+ final VoidCallback? onTap;
   double? right;
   double? bottom;
   ArrowRightTextWidget(

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -151,20 +152,23 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                                 ),
                                 Flexible(
                                   flex: 3,
-                                  child: Scrollbar(
-                                    child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16, right: 38),
-                                        child: AutoSizeText(
-                                          locals.pathogenProfileText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
-                                        ),
-                                      )
-                                    ]),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical:10),
+                                    child: HAScrollbar(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 16, right: 38),
+                                          child: AutoSizeText(
+                                            locals.pathogenProfileText,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          ),
+                                        )
+                                      ]),
+                                    ),
                                   ),
                                 ),
                               ],

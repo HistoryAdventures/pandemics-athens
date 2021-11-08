@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
@@ -65,24 +66,25 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 child: _iframeIgnorePointer(viewID: viewID),
               ),
             ),
-            Container(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLoc1),
-                      fit: BoxFit.cover)),
-            ),
+            // Container(
+            //   width: constraints.maxWidth,
+            //   height: constraints.maxHeight,
+            //   decoration: const BoxDecoration(
+            //       image: DecorationImage(
+            //           image: AssetImage(AssetsPath.virusLoc1),
+            //           fit: BoxFit.cover)),
+            // ),
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
+                  
                   decoration: BoxDecoration(
                       color: AppColors.white, boxShadow: Shadows.universal),
-                  height: constraints.maxHeight * 0.5,
-                  width: constraints.maxWidth * 0.4,
+                  height: HW.getHeight(447, context),
+                  width: HW.getWidth(800, context),
                   margin: EdgeInsets.only(
-                      top: constraints.maxHeight * 0.1,
-                      left: constraints.maxWidth * 0.1),
+                      top: HW.getHeight(183, context),
+                      left: HW.getWidth(200, context)),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
@@ -125,34 +127,38 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         ),
                         Flexible(
                           flex: 3,
-                          child: Scrollbar(
-                            child: ListView(shrinkWrap: true, children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16, right: 16),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: locals.whereDidItComeFromBodyText1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical:10),
+                            child: HAScrollbar(
+                              isAlwaysShown: true,
+                              child: ListView(shrinkWrap: true, children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 16, right: 16),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                        text: locals.whereDidItComeFromBodyText1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1),
+                                    TextSpan(
+                                      text:
+                                          '${locals.whereDidItComeFromBodyTextItalic}\n\n',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1),
-                                  TextSpan(
-                                    text:
-                                        '${locals.whereDidItComeFromBodyTextItalic}\n\n',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .subtitle2
-                                        ?.copyWith(fontSize: 16),
-                                  ),
-                                  // TextSpan(
-                                  //   text: locals.whereDidItComeFromBodyText2,
-                                  //   style:
-                                  //       Theme.of(context).textTheme.bodyText1,
-                                  // ),
-                                ])),
-                              ),
-                            ]),
+                                          .subtitle2
+                                          ?.copyWith(fontSize: 16),
+                                    ),
+                                    // TextSpan(
+                                    //   text: locals.whereDidItComeFromBodyText2,
+                                    //   style:
+                                    //       Theme.of(context).textTheme.bodyText1,
+                                    // ),
+                                  ])),
+                                ),
+                              ]),
+                            ),
                           ),
                         ),
                       ],
