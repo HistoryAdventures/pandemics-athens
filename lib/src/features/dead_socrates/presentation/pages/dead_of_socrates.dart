@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -109,23 +111,16 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Clickable(
-                    onPressed: () {
-                      LeafDetails.currentVertex = 17;
-                      LeafDetails.visitedVertexes.add(17);
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const QuizPageRoute());
-                    },
-                    child: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(
-                          AssetsPath.arrowDounImage,
-                          color: Colors.black,
-                        )),
-                  ),
+                child: IconButtonWidget(
+                  iconSize: HW.getHeight(37, context),
+                  onPressed: () {
+                    LeafDetails.currentVertex = 17;
+                    LeafDetails.visitedVertexes.add(17);
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const QuizPageRoute());
+                  },
+                  icon: const Icon(Icons.arrow_downward),
+                  color: AppColors.black100,
                 ),
               ),
               Align(
@@ -141,7 +136,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     }),
               ),
               SoundAndMenuWidget(
-                widget: Clickable(
+                widget: IconButtonWidget(
                   onPressed: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
@@ -152,13 +147,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                       context.router.pop();
                     }
                   },
-                  child: SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: Image.asset(
-                        AssetsPath.arrowUpImage,
-                        color: Colors.black,
-                      )),
+                  icon: const Icon(Icons.arrow_upward),
+                  iconSize: HW.getHeight(37, context),
                 ),
                 icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
                 onTapVolume: isSoundOn

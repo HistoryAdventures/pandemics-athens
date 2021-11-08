@@ -617,7 +617,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 ),
               ),
               SoundAndMenuWidget(
-                widget: Clickable(
+                widget: IconButtonWidget(
+                  color: AppColors.black100,
+                  iconSize: HW.getHeight(37, context),
+                  icon: const Icon(Icons.arrow_upward_sharp),
                   onPressed: () {
                     LeafDetails.currentVertex = 1;
                     NavigationSharedPreferences.upDateShatedPreferences();
@@ -628,15 +631,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       context.router.pop();
                     }
                   },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.arrow_upward_sharp,
-                        color: AppColors.black100,
-                      ),
-                    ],
-                  ),
                 ),
                 icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
                 onTapVolume: isSoundOn
@@ -724,7 +718,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: IconButtonWidget(
-                    iconSize: 30,
+                    iconSize: HW.getHeight(37, context),
                     onPressed: () {
                       setState(() {
                         _videoController.pause();

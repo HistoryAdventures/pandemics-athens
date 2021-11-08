@@ -8,7 +8,7 @@ class ArrowRightTextWidget extends StatelessWidget {
   final String textTitle;
   final String textSubTitle;
   final Color? color;
- final VoidCallback? onTap;
+  final VoidCallback? onTap;
   double? right;
   double? bottom;
   ArrowRightTextWidget(
@@ -32,7 +32,6 @@ class ArrowRightTextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Flexible(
-              flex: 3,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -60,14 +59,12 @@ class ArrowRightTextWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.only(left: 24),
-                child: Icon(
-                  Icons.arrow_forward,
-                  color: color ?? Colors.black,
-                  size: HW.getHeight(37, context),
-                ),
+            Container(
+              margin: const EdgeInsets.only(left: 24),
+              child: Icon(
+                Icons.arrow_forward,
+                color: color ?? Colors.black,
+                size: HW.getWidth(37, context),
               ),
             ),
           ],

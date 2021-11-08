@@ -31,18 +31,15 @@ class ArrowLeftTextWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.only(right: 24),
-                child: Icon(
-                  Icons.arrow_back,
-                  color: color ?? Colors.black,
-                  size: HW.getWidth(37, context),
-                ),
+            Container(
+              margin: const EdgeInsets.only(right: 24),
+              child: Icon(
+                Icons.arrow_back,
+                color: color ?? Colors.black,
+                size: HW.getWidth(37, context),
               ),
             ),
             Flexible(
-              flex: 3,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,

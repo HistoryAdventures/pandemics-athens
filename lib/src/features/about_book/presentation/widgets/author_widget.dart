@@ -1,19 +1,25 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/widgets.dart';
+import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/colors.dart';
 
 class AuthorWidget extends StatelessWidget {
   final String profession;
-  final List<String> peoples;
+  final List<UrlLuncherModel> urlModeles;
   final TextDecoration? textDecoration;
+
   const AuthorWidget(
       {Key? key,
-      required this.peoples,
+      required this.urlModeles,
       required this.profession,
       this.textDecoration})
       : super(key: key);
 
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,17 +52,24 @@ class AuthorWidget extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: peoples.map((people) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  people,
-                  maxLines: 2,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                      fontSize: TextFontSize.getHeight(16, context),
-                      decoration: textDecoration ?? TextDecoration.underline,
-                      height: 2,
-                      decorationColor: Colors.black),
+            children: urlModeles.map((model) {
+              return Clickable(
+                onPressed: model.url == null
+                    ? null
+                    : () {
+                        _launchURL(model.url!);
+                      },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    model.title,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        fontSize: TextFontSize.getHeight(16, context),
+                        decoration: textDecoration ?? TextDecoration.underline,
+                        height: 2,
+                        decorationColor: Colors.black),
+                  ),
                 ),
               );
             }).toList(),

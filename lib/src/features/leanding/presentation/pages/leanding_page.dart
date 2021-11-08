@@ -111,72 +111,64 @@ class _LeandingPageState extends State<LeandingPage>
                       mouseY: mouseY,
                       objWave: objWave,
                     ),
-                    Align(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(constraints.maxWidth * 0.15,
-                            0, constraints.maxWidth * 0.1, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Positioned(
+                      top: HW.getHeight(354, context),
+                      left: HW.getWidth(275, context),
+                      child: SizedBox(
+                        height: HW.getHeight(400, context),
+                        width: HW.getWidth(789, context),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Flexible(
-                                      child: Text(
-                                          locales.spencerStrikerName
-                                              .toUpperCase(),
-                                          maxLines: 1,
-                                          style: DefaultTheme
-                                              .standard.textTheme.headline1
-                                              ?.copyWith(
-                                                  fontSize:
-                                                      TextFontSize.getHeight(
-                                                          24, context)))),
-                                  Flexible(
-                                    child: AutoSizeText(
-                                      locales.historyAdventures.toUpperCase(),
-                                      maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.overline,
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: AutoSizeText(
-                                      locales.worldOfCharacters.toUpperCase(),
-                                      maxLines: 1,
-                                      maxFontSize: 100,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .overline
-                                          ?.copyWith(fontSize: 100),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color: AppColors.red,
-                                                  width: 10))),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5),
-                                        child: AutoSizeText(
-                                          locales.globalPandemicsName,
-                                          maxLines: 1,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .caption,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                            Text(locales.spencerStrikerName.toUpperCase(),
+                                maxLines: 1,
+                                style: DefaultTheme.standard.textTheme.headline1
+                                    ?.copyWith(
+                                        fontSize: TextFontSize.getHeight(
+                                            24, context))),
+                            Text(
+                              locales.historyAdventures.toUpperCase(),
+                              maxLines: 1,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline
+                                  ?.copyWith(
+                                      fontSize:
+                                          TextFontSize.getHeight(120, context),
+                                      height: 1),
                             ),
+                            Text(
+                              locales.worldOfCharacters.toUpperCase(),
+                              maxLines: 1,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline
+                                  ?.copyWith(
+                                      fontSize:
+                                          TextFontSize.getHeight(100, context),
+                                      height: 1),
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      left: BorderSide(
+                                          color: AppColors.red, width: 10))),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  locales.globalPandemicsName,
+                                  maxLines: 1,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.copyWith(
+                                          fontSize: TextFontSize.getHeight(
+                                              60, context),
+                                          height: 1),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -185,7 +177,7 @@ class _LeandingPageState extends State<LeandingPage>
                       alignment: Alignment.bottomCenter,
                       child: IconButtonWidget(
                         color: AppColors.blackB,
-                        iconSize: 40,
+                        iconSize: HW.getHeight(37, context),
                         icon: const Icon(Icons.arrow_downward),
                         onPressed: () async {
                           LeafDetails.visitedVertexes.add(1);

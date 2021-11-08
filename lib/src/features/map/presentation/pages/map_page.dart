@@ -256,8 +256,8 @@ class _MapPageState extends State<MapPage> {
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie421,
-          imageDescription: locals.y421imageText,
-          image: AssetsPath.mapImage421,
+          imageDescription: '',
+          image: '',
           text: locals.y421bodyText,
           title: locals.y421bodyTextTitle,
           year: locals.y421,
@@ -288,48 +288,48 @@ class _MapPageState extends State<MapPage> {
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie413,
-          imageDescription: locals.y413imageText,
-          image: AssetsPath.mapImage421,
+          imageDescription: '',
+          image: '',
           text: locals.y413bodyText,
           title: locals.y413bodyTextTitle,
           year: locals.y413,
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie411,
-          imageDescription: locals.y411imageText,
-          image: AssetsPath.mapImage413,
+          imageDescription: '',
+          image: '',
           text: locals.y411bodyText,
           title: locals.y411bodyTextTitle,
           year: locals.y411,
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie410,
-          imageDescription: locals.y410imageText,
-          image: AssetsPath.mapImage413,
+          imageDescription: '',
+          image: '',
           text: locals.y410bodyText,
           title: locals.y410bodyTextTitle,
           year: locals.y410,
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie407,
-          imageDescription: locals.y407imageText,
-          image: AssetsPath.mapImage413,
+          imageDescription: '',
+          image: '',
           text: locals.y407bodyText,
           title: locals.y407bodyTextTitle,
           year: locals.y407,
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie404,
-          imageDescription: locals.y404imageText,
-          image: AssetsPath.mapImage413,
+          imageDescription: '',
+          image: '',
           text: locals.y404bodyText,
           title: locals.y404bodyTextTitle,
           year: locals.y404,
         ),
         MapInfoModel(
           lottie: AssetsPath.mapLottie403,
-          imageDescription: locals.y403imageText,
-          image: AssetsPath.mapImage413,
+          imageDescription: '',
+          image: '',
           text: locals.y403bodyText,
           title: locals.y403bodyTextTitle,
           year: locals.y403,
@@ -640,6 +640,7 @@ class _MapPageState extends State<MapPage> {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ArrowLeftTextWidget(
                 left: 0,
@@ -685,8 +686,8 @@ class _MapPageState extends State<MapPage> {
                               crossAxisMargin: 1,
                               minThumbLength: 119,
                               thickness: MaterialStateProperty.all(4),
-                              trackColor:
-                                  MaterialStateProperty.all(AppColors.trackColorScrollBar),
+                              trackColor: MaterialStateProperty.all(
+                                  AppColors.trackColorScrollBar),
                               trackBorderColor: MaterialStateProperty.all(
                                   AppColors.transpatent),
                               thumbColor:

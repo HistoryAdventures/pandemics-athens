@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -141,44 +142,31 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
-                                    AuthorWidget(peoples: [
-                                      'The Little Prince',
-                                      'To Kill a Mockingbird',
-                                      'A Game of Thrones',
-                                      'Siddhartha',
-                                      'A Game of Thrones',
-                                      'To Kill a Mockingbird',
-                                      'Candide',
-                                      'The Girl with the Dragon Tattoo',
-                                      'Candide',
-                                      'The Alchemist',
-                                      'The Count of Monte Cristo',
-                                    ], profession: 'books')
-                                  ],
-                                ),
-                              ),
-                              Flexible(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     AuthorWidget(
-                                      peoples: [
-                                        "Charlie's Angels",
-                                        'Splitting Adam',
-                                        'Star Trek: Nemesis',
-                                        'Barbarella',
-                                        'To Catch a Thief',
-                                        'Star Trek IV: The Voyage Home',
-                                        'Changing Lanes',
-                                        'The Score',
-                                        'Sunset Boulevard',
+                                      profession: 'books',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'The Little Prince'),
+                                        UrlLuncherModel(
+                                            title: 'To Kill a Mockingbird'),
+                                        UrlLuncherModel(
+                                            title: 'To Kill a Mockingbird'),
+                                        UrlLuncherModel(title: 'Siddhartha'),
+                                        UrlLuncherModel(
+                                            title: 'A Game of Thrones'),
+                                        UrlLuncherModel(
+                                            title: 'To Kill a Mockingbird'),
+                                        UrlLuncherModel(title: 'Candide'),
+                                        UrlLuncherModel(
+                                            title:
+                                                'The Girl with the Dragon Tattoo'),
+                                        UrlLuncherModel(title: 'Candide'),
+                                        UrlLuncherModel(title: 'The Alchemist'),
+                                        UrlLuncherModel(
+                                            title: 'The Count of Monte Cristo'),
                                       ],
-                                      profession: 'Movie & tv',
                                     )
                                   ],
                                 ),
@@ -186,23 +174,67 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
-                                    AuthorWidget(peoples: [
-                                      "​Call Of Duty: Modern Warfare",
-                                      '​Street Fighter V',
-                                      'League of Legends',
-                                      '​Arte',
-                                      'Ragnarok Online',
-                                      'VALORANT​',
-                                      "Don't Starve",
-                                      '​Dragon Ball FighterZ',
-                                      '​Monster Hunter: World',
-                                      '​Counter-Strike: Global Offensive',
-                                      '​Música',
-                                      '​Comes e bebes',
-                                    ], profession: 'video games')
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    AuthorWidget(
+                                      profession: 'Movie & tv',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: "Charlie's Angels"),
+                                        UrlLuncherModel(
+                                            title: 'Splitting Adam'),
+                                        UrlLuncherModel(
+                                            title: 'Star Trek: Nemesis'),
+                                        UrlLuncherModel(title: 'Barbarella'),
+                                        UrlLuncherModel(
+                                            title: 'To Catch a Thief'),
+                                        UrlLuncherModel(
+                                            title: 'To Catch a Thief'),
+                                        UrlLuncherModel(
+                                            title:
+                                                'Star Trek IV: The Voyage Home'),
+                                        UrlLuncherModel(
+                                            title: 'Changing Lanes'),
+                                        UrlLuncherModel(title: 'The Score'),
+                                        UrlLuncherModel(
+                                            title: 'Sunset Boulevard'),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    AuthorWidget(
+                                      profession: 'video games',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title:
+                                                "Call Of Duty: Modern Warfare"),
+                                        UrlLuncherModel(
+                                            title: 'Street Fighter V'),
+                                        UrlLuncherModel(
+                                            title: 'League of Legends'),
+                                        UrlLuncherModel(title: '​Arte'),
+                                        UrlLuncherModel(
+                                            title: 'Ragnarok Online'),
+                                        UrlLuncherModel(title: 'VALORANT​'),
+                                        UrlLuncherModel(title: "Don't Starve"),
+                                        UrlLuncherModel(
+                                            title: '​Dragon Ball FighterZ'),
+                                        UrlLuncherModel(
+                                            title: '​Monster Hunter: World'),
+                                        UrlLuncherModel(
+                                            title:
+                                                '​Counter-Strike: Global Offensive'),
+                                        UrlLuncherModel(title: '​Música'),
+                                        UrlLuncherModel(
+                                            title: '​Comes e bebes'),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),

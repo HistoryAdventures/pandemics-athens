@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -247,23 +248,16 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Clickable(
-                onPressed: () {
-                  LeafDetails.currentVertex = 10;
-                  LeafDetails.visitedVertexes.add(10);
-                  NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const PathogenProfilePageRoute());
-                },
-                child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: Image.asset(
-                      AssetsPath.arrowDounImage,
-                      color: AppColors.white,
-                    )),
-              ),
+            child: IconButtonWidget(
+              color: AppColors.white,
+              iconSize: HW.getHeight(37, context),
+              icon: const Icon(Icons.arrow_downward),
+              onPressed: () async {
+                LeafDetails.currentVertex = 10;
+                LeafDetails.visitedVertexes.add(10);
+                NavigationSharedPreferences.upDateShatedPreferences();
+                context.router.push(const PathogenProfilePageRoute());
+              },
             ),
           )
         ],

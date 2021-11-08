@@ -258,11 +258,9 @@ class AssetsPath {
       'assets/practice_medicine/quit_medicine.png';
 
   static const String mapImage399 = 'assets/map_images/399image.png';
-  static const String mapImage413 = 'assets/map_images/413image.png';
   static const String mapImage414 = 'assets/map_images/414image.png';
   static const String mapImage415 = 'assets/map_images/415image.png';
   static const String mapImage416 = 'assets/map_images/416image.png';
-  static const String mapImage421 = 'assets/map_images/421image.png';
   static const String mapImage427 = 'assets/map_images/427image.png';
   static const String mapImage430 = 'assets/map_images/430image.png';
   static const String mapImage431 = 'assets/map_images/431image.png';
@@ -324,7 +322,6 @@ class AssetsPath {
   static const String paralaxClouds2 = 'assets/paralax_new/clouds2.png';
 
   static const String gifHand = 'assets/paralax_new/hand.gif';
-
 
   static const String paralaxCharacterNikosLottie =
       'assets/paralax_new/character_nikos/character_nikos_lottie.json';
@@ -547,11 +544,9 @@ class AssetsPath {
     AssetsPath.panaramaImage9,
     AssetsPath.panaramaImage10,
     AssetsPath.mapImage399,
-    AssetsPath.mapImage413,
     AssetsPath.mapImage414,
     AssetsPath.mapImage415,
     AssetsPath.mapImage416,
-    AssetsPath.mapImage421,
     AssetsPath.mapImage427,
     AssetsPath.mapImage430,
     AssetsPath.mapImage431,

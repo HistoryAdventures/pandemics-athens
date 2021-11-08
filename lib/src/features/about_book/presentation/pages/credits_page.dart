@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -153,34 +154,42 @@ class _CreditsPageState extends State<CreditsPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
-                                    AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: ['Darrell Steward'],
-                                        profession: 'creator'),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Bessie Cooper',
-                                        'Wade Warren',
-                                        'Ralph Edwards'
+                                      profession: 'creator',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward')
                                       ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
                                       profession: 'producers',
-                                    ),
-                                    AuthorWidget(
-                                      textDecoration: TextDecoration.none,
-                                      peoples: ['Darrell Steward'],
-                                      profession: 'art director',
-                                    ),
-                                    AuthorWidget(
-                                      textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Jerome Bell',
-                                        'Kristin Watson'
+                                      urlModeles: [
+                                        UrlLuncherModel(title: 'Bessie Cooper'),
+                                        UrlLuncherModel(title: 'Wade Warren'),
+                                        UrlLuncherModel(title: 'Ralph Edwards'),
                                       ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      // peoples: ['Darrell Steward'],
+                                      profession: 'art director',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
                                       profession: 'narrators',
+                                      urlModeles: [
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -188,36 +197,45 @@ class _CreditsPageState extends State<CreditsPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander',
-                                        'Esther Howard',
-                                        'Bessie Cooper'
-                                      ],
                                       profession: 'illustrators',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(title: 'Robert Fox'),
+                                        UrlLuncherModel(title: 'Esther Howard'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(title: 'Esther Howard'),
+                                      ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander'
-                                      ],
                                       profession: 'writers',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     )
                                   ],
                                 ),
@@ -225,45 +243,58 @@ class _CreditsPageState extends State<CreditsPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                      ],
                                       profession: 'animators',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                      ],
                                       profession: 'developers',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Esther Howard',
-                                        'Bessie Cooper',
-                                        'Wade Warren'
-                                      ],
                                       profession: 'marketing & PR',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -271,39 +302,53 @@ class _CreditsPageState extends State<CreditsPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: const [
-                                    AuthorWidget(
-                                        textDecoration: TextDecoration.none,
-                                        peoples: [
-                                          'Darrell Steward',
-                                          'Jerome Bell',
-                                          'Kristin Watson',
-                                          'Kathryn Murphy',
-                                          'Robert Fox',
-                                          'Marvin McKinney',
-                                          'Leslie Alexander',
-                                          'Esther Howard',
-                                          'Bessie Cooper'
-                                        ],
-                                        profession: 'supported by'),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      peoples: [
-                                        'Darrell Steward',
-                                        'Jerome Bell',
-                                        'Kristin Watson',
-                                        'Kathryn Murphy',
-                                        'Robert Fox',
-                                        'Marvin McKinney',
-                                        'Leslie Alexander',
-                                        'Esther Howard',
-                                        'Bessie Cooper',
-                                        'Esther Howard',
-                                        'Bessie Cooper'
+                                      profession: 'supported by',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
                                       ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
                                       profession: 'special thanks',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                        UrlLuncherModel(
+                                            title: 'Darrell Steward'),
+                                        UrlLuncherModel(
+                                            title: 'Kristin Watson'),
+                                      ],
                                     ),
                                   ],
                                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../colors.dart';
 
@@ -18,14 +19,18 @@ class IconButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        focusColor: AppColors.transpatent,
-        splashColor: AppColors.transpatent,
-        highlightColor: AppColors.transpatent,
-        hoverColor: AppColors.transpatent,
-        iconSize: iconSize,
-        onPressed: onPressed,
-        color: color,
-        icon: icon);
+    return Padding(
+      padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
+      child: IconButton(
+          padding: EdgeInsets.zero,
+          focusColor: AppColors.transpatent,
+          splashColor: AppColors.transpatent,
+          highlightColor: AppColors.transpatent,
+          hoverColor: AppColors.transpatent,
+          iconSize: iconSize,
+          onPressed: onPressed,
+          color: color,
+          icon: icon),
+    );
   }
 }

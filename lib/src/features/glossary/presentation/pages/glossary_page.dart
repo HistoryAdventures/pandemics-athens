@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -307,23 +308,20 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 ),
               ),
               SoundAndMenuWidget(
-                widget: Clickable(
-                  onPressed: () {
-                    LeafDetails.currentVertex = 0;
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  },
-                  child: const Icon(
-                    Icons.arrow_upward_sharp,
-                    size: 30,
-                    color: Colors.black,
-                  ),
-                ),
+                widget: IconButtonWidget(
+                    color: AppColors.black100,
+                    iconSize: HW.getHeight(37, context),
+                    icon: const Icon(Icons.arrow_upward_sharp),
+                    onPressed: () {
+                      LeafDetails.currentVertex = 0;
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    }),
                 icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
                 onTapVolume: isSoundOn
                     ? () {

@@ -61,7 +61,9 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             )),
             SoundAndMenuWidget(
               color: AppColors.white,
-              widget: Clickable(
+              widget: IconButtonWidget(
+                iconSize: HW.getHeight(37, context),
+                icon: const Icon(Icons.arrow_upward_sharp),
                 onPressed: () {
                   LeafDetails.currentVertex = 17;
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -73,11 +75,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                     context.router.pop();
                   }
                 },
-                child: const Icon(
-                  Icons.arrow_upward_sharp,
-                  size: 40,
-                  color: AppColors.white,
-                ),
+                color: AppColors.white,
               ),
               icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
               onTapVolume: isSoundOn
@@ -149,19 +147,16 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
-                child: IconButtonWidget(
-                  color: AppColors.white,
-                  iconSize: 40,
-                  icon: const Icon(Icons.arrow_downward),
-                  onPressed: () {
-                    LeafDetails.currentVertex = 24;
-                    LeafDetails.visitedVertexes.add(24);
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const AboutBookPageRoute());
-                  },
-                ),
+              child: IconButtonWidget(
+                iconSize: HW.getHeight(37, context),
+                color: AppColors.white,
+                icon: const Icon(Icons.arrow_downward),
+                onPressed: () {
+                  LeafDetails.currentVertex = 24;
+                  LeafDetails.visitedVertexes.add(24);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const AboutBookPageRoute());
+                },
               ),
             ),
           ],

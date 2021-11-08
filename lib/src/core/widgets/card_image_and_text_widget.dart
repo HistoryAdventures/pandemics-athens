@@ -199,11 +199,11 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                             color: AppColors.grey, width: 1.2),
                                       ),
                                     ),
-                                    child:
-                                        HAScrollbar(
-                                          isAlwaysShown: true,
-                                          child: ListView(shrinkWrap: true, children: [
-                                                                              Padding(
+                                    child: HAScrollbar(
+                                      isAlwaysShown: true,
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                        Padding(
                                           padding: const EdgeInsets.only(
                                               right: 24, top: 16),
                                           child: Column(
@@ -228,9 +228,9 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                               ),
                                             ],
                                           ),
-                                                                              )
-                                                                            ]),
-                                        ),
+                                        )
+                                      ]),
+                                    ),
                                   ),
                                 ),
                               ],

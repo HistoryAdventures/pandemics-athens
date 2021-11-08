@@ -125,6 +125,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                 ),
                 SoundAndMenuWidget(
                   widget: IconButtonWidget(
+                      iconSize: HW.getHeight(37, context),
                       onPressed: () {
                         LeafDetails.currentVertex = 18;
                         NavigationSharedPreferences.upDateShatedPreferences();
@@ -138,7 +139,6 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       },
                       icon: const Icon(
                         Icons.arrow_upward_sharp,
-                        //size: 40,
                         color: AppColors.blackB,
                       )),
                   icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,

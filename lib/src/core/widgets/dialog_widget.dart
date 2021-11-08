@@ -240,14 +240,14 @@ class _DialogWidgetState extends State<DialogWidget> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     bottom: 16),
-                                                child: AutoSizeText(
+                                                child: Text(
                                                     infoDialogModel.subTitle
                                                         .toUpperCase(),
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline3),
                                               ),
-                                              AutoSizeText(
+                                              Text(
                                                 infoDialogModel.description,
                                                 style: Theme.of(context)
                                                     .textTheme
