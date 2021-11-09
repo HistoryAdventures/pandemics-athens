@@ -403,7 +403,7 @@ class _MapPageState extends State<MapPage> {
             _yearDescriptionField(constraints),
             _timeLineWidget(constraints),
             SoundAndMenuWidget(
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       print('appbar');

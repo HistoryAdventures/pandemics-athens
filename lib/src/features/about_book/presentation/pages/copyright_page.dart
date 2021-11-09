@@ -56,10 +56,8 @@ class _CopyrightPageState extends State<CopyrightPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Positioned(
-                    left: 0,
-                    right: 0,
-                    top: HW.getHeight(128, context),
+                Align(
+                    // top: HW.getHeight(128, context),
                     child: Container(
                       alignment: Alignment.center,
                       height: HW.getHeight(43, context),
@@ -70,7 +68,9 @@ class _CopyrightPageState extends State<CopyrightPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -163,8 +163,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     authorWidget(
                                         'Copyright © Spencer Striker, 2021', [
@@ -176,8 +175,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     authorWidget('Fair Use', [
                                       'Copyright Disclaimer under section 107 of the Copyright Act of 1976, allowance is made for “fair use” for purposes such as criticism, comment, news reporting, teaching, scholarship, education and research. Fair use is a use permitted by copyright statute that might otherwise be infringing.'

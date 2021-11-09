@@ -62,7 +62,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             SoundAndMenuWidget(
               color: AppColors.white,
               widget: IconButtonWidget(
-                iconSize: HW.getHeight(37, context),
+                iconSize: HW.getHeight(40, context),
                 icon: const Icon(Icons.arrow_upward_sharp),
                 onPressed: () {
                   LeafDetails.currentVertex = 17;
@@ -77,7 +77,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 },
                 color: AppColors.white,
               ),
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {

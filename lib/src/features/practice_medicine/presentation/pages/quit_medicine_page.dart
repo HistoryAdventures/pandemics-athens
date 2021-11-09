@@ -69,7 +69,9 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
             ),
             SoundAndMenuWidget(
               color: AppColors.white,
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -87,49 +89,40 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                 Scaffold.of(context).openEndDrawer();
               },
             ),
-            Align(
-              alignment: Alignment.centerLeft,
+            Positioned(
+              top: HW.getHeight(391, context),
+              left: HW.getWidth(144, context),
               child: Container(
-                color: AppColors.black06,
-                margin: EdgeInsets.only(
-                  top: constraints.maxWidth * 0.01,
-                  left: constraints.maxWidth * 0.01,
+                width: HW.getWidth(772, context),
+                height: HW.getHeight(432, context),
+                padding: EdgeInsets.symmetric(
+                  vertical: HW.getHeight(36, context),
+                  horizontal: HW.getWidth(36, context),
                 ),
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Wrap(
-                      children: [
-                        AutoSizeText(
-                          locals.quitMedicicneText,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    )),
+                color: AppColors.black06,
+                child: Text(
+                  locals.quitMedicicneText,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: AppColors.white,fontSize: TextFontSize.getHeight(16, context)),
+                ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: IconButtonWidget(
-                    iconSize: HW.getHeight(37, context),
-                    onPressed: () {
-                      LeafDetails.visitedVertexes.add(15);
-                      LeafDetails.currentVertex = 15;
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const DeadOfSocratesPageRoute());
-                    },
-                    icon: const Icon(
-                      Icons.south,
-                      color: AppColors.white,
-                    )),
-              ),
+              child: IconButtonWidget(
+                  iconSize: HW.getHeight(40, context),
+                  onPressed: () {
+                    LeafDetails.visitedVertexes.add(15);
+                    LeafDetails.currentVertex = 15;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const DeadOfSocratesPageRoute());
+                  },
+                  icon: const Icon(
+                    Icons.arrow_downward,
+                    color: AppColors.white,
+                  )),
             ),
           ],
         );

@@ -71,7 +71,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {

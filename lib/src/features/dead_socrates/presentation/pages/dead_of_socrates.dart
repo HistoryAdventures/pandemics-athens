@@ -148,9 +148,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     }
                   },
                   icon: const Icon(Icons.arrow_upward),
-                  iconSize: HW.getHeight(37, context),
+                  iconSize: HW.getHeight(40, context),
                 ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

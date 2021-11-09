@@ -12,8 +12,8 @@ import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
-import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/arrow_right.dart';
+import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -93,12 +93,13 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
             )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                // padding: const EdgeInsets.symmetric(horizontal: 20),
-                height: constraints.maxHeight * 0.1,
-
+              child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: HW.getWidth(64, context)),
+                height: HW.getHeight(161, context),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
                       flex: 2,
@@ -170,7 +171,9 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                     Icons.arrow_upward_sharp,
                     color: AppColors.white,
                   )),
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -191,24 +194,22 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
+                margin: EdgeInsets.only(
+                  top: HW.getHeight(143, context),
+                ),
                 color: AppColors.black06,
-                margin: const EdgeInsets.only(top: 80),
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Wrap(
-                      children: [
-                        AutoSizeText(
-                          locals.medicineText,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    )),
+                width: HW.getWidth(668, context),
+                height: HW.getHeight(153, context),
+                padding: EdgeInsets.symmetric(
+                  vertical: HW.getHeight(36, context),
+                  horizontal: HW.getWidth(36, context),
+                ),
+                child: Text(
+                  locals.medicineText,
+                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      color: AppColors.white,
+                      fontSize: TextFontSize.getHeight(16, context)),
+                ),
               ),
             ),
           ],

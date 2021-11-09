@@ -189,7 +189,7 @@ class _LeandingPageState extends State<LeandingPage>
                       ),
                     ),
                     SoundAndMenuWidget(
-                      icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                       onTapVolume: isSoundOn
                           ? () {
                               setState(() {

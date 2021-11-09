@@ -619,7 +619,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               SoundAndMenuWidget(
                 widget: IconButtonWidget(
                   color: AppColors.black100,
-                  iconSize: HW.getHeight(37, context),
+                  iconSize: HW.getHeight(40, context),
                   icon: const Icon(Icons.arrow_upward_sharp),
                   onPressed: () {
                     LeafDetails.currentVertex = 1;
@@ -632,7 +632,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     }
                   },
                 ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {
@@ -718,7 +718,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: IconButtonWidget(
-                    iconSize: HW.getHeight(37, context),
+                    iconSize: HW.getHeight(40, context),
                     onPressed: () {
                       setState(() {
                         _videoController.pause();

@@ -100,69 +100,76 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
             //           image: AssetImage(AssetsPath.virusLoc2),
             //           fit: BoxFit.cover)),
             // ),
-            Align(
-                alignment: Alignment.topLeft,
+            Positioned(
+                top: HW.getHeight(192, context),
+                left: HW.getWidth(128, context),
                 child: Container(
+                  height: HW.getHeight(676, context),
+                  width: HW.getWidth(768, context),
                   decoration: BoxDecoration(
                       color: AppColors.white, boxShadow: Shadows.universal),
-                  height: HW.getHeight(630, context),
-                  width: HW.getWidth(800, context),
-                  margin: EdgeInsets.only(
-                      top: HW.getHeight(183, context),
-                      left: HW.getWidth(200, context)),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Flexible(
-                          child: Container(
-                            width: constraints.maxWidth,
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: AppColors.grey, width: 1.2))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Flexible(
-                                  child: AutoSizeText(
-                                      "${locals.chapter1Pathogenprofile}\n",
-                                      maxLines: 2,
+                        Container(
+                          height: HW.getHeight(68, context),
+                          width: constraints.maxWidth,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      bottom: HW.getHeight(8, context)),
+                                  child: Text(locals.chapter1Pathogenprofile,
+                                      maxLines: 1,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline1),
+                                          .headline1
+                                          ?.copyWith(
+                                              fontSize: TextFontSize.getHeight(
+                                                  14, context))),
                                 ),
-                                Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: constraints.maxHeight * 0.01),
-                                    child: AutoSizeText(
-                                      locals.whereDidItComeFrom.toUpperCase(),
-                                      maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                  ),
+                              ),
+                              Flexible(
+                                child: Text(
+                                  locals.whereDidItComeFrom.toUpperCase(),
+                                  maxLines: 1,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      ?.copyWith(
+                                          fontSize: TextFontSize.getHeight(
+                                              32, context)),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Flexible(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical:10),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              top: HW.getHeight(16, context),
+                              bottom: HW.getHeight(16, context),
+                            ),
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    top: BorderSide(
+                                        color: AppColors.grey, width: 1.2))),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: HAScrollbar(
                               isAlwaysShown: true,
                               child: ListView(shrinkWrap: true, children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 16, right: 30),
+                                      const EdgeInsets.only(top: 16, right: 16),
                                   child: AutoSizeText(
                                     locals.whereDidItComeFromSecondBodyText,
-                                    style: Theme.of(context).textTheme.bodyText1,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   ),
                                 )
                               ]),
@@ -211,7 +218,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               ),
             ),
             SoundAndMenuWidget(
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {

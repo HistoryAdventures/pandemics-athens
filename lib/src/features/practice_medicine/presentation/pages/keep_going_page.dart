@@ -76,7 +76,9 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
               ),
               SoundAndMenuWidget(
                 color: AppColors.white,
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {
@@ -94,48 +96,39 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                   Scaffold.of(context).openEndDrawer();
                 },
               ),
-              Align(
-                alignment: Alignment.topLeft,
+              Positioned(
+                top: HW.getHeight(177, context),
+                left: HW.getWidth(88, context),
                 child: Container(
+                  width: HW.getWidth(772, context),
+                  height: HW.getHeight(312, context),
+                  padding: EdgeInsets.symmetric(
+                    vertical: HW.getHeight(36, context),
+                    horizontal: HW.getWidth(36, context),
+                  ),
                   color: AppColors.black06,
-                  margin: EdgeInsets.only(
-                      top: constraints.maxHeight * 0.05,
-                      left: constraints.maxWidth * 0.05),
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Wrap(
-                        children: [
-                          AutoSizeText(
-                            locals.keepGoingText,
-                            minFontSize: 5,
-                            // maxLines: 20,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(color: AppColors.white),
-                          ),
-                        ],
-                      )),
+                  child: Text(
+                    locals.keepGoingText,
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                        color: AppColors.white,
+                        fontSize: TextFontSize.getHeight(16, context)),
+                  ),
                 ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: IconButtonWidget(
-                      iconSize: HW.getHeight(37, context),
-                      onPressed: () {
-                        LeafDetails.currentVertex = 15;
-                        LeafDetails.visitedVertexes.add(15);
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const DeadOfSocratesPageRoute());
-                      },
-                      icon: const Icon(
-                        Icons.south,
-                        color: AppColors.white,
-                      )),
-                ),
+                child: IconButtonWidget(
+                    iconSize: HW.getHeight(37, context),
+                    onPressed: () {
+                      LeafDetails.currentVertex = 15;
+                      LeafDetails.visitedVertexes.add(15);
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      context.router.push(const DeadOfSocratesPageRoute());
+                    },
+                    icon: const Icon(
+                      Icons.arrow_downward,
+                      color: AppColors.white,
+                    )),
               ),
             ],
           ),

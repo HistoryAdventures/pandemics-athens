@@ -424,6 +424,7 @@ class _QuizPageState extends State<QuizPage> {
             alignment: Alignment.topCenter,
             child: SoundAndMenuWidget(
               widget: IconButtonWidget(
+                iconSize: HW.getHeight(40, context),
                 onPressed: () {
                   LeafDetails.currentVertex = 15;
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -437,7 +438,7 @@ class _QuizPageState extends State<QuizPage> {
                 },
                 icon: const Icon(Icons.arrow_upward),
               ),
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {

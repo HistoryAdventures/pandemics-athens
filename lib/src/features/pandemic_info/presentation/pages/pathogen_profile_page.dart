@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -96,82 +97,81 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                 mouseY: mouseY,
                 objWave: objWave,
               ),
-              Align(
-                  alignment: Alignment.centerLeft,
+              Positioned(
+                  top: HW.getHeight(192, context),
+                  left: HW.getWidth(128, context),
                   child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 50),
-                    height: constraints.maxHeight * 0.6,
-                    width: constraints.maxWidth * 0.5,
+                    height: HW.getHeight(676, context),
+                    width: HW.getWidth(768, context),
                     decoration: BoxDecoration(
                         color: AppColors.white, boxShadow: Shadows.universal),
                     child: Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            flex: 3,
+                          Container(
+                            height: HW.getHeight(68, context),
+                            width: constraints.maxWidth,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Flexible(
                                   child: Container(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    width: constraints.maxWidth,
-                                    decoration: const BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2))),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Flexible(
-                                          child: AutoSizeText(
-                                              '${locals.chapter1}\n',
-                                              maxLines: 2,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(fontSize: 22)),
-                                        ),
-                                        Flexible(
-                                          child: AutoSizeText(
-                                            locals.pathogenProfile
-                                                .toUpperCase(),
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    margin: EdgeInsets.only(
+                                        bottom: HW.getHeight(8, context)),
+                                    child: Text(locals.chapter1,
+                                        maxLines: 1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                            ?.copyWith(
+                                                fontSize:
+                                                    TextFontSize.getHeight(
+                                                        16, context))),
                                   ),
                                 ),
                                 Flexible(
-                                  flex: 3,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical:10),
-                                    child: HAScrollbar(
-                                      child:
-                                          ListView(shrinkWrap: true, children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 16, right: 38),
-                                          child: AutoSizeText(
-                                            locals.pathogenProfileText,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2,
-                                          ),
-                                        )
-                                      ]),
-                                    ),
+                                  child: Text(
+                                    locals.pathogenProfile.toUpperCase(),
+                                    maxLines: 1,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        ?.copyWith(
+                                            fontSize: TextFontSize.getHeight(
+                                                32, context)),
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              margin: EdgeInsets.only(
+                                top: HW.getHeight(16, context),
+                              ),
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                      color: AppColors.grey, width: 1.2),
+                                ),
+                              ),
+                              child: HAScrollbar(
+                                child: ListView(shrinkWrap: true, children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 24, top: 16),
+                                    child: AutoSizeText(
+                                      locals.pathogenProfileText,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                  )
+                                ]),
+                              ),
                             ),
                           ),
                         ],
@@ -207,7 +207,9 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                 ),
               ),
               SoundAndMenuWidget(
-                widget: Clickable(
+                widget: IconButtonWidget(
+                  iconSize: HW.getHeight(40, context),
+                  icon: const Icon(Icons.arrow_upward_sharp),
                   onPressed: () {
                     LeafDetails.currentVertex = 9;
                     NavigationSharedPreferences.upDateShatedPreferences();
@@ -219,12 +221,9 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                       context.router.pop();
                     }
                   },
-                  child: const Icon(
-                    Icons.arrow_upward_sharp,
-                    color: Colors.black,
-                  ),
+                  color: AppColors.white,
                 ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

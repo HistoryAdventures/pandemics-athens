@@ -310,7 +310,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
               SoundAndMenuWidget(
                 widget: IconButtonWidget(
                     color: AppColors.black100,
-                    iconSize: HW.getHeight(37, context),
+                    iconSize: HW.getHeight(40, context),
                     icon: const Icon(Icons.arrow_upward_sharp),
                     onPressed: () {
                       LeafDetails.currentVertex = 0;
@@ -322,7 +322,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         context.router.pop();
                       }
                     }),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

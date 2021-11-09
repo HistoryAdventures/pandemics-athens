@@ -33,6 +33,7 @@ class CardTextAndImageWidget extends StatefulWidget {
 class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
   late AppLocalizations locals;
   late SocratesInfoModel socratesInfoModel;
+  String? hoveredItemIndex;
 
   @override
   void initState() {
@@ -134,59 +135,46 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                               children: [
                                 Container(
                                   height: HW.getHeight(68, context),
-                                  child: Row(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Flexible(
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: HW.getHeight(
-                                                        8, context)),
-                                                child: Text(
-                                                    "${widget.titleText}\n",
-                                                    maxLines: 2,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1
-                                                        ?.copyWith(
-                                                            fontSize:
-                                                                TextFontSize
-                                                                    .getHeight(
-                                                                        16,
-                                                                        context),
-                                                            color: AppColors
-                                                                .black54)),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: Text(widget.subTitleText,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2
-                                                      ?.copyWith(
-                                                          fontSize: TextFontSize
-                                                              .getHeight(32,
-                                                                  context))),
-                                            ),
-                                          ],
+                                      Flexible(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: HW.getHeight(8, context)),
+                                          child: Text(widget.titleText,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              14, context),
+                                                      color:
+                                                          AppColors.black54)),
                                         ),
+                                      ),
+                                      Flexible(
+                                        child: Text(widget.subTitleText,
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2
+                                                ?.copyWith(
+                                                    fontSize:
+                                                        TextFontSize.getHeight(
+                                                            32, context))),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
                                     margin: EdgeInsets.only(
                                       top: HW.getHeight(16, context),
                                       bottom: HW.getHeight(16, context),
@@ -243,13 +231,26 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: widget.listDialogInfo
-                                    .map((data) => buttomItemsList(
-                                          name: data.name,
-                                          image: data.image,
-                                          text: data.description,
-                                          subTitle: data.name,
-                                          imageText: data.imageText,
-                                          selected: data.name,
+                                    .map((data) => MouseRegion(
+                                          onHover: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = data.name;
+                                            });
+                                          },
+                                          onExit: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = null;
+                                            });
+                                          },
+                                          child: buttomItemsList(
+                                            isHoverd: hoveredItemIndex == data.name,
+                                            name: data.name,
+                                            image: data.image,
+                                            text: data.description,
+                                            subTitle: data.name,
+                                            imageText: data.imageText,
+                                            selected: data.name,
+                                          ),
                                         ))
                                     .toList()),
                           ),
@@ -270,7 +271,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       required String image,
       required String text,
       required String subTitle,
-      required String imageText}) {
+      required String imageText,
+      bool isHoverd = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -285,7 +287,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
         },
         child: Text(name.toUpperCase(),
             maxLines: 1,
-            style: socratesInfoModel.name == selected
+            style: socratesInfoModel.name == selected || isHoverd
                 ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
                     fontSize: TextFontSize.getHeight(16, context))

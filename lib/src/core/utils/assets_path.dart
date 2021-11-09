@@ -5,6 +5,15 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
+
+  static const String iconVolumeOn= 'assets/icons/sound_on.png';
+  static const String iconVolumeOff= 'assets/icons/sound_off.png';
+
+  static const String iconMenu = 'assets/icons/menu.png';
+  static const String iconInfo = 'assets/icons/info.png';
+  static const String iconClose = 'assets/icons/close.png';
+
+
   static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
   static const String mapDialogBlur = 'assets/image_back/blur_map_dialog.png';

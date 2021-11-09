@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +35,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
+  bool panelVisibility = true;
 
   @override
   void didChangeDependencies() {
@@ -134,6 +137,21 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
       body: Stack(
         children: [
           Panorama(
+            onLongPressEnd: (a, b, c) {
+              setState(() {
+                panelVisibility = false;
+              });
+            },
+            onLongPressMoveUpdate: (a, b, c) {
+              setState(() {
+                panelVisibility = false;
+              });
+            },
+            onViewChanged: (a, b, c) {
+              setState(() {
+                panelVisibility = false;
+              });
+            },
             hotspots: infoList.map((info) {
               return Hotspot(
                 height: info.height,
@@ -161,14 +179,19 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                               Animation<double> secondaryAnimation,
                               Widget child) {
                             return LayoutBuilder(
-                                builder: (context, constraints) => DialogWidget(
-                                      titleText: locals.chapter1,
-                                      subTitleText:
-                                          locals.plaguePoliticalInstability,
-                                      animation: animation,
-                                      slectedInfoDialog: info,
-                                      constraints: constraints,
-                                      listDialogInfo: infoList,
+                                builder: (context, constraints) =>
+                                    BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                          sigmaX: 3, sigmaY: 3),
+                                      child: DialogWidget(
+                                        titleText: locals.chapter1,
+                                        subTitleText:
+                                            locals.plaguePoliticalInstability,
+                                        animation: animation,
+                                        slectedInfoDialog: info,
+                                        constraints: constraints,
+                                        listDialogInfo: infoList,
+                                      ),
                                     ));
                           },
                           transitionDuration: Times.fast,
@@ -182,35 +205,39 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
             }).toList(),
             child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
           ),
-          Positioned(
-            top: HW.getHeight(335, context),
-            left: HW.getWidth(180, context),
-            child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
-                width: HW.getWidth(772, context),
-                height: HW.getHeight(410, context),
-                child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: ListView(
+          Visibility(
+            visible: panelVisibility,
+            child: Positioned(
+              top: HW.getHeight(335, context),
+              left: HW.getWidth(180, context),
+              child: Container(
+                  color: AppColors.blackG.withOpacity(0.75),
+                  width: HW.getWidth(772, context),
+                  height: HW.getHeight(410, context),
+                  child: Padding(
                       padding: const EdgeInsets.all(14),
-                      children: [
-                        Text(
-                          locals.panaromaRightInfoDialogText,
-                          strutStyle: const StrutStyle(
-                            fontSize: 16.0,
-                            height: 2,
-                          ),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        )
-                      ],
-                    ))),
+                      child: ListView(
+                        padding: const EdgeInsets.all(14),
+                        children: [
+                          Text(
+                            locals.panaromaRightInfoDialogText,
+                            strutStyle: const StrutStyle(
+                              fontSize: 16.0,
+                              height: 2,
+                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.white),
+                          )
+                        ],
+                      ))),
+            ),
           ),
           SoundAndMenuWidget(
             color: AppColors.white,
-            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            icons:
+                isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
             onTapVolume: isSoundOn
                 ? () {
                     setState(() {

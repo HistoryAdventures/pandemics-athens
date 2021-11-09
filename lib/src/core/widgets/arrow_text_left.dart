@@ -36,7 +36,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
               child: Icon(
                 Icons.arrow_back,
                 color: color ?? Colors.black,
-                size: HW.getWidth(37, context),
+                size: HW.getWidth(40, context),
               ),
             ),
             Flexible(

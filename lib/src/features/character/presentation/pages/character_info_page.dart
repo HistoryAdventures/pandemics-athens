@@ -35,7 +35,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
   late CharacterModelNotifier characterModelNotifierprovider;
-
+  String? hoveredItemIndex;
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -145,9 +145,13 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                             context.router.pop();
                                           }
                                         },
-                                        child: const Icon(
-                                          Icons.clear,
-                                          color: AppColors.black54,
+                                        child: SizedBox(
+                                          height: HW.getHeight(19, context),
+                                          width: HW.getHeight(19, context),
+                                          child: Image.asset(
+                                              AssetsPath.iconClose,
+                                              fit: BoxFit.contain,
+                                              color: AppColors.grey35),
                                         )))
                               ],
                             ),
@@ -171,8 +175,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                 isAlwaysShown: true,
                                 child: ListView(shrinkWrap: true, children: [
                                   Container(
-                                    padding:
-                                        const EdgeInsets.only(right: 24, top: 16),
+                                    padding: const EdgeInsets.only(
+                                        right: 24, top: 16),
                                     child: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
@@ -182,13 +186,15 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline3
-                                            ?.copyWith(color: AppColors.black54),
+                                            ?.copyWith(
+                                                color: AppColors.black54),
                                       ),
                                       TextSpan(
                                         text: characterModelNotifierprovider
                                             .bodyText,
-                                        style:
-                                            Theme.of(context).textTheme.bodyText1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
                                       ),
                                     ])),
                                   )
@@ -206,12 +212,26 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                             children: widget.listCharacters
-                                .map((data) => charactersNameListWidget(
-                                    name: data.name,
-                                    image: data.image,
-                                    text: data.bodyText,
-                                    selected: data.name,
-                                    subTitle: data.subTitle))
+                                .map((data) => MouseRegion(
+                                      onHover: (_) {
+                                        setState(() {
+                                          hoveredItemIndex = data.name;
+                                        });
+                                      },
+                                      onExit: (_) {
+                                        setState(() {
+                                          hoveredItemIndex = null;
+                                        });
+                                      },
+                                      child: charactersNameListWidget(
+                                          isHoverd:
+                                              hoveredItemIndex == data.name,
+                                          name: data.name,
+                                          image: data.image,
+                                          text: data.bodyText,
+                                          selected: data.name,
+                                          subTitle: data.subTitle),
+                                    ))
                                 .toList())),
                   )
                 ],
@@ -268,7 +288,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 }),
           ),
           SoundAndMenuWidget(
-            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+            icons:
+                isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
             onTapVolume: isSoundOn
                 ? () {
                     setState(() {
@@ -296,7 +317,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
       required String selected,
       required String image,
       required String subTitle,
-      required String text}) {
+      required String text,
+      bool isHoverd = false}) {
     return Container(
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
@@ -308,7 +330,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           },
           child: AutoSizeText(name.toUpperCase(),
               maxLines: 1,
-              style: characterModelNotifierprovider.name == selected
+              style: characterModelNotifierprovider.name == selected || isHoverd
                   ? Theme.of(context).textTheme.bodyText1?.copyWith(
                       color: AppColors.orange,
                       fontSize: TextFontSize.getHeight(16, context))
