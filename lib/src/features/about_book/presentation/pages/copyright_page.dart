@@ -56,8 +56,10 @@ class _CopyrightPageState extends State<CopyrightPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
-                Align(
-                    // top: HW.getHeight(128, context),
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: HW.getHeight(128, context),
                     child: Container(
                       alignment: Alignment.center,
                       height: HW.getHeight(43, context),

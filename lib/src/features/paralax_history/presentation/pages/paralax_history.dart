@@ -632,7 +632,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                     }
                   },
                 ),
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {
@@ -657,8 +659,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   child: AnimatedOpacity(
                     duration: Times.slower,
                     opacity: _bottomFieldOpasity,
-                    child: SizedBox(
-                      height: constraints.maxHeight * 0.1,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: HW.getWidth(64, context)),
+                      height: HW.getHeight(161, context),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

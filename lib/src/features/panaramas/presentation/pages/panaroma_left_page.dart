@@ -161,22 +161,6 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     return Stack(
       children: [
         Panorama(
-          onViewChanged: (a, b, c) {
-            setState(() {
-              panelVisibility = false;
-            });
-          },
-          onLongPressMoveUpdate: (a, b, c) {
-            setState(() {
-              panelVisibility = false;
-            });
-          },
-          onLongPressEnd: (a, b, c) {
-            setState(() {
-              panelVisibility = false;
-            });
-          },
-
           //sanimSpeed: 0.0,
           //sensorControl: SensorControl.Orientation,
           // onViewChanged: onViewChanged,

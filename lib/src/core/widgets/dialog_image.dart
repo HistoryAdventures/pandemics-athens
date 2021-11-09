@@ -41,7 +41,7 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-          gradient: AppColors.linearGradientBlueBK,
+            gradient: AppColors.linearGradientBlueBK,
             // image: DecorationImage(
             //   image: AssetImage(AssetsPath.dialogImageBg),
             //   fit: BoxFit.cover,
@@ -54,25 +54,59 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                 builder: (context, snapshot) {
                   return Center(
                     child: Padding(
-                      padding: EdgeInsets.only(top:HW.getHeight(63, context),bottom: HW.getHeight(175, context)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      padding: EdgeInsets.only(top: HW.getHeight(64, context)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Image.asset(
-                            widget.selectedImage,
-                            fit: BoxFit.cover,
-                            key: imageKey,
-                          ),
-                          IconButtonWidget(
-                              icon: const Icon(
-                                Icons.close,
-                                color: AppColors.grey,
+                          Expanded(
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    child: Image.asset(
+                                      widget.selectedImage,
+                                      fit: BoxFit.contain,
+                                      key: imageKey,
+                                    ),
+                                  ),
+                                  IconButtonWidget(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: AppColors.grey,
+                                      ),
+                                      onPressed: () {
+                                        context.router.pop();
+                                      })
+                                ],
                               ),
-                              onPressed: () {
-                                context.router.pop();
-                              })
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: HW.getHeight(32, context),
+                                bottom: HW.getHeight(64, context)),
+                            height: HW.getWidth(78, context),
+                            width: snapshot.data?.width,
+                            child: SingleChildScrollView(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Text(
+                                widget.selectedImageText,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    ?.copyWith(
+                                        fontSize:
+                                            TextFontSize.getHeight(16, context),
+                                        color: AppColors.white),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

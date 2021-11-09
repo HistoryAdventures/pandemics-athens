@@ -274,7 +274,10 @@ class _DialogWidgetState extends State<DialogWidget> {
                             ),
                           ),
                           Container(
-                            height:widget.subTitleText==locals.medicalToolsKnowledge?HW.getHeight(22, context): HW.getHeight(56, context),
+                            height: widget.subTitleText ==
+                                    locals.medicalToolsKnowledge
+                                ? HW.getHeight(22, context)
+                                : HW.getHeight(56, context),
                             child: Wrap(
                                 children: widget.listDialogInfo
                                     .map((data) => MouseRegion(
@@ -289,7 +292,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                                             });
                                           },
                                           child: charactersNameListWidget(
-                                            isHoverd: hoveredItemIndex==data.title,
+                                            isHoverd:
+                                                hoveredItemIndex == data.title,
                                             title: data.title,
                                             image: data.image,
                                             text: data.description,

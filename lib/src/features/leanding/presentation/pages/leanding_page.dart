@@ -179,7 +179,7 @@ class _LeandingPageState extends State<LeandingPage>
                         color: AppColors.blackB,
                         iconSize: HW.getHeight(37, context),
                         icon: const Icon(Icons.arrow_downward),
-                        onPressed: () async {
+                        onPressed: () {
                           LeafDetails.visitedVertexes.add(1);
                           LeafDetails.currentVertex = 1;
                           // print(LeafDetails.visitedVertexes);
@@ -189,7 +189,9 @@ class _LeandingPageState extends State<LeandingPage>
                       ),
                     ),
                     SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                      icons: isSoundOn
+                          ? AssetsPath.iconVolumeOn
+                          : AssetsPath.iconVolumeOff,
                       onTapVolume: isSoundOn
                           ? () {
                               setState(() {

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
 import '../../features/dead_socrates/presentation/modesl/socrates_info_model.dart';
@@ -58,13 +59,12 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       child: Container(
         width: HW.getWidth(1200, context),
         height: HW.getHeight(676, context),
-        // margin: EdgeInsets.symmetric(
-        //     horizontal: widget.constraints.maxWidth * 0.2,
-        //     vertical: widget.constraints.maxHeight * 0.15),
         child: Scaffold(
             backgroundColor: AppColors.white.withOpacity(0.9),
             body: Container(
-              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              padding: EdgeInsets.symmetric(
+                  vertical: HW.getHeight(24, context),
+                  horizontal: HW.getWidth(24, context)),
               child: Row(
                 children: [
                   SizedBox(
@@ -104,7 +104,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                                       socratesInfoModel.image,
                                                   selectedImageText:
                                                       socratesInfoModel
-                                                          .description,
+                                                          .imageText,
                                                   constraints: constraints,
                                                 ));
                                       },
@@ -116,7 +116,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                         return Container();
                                       });
                                 },
-                                child: const ZoomInNotesWidget()),
+                                child: ZoomInNotesWidget()),
                           )),
                     ),
                   ),
@@ -157,16 +157,19 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                                           AppColors.black54)),
                                         ),
                                       ),
-                                      Flexible(
-                                        child: Text(widget.subTitleText,
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2
-                                                ?.copyWith(
-                                                    fontSize:
-                                                        TextFontSize.getHeight(
-                                                            32, context))),
+                                      Expanded(
+                                        child: Container(
+                                          child: Text(widget.subTitleText,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2
+                                                  ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              32, context),
+                                                      height: 1)),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -176,9 +179,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10),
                                     margin: EdgeInsets.only(
-                                      top: HW.getHeight(16, context),
-                                      bottom: HW.getHeight(16, context),
-                                    ),
+                                        bottom: HW.getHeight(16, context),
+                                        top: HW.getHeight(8, context)),
                                     decoration: const BoxDecoration(
                                       border: Border(
                                         top: BorderSide(
@@ -193,7 +195,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                           ListView(shrinkWrap: true, children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              right: 24, top: 16),
+                                            right: 24,
+                                          ),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -243,7 +246,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                             });
                                           },
                                           child: buttomItemsList(
-                                            isHoverd: hoveredItemIndex == data.name,
+                                            isHoverd:
+                                                hoveredItemIndex == data.name,
                                             name: data.name,
                                             image: data.image,
                                             text: data.description,
