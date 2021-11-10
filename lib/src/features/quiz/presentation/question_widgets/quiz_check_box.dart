@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +12,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizCheckBox extends StatefulWidget {
   final int questionIndex;
   final String question;
-  bool withImages;
+
   final List<CheckBoxWidget<bool>> answers;
   final List<CheckBoxWidget<bool>> userAnswers;
 
@@ -20,7 +21,6 @@ class QuizCheckBox extends StatefulWidget {
       required this.questionIndex,
       required this.question,
       required this.userAnswers,
-      this.withImages = false,
       required this.answers})
       : super(key: key);
 
@@ -42,97 +42,84 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        height: constraints.maxHeight,
-        margin: const EdgeInsets.all(100),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        widget.question,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                            fontSize: TextFontSize.getHeight(45, context)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                  left: HW.getWidth(24, context),
+                  bottom: HW.getHeight(36, context)),
+              child: Text(
+                widget.question,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    ?.copyWith(fontSize: TextFontSize.getHeight(24, context)),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: HW.getHeight(283, context),
+                  width: HW.getWidth(430, context),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: HW.getWidth(48, context)),
+                  child: Image.asset(
+                    AssetsPath.quizImage8,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: AbsorbPointer(
+                    absorbing: QuizData.showRightAnswers,
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          ...widget.answers
+                              .map((answers) => Container(
+                                  margin: EdgeInsets.only(
+                                      bottom: HW.getHeight(24, context)),
+                                  decoration: QuizData.showRightAnswers &&
+                                          (answers.answers.correctAnswers ==
+                                                  CorrectAnswers.answer2 ||
+                                              answers.answers.correctAnswers ==
+                                                  CorrectAnswers.answer4 ||
+                                              answers.answers.correctAnswers ==
+                                                  CorrectAnswers.answer5)
+                                      ? DottedDecoration(
+                                          shape: Shape.box,
+                                          strokeWidth: 1,
+                                          color: AppColors.greyDeep)
+                                      : null,
+                                  child: CheckboxText(
+                                    isCorrect: answers.isRight,
+                                    value: answers.answers.value,
+                                    text: answers.answers.text,
+                                    onTap: (val) {
+                                      if (val) {
+                                        widget.userAnswers.remove(answers);
+                                      } else {
+                                        widget.userAnswers.add(answers);
+                                      }
+                                      setState(() {
+                                        answers.answers.value =
+                                            !answers.answers.value;
+                                      });
+                                    },
+                                  )))
+                              .toList()
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              AbsorbPointer(
-                absorbing: QuizData.showRightAnswers,
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  children: [
-                    ...widget.answers
-                        .map((answers) => Container(
-                            width: constraints.maxWidth * 0.4,
-                            padding: const EdgeInsets.all(15),
-                            margin: const EdgeInsets.all(5),
-                            decoration: QuizData.showRightAnswers &&
-                                    (answers.answers.correctAnswers ==
-                                            CorrectAnswers.answer2 ||
-                                        answers.answers.correctAnswers ==
-                                            CorrectAnswers.answer4 ||
-                                        answers.answers.correctAnswers ==
-                                            CorrectAnswers.answer5)
-                                ? DottedDecoration(
-                                    shape: Shape.box,
-                                    strokeWidth: 1,
-                                    color: AppColors.greyDeep)
-                                : null,
-                            child: CheckboxText(
-                              image: answers.answers.text,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: answers.isRight == null
-                                          ? Colors.transparent
-                                          : answers.isRight!
-                                              ? Colors.green
-                                              : Colors.red)),
-                              isImage: widget.withImages,
-                              value: answers.answers.value,
-                              text: Text(
-                                answers.answers.text,
-                                style: answers.isRight == null
-                                    ? Theme.of(context).textTheme.bodyText1
-                                    : answers.isRight!
-                                        ? Theme.of(context)
-                                            .textTheme
-                                            .bodyText1
-                                            ?.copyWith(color: Colors.green)
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .bodyText1
-                                            ?.copyWith(color: Colors.red),
-                              ),
-                              onTap: (val) {
-                                if (val) {
-                                  widget.userAnswers.remove(answers);
-                                } else {
-                                  widget.userAnswers.add(answers);
-                                }
-                                setState(() {
-                                  answers.answers.value =
-                                      !answers.answers.value;
-                                });
-                              },
-                            )))
-                        .toList()
-                  ],
-                ),
-              ),
-              Align(
-                child: Image.asset(AssetsPath.quizImage8),
-                alignment: Alignment.center,
-              )
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       );
     });

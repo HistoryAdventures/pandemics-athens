@@ -44,130 +44,100 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: constraints.maxWidth * 0.05,
-          vertical: 100,
-        ),
-        child: SingleChildScrollView(
-          child: Container(
-            height: constraints.maxHeight,
-            width: constraints.maxWidth,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                HW.getWidth(24, context),
+                HW.getHeight(24, context),
+                HW.getWidth(24, context),
+                HW.getHeight(36, context),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        flex: 5,
-                        child: Text(
-                          widget.question,
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1
-                              ?.copyWith(
-                                  fontSize:
-                                      TextFontSize.getHeight(24, context)),
-                        ),
+                      Text(
+                        widget.question,
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle1
+                            ?.copyWith(fontSize: HW.getHeight(24, context)),
+                      ),
+                      Text(
+                        '*helper text',
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            fontSize: HW.getHeight(12, context),
+                            color: AppColors.grey),
                       ),
                     ],
-                  ),
-                ),
-                Flexible(
-                  child: AbsorbPointer(
-                    absorbing: QuizData.showRightAnswers,
-                    child: Container(
-                      child: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        direction: Axis.horizontal,
-                        children: QuizData.showRightAnswers
-                            ? [
-                                ...QuizData.usersAnswersForQ2.map((element) {
-                                  if (element is EditTextWidget) {
-                                    return Container(
-                                      width: 120,
-                                      child: CustumInput(
-                                        controller: element.controller,
-                                        hintText: '',
-                                        onSaved: (v) => userAnswer.add(v!),
-                                        // validator: (v) => v!.isEmpty
-                                        //     ? "Email is required!"
-                                        //     : StringUtils.isEmail(v)
-                                        //         ? null
-                                        //         : "Invalid email",
-                                        isCorrect: element.isRight,
-                                      ),
-                                    );
-                                  } else {
-                                    return TextQuestion(
-                                        text: element as String);
-                                  }
-                                })
-                              ]
-                            : [
-                                ...QuizData.listQuestionBody2.map((element) {
-                                  if (element is EditTextWidget) {
-                                    return Container(
-                                      width: 120,
-                                      child: CustumInput(
-                                        controller: element.controller,
-                                        hintText: '',
-                                        onSaved: (v) => userAnswer.add(v!),
-                                        // validator: (v) => v!.isEmpty
-                                        //     ? "Email is required!"
-                                        //     : StringUtils.isEmail(v)
-                                        //         ? null
-                                        //         : "Invalid email",
-                                      ),
-                                    );
-                                  } else {
-                                    return TextQuestion(
-                                        text: element as String);
-                                  }
-                                })
-                              ],
-                      ),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: QuizData.showRightAnswers,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 100),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.black100, width: 1),
-                    ),
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      children: [
-                        ...QuizData.correctAnswersForQ2.map((element) {
-                          if (element is List<String>) {
-                            return Text(
-                              element.first,
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize:
-                                      TextFontSize.getHeight(35, context)),
-                            );
-                          } else {
-                            return Text(
-                              element as String,
-                              style: TextStyle(
-                                  fontSize:
-                                      TextFontSize.getHeight(35, context)),
-                            );
-                          }
-                        })
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
+            AbsorbPointer(
+              absorbing: QuizData.showRightAnswers,
+              child: Container(
+                margin:
+                    EdgeInsets.symmetric(horizontal: HW.getWidth(72, context)),
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.end,
+                  direction: Axis.horizontal,
+                  children: QuizData.showRightAnswers
+                      ? [
+                          ...QuizData.usersAnswersForQ2.map((element) {
+                            if (element is EditTextWidget) {
+                              return Container(
+                                width: HW.getWidth(120, context),
+                                child: CustumInput(
+                                  controller: element.controller,
+                                  hintText: '',
+                                  onSaved: (v) => userAnswer.add(v!),
+                                  // validator: (v) => v!.isEmpty
+                                  //     ? "Email is required!"
+                                  //     : StringUtils.isEmail(v)
+                                  //         ? null
+                                  //         : "Invalid email",
+                                  isCorrect: element.isRight,
+                                  rightAnswer: element.correctAnswer,
+                                ),
+                              );
+                            } else {
+                              return TextQuestion(text: element as String);
+                            }
+                          })
+                        ]
+                      : [
+                          ...QuizData.listQuestionBody2.map((element) {
+                            if (element is EditTextWidget) {
+                              return Container(
+                                width: HW.getWidth(120, context),
+                                child: CustumInput(
+                                  controller: element.controller,
+                                  hintText: '',
+                                  onSaved: (v) => userAnswer.add(v!),
+                                  rightAnswer: element.correctAnswer,
+                                  // validator: (v) => v!.isEmpty
+                                  //     ? "Email is required!"
+                                  //     : StringUtils.isEmail(v)
+                                  //         ? null
+                                  //         : "Invalid email",
+                                ),
+                              );
+                            } else {
+                              return TextQuestion(text: element as String);
+                            }
+                          })
+                        ],
+                ),
+              ),
+            ),
+          ],
         ),
       );
     });

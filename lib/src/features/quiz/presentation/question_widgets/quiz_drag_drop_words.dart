@@ -87,70 +87,82 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        height: constraints.maxHeight,
-        margin: EdgeInsets.symmetric(
-          horizontal: constraints.maxWidth * 0.05,
-          vertical: 100,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        widget.question,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                            fontSize: TextFontSize.getHeight(24, context)),
-                      ),
-                    ),
-                  ],
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                HW.getWidth(24, context),
+                HW.getHeight(24, context),
+                HW.getWidth(24, context),
+                HW.getHeight(36, context),
               ),
-              AbsorbPointer(
-                absorbing: QuizData.showRightAnswers,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          // padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.blueDeep)),
-                          child: Row(children: [
-                            ...widget.answers
-                                .map(
-                                  (answer) => Expanded(
-                                    child: InkWell(
-                                      child: buildTarget(
-                                        inTopContainer: true,
-                                        context: context,
-                                        answers: [answer],
-                                        onAccept: (data) => setState(() {
-                                          // if (widget.answers.contains(
-                                          //     Answers(value: 0, text: ''))) {
-                                          print("List ${widget.answers}");
-                                          //   }
-                                          print(data.text);
-                                          removeAll(data);
-                                          widget.answers.add(data);
-                                        }),
-                                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.question,
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle1
+                            ?.copyWith(fontSize: HW.getHeight(24, context)),
+                      ),
+                      Text(
+                        '*helper text',
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            fontSize: HW.getHeight(12, context),
+                            color: AppColors.grey),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            AbsorbPointer(
+              absorbing: QuizData.showRightAnswers,
+              child: Container(
+                margin:
+                    EdgeInsets.symmetric(horizontal: HW.getWidth(48, context)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin:
+                            EdgeInsets.only(bottom: HW.getHeight(63, context)),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: AppColors.underlineInputBorderColor)),
+                        child: Row(children: [
+                          ...widget.answers
+                              .map(
+                                (answer) => Expanded(
+                                  child: InkWell(
+                                    child: buildTarget(
+                                      inTopContainer: true,
+                                      context: context,
+                                      answers: [answer],
+                                      onAccept: (data) => setState(() {
+                                        // if (widget.answers.contains(
+                                        //     Answers(value: 0, text: ''))) {
+                                        print("List ${widget.answers}");
+                                        //   }
+                                        print(data.text);
+                                        removeAll(data);
+                                        widget.answers.add(data);
+                                      }),
                                     ),
                                   ),
-                                )
-                                .toList(),
-                          ])),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      Wrap(
+                                ),
+                              )
+                              .toList(),
+                        ])),
+                    Container(
+                      child: Wrap(
                         direction: Axis.horizontal,
                         crossAxisAlignment: WrapCrossAlignment.start,
                         children: QuizData.showRightAnswers
@@ -158,19 +170,16 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                 ...usersAnswers.map(
                                   (element) {
                                     if (element is DragWordsWidget) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 0),
-                                        child: buildTarget(
-                                          context: context,
-                                          answers: element.answers,
-                                          onAccept: (data) => setState(() {
-                                            removeAll(data);
-                                            // print(data.text);
-                                            element.answers.add(data);
-                                          }),
-                                          isCorrect: element.isRight,
-                                        ),
+                                      return buildTarget(
+                                        correctAnswer: element.correctAnswer,
+                                        context: context,
+                                        answers: element.answers,
+                                        onAccept: (data) => setState(() {
+                                          removeAll(data);
+                                          // print(data.text);
+                                          element.answers.add(data);
+                                        }),
+                                        isCorrect: element.isRight,
                                       );
                                     } else {
                                       return TextQuestion(
@@ -182,131 +191,188 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                             : [
                                 ...listQuestionBody.map((element) {
                                   if (element is DragWordsWidget) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0),
-                                      child: buildTarget(
-                                        context: context,
-                                        answers: element.answers,
-                                        onAccept: (data) => setState(() {
-                                          removeAll(data);
-                                          if (element.answers.isEmpty) {
-                                            element.answers.add(data);
-                                          } else {
-                                            widget.answers
-                                                .add(element.answers.last);
-                                            element.answers.removeLast();
-                                            element.answers.add(data);
-                                          }
-                                          if (widget.answers.isEmpty) {
-                                            widget.answers.add(
-                                                Answers(value: 0, text: ''));
-                                          }
-                                        }),
-                                      ),
+                                    return buildTarget(
+                                      isCorrect: element.isRight,
+                                      context: context,
+                                      answers: element.answers,
+                                      onAccept: (data) => setState(() {
+                                        removeAll(data);
+                                        if (element.answers.isEmpty) {
+                                          element.answers.add(data);
+                                        } else {
+                                          widget.answers
+                                              .add(element.answers.last);
+                                          element.answers.removeLast();
+                                          element.answers.add(data);
+                                        }
+                                        if (widget.answers.isEmpty) {
+                                          widget.answers.add(Answers(
+                                            value: data.value,
+                                            text: '',
+                                          ));
+                                        }
+                                      }),
                                     );
                                   } else {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0),
-                                      child:
-                                          TextQuestion(text: element as String),
-                                    );
+                                    return TextQuestion(
+                                        text: element as String);
                                   }
                                 })
                               ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Visibility(
-                visible: QuizData.showRightAnswers,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 100),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.black100, width: 1),
-                  ),
-                  child: Wrap(
-                    direction: Axis.horizontal,
-                    children: [
-                      ...correctAnswers.map((element) {
-                        if (element is List<String>) {
-                          return Text(
-                            element.first,
-                            style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: TextFontSize.getHeight(35, context)),
-                          );
-                        } else {
-                          return Text(
-                            element as String,
-                            style: TextStyle(
-                                fontSize: TextFontSize.getHeight(35, context)),
-                          );
-                        }
-                      })
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+            // Visibility(
+            //   visible: QuizData.showRightAnswers,
+            //   child: Container(
+            //     margin: const EdgeInsets.only(top: 100),
+            //     padding: EdgeInsets.all(10),
+            //     decoration: BoxDecoration(
+            //       border: Border.all(color: AppColors.black100, width: 1),
+            //     ),
+            //     child: Wrap(
+            //       direction: Axis.horizontal,
+            //       children: [
+            //         ...correctAnswers.map((element) {
+            //           if (element is List<String>) {
+            //             return Text(
+            //               element.first,
+            //               style: TextStyle(
+            //                   decoration: TextDecoration.underline,
+            //                   fontSize: TextFontSize.getHeight(35, context)),
+            //             );
+            //           } else {
+            //             return Text(
+            //               element as String,
+            //               style: TextStyle(
+            //                   fontSize: TextFontSize.getHeight(35, context)),
+            //             );
+            //           }
+            //         })
+            //       ],
+            //     ),
+            //   ),
+            // )
+          ],
         ),
       );
     });
   }
 }
 
+Widget _buildCheckdTarget({
+  required Answers answers,
+  required bool? isCorrect,
+  required String? correctAnswer,
+  required BuildContext context,
+}) {
+  return Container(
+    width: HW.getWidth(100, context),
+    decoration: const BoxDecoration(
+      // color: AppColors.red,
+      border: Border(
+        bottom:
+            BorderSide(width: 1, color: AppColors.underlineInputBorderColor),
+      ),
+      // color: inTopContainer ? null : AppColors.white,
+    ),
+    child: Container(
+        child: answers.text == ""
+            ? Column(
+                children: [
+                  Text(
+                    correctAnswer!,
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: AppColors.blueDeep,
+                        fontSize: TextFontSize.getHeight(12, context)),
+                  ),
+                  Text(
+                    '*empty*',
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: AppColors.red,
+                        fontSize: TextFontSize.getHeight(12, context),
+                        decoration: TextDecoration.lineThrough),
+                  )
+                ],
+              )
+            : Column(
+                children: [
+                  Text(
+                    correctAnswer!,
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: AppColors.blueDeep,
+                        fontSize: TextFontSize.getHeight(12, context)),
+                  ),
+                  Text(
+                    answers.text,
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: AppColors.red,
+                        fontSize: TextFontSize.getHeight(16, context),
+                        decoration: TextDecoration.lineThrough),
+                  )
+                ],
+              )),
+  );
+}
+
 Widget buildTarget({
   bool inTopContainer = false,
   bool? isCorrect,
+  String? correctAnswer,
   required BuildContext context,
   required List<Answers> answers,
   List<CorrectAnswers>? correctAnswers,
   required DragTargetAccept<Answers> onAccept,
-}) =>
-    Container(
-      decoration: BoxDecoration(
-        border: inTopContainer
-            ? null
-            : Border.all(
-                color: isCorrect == null
-                    ? AppColors.blueDeep
-                    : isCorrect
-                        ? AppColors.green
-                        : AppColors.red),
-        boxShadow: inTopContainer
-            ? null
-            : const [
-                BoxShadow(
-                    blurRadius: 1,
-                    offset: Offset(1, 1),
-                    color: AppColors.black25),
-              ],
-        borderRadius: inTopContainer ? null : BorderRadius.circular(5),
-        color: inTopContainer ? null : AppColors.white,
-      ),
-      width: inTopContainer ? null : 100,
-      height: 35,
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: () {},
-        child: DragTarget<Answers>(
-          builder: (context, candidateData, rejectedData) => Stack(
-            children: answers
-                .map((answer) => DraggableWidget(answers: answer))
-                .toList(),
+}) {
+  return isCorrect != null && isCorrect == false
+      ? Stack(
+          children: answers
+              .map((answer) => _buildCheckdTarget(
+                    correctAnswer: correctAnswer,
+                    answers: answer,
+                    isCorrect: isCorrect,
+                    context: context,
+                  ))
+              .toList(),
+        )
+      : Container(
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            border: inTopContainer
+                ? null
+                : const Border(
+                    bottom: BorderSide(
+                        width: 1, color: AppColors.underlineInputBorderColor),
+                  ),
+            // color: inTopContainer ? null : AppColors.white,
           ),
-          onWillAccept: (data) => true,
-          onAccept: (data) {
-            //    print(data.text);
-            onAccept(data);
-          },
-          onLeave: (data) {
-            //  print(data);
-          },
-        ),
-      ),
-    );
+          width: inTopContainer ? null : HW.getWidth(100, context),
+          height: HW.getHeight(22.5, context),
+          alignment: Alignment.center,
+          child: InkWell(
+            onTap: () {},
+            child: DragTarget<Answers>(
+              builder: (context, candidateData, rejectedData) => Stack(
+                children: answers
+                    .map((answer) => DraggableWidget(
+                          correctAnswer: correctAnswer,
+                          answers: answer,
+                          isCorrect: isCorrect,
+                        ))
+                    .toList(),
+              ),
+              onWillAccept: (data) => true,
+              onAccept: (data) {
+                //    print(data.text);
+                onAccept(data);
+              },
+              onLeave: (data) {
+                //  print(data);
+              },
+            ),
+          ),
+        );
+}

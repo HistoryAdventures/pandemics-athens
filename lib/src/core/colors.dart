@@ -5,6 +5,8 @@ abstract class AppColors {
   /// White
   static const Color white = Color(0xffffffff);
 
+  static const Color underlineInputBorderColor = Color(0xffc4c4c4);
+
   static const Color blackB = Color(0xff201a29);
 
   /// Black

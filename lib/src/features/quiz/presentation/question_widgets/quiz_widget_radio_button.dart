@@ -42,46 +42,53 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
       absorbing: QuizData.showRightAnswers,
       child: LayoutBuilder(builder: (context, constraints) {
         return Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: constraints.maxWidth * 0.05,
-            vertical: 100,
-          ),
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Column(
+              Container(
+                margin: EdgeInsets.fromLTRB(HW.getWidth(24, context),
+                    HW.getHeight(24, context), 0, HW.getHeight(36, context)),
+                child: Text(
+                  widget.question,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(fontSize: TextFontSize.getHeight(24, context)),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  left: HW.getWidth(48, context),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 5,
-                          child: Text(
-                            widget.question,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle1
-                                ?.copyWith(
-                                    fontSize:
-                                        TextFontSize.getHeight(24, context)),
+                    Visibility(
+                      visible: widget.quizWithImage!,
+                      child: Container(
+                          margin: EdgeInsets.only(
+                            right: HW.getWidth(48, context),
                           ),
-                        ),
-                      ],
+                          height: HW.getHeight(369, context),
+                          width: HW.getWidth(277, context),
+                          child: Image.asset(
+                            AssetsPath.imageQuizPericles,
+                            fit: BoxFit.cover,
+                          )),
                     ),
                     Flexible(
                       child: AbsorbPointer(
                         absorbing: QuizData.showRightAnswers,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.answers
-                                .map((e) => Flexible(
-                                      child: Container(
-                                        width: 200,
-                                        margin: const EdgeInsets.all(12),
+                        child: Container(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.answers
+                                  .map((e) => Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: HW.getHeight(24, context)),
                                         decoration: QuizData.showRightAnswers &&
                                                 e.value == 4
                                             ? DottedDecoration(
@@ -112,26 +119,28 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                                                                 value!;
                                                           });
                                                         },
-                                              activeColor: AppColors.blueDeep,
+                                              activeColor: AppColors.orange,
                                             ),
-                                            Flexible(child: Text(e.text)),
+                                            Text(
+                                              e.text,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1
+                                                  ?.copyWith(
+                                                      fontSize: HW.getHeight(
+                                                          16, context)),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                    ))
-                                .toList()),
+                                      ))
+                                  .toList()),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Visibility(
-                  visible: widget.quizWithImage!,
-                  child: Image.asset(AssetsPath.imageQuizPericles),
-                ),
-              )
             ],
           ),
         );

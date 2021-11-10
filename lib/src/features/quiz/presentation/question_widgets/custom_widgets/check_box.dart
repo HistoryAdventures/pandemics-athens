@@ -1,33 +1,31 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 
 class CheckboxText extends StatefulWidget {
   bool value;
-  final Text text;
-  final String? image;
-  final bool isImage;
-  BoxDecoration decoration;
+  bool? isCorrect;
+  final String text;
   final Function(bool val) onTap;
 
-  CheckboxText({
-    Key? key,
-    required this.value,
-    required this.text,
-    required this.isImage,
-    required this.image,
-    required this.decoration,
-    required this.onTap,
-  }) : super(key: key);
+  CheckboxText(
+      {Key? key,
+      required this.value,
+      required this.text,
+      required this.onTap,
+      required this.isCorrect})
+      : super(key: key);
 
   @override
   _CheckboxTextState createState() => _CheckboxTextState();
 }
 
 class _CheckboxTextState extends State<CheckboxText> {
-  // late bool value;
-  @override
+  // // late bool value;
+  // @override
   // void initState() {
   //   value = widget.value;
   //   super.initState();
@@ -38,45 +36,48 @@ class _CheckboxTextState extends State<CheckboxText> {
     return Clickable(
       onPressed: () {
         widget.onTap(widget.value);
-        // setState(() {
-        //   widget.value = !widget.value;
-        // });
       },
-      child: widget.isImage
-          ? Container(
-              decoration: widget.value
-                  ? DottedDecoration(
-                      color: AppColors.grey, shape: Shape.box, strokeWidth: 2)
-                  : null,
-              child: Container(
-                decoration: widget.decoration,
-                height: 200,
-                width: 200,
-                child: Image.asset(widget.image!),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 12),
+            height: 16,
+            width: 16,
+            decoration: BoxDecoration(
+                color: widget.value ? AppColors.orange : AppColors.transpatent,
+                border: widget.value
+                    ? null
+                    : Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(2)),
+            child: Visibility(
+              visible: widget.value,
+              child: const Center(
+                child: Icon(
+                  Icons.done,
+                  color: AppColors.white,
+                  size: 12,
+                ),
               ),
-            )
-          : Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Visibility(
-                    visible: widget.value,
-                    child: const Icon(Icons.done),
-                  ),
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                Flexible(
-                  child: widget.text,
-                )
-              ],
             ),
+          ),
+          AutoSizeText(
+            widget.text,
+            style: widget.isCorrect == null
+                ? Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(fontSize: TextFontSize.getHeight(16, context))
+                : widget.isCorrect!
+                    ? Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: Colors.green,
+                        fontSize: TextFontSize.getHeight(16, context))
+                    : Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: Colors.red,
+                        fontSize: TextFontSize.getHeight(16, context)),
+          ),
+        ],
+      ),
     );
   }
 }

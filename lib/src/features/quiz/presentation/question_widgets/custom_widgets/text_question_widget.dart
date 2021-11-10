@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import '../../../../../core/utils/styles.dart';
 
 class TextQuestion extends StatelessWidget {
@@ -7,11 +8,15 @@ class TextQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
         maxLines: 1,
-        style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 16),
+        style: Theme.of(context)
+            .textTheme
+            .subtitle1
+            ?.copyWith(fontSize: TextFontSize.getHeight(16, context)),
       ),
     );
   }

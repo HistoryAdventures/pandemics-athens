@@ -342,18 +342,36 @@ class QuizData {
 
   static final List<dynamic> listQuestionBody2 = [
     'Hippocrates suggested that the body contained four',
-    EditTextWidget(controller: QuizData.answerTextController1, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController1,
+        isRight: null,
+        correctAnswer: 'humours'),
     '. These were vital bodily fluids that kept people healthy if they were kept',
-    EditTextWidget(controller: QuizData.answerTextController2, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController2,
+        isRight: null,
+        correctAnswer: 'balanced'),
     '. He studied the body through ',
-    EditTextWidget(controller: QuizData.answerTextController3, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController3,
+        isRight: null,
+        correctAnswer: 'phlegm'),
     '. They are: blood, ',
-    EditTextWidget(controller: QuizData.answerTextController4, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController4,
+        isRight: null,
+        correctAnswer: 'black'),
     ",",
     'bile, yellow',
-    EditTextWidget(controller: QuizData.answerTextController5, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController5,
+        isRight: null,
+        correctAnswer: 'bile'),
     'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
-    EditTextWidget(controller: QuizData.answerTextController6, isRight: null),
+    EditTextWidget(
+        controller: QuizData.answerTextController6,
+        isRight: null,
+        correctAnswer: 'eucrasia'),
     ' in Greek.',
   ];
 
@@ -402,44 +420,44 @@ class QuizData {
   static final List<dynamic> listQuestionBody3 = [
     "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
     DragWordsWidget(
-      answers: QuizData.userAnswer1ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer1ForQ3,
+        isRight: null,
+        correctAnswer: 'King'),
     ", nor was it ruled by a small band of aritocrats (an ",
     DragWordsWidget(
-      answers: QuizData.userAnswer2ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer2ForQ3,
+        isRight: null,
+        correctAnswer: 'oligarchy'),
     "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
     DragWordsWidget(
-      answers: QuizData.userAnswer3ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer3ForQ3,
+        isRight: null,
+        correctAnswer: 'demos'),
     " meaning people, and kratos, which means ",
     DragWordsWidget(
-      answers: QuizData.userAnswer4ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer4ForQ3,
+        isRight: null,
+        correctAnswer: 'power'),
     "Athenian democracy was very different to modern democracy, however. Only adult male ",
     DragWordsWidget(
-      answers: QuizData.userAnswer5ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer5ForQ3,
+        isRight: null,
+        correctAnswer: 'citizens'),
     " could take part. ",
     DragWordsWidget(
-      answers: QuizData.userAnswer6ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer6ForQ3,
+        isRight: null,
+        correctAnswer: 'Women'),
     " and non-Athenians ",
     DragWordsWidget(
-      answers: QuizData.userAnswer7ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer7ForQ3,
+        isRight: null,
+        correctAnswer: 'slaves'),
     " were excluded. ",
     DragWordsWidget(
-      answers: QuizData.userAnswer8ForQ3,
-      isRight: null,
-    ),
+        answers: QuizData.userAnswer8ForQ3,
+        isRight: null,
+        correctAnswer: 'metics'),
   ];
 
   static final List<dynamic> correctAnswersForQ3 = [
@@ -692,7 +710,9 @@ class QuizData {
       if (element is EditTextWidget) {
         if (element.controller.text.isEmpty) {
           usersAnswersForQ2.add(EditTextWidget(
-              controller: TextEditingController(), isRight: false));
+              controller: TextEditingController(),
+              isRight: false,
+              correctAnswer: element.correctAnswer));
           //  print('add null');
         } else {
           // print("EditText::::: ${element.controller.text}");
@@ -707,7 +727,9 @@ class QuizData {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
           usersAnswersForQ3.add(DragWordsWidget(
-              answers: [Answers(value: 0, text: '')], isRight: false));
+              correctAnswer: element.correctAnswer,
+              answers: [Answers(value: 0, text: '')],
+              isRight: false));
         } else {
           usersAnswersForQ3.add(element);
         }
@@ -915,11 +937,10 @@ class EditText {
 class DragWordsWidget {
   final List<Answers> answers;
   bool? isRight;
+  String? correctAnswer;
 
-  DragWordsWidget({
-    required this.answers,
-    required this.isRight,
-  });
+  DragWordsWidget(
+      {required this.answers, required this.isRight, this.correctAnswer});
 }
 
 class CheckBoxWidget<T> {
@@ -935,8 +956,10 @@ class CheckBoxWidget<T> {
 class EditTextWidget {
   final TextEditingController controller;
   bool? isRight;
+  final String correctAnswer;
 
   EditTextWidget({
+    required this.correctAnswer,
     required this.controller,
     this.isRight,
   });
