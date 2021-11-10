@@ -269,6 +269,9 @@ class DrowLineWidget {
       required this.targetValue});
 }
 
+////////..............////////
+////////// NEW QUIZ UI////////
+///...................///////
 class _DragDropQuizBody extends StatefulWidget {
   const _DragDropQuizBody({Key? key}) : super(key: key);
 
@@ -298,14 +301,19 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
   GlobalKey dropKey = GlobalKey();
   double h = 0;
   double w = 0;
-
+  bool checked = false;
+  List<RightLine> rightLines = [];
   Size get _screenSize => Size(screenWidth, screenHeight);
 
   void checkAnswers() {
-    print("Check answers");
+    setUpRightLines();
+
+    print("Check answers ${rightLines.length}");
+
     savedLines.forEach((element) {
       element.color = Colors.red;
       element.strokeWidth = 4;
+      print(element.toString());
     });
     int a = savedLines.indexWhere((element) =>
         element.line.startKey == questions[0].question.key &&
@@ -330,10 +338,45 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
 
       savedLines[c].color = Colors.green;
     }
-    print("a $a,b$b,c$c");
+    checked = true;
     startOffset = Offset.zero;
     offset = Offset.zero;
+
     setState(() {});
+  }
+
+  void setUpRightLines() {
+    //a
+    shouldPaint = true;
+    RightLine a = RightLine(
+      startKey: questions[0].question.key,
+      start: offsetForKey(questions[0].question.key),
+      endKey: questions[2].target.key,
+      end: offsetForKey(questions[2].target.key),
+    );
+
+    //a
+    //b
+    RightLine b = RightLine(
+      startKey: questions[1].question.key,
+      start: offsetForKey(questions[1].question.key),
+      endKey: questions[1].target.key,
+      end: offsetForKey(questions[1].target.key),
+    );
+
+    // //b
+    // //c
+    RightLine c = RightLine(
+      startKey: questions[2].question.key,
+      start: offsetForKey(questions[2].question.key),
+      endKey: questions[0].target.key,
+      end: offsetForKey(questions[0].target.key),
+    );
+    rightLines.add(a);
+    rightLines.add(b);
+    rightLines.add(c);
+    checked = true;
+    //c
   }
 
   @override
@@ -428,64 +471,73 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
         ),
         Expanded(
           key: dropKey,
-          child: CustomPaint(
-            painter: MyPainter(
-              smallScreenHeightFactor: smallScreenHeightFactor,
-              smallScreenWidthFactor: smallScreenWidthFactor,
-              accepted: accepted,
-              circleButtonWidth: circleButtonWidth,
-              lines: lines,
-              startOffset: startOffset,
-              endOffset: offset,
-              shouldPaint: shouldPaint,
-              quizItem: questions[curentIndex],
-              savedLines: savedLines,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: AbsorbPointer(
+            absorbing: checked,
+            child: Stack(
               children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      _draggable(
-                        questions[0].question,
-                        0,
-                        "Battke of Thermopylae",
-                      ),
-                      divider38(context),
-                      _draggable(
-                        questions[1].question,
-                        1,
-                        "Birth of Socrates",
-                      ),
-                      divider38(context),
-                      _draggable(
-                        questions[2].question,
-                        2,
-                        "The Plague arrives in Athens",
-                      ),
-                    ],
+                CustomPaint(
+                  painter: MyPainter(
+                    checked: checked,
+                    smallScreenHeightFactor: smallScreenHeightFactor,
+                    smallScreenWidthFactor: smallScreenWidthFactor,
+                    accepted: accepted,
+                    circleButtonWidth: circleButtonWidth,
+                    lines: lines,
+                    startOffset: startOffset,
+                    endOffset: offset,
+                    shouldPaint: shouldPaint,
+                    quizItem: questions[curentIndex],
+                    savedLines: savedLines,
+                    rightLines: rightLines,
                   ),
-                ),
-                SizedBox(
-                  width: HW.getWidth(210, context),
-                ),
-                Expanded(
-                  child: Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _target(
-                        questions[0].target,
-                        "Battke of Thermopylae",
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _draggable(
+                              questions[0].question,
+                              0,
+                              "Battke of Thermopylae",
+                            ),
+                            divider38(context),
+                            _draggable(
+                              questions[1].question,
+                              1,
+                              "Birth of Socrates",
+                            ),
+                            divider38(context),
+                            _draggable(
+                              questions[2].question,
+                              2,
+                              "The Plague arrives in Athens",
+                            ),
+                          ],
+                        ),
                       ),
-                      divider38(context),
-                      _target(
-                        questions[1].target,
-                        "Birth of Socrates",
+                      SizedBox(
+                        width: HW.getWidth(210, context),
                       ),
-                      divider38(context),
-                      _target(
-                        questions[2].target,
-                        "The Plague arrives in Athens",
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _target(
+                              questions[0].target,
+                              "Battke of Thermopylae",
+                            ),
+                            divider38(context),
+                            _target(
+                              questions[1].target,
+                              "Birth of Socrates",
+                            ),
+                            divider38(context),
+                            _target(
+                              questions[2].target,
+                              "The Plague arrives in Athens",
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -577,7 +629,7 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
                   0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
             },
             feedback: CircleButton(
-              color: Colors.transparent,
+              color: Colors.white,
               width: circleButtonWidth,
             ),
             child: CircleButton(
@@ -586,7 +638,7 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
                         (element) => element.line.startKey == question.key,
                       ) ==
                       -1
-                  ? Colors.transparent
+                  ? Colors.white
                   : Colors.orange[800]!,
               width: circleButtonWidth,
             ),
@@ -646,7 +698,7 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
                           (element) => element.line.endKey == target.key,
                         ) ==
                         -1
-                    ? Colors.transparent
+                    ? Colors.white
                     : Colors.orange[800]!,
                 width: circleButtonWidth,
               );
@@ -665,4 +717,16 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
   Widget divider38(BuildContext context) => SizedBox(
         height: HW.getHeight(38, context),
       );
+}
+
+class SecondPainter extends CustomPainter {
+  @override
+  void paint(ui.Canvas canvas, ui.Size size) {
+    // TODO: implement paint
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
 }

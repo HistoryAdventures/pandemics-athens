@@ -17,6 +17,21 @@ class Line {
   );
 }
 
+class RightLine {
+  final GlobalKey startKey;
+  final GlobalKey endKey;
+  Offset? curveOffset;
+  final Offset start;
+  final Offset end;
+
+  RightLine({
+    required this.startKey,
+    required this.endKey,
+    required this.start,
+    required this.end,
+  });
+}
+
 class QuizItem {
   Question question;
   Target target;
