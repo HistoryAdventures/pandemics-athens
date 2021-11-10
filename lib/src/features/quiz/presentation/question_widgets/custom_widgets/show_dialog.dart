@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 class ShowDialogWidget extends StatelessWidget {
   final String accept;
@@ -27,59 +29,115 @@ class ShowDialogWidget extends StatelessWidget {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-              color: AppColors.blueDeep,
-              borderRadius: BorderRadius.circular(20)),
-          height: 200,
-          padding: EdgeInsets.all(10),
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            direction: Axis.vertical,
+            color: AppColors.orange,
+            borderRadius: BorderRadius.circular(
+              3,
+            ),
+          ),
+          height: HW.getHeight(202, context),
+          width: HW.getWidth(426, context),
+          padding: EdgeInsets.all(HW.getWidth(24, context)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white),
-              ),
-              Text(
-                subTitle,
-                style: const TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: AppColors.red),
-                        onPressed: () {
-                          onTapAccept();
-                        },
-                        child: Text(accept)),
+                  Expanded(
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.overline!.copyWith(
+                            color: Colors.white,
+                            fontSize: HW.getHeight(24, context),
+                          ),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: const BorderSide(
-                              width: 1,
-                              color: Colors.white,
-                            ),
-                            primary: AppColors.transpatent),
-                        onPressed: () {
-                          onTapCancel();
-                        },
-                        child: Text(cancel)),
-                  )
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.close,
+                      size: HW.getHeight(24, context),
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
-              )
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+              AutoSizeText(
+                subTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                ),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+              Expanded(flex: 1, child: _buttons),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget get _buttons => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(
+            flex: 40,
+          ),
+          Expanded(
+            flex: 40,
+            child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  side: const BorderSide(
+                    width: 2,
+                    color: Colors.white,
+                  ),
+                  primary: Colors.transparent,
+                ),
+                onPressed: () {
+                  onTapAccept();
+                },
+                child: Text(
+                  accept,
+                  style: const TextStyle(color: Colors.white),
+                )),
+          ),
+          const Spacer(
+            flex: 10,
+          ),
+          Expanded(
+            flex: 40,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  side: const BorderSide(
+                    width: 2,
+                    color: Colors.white,
+                  ),
+                  primary: AppColors.transpatent),
+              onPressed: () {
+                onTapCancel();
+              },
+              child: Text(
+                cancel,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+          const Spacer(
+            flex: 40,
+          )
+        ],
+      );
 }

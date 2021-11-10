@@ -492,6 +492,9 @@ class AssetsPath {
   static const String lottieAssetsCrowd =
       'assets/paralax_new/crowd/images/crowd_bg.png';
 
+  static const String checkIcon = "assets/icons/checkIcon.png";
+  static const String restartIcon = "assets/icons/restartIcon.png";
+
   static const List<String> contentImages = [
     AssetsPath.periclesImage,
     AssetsPath.irlGiana,
@@ -691,6 +694,8 @@ class AssetsPath {
     AssetsPath.document,
   ];
 }
+
+
 
 // Future<bool> loadContent(List<String> context) async {
 //   for (int i = 0; i < context.length; i++) {

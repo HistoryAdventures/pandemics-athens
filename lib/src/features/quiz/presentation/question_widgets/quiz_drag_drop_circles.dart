@@ -188,10 +188,10 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
     //     correctrAnswers();
     //   });
     // }
-    return const SizedBox(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: _DragDropQuizBody(),
+      child: DragDropQuizBody(),
     );
   }
 }
@@ -272,14 +272,16 @@ class DrowLineWidget {
 ////////..............////////
 ////////// NEW QUIZ UI////////
 ///...................///////
-class _DragDropQuizBody extends StatefulWidget {
-  const _DragDropQuizBody({Key? key}) : super(key: key);
+class DragDropQuizBody extends StatefulWidget {
+  static final GlobalKey<__DragDropQuizBodyState> dragDropBodyKey =
+      GlobalKey<__DragDropQuizBodyState>();
+  DragDropQuizBody({Key? key}) : super(key: dragDropBodyKey);
 
   @override
   __DragDropQuizBodyState createState() => __DragDropQuizBodyState();
 }
 
-class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
+class __DragDropQuizBodyState extends State<DragDropQuizBody> {
   List<Line> lines = [];
   List<QuizItem> questions = [];
   List<LineToSave> savedLines = [];
@@ -305,7 +307,19 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
   List<RightLine> rightLines = [];
   Size get _screenSize => Size(screenWidth, screenHeight);
 
+  void resetQuiz() {
+    savedLines.clear();
+    lines.clear();
+    rightLines.clear();
+    checked = false;
+    setState(() {});
+  }
+
   void checkAnswers() {
+    if (rightLines.isNotEmpty) {
+      print("returninq");
+      return;
+    }
     setUpRightLines();
 
     print("Check answers ${rightLines.length}");
@@ -346,6 +360,9 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
   }
 
   void setUpRightLines() {
+    if (rightLines.length == 2) {
+      return;
+    }
     //a
     shouldPaint = true;
     RightLine a = RightLine(
@@ -438,36 +455,31 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
       children: [
         Padding(
           padding: EdgeInsets.all(HW.getHeight(24, context)),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(
-              children: [
-                AutoSizeText(
-                  "What happened during the Golden Age of Athens?",
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: HW.getHeight(24, context),
-                      ),
-                  textAlign: TextAlign.start,
-                ),
-                RaisedButton(
-                    onPressed: () {
-                      checkAnswers();
-                    },
-                    child: Text("check")),
-              ],
-            ),
-            AutoSizeText(
-              "*drag nodes from one column to another, to match the anwsers",
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: HW.getHeight(12, context),
-                  ),
-            ),
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                "What happened during the Golden Age of Athens?",
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: HW.getHeight(24, context),
+                    ),
+                maxLines: 1,
+                textAlign: TextAlign.start,
+              ),
+              AutoSizeText(
+                "*drag nodes from one column to another, to match the anwsers",
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: HW.getHeight(12, context),
+                    ),
+                maxLines: 1,
+              ),
+            ],
+          ),
         ),
         Expanded(
           key: dropKey,
@@ -605,12 +617,33 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
     String questionText,
   ) =>
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: HW.getWidth(24, context)),
-            child: Text(questionText),
+          Expanded(
+            child: Container(),
+            flex: 5,
           ),
-          const Spacer(),
+          Expanded(
+            flex: 60,
+            child: Container(
+              constraints: const BoxConstraints(
+                minHeight: 15,
+              ),
+              alignment: Alignment.centerLeft,
+              height: circleButtonWidth * 2,
+              padding: EdgeInsets.only(left: HW.getWidth(24, context)),
+              child: AutoSizeText(
+                questionText,
+                minFontSize: 10,
+                maxLines: 1,
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(),
+            flex: 15,
+          ),
           Draggable(
             data: "data",
             onDragUpdate: onDragUpdate,
@@ -647,6 +680,7 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
       );
 
   Widget _target(Target target, String answerText) => Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DragTarget(
             onMove: (_) {
@@ -704,12 +738,30 @@ class __DragDropQuizBodyState extends State<_DragDropQuizBody> {
               );
             },
           ),
-          SizedBox(
-            width: HW.getWidth(24, context),
+          Expanded(
+            child: Container(),
+            flex: 3,
           ),
-          Padding(
-            padding: EdgeInsets.only(right: HW.getWidth(24, context)),
-            child: Text(answerText),
+          Expanded(
+            flex: 70,
+            child: Container(
+              constraints: const BoxConstraints(
+                minHeight: 15,
+              ),
+              alignment: Alignment.centerLeft,
+              height: circleButtonWidth * 2,
+              padding: EdgeInsets.only(left: HW.getWidth(24, context)),
+              child: AutoSizeText(
+                answerText,
+                minFontSize: 10,
+                maxLines: 1,
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(),
+            flex: 30,
           ),
         ],
       );

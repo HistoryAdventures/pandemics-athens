@@ -83,15 +83,17 @@ class MyPainter extends CustomPainter {
         ..strokeWidth = 1
         ..style = PaintingStyle.stroke;
 
-      drawCurentLine(
-        canvas: canvas,
-        path: path,
-        startOffset: offsetForKey(element.startKey),
-        endOffset: offsetForKey(element.endKey),
-        accepted: false,
-        paint: paint,
-        rightLine: true,
-      );
+      if (checked) {
+        drawCurentLine(
+          canvas: canvas,
+          path: path,
+          startOffset: offsetForKey(element.startKey),
+          endOffset: offsetForKey(element.endKey),
+          accepted: false,
+          paint: paint,
+          rightLine: true,
+        );
+      }
     });
   }
 
