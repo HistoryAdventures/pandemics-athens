@@ -230,7 +230,7 @@ class _QuizPageState extends State<QuizPage> {
           },
           icon: const Icon(Icons.arrow_upward),
         ),
-        icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+        icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
         onTapVolume: isSoundOn
             ? () {
                 setState(() {

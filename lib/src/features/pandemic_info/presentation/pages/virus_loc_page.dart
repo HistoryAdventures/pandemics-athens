@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
@@ -65,94 +66,103 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 child: _iframeIgnorePointer(viewID: viewID),
               ),
             ),
-            Container(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AssetsPath.virusLoc1),
-                      fit: BoxFit.cover)),
-            ),
-            Align(
-                alignment: Alignment.topLeft,
+            // Container(
+            //   width: constraints.maxWidth,
+            //   height: constraints.maxHeight,
+            //   decoration: const BoxDecoration(
+            //       image: DecorationImage(
+            //           image: AssetImage(AssetsPath.virusLoc1),
+            //           fit: BoxFit.cover)),
+            // ),
+            Positioned(
+                top: HW.getHeight(192, context),
+                left: HW.getWidth(128, context),
                 child: Container(
                   decoration: BoxDecoration(
                       color: AppColors.white, boxShadow: Shadows.universal),
-                  height: constraints.maxHeight * 0.5,
-                  width: constraints.maxWidth * 0.4,
-                  margin: EdgeInsets.only(
-                      top: constraints.maxHeight * 0.1,
-                      left: constraints.maxWidth * 0.1),
+                  height: HW.getHeight(676, context),
+                  width: HW.getWidth(768, context),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Flexible(
-                          child: Container(
-                            width: constraints.maxWidth,
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: AppColors.grey, width: 1.2))),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: AutoSizeText(
-                                      "${locals.chapter1Pathogenprofile}\n",
-                                      maxLines: 2,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1),
-                                ),
-                                Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: constraints.maxHeight * 0.01),
-                                    child: AutoSizeText(
-                                      locals.whereDidItComeFrom.toUpperCase(),
+                        Container(
+                          height: HW.getHeight(68, context),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      bottom: HW.getHeight(8, context)),
+                                  child: Text(locals.chapter1Pathogenprofile,
                                       maxLines: 1,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 3,
-                          child: Scrollbar(
-                            child: ListView(shrinkWrap: true, children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16, right: 16),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: locals.whereDidItComeFromBodyText1,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText1),
-                                  TextSpan(
-                                    text:
-                                        '${locals.whereDidItComeFromBodyTextItalic}\n\n',
+                                          .headline1
+                                          ?.copyWith(
+                                              fontSize: TextFontSize.getHeight(
+                                                  14, context))),
+                                ),
+                              ),
+                              Flexible(
+                                child: Text(
+                                    locals.whereDidItComeFrom.toUpperCase(),
+                                    maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .subtitle2
-                                        ?.copyWith(fontSize: 16),
-                                  ),
-                                  // TextSpan(
-                                  //   text: locals.whereDidItComeFromBodyText2,
-                                  //   style:
-                                  //       Theme.of(context).textTheme.bodyText1,
-                                  // ),
-                                ])),
+                                        .headline2
+                                        ?.copyWith(
+                                            fontSize: TextFontSize.getHeight(
+                                                32, context))),
                               ),
-                            ]),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            margin: EdgeInsets.only(
+                              top: HW.getHeight(16, context),
+                              bottom: HW.getHeight(16, context),
+                            ),
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    top: BorderSide(
+                                        color: AppColors.grey, width: 1.2))),
+                            child: HAScrollbar(
+                              isAlwaysShown: true,
+                              child: ListView(shrinkWrap: true, children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 16, right: 16),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                        text:
+                                            locals.whereDidItComeFromBodyText1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1),
+                                    TextSpan(
+                                      text:
+                                          '${locals.whereDidItComeFromBodyTextItalic}\n\n',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2
+                                          ?.copyWith(fontSize: 16),
+                                    ),
+                                    // TextSpan(
+                                    //   text: locals.whereDidItComeFromBodyText2,
+                                    //   style:
+                                    //       Theme.of(context).textTheme.bodyText1,
+                                    // ),
+                                  ])),
+                                ),
+                              ]),
+                            ),
                           ),
                         ),
                       ],
@@ -194,7 +204,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               ),
             ),
             SoundAndMenuWidget(
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {

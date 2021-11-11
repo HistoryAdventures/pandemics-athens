@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 import '../../features/panaramas/presentation/models/dialog_model.dart';
 import '../colors.dart';
@@ -35,6 +36,8 @@ class DialogWidget extends StatefulWidget {
 class _DialogWidgetState extends State<DialogWidget> {
   late AppLocalizations locals;
   late InfoDialogModel infoDialogModel;
+
+  String? hoveredItemIndex;
 
   @override
   void initState() {
@@ -168,8 +171,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                           bottom: HW.getHeight(
                                                               8, context)),
                                                       child: Text(
-                                                        "${widget.titleText}\n",
-                                                        maxLines: 2,
+                                                        widget.titleText,
+                                                        maxLines: 1,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .headline1
@@ -205,11 +208,22 @@ class _DialogWidgetState extends State<DialogWidget> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Icon(
-                                                        Icons.clear)))
+                                                    child: SizedBox(
+                                                      height: HW.getHeight(
+                                                          19, context),
+                                                      width: HW.getHeight(
+                                                          19, context),
+                                                      child: Image.asset(
+                                                          AssetsPath.iconClose,
+                                                          fit: BoxFit.contain,
+                                                          color:
+                                                              AppColors.grey35),
+                                                    )))
                                           ])),
                                   Expanded(
                                     child: Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10),
                                       margin: EdgeInsets.only(
                                         top: HW.getHeight(16, context),
                                         bottom: HW.getHeight(16, context),
@@ -236,14 +250,14 @@ class _DialogWidgetState extends State<DialogWidget> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     bottom: 16),
-                                                child: AutoSizeText(
+                                                child: Text(
                                                     infoDialogModel.subTitle
                                                         .toUpperCase(),
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline3),
                                               ),
-                                              AutoSizeText(
+                                              Text(
                                                 infoDialogModel.description,
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -260,20 +274,34 @@ class _DialogWidgetState extends State<DialogWidget> {
                             ),
                           ),
                           Container(
-                            height: HW.getHeight(22, context),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                  children: widget.listDialogInfo
-                                      .map((data) => charactersNameListWidget(
+                            height: widget.subTitleText ==
+                                    locals.medicalToolsKnowledge
+                                ? HW.getHeight(22, context)
+                                : HW.getHeight(56, context),
+                            child: Wrap(
+                                children: widget.listDialogInfo
+                                    .map((data) => MouseRegion(
+                                          onHover: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = data.title;
+                                            });
+                                          },
+                                          onExit: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = null;
+                                            });
+                                          },
+                                          child: charactersNameListWidget(
+                                            isHoverd:
+                                                hoveredItemIndex == data.title,
                                             title: data.title,
                                             image: data.image,
                                             text: data.description,
                                             subTitle: data.subTitle,
                                             imageText: data.imageDescription,
-                                          ))
-                                      .toList()),
-                            ),
+                                          ),
+                                        ))
+                                    .toList()),
                           )
                         ],
                       ),
@@ -291,7 +319,8 @@ class _DialogWidgetState extends State<DialogWidget> {
       String? image,
       String? text,
       String? subTitle,
-      String? imageText}) {
+      String? imageText,
+      bool isHoverd = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -308,7 +337,7 @@ class _DialogWidgetState extends State<DialogWidget> {
         },
         child: AutoSizeText(title!.toUpperCase(),
             maxLines: 1,
-            style: infoDialogModel.title == title
+            style: infoDialogModel.title == title || isHoverd
                 ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
                     fontSize: TextFontSize.getHeight(16, context))

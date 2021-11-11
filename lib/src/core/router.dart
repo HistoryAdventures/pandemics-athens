@@ -33,6 +33,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
   routes: <AutoRoute>[
     CustomRoute(
       page: LeandingPage,
+      initial: true,
     ),
     CustomRoute(
         page: CharacrterPage,

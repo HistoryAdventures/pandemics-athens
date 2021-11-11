@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -11,8 +12,8 @@ import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
-import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/arrow_right.dart';
+import '../../../../core/widgets/arrow_left.dart';
 import '../../../../core/widgets/sound_and_menu_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -74,145 +75,132 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
     // if (isImageloaded == false) {
     //   return LoadingWidget();
     // }
-    return Scaffold(
-      endDrawer: const NavigationPage(),
-      body: LayoutBuilder(builder: (context, constraints) {
-        return Stack(
-          children: [
-            SizedBox.expand(
-                child: FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                  width: constraints.maxWidth,
-                  height: constraints.maxHeight,
-                  child: Image.asset(
-                    AssetsPath.medicine,
-                    fit: BoxFit.cover,
-                  )),
-            )),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                // padding: const EdgeInsets.symmetric(horizontal: 20),
-                height: constraints.maxHeight * 0.1,
-
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: SizedBox(
-                        child: ArrowLeftWidget(
-                            arrowColor: AppColors.white,
-                            textSubTitle: locals.quitMedicine,
-                            textTitle: '',
-                            textColor: AppColors.white,
-                            onTap: () {
-                              context.router
-                                  .push(const QuitMedicinePageRoute());
-                            }),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: AutoSizeText(
-                          locals.medicine.toUpperCase(),
-                          maxLines: 1,
-                          minFontSize: 5,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(
-                                  fontSize: 38,
-                                  fontWeight: FontWeight.normal,
-                                  color: AppColors.white),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: ArrowRightWidget(
-                          textColor: AppColors.white,
-                          textSubTitle: locals.keepGoing,
-                          textTitle: '',
-                          arrowColor: AppColors.white,
-                          onTap: () {
-                            ////????????
-                            NavigationSharedPreferences
-                                .upDateShatedPreferences();
-                            context.router.push(const KeepGoingPageRoute());
-                          }),
-                    ),
-                  ],
+    return Stack(
+      children: [
+        SizedBox.expand(
+            child: FittedBox(
+          fit: BoxFit.cover,
+          child: SizedBox(
+              child: Image.asset(
+            AssetsPath.medicine,
+            fit: BoxFit.cover,
+          )),
+        )),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: HW.getWidth(64, context)),
+            height: HW.getHeight(161, context),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: SizedBox(
+                    child: ArrowLeftWidget(
+                        arrowColor: AppColors.white,
+                        textSubTitle: locals.quitMedicine,
+                        textTitle: '',
+                        textColor: AppColors.white,
+                        onTap: () {
+                          context.router.push(const QuitMedicinePageRoute());
+                        }),
+                  ),
                 ),
-              ),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: AutoSizeText(
+                      locals.medicine.toUpperCase(),
+                      maxLines: 1,
+                      minFontSize: 5,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          fontSize: 38,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.white),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: ArrowRightWidget(
+                      textColor: AppColors.white,
+                      textSubTitle: locals.keepGoing,
+                      textTitle: '',
+                      arrowColor: AppColors.white,
+                      onTap: () {
+                        ////????????
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.push(const KeepGoingPageRoute());
+                      }),
+                ),
+              ],
             ),
-            SoundAndMenuWidget(
-              color: AppColors.white,
-              widget: IconButtonWidget(
-                  onPressed: () {
-                    LeafDetails.currentVertex = 10;
-                    NavigationSharedPreferences.upDateShatedPreferences();
+          ),
+        ),
+        // SoundAndMenuWidget(
+        //   color: AppColors.white,
+        //   // widget: IconButtonWidget(
+        //   //     onPressed: () {
+        //   //       LeafDetails.currentVertex = 10;
+        //   //       NavigationSharedPreferences.upDateShatedPreferences();
 
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.arrow_upward_sharp,
-                    size: 30,
-                    color: AppColors.white,
-                  )),
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-              onTapVolume: isSoundOn
-                  ? () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
-                      });
-                    }
-                  : () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
-                      });
-                    },
-              onTapMenu: () {
-                Scaffold.of(context).openEndDrawer();
-              },
+        //   //       if (kIsWeb) {
+        //   //         html.window.history.back();
+        //   //         context.router.pop();
+        //   //       } else {
+        //   //         context.router.pop();
+        //   //       }
+        //   //     },
+        //   //     iconSize: HW.getHeight(37, context),
+        //   //     icon: const Icon(
+        //   //       Icons.arrow_upward_sharp,
+        //   //       color: AppColors.white,
+        //   //     )),
+        //   icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+        //   onTapVolume: isSoundOn
+        //       ? () {
+        //           setState(() {
+        //             isSoundOn = !isSoundOn;
+        //             backgroundplayer.pause();
+        //           });
+        //         }
+        //       : () {
+        //           setState(() {
+        //             isSoundOn = !isSoundOn;
+        //             backgroundplayer.play();
+        //           });
+        //         },
+        //   onTapMenu: () {
+        //     Scaffold.of(context).openEndDrawer();
+        //   },
+        // ),
+
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            margin: EdgeInsets.only(
+              top: HW.getHeight(143, context),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                color: AppColors.black06,
-                margin: const EdgeInsets.only(top: 80),
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Wrap(
-                      children: [
-                        AutoSizeText(
-                          locals.medicineText,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    )),
-              ),
+            color: AppColors.black06,
+            width: HW.getWidth(668, context),
+            height: HW.getHeight(153, context),
+            padding: EdgeInsets.symmetric(
+              vertical: HW.getHeight(36, context),
+              horizontal: HW.getWidth(36, context),
             ),
-          ],
-        );
-      }),
+            child: Text(
+              locals.medicineText,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  color: AppColors.white,
+                  fontSize: TextFontSize.getHeight(16, context)),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

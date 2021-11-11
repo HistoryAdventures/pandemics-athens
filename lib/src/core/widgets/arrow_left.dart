@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../colors.dart';
 import '../utils/styles.dart';
 
 import 'clickable_widget.dart';
@@ -18,36 +19,32 @@ class ArrowLeftWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(
-            child: Clickable(
-              onPressed: onTap,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                height: 37,
-                width: 37,
-                child: Icon(
-                  Icons.arrow_back,
-                  color: arrowColor ?? Colors.white,
-                  size: 37,
-                ),
+          Clickable(
+            onPressed: onTap,
+            child: Container(
+              margin: const EdgeInsets.only(right: 16),
+              child: Icon(
+                Icons.arrow_back,
+                color: arrowColor ?? Colors.white,
+                size: HW.getHeight(40, context),
               ),
             ),
           ),
-          Flexible(
-            flex: 3,
-            child: Text(
-              textSubTitle.toUpperCase(),
-              textAlign: TextAlign.start,
-              // minFontSize: 5,
-              maxLines: 1,
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+          Text(
+            textSubTitle.toUpperCase(),
+            textAlign: TextAlign.end,
+            maxLines: 1,
+            // minFontSize: 5,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   fontSize: TextFontSize.getHeight(24, context).clamp(0, 24),
-                  color: textColor ?? Colors.black),
-            ),
-          )
+                  color: textColor ?? Colors.black,
+                ),
+          ),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/about_book/presentation/pages/further_reading_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -69,7 +70,9 @@ class _CopyrightPageState extends State<CopyrightPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -152,48 +155,43 @@ class _CopyrightPageState extends State<CopyrightPage> {
                           right: constraints.maxWidth * 0.1,
                           bottom: 80,
                           top: constraints.maxHeight * 0.25),
-                      child: Scrollbar(
-                        showTrackOnHover: false,
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget(
-                                          'Copyright © Spencer Striker, 2021', [
-                                        'All rights reserved. No part of this book may be reproduced or used in any manner without written permission of the copyright owner except for the use of quotations in a book review. For more information, address: spencerstriker@gmail.comThis is a work of fiction. Names, characters, places, and incidents either are the product of the author’s imagination or are used fictitiously. Any resemblance to actual persons, living or dead, events, or locales is entirely coincidental.'
-                                      ]),
-                                    ],
-                                  ),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    authorWidget(
+                                        'Copyright © Spencer Striker, 2021', [
+                                      'All rights reserved. No part of this book may be reproduced or used in any manner without written permission of the copyright owner except for the use of quotations in a book review. For more information, address: spencerstriker@gmail.comThis is a work of fiction. Names, characters, places, and incidents either are the product of the author’s imagination or are used fictitiously. Any resemblance to actual persons, living or dead, events, or locales is entirely coincidental.'
+                                    ]),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      authorWidget('Fair Use', [
-                                        'Copyright Disclaimer under section 107 of the Copyright Act of 1976, allowance is made for “fair use” for purposes such as criticism, comment, news reporting, teaching, scholarship, education and research. Fair use is a use permitted by copyright statute that might otherwise be infringing.'
-                                      ]),
-                                      authorWidget('Fair Use Definition', [
-                                        'Fair use is a doctrine in United States copyright law that allows limited use of copyrighted material without requiring permission from the rights holders, such as commentary, criticism, news report- ing, research, teaching or scholarship. It provides for the legal, non-licensed citation or incorporation of copyrighted material in another author’s work under a four-factor balancing test.'
-                                      ]),
-                                      authorWidget('Fair Use Act Disclaimer', [
-                                        'This is a work of criticism, comment, scholarship and research.',
-                                      ]),
-                                    ],
-                                  ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    authorWidget('Fair Use', [
+                                      'Copyright Disclaimer under section 107 of the Copyright Act of 1976, allowance is made for “fair use” for purposes such as criticism, comment, news reporting, teaching, scholarship, education and research. Fair use is a use permitted by copyright statute that might otherwise be infringing.'
+                                    ]),
+                                    authorWidget('Fair Use Definition', [
+                                      'Fair use is a doctrine in United States copyright law that allows limited use of copyrighted material without requiring permission from the rights holders, such as commentary, criticism, news report- ing, research, teaching or scholarship. It provides for the legal, non-licensed citation or incorporation of copyrighted material in another author’s work under a four-factor balancing test.'
+                                    ]),
+                                    authorWidget('Fair Use Act Disclaimer', [
+                                      'This is a work of criticism, comment, scholarship and research.',
+                                    ]),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       )),

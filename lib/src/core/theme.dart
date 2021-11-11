@@ -11,15 +11,14 @@ class DefaultTheme {
   static ThemeData get standard {
     return ThemeData(
       scrollbarTheme: ScrollbarThemeData(
-        radius: const Radius.circular(2),
-        crossAxisMargin: 1,
-        mainAxisMargin: 1,
-        minThumbLength: 119,
-        thickness: MaterialStateProperty.all(4),
-        trackColor: MaterialStateProperty.all(AppColors.green),
-        trackBorderColor: MaterialStateProperty.all(AppColors.grey),
-        thumbColor: MaterialStateProperty.all(AppColors.orange),
-      ),
+          radius: const Radius.circular(2),
+          crossAxisMargin: 1,
+          minThumbLength: 119,
+          thickness: MaterialStateProperty.all(4),
+          trackColor: MaterialStateProperty.all(AppColors.grey10),
+          trackBorderColor: MaterialStateProperty.all(AppColors.transpatent),
+          thumbColor: MaterialStateProperty.all(AppColors.orange),
+          showTrackOnHover: true),
       highlightColor: AppColors.orange,
       colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.blueDeep),
       appBarTheme: _appBarTheme,

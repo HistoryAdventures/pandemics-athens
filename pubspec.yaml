@@ -23,6 +23,8 @@ dependencies:
 
   video_player: ^2.2.0
 
+
+
   video_player_web: ^2.0.4
 
 
@@ -162,8 +164,6 @@ flutter:
     - assets/map_images/
     - assets/dead_socrates/
     - assets/end_war/
-    - assets/imgs/
-    - assets/map/
     - assets/icons/
     - assets/paralax_new/
     - assets/paralax_new/crowd/
@@ -225,6 +225,7 @@ flutter:
     - family: Roboto
       fonts:
         - asset: fonts/Roboto-Regular.ttf
+  
         
     
   

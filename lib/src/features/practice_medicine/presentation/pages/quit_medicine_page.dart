@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -68,7 +69,9 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
             ),
             SoundAndMenuWidget(
               color: AppColors.white,
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -86,48 +89,40 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                 Scaffold.of(context).openEndDrawer();
               },
             ),
-            Align(
-              alignment: Alignment.centerLeft,
+            Positioned(
+              top: HW.getHeight(391, context),
+              left: HW.getWidth(144, context),
               child: Container(
-                color: AppColors.black06,
-                margin: EdgeInsets.only(
-                  top: constraints.maxWidth * 0.01,
-                  left: constraints.maxWidth * 0.01,
+                width: HW.getWidth(772, context),
+                height: HW.getHeight(432, context),
+                padding: EdgeInsets.symmetric(
+                  vertical: HW.getHeight(36, context),
+                  horizontal: HW.getWidth(36, context),
                 ),
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Wrap(
-                      children: [
-                        AutoSizeText(
-                          locals.quitMedicicneText,
-                          minFontSize: 5,
-                          // maxLines: 20,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    )),
+                color: AppColors.black06,
+                child: Text(
+                  locals.quitMedicicneText,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: AppColors.white,fontSize: TextFontSize.getHeight(16, context)),
+                ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: IconButtonWidget(
-                    onPressed: () {
-                      LeafDetails.visitedVertexes.add(15);
-                      LeafDetails.currentVertex = 15;
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const DeadOfSocratesPageRoute());
-                    },
-                    icon: const Icon(
-                      Icons.south,
-                      color: AppColors.white,
-                    )),
-              ),
+              child: IconButtonWidget(
+                  iconSize: HW.getHeight(40, context),
+                  onPressed: () {
+                    LeafDetails.visitedVertexes.add(15);
+                    LeafDetails.currentVertex = 15;
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.push(const DeadOfSocratesPageRoute());
+                  },
+                  icon: const Icon(
+                    Icons.arrow_downward,
+                    color: AppColors.white,
+                  )),
             ),
           ],
         );

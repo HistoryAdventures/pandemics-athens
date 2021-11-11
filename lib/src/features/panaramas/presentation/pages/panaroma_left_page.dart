@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +38,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
 
   bool isImageloaded = false;
   final scaffoldkey = GlobalKey<ScaffoldState>();
+  bool panelVisibility = true;
 
   @override
   void didChangeDependencies() {
@@ -82,8 +85,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         image: AssetsPath.panaramaImage7,
         latitude: -45.0,
         longitude: 15.0,
-        width: 60,
-        height: 60,
+        width: 90,
+        height: 75,
       ),
       InfoDialogModel(
         imageDescription: locals.legasyImageText,
@@ -161,6 +164,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           //sanimSpeed: 0.0,
           //sensorControl: SensorControl.Orientation,
           // onViewChanged: onViewChanged,
+
           hotspots: infoList.map((info) {
             return Hotspot(
               height: info.height,
@@ -188,14 +192,18 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                             Animation<double> secondaryAnimation,
                             Widget child) {
                           return LayoutBuilder(
-                              builder: (context, constraints) => DialogWidget(
-                                    titleText:
-                                        locals.chapter1MedicalToolsKnowledge,
-                                    subTitleText: locals.medicalToolsKnowledge,
-                                    animation: animation,
-                                    slectedInfoDialog: info,
-                                    constraints: constraints,
-                                    listDialogInfo: infoList,
+                              builder: (context, constraints) => BackdropFilter(
+                                    filter:
+                                        ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                                    child: DialogWidget(
+                                      titleText: locals.chapter1,
+                                      subTitleText:
+                                          locals.medicalToolsKnowledge,
+                                      animation: animation,
+                                      slectedInfoDialog: info,
+                                      constraints: constraints,
+                                      listDialogInfo: infoList,
+                                    ),
                                   ));
                         },
                         transitionDuration: Times.fast,
@@ -209,31 +217,34 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
           }).toList(),
           child: Image.asset(AssetsPath.panaramaBackgroundImageLeft),
         ),
-        Positioned(
-          top: HW.getHeight(348, context),
-          left: HW.getWidth(180, context),
-          child: Container(
-              color: AppColors.blackG.withOpacity(0.75),
-              width: HW.getWidth(772, context),
-              height: HW.getHeight(384, context),
-              child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: ListView(
+        Visibility(
+          visible: panelVisibility,
+          child: Positioned(
+            top: HW.getHeight(348, context),
+            left: HW.getWidth(180, context),
+            child: Container(
+                color: AppColors.blackG.withOpacity(0.75),
+                width: HW.getWidth(772, context),
+                height: HW.getHeight(384, context),
+                child: Padding(
                     padding: const EdgeInsets.all(14),
-                    children: [
-                      Text(
-                        locals.panaromaLeftInfoDialogText,
-                        strutStyle: const StrutStyle(
-                          fontSize: 16.0,
-                          height: 2,
-                        ),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            ?.copyWith(color: AppColors.white),
-                      )
-                    ],
-                  ))),
+                    child: ListView(
+                      padding: const EdgeInsets.all(14),
+                      children: [
+                        Text(
+                          locals.panaromaLeftInfoDialogText,
+                          strutStyle: const StrutStyle(
+                            fontSize: 16.0,
+                            height: 2,
+                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.white),
+                        )
+                      ],
+                    ))),
+          ),
         ),
         Align(
           alignment: Alignment.bottomLeft,
@@ -268,7 +279,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         ),
         SoundAndMenuWidget(
           color: AppColors.white,
-          icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+          icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
           onTapVolume: isSoundOn
               ? () {
                   setState(() {

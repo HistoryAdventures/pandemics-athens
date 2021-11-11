@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:universal_html/js.dart';
+import 'package:auto_route/auto_route.dart';
 
 import '../colors.dart';
 
@@ -30,39 +34,66 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
   final GlobalKey imageKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: FadeTransition(
-        opacity: widget.animation,
-        child: FutureBuilder<Size>(
-            future: imageSize(),
-            builder: (context, snapshot) {
-              return Container(
-                color: AppColors.green,
-                width: snapshot.data?.width,
-                // height: MediaQuery.of(context).size.height,
-                child: Scaffold(
-                  body: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 6,
-                        child: Image.asset(
-                          widget.selectedImage,
-                          fit: BoxFit.cover,
-                          key: imageKey,
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          width: snapshot.data?.width,
-                          child: Scrollbar(
-                            isAlwaysShown: true,
+    return Scaffold(
+      body: Align(
+        alignment: Alignment.center,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            gradient: AppColors.linearGradientBlueBK,
+            // image: DecorationImage(
+            //   image: AssetImage(AssetsPath.dialogImageBg),
+            //   fit: BoxFit.cover,
+            // ),
+          ),
+          child: FadeTransition(
+            opacity: widget.animation,
+            child: FutureBuilder<Size>(
+                future: imageSize(),
+                builder: (context, snapshot) {
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: HW.getHeight(64, context)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    child: Image.asset(
+                                      widget.selectedImage,
+                                      fit: BoxFit.contain,
+                                      key: imageKey,
+                                    ),
+                                  ),
+                                  IconButtonWidget(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: AppColors.grey,
+                                      ),
+                                      onPressed: () {
+                                        context.router.pop();
+                                      })
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: HW.getHeight(32, context),
+                                bottom: HW.getHeight(64, context)),
+                            height: HW.getWidth(78, context),
+                            width: snapshot.data?.width,
                             child: SingleChildScrollView(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Text(
                                 widget.selectedImageText,
                                 textAlign: TextAlign.center,
@@ -70,18 +101,19 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                                     .textTheme
                                     .subtitle2
                                     ?.copyWith(
-                                        fontSize: TextFontSize.getHeight(
-                                            24, context)),
+                                        fontSize:
+                                            TextFontSize.getHeight(16, context),
+                                        color: AppColors.white),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            }),
+                    ),
+                  );
+                }),
+          ),
+        ),
       ),
     );
   }

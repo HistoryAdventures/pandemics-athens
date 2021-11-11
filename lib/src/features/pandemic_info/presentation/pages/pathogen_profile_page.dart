@@ -3,6 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/practice_medicine_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -31,8 +34,10 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   late AppLocalizations locals;
   Offset offset = const Offset(0, 0);
   late GifController controller;
+  late ScrollController _scrollController;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
+  Color soundAndMewnuColor = AppColors.black100;
 
   double objWave = 0;
   int direction = 1;
@@ -48,6 +53,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   @override
   void initState() {
     controller = GifController(vsync: this);
+    _scrollController = ScrollController();
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       controller.repeat(
@@ -56,6 +62,21 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
         period: const Duration(seconds: 4),
         reverse: true,
       );
+    });
+    _scrollController.addListener(() {
+      if (_scrollController.offset ==
+          _scrollController.position.maxScrollExtent) {
+        LeafDetails.currentVertex = 14;
+        LeafDetails.visitedVertexes.add(14);
+        NavigationSharedPreferences.upDateShatedPreferences();
+        soundAndMewnuColor = AppColors.white;
+        setState(() {});
+      } else {
+        LeafDetails.currentVertex = 10;
+        NavigationSharedPreferences.upDateShatedPreferences();
+        soundAndMewnuColor = AppColors.black100;
+        setState(() {});
+      }
     });
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
@@ -87,158 +108,196 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
             mouseY = (e.position.dy - height / 2) / 20;
             setState(() {});
           }),
-          child: Stack(
-            children: [
-              AnimatedParticlesSecond(
-                constraints: constraints,
-                mouseX: mouseX,
-                mouseY: mouseY,
-                objWave: objWave,
-              ),
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 50),
-                    height: constraints.maxHeight * 0.6,
-                    width: constraints.maxWidth * 0.5,
-                    decoration: BoxDecoration(
-                        color: AppColors.white, boxShadow: Shadows.universal),
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Container(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    width: constraints.maxWidth,
-                                    decoration: const BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2))),
+          child: Container(
+            height: constraints.maxHeight * 2,
+            child: Stack(
+              children: [
+                ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: ListView(
+                    controller: _scrollController,
+                    children: [
+                      SizedBox(
+                        height: constraints.maxHeight,
+                        child: Stack(
+                          children: [
+                            AnimatedParticlesSecond(
+                              constraints: constraints,
+                              mouseX: mouseX,
+                              mouseY: mouseY,
+                              objWave: objWave,
+                            ),
+                            Positioned(
+                                top: HW.getHeight(192, context),
+                                left: HW.getWidth(128, context),
+                                child: Container(
+                                  height: HW.getHeight(676, context),
+                                  width: HW.getWidth(768, context),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      boxShadow: Shadows.universal),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(24),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Flexible(
-                                          child: AutoSizeText(
-                                              '${locals.chapter1}\n',
-                                              maxLines: 2,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(fontSize: 22)),
+                                        Container(
+                                          height: HW.getHeight(68, context),
+                                          width: constraints.maxWidth,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Flexible(
+                                                child: Container(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: HW.getHeight(
+                                                          8, context)),
+                                                  child: Text(locals.chapter1,
+                                                      maxLines: 1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1
+                                                          ?.copyWith(
+                                                              fontSize: TextFontSize
+                                                                  .getHeight(16,
+                                                                      context))),
+                                                ),
+                                              ),
+                                              Flexible(
+                                                child: Text(
+                                                  locals.pathogenProfile
+                                                      .toUpperCase(),
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2
+                                                      ?.copyWith(
+                                                          fontSize: TextFontSize
+                                                              .getHeight(
+                                                                  32, context)),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        Flexible(
-                                          child: AutoSizeText(
-                                            locals.pathogenProfile
-                                                .toUpperCase(),
-                                            maxLines: 1,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2,
+                                        Expanded(
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            margin: EdgeInsets.only(
+                                              top: HW.getHeight(16, context),
+                                            ),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                top: BorderSide(
+                                                    color: AppColors.grey,
+                                                    width: 1.2),
+                                              ),
+                                            ),
+                                            child: HAScrollbar(
+                                              child: ListView(
+                                                  shrinkWrap: true,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 24,
+                                                              top: 16),
+                                                      child: AutoSizeText(
+                                                        locals
+                                                            .pathogenProfileText,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText2,
+                                                      ),
+                                                    )
+                                                  ]),
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 3,
-                                  child: Scrollbar(
-                                    child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16, right: 38),
-                                        child: AutoSizeText(
-                                          locals.pathogenProfileText,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
-                                        ),
-                                      )
-                                    ]),
-                                  ),
-                                ),
-                              ],
+                                )),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: ArrowRightTextWidget(
+                                  textSubTitle: locals.whereDidItComeFrom,
+                                  textTitle: locals.pathogenProfile,
+                                  onTap: () {
+                                    LeafDetails.currentVertex = 11;
+                                    LeafDetails.visitedVertexes.add(11);
+                                    NavigationSharedPreferences
+                                        .upDateShatedPreferences();
+                                    context.router
+                                        .push(const VirusLocationPageRoute());
+                                  }),
                             ),
-                          ),
-                        ],
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  margin: const EdgeInsets.all(24),
+                                  child: Image.asset(AssetsPath.scrollIcon)),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: ArrowRightTextWidget(
-                    textSubTitle: locals.whereDidItComeFrom,
-                    textTitle: locals.pathogenProfile,
-                    onTap: () {
-                      LeafDetails.currentVertex = 11;
-                      LeafDetails.visitedVertexes.add(11);
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const VirusLocationPageRoute());
-                    }),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Clickable(
-                  onPressed: () {
-                    LeafDetails.currentVertex = 14;
-                    LeafDetails.visitedVertexes.add(14);
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const PracticeMedicineRoute());
-                  },
-                  child: Container(
-                      height: 50,
-                      width: 50,
-                      margin: const EdgeInsets.all(24),
-                      child: Image.asset(AssetsPath.scrollIcon)),
-                ),
-              ),
-              SoundAndMenuWidget(
-                widget: Clickable(
-                  onPressed: () {
-                    LeafDetails.currentVertex = 9;
-                    NavigationSharedPreferences.upDateShatedPreferences();
-
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  },
-                  child: const Icon(
-                    Icons.arrow_upward_sharp,
-                    color: Colors.black,
+                      SizedBox(
+                        height: constraints.maxHeight,
+                        child: const PracticeMedicine(),
+                      ),
+                    ],
                   ),
                 ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-                onTapVolume: isSoundOn
-                    ? () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
-                      }
-                    : () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
+                SoundAndMenuWidget(
+                  color: soundAndMewnuColor,
+                  widget: Visibility(
+                    visible: soundAndMewnuColor == AppColors.black100,
+                    child: IconButtonWidget(
+                      iconSize: HW.getHeight(40, context),
+                      icon: const Icon(Icons.arrow_upward_sharp),
+                      onPressed: () {
+                        LeafDetails.currentVertex = 9;
+                        NavigationSharedPreferences.upDateShatedPreferences();
+
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
                       },
-                onTapMenu: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              ),
-            ],
+                      color: soundAndMewnuColor,
+                    ),
+                  ),
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
+                  onTapVolume: isSoundOn
+                      ? () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.pause();
+                          });
+                        }
+                      : () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.play();
+                          });
+                        },
+                  onTapMenu: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
+              ],
+            ),
           ),
         );
       }),
@@ -249,30 +308,5 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
     setState(() {
       _selectedItem = selctedItem!;
     });
-  }
-
-  Widget yearsWidget({int? index, int? selected}) {
-    return Container(
-      //padding: const EdgeInsets.only(),
-      alignment: Alignment.center,
-      // color: Colors.red,
-      margin: const EdgeInsets.only(
-        left: 30,
-      ),
-      child: Clickable(
-        onPressed: () {
-          chandeState(selected);
-        },
-        child: Text(
-          "${400 + index!}",
-          style: _selectedItem == selected
-              ? const TextStyle(
-                  color: AppColors.orange,
-                  fontSize: 36,
-                )
-              : const TextStyle(color: AppColors.blackB, fontSize: 15),
-        ),
-      ),
-    );
   }
 }

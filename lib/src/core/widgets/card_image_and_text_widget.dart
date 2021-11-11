@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
 import '../../features/dead_socrates/presentation/modesl/socrates_info_model.dart';
 import '../colors.dart';
@@ -32,6 +34,7 @@ class CardTextAndImageWidget extends StatefulWidget {
 class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
   late AppLocalizations locals;
   late SocratesInfoModel socratesInfoModel;
+  String? hoveredItemIndex;
 
   @override
   void initState() {
@@ -56,13 +59,12 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       child: Container(
         width: HW.getWidth(1200, context),
         height: HW.getHeight(676, context),
-        // margin: EdgeInsets.symmetric(
-        //     horizontal: widget.constraints.maxWidth * 0.2,
-        //     vertical: widget.constraints.maxHeight * 0.15),
         child: Scaffold(
             backgroundColor: AppColors.white.withOpacity(0.9),
             body: Container(
-              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              padding: EdgeInsets.symmetric(
+                  vertical: HW.getHeight(24, context),
+                  horizontal: HW.getWidth(24, context)),
               child: Row(
                 children: [
                   SizedBox(
@@ -102,7 +104,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                                       socratesInfoModel.image,
                                                   selectedImageText:
                                                       socratesInfoModel
-                                                          .description,
+                                                          .imageText,
                                                   constraints: constraints,
                                                 ));
                                       },
@@ -114,7 +116,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                         return Container();
                                       });
                                 },
-                                child: const ZoomInNotesWidget()),
+                                child: ZoomInNotesWidget()),
                           )),
                     ),
                   ),
@@ -133,51 +135,40 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                               children: [
                                 Container(
                                   height: HW.getHeight(68, context),
-                                  child: Row(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Flexible(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: HW.getHeight(8, context)),
+                                          child: Text(widget.titleText,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1
+                                                  ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              14, context),
+                                                      color:
+                                                          AppColors.black54)),
+                                        ),
+                                      ),
                                       Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Flexible(
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: HW.getHeight(
-                                                        8, context)),
-                                                child: Text(
-                                                    "${widget.titleText}\n",
-                                                    maxLines: 2,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1
-                                                        ?.copyWith(
-                                                            fontSize:
-                                                                TextFontSize
-                                                                    .getHeight(
-                                                                        16,
-                                                                        context),
-                                                            color: AppColors
-                                                                .black54)),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              child: Text(widget.subTitleText,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2
-                                                      ?.copyWith(
-                                                          fontSize: TextFontSize
-                                                              .getHeight(32,
-                                                                  context))),
-                                            ),
-                                          ],
+                                        child: Container(
+                                          child: Text(widget.subTitleText,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2
+                                                  ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              32, context),
+                                                      height: 1)),
                                         ),
                                       ),
                                     ],
@@ -185,10 +176,11 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                 ),
                                 Expanded(
                                   child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
                                     margin: EdgeInsets.only(
-                                      top: HW.getHeight(16, context),
-                                      bottom: HW.getHeight(16, context),
-                                    ),
+                                        bottom: HW.getHeight(16, context),
+                                        top: HW.getHeight(8, context)),
                                     decoration: const BoxDecoration(
                                       border: Border(
                                         top: BorderSide(
@@ -197,35 +189,39 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                             color: AppColors.grey, width: 1.2),
                                       ),
                                     ),
-                                    child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 24, top: 16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 16),
-                                              child: AutoSizeText(
-                                                  socratesInfoModel.name
-                                                      .toUpperCase(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3),
-                                            ),
-                                            AutoSizeText(
-                                              socratesInfoModel.description,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ]),
+                                    child: HAScrollbar(
+                                      isAlwaysShown: true,
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            right: 24,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 16),
+                                                child: AutoSizeText(
+                                                    socratesInfoModel.name
+                                                        .toUpperCase(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline3),
+                                              ),
+                                              AutoSizeText(
+                                                socratesInfoModel.description,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ]),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -238,13 +234,27 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: widget.listDialogInfo
-                                    .map((data) => buttomItemsList(
-                                          name: data.name,
-                                          image: data.image,
-                                          text: data.description,
-                                          subTitle: data.name,
-                                          imageText: data.imageText,
-                                          selected: data.name,
+                                    .map((data) => MouseRegion(
+                                          onHover: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = data.name;
+                                            });
+                                          },
+                                          onExit: (_) {
+                                            setState(() {
+                                              hoveredItemIndex = null;
+                                            });
+                                          },
+                                          child: buttomItemsList(
+                                            isHoverd:
+                                                hoveredItemIndex == data.name,
+                                            name: data.name,
+                                            image: data.image,
+                                            text: data.description,
+                                            subTitle: data.name,
+                                            imageText: data.imageText,
+                                            selected: data.name,
+                                          ),
                                         ))
                                     .toList()),
                           ),
@@ -265,7 +275,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       required String image,
       required String text,
       required String subTitle,
-      required String imageText}) {
+      required String imageText,
+      bool isHoverd = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -280,7 +291,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
         },
         child: Text(name.toUpperCase(),
             maxLines: 1,
-            style: socratesInfoModel.name == selected
+            style: socratesInfoModel.name == selected || isHoverd
                 ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
                     fontSize: TextFontSize.getHeight(16, context))

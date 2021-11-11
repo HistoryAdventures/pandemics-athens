@@ -6,7 +6,7 @@ class MapInfoModel {
   String title;
   String text;
   String year;
-  String mapImage;
+  String? mapImage;
   String imageDescription;
   String lottie;
 
@@ -14,7 +14,7 @@ class MapInfoModel {
       {required this.image,
       required this.title,
       required this.text,
-      required this.mapImage,
+      this.mapImage,
       required this.imageDescription,
       required this.lottie,
       required this.year});
@@ -27,7 +27,6 @@ class MapInfoModel {
     required String? lottie,
   }) {
     this.lottie = lottie!;
-    this.mapImage = mapImage!;
     this.title = title!;
     this.image = image!;
     this.imageDescription = imageDescription!;

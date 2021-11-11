@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -245,7 +246,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                   child: SingleChildScrollView(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 18.0, top: 18),
+                                      right: 18.0, top: 16),
                                   child: Text(
                                     _selectedtText,
                                     style:
@@ -287,23 +288,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                   ),
                                 )
                                 .toList(),
-                          )
-                          //  GridView.builder(
-                          //   physics: const NeverScrollableScrollPhysics(),
-                          //   gridDelegate:
-                          //       SliverGridDelegateWithMaxCrossAxisExtent(
-                          //           maxCrossAxisExtent: HW.getWidth(100, context),
-                          //           crossAxisSpacing: 1,
-                          //           mainAxisSpacing: 1),
-                          //   itemCount: 25,
-                          //   itemBuilder: (context, index) {
-                          //     return gridViewCard(
-                          //         name: category[index].title,
-                          //         text: category[index].text,
-                          //         category: category[index].title);
-                          //   },
-                          // ),
-                          ),
+                          )),
                     ],
                   ),
                 ),
@@ -323,24 +308,21 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 ),
               ),
               SoundAndMenuWidget(
-                widget: Clickable(
-                  onPressed: () {
-                    LeafDetails.currentVertex = 0;
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
-                  },
-                  child: const Icon(
-                    Icons.arrow_upward_sharp,
-                    size: 30,
-                    color: Colors.black,
-                  ),
-                ),
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                widget: IconButtonWidget(
+                    color: AppColors.black100,
+                    iconSize: HW.getHeight(40, context),
+                    icon: const Icon(Icons.arrow_upward_sharp),
+                    onPressed: () {
+                      LeafDetails.currentVertex = 0;
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      if (kIsWeb) {
+                        html.window.history.back();
+                        context.router.pop();
+                      } else {
+                        context.router.pop();
+                      }
+                    }),
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

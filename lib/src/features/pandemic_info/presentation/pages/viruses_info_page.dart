@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -28,6 +29,8 @@ class VirusesInfoPage extends StatefulWidget {
 
 class _VirusesInfoPageState extends State<VirusesInfoPage>
     with SingleTickerProviderStateMixin {
+  String? hoveredItemIndex;
+
   /// Localizations object
   late AppLocalizations locals;
   late GifController controller;
@@ -162,7 +165,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               ),
               Align(
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 80),
+                  margin: EdgeInsets.only(right: HW.getWidth(129, context)),
                   child: Row(
                     children: [
                       Expanded(
@@ -229,12 +232,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                           ),
                         ),
                       ),
-                      Expanded(
+                      Container(
+                        height: HW.getHeight(676, context),
+                        width: HW.getWidth(768, context),
                         child: Container(
-                          margin: EdgeInsets.only(
-                              right: 50,
-                              top: constraints.maxHeight * 0.1,
-                              bottom: constraints.maxHeight * 0.1),
                           decoration: BoxDecoration(
                               color: AppColors.white,
                               boxShadow: Shadows.universal),
@@ -245,111 +246,135 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                flex: 10,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                          color: AppColors.grey, width: 1.2),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Flexible(
-                                              child: AutoSizeText(
-                                                "${locals.chapter1Pathogenprofile}\n",
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: HW.getHeight(68, context),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  bottom:
+                                                      HW.getHeight(8, context)),
+                                              child: Text(
+                                                locals.chapter1Pathogenprofile,
                                                 maxLines: 2,
                                                 style: DefaultTheme.standard
                                                     .textTheme.headline1
                                                     ?.copyWith(
-                                                        color:
-                                                            AppColors.black54),
+                                                        fontSize: TextFontSize
+                                                            .getHeight(
+                                                                14, context)),
                                               ),
                                             ),
-                                            Flexible(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    bottom:
-                                                        constraints.maxHeight *
-                                                            0.01),
-                                                child: AutoSizeText(
-                                                    locals.whatWasIt
-                                                        .toUpperCase(),
-                                                    maxLines: 1,
-                                                    style: DefaultTheme.standard
-                                                        .textTheme.headline2),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                                locals.whatWasIt.toUpperCase(),
+                                                maxLines: 1,
+                                                style: DefaultTheme.standard
+                                                    .textTheme.headline2
+                                                    ?.copyWith(
+                                                        fontSize: TextFontSize
+                                                            .getHeight(
+                                                                32, context))),
+                                          ),
+                                        ],
                                       ),
-                                      Expanded(
-                                        flex: 3,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              border: Border(
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        margin: EdgeInsets.only(
+                                          top: HW.getHeight(16, context),
+                                          bottom: HW.getHeight(16, context),
+                                        ),
+                                        decoration: const BoxDecoration(
+                                          border: Border(
                                             top: BorderSide(
                                                 color: AppColors.grey,
                                                 width: 1.2),
-                                          )),
+                                            bottom: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
+                                          ),
+                                        ),
+                                        child: HAScrollbar(
+                                          isAlwaysShown: true,
                                           child: ListView(
                                             shrinkWrap: true,
                                             children: [
                                               Container(
                                                 padding: const EdgeInsets.only(
-                                                    right: 38, top: 16),
-                                                child: RichText(
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '${virusModel.title}\n\n'
-                                                                .toUpperCase(),
-                                                        style: DefaultTheme
-                                                            .standard
-                                                            .textTheme
-                                                            .headline3,
-                                                      ),
-                                                      TextSpan(
-                                                        text: virusModel
-                                                            .description,
-                                                        style: DefaultTheme
-                                                            .standard
-                                                            .textTheme
-                                                            .bodyText1,
-                                                      ),
-                                                    ],
-                                                  ),
+                                                    right: 24, top: 16),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              bottom: 16),
+                                                      child: AutoSizeText(
+                                                          virusModel.title
+                                                              .toUpperCase(),
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .headline3),
+                                                    ),
+                                                    AutoSizeText(
+                                                      virusModel.description,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ],
                                                 ),
                                               )
                                             ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Flexible(
+                              Container(
+                                height: HW.getHeight(22, context),
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
                                         children: listCharacters
-                                            .map((data) =>
-                                                virusesNameListWidget(
-                                                  image:
-                                                      data.virusModel.widgets,
-                                                  name: data.virusModel.title,
-                                                  text: data
-                                                      .virusModel.description,
+                                            .map((data) => MouseRegion(
+                                                  onHover: (_) {
+                                                    setState(() {
+                                                      hoveredItemIndex =
+                                                          data.virusModel.title;
+                                                    });
+                                                  },
+                                                  onExit: (_) {
+                                                    setState(() {
+                                                      hoveredItemIndex = null;
+                                                    });
+                                                  },
+                                                  child: virusesNameListWidget(
+                                                    isHoverd:
+                                                        hoveredItemIndex ==
+                                                            data.virusModel
+                                                                .title,
+                                                    image:
+                                                        data.virusModel.widgets,
+                                                    name: data.virusModel.title,
+                                                    text: data
+                                                        .virusModel.description,
+                                                  ),
                                                 ))
                                             .toList())),
                               )
@@ -379,7 +404,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                     }),
               ),
               SoundAndMenuWidget(
-                icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {
@@ -405,7 +432,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   }
 
   Widget virusesNameListWidget(
-      {String? name, List<String>? image, String? text}) {
+      {String? name,
+      List<String>? image,
+      String? text,
+      bool isHoverd = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -417,7 +447,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         },
         child: AutoSizeText(name!.toUpperCase(),
             maxLines: 1,
-            style: virusModel.title == name
+            style: virusModel.title == name || isHoverd
                 ? Theme.of(context)
                     .textTheme
                     .bodyText1

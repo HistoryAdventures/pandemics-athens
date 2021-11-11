@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -58,6 +59,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   Offset offset = const Offset(0, 0);
 
   final backgroundplayer = AudioPlayer();
+
+  String? hoveredItemIndex;
 
   // Future<void> init() async {
   //   final loadedAssets = await loadContent(contentImages);
@@ -179,8 +182,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                 ),
                 Align(
                   child: Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 80,
+                    margin: EdgeInsets.only(
+                      right: HW.getWidth(129, context),
                     ),
                     child: Row(
                       children: [
@@ -253,160 +256,156 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                             ),
                           ),
                         ),
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 50,
-                                vertical: constraints.maxHeight * 0.1),
-                            decoration: BoxDecoration(
-                                boxShadow: Shadows.universal,
-                                color: AppColors.white),
-                            padding:
-                                EdgeInsets.all(constraints.maxHeight * 0.024),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 10,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                        border: Border(
+                        Container(
+                          height: HW.getHeight(676, context),
+                          width: HW.getWidth(768, context),
+                          decoration: BoxDecoration(
+                              boxShadow: Shadows.universal,
+                              color: AppColors.white),
+                          padding:
+                              EdgeInsets.all(constraints.maxHeight * 0.024),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: HW.getHeight(68, context),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  bottom:
+                                                      HW.getHeight(8, context)),
+                                              child: Text(
+                                                locale.chapter1Pathogenprofile,
+                                                maxLines: 1,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1
+                                                    ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              14, context),
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                                locale.whatDidItDo
+                                                    .toUpperCase(),
+                                                maxLines: 1,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2
+                                                    ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              32, context),
+                                                    )),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        margin: EdgeInsets.only(
+                                          top: HW.getHeight(16, context),
+                                          bottom: HW.getHeight(16, context),
+                                        ),
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                                color: AppColors.grey,
+                                                width: 1.2),
                                             bottom: BorderSide(
                                                 color: AppColors.grey,
-                                                width: 1.2))),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Flexible(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Flexible(
-                                                child: AutoSizeText(
-                                                  "${locale.chapter1Pathogenprofile}\n",
-                                                  maxLines: 2,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          color: AppColors
-                                                              .black54),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      bottom: constraints
-                                                              .maxHeight *
-                                                          0.01),
-                                                  child: AutoSizeText(
-                                                      locale.whatDidItDo
-                                                          .toUpperCase(),
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline2),
-                                                ),
-                                              ),
-                                            ],
+                                                width: 1.2),
                                           ),
                                         ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                                border: Border(
-                                              top: BorderSide(
-                                                  color: AppColors.grey,
-                                                  width: 1.2),
-                                            )),
-                                            child: ListView(
-                                                shrinkWrap: true,
-                                                children: [
-                                                  Container(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 38,
-                                                              top: 16),
-                                                      child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              '${bodyModel.title}\n'
-                                                                  .toUpperCase(),
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline3,
-                                                            ),
-                                                            if (bodyModel
-                                                                    .title ==
-                                                                locale
-                                                                    .bodyIntro)
-                                                              Column(
-                                                                children: [
-                                                                  Text(
-                                                                    locale
-                                                                        .intrBodyText,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyText1,
-                                                                  ),
-                                                                  Text(
-                                                                    locale
-                                                                        .intrBodyTextItalic,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .subtitle2
-                                                                        ?.copyWith(
-                                                                            fontSize:
-                                                                                18),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            else
-                                                              Text(
-                                                                bodyModel
-                                                                    .descriptiion,
+                                        child: HAScrollbar(
+                                          isAlwaysShown: true,
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 24, top: 16),
+                                                    child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    bottom: 16),
+                                                            child: AutoSizeText(
+                                                                bodyModel.title
+                                                                    .toUpperCase(),
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
-                                                                    .bodyText1,
-                                                              ),
-                                                          ])),
-                                                ]),
-                                          ),
+                                                                    .headline3),
+                                                          ),
+                                                          Text(
+                                                            bodyModel
+                                                                .descriptiion,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText1,
+                                                          ),
+                                                        ])),
+                                              ]),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                Flexible(
-                                  child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                          children: listCharacters
-                                              .map((data) =>
-                                                  bodiesNameListWidget(
+                              ),
+                              Container(
+                                height: HW.getHeight(22, context),
+                                child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                        children: listCharacters
+                                            .map((data) => MouseRegion(
+                                                  onHover: (_) {
+                                                    setState(() {
+                                                      hoveredItemIndex =
+                                                          data.bodyModel.title;
+                                                    });
+                                                  },
+                                                  onExit: (_) {
+                                                    setState(() {
+                                                      hoveredItemIndex = null;
+                                                    });
+                                                  },
+                                                  child: bodiesNameListWidget(
+                                                    isHoverd:hoveredItemIndex== data.bodyModel.title,
                                                       title:
                                                           data.bodyModel.title,
                                                       text: data.bodyModel
                                                           .descriptiion,
                                                       image:
-                                                          data.bodyModel.image))
-                                              .toList())),
-                                )
-                              ],
-                            ),
+                                                          data.bodyModel.image),
+                                                ))
+                                            .toList())),
+                              )
+                            ],
                           ),
                         ),
                       ],
@@ -431,7 +430,9 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       }),
                 ),
                 SoundAndMenuWidget(
-                  icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -469,7 +470,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     );
   }
 
-  Widget bodiesNameListWidget({String? title, String? image, String? text}) {
+  Widget bodiesNameListWidget(
+      {String? title, String? image, String? text, bool isHoverd = false}) {
     return Container(
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
@@ -481,7 +483,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
           },
           child: AutoSizeText(title!.toUpperCase(),
               maxLines: 1,
-              style: bodyModel.title == title
+              style: bodyModel.title == title || isHoverd
                   ? Theme.of(context)
                       .textTheme
                       .bodyText1

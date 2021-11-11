@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -32,6 +35,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
+  bool panelVisibility = true;
+  bool? onViewChanged;
 
   @override
   void didChangeDependencies() {
@@ -56,8 +61,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
         image: AssetsPath.panaramaImage2,
         latitude: -45.0,
         longitude: 15.0,
-        width: 60,
-        height: 60,
+        width: 90,
+        height: 75,
       ),
       InfoDialogModel(
         imageDescription: locals.athenianOstracismImageText,
@@ -130,144 +135,154 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body: Stack(
-        children: [
-          Panorama(
-            hotspots: infoList.map((info) {
-              return Hotspot(
-                height: info.height,
-                width: info.width,
-                latitude: info.latitude,
-                longitude: info.longitude,
-                widget: hotspotButton(
-                    icon: const AnimatedPulse(
-                      pulseDuration: Duration(seconds: 3),
-                      child: SizedBox(
-                        height: 30,
-                        width: 30,
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        // openInfoPlayer.play();
-                        //print("object");
-                      });
-                      showGeneralDialog(
-                          context: context,
-                          barrierColor: Colors.black.withOpacity(0.5),
-                          transitionBuilder: (BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                              Widget child) {
-                            return LayoutBuilder(
-                                builder: (context, constraints) => DialogWidget(
-                                      titleText: locals
-                                          .chapter1plaguePoliticalInstability,
-                                      subTitleText:
-                                          locals.plaguePoliticalInstability,
-                                      animation: animation,
-                                      slectedInfoDialog: info,
-                                      constraints: constraints,
-                                      listDialogInfo: infoList,
-                                    ));
-                          },
-                          transitionDuration: Times.fast,
-                          barrierDismissible: true,
-                          barrierLabel: '',
-                          pageBuilder: (context, animation1, animation2) {
-                            return Container();
-                          });
-                    }),
-              );
-            }).toList(),
-            child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
-          ),
-          Positioned(
-            top: HW.getHeight(335, context),
-            left: HW.getWidth(180, context),
-            child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
-                width: HW.getWidth(772, context),
-                height: HW.getHeight(410, context),
-                child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: ListView(
-                      padding: const EdgeInsets.all(14),
-                      children: [
-                        Text(
-                          locals.panaromaRightInfoDialogText,
-                          strutStyle: const StrutStyle(
-                            fontSize: 16.0,
-                            height: 2,
+      body: GestureDetector(
+        child: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: GestureDetector(
+                child: Panorama(
+                  hotspots: infoList.map((info) {
+                    return Hotspot(
+                      height: info.height,
+                      width: info.width,
+                      latitude: info.latitude,
+                      longitude: info.longitude,
+                      widget: hotspotButton(
+                          icon: const AnimatedPulse(
+                            pulseDuration: Duration(seconds: 3),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                            ),
                           ),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        )
-                      ],
-                    ))),
-          ),
-          SoundAndMenuWidget(
-            color: AppColors.white,
-            icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
-            onTapVolume: isSoundOn
-                ? () {
-                    setState(() {
-                      isSoundOn = !isSoundOn;
-                      //backgroundplayer.pause();
-                    });
-                  }
-                : () {
-                    setState(() {
-                      isSoundOn = !isSoundOn;
-                      //backgroundplayer.play();
-                    });
-                  },
-            onTapMenu: () {
-              scaffoldkey.currentState!.openEndDrawer();
-            },
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: ArrowLeftTextWidget(
-                color: AppColors.white,
-                textSubTitle: locals.todoNoHarm,
-                textTitle: locals.chapter1,
-                onTap: () {
-                  LeafDetails.currentVertex = 2;
-                  NavigationSharedPreferences.upDateShatedPreferences();
+                          onPressed: () {
+                            setState(() {
+                              // openInfoPlayer.play();
+                              //print("object");
+                            });
+                            showGeneralDialog(
+                                context: context,
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                transitionBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secondaryAnimation,
+                                    Widget child) {
+                                  return LayoutBuilder(
+                                      builder: (context, constraints) =>
+                                          BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                                sigmaX: 3, sigmaY: 3),
+                                            child: DialogWidget(
+                                              titleText: locals.chapter1,
+                                              subTitleText: locals
+                                                  .plaguePoliticalInstability,
+                                              animation: animation,
+                                              slectedInfoDialog: info,
+                                              constraints: constraints,
+                                              listDialogInfo: infoList,
+                                            ),
+                                          ));
+                                },
+                                transitionDuration: Times.fast,
+                                barrierDismissible: true,
+                                barrierLabel: '',
+                                pageBuilder: (context, animation1, animation2) {
+                                  return Container();
+                                });
+                          }),
+                    );
+                  }).toList(),
+                  child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: panelVisibility,
+              child: Positioned(
+                top: HW.getHeight(335, context),
+                left: HW.getWidth(180, context),
+                child: Container(
+                    color: AppColors.blackG.withOpacity(0.75),
+                    width: HW.getWidth(772, context),
+                    height: HW.getHeight(410, context),
+                    child: Padding(
+                        padding: const EdgeInsets.all(14),
+                        child: ListView(
+                          padding: const EdgeInsets.all(14),
+                          children: [
+                            Text(
+                              locals.panaromaRightInfoDialogText,
+                              strutStyle: const StrutStyle(
+                                fontSize: 16.0,
+                                height: 2,
+                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.white),
+                            )
+                          ],
+                        ))),
+              ),
+            ),
+            SoundAndMenuWidget(
+              color: AppColors.white,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
+              onTapVolume: isSoundOn
+                  ? () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        //backgroundplayer.pause();
+                      });
+                    }
+                  : () {
+                      setState(() {
+                        isSoundOn = !isSoundOn;
+                        //backgroundplayer.play();
+                      });
+                    },
+              onTapMenu: () {
+                scaffoldkey.currentState!.openEndDrawer();
+              },
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: ArrowLeftTextWidget(
+                  color: AppColors.white,
+                  textSubTitle: locals.todoNoHarm,
+                  textTitle: locals.chapter1,
+                  onTap: () {
+                    LeafDetails.currentVertex = 2;
+                    NavigationSharedPreferences.upDateShatedPreferences();
 
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
-                }),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Clickable(
-                onPressed: () {
+                    if (kIsWeb) {
+                      html.window.history.back();
+                      context.router.pop();
+                    } else {
+                      context.router.pop();
+                    }
+                  }),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: IconButtonWidget(
+                color: AppColors.white,
+                iconSize: HW.getHeight(37, context),
+                icon: const Icon(Icons.arrow_downward),
+                onPressed: () async {
                   LeafDetails.currentVertex = 10;
                   LeafDetails.visitedVertexes.add(10);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.push(const PathogenProfilePageRoute());
                 },
-                child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: Image.asset(
-                      AssetsPath.arrowDounImage,
-                      color: AppColors.white,
-                    )),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ abstract class AppColors {
   static const Color underlineInputBorderColor = Color(0xffc4c4c4);
 
   static const Color blackB = Color(0xff201a29);
+  static const Color trackColorScrollBar = Color(0xff343434);
 
   /// Black
   static const Color blackG = Color(0xFF202124);
@@ -45,6 +46,7 @@ abstract class AppColors {
   static const Color greyDeep = Color(0xff2E2E2E);
 
   static const Color grey35 = Color.fromRGBO(0, 0, 0, 0.35);
+  static const Color grey10 = Color.fromRGBO(0, 0, 0, 0.1);
 
   // Transparent
   static const Color transpatent = Colors.transparent;
@@ -106,6 +108,17 @@ abstract class AppColors {
     colors: [
       Color.fromRGBO(255, 255, 255, 0.8),
       Color.fromRGBO(255, 255, 255, 0.8),
+      // Color.fromRGBO(255, 255, 255, 0.5),
+
+      //radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4)
+    ],
+    end: Alignment.bottomLeft,
+  );
+
+  static const LinearGradient linearGradientBlueBK = LinearGradient(
+    colors: [
+      Color(0xff394051),
+      Color(0xff252935),
       // Color.fromRGBO(255, 255, 255, 0.5),
 
       //radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4)

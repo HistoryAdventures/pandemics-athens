@@ -317,7 +317,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
@@ -361,7 +361,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/leanding-page',
+            path: '/',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 

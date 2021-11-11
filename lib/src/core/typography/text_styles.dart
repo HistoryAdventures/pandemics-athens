@@ -102,7 +102,7 @@ class AppTextStyle {
   /// Body Text 1 Text Style
   static TextStyle get bodyText1 {
     return _baseTextStyle.copyWith(
-      fontSize: 18,
+      fontSize: 16,
       //fontWeight: AppFontWeight.medium,
     );
   }

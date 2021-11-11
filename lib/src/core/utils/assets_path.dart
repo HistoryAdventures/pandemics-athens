@@ -5,6 +5,15 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
+
+  static const String iconVolumeOn= 'assets/icons/sound_on.png';
+  static const String iconVolumeOff= 'assets/icons/sound_off.png';
+
+  static const String iconMenu = 'assets/icons/menu.png';
+  static const String iconInfo = 'assets/icons/info.png';
+  static const String iconClose = 'assets/icons/close.png';
+
+
   static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
   static const String mapDialogBlur = 'assets/image_back/blur_map_dialog.png';
@@ -258,11 +267,9 @@ class AssetsPath {
       'assets/practice_medicine/quit_medicine.png';
 
   static const String mapImage399 = 'assets/map_images/399image.png';
-  static const String mapImage413 = 'assets/map_images/413image.png';
   static const String mapImage414 = 'assets/map_images/414image.png';
   static const String mapImage415 = 'assets/map_images/415image.png';
   static const String mapImage416 = 'assets/map_images/416image.png';
-  static const String mapImage421 = 'assets/map_images/421image.png';
   static const String mapImage427 = 'assets/map_images/427image.png';
   static const String mapImage430 = 'assets/map_images/430image.png';
   static const String mapImage431 = 'assets/map_images/431image.png';
@@ -343,8 +350,6 @@ class AssetsPath {
   static const String paralaxFightersLeft =
       'assets/paralax_new/fighters_left.png';
   static const String mapIntroImage = 'assets/map_lottie/map_01/map_01.png';
-
-  static const String virusLoc1 = 'assets/assets/map_lottie/map_01/index.html';
 
   static const String mapLottie410 =
       'assets/assets/map_lottie/map_02/index.html';
@@ -443,49 +448,9 @@ class AssetsPath {
   static const String mapLottie399 =
       'assets/assets/map_lottie/map_36/index.html';
 
+  static const String virusLoc1 = 'assets/assets/map_lottie/map_01/index.html';
+
   static const String virusLoc2 = 'assets/assets/map_lottie/map_37/index.html';
-
-  static const String map508 = 'assets/map/map411image.png';
-  static const String map495 = 'assets/map/map495image.png';
-  static const String map490 = 'assets/map/map490image.png';
-  static const String map480 = 'assets/map/map480image.png';
-  static const String map479 = 'assets/map/map479image.png';
-  static const String map477 = 'assets/map/map477image.png';
-  static const String map471 = 'assets/map/map471image.png';
-  static const String map469 = 'assets/map/map469image.png';
-  static const String map462 = 'assets/map/map462image.png';
-  static const String map461 = 'assets/map/map461image.png';
-  static const String map458 = 'assets/map/map458image.png';
-  static const String map457 = 'assets/map/map457image.png';
-  static const String map454 = 'assets/map/map454image.png';
-  static const String map451 = 'assets/map/map451image.png';
-
-  static const String map450 = 'assets/map/map450image.png';
-  static const String map447_432 = 'assets/map/map447_432image.png';
-  static const String map446 = 'assets/map/map446image.png';
-  static const String map443 = 'assets/map/map443image.png';
-
-  static const String map441 = 'assets/map/map441image.png';
-  static const String map438 = 'assets/map/map438image.png';
-  static const String map431 = 'assets/map/map431image.png';
-  static const String map430 = 'assets/map/map430image.png';
-  static const String map429 = 'assets/map/map429image.png';
-  static const String map427 = 'assets/map/map427image.png';
-  static const String map421 = 'assets/map/map421image.png';
-  static const String map416 = 'assets/map/map416image.png';
-  static const String map415 = 'assets/map/map415image.png';
-
-  static const String map414 = 'assets/map/map414image.png';
-  static const String map413 = 'assets/map/map413image.png';
-  static const String map411 = 'assets/map/map411image.png';
-  static const String map410 = 'assets/map/map410image.png';
-
-  static const String map407 = 'assets/map/map407image.png';
-  static const String map404 = 'assets/map/map404image.png';
-  static const String map403 = 'assets/map/map403image.png';
-  static const String map399 = 'assets/map/map399image.png';
-  // static const String virusLoc1 = 'assets/map/virus_loc_1.png';
-  // static const String virusLoc2 = 'assets/map/virus_loc_2.png';
 
   static const String lottieAssetsTube = 'assets/paralax_new/tube2.png';
 
@@ -497,6 +462,9 @@ class AssetsPath {
 
   static const List<String> contentImages = [
     AssetsPath.periclesImage,
+    AssetsPath.gradient,
+    AssetsPath.mapTimeLineBlur,
+    AssetsPath.mapDialogBlur,
     AssetsPath.irlGiana,
     AssetsPath.gifParalaxNikosGif,
     AssetsPath.irlNikos,
@@ -577,43 +545,6 @@ class AssetsPath {
     AssetsPath.animatedBack6Vbody8,
     AssetsPath.animatedBack6Vbody9,
     AssetsPath.animatedBack6Vbody10,
-    AssetsPath.map508,
-    AssetsPath.map495,
-    AssetsPath.map490,
-    AssetsPath.map480,
-    AssetsPath.map479,
-    AssetsPath.map477,
-    AssetsPath.map471,
-    AssetsPath.map469,
-    AssetsPath.map462,
-    AssetsPath.map461,
-    AssetsPath.map458,
-    AssetsPath.map457,
-    AssetsPath.map454,
-    AssetsPath.map451,
-    AssetsPath.map450,
-    AssetsPath.map447_432,
-    AssetsPath.map446,
-    AssetsPath.map443,
-    AssetsPath.map441,
-    AssetsPath.map438,
-    AssetsPath.map431,
-    AssetsPath.map430,
-    AssetsPath.map429,
-    AssetsPath.map427,
-    AssetsPath.map421,
-    AssetsPath.map416,
-    AssetsPath.map415,
-    AssetsPath.map414,
-    AssetsPath.map413,
-    AssetsPath.map411,
-    AssetsPath.map410,
-    AssetsPath.map407,
-    AssetsPath.map404,
-    AssetsPath.map403,
-    AssetsPath.map399,
-    AssetsPath.virusLoc1,
-    AssetsPath.virusLoc2,
     AssetsPath.panaramaImage1,
     AssetsPath.panaramaImage2,
     AssetsPath.panaramaImage3,
@@ -625,11 +556,9 @@ class AssetsPath {
     AssetsPath.panaramaImage9,
     AssetsPath.panaramaImage10,
     AssetsPath.mapImage399,
-    AssetsPath.mapImage413,
     AssetsPath.mapImage414,
     AssetsPath.mapImage415,
     AssetsPath.mapImage416,
-    AssetsPath.mapImage421,
     AssetsPath.mapImage427,
     AssetsPath.mapImage430,
     AssetsPath.mapImage431,

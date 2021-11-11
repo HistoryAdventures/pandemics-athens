@@ -55,7 +55,7 @@ class _GianaPageState extends State<GianaPage> {
                   fit: BoxFit.cover,
                 )),
             SoundAndMenuWidget(
-              icons: isSoundOn ? Icons.volume_up : Icons.volume_mute,
+                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {

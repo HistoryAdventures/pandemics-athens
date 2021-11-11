@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 class ZoomInNotesWidget extends StatelessWidget {
   const ZoomInNotesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black.withOpacity(0.6),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Icon(
-            Icons.zoom_in,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.notes,
-            color: Colors.white,
-          ),
-        ],
-      ),
-    );
+    return SizedBox(
+        height: HW.getHeight(48, context),
+        width: HW.getWidth(96, context),
+        child: Image.asset(AssetsPath.iconInfo,fit: BoxFit.cover,));
   }
 }
