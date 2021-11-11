@@ -87,14 +87,20 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                               mainAxisSize: MainAxisSize.min,
                               children: widget.answers
                                   .map((e) => Container(
+                                        padding: EdgeInsets.only(
+                                            right: HW.getHeight(10, context)),
                                         margin: EdgeInsets.only(
                                             bottom: HW.getHeight(24, context)),
                                         decoration: QuizData.showRightAnswers &&
                                                 e.value == 4
-                                            ? DottedDecoration(
-                                                shape: Shape.box,
-                                                strokeWidth: 1,
-                                                color: AppColors.greyDeep)
+                                            ? BoxDecoration(
+                                                color: AppColors.white,
+                                                border: Border.all(
+                                                    color: AppColors
+                                                        .underlineInputBorderColor,
+                                                    width: 0.5),
+                                                boxShadow: Shadows.quizShadows,
+                                              )
                                             : null,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,

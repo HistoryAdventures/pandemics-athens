@@ -29,6 +29,61 @@ class Shadows {
         BoxShadow(offset: Offset(-1, -1), color: AppColors.grey, blurRadius: 1),
       ];
 
+  static List<BoxShadow> get allBordersBlue => const [
+        BoxShadow(
+            offset: Offset(0, 1),
+            color: AppColors.linearGradientBlueBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, 0),
+            color: AppColors.linearGradientBlueBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, -1),
+            color: AppColors.linearGradientBlueBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(-1, -1),
+            color: AppColors.linearGradientBlueBoxShadow,
+            blurRadius: 1),
+      ];
+  static List<BoxShadow> get allBordersRed => const [
+        BoxShadow(
+            offset: Offset(0, 1),
+            color: AppColors.linearGradientRedBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, 0),
+            color: AppColors.linearGradientRedBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, -1),
+            color: AppColors.linearGradientRedBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(-1, -1),
+            color: AppColors.linearGradientRedBoxShadow,
+            blurRadius: 1),
+      ];
+  static List<BoxShadow> get allBordersGreen => const [
+        BoxShadow(
+            offset: Offset(0, 1),
+            color: AppColors.linearGradientGreenBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, 0),
+            color: AppColors.linearGradientGreenBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(1, -1),
+            color: AppColors.linearGradientGreenBoxShadow,
+            blurRadius: 1),
+        BoxShadow(
+            offset: Offset(-1, -1),
+            color: AppColors.linearGradientGreenBoxShadow,
+            blurRadius: 1),
+      ];
+
   static List<BoxShadow> get smallWhite => const [
         BoxShadow(
           color: AppColors.white,
@@ -36,6 +91,12 @@ class Shadows {
           spreadRadius: 5,
           offset: Offset(0, 1),
         ),
+      ];
+
+  static List<BoxShadow> get quizShadows => const [
+        BoxShadow(offset: Offset(1, 0), color: AppColors.grey, blurRadius: 1),
+        BoxShadow(offset: Offset(1, 1), color: AppColors.grey, blurRadius: 1),
+        BoxShadow(offset: Offset(0, 3), color: AppColors.grey, blurRadius: 2),
       ];
 }
 

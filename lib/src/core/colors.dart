@@ -76,6 +76,31 @@ abstract class AppColors {
     end: Alignment.bottomRight,
   );
 
+  //   static LinearGradient linearGradientBlueBox = LinearGradient(
+  //   colors: [
+  //     const Color.fromRGBO(255, 255, 255, 0.4).withOpacity(0.9),
+  //     const Color.fromRGBO(255, 255, 255, 0.7).withOpacity(0.9),
+  //     const Color.fromRGBO(255, 255, 255, 0.9).withOpacity(0.8),
+  //     const Color.fromRGBO(255, 255, 255, 0.9).withOpacity(0.9),
+  //     const Color.fromRGBO(255, 255, 255, 0.6).withOpacity(0.9),
+  //     const Color.fromRGBO(255, 255, 255, 0.3).withOpacity(0.8),
+  //   ],
+  //   begin: Alignment.topLeft,
+  //   end: Alignment.bottomRight,
+  // );
+
+  static const Color linearGradientBlueBoxShadow =
+      Color.fromRGBO(49, 127, 242, 0.5);
+  static const Color linearGradientBlueBox = Color(0xff317FF2);
+
+  static const Color linearGradientGreenBoxShadow =
+      Color.fromRGBO(15, 190, 0, 0.5);
+  static const Color linearGradientGreenBox = Color(0xff0FBE00);
+
+  static const Color linearGradientRedBoxShadow =
+      Color.fromRGBO(255, 0, 0, 0.5);
+  static const Color linearGradientRedBox = Color(0xffFF0000);
+
   static const LinearGradient linearGradientForBackgroundDocument =
       LinearGradient(
     colors: [

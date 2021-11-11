@@ -43,60 +43,54 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 50),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Text(
-                      widget.question,
-                      style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                          fontSize: TextFontSize.getHeight(24, context)),
-                    ),
-                  ),
-                ],
+            Container(
+              margin: EdgeInsets.only(
+                  left: HW.getWidth(24, context),
+                  right: HW.getWidth(24, context),
+                  bottom: HW.getHeight(36, context)),
+              child: Text(
+                widget.question,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    ?.copyWith(fontSize: TextFontSize.getHeight(24, context)),
               ),
             ),
-            Wrap(
-              children: [
-                ...widget.answers
-                    .map((answers) => Container(
-                        padding: const EdgeInsets.all(15),
-                        margin: const EdgeInsets.all(5),
-                        decoration: QuizData.showRightAnswers &&
-                                answers.answers.correctAnswers ==
-                                    CorrectAnswers.answer2
-                            ? DottedDecoration(
-                                shape: Shape.box,
-                                strokeWidth: 1,
-                                color: AppColors.greyDeep)
-                            : null,
-                        child: SelectImage(
-                          decoration: QuizData.showRightAnswers
-                              ? BoxDecoration(
-                                  border: Border.all(
-                                      color: answers.answers.value ==
-                                              widget.userAnswers
-                                          ? widget.userAnswers == 2
-                                              ? AppColors.green
-                                              : AppColors.red
-                                          : AppColors.transpatent))
-                              : null,
-                          image: answers.answers.text,
-                          groupValue: answers.answers.value,
-                          value: QuizData.valueQ10,
-                          onTap: (val) {
-                            setState(() {
-                              QuizData.valueQ10 = answers.answers.value;
-
-                              widget.userAnswers = QuizData.valueQ10;
-                            });
-                          },
-                        )))
-                    .toList()
-              ],
+            AbsorbPointer(
+              absorbing: QuizData.showRightAnswers,
+              child: Container(
+                margin:
+                    EdgeInsets.symmetric(horizontal: HW.getWidth(48, context)),
+                child: Wrap(
+                  children: [
+                    ...widget.answers
+                        .map((answers) => Container(
+                            decoration: QuizData.showRightAnswers &&
+                                    answers.answers.correctAnswers ==
+                                        CorrectAnswers.answer2
+                                ? BoxDecoration(
+                                    color: AppColors.white,
+                                    boxShadow: Shadows.allBordersGreen,
+                                    border: Border.all(
+                                        color:
+                                            AppColors.linearGradientGreenBox))
+                                : null,
+                            margin: const EdgeInsets.all(15),
+                            child: SelectImage(
+                              answers: answers,
+                              image: answers.answers.text,
+                              groupValue: QuizData.valueQ10,
+                              value: answers.answers.value,
+                              onTap: (val) {
+                                setState(() {
+                                  QuizData.valueQ10 = val;
+                                });
+                              },
+                            )))
+                        .toList()
+                  ],
+                ),
+              ),
             )
           ],
         ),

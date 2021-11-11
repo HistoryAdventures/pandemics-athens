@@ -57,21 +57,22 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                     ?.copyWith(fontSize: TextFontSize.getHeight(24, context)),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: HW.getHeight(283, context),
-                  width: HW.getWidth(430, context),
-                  margin: EdgeInsets.symmetric(
-                      horizontal: HW.getWidth(48, context)),
-                  child: Image.asset(
-                    AssetsPath.quizImage8,
-                    fit: BoxFit.cover,
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: HW.getHeight(283, context),
+                    width: HW.getWidth(430, context),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: HW.getWidth(48, context)),
+                    child: Image.asset(
+                      AssetsPath.quizImage8,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: AbsorbPointer(
+                  AbsorbPointer(
                     absorbing: QuizData.showRightAnswers,
                     child: Container(
                       child: Column(
@@ -82,7 +83,11 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                           ...widget.answers
                               .map((answers) => Container(
                                   margin: EdgeInsets.only(
-                                      bottom: HW.getHeight(24, context)),
+                                      bottom: HW.getHeight(13, context)),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: HW.getHeight(10, context),
+                                    horizontal: HW.getWidth(10, context),
+                                  ),
                                   decoration: QuizData.showRightAnswers &&
                                           (answers.answers.correctAnswers ==
                                                   CorrectAnswers.answer2 ||
@@ -90,12 +95,17 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                                                   CorrectAnswers.answer4 ||
                                               answers.answers.correctAnswers ==
                                                   CorrectAnswers.answer5)
-                                      ? DottedDecoration(
-                                          shape: Shape.box,
-                                          strokeWidth: 1,
-                                          color: AppColors.greyDeep)
+                                      ? BoxDecoration(
+                                          color: AppColors.white,
+                                          border: Border.all(
+                                              color: AppColors
+                                                  .underlineInputBorderColor,
+                                              width: 0.5),
+                                          boxShadow: Shadows.quizShadows,
+                                        )
                                       : null,
                                   child: CheckboxText(
+                                    answers: answers,
                                     isCorrect: answers.isRight,
                                     value: answers.answers.value,
                                     text: answers.answers.text,
@@ -116,8 +126,8 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
