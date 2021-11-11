@@ -283,7 +283,7 @@ class DragDropQuizBody extends StatefulWidget {
 
 class __DragDropQuizBodyState extends State<DragDropQuizBody> {
   List<Line> lines = [];
-  List<QuizItem> questions = [];
+  static List<QuizItem> questions = [];
   List<LineToSave> savedLines = [];
   Line? drawingLine;
 

@@ -81,37 +81,37 @@ class _QuizPageState extends State<QuizPage> {
         score: 8,
       ),
       QuizMapImage(),
-      QuizDragDropCirclesWidget(
-        quizWithImage: true,
-        variants: QuizData.variantsDD4,
-        answers: QuizData.answersDD4,
-        question: 'What happened where?',
-        questionIndex: 4,
-        score: 8,
-        userAnswer: QuizData.userAnswerForQ4,
-        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
-        listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
-      ),
+      // QuizDragDropCirclesWidget(
+      //   quizWithImage: true,
+      //   variants: QuizData.variantsDD4,
+      //   answers: QuizData.answersDD4,
+      //   question: 'What happened where?',
+      //   questionIndex: 4,
+      //   score: 8,
+      //   userAnswer: QuizData.userAnswerForQ4,
+      //   userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
+      //   listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
+      // ),
       QuizRadioBottonWidget(
         quizWithImage: false,
         answers: QuizData.answersForQ5,
-        questionIndex: 5,
+        questionIndex: 4,
         question: 'Which of the pathogens...',
       ),
       QuizRadioBottonWidget(
         quizWithImage: true,
         answers: QuizData.answersForQ6,
-        questionIndex: 6,
+        questionIndex: 5,
         question: 'What is the prominent Athenian?',
       ),
       QuizCheckBox(
         answers: QuizData.answersForQuestion8,
         question: "Look at... Which of the following statements is true...",
-        questionIndex: 7,
+        questionIndex: 6,
         userAnswers: QuizData.usersAnswersForQ8,
       ),
       QuizSelectImage(
-        questionIndex: 8,
+        questionIndex: 7,
         question:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non?",
         answers: QuizData.answersForQuestion10,
@@ -322,7 +322,7 @@ class _QuizPageState extends State<QuizPage> {
                 children: [
                   Expanded(
                     child: Text(
-                      'QUESTION ${QuizData.questionIndex + 1}/7',
+                      'QUESTION ${QuizData.questionIndex + 1}/8',
                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
                             fontSize: HW.getHeight(18, context),
                             fontWeight: FontWeight.bold,

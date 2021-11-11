@@ -47,6 +47,7 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
           children: [
             Container(
               margin: EdgeInsets.only(
+                  top: HW.getHeight(24, context),
                   left: HW.getWidth(24, context),
                   bottom: HW.getHeight(36, context)),
               child: Text(

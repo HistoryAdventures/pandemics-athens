@@ -22,11 +22,11 @@ class AuthorWidget extends StatelessWidget {
       await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-          left: 10,
-          right: MediaQuery.of(context).size.width * 0.0628,
-          bottom: 31),
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: HW.getHeight(31, context),
+        right: HW.getWidth(128, context),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,7 +34,6 @@ class AuthorWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 10),
                   decoration: const BoxDecoration(
                       border: Border(
                     bottom: BorderSide(color: AppColors.grey, width: 1),
@@ -60,7 +59,6 @@ class AuthorWidget extends StatelessWidget {
                         _launchURL(model.url!);
                       },
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 8),
                   child: Text(
                     model.title,
                     maxLines: 2,

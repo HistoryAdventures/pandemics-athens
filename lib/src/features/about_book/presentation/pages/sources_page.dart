@@ -47,7 +47,9 @@ class _SourcePageState extends State<SourcePage> {
     super.initState();
   }
 
-  List<String> characters = ["Nikos", 'Giana', "Xoquauhtli", "Achraj", "Brian"];
+  List<String> characters = [
+    "Nikos",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +72,8 @@ class _SourcePageState extends State<SourcePage> {
                     child: SizedBox(
                       height: HW.getHeight(97, context),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             alignment: Alignment.center,
@@ -103,7 +107,9 @@ class _SourcePageState extends State<SourcePage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -511,7 +517,7 @@ class _SourcePageState extends State<SourcePage> {
         chandeState(selected, image, text);
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 30),
+        //margin: const EdgeInsets.only(right: 30),
         decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(
@@ -523,8 +529,8 @@ class _SourcePageState extends State<SourcePage> {
             maxLines: 1,
             style: Theme.of(context)
                 .textTheme
-                .bodyText1
-                ?.copyWith(color: AppColors.black100)),
+                .headline2
+                ?.copyWith(color: AppColors.black100, fontSize: 24)),
       ),
     );
   }

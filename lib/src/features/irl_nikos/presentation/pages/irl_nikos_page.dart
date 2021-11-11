@@ -77,7 +77,9 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 },
                 color: AppColors.white,
               ),
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -95,56 +97,53 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 Scaffold.of(context).openEndDrawer();
               },
             ),
-            Align(
-              alignment: Alignment.centerLeft,
+            Positioned(
+              top: HW.getHeight(192, context),
+              left: HW.getWidth(360, context),
               child: Container(
                 width: constraints.maxWidth * 0.2,
-                padding: EdgeInsets.only(left: constraints.maxWidth * 0.05),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    AutoSizeText(
+                    Text(
                       locals.irlNikos.toUpperCase(),
                       maxLines: 1,
-                      minFontSize: 8,
-                      style: Theme.of(context)
-                          .textTheme
-                          .overline
-                          ?.copyWith(color: AppColors.white),
+                      style: Theme.of(context).textTheme.overline?.copyWith(
+                          color: AppColors.white,
+                          fontSize: HW.getHeight(120, context)),
                     ),
                     Container(
+                      padding: EdgeInsets.only(left: HW.getWidth(18, context)),
                       decoration: const BoxDecoration(
                           border: Border(
                               left: BorderSide(
                                   color: AppColors.orange, width: 10))),
-                      child: AutoSizeText(
+                      child: Text(
                         ' ${locals.nikos.toLowerCase()}',
                         maxLines: 1,
-                        minFontSize: 8,
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption
-                            ?.copyWith(color: AppColors.white),
+                        style: Theme.of(context).textTheme.caption?.copyWith(
+                            color: AppColors.white,
+                            fontSize: HW.getHeight(60, context)),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: ArrowLeftTextWidget(
-                color: AppColors.white,
-                onTap: null,
-                //  () {
-                //   context.router.push(const GianaPageRoute());
-                // },
-                textSubTitle: locals.giana,
-                textTitle: "#IRL",
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.bottomLeft,
+            //   child: ArrowLeftTextWidget(
+            //     color: AppColors.white,
+            //     onTap: null,
+            //     //  () {
+            //     //   context.router.push(const GianaPageRoute());
+            //     // },
+            //     textSubTitle: locals.giana,
+            //     textTitle: "#IRL",
+            //   ),
+            // ),
             Align(
               alignment: Alignment.bottomCenter,
               child: IconButtonWidget(

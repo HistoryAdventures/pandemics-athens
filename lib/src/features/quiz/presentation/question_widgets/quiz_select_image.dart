@@ -47,6 +47,7 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
               margin: EdgeInsets.only(
                   left: HW.getWidth(24, context),
                   right: HW.getWidth(24, context),
+                  top: HW.getHeight(24, context),
                   bottom: HW.getHeight(36, context)),
               child: Text(
                 widget.question,
