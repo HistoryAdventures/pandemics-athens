@@ -178,7 +178,7 @@ class _QuizPageState extends State<QuizPage> {
                           duration: Times.fast,
                           child: Container(
                             key: ValueKey(QuizData.questionIndex),
-                            child: questionsWidgets[3],
+                            child: questionsWidgets[QuizData.questionIndex],
                           ),
                         ),
                       ),
