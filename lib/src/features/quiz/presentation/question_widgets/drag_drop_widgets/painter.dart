@@ -62,21 +62,6 @@ class MyPainter extends CustomPainter {
       rightLine: false,
     );
 
-    savedLines.forEach((element) {
-      Paint paint = Paint()
-        ..color = element.color
-        ..strokeWidth = 3
-        ..style = PaintingStyle.stroke;
-      drawCurentLine(
-        canvas: canvas,
-        path: path,
-        startOffset: offsetForKey(element.line.startKey),
-        endOffset: offsetForKey(element.line.endKey),
-        accepted: false,
-        paint: paint,
-        rightLine: false,
-      );
-    });
     rightLines.forEach((element) {
       Paint paint = Paint()
         ..color = grey
@@ -94,6 +79,22 @@ class MyPainter extends CustomPainter {
           rightLine: true,
         );
       }
+    });
+
+    savedLines.forEach((element) {
+      Paint paint = Paint()
+        ..color = element.color
+        ..strokeWidth = 3
+        ..style = PaintingStyle.stroke;
+      drawCurentLine(
+        canvas: canvas,
+        path: path,
+        startOffset: offsetForKey(element.line.startKey),
+        endOffset: offsetForKey(element.line.endKey),
+        accepted: false,
+        paint: paint,
+        rightLine: false,
+      );
     });
   }
 

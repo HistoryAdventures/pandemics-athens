@@ -15,6 +15,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_check_box.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_words.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_map_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_select_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
@@ -79,6 +80,7 @@ class _QuizPageState extends State<QuizPage> {
         answers: QuizData.answersForDD3,
         score: 8,
       ),
+      QuizMapImage(),
       QuizDragDropCirclesWidget(
         quizWithImage: true,
         variants: QuizData.variantsDD4,
@@ -182,8 +184,9 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
+                  Positioned(
+                    right: HW.getWidth(24, context),
+                    bottom: HW.getHeight(24, context),
                     child: _indicator,
                   ),
                 ],
@@ -357,6 +360,13 @@ class _QuizPageState extends State<QuizPage> {
                                           .dragDropBodyKey.currentState!
                                           .resetQuiz();
                                     }
+                                    if (QuizMapImage
+                                            .quizMapImageKey.currentState !=
+                                        null) {
+                                      QuizMapImage.quizMapImageKey.currentState!
+                                          .resetQuiz();
+                                    }
+
                                     setState(() {
                                       setState(() {
                                         QuizData.clearAnswers();
@@ -402,6 +412,22 @@ class _QuizPageState extends State<QuizPage> {
                                       }
                                       DragDropQuizBody
                                           .dragDropBodyKey.currentState!
+                                          .checkAnswers();
+                                    }
+
+                                    if (QuizMapImage
+                                            .quizMapImageKey.currentState !=
+                                        null) {
+                                      print("not null");
+                                      if (QuizMapImage
+                                          .quizMapImageKey
+                                          .currentState!
+                                          .rightLines
+                                          .isNotEmpty) {
+                                        Navigator.of(context).pop();
+                                        return;
+                                      }
+                                      QuizMapImage.quizMapImageKey.currentState!
                                           .checkAnswers();
                                     }
                                     setState(() {
