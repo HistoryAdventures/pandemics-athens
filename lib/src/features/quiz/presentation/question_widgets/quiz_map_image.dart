@@ -199,11 +199,11 @@ class _QuizMapImageState extends State<QuizMapImage> {
     );
 
     quizImages.addAll([
-      const MapQuizItemModel(assets: AssetsPath.map399, title: "A"),
-      const MapQuizItemModel(assets: AssetsPath.map399, title: "B"),
-      const MapQuizItemModel(assets: AssetsPath.map399, title: "C"),
-      const MapQuizItemModel(assets: AssetsPath.map399, title: "D"),
-      const MapQuizItemModel(assets: AssetsPath.map399, title: "E"),
+      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "A"),
+      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "B"),
+      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "C"),
+      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "D"),
+      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "E"),
     ]);
 
     super.initState();
