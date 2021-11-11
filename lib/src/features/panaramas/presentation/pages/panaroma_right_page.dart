@@ -102,6 +102,17 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     super.didChangeDependencies();
   }
 
+  void onChangeView() {
+    setState(() {
+      panelVisibility = false;
+    });
+    Future.delayed(Duration(milliseconds: 1)).then((value) {
+      setState(() {
+        panelVisibility = true;
+      });
+    });
+  }
+
   Future<void> init() async {
     if (isSoundOn == true) {
       setState(() {
@@ -138,65 +149,62 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
       body: GestureDetector(
         child: Stack(
           children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              child: GestureDetector(
-                child: Panorama(
-                  hotspots: infoList.map((info) {
-                    return Hotspot(
-                      height: info.height,
-                      width: info.width,
-                      latitude: info.latitude,
-                      longitude: info.longitude,
-                      widget: hotspotButton(
-                          icon: const AnimatedPulse(
-                            pulseDuration: Duration(seconds: 3),
-                            child: SizedBox(
-                              height: 30,
-                              width: 30,
-                            ),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              // openInfoPlayer.play();
-                              //print("object");
+            Panorama(
+              onViewChanged: (a, b, c) {
+                onChangeView();
+              },
+              hotspots: infoList.map((info) {
+                return Hotspot(
+                  height: info.height,
+                  width: info.width,
+                  latitude: info.latitude,
+                  longitude: info.longitude,
+                  widget: hotspotButton(
+                      icon: const AnimatedPulse(
+                        pulseDuration: Duration(seconds: 3),
+                        child: SizedBox(
+                          height: 30,
+                          width: 30,
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          // openInfoPlayer.play();
+                          //print("object");
+                        });
+                        showGeneralDialog(
+                            context: context,
+                            barrierColor: Colors.black.withOpacity(0.5),
+                            transitionBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation,
+                                Widget child) {
+                              return LayoutBuilder(
+                                  builder: (context, constraints) =>
+                                      BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 3, sigmaY: 3),
+                                        child: DialogWidget(
+                                          titleText: locals.chapter1,
+                                          subTitleText:
+                                              locals.plaguePoliticalInstability,
+                                          animation: animation,
+                                          slectedInfoDialog: info,
+                                          constraints: constraints,
+                                          listDialogInfo: infoList,
+                                        ),
+                                      ));
+                            },
+                            transitionDuration: Times.fast,
+                            barrierDismissible: true,
+                            barrierLabel: '',
+                            pageBuilder: (context, animation1, animation2) {
+                              return Container();
                             });
-                            showGeneralDialog(
-                                context: context,
-                                barrierColor: Colors.black.withOpacity(0.5),
-                                transitionBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation,
-                                    Widget child) {
-                                  return LayoutBuilder(
-                                      builder: (context, constraints) =>
-                                          BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                                sigmaX: 3, sigmaY: 3),
-                                            child: DialogWidget(
-                                              titleText: locals.chapter1,
-                                              subTitleText: locals
-                                                  .plaguePoliticalInstability,
-                                              animation: animation,
-                                              slectedInfoDialog: info,
-                                              constraints: constraints,
-                                              listDialogInfo: infoList,
-                                            ),
-                                          ));
-                                },
-                                transitionDuration: Times.fast,
-                                barrierDismissible: true,
-                                barrierLabel: '',
-                                pageBuilder: (context, animation1, animation2) {
-                                  return Container();
-                                });
-                          }),
-                    );
-                  }).toList(),
-                  child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
-                ),
-              ),
+                      }),
+                );
+              }).toList(),
+              child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
             ),
             Visibility(
               visible: panelVisibility,
