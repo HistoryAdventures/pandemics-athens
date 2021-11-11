@@ -135,6 +135,17 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   //   await backgroundplayer.setLoopMode(LoopMode.one);
   // }
 
+  void onChangeView() {
+    setState(() {
+      panelVisibility = false;
+    });
+    Future.delayed(Duration(milliseconds: 1)).then((value) {
+      setState(() {
+        panelVisibility = true;
+      });
+    });
+  }
+
   @override
   void initState() {
     // init();
@@ -161,10 +172,10 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     return Stack(
       children: [
         Panorama(
-          //sanimSpeed: 0.0,
-          //sensorControl: SensorControl.Orientation,
-          // onViewChanged: onViewChanged,
-
+          onViewChanged: (a, b, c) {
+            print("ON VIEW CHANGED");
+            onChangeView();
+          },
           hotspots: infoList.map((info) {
             return Hotspot(
               height: info.height,
