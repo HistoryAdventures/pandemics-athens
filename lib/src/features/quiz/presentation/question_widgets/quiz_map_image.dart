@@ -205,17 +205,18 @@ class _QuizMapImageState extends State<QuizMapImage> {
       const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "D"),
       const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "E"),
     ]);
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
       setState(() {});
     });
+    print("INIT STATE IS CALLEDDDDDDDDD");
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("BUILD ");
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     smallScreenWidthFactor =
@@ -229,138 +230,141 @@ class _QuizMapImageState extends State<QuizMapImage> {
       lines[0].start = offsetForKey(lines[0].startKey);
       lines[0].end = offsetForKey(lines[0].endKey);
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(HW.getHeight(24, context)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText(
-                "What happened where?",
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: HW.getHeight(24, context),
-                    ),
-                maxLines: 1,
-                textAlign: TextAlign.start,
-              ),
-              AutoSizeText(
-                "*drag nodes from one column to another, to match the anwsers",
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: HW.getHeight(12, context),
-                    ),
-                maxLines: 1,
-              ),
-            ],
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(HW.getHeight(24, context)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  "What happened where?",
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: HW.getHeight(24, context),
+                      ),
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                ),
+                AutoSizeText(
+                  "*drag nodes from one column to another, to match the anwsers",
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: HW.getHeight(12, context),
+                      ),
+                  maxLines: 1,
+                ),
+              ],
+            ),
           ),
-        ),
-        _imagesView,
-        SizedBox(
-          height: HW.getHeight(20, context),
-        ),
-        Expanded(
-          flex: 30,
-          key: dropKey,
-          child: AbsorbPointer(
-            absorbing: checked,
-            child: CustomPaint(
-              painter: MyPainter(
-                checked: checked,
-                smallScreenHeightFactor: smallScreenHeightFactor,
-                smallScreenWidthFactor: smallScreenWidthFactor,
-                accepted: accepted,
-                circleButtonWidth: circleButtonWidth,
-                lines: lines,
-                startOffset: startOffset,
-                endOffset: offset,
-                shouldPaint: shouldPaint,
-                quizItem: questions[curentIndex],
-                savedLines: savedLines,
-                rightLines: rightLines,
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              _draggable(
-                                questions[0].question,
-                                0,
-                                "Battke of Thermopylae",
-                              ),
-                              _draggable(
-                                questions[1].question,
-                                1,
-                                "Birth of Socrates",
-                              ),
-                              _draggable(
-                                questions[2].question,
-                                2,
-                                "The Plague arrives in Athens",
-                              ),
-                              _draggable(
-                                questions[3].question,
-                                3,
-                                "Herodotus writes his ‘Histories’",
-                              ),
-                              _draggable(
-                                questions[4].question,
-                                4,
-                                "End of Peloponnesian War",
-                              ),
-                            ],
+          _imagesView,
+          SizedBox(
+            height: HW.getHeight(20, context),
+          ),
+          Expanded(
+            flex: 30,
+            key: dropKey,
+            child: AbsorbPointer(
+              absorbing: checked,
+              child: CustomPaint(
+                painter: MyPainter(
+                  checked: checked,
+                  smallScreenHeightFactor: smallScreenHeightFactor,
+                  smallScreenWidthFactor: smallScreenWidthFactor,
+                  accepted: accepted,
+                  circleButtonWidth: circleButtonWidth,
+                  lines: lines,
+                  startOffset: startOffset,
+                  endOffset: offset,
+                  shouldPaint: shouldPaint,
+                  quizItem: questions[curentIndex],
+                  savedLines: savedLines,
+                  rightLines: rightLines,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                _draggable(
+                                  questions[0].question,
+                                  0,
+                                  "Battke of Thermopylae",
+                                ),
+                                _draggable(
+                                  questions[1].question,
+                                  1,
+                                  "Birth of Socrates",
+                                ),
+                                _draggable(
+                                  questions[2].question,
+                                  2,
+                                  "The Plague arrives in Athens",
+                                ),
+                                _draggable(
+                                  questions[3].question,
+                                  3,
+                                  "Herodotus writes his ‘Histories’",
+                                ),
+                                _draggable(
+                                  questions[4].question,
+                                  4,
+                                  "End of Peloponnesian War",
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: HW.getWidth(210, context),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              _target(
-                                questions[0].target,
-                                "A",
-                              ),
-                              _target(
-                                questions[1].target,
-                                "B",
-                              ),
-                              _target(
-                                questions[2].target,
-                                "C",
-                              ),
-                              _target(
-                                questions[3].target,
-                                "D",
-                              ),
-                              _target(
-                                questions[4].target,
-                                "E",
-                              ),
-                            ],
+                          SizedBox(
+                            width: HW.getWidth(210, context),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Column(
+                              children: [
+                                _target(
+                                  questions[0].target,
+                                  "A",
+                                ),
+                                _target(
+                                  questions[1].target,
+                                  "B",
+                                ),
+                                _target(
+                                  questions[2].target,
+                                  "C",
+                                ),
+                                _target(
+                                  questions[3].target,
+                                  "D",
+                                ),
+                                _target(
+                                  questions[4].target,
+                                  "E",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(child: Container()),
-                ],
+                    Expanded(child: Container()),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

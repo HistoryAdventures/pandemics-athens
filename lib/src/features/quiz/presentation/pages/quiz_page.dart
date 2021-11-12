@@ -47,6 +47,10 @@ class _QuizPageState extends State<QuizPage> {
   bool previousButtonisAvailibaleToPress = false;
   bool vizibility = true;
 
+  List<Widget> history = [];
+  double lastIndex = 0;
+  Widget? lastWidget;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,6 +133,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _body() {
+    print("BBBBBBBBBBBB");
     if (QuizData.questionIndex == questionsWidgets.length - 1) {
       setState(() {
         nextButtonisAvailibaleToPress = false;
@@ -178,7 +183,12 @@ class _QuizPageState extends State<QuizPage> {
                           duration: Times.fast,
                           child: Container(
                             key: ValueKey(QuizData.questionIndex),
-                            child: questionsWidgets[QuizData.questionIndex],
+                            child: IndexedStack(
+                              index: QuizData.questionIndex,
+                              children: [
+                                ...questionsWidgets,
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -257,8 +267,8 @@ class _QuizPageState extends State<QuizPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconButton(
-              onPressed: previousButtonisAvailibaleToPress
+            GestureDetector(
+              onTap: previousButtonisAvailibaleToPress
                   ? () {
                       if (mounted) {
                         setState(() {
@@ -267,7 +277,7 @@ class _QuizPageState extends State<QuizPage> {
                       }
                     }
                   : null,
-              icon: const Icon(Icons.chevron_left_sharp),
+              child: const Icon(Icons.chevron_left_sharp),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,

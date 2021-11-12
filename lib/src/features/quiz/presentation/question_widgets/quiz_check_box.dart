@@ -42,6 +42,7 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
+        color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
