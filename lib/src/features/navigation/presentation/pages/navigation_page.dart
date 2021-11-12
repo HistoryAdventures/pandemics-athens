@@ -628,12 +628,12 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 26;
           LeafDetails.visitedVertexes.add(26);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const CopyrightPageRoute());
+          context.router.replace(const FurtherReadingPageRoute());
         },
         lineStartOffset: const Offset(0, 5),
         lineEndOffset: const Offset(-70, -5),
         alignment: Alignment.bottomCenter,
-        title: 'copyright',
+        title: 'further reading',
       ),
       LeafDetails(
         Vertex(
@@ -645,13 +645,13 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 27;
           LeafDetails.visitedVertexes.add(27);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const FurtherReadingPageRoute());
+          context.router.replace(const CopyrightPageRoute());
         },
         pointOffset: const Offset(600, 535),
         lineStartOffset: const Offset(0, 5),
         lineEndOffset: const Offset(-60, 15),
         alignment: Alignment.topCenter,
-        title: 'further reading',
+        title: 'copyright',
       ),
     ];
 

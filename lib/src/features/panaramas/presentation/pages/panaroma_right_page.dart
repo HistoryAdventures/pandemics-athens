@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -25,6 +26,7 @@ class PanaromaRightPage extends StatefulWidget {
 
 class _PanaromaRightPageState extends State<PanaromaRightPage> {
   late AppLocalizations locals;
+  late List<dynamic> infoListHotspot;
   late List<InfoDialogModel> infoList;
 
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -99,6 +101,65 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
         height: 75,
       ),
     ];
+    infoListHotspot = [
+      InfoDialogModel(
+        imageDescription: locals.demokratiaImageText,
+        description: locals.demokrataText,
+        subTitle: locals.demokratia,
+        title: locals.demokratia,
+        image: AssetsPath.panaramaImage1,
+        latitude: -10.0,
+        longitude: 60.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.plagueImageText,
+        description: locals.plagueText,
+        title: locals.plaguePoliticalUpheaval,
+        subTitle: locals.plaguePoliticalUpheaval,
+        image: AssetsPath.panaramaImage2,
+        latitude: -45.0,
+        longitude: 15.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.athenianOstracismImageText,
+        description: locals.athenianText,
+        title: locals.athenianOstracism,
+        subTitle:
+            'Removing Rivals, Saving the City, or Serving Yourself: Athenian Ostracism',
+        image: AssetsPath.panaramaImage3,
+        latitude: 10.0,
+        longitude: 15.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.disposingOfTheDeadImageText,
+        description: locals.disposingText,
+        title: locals.disposingOfTheDead,
+        subTitle: locals.disposingOfTheDead,
+        image: AssetsPath.panaramaImage4,
+        latitude: -20.0,
+        longitude: 160.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.abandondedImageText,
+        description: locals.abandondedText,
+        title: locals.abandonedByTheGods,
+        subTitle: 'Abandoning the gods, abandoned by the gods?',
+        image: AssetsPath.panaramaImage5,
+        latitude: 20.0,
+        longitude: 120.0,
+        width: 90,
+        height: 75,
+      ),
+      locals.panaromaRightInfoDialogText
+    ];
     super.didChangeDependencies();
   }
 
@@ -153,87 +214,67 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
               onViewChanged: (a, b, c) {
                 onChangeView();
               },
-              hotspots: infoList.map((info) {
-                return Hotspot(
-                  height: info.height,
-                  width: info.width,
-                  latitude: info.latitude,
-                  longitude: info.longitude,
-                  widget: hotspotButton(
-                      icon: const AnimatedPulse(
-                        pulseDuration: Duration(seconds: 3),
-                        child: SizedBox(
-                          height: 30,
-                          width: 30,
+              hotspots: infoListHotspot.map((info) {
+                if (info is InfoDialogModel) {
+                  return Hotspot(
+                    height: info.height,
+                    width: info.width,
+                    latitude: info.latitude,
+                    longitude: info.longitude,
+                    widget: hotspotButton(
+                        icon: const AnimatedPulse(
+                          pulseDuration: Duration(seconds: 3),
+                          child: SizedBox(
+                            height: 30,
+                            width: 30,
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          // openInfoPlayer.play();
-                          //print("object");
-                        });
-                        showGeneralDialog(
-                            context: context,
-                            barrierColor: Colors.black.withOpacity(0.5),
-                            transitionBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secondaryAnimation,
-                                Widget child) {
-                              return LayoutBuilder(
-                                  builder: (context, constraints) =>
-                                      BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                            sigmaX: 3, sigmaY: 3),
-                                        child: DialogWidget(
-                                          titleText: locals.chapter1,
-                                          subTitleText:
-                                              locals.plaguePoliticalInstability,
-                                          animation: animation,
-                                          slectedInfoDialog: info,
-                                          constraints: constraints,
-                                          listDialogInfo: infoList,
-                                        ),
-                                      ));
-                            },
-                            transitionDuration: Times.fast,
-                            barrierDismissible: true,
-                            barrierLabel: '',
-                            pageBuilder: (context, animation1, animation2) {
-                              return Container();
-                            });
-                      }),
-                );
+                        onPressed: () {
+                          setState(() {
+                            // openInfoPlayer.play();
+                            //print("object");
+                          });
+                          showGeneralDialog(
+                              context: context,
+                              barrierColor: Colors.black.withOpacity(0.5),
+                              transitionBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secondaryAnimation,
+                                  Widget child) {
+                                return LayoutBuilder(
+                                    builder: (context, constraints) =>
+                                        BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaX: 3, sigmaY: 3),
+                                          child: DialogWidget(
+                                            titleText: locals.chapter1,
+                                            subTitleText: locals
+                                                .plaguePoliticalInstability,
+                                            animation: animation,
+                                            slectedInfoDialog: info,
+                                            constraints: constraints,
+                                            listDialogInfo: infoList,
+                                          ),
+                                        ));
+                              },
+                              transitionDuration: Times.fast,
+                              barrierDismissible: true,
+                              barrierLabel: '',
+                              pageBuilder: (context, animation1, animation2) {
+                                return Container();
+                              });
+                        }),
+                  );
+                } else {
+                  return Hotspot(
+                      width: HW.getWidth(772, context),
+                      height: HW.getHeight(384, context),
+                      latitude: 0,
+                      longitude: -30,
+                      widget: PanelWidget(text: info as String));
+                }
               }).toList(),
               child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
-            ),
-            Visibility(
-              visible: panelVisibility,
-              child: Positioned(
-                top: HW.getHeight(335, context),
-                left: HW.getWidth(180, context),
-                child: Container(
-                    color: AppColors.blackG.withOpacity(0.75),
-                    width: HW.getWidth(772, context),
-                    height: HW.getHeight(410, context),
-                    child: Padding(
-                        padding: const EdgeInsets.all(14),
-                        child: ListView(
-                          padding: const EdgeInsets.all(14),
-                          children: [
-                            Text(
-                              locals.panaromaRightInfoDialogText,
-                              strutStyle: const StrutStyle(
-                                fontSize: 16.0,
-                                height: 2,
-                              ),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.white),
-                            )
-                          ],
-                        ))),
-              ),
             ),
             SoundAndMenuWidget(
               color: AppColors.white,

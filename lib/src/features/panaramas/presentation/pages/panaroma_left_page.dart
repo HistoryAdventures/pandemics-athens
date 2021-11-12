@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
 // import 'package:just_audio/just_audio.dart';
 import 'package:panorama/panorama.dart';
 import "package:universal_html/html.dart" as html;
@@ -25,6 +26,7 @@ class PanaromaLeftPage extends StatefulWidget {
 
 class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   late AppLocalizations locals;
+  late List<dynamic> infoListHotspots;
   late List<InfoDialogModel> infoList;
   List<String> contentImages = [
     AssetsPath.panaramaBackgroundImageLeft,
@@ -43,6 +45,64 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
+    infoListHotspots = [
+      InfoDialogModel(
+        imageDescription: locals.hippocratesImageText,
+        description: locals.hippocratesText,
+        title: locals.hippocrates,
+        subTitle: locals.hippocrates,
+        image: AssetsPath.panaramaImage10,
+        latitude: 20.0,
+        longitude: 120.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.asclepiusTextImage,
+        description: locals.asclepiusText,
+        title: locals.asclepius,
+        subTitle: 'Legacy - Galen, the Romans, and the Renaissance',
+        image: AssetsPath.panaramaImage9,
+        latitude: -20.0,
+        longitude: 160.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.asklepionImageText,
+        description: locals.asklepionText,
+        title: locals.asklepion,
+        subTitle: locals.asklepion,
+        image: AssetsPath.panaramaImage8,
+        latitude: 10.0,
+        longitude: 15.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.fourHumorsImageText,
+        description: locals.fourHumorsText,
+        title: locals.fourHumours,
+        subTitle: locals.fourHumours,
+        image: AssetsPath.panaramaImage7,
+        latitude: -45.0,
+        longitude: 15.0,
+        width: 90,
+        height: 75,
+      ),
+      InfoDialogModel(
+        imageDescription: locals.legasyImageText,
+        description: locals.legacyText,
+        title: locals.legacy,
+        subTitle: locals.legacy,
+        image: AssetsPath.panaramaImage6,
+        latitude: -10.0,
+        longitude: 60.0,
+        width: 90,
+        height: 75,
+      ),
+      locals.panaromaLeftInfoDialogText,
+    ];
     infoList = [
       InfoDialogModel(
         imageDescription: locals.hippocratesImageText,
@@ -102,6 +162,66 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     ];
     super.didChangeDependencies();
   }
+
+  //   Visibility(
+  //   visible: panelVisibility,
+  //   child: Positioned(
+  //     top: HW.getHeight(348, context),
+  //     left: HW.getWidth(180, context),
+  //     child: Container(
+  //         color: AppColors.blackG.withOpacity(0.75),
+  //         width: HW.getWidth(772, context),
+  //         height: HW.getHeight(384, context),
+  //         child: Padding(
+  //             padding: const EdgeInsets.all(14),
+  //             child: ListView(
+  //               padding: const EdgeInsets.all(14),
+  //               children: [
+  //                 Text(
+  //                   locals.panaromaLeftInfoDialogText,
+  //                   strutStyle: const StrutStyle(
+  //                     fontSize: 16.0,
+  //                     height: 2,
+  //                   ),
+  //                   style: Theme.of(context)
+  //                       .textTheme
+  //                       .bodyText2
+  //                       ?.copyWith(color: AppColors.white),
+  //                 )
+  //               ],
+  //             ))),
+  //   ),
+  // ),
+
+  //         Visibility(
+  //   visible: panelVisibility,
+  //   child: Positioned(
+  //     top: HW.getHeight(335, context),
+  //     left: HW.getWidth(180, context),
+  //     child: Container(
+  //         color: AppColors.blackG.withOpacity(0.75),
+  //         width: HW.getWidth(772, context),
+  //         height: HW.getHeight(410, context),
+  //         child: Padding(
+  //             padding: const EdgeInsets.all(14),
+  //             child: ListView(
+  //               padding: const EdgeInsets.all(14),
+  //               children: [
+  //                 Text(
+  //                   locals.panaromaRightInfoDialogText,
+  //                   strutStyle: const StrutStyle(
+  //                     fontSize: 16.0,
+  //                     height: 2,
+  //                   ),
+  //                   style: Theme.of(context)
+  //                       .textTheme
+  //                       .bodyText2
+  //                       ?.copyWith(color: AppColors.white),
+  //                 )
+  //               ],
+  //             ))),
+  //   ),
+  // ),
 
   bool onButtonInfoPressed = false;
   bool isSoundOn = false;
@@ -176,86 +296,67 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
             print("ON VIEW CHANGED");
             onChangeView();
           },
-          hotspots: infoList.map((info) {
-            return Hotspot(
-              height: info.height,
-              width: info.width,
-              latitude: info.latitude,
-              longitude: info.longitude,
-              widget: hotspotButton(
-                  icon: const AnimatedPulse(
-                    pulseDuration: Duration(seconds: 3),
-                    child: SizedBox(
-                      height: 30,
-                      width: 30,
+          hotspots: infoListHotspots.map((info) {
+            if (info is InfoDialogModel) {
+              return Hotspot(
+                height: info.height,
+                width: info.width,
+                latitude: info.latitude,
+                longitude: info.longitude,
+                widget: hotspotButton(
+                    icon: const AnimatedPulse(
+                      pulseDuration: Duration(seconds: 3),
+                      child: SizedBox(
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      // openInfoPlayer.play();
-                      //print("object");
-                    });
-                    showGeneralDialog(
-                        context: context,
-                        barrierColor: Colors.black.withOpacity(0.5),
-                        transitionBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation,
-                            Widget child) {
-                          return LayoutBuilder(
-                              builder: (context, constraints) => BackdropFilter(
-                                    filter:
-                                        ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                                    child: DialogWidget(
-                                      titleText: locals.chapter1,
-                                      subTitleText:
-                                          locals.medicalToolsKnowledge,
-                                      animation: animation,
-                                      slectedInfoDialog: info,
-                                      constraints: constraints,
-                                      listDialogInfo: infoList,
-                                    ),
-                                  ));
-                        },
-                        transitionDuration: Times.fast,
-                        barrierDismissible: true,
-                        barrierLabel: '',
-                        pageBuilder: (context, animation1, animation2) {
-                          return Container();
-                        });
-                  }),
-            );
+                    onPressed: () {
+                      setState(() {
+                        // openInfoPlayer.play();
+                        //print("object");
+                      });
+                      showGeneralDialog(
+                          context: context,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          transitionBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation,
+                              Widget child) {
+                            return LayoutBuilder(
+                                builder: (context, constraints) =>
+                                    BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                          sigmaX: 3, sigmaY: 3),
+                                      child: DialogWidget(
+                                        titleText: locals.chapter1,
+                                        subTitleText:
+                                            locals.medicalToolsKnowledge,
+                                        animation: animation,
+                                        slectedInfoDialog: info,
+                                        constraints: constraints,
+                                        listDialogInfo: infoList,
+                                      ),
+                                    ));
+                          },
+                          transitionDuration: Times.fast,
+                          barrierDismissible: true,
+                          barrierLabel: '',
+                          pageBuilder: (context, animation1, animation2) {
+                            return Container();
+                          });
+                    }),
+              );
+            } else {
+              return Hotspot(
+                  width: HW.getWidth(772, context),
+                  height: HW.getHeight(384, context),
+                  latitude: 0,
+                  longitude: -30,
+                  widget: PanelWidget(text: info as String));
+            }
           }).toList(),
           child: Image.asset(AssetsPath.panaramaBackgroundImageLeft),
-        ),
-        Visibility(
-          visible: panelVisibility,
-          child: Positioned(
-            top: HW.getHeight(348, context),
-            left: HW.getWidth(180, context),
-            child: Container(
-                color: AppColors.blackG.withOpacity(0.75),
-                width: HW.getWidth(772, context),
-                height: HW.getHeight(384, context),
-                child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: ListView(
-                      padding: const EdgeInsets.all(14),
-                      children: [
-                        Text(
-                          locals.panaromaLeftInfoDialogText,
-                          strutStyle: const StrutStyle(
-                            fontSize: 16.0,
-                            height: 2,
-                          ),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              ?.copyWith(color: AppColors.white),
-                        )
-                      ],
-                    ))),
-          ),
         ),
         Align(
           alignment: Alignment.bottomLeft,

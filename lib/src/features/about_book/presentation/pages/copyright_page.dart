@@ -91,59 +91,43 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   },
                 ),
                 Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: ArrowLeftTextWidget(
-                            textSubTitle: locale.sources,
-                            textTitle: locale.aboutTheBook,
-                            onTap: () {
-                              LeafDetails.currentVertex = 25;
-                              LeafDetails.currentVertex = 0;
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
+                  alignment: Alignment.bottomLeft,
+                  child: Flexible(
+                    child: ArrowLeftTextWidget(
+                        textSubTitle: locale.furtherReading,
+                        textTitle: locale.aboutTheBook,
+                        onTap: () {
+                          LeafDetails.currentVertex = 26;
+                          // LeafDetails.currentVertex = 26;
+                          NavigationSharedPreferences.upDateShatedPreferences();
 
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
-                            }),
-                      ),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Flexible(
-                                child: Image.asset(AssetsPath.socilaIcons)),
-                            const Flexible(
-                              child: AutoSizeText(
-                                'www.historyadventures.co',
-                                maxLines: 1,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        child: ArrowRightTextWidget(
-                            textSubTitle: locale.furtherReading,
-                            textTitle: locale.aboutTheBook,
-                            onTap: () {
-                              LeafDetails.currentVertex = 27;
-                              LeafDetails.visitedVertexes.add(27);
-                              NavigationSharedPreferences
-                                  .upDateShatedPreferences();
-                              context.router
-                                  .push(const FurtherReadingPageRoute());
-                            }),
-                      ),
-                    ],
+                          if (kIsWeb) {
+                            html.window.history.back();
+                            context.router.pop();
+                          } else {
+                            context.router.pop();
+                          }
+                        }),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(child: Image.asset(AssetsPath.socilaIcons)),
+                        const Flexible(
+                          child: AutoSizeText(
+                            'www.historyadventures.co',
+                            maxLines: 1,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Align(

@@ -71,7 +71,9 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -90,37 +92,53 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                   },
                 ),
                 Align(
-                  alignment: Alignment.bottomLeft,
-                  child: ArrowLeftTextWidget(
-                      textSubTitle: locale.copyright,
-                      textTitle: locale.aboutTheBook,
-                      onTap: () {
-                        LeafDetails.currentVertex = 26;
-                        NavigationSharedPreferences.upDateShatedPreferences();
-
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
-                      }),
-                ),
-                Align(
                   alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: HW.getHeight(45, context)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(AssetsPath.socilaIcons),
-                        const AutoSizeText(
-                          'www.historyadventures.co',
-                          maxLines: 1,
-                        )
-                      ],
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: ArrowLeftTextWidget(
+                            textSubTitle: locale.sources,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 25;
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+
+                              if (kIsWeb) {
+                                html.window.history.back();
+                                context.router.pop();
+                              } else {
+                                context.router.pop();
+                              }
+                            }),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(AssetsPath.socilaIcons),
+                            const AutoSizeText(
+                              'www.historyadventures.co',
+                              maxLines: 1,
+                            )
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        child: ArrowRightTextWidget(
+                            textSubTitle: locale.copyright,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 27;
+                              LeafDetails.visitedVertexes.add(27);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router.push(const CopyrightPageRoute());
+                            }),
+                      ),
+                    ],
                   ),
                 ),
                 Align(
@@ -148,24 +166,30 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                       profession: 'books',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'The Little Prince'),
-                                        UrlLuncherModel(
-                                            title: 'To Kill a Mockingbird'),
-                                        UrlLuncherModel(
-                                            title: 'To Kill a Mockingbird'),
-                                        UrlLuncherModel(title: 'Siddhartha'),
-                                        UrlLuncherModel(
-                                            title: 'A Game of Thrones'),
-                                        UrlLuncherModel(
-                                            title: 'To Kill a Mockingbird'),
-                                        UrlLuncherModel(title: 'Candide'),
-                                        UrlLuncherModel(
+                                            url:
+                                                "https://www.amazon.com/dp/B002RI99EQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1",
                                             title:
-                                                'The Girl with the Dragon Tattoo'),
-                                        UrlLuncherModel(title: 'Candide'),
-                                        UrlLuncherModel(title: 'The Alchemist'),
+                                                'History of Peloponnesian War, 4th cent, BCE'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      profession: 'audiobooks',
+                                      urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'The Count of Monte Cristo'),
+                                            url:
+                                                "https://www.audible.com/pd/Viruses-Plagues-and-History-Audiobook/1977334695?ref=a_library_t_c5_libItem_&pf_rd_p=80765e81-b10a-4f33-b1d3-ffb87793d047&pf_rd_r=PYCGKM8QD8QDRDVCYTSX",
+                                            title:
+                                                'Viruses, Plagues and History, 2018'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      profession: 'podcasts',
+                                      urlModeles: [
+                                        UrlLuncherModel(
+                                            url:
+                                                'https://podcasts.ox.ac.uk/athens-first-plague',
+                                            title:
+                                                'Athens: the First Plague? 2020'),
                                       ],
                                     )
                                   ],
@@ -180,24 +204,26 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                       profession: 'Movie & tv',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: "Charlie's Angels"),
-                                        UrlLuncherModel(
-                                            title: 'Splitting Adam'),
-                                        UrlLuncherModel(
-                                            title: 'Star Trek: Nemesis'),
-                                        UrlLuncherModel(title: 'Barbarella'),
-                                        UrlLuncherModel(
-                                            title: 'To Catch a Thief'),
-                                        UrlLuncherModel(
-                                            title: 'To Catch a Thief'),
-                                        UrlLuncherModel(
-                                            title:
-                                                'Star Trek IV: The Voyage Home'),
-                                        UrlLuncherModel(
-                                            title: 'Changing Lanes'),
-                                        UrlLuncherModel(title: 'The Score'),
-                                        UrlLuncherModel(
-                                            title: 'Sunset Boulevard'),
+                                            url:
+                                                'https://www.youtube.com/watch?v=GjbfS8RDoYo',
+                                            title: "Athens vs Sparta, 2018"),
+                                        // UrlLuncherModel(
+                                        //     title: 'Splitting Adam'),
+                                        // UrlLuncherModel(
+                                        //     title: 'Star Trek: Nemesis'),
+                                        // UrlLuncherModel(title: 'Barbarella'),
+                                        // UrlLuncherModel(
+                                        //     title: 'To Catch a Thief'),
+                                        // UrlLuncherModel(
+                                        //     title: 'To Catch a Thief'),
+                                        // UrlLuncherModel(
+                                        //     title:
+                                        //         'Star Trek IV: The Voyage Home'),
+                                        // UrlLuncherModel(
+                                        //     title: 'Changing Lanes'),
+                                        // UrlLuncherModel(title: 'The Score'),
+                                        // UrlLuncherModel(
+                                        //     title: 'Sunset Boulevard'),
                                       ],
                                     )
                                   ],
@@ -212,27 +238,29 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                       profession: 'video games',
                                       urlModeles: [
                                         UrlLuncherModel(
+                                            url:
+                                                "https://www.ubisoft.com/en-gb/game/assassins-creed/odyssey",
                                             title:
-                                                "Call Of Duty: Modern Warfare"),
-                                        UrlLuncherModel(
-                                            title: 'Street Fighter V'),
-                                        UrlLuncherModel(
-                                            title: 'League of Legends'),
-                                        UrlLuncherModel(title: '​Arte'),
-                                        UrlLuncherModel(
-                                            title: 'Ragnarok Online'),
-                                        UrlLuncherModel(title: 'VALORANT​'),
-                                        UrlLuncherModel(title: "Don't Starve"),
-                                        UrlLuncherModel(
-                                            title: '​Dragon Ball FighterZ'),
-                                        UrlLuncherModel(
-                                            title: '​Monster Hunter: World'),
-                                        UrlLuncherModel(
-                                            title:
-                                                '​Counter-Strike: Global Offensive'),
-                                        UrlLuncherModel(title: '​Música'),
-                                        UrlLuncherModel(
-                                            title: '​Comes e bebes'),
+                                                "Assassin's Creed:Odyssey, 2018"),
+                                        // UrlLuncherModel(
+                                        //     title: 'Street Fighter V'),
+                                        // UrlLuncherModel(
+                                        //     title: 'League of Legends'),
+                                        // UrlLuncherModel(title: '​Arte'),
+                                        // UrlLuncherModel(
+                                        //     title: 'Ragnarok Online'),
+                                        // UrlLuncherModel(title: 'VALORANT​'),
+                                        // UrlLuncherModel(title: "Don't Starve"),
+                                        // UrlLuncherModel(
+                                        //     title: '​Dragon Ball FighterZ'),
+                                        // UrlLuncherModel(
+                                        //     title: '​Monster Hunter: World'),
+                                        // UrlLuncherModel(
+                                        //     title:
+                                        //         '​Counter-Strike: Global Offensive'),
+                                        // UrlLuncherModel(title: '​Música'),
+                                        // UrlLuncherModel(
+                                        //     title: '​Comes e bebes'),
                                       ],
                                     )
                                   ],

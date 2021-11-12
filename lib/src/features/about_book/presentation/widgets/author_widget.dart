@@ -24,7 +24,7 @@ class AuthorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        bottom: HW.getHeight(31, context),
+        bottom: HW.getHeight(20, context),
         right: HW.getWidth(128, context),
       ),
       child: Column(
@@ -52,20 +52,21 @@ class AuthorWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: urlModeles.map((model) {
-              return Clickable(
-                onPressed: model.url == null
+              return InkWell(
+                onTap: model.url == null
                     ? null
                     : () {
                         _launchURL(model.url!);
                       },
                 child: Container(
+                  margin: EdgeInsets.only(top: HW.getHeight(8, context)),
                   child: Text(
                     model.title,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         fontSize: TextFontSize.getHeight(16, context),
                         decoration: textDecoration ?? TextDecoration.underline,
-                        height: 2,
+                        height: 1.3,
                         decorationColor: Colors.black),
                   ),
                 ),

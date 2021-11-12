@@ -70,7 +70,9 @@ class _CreditsPageState extends State<CreditsPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
                   onTapVolume: isSoundOn
                       ? () {
                           setState(() {
@@ -158,37 +160,52 @@ class _CreditsPageState extends State<CreditsPage> {
                                   children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'creator',
+                                      profession: 'creator, design director',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward')
+                                            title: 'Spencer Striker, PhD')
                                       ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'producers',
+                                      profession: 'ART director, producer',
                                       urlModeles: [
-                                        UrlLuncherModel(title: 'Bessie Cooper'),
-                                        UrlLuncherModel(title: 'Wade Warren'),
-                                        UrlLuncherModel(title: 'Ralph Edwards'),
+                                        UrlLuncherModel(
+                                            title: 'Julius Krunglevičius '),
                                       ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
                                       // peoples: ['Darrell Steward'],
-                                      profession: 'art director',
+                                      profession: 'project manager',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Laiba Mubashar'),
                                       ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'narrators',
+                                      profession: 'Research assistans, QA',
                                       urlModeles: [
-                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(title: 'Yingyin Chen'),
+                                        UrlLuncherModel(title: 'Xingyu Qin'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      profession: 'writer',
+                                      urlModeles: [
+                                        UrlLuncherModel(title: 'Olivia Frias'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      profession: 'Historians',
+                                      urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title:
+                                                'Christopher Sparshott, PhD'),
+                                        UrlLuncherModel(title: 'Kieren Johns'),
                                       ],
                                     ),
                                   ],
@@ -203,38 +220,42 @@ class _CreditsPageState extends State<CreditsPage> {
                                       textDecoration: TextDecoration.none,
                                       profession: 'illustrators',
                                       urlModeles: [
+                                        UrlLuncherModel(title: 'Nenad Kostic'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Christina Koval'),
                                         UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(title: 'Robert Fox'),
-                                        UrlLuncherModel(title: 'Esther Howard'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(title: 'Esther Howard'),
+                                        UrlLuncherModel(title: 'Jason Moser'),
                                       ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'writers',
+                                      profession: 'Designers',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Rojus Rzevuskis'),
+                                        UrlLuncherModel(title: 'Anna Notovska'),
+                                        UrlLuncherModel(title: 'Mats Wedin'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      profession: 'Animators, 3D artists',
+                                      urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                            title: 'Vladyslav Fedchenko'),
+                                        UrlLuncherModel(title: 'Nenad Kostic'),
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Dmytro Hrynchenko'),
+                                      ],
+                                    ),
+                                    AuthorWidget(
+                                      textDecoration: TextDecoration.none,
+                                      profession:
+                                          'Marketing & Public Relations',
+                                      urlModeles: [
+                                        UrlLuncherModel(title: 'Samson Mbogo'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Mishaal Hasan Shirazi'),
                                       ],
                                     )
                                   ],
@@ -247,82 +268,19 @@ class _CreditsPageState extends State<CreditsPage> {
                                   children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'animators',
-                                      urlModeles: [
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                      ],
-                                    ),
-                                    AuthorWidget(
-                                      textDecoration: TextDecoration.none,
                                       profession: 'developers',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'DIGITAL POMEGRANATE'),
                                       ],
                                     ),
-                                    AuthorWidget(
-                                      textDecoration: TextDecoration.none,
-                                      profession: 'marketing & PR',
-                                      urlModeles: [
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Flexible(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
                                       profession: 'supported by',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
-                                        UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title:
+                                                'Northwestern University in Qatar'),
                                       ],
                                     ),
                                     AuthorWidget(
@@ -330,24 +288,27 @@ class _CreditsPageState extends State<CreditsPage> {
                                       profession: 'special thanks',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Elizabeth Lance'),
+                                        UrlLuncherModel(title: 'Bianca Simon'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                            title: 'Everette E. Dennis, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Hariclea Zengos, Ph'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Gregory Ferrell Lowe, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Woodman Taylor, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Craig Benjamin, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Jonathan Markley, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Darrell Steward'),
+                                            title: 'Dawnene Hassett, PhD'),
                                         UrlLuncherModel(
-                                            title: 'Kristin Watson'),
+                                            title: 'Thom Gillespie, PhD'),
+                                        UrlLuncherModel(title: 'Todd Fabacher'),
+                                        UrlLuncherModel(
+                                            title: 'Abir Younis Maarouf'),
                                       ],
                                     ),
                                   ],
