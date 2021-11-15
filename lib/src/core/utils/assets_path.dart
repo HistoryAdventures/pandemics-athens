@@ -5,14 +5,12 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
-
-  static const String iconVolumeOn= 'assets/icons/sound_on.png';
-  static const String iconVolumeOff= 'assets/icons/sound_off.png';
+  static const String iconVolumeOn = 'assets/icons/sound_on.png';
+  static const String iconVolumeOff = 'assets/icons/sound_off.png';
 
   static const String iconMenu = 'assets/icons/menu.png';
   static const String iconInfo = 'assets/icons/info.png';
   static const String iconClose = 'assets/icons/close.png';
-
 
   static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
@@ -316,8 +314,12 @@ class AssetsPath {
   static const String aboutBookMap = 'assets/image_back/about_book_map.png';
   static const String socilaIcons = 'assets/icons/social_icons.png';
 
-  static const String paralaxBackground = 'assets/paralax_new/bk.jpeg';
+  static const String paralaxBackground = 'assets/paralax_new/bk.jpg';
+  static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxFireLottie = 'assets/paralax_new/fire/fire.json';
+  static const String paralaxWomanLottie =
+      'assets/paralax_new/woman/woman.json';
+
   static const String paralaxHotTubLottie =
       'assets/paralax_new/hottub/hottub.json';
   static const String paralaxCrowdLottie =
@@ -337,7 +339,6 @@ class AssetsPath {
   static const String paralaxTubeCloud = 'assets/paralax_new/tube_cloud.png';
   static const String paralaxTube2Cloud = 'assets/paralax_new/tube2_cloud.png';
   static const String paralaxCrows = 'assets/paralax_new/crows.png';
-  static const String paralaxDeadBodies = 'assets/paralax_new/dead_bodies.png';
   static const String paralaxClouds = 'assets/paralax_new/clouds.png';
   static const String paralaxCrowLottie = 'assets/paralax_new/crow/crow.json';
   static const String paralaxCrowsLottie =

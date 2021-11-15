@@ -17,12 +17,14 @@ class ParallaxWidget extends StatelessWidget {
   final double? right;
   final bool isImage;
   final Color? color;
+  final Alignment? alignment;
   final List<ImageInfo>? imageInfo;
   final GifAnimationController? gifController;
   final Animation<Offset>? animation;
   final double? opacity;
   const ParallaxWidget(
       {this.top,
+      this.alignment,
       required this.asset,
       required this.boxFit,
       required this.width,
@@ -51,6 +53,7 @@ class ParallaxWidget extends StatelessWidget {
             child: Container(
               width: width,
               height: height,
+              alignment: alignment,
               color: color ?? AppColors.transpatent,
               child: isImage
                   ? Image.asset(

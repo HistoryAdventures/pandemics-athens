@@ -168,6 +168,8 @@ flutter:
     - assets/paralax_new/
     - assets/paralax_new/crowd/
     - assets/paralax_new/crow/images/
+    - assets/paralax_new/woman/
+    - assets/paralax_new/woman/images/
     - assets/paralax_new/crow/
     - assets/paralax_new/crows/images/
     - assets/paralax_new/crows/
