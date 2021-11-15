@@ -6,6 +6,8 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizData {
   static bool showRightAnswers = false;
   static int questionIndex = 0;
+  static int firstDragDropResult = 0;
+  static int secondDragDropResult = 0;
 
   static int finalScore = 0;
 
@@ -705,6 +707,8 @@ class QuizData {
         rightAnswersForQ9++;
       }
     }
+    rightAnswersForQ1 += QuizData.firstDragDropResult;
+    rightAnswersForQ4 += QuizData.secondDragDropResult;
 
     listQuestionBody2.forEach((element) {
       if (element is EditTextWidget) {
@@ -835,7 +839,8 @@ class QuizData {
   static void clearAnswers() {
     listCorrectrAnswersQuestion1 = [];
     listCorrectrAnswersQuestion4 = [];
-
+    QuizData.firstDragDropResult = 0;
+    QuizData.secondDragDropResult = 0;
     listCorrectrAnswersQuestion9 = [];
 
     finalScore = 0;

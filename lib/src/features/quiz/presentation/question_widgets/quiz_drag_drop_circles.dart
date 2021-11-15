@@ -340,15 +340,18 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
         element.line.endKey == questions[0].target.key);
     if (a > -1) {
       print("code is here a");
-
+      QuizData.firstDragDropResult += 1;
       savedLines[a].color = Colors.green;
     }
     if (b > -1) {
       print("code is here");
+      QuizData.firstDragDropResult += 1;
+
       savedLines[b].color = Colors.green;
     }
     if (c > -1) {
       print("code is here b");
+      QuizData.firstDragDropResult += 1;
 
       savedLines[c].color = Colors.green;
     }
