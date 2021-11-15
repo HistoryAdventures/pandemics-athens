@@ -267,75 +267,84 @@ class _QuizPageState extends State<QuizPage> {
         },
       );
 
-  Widget get _score => Container(
-        height: HW.getHeight(52, context),
-        width: HW.getWidth(246, context),
-        padding: EdgeInsets.only(
-          right: HW.getWidth(31, context),
-          left: HW.getWidth(24, context),
-        ),
-        decoration: const BoxDecoration(
-            color: AppColors.orange,
-            borderRadius: BorderRadius.only(
-              topRight: Corners.bigRadius,
-              bottomRight: Corners.bigRadius,
-            )),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              margin: EdgeInsets.only(right: HW.getWidth(24, context)),
-              height: HW.getHeight(30, context),
-              width: HW.getWidth(30, context),
-              child: Image.asset(AssetsPath.scoreimage),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'total Score:'.toUpperCase(),
-                        style: Theme.of(context).textTheme.overline?.copyWith(
-                              fontSize: TextFontSize.getHeight(18, context),
-                              color: AppColors.white,
-                            ),
-                      ),
-                      Text(
-                        '${QuizData.finalScore} / 50'.toUpperCase(),
-                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                              fontSize: TextFontSize.getHeight(14, context),
-                              color: AppColors.white,
-                            ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'this question:'.toUpperCase(),
-                        style: Theme.of(context).textTheme.overline?.copyWith(
-                              fontSize: TextFontSize.getHeight(18, context),
-                              color: AppColors.white,
-                            ),
-                      ),
-                      Text(
-                        '${QuizData.listScore[QuizData.questionIndex].currentScore} / ${QuizData.listScore[QuizData.questionIndex].scorsCount}'
-                            .toUpperCase(),
-                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                              fontSize: TextFontSize.getHeight(14, context),
-                              color: AppColors.white,
-                            ),
-                      ),
-                    ],
-                  )
-                ],
+  Widget get _score => Visibility(
+        visible: QuizData.showRightAnswers,
+        child: Container(
+          height: HW.getHeight(52, context),
+          width: HW.getWidth(246, context),
+          padding: EdgeInsets.only(
+            right: HW.getWidth(31, context),
+            left: HW.getWidth(24, context),
+          ),
+          decoration: const BoxDecoration(
+              color: AppColors.orange,
+              borderRadius: BorderRadius.only(
+                topRight: Corners.bigRadius,
+                bottomRight: Corners.bigRadius,
+              )),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: EdgeInsets.only(right: HW.getWidth(24, context)),
+                height: HW.getHeight(30, context),
+                width: HW.getWidth(30, context),
+                child: Image.asset(AssetsPath.scoreimage),
               ),
-            )
-          ],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'total Score:'.toUpperCase(),
+                          style: Theme.of(context).textTheme.overline?.copyWith(
+                                fontSize: TextFontSize.getHeight(18, context),
+                                color: AppColors.white,
+                              ),
+                        ),
+                        Text(
+                          '${QuizData.finalScore} / 50'.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.copyWith(
+                                fontSize: TextFontSize.getHeight(14, context),
+                                color: AppColors.white,
+                              ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'this question:'.toUpperCase(),
+                          style: Theme.of(context).textTheme.overline?.copyWith(
+                                fontSize: TextFontSize.getHeight(18, context),
+                                color: AppColors.white,
+                              ),
+                        ),
+                        Text(
+                          '${QuizData.listScore[QuizData.questionIndex].currentScore} / ${QuizData.listScore[QuizData.questionIndex].scorsCount}'
+                              .toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.copyWith(
+                                fontSize: TextFontSize.getHeight(14, context),
+                                color: AppColors.white,
+                              ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       );
 

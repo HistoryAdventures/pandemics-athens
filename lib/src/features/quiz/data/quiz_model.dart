@@ -845,6 +845,17 @@ class QuizData {
         rightAnswersForQ8 +
         rightAnswersForQ9 +
         rightAnswersForQ10;
+
+    listScore = [
+      Score(currentScore: rightAnswersForQ1, scorsCount: 3),
+      Score(currentScore: rightAnswersForQ2, scorsCount: 6),
+      Score(currentScore: rightAnswersForQ3, scorsCount: 7),
+      Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: rightAnswersForQ5, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ6, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ8, scorsCount: 1),
+    ];
   }
 
   static void clearAnswers() {
@@ -926,6 +937,16 @@ class QuizData {
 
     userAnswerWithCheckForQ9.clear();
     userAnswerForQ9.clear();
+    listScore = [
+      Score(currentScore: rightAnswersForQ1, scorsCount: 3),
+      Score(currentScore: rightAnswersForQ2, scorsCount: 6),
+      Score(currentScore: rightAnswersForQ3, scorsCount: 7),
+      Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: rightAnswersForQ5, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ6, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ8, scorsCount: 1),
+    ];
   }
 }
 
