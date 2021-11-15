@@ -427,15 +427,15 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     );
 
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
       setState(() {});
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     smallScreenWidthFactor =
@@ -449,116 +449,119 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
       lines[0].start = offsetForKey(lines[0].startKey);
       lines[0].end = offsetForKey(lines[0].endKey);
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(HW.getHeight(24, context)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText(
-                "What happened during the Golden Age of Athens?",
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: HW.getHeight(24, context),
-                    ),
-                maxLines: 1,
-                textAlign: TextAlign.start,
-              ),
-              AutoSizeText(
-                "*drag nodes from one column to another, to match the anwsers",
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: HW.getHeight(12, context),
-                    ),
-                maxLines: 1,
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          key: dropKey,
-          child: AbsorbPointer(
-            absorbing: checked,
-            child: Stack(
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(HW.getHeight(24, context)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomPaint(
-                  painter: MyPainter(
-                    checked: checked,
-                    smallScreenHeightFactor: smallScreenHeightFactor,
-                    smallScreenWidthFactor: smallScreenWidthFactor,
-                    accepted: accepted,
-                    circleButtonWidth: circleButtonWidth,
-                    lines: lines,
-                    startOffset: startOffset,
-                    endOffset: offset,
-                    shouldPaint: shouldPaint,
-                    quizItem: questions[curentIndex],
-                    savedLines: savedLines,
-                    rightLines: rightLines,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            _draggable(
-                              questions[0].question,
-                              0,
-                              "Battke of Thermopylae",
-                            ),
-                            divider38(context),
-                            _draggable(
-                              questions[1].question,
-                              1,
-                              "Birth of Socrates",
-                            ),
-                            divider38(context),
-                            _draggable(
-                              questions[2].question,
-                              2,
-                              "The Plague arrives in Athens",
-                            ),
-                          ],
-                        ),
+                AutoSizeText(
+                  "What happened during the Golden Age of Athens?",
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: HW.getHeight(24, context),
                       ),
-                      SizedBox(
-                        width: HW.getWidth(210, context),
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                ),
+                AutoSizeText(
+                  "*drag nodes from one column to another, to match the anwsers",
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: HW.getHeight(12, context),
                       ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            _target(
-                              questions[0].target,
-                              "Battke of Thermopylae",
-                            ),
-                            divider38(context),
-                            _target(
-                              questions[1].target,
-                              "Birth of Socrates",
-                            ),
-                            divider38(context),
-                            _target(
-                              questions[2].target,
-                              "The Plague arrives in Athens",
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  maxLines: 1,
                 ),
               ],
             ),
           ),
-        ),
-      ],
+          Expanded(
+            key: dropKey,
+            child: AbsorbPointer(
+              absorbing: checked,
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    painter: MyPainter(
+                      checked: checked,
+                      smallScreenHeightFactor: smallScreenHeightFactor,
+                      smallScreenWidthFactor: smallScreenWidthFactor,
+                      accepted: accepted,
+                      circleButtonWidth: circleButtonWidth,
+                      lines: lines,
+                      startOffset: startOffset,
+                      endOffset: offset,
+                      shouldPaint: shouldPaint,
+                      quizItem: questions[curentIndex],
+                      savedLines: savedLines,
+                      rightLines: rightLines,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              _draggable(
+                                questions[0].question,
+                                0,
+                                "Battke of Thermopylae",
+                              ),
+                              divider38(context),
+                              _draggable(
+                                questions[1].question,
+                                1,
+                                "Birth of Socrates",
+                              ),
+                              divider38(context),
+                              _draggable(
+                                questions[2].question,
+                                2,
+                                "The Plague arrives in Athens",
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: HW.getWidth(210, context),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              _target(
+                                questions[0].target,
+                                "Battke of Thermopylae",
+                              ),
+                              divider38(context),
+                              _target(
+                                questions[1].target,
+                                "Birth of Socrates",
+                              ),
+                              divider38(context),
+                              _target(
+                                questions[2].target,
+                                "The Plague arrives in Athens",
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

@@ -42,6 +42,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
       absorbing: QuizData.showRightAnswers,
       child: LayoutBuilder(builder: (context, constraints) {
         return Container(
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
