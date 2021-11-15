@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/map_quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/circle_button.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_drop_models.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/map_image_item.dart';
@@ -68,26 +69,47 @@ class _QuizMapImageState extends State<QuizMapImage> {
     });
     int a = savedLines.indexWhere((element) =>
         element.line.startKey == questions[0].question.key &&
-        element.line.endKey == questions[2].target.key);
+        element.line.endKey == questions[1].target.key);
     int b = savedLines.indexWhere((element) =>
         element.line.startKey == questions[1].question.key &&
-        element.line.endKey == questions[1].target.key);
+        element.line.endKey == questions[4].target.key);
     int c = savedLines.indexWhere((element) =>
         element.line.startKey == questions[2].question.key &&
+        element.line.endKey == questions[2].target.key);
+    int d = savedLines.indexWhere((element) =>
+        element.line.startKey == questions[3].question.key &&
         element.line.endKey == questions[0].target.key);
+    int e = savedLines.indexWhere((element) =>
+        element.line.startKey == questions[4].question.key &&
+        element.line.endKey == questions[3].target.key);
     if (a > -1) {
       print("code is here a");
 
       savedLines[a].color = Colors.green;
+      QuizData.secondDragDropResult += 1;
     }
     if (b > -1) {
-      print("code is here");
+      print("code is here c is right");
       savedLines[b].color = Colors.green;
+      QuizData.secondDragDropResult += 1;
     }
     if (c > -1) {
       print("code is here b");
+      QuizData.secondDragDropResult += 1;
 
       savedLines[c].color = Colors.green;
+    }
+    if (d > -1) {
+      print("code is here b");
+      QuizData.secondDragDropResult += 1;
+
+      savedLines[d].color = Colors.green;
+    }
+    if (e > -1) {
+      print("code is here b");
+      QuizData.secondDragDropResult += 1;
+
+      savedLines[e].color = Colors.green;
     }
     checked = true;
     startOffset = Offset.zero;

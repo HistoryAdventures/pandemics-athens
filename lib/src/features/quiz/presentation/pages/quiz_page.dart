@@ -517,6 +517,10 @@ class _QuizPageState extends State<QuizPage> {
                                       QuizMapImage.quizMapImageKey.currentState!
                                           .checkAnswers();
                                     }
+                                    print(
+                                        "FIRST DRAG RESUL ${QuizData.firstDragDropResult}");
+                                    print(
+                                        "FIRST second RESUL ${QuizData.secondDragDropResult}");
                                     setState(() {
                                       QuizData.checkUerAnswers();
                                       QuizData.showRightAnswers =

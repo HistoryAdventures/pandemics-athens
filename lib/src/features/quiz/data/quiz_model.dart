@@ -6,18 +6,20 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizData {
   static bool showRightAnswers = false;
   static int questionIndex = 0;
+  static int firstDragDropResult = 0;
+  static int secondDragDropResult = 0;
 
   static int finalScore = 0;
 
   static List<Score> listScore = [
-    Score(currentScore: 0, scorsCount: 3),
-    Score(currentScore: 0, scorsCount: 6),
-    Score(currentScore: 0, scorsCount: 7),
-    Score(currentScore: 0, scorsCount: 5),
-    Score(currentScore: 0, scorsCount: 1),
-    Score(currentScore: 0, scorsCount: 1),
-    Score(currentScore: 0, scorsCount: 1),
-    Score(currentScore: 0, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ1, scorsCount: 3),
+    Score(currentScore: rightAnswersForQ2, scorsCount: 6),
+    Score(currentScore: rightAnswersForQ3, scorsCount: 7),
+    Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+    Score(currentScore: rightAnswersForQ5, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ6, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ7, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ8, scorsCount: 1),
   ];
 
   ///[QUESTION 1]
@@ -716,6 +718,8 @@ class QuizData {
         rightAnswersForQ9++;
       }
     }
+    rightAnswersForQ1 += QuizData.firstDragDropResult;
+    rightAnswersForQ4 += QuizData.secondDragDropResult;
 
     listQuestionBody2.forEach((element) {
       if (element is EditTextWidget) {
@@ -846,7 +850,8 @@ class QuizData {
   static void clearAnswers() {
     listCorrectrAnswersQuestion1 = [];
     listCorrectrAnswersQuestion4 = [];
-
+    QuizData.firstDragDropResult = 0;
+    QuizData.secondDragDropResult = 0;
     listCorrectrAnswersQuestion9 = [];
 
     finalScore = 0;
