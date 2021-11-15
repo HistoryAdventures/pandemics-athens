@@ -5,14 +5,12 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
-
-  static const String iconVolumeOn= 'assets/icons/sound_on.png';
-  static const String iconVolumeOff= 'assets/icons/sound_off.png';
+  static const String iconVolumeOn = 'assets/icons/sound_on.png';
+  static const String iconVolumeOff = 'assets/icons/sound_off.png';
 
   static const String iconMenu = 'assets/icons/menu.png';
   static const String iconInfo = 'assets/icons/info.png';
   static const String iconClose = 'assets/icons/close.png';
-
 
   static const String quizBackground = 'assets/images_quiz/quiz_bk.png';
 
@@ -411,6 +409,12 @@ class AssetsPath {
 
   static const String mapLottie421 =
       'assets/assets/map_lottie/map_23/index.html';
+
+  static const String mapQuizImage1 = 'assets/images_quiz/map1.jpg';
+  static const String mapQuizImage2 = 'assets/images_quiz/map2.jpg';
+  static const String mapQuizImage3 = 'assets/images_quiz/map3.jpg';
+  static const String mapQuizImage4 = 'assets/images_quiz/map4.jpg';
+  static const String mapQuizImage5 = 'assets/images_quiz/map5.jpg';
 
   static const String mapLottie416 =
       'assets/assets/map_lottie/map_24/index.html';

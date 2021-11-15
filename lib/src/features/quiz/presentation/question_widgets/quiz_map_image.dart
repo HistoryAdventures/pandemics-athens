@@ -53,6 +53,9 @@ class _QuizMapImageState extends State<QuizMapImage> {
     setState(() {});
   }
 
+  double initialWidth = 0;
+  double initalHeight = 0;
+
   void checkAnswers() {
     if (rightLines.isNotEmpty) {
       print("returninq");
@@ -221,15 +224,17 @@ class _QuizMapImageState extends State<QuizMapImage> {
     );
 
     quizImages.addAll([
-      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "A"),
-      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "B"),
-      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "C"),
-      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "D"),
-      const MapQuizItemModel(assets: AssetsPath.aboutBookMap, title: "E"),
+      const MapQuizItemModel(assets: AssetsPath.mapQuizImage1, title: "A"),
+      const MapQuizItemModel(assets: AssetsPath.mapQuizImage2, title: "B"),
+      const MapQuizItemModel(assets: AssetsPath.mapQuizImage3, title: "C"),
+      const MapQuizItemModel(assets: AssetsPath.mapQuizImage4, title: "D"),
+      const MapQuizItemModel(assets: AssetsPath.mapQuizImage5, title: "E"),
     ]);
-    Future.delayed(const Duration(milliseconds: 1000)).then((v) {
+    Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
+      initalHeight = h;
+      initialWidth = w;
       setState(() {});
     });
     print("INIT STATE IS CALLEDDDDDDDDD");
@@ -238,7 +243,15 @@ class _QuizMapImageState extends State<QuizMapImage> {
 
   @override
   Widget build(BuildContext context) {
-    print("BUILD ");
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      h = dropKey.currentContext!.size!.height;
+      w = dropKey.currentContext!.size!.width;
+      if (initialWidth != w || initalHeight != h) {
+        setState(() {});
+      }
+      initalHeight = h;
+      initialWidth = w;
+    });
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     smallScreenWidthFactor =
