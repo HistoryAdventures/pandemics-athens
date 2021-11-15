@@ -188,6 +188,8 @@ class AssetsPath {
   static const String virusLocMap = 'assets/image_back/virus_loc_map.png';
   static const String gradient = 'assets/image_back/gradient.png';
 
+  static const String scoreimage = "assets/images_quiz/score.png";
+
   static const String gifVirusTyphoid =
       'assets/animated_backgrounds/2/virus/typhoid.gif';
 

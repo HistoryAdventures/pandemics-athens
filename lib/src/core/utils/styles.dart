@@ -147,6 +147,10 @@ class Corners {
   static const double lg = 8;
   static const BorderRadius lgBorder = BorderRadius.all(lgRadius);
   static const Radius lgRadius = Radius.circular(lg);
+
+  static const double big = 20;
+  static const BorderRadius bigBorder = BorderRadius.all(bigRadius);
+  static const Radius bigRadius = Radius.circular(big);
 }
 
 class Strokes {

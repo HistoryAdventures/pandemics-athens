@@ -9,6 +9,17 @@ class QuizData {
 
   static int finalScore = 0;
 
+  static List<Score> listScore = [
+    Score(currentScore: 0, scorsCount: 3),
+    Score(currentScore: 0, scorsCount: 6),
+    Score(currentScore: 0, scorsCount: 7),
+    Score(currentScore: 0, scorsCount: 5),
+    Score(currentScore: 0, scorsCount: 1),
+    Score(currentScore: 0, scorsCount: 1),
+    Score(currentScore: 0, scorsCount: 1),
+    Score(currentScore: 0, scorsCount: 1),
+  ];
+
   ///[QUESTION 1]
   ///
   static List<DrowLineWidget> listCorrectrAnswersQuestion1 = [];
@@ -963,4 +974,11 @@ class EditTextWidget {
     required this.controller,
     this.isRight,
   });
+}
+
+class Score {
+  final int currentScore;
+  final int scorsCount;
+
+  Score({required this.currentScore, required this.scorsCount});
 }
