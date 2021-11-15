@@ -362,6 +362,9 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     setState(() {});
   }
 
+  double initialWidth = 0;
+  double initalHeight = 0;
+
   void setUpRightLines() {
     if (rightLines.length == 2) {
       return;
@@ -433,12 +436,24 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
+      initalHeight = h;
+      initialWidth = w;
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      h = dropKey.currentContext!.size!.height;
+      w = dropKey.currentContext!.size!.width;
+      if (initialWidth != w || initalHeight != h) {
+        setState(() {});
+      }
+      initalHeight = h;
+      initialWidth = w;
+    });
+
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     smallScreenWidthFactor =

@@ -415,6 +415,12 @@ class AssetsPath {
   static const String mapLottie421 =
       'assets/assets/map_lottie/map_23/index.html';
 
+  static const String mapQuizImage1 = 'assets/images_quiz/map1.jpg';
+  static const String mapQuizImage2 = 'assets/images_quiz/map2.jpg';
+  static const String mapQuizImage3 = 'assets/images_quiz/map3.jpg';
+  static const String mapQuizImage4 = 'assets/images_quiz/map4.jpg';
+  static const String mapQuizImage5 = 'assets/images_quiz/map5.jpg';
+
   static const String mapLottie416 =
       'assets/assets/map_lottie/map_24/index.html';
   static const String mapLottie415 =
