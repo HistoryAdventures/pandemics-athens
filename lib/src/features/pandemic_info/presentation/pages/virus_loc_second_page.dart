@@ -109,9 +109,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               onVerticalDragStart: (d) {
                 dragStartOffset =
                     Offset(d.globalPosition.dx, d.globalPosition.dy);
+                dragEndOffset =
+                    Offset(d.globalPosition.dx, d.globalPosition.dy);
               },
               onVerticalDragEnd: (d) {
-                if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 100) {
+                if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 20) {
                   return;
                 }
                 if (dragEndOffset.dy > dragStartOffset.dy) {
