@@ -31,7 +31,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   String viewID = "virusLocationSecondPage-view-id";
-
+  Offset dragStartOffset = Offset(0, 0);
+  Offset dragEndOffset = Offset(0, 0);
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -100,6 +101,35 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
             //           image: AssetImage(AssetsPath.virusLoc2),
             //           fit: BoxFit.cover)),
             // ),
+            GestureDetector(
+              onVerticalDragUpdate: (d) {
+                dragEndOffset =
+                    Offset(d.globalPosition.dx, d.globalPosition.dy);
+              },
+              onVerticalDragStart: (d) {
+                dragStartOffset =
+                    Offset(d.globalPosition.dx, d.globalPosition.dy);
+              },
+              onVerticalDragEnd: (d) {
+                if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 100) {
+                  return;
+                }
+                if (dragEndOffset.dy > dragStartOffset.dy) {
+                  LeafDetails.currentVertex = 11;
+                  if (kIsWeb) {
+                    html.window.history.back();
+                    context.router.pop();
+                  } else {
+                    context.router.pop();
+                  }
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.transparent,
+              ),
+            ),
             Positioned(
                 top: HW.getHeight(192, context),
                 left: HW.getWidth(128, context),
@@ -218,7 +248,9 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               ),
             ),
             SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
