@@ -151,285 +151,281 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         return Scaffold(
           key: skaffoldKey,
           endDrawer: const NavigationPage(),
-          body: Stack(
-            children: [
-              GifBackground(
-                size: Size(constraints.maxWidth, constraints.maxHeight),
-                asset: AssetsPath.gifBackground4,
-              ),
-              AnimatedParticlesForth(
-                constraints: constraints,
-                mouseX: mouseX,
-                mouseY: mouseY,
-                objWave: objWave,
-              ),
-              Align(
-                child: Container(
-                  margin: EdgeInsets.only(right: HW.getWidth(129, context)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AnimatedSwitcher(
-                          duration: Times.medium,
-                          transitionBuilder: (child, animation) =>
-                              FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                          child: Container(
-                            key: ValueKey(virusModel.title),
-                            child: VirusModelWidget(
-                              constraints: Size(
-                                  constraints.maxWidth, constraints.maxHeight),
-                              gifController: controller,
-                              onTapBubonik: () {
-                                setState(() {
-                                  virusModel.changeState(
-                                    title: locals.bubonicPlague,
-                                    widgets: [gifBubonic],
-                                    description: locals.bubonicPlagueText,
-                                  );
-                                });
-                              },
-                              onTapEbola: () {
-                                setState(() {
-                                  virusModel.changeState(
-                                    title: locals.ebola,
-                                    widgets: [gifEbola],
-                                    description: locals.ebolaText,
-                                  );
-                                });
-                              },
-                              onTapSmall: () {
-                                setState(() {
-                                  virusModel.changeState(
-                                    title: locals.smallpox,
-                                    widgets: [gifSmallpox],
-                                    description: locals.smallpoxText,
-                                  );
-                                });
-                              },
-                              onTapTiphid: () {
-                                setState(() {
-                                  virusModel.changeState(
-                                    title: locals.typhiod,
-                                    widgets: [gifTyphoid],
-                                    description: locals.typhiodText,
-                                  );
-                                });
-                              },
-                              onTapTiphius: () {
-                                setState(() {
-                                  virusModel.changeState(
-                                    title: locals.typhus,
-                                    widgets: [gifTyphus],
-                                    description: locals.typhusText,
-                                  );
-                                });
-                              },
-                              virusModel: virusModel,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: HW.getHeight(676, context),
-                        width: HW.getWidth(768, context),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              boxShadow: Shadows.universal),
-                          padding:
-                              EdgeInsets.all(constraints.maxHeight * 0.024),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: HW.getHeight(68, context),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Flexible(
-                                            child: Container(
-                                              margin: EdgeInsets.only(
-                                                  bottom:
-                                                      HW.getHeight(8, context)),
-                                              child: Text(
-                                                locals.chapter1Pathogenprofile,
-                                                maxLines: 2,
-                                                style: DefaultTheme.standard
-                                                    .textTheme.headline1
-                                                    ?.copyWith(
-                                                        fontSize: TextFontSize
-                                                            .getHeight(
-                                                                14, context)),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: Text(
-                                                locals.whatWasIt.toUpperCase(),
-                                                maxLines: 1,
-                                                style: DefaultTheme.standard
-                                                    .textTheme.headline2
-                                                    ?.copyWith(
-                                                        fontSize: TextFontSize
-                                                            .getHeight(
-                                                                32, context))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10),
-                                        margin: EdgeInsets.only(
-                                          top: HW.getHeight(16, context),
-                                          bottom: HW.getHeight(16, context),
-                                        ),
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2),
-                                            bottom: BorderSide(
-                                                color: AppColors.grey,
-                                                width: 1.2),
-                                          ),
-                                        ),
-                                        child: HAScrollbar(
-                                          isAlwaysShown: true,
-                                          child: ListView(
-                                            shrinkWrap: true,
-                                            children: [
-                                              Container(
-                                                padding: const EdgeInsets.only(
-                                                    right: 24, top: 16),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              bottom: 16),
-                                                      child: AutoSizeText(
-                                                          virusModel.title
-                                                              .toUpperCase(),
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline3),
-                                                    ),
-                                                    AutoSizeText(
-                                                      virusModel.description,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1,
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: HW.getHeight(22, context),
-                                child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                        children: listCharacters
-                                            .map((data) => MouseRegion(
-                                                  onHover: (_) {
-                                                    setState(() {
-                                                      hoveredItemIndex =
-                                                          data.virusModel.title;
-                                                    });
-                                                  },
-                                                  onExit: (_) {
-                                                    setState(() {
-                                                      hoveredItemIndex = null;
-                                                    });
-                                                  },
-                                                  child: virusesNameListWidget(
-                                                    isHoverd:
-                                                        hoveredItemIndex ==
-                                                            data.virusModel
-                                                                .title,
-                                                    image:
-                                                        data.virusModel.widgets,
-                                                    name: data.virusModel.title,
-                                                    text: data
-                                                        .virusModel.description,
-                                                  ),
-                                                ))
-                                            .toList())),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+          body: GestureDetector(
+            onTap: () {
+              setState(() {
+                virusModel.changeState(
+                  description: locals.introVirusText,
+                  title: locals.introVirus,
+                  widgets: [
+                    gifBubonic,
+                    gifTyphus,
+                    gifTyphoid,
+                    gifSmallpox,
+                    gifEbola
+                  ],
+                );
+              });
+            },
+            child: Stack(
+              children: [
+                GifBackground(
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                  asset: AssetsPath.gifBackground4,
+                ),
+                AnimatedParticlesForth(
+                  constraints: constraints,
+                  mouseX: mouseX,
+                  mouseY: mouseY,
+                  objWave: objWave,
+                ),
+                Align(
+                  child: Container(
+                    margin: EdgeInsets.only(right: HW.getWidth(129, context)),
+                    child: Row(
+                      children: [
+                        _viruses(constraints),
+                        _descriptionPanel(constraints)
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: ArrowLeftTextWidget(
-                    textSubTitle: locals.whatDidItDo,
-                    textTitle: locals.pathogenProfile,
-                    onTap: () {
-                      LeafDetails.currentVertex = 12;
-                      NavigationSharedPreferences.upDateShatedPreferences();
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: ArrowLeftTextWidget(
+                      textSubTitle: locals.whatDidItDo,
+                      textTitle: locals.pathogenProfile,
+                      onTap: () {
+                        LeafDetails.currentVertex = 12;
+                        NavigationSharedPreferences.upDateShatedPreferences();
 
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
-                    }),
-              ),
-              SoundAndMenuWidget(
-                icons: isSoundOn
-                    ? AssetsPath.iconVolumeOn
-                    : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
-                    ? () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
-                      }
-                    : () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
-                      },
-                onTapMenu: () {
-                  skaffoldKey.currentState!.openEndDrawer();
-                },
-              ),
-            ],
+                        if (kIsWeb) {
+                          html.window.history.back();
+                          context.router.pop();
+                        } else {
+                          context.router.pop();
+                        }
+                      }),
+                ),
+                SoundAndMenuWidget(
+                  icons: isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
+                  onTapVolume: isSoundOn
+                      ? () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.pause();
+                          });
+                        }
+                      : () {
+                          setState(() {
+                            isSoundOn = !isSoundOn;
+                            backgroundplayer.play();
+                          });
+                        },
+                  onTapMenu: () {
+                    skaffoldKey.currentState!.openEndDrawer();
+                  },
+                ),
+              ],
+            ),
           ),
         );
       }),
     );
   }
+
+  Widget _viruses(BoxConstraints constraints) => Expanded(
+        child: AnimatedSwitcher(
+          duration: Times.medium,
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          child: Container(
+            key: ValueKey(virusModel.title),
+            child: VirusModelWidget(
+              constraints: Size(constraints.maxWidth, constraints.maxHeight),
+              gifController: controller,
+              onTapBubonik: () {
+                setState(() {
+                  virusModel.changeState(
+                    title: locals.bubonicPlague,
+                    widgets: [gifBubonic],
+                    description: locals.bubonicPlagueText,
+                  );
+                });
+              },
+              onTapEbola: () {
+                setState(() {
+                  virusModel.changeState(
+                    title: locals.ebola,
+                    widgets: [gifEbola],
+                    description: locals.ebolaText,
+                  );
+                });
+              },
+              onTapSmall: () {
+                setState(() {
+                  virusModel.changeState(
+                    title: locals.smallpox,
+                    widgets: [gifSmallpox],
+                    description: locals.smallpoxText,
+                  );
+                });
+              },
+              onTapTiphid: () {
+                setState(() {
+                  virusModel.changeState(
+                    title: locals.typhiod,
+                    widgets: [gifTyphoid],
+                    description: locals.typhiodText,
+                  );
+                });
+              },
+              onTapTiphius: () {
+                setState(() {
+                  virusModel.changeState(
+                    title: locals.typhus,
+                    widgets: [gifTyphus],
+                    description: locals.typhusText,
+                  );
+                });
+              },
+              virusModel: virusModel,
+            ),
+          ),
+        ),
+      );
+
+  Widget _descriptionPanel(BoxConstraints constraints) => Container(
+        height: HW.getHeight(676, context),
+        width: HW.getWidth(768, context),
+        child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.white, boxShadow: Shadows.universal),
+          padding: EdgeInsets.all(constraints.maxHeight * 0.024),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: HW.getHeight(68, context),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  bottom: HW.getHeight(8, context)),
+                              child: Text(
+                                locals.chapter1Pathogenprofile,
+                                maxLines: 2,
+                                style: DefaultTheme.standard.textTheme.headline1
+                                    ?.copyWith(
+                                        fontSize: TextFontSize.getHeight(
+                                            14, context)),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Text(locals.whatWasIt.toUpperCase(),
+                                maxLines: 1,
+                                style: DefaultTheme.standard.textTheme.headline2
+                                    ?.copyWith(
+                                        fontSize: TextFontSize.getHeight(
+                                            32, context))),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        margin: EdgeInsets.only(
+                          top: HW.getHeight(16, context),
+                          bottom: HW.getHeight(16, context),
+                        ),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            top: BorderSide(color: AppColors.grey, width: 1.2),
+                            bottom:
+                                BorderSide(color: AppColors.grey, width: 1.2),
+                          ),
+                        ),
+                        child: HAScrollbar(
+                          isAlwaysShown: true,
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Container(
+                                padding:
+                                    const EdgeInsets.only(right: 24, top: 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 16),
+                                      child: AutoSizeText(
+                                          virusModel.title.toUpperCase(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3),
+                                    ),
+                                    AutoSizeText(
+                                      virusModel.description,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: HW.getHeight(22, context),
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                        children: listCharacters
+                            .map((data) => MouseRegion(
+                                  onHover: (_) {
+                                    setState(() {
+                                      hoveredItemIndex = data.virusModel.title;
+                                    });
+                                  },
+                                  onExit: (_) {
+                                    setState(() {
+                                      hoveredItemIndex = null;
+                                    });
+                                  },
+                                  child: virusesNameListWidget(
+                                    isHoverd: hoveredItemIndex ==
+                                        data.virusModel.title,
+                                    image: data.virusModel.widgets,
+                                    name: data.virusModel.title,
+                                    text: data.virusModel.description,
+                                  ),
+                                ))
+                            .toList())),
+              )
+            ],
+          ),
+        ),
+      );
 
   Widget virusesNameListWidget(
       {String? name,

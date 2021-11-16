@@ -64,7 +64,7 @@ class GifImage extends StatefulWidget {
     this.gaplessPlayback = false,
   });
   final VoidCallback? onFetchCompleted;
-  final GifController controller;
+  final GifController? controller;
   final ImageProvider image;
   final double? width;
   final double? height;
@@ -99,13 +99,13 @@ class GifImageState extends State<GifImage> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(_listener);
+    widget.controller?.addListener(_listener);
   }
 
   @override
   void dispose() {
     super.dispose();
-    widget.controller.removeListener(_listener);
+    widget.controller?.removeListener(_listener);
   }
 
   @override
@@ -117,7 +117,7 @@ class GifImageState extends State<GifImage> {
           setState(() {
             _infos = imageInfors;
             _fetchComplete = true;
-            _curIndex = widget.controller.value.toInt();
+            _curIndex = widget.controller!.value.toInt();
             if (widget.onFetchCompleted != null) {
               widget.onFetchCompleted!();
             }
@@ -126,16 +126,16 @@ class GifImageState extends State<GifImage> {
       });
     }
     if (widget.controller != oldWidget.controller) {
-      oldWidget.controller.removeListener(_listener);
-      widget.controller.addListener(_listener);
+      oldWidget.controller?.removeListener(_listener);
+      widget.controller?.addListener(_listener);
     }
   }
 
   void _listener() {
-    if (_curIndex != widget.controller.value && _fetchComplete) {
+    if (_curIndex != widget.controller!.value && _fetchComplete) {
       if (mounted) {
         setState(() {
-          _curIndex = widget.controller.value.toInt();
+          _curIndex = widget.controller!.value.toInt();
         });
       }
     }
@@ -150,7 +150,7 @@ class GifImageState extends State<GifImage> {
           setState(() {
             _infos = imageInfors;
             _fetchComplete = true;
-            _curIndex = widget.controller.value.toInt();
+            _curIndex = widget.controller!.value.toInt();
             if (widget.onFetchCompleted != null) {
               widget.onFetchCompleted!();
             }

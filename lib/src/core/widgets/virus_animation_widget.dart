@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../features/pandemic_info/presentation/models/virus_model.dart';
+import 'animated_widgets/gif_animation.dart';
 import 'animated_widgets/gif_contrrol.dart';
 import 'widgets.dart';
 
@@ -25,13 +26,19 @@ class VirusModelWidget extends StatelessWidget {
   final VoidCallback? onTapSmall;
   final VoidCallback? onTapTiphid;
   final VoidCallback? onTapTiphius;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Material(
           color: Colors.white.withOpacity(0),
           child: virusModel.widgets.length == 1
-              ? Image.asset(virusModel.widgets[0])
+              ? Container(
+                  child: GifImage(
+                    controller: gifController,
+                    image: AssetImage(virusModel.widgets[0]),
+                  ),
+                )
               : Stack(children: [
                   Positioned(
                     top: constraints!.height * 0.16,
@@ -41,8 +48,9 @@ class VirusModelWidget extends StatelessWidget {
                       width: constraints!.width * 0.4,
                       child: Stack(
                         children: [
-                          Image.asset(
-                            virusModel.widgets[0],
+                          GifImage(
+                            controller: gifController,
+                            image: AssetImage(virusModel.widgets[0]),
                           ),
                           Positioned(
                             top: constraints!.height * 0.15,
@@ -66,8 +74,9 @@ class VirusModelWidget extends StatelessWidget {
                       width: constraints!.width * 0.3,
                       child: Stack(
                         children: [
-                          Image.asset(
-                            virusModel.widgets[1],
+                          GifImage(
+                            controller: gifController,
+                            image: AssetImage(virusModel.widgets[1]),
                           ),
                           Positioned(
                             top: constraints!.height * 0.12,
@@ -91,8 +100,9 @@ class VirusModelWidget extends StatelessWidget {
                       width: constraints!.width * 0.35,
                       child: Stack(
                         children: [
-                          Image.asset(
-                            virusModel.widgets[2],
+                          GifImage(
+                            controller: gifController,
+                            image: AssetImage(virusModel.widgets[2]),
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
@@ -116,8 +126,9 @@ class VirusModelWidget extends StatelessWidget {
                       width: constraints!.width * 0.3,
                       child: Stack(
                         children: [
-                          Image.asset(
-                            virusModel.widgets[3],
+                          GifImage(
+                            controller: gifController,
+                            image: AssetImage(virusModel.widgets[3]),
                           ),
                           Positioned(
                             top: constraints!.height * 0.13,
@@ -141,8 +152,9 @@ class VirusModelWidget extends StatelessWidget {
                       width: constraints!.width * 0.4,
                       child: Stack(
                         children: [
-                          Image.asset(
-                            virusModel.widgets[4],
+                          GifImage(
+                            controller: gifController,
+                            image: AssetImage(virusModel.widgets[4]),
                           ),
                           Positioned(
                             top: constraints!.height * 0.18,
