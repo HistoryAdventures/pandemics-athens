@@ -8,10 +8,12 @@ class IconButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? color;
   final Widget icon;
+  double paddingBottom = 48;
   double iconSize = 24.0;
   IconButtonWidget({
     Key? key,
     this.color,
+    this.paddingBottom = 48,
     this.iconSize = 24.0,
     required this.icon,
     required this.onPressed,
@@ -20,7 +22,7 @@ class IconButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
+      padding: EdgeInsets.only(bottom: HW.getHeight(paddingBottom, context)),
       child: IconButton(
           padding: EdgeInsets.zero,
           focusColor: AppColors.transpatent,

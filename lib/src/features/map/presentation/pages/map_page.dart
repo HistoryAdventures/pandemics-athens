@@ -403,7 +403,9 @@ class _MapPageState extends State<MapPage> {
             _yearDescriptionField(constraints),
             _timeLineWidget(constraints),
             SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       print('appbar');
@@ -588,7 +590,7 @@ class _MapPageState extends State<MapPage> {
                                   top: BorderSide(
                                       color: AppColors.grey, width: 1.2))),
                           child: HAScrollbar(
-                            isAlwaysShown: true,
+                            // isAlwaysShown: true,
                             showTrackOnHover: true,
                             child: ListView(shrinkWrap: true, children: [
                               Padding(
@@ -662,8 +664,10 @@ class _MapPageState extends State<MapPage> {
               width: HW.getWidth(980, context),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButtonWidget(
+                    paddingBottom: 0,
                     onPressed: () {
                       _scrollController.animateTo(
                         0.0,
@@ -719,6 +723,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   ),
                   IconButtonWidget(
+                    paddingBottom: 0,
                     onPressed: () {
                       _scrollController.animateTo(
                         _scrollController.position.maxScrollExtent,
