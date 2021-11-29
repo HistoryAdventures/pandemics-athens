@@ -30,14 +30,38 @@ h1 {
   left: 0;
   top: 0;
 }
+
+#main_canvas::-webkit-scrollbar {
+  display: none;
+}
+#main_canvas {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#scroller::-webkit-scrollbar {
+  display: none;
+}
+#scroller {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
   </style>
 </head>
 <body>
-<div id="scroller"></div>
+<div id="scroller" ></div>
 <div id="warning"><h1>Wrong Aspect Ratio. Please check this page on wide screens.</h1></div>
 <canvas id="main_canvas" width="1920" height="1080"></canvas>
 <script type="text/javascript">
   console.log("JS IS WORKING HERE");
+
+  window.addEventListener("scroll",(event)=>{
+    console.log("listener in js");
+    window.parent.postMessage(window.scrollY,'*');
+  })
+
+
+
   let cnvs = document.getElementById('main_canvas');
 let scroller = document.getElementById('scroller');
 let cnvs_width, cnvs_height, scroll_height, bg_position, hor_pos;

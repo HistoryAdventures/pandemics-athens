@@ -39,6 +39,10 @@
         navigator.serviceWorker.register('flutter_service_worker.js');
       });
     }
+    window.addEventListener("scroll",(event)=>{
+    console.log("listener in mainjs");
+    window.postMessage("hellow");
+  })
   </script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>

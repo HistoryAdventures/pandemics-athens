@@ -5,6 +5,8 @@ class AssetsPath {
 
   static List<String> assetsBlobList = [];
 
+  static String med = "assets/icons/med.png";
+
   static const String iconVolumeOn = 'assets/icons/sound_on.png';
   static const String iconVolumeOff = 'assets/icons/sound_off.png';
 
