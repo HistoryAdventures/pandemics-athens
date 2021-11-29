@@ -112,6 +112,7 @@ flutter:
   generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/paralax/
     - assets/characters/
     - assets/map_lottie/map_01/
     - assets/map_lottie/map_02/
