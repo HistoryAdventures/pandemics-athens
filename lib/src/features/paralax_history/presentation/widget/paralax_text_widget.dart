@@ -12,6 +12,7 @@ class ParalaxTextWidget extends StatelessWidget {
   final double? bottom;
   final double? left;
   final double? right;
+  final Alignment? alignment;
 
   const ParalaxTextWidget({
     Key? key,
@@ -21,16 +22,19 @@ class ParalaxTextWidget extends StatelessWidget {
     this.bottom,
     this.left,
     this.right,
+    this.alignment,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: top,
-      left: left,
-      right: right,
-      bottom: bottom,
+    return Align(
+      alignment: alignment ?? Alignment.center,
       child: Container(
+        margin: EdgeInsets.only(
+          left: left ?? 0,
+          right: right ?? 0,
+        ),
+        alignment: Alignment.centerLeft,
         width: size.width,
         // height: size.height,
         child: Text(

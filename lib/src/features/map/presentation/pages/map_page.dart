@@ -438,10 +438,8 @@ class _MapPageState extends State<MapPage> {
     return Stack(
       children: [
         AbsorbPointer(
-          child: RepaintBoundary(
-            child: HtmlElementView(
-              viewType: viewID,
-            ),
+          child: HtmlElementView(
+            viewType: viewID,
           ),
         ),
         if (ignoring)

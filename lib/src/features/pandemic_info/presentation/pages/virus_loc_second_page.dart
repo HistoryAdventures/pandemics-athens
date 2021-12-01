@@ -60,10 +60,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
     return Stack(
       children: [
         AbsorbPointer(
-          child: RepaintBoundary(
-            child: HtmlElementView(
-              viewType: viewID,
-            ),
+          child: HtmlElementView(
+            viewType: viewID,
           ),
         ),
         if (ignoring)

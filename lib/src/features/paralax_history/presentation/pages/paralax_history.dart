@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -334,14 +335,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     ui.platformViewRegistry.registerViewFactory(
         'paralax',
         (int viewId) => html.IFrameElement()
-          ..width = '700'
-          ..height = '4000'
-          ..src = 'assets/paralax/index.html'
+          ..width = '1921'
+          ..height = '8838'
+          ..src = AssetsPath.paralaxHtml
           ..style.border = 'none');
     htm.window.onMessage.listen((event) {
-      var data = event.data;
-      print("DATA FROM CALLBACK $data");
-      _scrollController.jumpTo((event.data as num).toDouble());
+      if (event.data["scroll"] == true) {
+        _scrollController.jumpTo((event.data["y"] as num).toDouble());
+      }
     });
   }
 
@@ -368,476 +369,326 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
-      body: LayoutBuilder(
-        builder: (constex, constraints) => SizedBox(
-          child: Stack(
-            children: <Widget>[
-              if (_videoController.value.isPlaying)
-                _videoController.value.isInitialized
-                    ? SizedBox.expand(
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: SizedBox(
-                            width: _videoController.value.size.width,
-                            height: _videoController.value.size.height,
-                            child: VideoPlayer(_videoController),
-                          ),
+      body: SizedBox(
+        child: Stack(
+          children: <Widget>[
+            if (_videoController.value.isPlaying)
+              _videoController.value.isInitialized
+                  ? SizedBox.expand(
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _videoController.value.size.width,
+                          height: _videoController.value.size.height,
+                          child: VideoPlayer(_videoController),
                         ),
-                      )
-                    : const LoadingVideoWidget()
-              else
-                Stack(
-                  children: [
-                    _paralax,
-                    Container(
-                      width: MediaQuery.of(context).size.width - 20,
-                      child: PointerInterceptor(
-                        child: ListView(
+                      ),
+                    )
+                  : const LoadingVideoWidget()
+            else
+              Stack(
+                children: [
+                  _paralax,
+                  Container(
+                    width: MediaQuery.of(context).size.width - 20,
+                    height: 8838,
+                    child: PointerInterceptor(
+                      child: NotificationListener(
+                        onNotification: (event) {
+                          if (event is ScrollUpdateNotification) {
+                            double value = _scrollController.position.pixels;
+                            print("Value $value");
+                            htm.window.postMessage(
+                                {"scroll": false, "y": value}, "*");
+                          }
+
+                          return false;
+                        },
+                        child: SingleChildScrollView(
                           physics: const ClampingScrollPhysics(),
                           padding: EdgeInsets.zero,
                           controller: _scrollController,
-                          children: <Widget>[
-                            Container(
-                              height: constraints.maxHeight * 10,
-                              // decoration: const BoxDecoration(
-                              // image: DecorationImage(
-                              //     image: AssetImage(AssetsPath.paralaxBackground),
-                              //     fit: BoxFit.cover),
-                              // ),
-                              child: Stack(
-                                children: [
-                                  // ParallaxWidget(
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth * 2,
-                                  //   height: constraints.maxHeight * 0.8,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: 0,
-                                  //   left: _progressTopClouds,
-                                  //   asset: AssetsPath.paralaxClouds,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateBuilding,
-                                  //   asset: AssetsPath.paralaxBuilding,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateBuilding,
-                                  //   asset: AssetsPath.paralaxBuilding,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth * 2,
-                                  //   height: constraints.maxHeight * 0.4,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateCharactersNikosClouds,
-                                  //   left: _progressTopClouds,
-                                  //   asset: AssetsPath.paralaxClouds2,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   width: constraints.maxWidth * 0.03,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: _progressTopCrows,
-                                  //   right: _progressCrows,
-                                  //   asset: AssetsPath.paralaxCrowsLottie,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   width: constraints.maxWidth * 0.03,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: _progressTopCrows + 150,
-                                  //   left: _progressCrows,
-                                  //   asset: AssetsPath.paralaxCrowLottie,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   // color: Colors.red,
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth / 2,
-                                  //   boxFit: BoxFit.cover,
-                                  //   top: rateCharactersNikosGif,
-                                  //   left: _progressCaracterNikos,
-                                  //   asset: AssetsPath.gifParalaxNikosGif,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   width: constraints.maxWidth / 3,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateFire,
-                                  //   right: constraints.maxWidth * 0.1,
-                                  //   asset: AssetsPath.paralaxFireLottie,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   width: constraints.maxWidth,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateLeftCrowd,
-                                  //   right: _progressRightFighters,
-                                  //   asset: AssetsPath.paralaxFightersRightLottie,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: true,
-                                  //   width: constraints.maxWidth,
-                                  //   boxFit: BoxFit.contain,
-                                  //   left: _progressLeftFighters,
-                                  //   top: rateLeftCrowd,
-                                  //   asset: AssetsPath.paralaxFightersLeft,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   width: constraints.maxWidth,
-                                  //   boxFit: BoxFit.contain,
-                                  //   top: rateLeftCrowd,
-                                  //   asset: AssetsPath.paralaxFightersLeftLottie,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //     isImage: false,
-                                  //     width: constraints.maxWidth,
-                                  //     boxFit: BoxFit.cover,
-                                  //     top: rateParalaxCrowdLottie,
-                                  //     asset: AssetsPath.paralaxCrowdLottie),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   opacity: youngManOpacity,
-                                  //   width: constraints.maxWidth / 3,
-                                  //   height: constraints.maxHeight,
-                                  //   top: rateParalaxYoungManLottie,
-                                  //   left: constraints.maxWidth / 2,
-                                  //   asset: AssetsPath.paralaxYoungManLottie,
-                                  //   boxFit: BoxFit.cover,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //   isImage: false,
-                                  //   opacity: youngManOpacity,
-                                  //   width: constraints.maxWidth / 3,
-                                  //   height: constraints.maxHeight,
-                                  //   top: rateParalaxYoungManLottie,
-                                  //   right: 0,
-                                  //   alignment: Alignment.centerRight,
-                                  //   asset: AssetsPath.paralaxWomanLottie,
-                                  //   boxFit: BoxFit.cover,
-                                  // ),
-                                  // ParallaxWidget(
-                                  //     isImage: true,
-                                  //     width: _progressWeightWalker,
-                                  //     top: rateParalaxWalker,
-                                  //     left: constraints.maxWidth * 0.2,
-                                  //     asset: AssetsPath.paralaxWalker,
-                                  //     boxFit: BoxFit.contain),
-                                  // ParallaxWidget(
-                                  //     isImage: false,
-                                  //     width: constraints.maxWidth * 0.5,
-                                  //     top: rateParalaxHotTubLottie - 100,
-                                  //     right: _progressRightHotTube,
-                                  //     asset: AssetsPath.paralaxHotTubLottie,
-                                  //     boxFit: BoxFit.contain),
-                                  // ParallaxWidget(
-                                  //     isImage: true,
-                                  //     width: constraints.maxWidth * 2,
-                                  //     top: rateParalaxHotTubLottie,
-                                  //     asset: AssetsPath.paralaxTubeCloud,
-                                  //     left: HW.getWidth(-700, context),
-                                  //     boxFit: BoxFit.contain),
-                                  // ParallaxWidget(
-                                  //     isImage: true,
-                                  //     width: constraints.maxWidth,
-                                  //     bottom: 0,
-                                  //     left: constraints.maxWidth * 0.1,
-                                  //     right: constraints.maxWidth * 0.1,
-                                  //     asset: AssetsPath.lottieAssetsTube,
-                                  //     boxFit: BoxFit.contain),
-                                  // ParallaxWidget(
-                                  //     isImage: true,
-                                  //     width: constraints.maxWidth,
-                                  //     bottom: 0,
-                                  //     asset: AssetsPath.paralaxTube2Cloud,
-                                  //     boxFit: BoxFit.contain),
-                                  ParalaxTextWidget(
-                                    right: HW.getWidth(238, context),
-                                    top: rateCharactersNikosClouds + 100,
-                                    text: locals.paralaxText1,
-                                    size: Size(HW.getWidth(700, context),
-                                        HW.getHeight(216, context)),
-                                  ),
-                                  ParalaxTextWidget(
-                                    top: rateLeftCrowd - 300,
-                                    size: Size(HW.getWidth(557, context),
-                                        HW.getHeight(230, context)),
-                                    left: HW.getWidth(157, context),
-                                    text: locals.paralaxText2,
-                                  ),
-                                  ParalaxTextWidget(
-                                    top: rateParalaxCrowdLottie + 200,
-                                    right: HW.getWidth(150, context),
-                                    size: Size(HW.getWidth(600, context),
-                                        HW.getHeight(264, context)),
-                                    text: locals.paralaxText3,
-                                  ),
-                                  ParalaxTextWidget(
-                                    top: rateParalaxWalker - 1000,
-                                    left: HW.getWidth(250, context),
-                                    text: locals.paralaxText4,
-                                    size: Size(HW.getWidth(605, context),
-                                        HW.getHeight(330, context)),
-                                  ),
-                                  ParalaxTextWidget(
-                                    top: rateParalaxHotTubLottie + 850,
-                                    left: HW.getWidth(220, context),
-                                    text: locals.paralaxText5,
-                                    size: Size(HW.getWidth(616, context),
-                                        HW.getHeight(268, context)),
-                                  ),
-                                  _athens5th(constraints)
-                                ],
-                              ),
-                            )
-                          ],
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 24,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                _topBar,
+                                _title,
+                                const SizedBox(
+                                  height: 3700,
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerRight,
+                                  right: HW.getWidth(238, context),
+                                  top: rateCharactersNikosClouds + 100,
+                                  text: locals.paralaxText1,
+                                  size: Size(HW.getWidth(700, context),
+                                      HW.getHeight(216, context)),
+                                ),
+                                SizedBox(
+                                  height: 3000,
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  top: rateLeftCrowd - 300,
+                                  size: Size(HW.getWidth(557, context),
+                                      HW.getHeight(230, context)),
+                                  left: HW.getWidth(157, context),
+                                  text: locals.paralaxText2,
+                                ),
+                                SizedBox(
+                                  height: 2500,
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerRight,
+                                  top: rateParalaxCrowdLottie + 200,
+                                  right: HW.getWidth(150, context),
+                                  size: Size(HW.getWidth(600, context),
+                                      HW.getHeight(264, context)),
+                                  text: locals.paralaxText3,
+                                ),
+                                SizedBox(
+                                  height: 1000,
+                                ),
+                                _athens5th(),
+                                SizedBox(height: 3000),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  top: rateParalaxWalker - 1000,
+                                  left: HW.getWidth(250, context),
+                                  text: locals.paralaxText4,
+                                  size: Size(HW.getWidth(605, context),
+                                      HW.getHeight(330, context)),
+                                ),
+                                SizedBox(height: 6200),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  top: rateParalaxHotTubLottie + 850,
+                                  left: HW.getWidth(220, context),
+                                  text: locals.paralaxText5,
+                                  size: Size(HW.getWidth(616, context),
+                                      HW.getHeight(268, context)),
+                                ),
+                                Spacer(),
+                                _bottomBar,
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-              Visibility(
-                visible: !_videoController.value.isPlaying,
-                child: Positioned(
-                  top: constraints.maxHeight * 0.3,
-                  left: constraints.maxWidth * 0.05,
-                  child: SizedBox(
-                    width: constraints.maxWidth * 0.4,
-                    child: AnimatedOpacity(
-                      opacity: _topTextOpasyty,
-                      duration: Times.fast,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(locals.chapter1.toUpperCase()),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(locals.todoNoHarm.toUpperCase(),
-                                maxLines: 1,
-                                // minFontSize: 8,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                        fontSize:
-                                            TextFontSize.getHeight(80, context),
-                                        fontStyle: FontStyle.italic)),
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    left: BorderSide(
-                                        color: AppColors.orange, width: 8))),
-                            child: Text(
-                              locals.athens429Bc,
-                              maxLines: 1,
-                              // minFontSize: 8,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  ?.copyWith(
-                                    fontSize:
-                                        TextFontSize.getHeight(80, context),
-                                    fontWeight: FontWeight.w100,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
-                ),
+                ],
               ),
-              SoundAndMenuWidget(
-                widget: IconButtonWidget(
-                  color: AppColors.black100,
+            Visibility(
+              visible: _videoController.value.isPlaying,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: IconButtonWidget(
                   iconSize: HW.getHeight(40, context),
-                  icon: const Icon(Icons.arrow_upward_sharp),
                   onPressed: () {
-                    LeafDetails.currentVertex = 1;
-                    NavigationSharedPreferences.upDateShatedPreferences();
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
+                    setState(() {
+                      _videoController.pause();
+                    });
                   },
+                  icon: Icon(Icons.arrow_downward),
                 ),
-                icons: isSoundOn
-                    ? AssetsPath.iconVolumeOn
-                    : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
-                    ? () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
-                        });
-                      }
-                    : () {
-                        setState(() {
-                          isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
-                        });
-                      },
-                onTapMenu: () {
-                  scaffoldkey.currentState!.openEndDrawer();
-                },
               ),
-              Visibility(
-                visible: _bottomFieldVizibility,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                    duration: Times.slower,
-                    opacity: _bottomFieldOpasity,
+            ),
+            Opacity(
+              opacity: _topTextOpasyty,
+              child: Visibility(
+                  visible: !_videoController.value.isPlaying,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
                     child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: HW.getWidth(64, context)),
-                      height: HW.getHeight(161, context),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: ArrowLeftWidget(
-                                arrowColor: Colors.black,
-                                textSubTitle: locals.stickToTheOath,
-                                textTitle: '',
-                                onTap: () {
-                                  LeafDetails.currentVertex = 8;
-                                  LeafDetails.visitedVertexes.add(8);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaLeftPageRoute());
-                                }),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: Text(
-                              locals.whatNikosDo.toUpperCase(),
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontSize:
-                                        TextFontSize.getHeight(36, context),
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: ArrowRightWidget(
-                                textSubTitle: locals.helpTheSenator,
-                                textTitle: '',
-                                arrowColor: Colors.black,
-                                onTap: () {
-                                  LeafDetails.currentVertex = 9;
-                                  LeafDetails.visitedVertexes.add(9);
-                                  NavigationSharedPreferences
-                                      .upDateShatedPreferences();
-                                  context.router
-                                      .push(const PanaromaRightPageRoute());
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Visibility(
-                visible: _videoController.value.isPlaying,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: IconButtonWidget(
-                    iconSize: HW.getHeight(40, context),
-                    onPressed: () {
-                      setState(() {
-                        _videoController.pause();
-                      });
-                    },
-                    icon: Icon(Icons.arrow_downward),
-                  ),
-                ),
-              ),
-              Opacity(
-                opacity: _topTextOpasyty,
-                child: Visibility(
-                    visible: !_videoController.value.isPlaying,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                          margin: EdgeInsets.only(
-                              bottom: HW.getHeight(48, context)),
-                          height: HW.getHeight(52, context),
-                          width: HW.getWidth(24, context),
-                          child: Image.asset(AssetsPath.scrollIcon)),
-                    )),
-              )
-            ],
-          ),
+                        margin:
+                            EdgeInsets.only(bottom: HW.getHeight(48, context)),
+                        height: HW.getHeight(52, context),
+                        width: HW.getWidth(24, context),
+                        child: Image.asset(AssetsPath.scrollIcon)),
+                  )),
+            )
+          ],
         ),
       ),
     );
   }
 
-  Widget _athens5th(BoxConstraints constraints) {
-    return Positioned(
-      top: rateParalaxCrowdLottie + 1100,
-      child: Container(
-        padding: EdgeInsets.only(right: HW.getWidth(115, context)),
-        height: constraints.maxHeight * 0.1,
-        width: MediaQuery.of(context).size.width,
-        child: Clickable(
-          onPressed: () {
-            LeafDetails.currentVertex = 4;
-            LeafDetails.visitedVertexes.add(4);
-            NavigationSharedPreferences.upDateShatedPreferences();
-            context.router.push(const MapPageRoute());
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                flex: 3,
-                child: Text(
-                  locals.athens5thCentury.toUpperCase(),
-                  textAlign: TextAlign.end,
-                  maxLines: 1,
-                  // minFontSize: 5,
-                  style: Theme.of(context).textTheme.headline1?.copyWith(
-                      fontSize: TextFontSize.getHeight(26, context),
-                      color: AppColors.white),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  height: 37,
-                  width: 37,
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    color: AppColors.white,
-                    size: 37,
-                  ),
-                ),
-              ),
-            ],
+  Widget get _bottomBar {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.3,
+      padding: EdgeInsets.symmetric(horizontal: HW.getWidth(64, context)),
+      height: HW.getHeight(161, context),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 2,
+            child: ArrowLeftWidget(
+                arrowColor: Colors.black,
+                textSubTitle: locals.stickToTheOath,
+                textTitle: '',
+                onTap: () {
+                  LeafDetails.currentVertex = 8;
+                  LeafDetails.visitedVertexes.add(8);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const PanaromaLeftPageRoute());
+                }),
           ),
+          Flexible(
+            flex: 3,
+            child: Text(
+              locals.whatNikosDo.toUpperCase(),
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    fontSize: TextFontSize.getHeight(36, context),
+                  ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: ArrowRightWidget(
+                textSubTitle: locals.helpTheSenator,
+                textTitle: '',
+                arrowColor: Colors.black,
+                onTap: () {
+                  LeafDetails.currentVertex = 9;
+                  LeafDetails.visitedVertexes.add(9);
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  context.router.push(const PanaromaRightPageRoute());
+                }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget get _topBar {
+    return SoundAndMenuWidget(
+      widget: IconButtonWidget(
+        color: AppColors.black100,
+        iconSize: HW.getHeight(40, context),
+        icon: const Icon(Icons.arrow_upward_sharp),
+        onPressed: () {
+          LeafDetails.currentVertex = 1;
+          NavigationSharedPreferences.upDateShatedPreferences();
+          if (kIsWeb) {
+            html.window.history.back();
+            context.router.pop();
+          } else {
+            context.router.pop();
+          }
+        },
+      ),
+      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+      onTapVolume: isSoundOn
+          ? () {
+              setState(() {
+                isSoundOn = !isSoundOn;
+                backgroundplayer.pause();
+              });
+            }
+          : () {
+              setState(() {
+                isSoundOn = !isSoundOn;
+                backgroundplayer.play();
+              });
+            },
+      onTapMenu: () {
+        scaffoldkey.currentState!.openEndDrawer();
+      },
+    );
+  }
+
+  Widget get _title {
+    return Container(
+      alignment: Alignment.centerLeft,
+      width: MediaQuery.of(context).size.width * 0.4,
+      margin: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.25,
+        left: MediaQuery.of(context).size.width * 0.1,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(locals.chapter1.toUpperCase()),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(locals.todoNoHarm.toUpperCase(),
+                maxLines: 1,
+                // minFontSize: 8,
+                style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    fontSize: TextFontSize.getHeight(80, context),
+                    fontStyle: FontStyle.italic)),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    left: BorderSide(color: AppColors.orange, width: 8))),
+            child: Text(
+              locals.athens429Bc,
+              maxLines: 1,
+              // minFontSize: 8,
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                    fontSize: TextFontSize.getHeight(80, context),
+                    fontWeight: FontWeight.w100,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _athens5th() {
+    return Container(
+      padding: EdgeInsets.only(right: HW.getWidth(115, context)),
+      height: MediaQuery.of(context).size.height * 0.1,
+      width: MediaQuery.of(context).size.width,
+      child: Clickable(
+        onPressed: () {
+          LeafDetails.currentVertex = 4;
+          LeafDetails.visitedVertexes.add(4);
+          NavigationSharedPreferences.upDateShatedPreferences();
+          context.router.push(const MapPageRoute());
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              flex: 3,
+              child: Text(
+                locals.athens5thCentury.toUpperCase(),
+                textAlign: TextAlign.end,
+                maxLines: 1,
+                // minFontSize: 5,
+                style: Theme.of(context).textTheme.headline1?.copyWith(
+                    fontSize: TextFontSize.getHeight(26, context),
+                    color: AppColors.white),
+              ),
+            ),
+            Flexible(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                height: 37,
+                width: 37,
+                child: const Icon(
+                  Icons.arrow_forward,
+                  color: AppColors.white,
+                  size: 37,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

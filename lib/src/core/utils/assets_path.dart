@@ -380,6 +380,7 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
+  static const String paralaxHtml = 'assets/assets/paralax/index.html';
 
   static const String mapLottie495 =
       'assets/assets/map_lottie/map_11/index.html';
