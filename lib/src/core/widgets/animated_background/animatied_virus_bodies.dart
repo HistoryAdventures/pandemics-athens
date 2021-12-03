@@ -10,6 +10,7 @@ class AnimatedVirusBodies extends StatelessWidget {
       this.bottom,
       this.alignment,
       this.top,
+      this.child,
       required this.path})
       : super(key: key);
 
@@ -21,6 +22,7 @@ class AnimatedVirusBodies extends StatelessWidget {
   final double? bottom;
   final double? right;
   final Alignment? alignment;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {

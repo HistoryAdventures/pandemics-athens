@@ -317,7 +317,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
@@ -337,7 +337,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(QuitMedicinePageRoute.name,
             path: '/quit-medicine-page'),
         _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
-        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
+        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
@@ -361,7 +361,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/',
+            path: '/leanding-page',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -470,7 +470,7 @@ class PracticeMedicineRoute extends _i1.PageRouteInfo {
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
-  const BodyInfoPageRoute() : super(name, path: '/body-info-page');
+  const BodyInfoPageRoute() : super(name, path: '/');
 
   static const String name = 'BodyInfoPageRoute';
 }

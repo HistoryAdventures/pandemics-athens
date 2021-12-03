@@ -8,6 +8,7 @@ class AnimatesViruses extends StatelessWidget {
   final Alignment? alignment;
   final double opacity;
   final BoxFit? fit;
+  final Widget? child;
 
   const AnimatesViruses({
     Key? key,
@@ -17,6 +18,7 @@ class AnimatesViruses extends StatelessWidget {
     this.alignment,
     required this.duration,
     required this.opacity,
+    this.child,
     this.fit,
   }) : super(key: key);
 
@@ -36,10 +38,11 @@ class AnimatesViruses extends StatelessWidget {
           constrained: false,
           maxScale: 1,
           minScale: 1,
-          child: Image.asset(
-            path,
-            fit: fit ?? BoxFit.fitWidth,
-          ),
+          child: child ??
+              Image.asset(
+                path,
+                fit: fit ?? BoxFit.fitWidth,
+              ),
         ),
       ),
     );

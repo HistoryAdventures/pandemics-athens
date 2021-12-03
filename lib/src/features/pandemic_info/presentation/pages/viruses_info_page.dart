@@ -132,8 +132,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onHover: (e) {
+    return Listener(
+      onPointerMove: (e) {
         if (objWave < 50 && direction == 1) {
           objWave += .2;
         } else if (objWave == 50 && direction == 1) {
