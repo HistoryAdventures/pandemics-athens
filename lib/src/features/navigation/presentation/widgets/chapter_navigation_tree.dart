@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/colors.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../models/chapter_tree.dart';
-import 'drow_circle_line.dart';
 
 class ChapterNavigationTree extends StatefulWidget {
   final ChapterDetails details;

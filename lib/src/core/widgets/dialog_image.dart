@@ -1,9 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:universal_html/js.dart';
-import 'package:auto_route/auto_route.dart';
 
 import '../colors.dart';
 
@@ -60,29 +58,25 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    child: Image.asset(
-                                      widget.selectedImage,
-                                      fit: BoxFit.contain,
-                                      key: imageKey,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image.asset(
+                                  widget.selectedImage,
+                                  fit: BoxFit.contain,
+                                  key: imageKey,
+                                ),
+                                IconButtonWidget(
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: AppColors.grey,
                                     ),
-                                  ),
-                                  IconButtonWidget(
-                                      icon: const Icon(
-                                        Icons.close,
-                                        color: AppColors.grey,
-                                      ),
-                                      onPressed: () {
-                                        context.router.pop();
-                                      })
-                                ],
-                              ),
+                                    onPressed: () {
+                                      context.router.pop();
+                                    })
+                              ],
                             ),
                           ),
                           Container(

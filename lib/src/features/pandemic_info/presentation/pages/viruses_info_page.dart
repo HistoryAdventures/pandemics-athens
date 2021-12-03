@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
+import 'package:web_browser_detect/web_browser_detect.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
@@ -14,7 +15,6 @@ import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/animated_background/animated_particles_4.dart';
 import '../../../../core/widgets/animated_background/gif_background_widget.dart';
-import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -33,7 +33,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   /// Localizations object
   late AppLocalizations locals;
-  late GifController controller;
+  // late GifController controller;
   late List<VirusModelWidget> listCharacters;
   String gifVirus = AssetsPath.gifVirus;
   String gifTyphus = AssetsPath.gifTyphus;
@@ -112,23 +112,23 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
 
-    controller = GifController(vsync: this);
+    // controller = GifController(vsync: this);
 
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      controller.repeat(
-        min: 0,
-        max: 150,
-        period: const Duration(seconds: 4),
-        reverse: true,
-      );
-    });
+    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    //   controller.repeat(
+    //     min: 0,
+    //     max: 150,
+    //     period: const Duration(seconds: 4),
+    //     reverse: true,
+    //   );
+    // });
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -143,8 +143,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         } else if (objWave == -50 && direction == 0) {
           direction = 1;
         }
+
         mouseX = (e.position.dx - width / 2) / 20;
         mouseY = (e.position.dy - height / 2) / 20;
+
         setState(() {});
       },
       child: LayoutBuilder(builder: (context, constraints) {
@@ -247,7 +249,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             key: ValueKey(virusModel.title),
             child: VirusModelWidget(
               constraints: Size(constraints.maxWidth, constraints.maxHeight),
-              gifController: controller,
+              // gifController: controller,
               onTapBubonik: () {
                 setState(() {
                   virusModel.changeState(
@@ -299,7 +301,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         ),
       );
 
-  Widget _descriptionPanel(BoxConstraints constraints) => Container(
+  Widget _descriptionPanel(BoxConstraints constraints) => SizedBox(
         height: HW.getHeight(676, context),
         width: HW.getWidth(768, context),
         child: Container(
@@ -314,7 +316,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: HW.getHeight(68, context),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -395,7 +397,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: HW.getHeight(22, context),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,

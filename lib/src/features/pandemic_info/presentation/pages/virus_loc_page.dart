@@ -1,5 +1,6 @@
+import 'dart:ui' as ui;
+
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -7,7 +8,6 @@ import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
-import 'dart:ui' as ui;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -30,8 +30,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   String viewID = "virusLocationPage-view-id";
-  Offset dragStartOffset = Offset(0, 0);
-  Offset dragEndOffset = Offset(0, 0);
+  Offset dragStartOffset = const Offset(0, 0);
+  Offset dragEndOffset = const Offset(0, 0);
 
   @override
   void didChangeDependencies() {
@@ -88,7 +88,6 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                     Offset(d.globalPosition.dx, d.globalPosition.dy);
               },
               onVerticalDragEnd: (d) {
-                print((dragEndOffset.dy - dragStartOffset.dy).abs());
                 if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 20) {
                   return;
                 }
@@ -115,7 +114,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           height: HW.getHeight(68, context),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,

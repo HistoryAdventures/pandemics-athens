@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -138,7 +136,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
               top: HW.getHeight(196, context),
               left: 0,
               right: 0,
-              child: Container(
+              child: SizedBox(
                 height: HW.getHeight(76, context),
                 width: HW.getWidth(276, context),
                 child: Column(
@@ -169,7 +167,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
               left: HW.getWidth(160.03, context),
               right: HW.getWidth(148, context),
               top: HW.getHeight(359, context),
-              child: Container(
+              child: SizedBox(
                 width: HW.getWidth(1611, context),
                 height: HW.getHeight(666, context),
                 child: Stack(

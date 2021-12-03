@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../colors.dart';

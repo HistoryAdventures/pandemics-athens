@@ -1,9 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../core/colors.dart';
 
 class AuthorWidget extends StatelessWidget {
@@ -18,7 +17,7 @@ class AuthorWidget extends StatelessWidget {
       this.textDecoration})
       : super(key: key);
 
-  void _launchURL(String url) async =>
+  Future<bool> _launchURL(String url) async =>
       await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   @override
   Widget build(BuildContext context) {

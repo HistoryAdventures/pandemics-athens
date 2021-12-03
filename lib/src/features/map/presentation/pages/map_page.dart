@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -5,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-
 import 'package:just_audio/just_audio.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 // import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
@@ -23,7 +23,6 @@ import '../../../../core/widgets/zoom_in_notes_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
-import 'dart:ui' as ui;
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -408,14 +407,12 @@ class _MapPageState extends State<MapPage> {
                   : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
-                      print('appbar');
                       setState(() {
                         isSoundOn = !isSoundOn;
                         backgroundplayer.pause();
                       });
                     }
                   : () {
-                      print('appbar');
                       setState(() {
                         isSoundOn = !isSoundOn;
                         backgroundplayer.play();
@@ -476,7 +473,7 @@ class _MapPageState extends State<MapPage> {
               children: [
                 Visibility(
                   visible: mapInfoModel?.image != '',
-                  child: Container(
+                  child: SizedBox(
                     height: HW.getHeight(350, context),
                     width: HW.getWidth(276, context),
                     child: AnimatedSwitcher(
@@ -537,7 +534,7 @@ class _MapPageState extends State<MapPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         height: HW.getHeight(68, context),
                         width: constraints.maxWidth,
                         child: Column(
@@ -658,7 +655,7 @@ class _MapPageState extends State<MapPage> {
                     context.router.pop();
                   }
                 }),
-            Container(
+            SizedBox(
               width: HW.getWidth(980, context),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -678,7 +675,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: HW.getHeight(42, context),
                       width: HW.getWidth(930, context),
                       child: Theme(
@@ -742,8 +739,6 @@ class _MapPageState extends State<MapPage> {
                 onTap: () {
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
-                  print(LeafDetails.currentVertex);
-                  print(LeafDetails.visitedVertexes);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.push(const CharacrterPageRoute());
                 }),

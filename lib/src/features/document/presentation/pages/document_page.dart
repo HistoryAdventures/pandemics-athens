@@ -377,7 +377,7 @@ class _DocumentPageState extends State<DocumentPage>
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               height: HW.getHeight(19, context),
                                               child: SingleChildScrollView(
                                                   scrollDirection:

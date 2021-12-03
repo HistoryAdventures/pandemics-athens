@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -272,7 +273,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       height: HW.getHeight(68, context),
                                       child: Column(
                                         crossAxisAlignment:
@@ -376,7 +377,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                   ],
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 height: HW.getHeight(22, context),
                                 child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
@@ -395,7 +396,10 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                                     });
                                                   },
                                                   child: bodiesNameListWidget(
-                                                    isHoverd:hoveredItemIndex== data.bodyModel.title,
+                                                      isHoverd:
+                                                          hoveredItemIndex ==
+                                                              data.bodyModel
+                                                                  .title,
                                                       title:
                                                           data.bodyModel.title,
                                                       text: data.bodyModel

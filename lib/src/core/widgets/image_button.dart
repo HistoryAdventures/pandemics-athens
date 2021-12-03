@@ -22,7 +22,7 @@ class ImageButton extends StatelessWidget {
           onTap();
         }
       },
-      child: Container(
+      child: SizedBox(
         width: width,
         height: height,
         child: Center(

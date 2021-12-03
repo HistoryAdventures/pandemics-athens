@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+
 
 class UrlLuncherModel {
   final String? url;

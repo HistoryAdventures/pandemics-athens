@@ -29,7 +29,7 @@ class AnimatedParticlesThird extends StatefulWidget {
 }
 
 class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   double objWave = 0;
@@ -46,7 +46,7 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
     _controller = AnimationController(
       vsync: this,
       duration: Times.backgrounAnimationDuration,
-    )..repeat(reverse: true);
+    );
   }
 
   @override
@@ -263,7 +263,7 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
         p3Counter = width ~/ 2;
       }
 
-      if (mounted) setState(() {});
+      // if (mounted) setState(() {});
     }
   }
 

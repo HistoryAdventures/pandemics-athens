@@ -1,9 +1,7 @@
-import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../../core/colors.dart';
+
 import '../../../../core/utils/styles.dart';
-import 'dart:ui' as ui;
 
 class ParalaxTextWidget extends StatelessWidget {
   final String text;

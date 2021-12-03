@@ -151,9 +151,6 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
-
-          print(LeafDetails.currentVertex);
-          print(LeafDetails.visitedVertexes);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
@@ -174,9 +171,6 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
-
-          print(LeafDetails.currentVertex);
-          print(LeafDetails.visitedVertexes);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
@@ -197,8 +191,6 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
-          print(LeafDetails.currentVertex);
-          print(LeafDetails.visitedVertexes);
           NavigationSharedPreferences.upDateShatedPreferences();
 
           context.router.replace(const MapPageRoute());
@@ -219,9 +211,6 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: () {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
-
-          print(LeafDetails.currentVertex);
-          print(LeafDetails.visitedVertexes);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
@@ -726,7 +715,7 @@ class _NavigationPageState extends State<NavigationPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     //  color: Colors.red,
                     height: 600,
                     child: SingleChildScrollView(
@@ -749,7 +738,7 @@ class _NavigationPageState extends State<NavigationPage> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.1,
                           ),
-                          Container(
+                          SizedBox(
                             width: 800,
                             child: SizedBox(
                               child: Stack(children: navigationTreeWidget),

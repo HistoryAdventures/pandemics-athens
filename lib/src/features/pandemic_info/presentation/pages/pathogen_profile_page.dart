@@ -29,7 +29,6 @@ class PathogenProfilePage extends StatefulWidget {
 
 class _PathogenProfilePageState extends State<PathogenProfilePage>
     with SingleTickerProviderStateMixin {
-  int _selectedItem = 400;
   //final _scrollController = ScrollController();
   late AppLocalizations locals;
   Offset offset = const Offset(0, 0);
@@ -108,7 +107,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
             mouseY = (e.position.dy - height / 2) / 20;
             setState(() {});
           }),
-          child: Container(
+          child: SizedBox(
             height: constraints.maxHeight * 2,
             child: Stack(
               children: [
@@ -143,7 +142,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: HW.getHeight(68, context),
                                           width: constraints.maxWidth,
                                           child: Column(
@@ -186,8 +185,9 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                                         ),
                                         Expanded(
                                           child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 10,
+                                            ),
                                             margin: EdgeInsets.only(
                                               top: HW.getHeight(16, context),
                                             ),
@@ -302,11 +302,5 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
         );
       }),
     );
-  }
-
-  void chandeState(int? selctedItem) {
-    setState(() {
-      _selectedItem = selctedItem!;
-    });
   }
 }

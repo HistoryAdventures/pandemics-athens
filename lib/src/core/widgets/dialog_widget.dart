@@ -66,7 +66,7 @@ class _DialogWidgetState extends State<DialogWidget> {
     return Align(
       child: FadeTransition(
         opacity: widget.animation,
-        child: Container(
+        child: SizedBox(
           width: HW.getWidth(1200, context),
           height: HW.getHeight(676, context),
           child: Scaffold(
@@ -75,7 +75,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                 padding: EdgeInsets.all(HW.getHeight(24, context)),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                         height: HW.getHeight(628, context),
                         width: HW.getWidth(400, context),
                         child: SizedBox(
@@ -144,136 +144,128 @@ class _DialogWidgetState extends State<DialogWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                      height: HW.getHeight(68, context),
-                                      child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              flex: 3,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin: EdgeInsets.only(
-                                                          bottom: HW.getHeight(
-                                                              8, context)),
-                                                      child: Text(
-                                                        widget.titleText,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                    height: HW.getHeight(68, context),
+                                    child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Flexible(
+                                                  child: Container(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: HW.getHeight(
+                                                            8, context)),
+                                                    child: Text(
+                                                      widget.titleText,
+                                                      maxLines: 1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1
+                                                          ?.copyWith(
+                                                              fontSize: TextFontSize
+                                                                  .getHeight(16,
+                                                                      context),
+                                                              color: AppColors
+                                                                  .black54),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                    child: Text(
+                                                        widget.subTitleText,
                                                         maxLines: 1,
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .headline1
+                                                            .headline2
                                                             ?.copyWith(
                                                                 fontSize: TextFontSize
                                                                     .getHeight(
-                                                                        16,
-                                                                        context),
-                                                                color: AppColors
-                                                                    .black54),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                      child: Text(
-                                                          widget.subTitleText,
-                                                          maxLines: 1,
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .headline2
-                                                              ?.copyWith(
-                                                                  fontSize: TextFontSize
-                                                                      .getHeight(
-                                                                          32,
-                                                                          context)))),
-                                                ],
-                                              ),
+                                                                        32,
+                                                                        context)))),
+                                              ],
                                             ),
-                                            Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: SizedBox(
-                                                      height: HW.getHeight(
-                                                          19, context),
-                                                      width: HW.getHeight(
-                                                          19, context),
-                                                      child: Image.asset(
-                                                          AssetsPath.iconClose,
-                                                          fit: BoxFit.contain,
-                                                          color:
-                                                              AppColors.grey35),
-                                                    )))
-                                          ])),
-                                  Expanded(
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 10),
-                                      margin: EdgeInsets.only(
-                                        top: HW.getHeight(16, context),
-                                        bottom: HW.getHeight(16, context),
-                                      ),
-                                      decoration: const BoxDecoration(
-                                        border: Border(
-                                          top: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
-                                          bottom: BorderSide(
-                                              color: AppColors.grey,
-                                              width: 1.2),
-                                        ),
-                                      ),
-                                      child:
-                                          ListView(shrinkWrap: true, children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 24, top: 16),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 16),
-                                                child: Text(
-                                                    infoDialogModel.subTitle
-                                                        .toUpperCase(),
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline3),
-                                              ),
-                                              Text(
-                                                infoDialogModel.description,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1,
-                                              ),
-                                            ],
                                           ),
-                                        )
-                                      ]),
+                                          Flexible(
+                                              child: Clickable(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: SizedBox(
+                                                    height: HW.getHeight(
+                                                        19, context),
+                                                    width: HW.getHeight(
+                                                        19, context),
+                                                    child: Image.asset(
+                                                        AssetsPath.iconClose,
+                                                        fit: BoxFit.contain,
+                                                        color:
+                                                            AppColors.grey35),
+                                                  )))
+                                        ])),
+                                Expanded(
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    margin: EdgeInsets.only(
+                                      top: HW.getHeight(16, context),
+                                      bottom: HW.getHeight(16, context),
                                     ),
+                                    decoration: const BoxDecoration(
+                                      border: Border(
+                                        top: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                        bottom: BorderSide(
+                                            color: AppColors.grey, width: 1.2),
+                                      ),
+                                    ),
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 24, top: 16),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 16),
+                                              child: Text(
+                                                  infoDialogModel.subTitle
+                                                      .toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3),
+                                            ),
+                                            Text(
+                                              infoDialogModel.description,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ]),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: widget.subTitleText ==
                                     locals.medicalToolsKnowledge
                                 ? HW.getHeight(22, context)

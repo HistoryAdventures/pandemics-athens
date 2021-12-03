@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
+
 import '../../../../core/utils/styles.dart';
 import 'custom_widgets/inputs.dart';
 import 'custom_widgets/text_question_widget.dart';

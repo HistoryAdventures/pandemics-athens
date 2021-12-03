@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
-import '../utils/styles.dart';
 
+import '../utils/styles.dart';
 import 'clickable_widget.dart';
 
 class ArrowRightWidget extends StatelessWidget {
@@ -19,31 +18,29 @@ class ArrowRightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            textSubTitle.toUpperCase(),
-            textAlign: TextAlign.start,
-            // minFontSize: 5,
-            maxLines: 1,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                fontSize: TextFontSize.getHeight(24, context).clamp(0, 24),
-                color: textColor ?? Colors.black),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          textSubTitle.toUpperCase(),
+          textAlign: TextAlign.start,
+          // minFontSize: 5,
+          maxLines: 1,
+          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              fontSize: TextFontSize.getHeight(24, context).clamp(0, 24),
+              color: textColor ?? Colors.black),
+        ),
+        Clickable(
+          onPressed: onTap,
+          child: Container(
+            margin: const EdgeInsets.only(left: 16),
+            child: Icon(Icons.arrow_forward,
+                color: arrowColor ?? Colors.white,
+                size: HW.getHeight(40, context)),
           ),
-          Clickable(
-            onPressed: onTap,
-            child: Container(
-              margin: const EdgeInsets.only(left: 16),
-              child: Icon(Icons.arrow_forward,
-                  color: arrowColor ?? Colors.white,
-                  size: HW.getHeight(40, context)),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

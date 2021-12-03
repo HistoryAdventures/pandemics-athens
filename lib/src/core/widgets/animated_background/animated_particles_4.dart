@@ -27,7 +27,7 @@ class AnimatedParticlesForth extends StatefulWidget {
 }
 
 class _AnimatedParticlesForthState extends State<AnimatedParticlesForth>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   int p1Counter = 0, p2Counter = 0;
@@ -39,7 +39,7 @@ class _AnimatedParticlesForthState extends State<AnimatedParticlesForth>
     _controller = AnimationController(
       vsync: this,
       duration: Times.backgrounAnimationDuration,
-    )..repeat(reverse: true);
+    );//..repeat(reverse: true);
   }
 
   @override

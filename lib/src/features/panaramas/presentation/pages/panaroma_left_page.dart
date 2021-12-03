@@ -259,7 +259,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     setState(() {
       panelVisibility = false;
     });
-    Future.delayed(Duration(milliseconds: 1)).then((value) {
+    Future.delayed(const Duration(milliseconds: 1)).then((value) {
       setState(() {
         panelVisibility = true;
       });
@@ -293,7 +293,6 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
       children: [
         Panorama(
           onViewChanged: (a, b, c) {
-            print("ON VIEW CHANGED");
             onChangeView();
           },
           hotspots: infoListHotspots.map((info) {

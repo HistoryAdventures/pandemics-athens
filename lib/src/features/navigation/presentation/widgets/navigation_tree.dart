@@ -54,14 +54,11 @@ class _NavigationTreeState extends State<NavigationTree> {
         Positioned(
           left: getCoordinate(context).dx,
           top: getCoordinate(context).dy,
-          child: Container(
-            // color: AppColors.red,
-            child: Text(widget.details.title.toUpperCase(),
-                style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: colorText,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold)),
-          ),
+          child: Text(widget.details.title.toUpperCase(),
+              style: Theme.of(context).textTheme.headline1?.copyWith(
+                  color: colorText,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold)),
         ),
         Positioned(
           left: widget.details.pointOffset.dx,

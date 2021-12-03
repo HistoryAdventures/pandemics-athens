@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -100,7 +99,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             Positioned(
               top: HW.getHeight(192, context),
               left: HW.getWidth(360, context),
-              child: Container(
+              child: SizedBox(
                 width: constraints.maxWidth * 0.2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

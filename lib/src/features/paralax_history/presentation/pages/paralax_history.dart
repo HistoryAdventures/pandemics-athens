@@ -1,8 +1,8 @@
+import 'dart:html' as htm;
 import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -13,7 +13,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:video_player/video_player.dart';
-import 'dart:html' as htm;
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -23,7 +22,6 @@ import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import '../widget/paralax_widget.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
   @override

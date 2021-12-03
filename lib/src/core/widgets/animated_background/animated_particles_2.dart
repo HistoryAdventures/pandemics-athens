@@ -30,7 +30,7 @@ class AnimatedParticlesSecond extends StatefulWidget {
 }
 
 class _AnimatedParticlesSecondState extends State<AnimatedParticlesSecond>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   int p1Counter = 0, p2Counter = 0, p3Counter = 0;
   bool reversed = false;

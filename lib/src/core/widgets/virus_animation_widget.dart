@@ -1,21 +1,25 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 import '../../features/pandemic_info/presentation/models/virus_model.dart';
-import 'animated_widgets/gif_animation.dart';
 import 'animated_widgets/gif_contrrol.dart';
 import 'widgets.dart';
 
-class VirusModelWidget extends StatelessWidget {
-  const VirusModelWidget(
-      {this.onTap,
-      this.constraints,
-      this.gifController,
-      this.onTapEbola,
-      this.onTapSmall,
-      this.onTapBubonik,
-      this.onTapTiphid,
-      this.onTapTiphius,
-      required this.virusModel});
+class VirusModelWidget extends StatefulWidget {
+  const VirusModelWidget({
+    this.onTap,
+    this.constraints,
+    this.gifController,
+    this.onTapEbola,
+    this.onTapSmall,
+    this.onTapBubonik,
+    this.onTapTiphid,
+    this.onTapTiphius,
+    required this.virusModel,
+  });
 
   final VoidCallback? onTap;
   final GifController? gifController;
@@ -28,149 +32,117 @@ class VirusModelWidget extends StatelessWidget {
   final VoidCallback? onTapTiphius;
 
   @override
+  _VirusModelWidgetState createState() => _VirusModelWidgetState();
+}
+
+class _VirusModelWidgetState extends State<VirusModelWidget> {
+  @override
+  void initState() {
+    widget.virusModel.widgets.forEach((element) {
+      // ignore: undefined_prefixed_name
+      ui.platformViewRegistry.registerViewFactory(
+        element,
+        (int id) => html.ImageElement()
+          ..style.border = 'none'
+          // ignore: unsafe_html
+          ..src = element,
+      );
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Material(
-          color: Colors.white.withOpacity(0),
-          child: virusModel.widgets.length == 1
-              ? Container(
-                  child: GifImage(
-                    controller: gifController,
-                    image: AssetImage(virusModel.widgets[0]),
-                  ),
-                )
-              : Stack(children: [
+        color: Colors.white.withOpacity(0),
+        child: widget.virusModel.widgets.length == 1
+            ? IgnorePointer(
+                child: HtmlElementView(
+                  viewType: widget.virusModel.widgets[0],
+                ),
+              )
+            : Stack(
+                children: [
                   Positioned(
-                    top: constraints!.height * 0.16,
-                    left: constraints!.width * 0.25,
-                    child: SizedBox(
-                      height: constraints!.height * 0.4,
-                      width: constraints!.width * 0.4,
-                      child: Stack(
-                        children: [
-                          GifImage(
-                            controller: gifController,
-                            image: AssetImage(virusModel.widgets[0]),
+                    top: widget.constraints!.height * 0.16,
+                    left: widget.constraints!.width * 0.25,
+                    child: Clickable(
+                      onPressed: widget.onTapBubonik,
+                      child: SizedBox(
+                        height: widget.constraints!.height * 0.4,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[0],
                           ),
-                          Positioned(
-                            top: constraints!.height * 0.15,
-                            left: constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: onTapBubonik,
-                                child: SizedBox(
-                                  height: constraints!.height * 0.1,
-                                  width: constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: constraints!.height * 0.33,
-                    left: constraints!.width * 0.23,
-                    child: SizedBox(
-                      height: constraints!.height * 0.3,
-                      width: constraints!.width * 0.3,
-                      child: Stack(
-                        children: [
-                          GifImage(
-                            controller: gifController,
-                            image: AssetImage(virusModel.widgets[1]),
+                    top: widget.constraints!.height * 0.33,
+                    left: widget.constraints!.width * 0.23,
+                    child: Clickable(
+                      onPressed: widget.onTapTiphius,
+                      child: SizedBox(
+                        height: widget.constraints!.width * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[1],
                           ),
-                          Positioned(
-                            top: constraints!.height * 0.12,
-                            left: constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: onTapTiphius,
-                                child: SizedBox(
-                                  height: constraints!.height * 0.08,
-                                  width: constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: constraints!.height * 0.45,
-                    left: constraints!.width * 0.13,
-                    child: SizedBox(
-                      height: constraints!.height * 0.35,
-                      width: constraints!.width * 0.35,
-                      child: Stack(
-                        children: [
-                          GifImage(
-                            controller: gifController,
-                            image: AssetImage(virusModel.widgets[2]),
+                    top: widget.constraints!.height * 0.45,
+                    left: widget.constraints!.width * 0.13,
+                    child: Clickable(
+                      onPressed: widget.onTapTiphid,
+                      child: SizedBox(
+                        height: widget.constraints!.height * 0.35,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[2],
                           ),
-                          Positioned(
-                            top: constraints!.height * 0.13,
-                            left: constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: onTapTiphid,
-                                child: SizedBox(
-                                  height: constraints!.height * 0.1,
-                                  width: constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: constraints!.height * 0.08,
-                    left: constraints!.width * 0.15,
-                    child: SizedBox(
-                      height: constraints!.height * 0.3,
-                      width: constraints!.width * 0.3,
-                      child: Stack(
-                        children: [
-                          GifImage(
-                            controller: gifController,
-                            image: AssetImage(virusModel.widgets[3]),
+                    top: widget.constraints!.height * 0.08,
+                    left: widget.constraints!.width * 0.15,
+                    child: Clickable(
+                      onPressed: widget.onTapSmall,
+                      child: SizedBox(
+                        height: widget.constraints!.height * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[3],
                           ),
-                          Positioned(
-                            top: constraints!.height * 0.13,
-                            child: Clickable(
-                                onPressed: onTapSmall,
-                                child: SizedBox(
-                                  height: constraints!.height * 0.1,
-                                  width: constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: constraints!.height * 0.23,
-                    left: constraints!.width * 0.05,
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      height: constraints!.height * 0.4,
-                      width: constraints!.width * 0.4,
-                      child: Stack(
-                        children: [
-                          GifImage(
-                            controller: gifController,
-                            image: AssetImage(virusModel.widgets[4]),
+                    top: widget.constraints!.height * 0.23,
+                    left: widget.constraints!.width * 0.05,
+                    child: Clickable(
+                      onPressed: widget.onTapEbola,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        height: widget.constraints!.height * 0.4,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[4],
                           ),
-                          Positioned(
-                            top: constraints!.height * 0.18,
-                            left: constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: onTapEbola,
-                                child: SizedBox(
-                                  height: constraints!.height * 0.1,
-                                  width: constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ])),
+                ],
+              ),
+      ),
     );
   }
 }

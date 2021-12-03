@@ -167,7 +167,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     setState(() {
       panelVisibility = false;
     });
-    Future.delayed(Duration(milliseconds: 1)).then((value) {
+    Future.delayed(const Duration(milliseconds: 1)).then((value) {
       setState(() {
         panelVisibility = true;
       });

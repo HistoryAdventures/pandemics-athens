@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
 import '../../features/dead_socrates/presentation/modesl/socrates_info_model.dart';
@@ -56,7 +55,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: Container(
+      child: SizedBox(
         width: HW.getWidth(1200, context),
         height: HW.getHeight(676, context),
         child: Scaffold(
@@ -116,7 +115,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                                         return Container();
                                       });
                                 },
-                                child: ZoomInNotesWidget()),
+                                child: const ZoomInNotesWidget()),
                           )),
                     ),
                   ),
@@ -128,107 +127,101 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: HW.getHeight(68, context),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Container(
-                                          margin: EdgeInsets.only(
-                                              bottom: HW.getHeight(8, context)),
-                                          child: Text(widget.titleText,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1
-                                                  ?.copyWith(
-                                                      fontSize: TextFontSize
-                                                          .getHeight(
-                                                              14, context),
-                                                      color:
-                                                          AppColors.black54)),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          child: Text(widget.subTitleText,
-                                              maxLines: 1,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline2
-                                                  ?.copyWith(
-                                                      fontSize: TextFontSize
-                                                          .getHeight(
-                                                              32, context),
-                                                      height: 1)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    margin: EdgeInsets.only(
-                                        bottom: HW.getHeight(16, context),
-                                        top: HW.getHeight(8, context)),
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
-                                        bottom: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                height: HW.getHeight(68, context),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: HW.getHeight(8, context)),
+                                        child: Text(widget.titleText,
+                                            maxLines: 1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1
+                                                ?.copyWith(
+                                                    fontSize:
+                                                        TextFontSize.getHeight(
+                                                            14, context),
+                                                    color: AppColors.black54)),
                                       ),
                                     ),
-                                    child: HAScrollbar(
-                                      isAlwaysShown: true,
-                                      child:
-                                          ListView(shrinkWrap: true, children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 24,
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 16),
-                                                child: AutoSizeText(
-                                                    socratesInfoModel.name
-                                                        .toUpperCase(),
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline3),
-                                              ),
-                                              AutoSizeText(
-                                                socratesInfoModel.description,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1,
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ]),
+                                    Expanded(
+                                      child: Text(widget.subTitleText,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              ?.copyWith(
+                                                  fontSize:
+                                                      TextFontSize.getHeight(
+                                                          32, context),
+                                                  height: 1)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  margin: EdgeInsets.only(
+                                      bottom: HW.getHeight(16, context),
+                                      top: HW.getHeight(8, context)),
+                                  decoration: const BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                          color: AppColors.grey, width: 1.2),
+                                      bottom: BorderSide(
+                                          color: AppColors.grey, width: 1.2),
                                     ),
                                   ),
+                                  child: HAScrollbar(
+                                    isAlwaysShown: true,
+                                    child:
+                                        ListView(shrinkWrap: true, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 24,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 16),
+                                              child: AutoSizeText(
+                                                  socratesInfoModel.name
+                                                      .toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3),
+                                            ),
+                                            AutoSizeText(
+                                              socratesInfoModel.description,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ]),
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: HW.getHeight(22, context),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
