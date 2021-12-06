@@ -380,7 +380,7 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
-  static const String paralaxHtml = 'assets/paralax/index.html';
+  static const String paralaxHtml = 'assets/assets/paralax/index.html';
 
   static const String mapLottie495 =
       'assets/assets/map_lottie/map_11/index.html';
@@ -635,11 +635,11 @@ class AssetsPath {
     AssetsPath.document,
   ];
 
-  static const gif1 = "assets/virusGifs/comp.gif";
-  static const gif2 = "assets/virusGifs/comp3.gif";
-  static const gif3 = "assets/virusGifs/ebola.gif";
-  static const gif4 = "assets/virusGifs/typhus.gif";
-  static const gif5 = "assets/virusGifs/typoid.gif";
+  static const gif1 = "assets/assets/virusGifs/comp.gif";
+  static const gif2 = "assets/assets/virusGifs/comp3.gif";
+  static const gif3 = "assets/assets/virusGifs/ebola.gif";
+  static const gif4 = "assets/assets/virusGifs/typhus.gif";
+  static const gif5 = "assets/assets/virusGifs/typoid.gif";
 }
 
 
