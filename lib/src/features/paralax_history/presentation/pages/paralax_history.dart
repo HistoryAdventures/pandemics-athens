@@ -414,8 +414,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               children: <Widget>[
                                 _topBar,
                                 _title,
-                                const SizedBox(
-                                  height: 3700,
+                                SizedBox(
+                                  height: HW.getHeight(3700, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
@@ -426,7 +426,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                       HW.getHeight(216, context)),
                                 ),
                                 SizedBox(
-                                  height: 3000,
+                                  height: HW.getHeight(3000, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
@@ -437,7 +437,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   text: locals.paralaxText2,
                                 ),
                                 SizedBox(
-                                  height: 2500,
+                                  height: HW.getHeight(3300, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
@@ -448,10 +448,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   text: locals.paralaxText3,
                                 ),
                                 SizedBox(
-                                  height: 1000,
+                                  height: HW.getHeight(2800, context),
                                 ),
                                 _athens5th(),
-                                SizedBox(height: 3000),
+                                SizedBox(height: HW.getHeight(500, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
                                   top: rateParalaxWalker - 1000,
@@ -460,7 +460,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   size: Size(HW.getWidth(605, context),
                                       HW.getHeight(330, context)),
                                 ),
-                                SizedBox(height: 6200),
+                                SizedBox(height: HW.getHeight(7100, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
                                   top: rateParalaxHotTubLottie + 850,
