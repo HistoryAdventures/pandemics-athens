@@ -390,7 +390,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 children: [
                   _paralax,
                   Container(
-                    width: MediaQuery.of(context).size.width - 20,
                     height: 8838,
                     child: PointerInterceptor(
                       child: NotificationListener(
@@ -410,7 +409,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           controller: _scrollController,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 24,
+                            height: MediaQuery.of(context).size.height * 22,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
@@ -462,7 +461,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   size: Size(HW.getWidth(605, context),
                                       HW.getHeight(330, context)),
                                 ),
-                                SizedBox(height: HW.getHeight(7100, context)),
+                                SizedBox(height: HW.getHeight(6200, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
                                   top: rateParalaxHotTubLottie + 850,

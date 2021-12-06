@@ -4,6 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 
 import '../../../../core/router.gr.dart';
@@ -203,9 +206,9 @@ class _NavigationPageState extends State<NavigationPage> {
 
           context.router.replace(const MapPageRoute());
         },
-        pointOffset: const Offset(400, 100),
+        pointOffset: const Offset(450, 100),
         lineStartOffset: const Offset(0, 6),
-        lineEndOffset: const Offset(-90, 20),
+        lineEndOffset: const Offset(-140, 20),
         alignment: Alignment.topCenter,
         title: 'timeline of man events',
       ),
@@ -244,9 +247,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CharacrterPageRoute());
         },
-        pointOffset: const Offset(490, 120),
+        pointOffset: const Offset(590, 120),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-80, -13),
+        lineEndOffset: const Offset(-130, -13),
         title: 'key people of the age',
       ),
 
@@ -264,9 +267,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const DocumentPageRoute());
         },
-        pointOffset: const Offset(120, 180),
+        pointOffset: const Offset(70, 180),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(120, 15),
+        lineEndOffset: const Offset(170, 15),
         alignment: Alignment.topCenter,
         title: 'source analysis',
       ),
@@ -552,9 +555,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(110, 475),
+        pointOffset: const Offset(60, 475),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(39, 10),
+        lineEndOffset: const Offset(90, 10),
         alignment: Alignment.topCenter,
         title: 'brian',
       ),
@@ -706,57 +709,40 @@ class _NavigationPageState extends State<NavigationPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButtonWidget(
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    context.router.pop();
-                  },
-                ),
-              ),
-              Align(
-                  alignment: Alignment.topCenter,
-                  child: AutoSizeText(
-                    "Table of contents".toUpperCase(),
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.headline2,
-                  )),
+              _menu,
               const SizedBox(height: 76),
               Align(
                 alignment: Alignment.centerLeft,
                 child: SingleChildScrollView(
                   child: Container(
                     //  color: Colors.red,
-                    height: 600,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        // scrollDirection: Axis.horizontal,
-                        // physics: const ClampingScrollPhysics(),
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // scrollDirection: Axis.horizontal,
+                      // physics: const ClampingScrollPhysics(),
+                      children: [
+                        Container(
+                          width: HW.getWidth(66, context),
+                        ),
+                        SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: chapterNavigationWidgets,
                           ),
-                          SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: chapterNavigationWidgets,
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Container(
+                              width: 800,
+                              height: 600,
+                              child: SizedBox(
+                                child: Stack(children: navigationTreeWidget),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.1,
-                          ),
-                          Container(
-                            width: 800,
-                            child: SizedBox(
-                              child: Stack(children: navigationTreeWidget),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -767,4 +753,55 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
     );
   }
+
+  bool isSoundOn = false;
+  Widget get _menu => Container(
+        height: HW.getHeight(43, context),
+        margin: EdgeInsets.only(
+          top: HW.getHeight(48, context),
+          left: HW.getWidth(66, context),
+          right: HW.getWidth(66, context),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Clickable(
+              onPressed: () {
+                setState(() {
+                  isSoundOn = !isSoundOn;
+                });
+              },
+              child: Container(
+                height: HW.getHeight(40, context),
+                width: HW.getWidth(40, context),
+                child: Image.asset(
+                  isSoundOn
+                      ? AssetsPath.iconVolumeOn
+                      : AssetsPath.iconVolumeOff,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            AutoSizeText(
+              "Table of contents".toUpperCase(),
+              maxLines: 1,
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            IconButton(
+                focusColor: AppColors.transpatent,
+                splashColor: AppColors.transpatent,
+                highlightColor: AppColors.transpatent,
+                hoverColor: AppColors.transpatent,
+                icon: Icon(
+                  Icons.close,
+                  size: HW.getHeight(40, context),
+                ),
+                onPressed: () {
+                  print("on click");
+                  context.router.pop();
+                }),
+          ],
+        ),
+      );
 }
