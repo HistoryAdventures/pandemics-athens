@@ -1,12 +1,15 @@
+import 'dart:ui' as ui;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
-import 'package:web_browser_detect/web_browser_detect.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
@@ -14,7 +17,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/animated_background/animated_particles_4.dart';
-import '../../../../core/widgets/animated_background/gif_background_widget.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -50,6 +52,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   int direction = 1;
   double mouseX = 100;
   double mouseY = 100;
+
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesStream;
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -112,6 +117,23 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
 
+    animatedParticlesStream = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    )..debounceTime(const Duration(minutes: 1));
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground4,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground4,
+    );
+
     // controller = GifController(vsync: this);
 
     // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -124,33 +146,35 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     // });
   }
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    animatedParticlesStream.close();
+    // controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerMove: (e) {
-        if (objWave < 50 && direction == 1) {
-          objWave += .2;
-        } else if (objWave == 50 && direction == 1) {
-          direction = 0;
-        } else if (objWave > -50 && direction == 0) {
-          objWave -= .2;
-        } else if (objWave == -50 && direction == 0) {
-          direction = 1;
-        }
+    return LayoutBuilder(builder: (context, constraints) {
+      return MouseRegion(
+        onHover: (e) {
+          if (objWave < 50 && direction == 1) {
+            objWave += .2;
+          } else if (objWave == 50 && direction == 1) {
+            direction = 0;
+          } else if (objWave > -50 && direction == 0) {
+            objWave -= .2;
+          } else if (objWave == -50 && direction == 0) {
+            direction = 1;
+          }
+          mouseX = (e.position.dx - width / 2) / 20;
+          mouseY = (e.position.dy - height / 2) / 20;
 
-        mouseX = (e.position.dx - width / 2) / 20;
-        mouseY = (e.position.dy - height / 2) / 20;
-
-        setState(() {});
-      },
-      child: LayoutBuilder(builder: (context, constraints) {
-        return Scaffold(
+          animatedParticlesStream.sink.add(
+            AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+          );
+        },
+        child: Scaffold(
           key: skaffoldKey,
           endDrawer: const NavigationPage(),
           body: GestureDetector(
@@ -171,15 +195,22 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             },
             child: Stack(
               children: [
-                GifBackground(
-                  size: Size(constraints.maxWidth, constraints.maxHeight),
-                  asset: AssetsPath.gifBackground4,
-                ),
-                AnimatedParticlesForth(
-                  constraints: constraints,
-                  mouseX: mouseX,
-                  mouseY: mouseY,
-                  objWave: objWave,
+                const HtmlElementView(viewType: AssetsPath.gifBackground4),
+                // Image.asset(AssetsPath.gifBackground4),
+                // GifBackground(
+                //   size: Size(constraints.maxWidth, constraints.maxHeight),
+                //   asset: AssetsPath.gifBackground4,
+                // ),
+                StreamBuilder<AnimatedParticleModel>(
+                  stream: animatedParticlesStream,
+                  builder: (context, snapshot) {
+                    return AnimatedParticlesForth(
+                      constraints: constraints,
+                      mouseX: snapshot.data!.x,
+                      mouseY: snapshot.data!.y,
+                      objWave: snapshot.data!.objWave,
+                    );
+                  },
                 ),
                 Align(
                   child: Container(
@@ -233,9 +264,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               ],
             ),
           ),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 
   Widget _viruses(BoxConstraints constraints) => Expanded(

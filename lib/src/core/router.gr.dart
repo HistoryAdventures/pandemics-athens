@@ -321,7 +321,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
-        _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
+        _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
@@ -402,7 +402,7 @@ class CharacterInfoPageRouteArgs {
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
-  const VirusesInfoPageRoute() : super(name, path: '/viruses-info-page');
+  const VirusesInfoPageRoute() : super(name, path: '/');
 
   static const String name = 'VirusesInfoPageRoute';
 }
