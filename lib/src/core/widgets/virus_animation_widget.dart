@@ -46,7 +46,7 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
           ..style.border = 'none'
           // ignore: unsafe_html
           ..src = element
-          ..style.objectFit = 'contain', 
+          ..style.objectFit = 'contain',
       );
     });
     super.initState();
@@ -58,141 +58,90 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
       child: Material(
         color: Colors.white.withOpacity(0),
         child: widget.virusModel.widgets.length == 1
-            ? Image.asset(widget.virusModel.widgets[0])
+            ? SizedBox(
+                height: widget.constraints!.height * 0.4,
+                width: widget.constraints!.height * 0.4,
+                child: IgnorePointer(
+                  child: HtmlElementView(
+                    viewType: widget.virusModel.widgets[0],
+                  ),
+                ),
+              )
             : Stack(
                 children: [
                   Positioned(
                     top: widget.constraints!.height * 0.16,
                     left: widget.constraints!.width * 0.25,
-                    child: SizedBox(
-                      height: widget.constraints!.height * 0.4,
-                      width: widget.constraints!.width * 0.4,
-                      child: Stack(
-                        children: [
-                          IgnorePointer(
-                            child: HtmlElementView(
-                              viewType: widget.virusModel.widgets[0],
-                            ),
+                    child: Clickable(
+                      onPressed: widget.onTapBubonik,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.4,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[0],
                           ),
-                          Positioned(
-                            top: widget.constraints!.height * 0.15,
-                            left: widget.constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: widget.onTapBubonik,
-                                child: SizedBox(
-                                  height: widget.constraints!.height * 0.1,
-                                  width: widget.constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: widget.constraints!.height * 0.33,
                     left: widget.constraints!.width * 0.23,
-                    child: SizedBox(
-                      height: widget.constraints!.height * 0.3,
-                      width: widget.constraints!.width * 0.3,
-                      child: Stack(
-                        children: [
-                          IgnorePointer(
-                            child: HtmlElementView(
-                              viewType: widget.virusModel.widgets[1],
-                            ),
+                    child: Clickable(
+                      onPressed: widget.onTapTiphius,
+                      child: SizedBox(
+                        width: widget.constraints!.width * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[1],
                           ),
-                          Positioned(
-                            top: widget.constraints!.height * 0.12,
-                            left: widget.constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: widget.onTapTiphius,
-                                child: SizedBox(
-                                  height: widget.constraints!.height * 0.08,
-                                  width: widget.constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: widget.constraints!.height * 0.45,
                     left: widget.constraints!.width * 0.13,
-                    child: SizedBox(
-                      height: widget.constraints!.height * 0.35,
-                      width: widget.constraints!.width * 0.35,
-                      child: Stack(
-                        children: [
-                          IgnorePointer(
-                            child: HtmlElementView(
-                              viewType: widget.virusModel.widgets[2],
-                            ),
+                    child: Clickable(
+                      onPressed: widget.onTapTiphid,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.35,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[2],
                           ),
-                          Positioned(
-                            top: widget.constraints!.height * 0.13,
-                            left: widget.constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: widget.onTapTiphid,
-                                child: SizedBox(
-                                  height: widget.constraints!.height * 0.1,
-                                  width: widget.constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: widget.constraints!.height * 0.08,
                     left: widget.constraints!.width * 0.15,
-                    child: SizedBox(
-                      height: widget.constraints!.height * 0.3,
-                      width: widget.constraints!.width * 0.3,
-                      child: Stack(
-                        children: [
-                          IgnorePointer(
-                            child: HtmlElementView(
-                              viewType: widget.virusModel.widgets[3],
-                            ),
+                    child: Clickable(
+                      onPressed: widget.onTapSmall,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[3],
                           ),
-                          Positioned(
-                            top: widget.constraints!.height * 0.13,
-                            child: Clickable(
-                                onPressed: widget.onTapSmall,
-                                child: SizedBox(
-                                  height: widget.constraints!.height * 0.1,
-                                  width: widget.constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: widget.constraints!.height * 0.23,
                     left: widget.constraints!.width * 0.05,
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      height: widget.constraints!.height * 0.4,
-                      width: widget.constraints!.width * 0.4,
-                      child: Stack(
-                        children: [
-                          IgnorePointer(
-                            child: HtmlElementView(
-                              viewType: widget.virusModel.widgets[4],
-                            ),
+                    child: Clickable(
+                      onPressed: widget.onTapEbola,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        width: widget.constraints!.height * 0.4,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[4],
                           ),
-                          Positioned(
-                            top: widget.constraints!.height * 0.18,
-                            left: widget.constraints!.width * 0.05,
-                            child: Clickable(
-                                onPressed: widget.onTapEbola,
-                                child: SizedBox(
-                                  height: widget.constraints!.height * 0.1,
-                                  width: widget.constraints!.width * 0.1,
-                                )),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),

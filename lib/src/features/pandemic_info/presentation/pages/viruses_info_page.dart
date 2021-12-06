@@ -38,11 +38,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   // late GifController controller;
   late List<VirusModelWidget> listCharacters;
   String gifVirus = AssetsPath.gifVirus;
-  String gifTyphus = AssetsPath.gifTyphus;
-  String gifSmallpox = AssetsPath.gifSmallpox;
-  String gifTyphoid = AssetsPath.gifTyphoid;
-  String gifEbola = AssetsPath.gifEbola;
-  String gifBubonic = AssetsPath.gifBubonic;
+  String gifTyphus = AssetsPath.gif4;
+  String gifSmallpox = AssetsPath.gif1;
+  String gifTyphoid = AssetsPath.gif5;
+  String gifEbola = AssetsPath.gif3;
+  String gifBubonic = AssetsPath.gif2;
   late VirusModel virusModel;
 
   bool isSoundOn = false;

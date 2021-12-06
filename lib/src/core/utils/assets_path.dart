@@ -634,7 +634,15 @@ class AssetsPath {
     AssetsPath.manthroatImage,
     AssetsPath.document,
   ];
+
+  static const gif1 = "assets/virusGifs/comp.gif";
+  static const gif2 = "assets/virusGifs/comp3.gif";
+  static const gif3 = "assets/virusGifs/ebola.gif";
+  static const gif4 = "assets/virusGifs/typhus.gif";
+  static const gif5 = "assets/virusGifs/typoid.gif";
 }
+
+
 
 
 
