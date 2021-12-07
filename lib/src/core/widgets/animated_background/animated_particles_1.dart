@@ -28,8 +28,7 @@ class AnimatedParticlesFirst extends StatefulWidget {
   _AnimatedParticlesFirstState createState() => _AnimatedParticlesFirstState();
 }
 
-class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
-    with SingleTickerProviderStateMixin {
+class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst> {
   int p1Counter = 0, p2Counter = 0;
   bool reversed = false;
   double width = ui.window.physicalSize.width / ui.window.devicePixelRatio,
