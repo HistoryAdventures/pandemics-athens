@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
@@ -37,6 +39,24 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   int direction = 1;
   double mouseX = 100;
   double mouseY = 100;
+
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    );
+
+    super.initState();
+  }
+
   @override
   void didChangeDependencies() {
     locale = AppLocalizations.of(context)!;
@@ -64,9 +84,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   }
 
   @override
-  void initState() {
-    NavigationSharedPreferences.getNavigationListFromSF();
-    super.initState();
+  void dispose() {
+    animatedParticlesBS.close();
+    super.dispose();
   }
 
   @override
@@ -76,31 +96,35 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
       endDrawer: const NavigationPage(),
       body: MouseRegion(
         onHover: (e) {
-          setState(() {
-            if (objWave < 50 && direction == 1) {
-              objWave += .2;
-            } else if (objWave == 50 && direction == 1) {
-              direction = 0;
-            } else if (objWave > -50 && direction == 0) {
-              objWave -= .2;
-            } else if (objWave == -50 && direction == 0) {
-              direction = 1;
-            }
-            mouseX = (e.position.dx - width / 2) / 20;
-            mouseY = (e.position.dy - height / 2) / 20;
-            setState(() {
-              offset = e.position;
-            });
-          });
+          if (objWave < 50 && direction == 1) {
+            objWave += .2;
+          } else if (objWave == 50 && direction == 1) {
+            direction = 0;
+          } else if (objWave > -50 && direction == 0) {
+            objWave -= .2;
+          } else if (objWave == -50 && direction == 0) {
+            direction = 1;
+          }
+          mouseX = (e.position.dx - width / 2) / 20;
+          mouseY = (e.position.dy - height / 2) / 20;
+
+          animatedParticlesBS.sink.add(
+            AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+          );
         },
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(
             children: [
-              AnimatedParticlesFive(
-                constraints: constraints,
-                mouseX: mouseX,
-                mouseY: mouseY,
-                objWave: objWave,
+              StreamBuilder<AnimatedParticleModel>(
+                stream: animatedParticlesBS.stream,
+                builder: (context, snapshot) {
+                  return AnimatedParticlesFive(
+                    constraints: constraints,
+                    mouseX: snapshot.data!.x,
+                    mouseY: snapshot.data!.y,
+                    objWave: snapshot.data!.objWave,
+                  );
+                },
               ),
               CardTextAndImageWidget(
                 constraints: constraints,
@@ -150,7 +174,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                   icon: const Icon(Icons.arrow_upward),
                   iconSize: HW.getHeight(40, context),
                 ),
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {
