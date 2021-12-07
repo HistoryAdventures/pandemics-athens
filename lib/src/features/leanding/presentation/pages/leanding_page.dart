@@ -25,8 +25,7 @@ class LeandingPage extends StatefulWidget {
   _LeandingPageState createState() => _LeandingPageState();
 }
 
-class _LeandingPageState extends State<LeandingPage>
-    with SingleTickerProviderStateMixin {
+class _LeandingPageState extends State<LeandingPage> {
   late AppLocalizations locales;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
