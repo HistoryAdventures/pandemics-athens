@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/practice_medicine_page.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -15,7 +17,6 @@ import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/animated_background/animated_particles_2.dart';
-import '../../../../core/widgets/animated_widgets/gif_contrrol.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
@@ -27,12 +28,9 @@ class PathogenProfilePage extends StatefulWidget {
   _PathogenProfilePageState createState() => _PathogenProfilePageState();
 }
 
-class _PathogenProfilePageState extends State<PathogenProfilePage>
-    with SingleTickerProviderStateMixin {
-  //final _scrollController = ScrollController();
+class _PathogenProfilePageState extends State<PathogenProfilePage> {
   late AppLocalizations locals;
   Offset offset = const Offset(0, 0);
-  late GifController controller;
   late ScrollController _scrollController;
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
@@ -43,25 +41,12 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
   double mouseX = 100;
   double mouseY = 100;
 
-  @override
-  void didChangeDependencies() {
-    locals = AppLocalizations.of(context)!;
-    super.didChangeDependencies();
-  }
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
   @override
   void initState() {
-    controller = GifController(vsync: this);
     _scrollController = ScrollController();
 
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      controller.repeat(
-        min: 0,
-        max: 150,
-        period: const Duration(seconds: 4),
-        reverse: true,
-      );
-    });
     _scrollController.addListener(() {
       if (_scrollController.offset ==
           _scrollController.position.maxScrollExtent) {
@@ -78,12 +63,26 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
       }
     });
     NavigationSharedPreferences.getNavigationListFromSF();
+
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    );
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    locals = AppLocalizations.of(context)!;
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
-    controller.dispose();
+    animatedParticlesBS.close();
     super.dispose();
   }
 
@@ -93,7 +92,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {
         return MouseRegion(
-          onHover: (e) => setState(() {
+          onHover: (e) {
             if (objWave < 50 && direction == 1) {
               objWave += .2;
             } else if (objWave == 50 && direction == 1) {
@@ -105,8 +104,11 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
             }
             mouseX = (e.position.dx - width / 2) / 20;
             mouseY = (e.position.dy - height / 2) / 20;
-            setState(() {});
-          }),
+
+            animatedParticlesBS.sink.add(
+              AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+            );
+          },
           child: SizedBox(
             height: constraints.maxHeight * 2,
             child: Stack(
@@ -121,11 +123,16 @@ class _PathogenProfilePageState extends State<PathogenProfilePage>
                         height: constraints.maxHeight,
                         child: Stack(
                           children: [
-                            AnimatedParticlesSecond(
-                              constraints: constraints,
-                              mouseX: mouseX,
-                              mouseY: mouseY,
-                              objWave: objWave,
+                            StreamBuilder<AnimatedParticleModel>(
+                              stream: animatedParticlesBS.stream,
+                              builder: (context, snapshot) {
+                                return AnimatedParticlesSecond(
+                                  constraints: constraints,
+                                  mouseX: snapshot.data!.x,
+                                  mouseY: snapshot.data!.y,
+                                  objWave: snapshot.data!.objWave,
+                                );
+                              },
                             ),
                             Positioned(
                                 top: HW.getHeight(192, context),
