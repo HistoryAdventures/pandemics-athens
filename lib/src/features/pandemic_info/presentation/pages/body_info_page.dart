@@ -411,12 +411,14 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                         LeafDetails.currentVertex = 11;
                         NavigationSharedPreferences.upDateShatedPreferences();
 
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
+                        // if (kIsWeb) {
+                        //   html.window.history.back();
+                        //   context.router.pop();
+                        // } else {
+                        //   context.router.pop();
+                        // }
+                        context.router
+                            .push(const VirusLocationSecondPageRoute());
                       }),
                 ),
                 SoundAndMenuWidget(

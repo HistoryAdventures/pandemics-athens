@@ -56,9 +56,7 @@ class _NavigationTreeState extends State<NavigationTree> {
           top: getCoordinate(context).dy,
           child: Text(widget.details.title.toUpperCase(),
               style: Theme.of(context).textTheme.headline1?.copyWith(
-                  color: colorText,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold)),
+                  color: colorText, fontSize: 14, fontWeight: FontWeight.bold)),
         ),
         Positioned(
           left: widget.details.pointOffset.dx,
@@ -111,19 +109,19 @@ class _NavigationTreeState extends State<NavigationTree> {
         Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 10));
 
     if (widget.details.alignment == Alignment.bottomCenter) {
-      offset = Offset(widget.details.pointOffset.dx - size.width / 2,
+      offset = Offset(widget.details.pointOffset.dx - size.width / 2 - 20,
           widget.details.pointOffset.dy + size.height + 2);
     } else if (widget.details.alignment == Alignment.topCenter) {
       offset = Offset(widget.details.pointOffset.dx - 5 - size.width / 2,
-          widget.details.pointOffset.dy - size.height - 5);
+          widget.details.pointOffset.dy - size.height - 20);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerLeft) {
-      offset = Offset((widget.details.pointOffset.dx - 18 - size.width) - 10,
+      offset = Offset((widget.details.pointOffset.dx - 18 - size.width) - 40,
           (widget.details.pointOffset.dy - size.height / 4) + 1);
     } // FIXME  DONE
     else if (widget.details.alignment == Alignment.centerRight) {
       offset = Offset(widget.details.pointOffset.dx + 25,
-          (widget.details.pointOffset.dy - size.height / 4) + 5);
+          (widget.details.pointOffset.dy - size.height / 4) - 5);
     }
     return offset;
   }

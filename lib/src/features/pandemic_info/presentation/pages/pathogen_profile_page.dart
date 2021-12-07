@@ -271,14 +271,10 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                       icon: const Icon(Icons.arrow_upward_sharp),
                       onPressed: () {
                         LeafDetails.currentVertex = 9;
-                        NavigationSharedPreferences.upDateShatedPreferences();
+                        LeafDetails.visitedVertexes.add(9);
 
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.replace(const PanaromaRightPageRoute());
                       },
                       color: soundAndMewnuColor,
                     ),
