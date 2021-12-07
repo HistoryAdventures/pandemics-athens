@@ -118,7 +118,7 @@ class _NavigationPageState extends State<NavigationPage> {
           context.router
               .replace(LeandingPageRoute(navigateFromNavigatorPage: true));
         },
-        pointOffset: const Offset(300, 5),
+        pointOffset: const Offset(338, 3),
         lineStartOffset: const Offset(0, 0),
         lineEndOffset: const Offset(0, 0),
         alignment: Alignment.centerLeft,
@@ -137,9 +137,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const GlossaryPageRoute());
         },
-        pointOffset: const Offset(305, 50),
+        pointOffset: const Offset(340, 55),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(0, -33),
+        lineEndOffset: const Offset(2, -38),
         alignment: Alignment.centerLeft,
         title: 'glossary',
       ),
@@ -157,9 +157,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
-        pointOffset: const Offset(300, 85),
+        pointOffset: const Offset(325, 105),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(10, -25),
+        lineEndOffset: const Offset(20, -40),
         alignment: Alignment.centerLeft,
         title: 'to do no harm',
       ),
@@ -177,11 +177,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const ParalaxHistoryPageRoute());
         },
-        pointOffset: const Offset(300, 115),
+        pointOffset: const Offset(330, 157),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(5, -20),
+        lineEndOffset: const Offset(0, -42),
         alignment: Alignment.centerLeft,
-        title: 'athens, 5th century bce',
+        title: 'athens, 500 bce',
       ),
 
       LeafDetails(
@@ -198,11 +198,11 @@ class _NavigationPageState extends State<NavigationPage> {
 
           context.router.replace(const MapPageRoute());
         },
-        pointOffset: const Offset(450, 100),
+        pointOffset: const Offset(520, 123),
         lineStartOffset: const Offset(0, 6),
-        lineEndOffset: const Offset(-140, 20),
+        lineEndOffset: const Offset(-180, 40),
         alignment: Alignment.topCenter,
-        title: 'timeline of man events',
+        title: 'timeline of man events        ',
       ),
       LeafDetails(
         Vertex(
@@ -218,10 +218,10 @@ class _NavigationPageState extends State<NavigationPage> {
           context.router.replace(const ParalaxHistoryPageRoute());
         },
         alignment: Alignment.centerLeft,
-        pointOffset: const Offset(300, 140),
+        pointOffset: const Offset(325, 209),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(5, -15),
-        title: 'to do no harm',
+        lineEndOffset: const Offset(10, -43),
+        title: 'to do no harm  ',
       ),
       LeafDetails(
         Vertex(
@@ -236,9 +236,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CharacrterPageRoute());
         },
-        pointOffset: const Offset(590, 120),
+        pointOffset: const Offset(650, 160),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-130, -13),
+        lineEndOffset: const Offset(-120, -33),
         title: 'key people of the age',
       ),
 
@@ -256,9 +256,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const DocumentPageRoute());
         },
-        pointOffset: const Offset(70, 180),
+        pointOffset: const Offset(73, 270),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(170, 15),
+        lineEndOffset: const Offset(162, 15),
         alignment: Alignment.topCenter,
         title: 'source analysis',
       ),
@@ -276,9 +276,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PanaromaLeftPageRoute());
         },
-        pointOffset: const Offset(240, 190),
+        pointOffset: const Offset(235, 280),
         lineStartOffset: const Offset(8, 2),
-        lineEndOffset: const Offset(60, -45),
+        lineEndOffset: const Offset(90, -65),
         alignment: Alignment.bottomCenter,
         title: 'medical tools and knowledge',
       ),
@@ -297,11 +297,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PanaromaRightPageRoute());
         },
-        pointOffset: const Offset(370, 185),
+        pointOffset: const Offset(420, 270),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-60, -40),
+        lineEndOffset: const Offset(-85, -52),
         alignment: Alignment.centerRight,
-        title: 'plague and political instability',
+        title: 'plague and political \ninstability',
       ),
 
       LeafDetails(
@@ -317,11 +317,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PathogenProfilePageRoute());
         },
-        pointOffset: const Offset(385, 245),
+        pointOffset: const Offset(425, 375),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(-8, -51),
+        lineEndOffset: const Offset(0, -95),
         alignment: Alignment.centerLeft,
-        title: 'pathogen profile',
+        title: 'pathogen profile     ',
       ),
       LeafDetails(
         Vertex(
@@ -336,11 +336,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const VirusLocationPageRoute());
         },
-        pointOffset: const Offset(440, 260),
+        pointOffset: const Offset(540, 397),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-44, -9),
+        lineEndOffset: const Offset(-105, -15),
         alignment: Alignment.bottomCenter,
-        title: 'where did it come from?',
+        title: 'where did it come from?           ',
       ),
       LeafDetails(
         Vertex(
@@ -355,11 +355,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const BodyInfoPageRoute());
         },
-        pointOffset: const Offset(520, 250),
+        pointOffset: const Offset(660, 380),
         lineStartOffset: const Offset(1, 6),
-        lineEndOffset: const Offset(-70, 14),
+        lineEndOffset: const Offset(-110, 20),
         alignment: Alignment.topCenter,
-        title: 'what did it do?',
+        title: 'what did it do?   ',
       ),
       LeafDetails(
         Vertex(
@@ -373,13 +373,13 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const VirusesInfoPageRoute());
         },
-        pointOffset: const Offset(610, 265),
+        pointOffset: const Offset(765, 395),
         lineStartOffset: const Offset(2, 8),
-        lineEndOffset: const Offset(-80, -9),
+        lineEndOffset: const Offset(-95, -9),
         alignment: Alignment.bottomCenter,
         title: 'what was it?',
       ),
-      //TODO look into this one
+      // //TODO look into this one
       LeafDetails(
         Vertex(
             index: 14,
@@ -393,9 +393,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const PracticeMedicineRoute());
         },
-        pointOffset: const Offset(320, 300),
+        pointOffset: const Offset(350, 430),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(65, -48),
+        lineEndOffset: const Offset(75, -48),
         alignment: Alignment.centerLeft,
         title: 'to do no harm',
       ),
@@ -412,11 +412,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const DeadOfSocratesPageRoute());
         },
-        pointOffset: const Offset(310, 355),
+        pointOffset: const Offset(340, 500),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(13, -44),
+        lineEndOffset: const Offset(13, -60),
         alignment: Alignment.centerLeft,
-        title: 'death of socrates',
+        title: 'death of socrates     ',
       ),
       LeafDetails(
         Vertex(
@@ -430,9 +430,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const EndOfWarPageRoute());
         },
-        pointOffset: const Offset(350, 365),
+        pointOffset: const Offset(390, 505),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-30, -3),
+        lineEndOffset: const Offset(-40, 0),
         alignment: Alignment.centerRight,
         title: 'end of war',
       ),
@@ -449,9 +449,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const QuizPageRoute());
         },
-        pointOffset: const Offset(318, 415),
+        pointOffset: const Offset(345, 560),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(-2, -49),
+        lineEndOffset: const Offset(2, -50),
         alignment: Alignment.centerLeft,
         title: 'assesment',
       ),
@@ -468,11 +468,11 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(310, 470),
+        pointOffset: const Offset(342, 620),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(12, -44),
+        lineEndOffset: const Offset(8, -49),
         alignment: Alignment.centerRight,
-        title: '#irl',
+        title: '#irl nikos',
       ),
       LeafDetails(
         Vertex(
@@ -487,9 +487,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(255, 480),
+        pointOffset: const Offset(255, 640),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(54, -4),
+        lineEndOffset: const Offset(92, -12),
         alignment: Alignment.bottomCenter,
         title: 'giana',
       ),
@@ -506,9 +506,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(200, 470),
+        pointOffset: const Offset(190, 630),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(55, 15),
+        lineEndOffset: const Offset(65, 15),
         alignment: Alignment.topCenter,
         title: 'Xoquauhtli',
       ),
@@ -525,9 +525,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(150, 480),
+        pointOffset: const Offset(105, 640),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(50, -5),
+        lineEndOffset: const Offset(85, -5),
         alignment: Alignment.bottomCenter,
         title: 'achraj',
       ),
@@ -544,9 +544,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const IrlNikosPageRoute());
         },
-        pointOffset: const Offset(60, 475),
+        pointOffset: const Offset(40, 640),
         lineStartOffset: const Offset(10, 5),
-        lineEndOffset: const Offset(90, 10),
+        lineEndOffset: const Offset(65, 5),
         alignment: Alignment.topCenter,
         title: 'brian',
       ),
@@ -557,15 +557,15 @@ class _NavigationPageState extends State<NavigationPage> {
             path: AboutBookPageRoute.name,
             adjacentEdges: [24],
             currentVertex: LeafDetails.currentVertex),
-        pointOffset: const Offset(320, 535),
         onTap: () {
           LeafDetails.currentVertex = 23;
           LeafDetails.visitedVertexes.add(23);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const AboutBookPageRoute());
         },
+        pointOffset: const Offset(345, 720),
         lineStartOffset: const Offset(5, 0),
-        lineEndOffset: const Offset(-4, -55),
+        lineEndOffset: const Offset(4, -90),
         alignment: Alignment.centerLeft,
         title: 'about the book',
       ),
@@ -576,19 +576,19 @@ class _NavigationPageState extends State<NavigationPage> {
             path: CreditsPageRoute.name,
             adjacentEdges: [25],
             currentVertex: LeafDetails.currentVertex),
-        pointOffset: const Offset(380, 545),
         onTap: () {
           LeafDetails.currentVertex = 24;
           LeafDetails.visitedVertexes.add(24);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CreditsPageRoute());
         },
+        pointOffset: const Offset(460, 745),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-49, -4),
+        lineEndOffset: const Offset(-105, -18),
         alignment: Alignment.bottomCenter,
         title: 'credits',
       ),
-      //TODO look into this
+      // //TODO look into this
       LeafDetails(
         Vertex(
             index: 25,
@@ -602,9 +602,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const SourcePageRoute());
         },
-        pointOffset: const Offset(450, 535),
+        pointOffset: const Offset(550, 730),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-60, 15),
+        lineEndOffset: const Offset(-80, 20),
         alignment: Alignment.topCenter,
         title: 'sources',
       ),
@@ -615,15 +615,15 @@ class _NavigationPageState extends State<NavigationPage> {
             path: CopyrightPageRoute.name,
             adjacentEdges: [27],
             currentVertex: LeafDetails.currentVertex),
-        pointOffset: const Offset(530, 545),
         onTap: () {
           LeafDetails.currentVertex = 26;
           LeafDetails.visitedVertexes.add(26);
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const FurtherReadingPageRoute());
         },
+        pointOffset: const Offset(655, 745),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-70, -5),
+        lineEndOffset: const Offset(-95, -10),
         alignment: Alignment.bottomCenter,
         title: 'further reading',
       ),
@@ -639,9 +639,9 @@ class _NavigationPageState extends State<NavigationPage> {
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.replace(const CopyrightPageRoute());
         },
-        pointOffset: const Offset(600, 535),
+        pointOffset: const Offset(745, 730),
         lineStartOffset: const Offset(0, 5),
-        lineEndOffset: const Offset(-60, 15),
+        lineEndOffset: const Offset(-80, 20),
         alignment: Alignment.topCenter,
         title: 'copyright',
       ),
@@ -722,12 +722,18 @@ class _NavigationPageState extends State<NavigationPage> {
                         ),
                         Expanded(
                           child: Center(
-                            child: Container(
-                              width: 800,
-                              height: 600,
-                              child: SizedBox(
-                                child: Stack(children: navigationTreeWidget),
-                              ),
+                            child: Stack(
+                              children: [
+                                // Image.asset("assets/navTree.png"),
+                                Container(
+                                  width: 819,
+                                  height: 781,
+                                  child: SizedBox(
+                                    child:
+                                        Stack(children: navigationTreeWidget),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

@@ -154,6 +154,7 @@ flutter:
     - assets/map_lottie/map_35/
     - assets/map_lottie/map_36/
     - assets/map_lottie/map_37/
+    - assets/navTree.png
 
     - assets/paralax_video.mp4
     - assets/image_back/

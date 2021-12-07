@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/body_info_page.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
@@ -21,6 +22,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/virus_model.dart';
+import '../../../../core/router.gr.dart';
 
 class VirusesInfoPage extends StatefulWidget {
   const VirusesInfoPage({Key? key}) : super(key: key);
@@ -229,15 +231,20 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                       textSubTitle: locals.whatDidItDo,
                       textTitle: locals.pathogenProfile,
                       onTap: () {
-                        LeafDetails.currentVertex = 12;
-                        NavigationSharedPreferences.upDateShatedPreferences();
+                        // LeafDetails.currentVertex = 12;
+                        // NavigationSharedPreferences.upDateShatedPreferences();
 
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
+                        // if (kIsWeb) {
+                        //   html.window.history.back();
+                        //   context.router.pop();
+                        // } else {
+                        //   context.router.pop();
+                        // }
+                        LeafDetails.currentVertex = 12;
+                        LeafDetails.visitedVertexes.add(12);
+
+                        NavigationSharedPreferences.upDateShatedPreferences();
+                        context.router.replace(BodyInfoPageRoute());
                       }),
                 ),
                 SoundAndMenuWidget(

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/virus_loc_page.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
@@ -18,6 +19,7 @@ import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
+import '../../../../core/router.gr.dart';
 
 class VirusLocationSecondPage extends StatefulWidget {
   const VirusLocationSecondPage({Key? key}) : super(key: key);
@@ -225,12 +227,18 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                           textTitle: locals.chapter1,
                           onTap: () {
                             LeafDetails.currentVertex = 11;
-                            if (kIsWeb) {
-                              html.window.history.back();
-                              context.router.pop();
-                            } else {
-                              context.router.pop();
-                            }
+                            // if (kIsWeb) {
+                            //   html.window.history.back();
+                            //   context.router.pop();
+                            // } else {
+                            //   context.router.pop();
+                            // }
+                            LeafDetails.currentVertex = 11;
+                            LeafDetails.visitedVertexes.add(11);
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
+                            context.router
+                                .replace(const VirusLocationPageRoute());
                           }),
                     ),
                   ),

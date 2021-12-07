@@ -317,7 +317,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
@@ -352,7 +352,7 @@ class FlutterRouter extends _i1.RootStackRouter {
             path: '/further-reading-page'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
         _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
-        _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
+        _i1.RouteConfig(NavigationPageRoute.name, path: '/'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
             path: '/virus-location-second-page')
       ];
@@ -361,7 +361,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/',
+            path: '/leanding-page',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -542,7 +542,7 @@ class SourcePageRoute extends _i1.PageRouteInfo {
 }
 
 class NavigationPageRoute extends _i1.PageRouteInfo {
-  const NavigationPageRoute() : super(name, path: '/navigation-page');
+  const NavigationPageRoute() : super(name, path: '/');
 
   static const String name = 'NavigationPageRoute';
 }

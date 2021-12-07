@@ -208,14 +208,10 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textTitle: locals.chapter1,
                         onTap: () {
                           LeafDetails.currentVertex = 10;
+                          LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
-
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
+                          context.router
+                              .replace(const PathogenProfilePageRoute());
                         }),
                   ),
                   Flexible(
