@@ -1,3 +1,5 @@
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -37,46 +39,41 @@ class _LeandingPageState extends State<LeandingPage>
   double mouseX = 100;
   double mouseY = 100;
 
-  @override
-  void didChangeDependencies() {
-    locales = AppLocalizations.of(context)!;
-    if (widget.navigateFromNavigatorPage != null) {
-      isImageloaded = widget.navigateFromNavigatorPage!;
-    } else {
-      if (loadingCount == '0') {
-        init();
-      }
-    }
-    super.didChangeDependencies();
-  }
-
-  Future<void> init() async {
-    setState(() {
-      isImageloaded = false;
-    });
-    for (int i = 0; i < AssetsPath.contentImages.length; i++) {
-      await precacheImage(AssetImage(AssetsPath.contentImages[i]), context);
-
-      precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
-      precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
-
-      setState(() {
-        loadingCount = ((i * 100).toDouble() / AssetsPath.contentImages.length)
-            .toStringAsFixed(0);
-      });
-    }
-
-    setState(() {
-      isImageloaded = true;
-    });
-  }
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
     LeafDetails.currentVertex = 0;
     NavigationSharedPreferences.addCurrentVertexToSF(0);
+
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    );
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    locales = AppLocalizations.of(context)!;
+    if (widget.navigateFromNavigatorPage != null) {
+      isImageloaded = widget.navigateFromNavigatorPage!;
+    } else if (loadingCount == '0') {
+      loadingCount = '1';
+      precacheImages();
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    animatedParticlesBS.close();
+    super.dispose();
   }
 
   @override
@@ -88,7 +85,7 @@ class _LeandingPageState extends State<LeandingPage>
           body: LayoutBuilder(
             builder: (context, constraints) {
               return MouseRegion(
-                onHover: (e) => setState(() {
+                onHover: (e) {
                   if (objWave < 50 && direction == 1) {
                     objWave += .2;
                   } else if (objWave == 50 && direction == 1) {
@@ -100,15 +97,25 @@ class _LeandingPageState extends State<LeandingPage>
                   }
                   mouseX = (e.position.dx - width / 2) / 20;
                   mouseY = (e.position.dy - height / 2) / 20;
-                  setState(() {});
-                }),
+
+                  animatedParticlesBS.sink.add(AnimatedParticleModel(
+                    x: mouseX,
+                    y: mouseY,
+                    objWave: objWave,
+                  ));
+                },
                 child: Stack(
                   children: [
-                    AnimatedParticlesFirst(
-                      constraints: constraints,
-                      mouseX: mouseX,
-                      mouseY: mouseY,
-                      objWave: objWave,
+                    StreamBuilder<AnimatedParticleModel>(
+                      stream: animatedParticlesBS.stream,
+                      builder: (context, snapshot) {
+                        return AnimatedParticlesFirst(
+                          constraints: constraints,
+                          mouseX: snapshot.data!.x,
+                          mouseY: snapshot.data!.y,
+                          objWave: snapshot.data!.objWave,
+                        );
+                      },
                     ),
                     Positioned(
                       top: HW.getHeight(354, context),
@@ -120,12 +127,14 @@ class _LeandingPageState extends State<LeandingPage>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(locales.spencerStrikerName.toUpperCase(),
-                                maxLines: 1,
-                                style: DefaultTheme.standard.textTheme.headline1
-                                    ?.copyWith(
-                                        fontSize: TextFontSize.getHeight(
-                                            24, context))),
+                            Text(
+                              locales.spencerStrikerName.toUpperCase(),
+                              maxLines: 1,
+                              style: DefaultTheme.standard.textTheme.headline1
+                                  ?.copyWith(
+                                fontSize: TextFontSize.getHeight(24, context),
+                              ),
+                            ),
                             Text(
                               locales.historyAdventures.toUpperCase(),
                               maxLines: 1,
@@ -150,9 +159,13 @@ class _LeandingPageState extends State<LeandingPage>
                             ),
                             Container(
                               decoration: const BoxDecoration(
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: AppColors.red, width: 10))),
+                                border: Border(
+                                  left: BorderSide(
+                                    color: AppColors.red,
+                                    width: 10,
+                                  ),
+                                ),
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 5),
                                 child: Text(
@@ -162,9 +175,10 @@ class _LeandingPageState extends State<LeandingPage>
                                       .textTheme
                                       .caption
                                       ?.copyWith(
-                                          fontSize: TextFontSize.getHeight(
-                                              60, context),
-                                          height: 1),
+                                        fontSize:
+                                            TextFontSize.getHeight(60, context),
+                                        height: 1,
+                                      ),
                                 ),
                               ),
                             )
@@ -191,19 +205,17 @@ class _LeandingPageState extends State<LeandingPage>
                       icons: isSoundOn
                           ? AssetsPath.iconVolumeOn
                           : AssetsPath.iconVolumeOff,
-                      onTapVolume: isSoundOn
-                          ? () {
-                              setState(() {
-                                isSoundOn = !isSoundOn;
-                                backgroundplayer.pause();
-                              });
-                            }
-                          : () {
-                              setState(() {
-                                isSoundOn = !isSoundOn;
-                                backgroundplayer.play();
-                              });
-                            },
+                      onTapVolume: () {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+
+                          if (isSoundOn) {
+                            backgroundplayer.pause();
+                          } else {
+                            backgroundplayer.play();
+                          }
+                        });
+                      },
                       onTapMenu: () {
                         Scaffold.of(context).openEndDrawer();
                       },
@@ -214,11 +226,27 @@ class _LeandingPageState extends State<LeandingPage>
             },
           ),
         ),
-        if (isImageloaded == false)
-          LoadingWidget(
-            loadingCound: loadingCount!,
-          ),
+        if (isImageloaded == false) const LoadingWidget(),
       ],
     );
+  }
+
+  Future<void> precacheImages() async {
+    setState(() {
+      isImageloaded = false;
+    });
+
+    precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
+    precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
+
+    final List<Future> precache = AssetsPath.contentImages
+        .map((e) => precacheImage(AssetImage(e), context))
+        .toList();
+
+    await Future.wait(precache);
+
+    setState(() {
+      isImageloaded = true;
+    });
   }
 }

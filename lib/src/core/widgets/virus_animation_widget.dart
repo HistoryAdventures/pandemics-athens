@@ -70,6 +70,21 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
             : Stack(
                 children: [
                   Positioned(
+                    top: widget.constraints!.height * 0.08,
+                    left: widget.constraints!.width * 0.15,
+                    child: Clickable(
+                      onPressed: widget.onTapSmall,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[3],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
                     top: widget.constraints!.height * 0.16,
                     left: widget.constraints!.width * 0.25,
                     child: Clickable(
@@ -115,27 +130,11 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                     ),
                   ),
                   Positioned(
-                    top: widget.constraints!.height * 0.08,
-                    left: widget.constraints!.width * 0.15,
-                    child: Clickable(
-                      onPressed: widget.onTapSmall,
-                      child: SizedBox(
-                        width: widget.constraints!.height * 0.3,
-                        child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[3],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
                     top: widget.constraints!.height * 0.23,
                     left: widget.constraints!.width * 0.05,
                     child: Clickable(
                       onPressed: widget.onTapEbola,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
+                      child: SizedBox(
                         width: widget.constraints!.height * 0.4,
                         child: IgnorePointer(
                           child: HtmlElementView(

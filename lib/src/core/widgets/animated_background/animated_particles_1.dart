@@ -1,14 +1,14 @@
-import 'dart:ui';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/assets_path.dart';
-import '../../utils/styles.dart';
 import 'animated_viruses.dart';
 import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
-import 'gif_background_widget.dart';
 
 class AnimatedParticlesFirst extends StatefulWidget {
   final BoxConstraints constraints;
@@ -30,37 +30,44 @@ class AnimatedParticlesFirst extends StatefulWidget {
 
 class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
   int p1Counter = 0, p2Counter = 0;
   bool reversed = false;
-  double width = window.physicalSize.width / window.devicePixelRatio,
-      height = window.physicalSize.height / window.devicePixelRatio;
+  double width = ui.window.physicalSize.width / ui.window.devicePixelRatio,
+      height = ui.window.physicalSize.height / ui.window.devicePixelRatio;
+
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Times.backgrounAnimationDuration,
-    )..repeat(reverse: true);
-  }
 
-  @override
-  void didChangeDependencies() {
-    // width = MediaQuery.of(context).size.width;
-    // height = MediaQuery.of(context).size.height;
-    _controller.addListener(_handleParticleAnimation);
-    super.didChangeDependencies();
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground1,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground1
+        ..width = widget.constraints.maxWidth.toInt()
+        ..height = widget.constraints.maxHeight.toInt(),
+    );
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifVirus,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifVirus
+        ..style.objectFit = 'contain'
+        ..height = (widget.constraints.maxHeight * 0.55).toInt()
+        ..width = (widget.constraints.maxWidth * 0.55).toInt(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GifBackground(
-          size: Size(widget.constraints.maxWidth, widget.constraints.maxHeight),
-          asset: AssetsPath.gifBackground1,
-        ),
+        const HtmlElementView(viewType: AssetsPath.gifBackground1),
 
         AnimatesViruses(
           alignment: Alignment.centerLeft,
@@ -204,9 +211,11 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
           height: widget.constraints.maxHeight * 0.55,
           width: widget.constraints.maxWidth * 0.55,
           child: Transform.translate(
-            offset: Offset(widget.mouseX / 4 + widget.objWave / 4,
-                widget.mouseY / -4 + widget.objWave / -4),
-            child: Image.asset(AssetsPath.gifVirus),
+            offset: Offset(
+              widget.mouseX / 4 + widget.objWave / 4,
+              widget.mouseY / -4 + widget.objWave / -4,
+            ),
+            child: const HtmlElementView(viewType: AssetsPath.gifVirus),
           ),
         ),
 
@@ -221,31 +230,5 @@ class _AnimatedParticlesFirstState extends State<AnimatedParticlesFirst>
         // ),
       ],
     );
-  }
-
-  void _handleParticleAnimation() {
-    if (_controller.isAnimating) {
-      p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
-
-      if (p2Counter < width && p2Counter != 0 || p2Counter == (-width ~/ 4)) {
-        p2Counter++;
-      } else {
-        p2Counter = -width ~/ 2;
-      }
-
-      if (p1Counter > -width && p1Counter != 0 || p1Counter == (width ~/ 4)) {
-        p1Counter--;
-      } else {
-        p1Counter = width ~/ 2;
-      }
-
-      if (mounted) setState(() {});
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

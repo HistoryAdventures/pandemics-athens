@@ -123,7 +123,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         y: mouseY,
         objWave: objWave,
       ),
-    )..debounceTime(const Duration(minutes: 1));
+    );
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
@@ -196,11 +196,6 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             child: Stack(
               children: [
                 const HtmlElementView(viewType: AssetsPath.gifBackground4),
-                // Image.asset(AssetsPath.gifBackground4),
-                // GifBackground(
-                //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                //   asset: AssetsPath.gifBackground4,
-                // ),
                 StreamBuilder<AnimatedParticleModel>(
                   stream: animatedParticlesStream,
                   builder: (context, snapshot) {
