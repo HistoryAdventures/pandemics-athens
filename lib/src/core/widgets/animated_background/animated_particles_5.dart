@@ -4,13 +4,12 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 import '../../utils/assets_path.dart';
 import '../../utils/styles.dart';
-import '../animated_widgets/gif_contrrol.dart';
 import 'animated_viruses.dart';
 import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
-import 'gif_background_widget.dart';
 
 class AnimatedParticlesFive extends StatefulWidget {
   final BoxConstraints constraints;

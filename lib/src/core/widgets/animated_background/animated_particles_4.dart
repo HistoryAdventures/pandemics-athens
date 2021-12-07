@@ -1,4 +1,6 @@
-import 'dart:ui';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,26 +28,29 @@ class AnimatedParticlesForth extends StatefulWidget {
   _AnimatedParticlesForthState createState() => _AnimatedParticlesForthState();
 }
 
-class _AnimatedParticlesForthState extends State<AnimatedParticlesForth>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  int p1Counter = 0, p2Counter = 0;
-  bool reversed = false;
+class _AnimatedParticlesForthState extends State<AnimatedParticlesForth> {
+  int p2Counter = 0;
 
   @override
   void initState() {
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground4,
+      (int id) => html.ImageElement()
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground4
+        ..width = widget.constraints.maxWidth.toInt()
+        ..height = widget.constraints.maxHeight.toInt()
+        ..style.border = 'none',
+    );
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Times.backgrounAnimationDuration,
-    );//..repeat(reverse: true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        const HtmlElementView(viewType: AssetsPath.gifBackground4),
         AnimatesViruses(
           size: Size(width * 2, height * 2),
           targetOffset: Offset(0.25 * p2Counter - width - widget.mouseX / 6,
@@ -167,25 +172,11 @@ class _AnimatedParticlesForthState extends State<AnimatedParticlesForth>
     );
   }
 
-  void _handleParticleAnimation() {
-    if (_controller.isAnimating) {
-      p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
-      p2Counter < width * 3 ? p2Counter++ : p2Counter = 0;
-      if (mounted) setState(() {});
-    }
-  }
-
   @override
   void didChangeDependencies() {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    _controller.addListener(_handleParticleAnimation);
-    super.didChangeDependencies();
-  }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    super.didChangeDependencies();
   }
 }

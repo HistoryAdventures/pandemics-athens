@@ -1,4 +1,6 @@
-import 'dart:ui';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,6 @@ import '../../utils/styles.dart';
 import 'animated_viruses.dart';
 import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
-import 'gif_background_widget.dart';
 
 class AnimatedParticlesSixth extends StatefulWidget {
   final BoxConstraints constraints;
@@ -29,37 +30,56 @@ class AnimatedParticlesSixth extends StatefulWidget {
   _AnimatedParticlesSixthState createState() => _AnimatedParticlesSixthState();
 }
 
-class _AnimatedParticlesSixthState extends State<AnimatedParticlesSixth>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
+class _AnimatedParticlesSixthState extends State<AnimatedParticlesSixth> {
   int p1Counter = 0, p2Counter = 0;
-  bool reversed = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Times.backgrounAnimationDuration,
-    )..repeat(reverse: true);
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground6,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground6
+        ..width = widget.constraints.maxWidth.toInt()
+        ..height = widget.constraints.maxHeight.toInt(),
+    );
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifVirus,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifVirus
+        ..style.objectFit = 'contain'
+        ..height = (widget.constraints.maxHeight * 0.55).toInt()
+        ..width = (widget.constraints.maxWidth * 0.55).toInt(),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GifBackground(
-          size: Size(
-            widget.constraints.maxWidth,
-            widget.constraints.maxHeight,
-          ),
-          asset: AssetsPath.gifBackground6,
-        ),
+        const HtmlElementView(viewType: AssetsPath.gifBackground6),
         AnimatesViruses(
           size: Size(width * 2, height * 2),
-          targetOffset: Offset(-0.25 * p2Counter - widget.mouseX / 6,
-              0.14 * p2Counter - height - (widget.mouseY / 6)),
+          targetOffset: Offset(
+            -0.25 * p2Counter - widget.mouseX / 6,
+            0.14 * p2Counter - height - (widget.mouseY / 6),
+          ),
           path: IAppAssets().getAssetPaths(BackgroundPaths.backgroundPath6)[1],
           duration: 12000,
           opacity: 1,
@@ -186,39 +206,10 @@ class _AnimatedParticlesSixthState extends State<AnimatedParticlesSixth>
           width: widget.constraints.maxWidth * 0.55,
           child: Transform.translate(
             offset: Offset(widget.offset.dx * 0.02, widget.offset.dy * 0.01),
-            child: Image.asset(AssetsPath.gifVirus),
+            child: const HtmlElementView(viewType: AssetsPath.gifVirus),
           ),
         ),
       ],
     );
-  }
-
-  void _handleParticleAnimation() {
-    if (_controller.isAnimating) {
-      p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
-      p2Counter < width * 4 ? p2Counter++ : p2Counter = 0;
-      // if (p2Counter < width * 3 && p2Counter != 0 ||
-      //     p2Counter == (-width ~/ 4)) {
-      //   p2Counter++;
-      // } else {
-      //   p2Counter = -width ~/ 2;
-      // }
-
-      if (mounted) setState(() {});
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-    _controller.addListener(_handleParticleAnimation);
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
