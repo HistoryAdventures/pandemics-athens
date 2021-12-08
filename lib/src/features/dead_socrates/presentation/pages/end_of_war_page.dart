@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
 import '../../../../core/router.gr.dart';
 
@@ -36,9 +38,20 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
 
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
+
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
+
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    );
+
     super.initState();
   }
 
@@ -48,10 +61,11 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
 
     socratesList = [
       SocratesInfoModel(
-          description: locale.theSicilianExpeditionText,
-          image: AssetsPath.endOfWar1,
-          name: locale.theSicilianExpedition,
-          imageText: locale.theSicilianExpeditionTextImage),
+        description: locale.theSicilianExpeditionText,
+        image: AssetsPath.endOfWar1,
+        name: locale.theSicilianExpedition,
+        imageText: locale.theSicilianExpeditionTextImage,
+      ),
       SocratesInfoModel(
         name: locale.theWallsCrumble,
         description: locale.theWallsCrumbleText,
@@ -66,6 +80,12 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
       ),
     ];
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    animatedParticlesBS.close();
+    super.dispose();
   }
 
   @override
@@ -86,19 +106,27 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
           }
           mouseX = (e.position.dx - width / 2) / 20;
           mouseY = (e.position.dy - height / 2) / 20;
-          setState(() {
-            offset = e.position;
-          });
+
+          offset = e.position;
+
+          animatedParticlesBS.sink.add(
+            AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+          );
         },
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(
             children: [
-              AnimatedParticlesSixth(
-                constraints: constraints,
-                mouseY: mouseY,
-                mouseX: mouseX,
-                objWave: objWave,
-                offset: offset,
+              StreamBuilder<AnimatedParticleModel>(
+                stream: animatedParticlesBS.stream,
+                builder: (context, snapshot) {
+                  return AnimatedParticlesSixth(
+                    constraints: constraints,
+                    mouseY: snapshot.data!.x,
+                    mouseX: snapshot.data!.y,
+                    objWave: snapshot.data!.objWave,
+                    offset: offset,
+                  );
+                },
               ),
               CardTextAndImageWidget(
                   titleText: locale.chapter1PlagueAndPersecution,

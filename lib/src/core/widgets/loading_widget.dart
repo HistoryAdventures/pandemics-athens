@@ -5,10 +5,10 @@ import '../utils/styles.dart';
 import 'animated_widgets/pulsing_widget.dart';
 
 class LoadingWidget extends StatelessWidget {
-  final String loadingCound;
+  final String? loadingCound;
   const LoadingWidget({
     Key? key,
-    required this.loadingCound,
+    this.loadingCound,
   }) : super(key: key);
 
   @override
@@ -29,10 +29,11 @@ class LoadingWidget extends StatelessWidget {
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
               ),
-              Text(
-                '$loadingCound%',
-                style: const TextStyle(fontSize: 30, color: Colors.white),
-              )
+              if (loadingCound != null)
+                Text(
+                  '$loadingCound%',
+                  style: const TextStyle(fontSize: 30, color: Colors.white),
+                )
             ],
           ),
         ),

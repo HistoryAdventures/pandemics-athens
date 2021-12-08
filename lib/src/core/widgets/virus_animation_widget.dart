@@ -43,9 +43,11 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
       ui.platformViewRegistry.registerViewFactory(
         element,
         (int id) => html.ImageElement()
-          ..style.border = 'none'
           // ignore: unsafe_html
           ..src = element
+          ..height = (widget.constraints!.height * 0.4).toInt()
+          ..width = (widget.constraints!.height * 0.4).toInt()
+          ..style.border = 'none'
           ..style.objectFit = 'contain',
       );
     });
@@ -134,8 +136,7 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                     left: widget.constraints!.width * 0.05,
                     child: Clickable(
                       onPressed: widget.onTapEbola,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
+                      child: SizedBox(
                         width: widget.constraints!.height * 0.4,
                         child: IgnorePointer(
                           child: HtmlElementView(

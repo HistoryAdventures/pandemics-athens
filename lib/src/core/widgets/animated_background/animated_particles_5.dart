@@ -1,14 +1,15 @@
-import 'dart:ui';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 import '../../utils/assets_path.dart';
 import '../../utils/styles.dart';
-import '../animated_widgets/gif_contrrol.dart';
 import 'animated_viruses.dart';
 import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
-import 'gif_background_widget.dart';
 
 class AnimatedParticlesFive extends StatefulWidget {
   final BoxConstraints constraints;
@@ -28,32 +29,38 @@ class AnimatedParticlesFive extends StatefulWidget {
   _AnimatedParticlesFiveState createState() => _AnimatedParticlesFiveState();
 }
 
-class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller;
-
+class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive> {
   double objWave = 0;
   int direction = 1;
   double mouseX = 100;
   double mouseY = 100;
-  int p1Counter = 0, p2Counter = 0, p3Counter = 0;
-  bool reversed = false;
-  late GifController controller;
+  int p2Counter = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Times.backgrounAnimationDuration,
-    )..repeat(reverse: true);
-    controller = GifController(vsync: this);
 
-    controller.repeat(
-      min: 0,
-      max: 150,
-      period: const Duration(seconds: 4),
-      reverse: true,
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground5,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground5
+        ..width = widget.constraints.maxWidth.toInt()
+        ..height = widget.constraints.maxHeight.toInt(),
+    );
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifVirus,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifVirus
+        ..style.objectFit = 'contain'
+        ..height = (widget.constraints.maxHeight * 0.5).toInt()
+        ..width = (widget.constraints.maxWidth * 0.5).toInt(),
     );
   }
 
@@ -61,7 +68,6 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
   void didChangeDependencies() {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    _controller.addListener(_handleParticleAnimation);
     super.didChangeDependencies();
   }
 
@@ -69,13 +75,7 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GifBackground(
-          size: Size(
-            widget.constraints.maxWidth,
-            widget.constraints.maxHeight,
-          ),
-          asset: AssetsPath.gifBackground5,
-        ),
+        const HtmlElementView(viewType: AssetsPath.gifBackground5),
         AnimatedVirusBodies(
           left: widget.constraints.maxWidth * 0.304,
           top: widget.constraints.maxHeight * 0.138,
@@ -243,12 +243,11 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
           height: widget.constraints.maxHeight * 0.5,
           width: widget.constraints.maxWidth * 0.5,
           child: Transform.translate(
-            offset: Offset(widget.mouseX / 4 + widget.objWave / 4,
-                widget.mouseY / -4 + widget.objWave / -4),
-            child: GifImage(
-              image: const AssetImage(AssetsPath.gifVirus),
-              controller: controller,
+            offset: Offset(
+              widget.mouseX / 4 + widget.objWave / 4,
+              widget.mouseY / -4 + widget.objWave / -4,
             ),
+            child: const HtmlElementView(viewType: AssetsPath.gifVirus),
           ),
         ),
         AnimatesViruses(
@@ -271,31 +270,5 @@ class _AnimatedParticlesFiveState extends State<AnimatedParticlesFive>
         ),
       ],
     );
-  }
-
-  void _handleParticleAnimation() {
-    if (_controller.isAnimating) {
-      p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
-
-      if (p2Counter < width && p2Counter != 0 || p2Counter == (-width ~/ 4)) {
-        p2Counter++;
-      } else {
-        p2Counter = -width ~/ 2;
-      }
-
-      if (p3Counter > -width && p3Counter != 0 || p3Counter == (width ~/ 4)) {
-        p3Counter--;
-      } else {
-        p3Counter = width ~/ 2;
-      }
-
-      if (mounted) setState(() {});
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

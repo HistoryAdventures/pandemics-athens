@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
+import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -28,8 +30,6 @@ class BodyInfoPage extends StatefulWidget {
 class _BodyInfoPageState extends State<BodyInfoPage>
     with SingleTickerProviderStateMixin {
   late AppLocalizations locale;
-  late Animation<double> animation;
-  late AnimationController controller;
   late List<BodyOnTapsModel> listCharacters;
   late BodyModel bodyModel;
 
@@ -37,22 +37,6 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   int direction = 1;
   double mouseX = 100;
   double mouseY = 100;
-
-  List<String> contentImages = [
-    AssetsPath.manIntroImage,
-    AssetsPath.manheadImage,
-    AssetsPath.manthroatImage,
-    AssetsPath.manChestImage,
-    AssetsPath.manfillImage,
-    AssetsPath.manstomachImage,
-    AssetsPath.manhandsImage,
-    AssetsPath.gifVirus,
-    AssetsPath.gifTyphus,
-    AssetsPath.gifSmallpox,
-    AssetsPath.gifTyphoid,
-    AssetsPath.gifEbola,
-    AssetsPath.gifBubonic,
-  ];
 
   bool isImageloaded = false;
   bool isSoundOn = false;
@@ -62,18 +46,21 @@ class _BodyInfoPageState extends State<BodyInfoPage>
 
   String? hoveredItemIndex;
 
-  // Future<void> init() async {
-  //   final loadedAssets = await loadContent(contentImages);
-  //   if (loadedAssets == true) {
-  //     setState(() {
-  //       isImageloaded = true;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       isImageloaded = false;
-  //     });
-  //   }
-  // }
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
+
+  @override
+  void initState() {
+    NavigationSharedPreferences.getNavigationListFromSF();
+
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
+      AnimatedParticleModel(
+        x: mouseX,
+        y: mouseY,
+        objWave: objWave,
+      ),
+    );
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -138,21 +125,13 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   }
 
   @override
-  void initState() {
-    // init();
-    NavigationSharedPreferences.getNavigationListFromSF();
-
-    controller = AnimationController(duration: Times.slower, vsync: this);
-    animation = Tween<double>(begin: 80, end: 50).animate(controller);
-    super.initState();
+  void dispose() {
+    animatedParticlesBS.close();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // if (isImageloaded == false) {
-    //   return LoadingWidget();
-    // }
-
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: MouseRegion(
@@ -168,17 +147,25 @@ class _BodyInfoPageState extends State<BodyInfoPage>
           }
           mouseX = (e.position.dx - width / 2) / 20;
           mouseY = (e.position.dy - height / 2) / 20;
-          setState(() {});
+
+          animatedParticlesBS.sink.add(
+            AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+          );
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
             return Stack(
               children: [
-                AnimatedParticlesThird(
-                  constraints: constraints,
-                  mouseX: mouseX,
-                  mouseY: mouseY,
-                  objWave: objWave,
+                StreamBuilder<AnimatedParticleModel>(
+                  stream: animatedParticlesBS.stream,
+                  builder: (context, snapshot) {
+                    return AnimatedParticlesThird(
+                      constraints: constraints,
+                      mouseX: snapshot.data!.x,
+                      mouseY: snapshot.data!.y,
+                      objWave: snapshot.data!.objWave,
+                    );
+                  },
                 ),
                 Align(
                   child: Container(

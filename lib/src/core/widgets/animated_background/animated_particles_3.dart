@@ -1,14 +1,14 @@
-import 'dart:ui';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/assets_path.dart';
-import '../../utils/styles.dart';
 import 'animated_viruses.dart';
 import 'animatied_virus_bodies.dart';
 import 'app_assets.dart';
-import 'gif_background_widget.dart';
 
 class AnimatedParticlesThird extends StatefulWidget {
   final BoxConstraints constraints;
@@ -28,32 +28,35 @@ class AnimatedParticlesThird extends StatefulWidget {
   _AnimatedParticlesThirdState createState() => _AnimatedParticlesThirdState();
 }
 
-class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
+class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird> {
   double objWave = 0;
   int direction = 1;
   double mouseX = 100;
   double mouseY = 100;
   int p1Counter = 0, p2Counter = 0, p3Counter = 0;
   bool reversed = false;
-  double width = window.physicalSize.width / window.devicePixelRatio,
-      height = window.physicalSize.height / window.devicePixelRatio;
+  double width = ui.window.physicalSize.width / ui.window.devicePixelRatio,
+      height = ui.window.physicalSize.height / ui.window.devicePixelRatio;
+
   @override
   void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Times.backgrounAnimationDuration,
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      AssetsPath.gifBackground3,
+      (int id) => html.ImageElement()
+        ..style.border = 'none'
+        // ignore: unsafe_html
+        ..src = AssetsPath.gifBackground3
+        ..width = widget.constraints.maxWidth.toInt()
+        ..height = widget.constraints.maxHeight.toInt(),
     );
+    super.initState();
   }
 
   @override
   void didChangeDependencies() {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    _controller.addListener(_handleParticleAnimation);
     super.didChangeDependencies();
   }
 
@@ -61,10 +64,7 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GifBackground(
-          size: Size(widget.constraints.maxWidth, widget.constraints.maxHeight),
-          asset: AssetsPath.gifBackground3,
-        ),
+        const HtmlElementView(viewType: AssetsPath.gifBackground3),
         AnimatedVirusBodies(
           left: widget.constraints.maxWidth * 0.901,
           top: widget.constraints.maxHeight * 0.685,
@@ -245,31 +245,5 @@ class _AnimatedParticlesThirdState extends State<AnimatedParticlesThird>
         ),
       ],
     );
-  }
-
-  void _handleParticleAnimation() {
-    if (_controller.isAnimating) {
-      p1Counter < width * 2 ? p1Counter++ : p1Counter = 0;
-
-      if (p2Counter < width && p2Counter != 0 || p2Counter == (-width ~/ 4)) {
-        p2Counter++;
-      } else {
-        p2Counter = -width ~/ 2;
-      }
-
-      if (p3Counter > -width && p3Counter != 0 || p3Counter == (width ~/ 4)) {
-        p3Counter--;
-      } else {
-        p3Counter = width ~/ 2;
-      }
-
-      // if (mounted) setState(() {});
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

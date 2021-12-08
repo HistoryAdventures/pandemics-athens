@@ -1,5 +1,3 @@
-import 'dart:ui' as ui;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -55,11 +53,12 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   double mouseX = 100;
   double mouseY = 100;
 
-  late BehaviorSubject<AnimatedParticleModel> animatedParticlesStream;
+  late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
+
     virusModel = VirusModel(
       description: locals.introVirusText,
       title: locals.introVirus,
@@ -119,39 +118,18 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
 
-    animatedParticlesStream = BehaviorSubject<AnimatedParticleModel>.seeded(
+    animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
       AnimatedParticleModel(
         x: mouseX,
         y: mouseY,
         objWave: objWave,
       ),
-    )..debounceTime(const Duration(minutes: 1));
-
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-      AssetsPath.gifBackground4,
-      (int id) => html.ImageElement()
-        ..style.border = 'none'
-        // ignore: unsafe_html
-        ..src = AssetsPath.gifBackground4,
     );
-
-    // controller = GifController(vsync: this);
-
-    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-    //   controller.repeat(
-    //     min: 0,
-    //     max: 150,
-    //     period: const Duration(seconds: 4),
-    //     reverse: true,
-    //   );
-    // });
   }
 
   @override
   void dispose() {
-    animatedParticlesStream.close();
-    // controller.dispose();
+    animatedParticlesBS.close();
     super.dispose();
   }
 
@@ -172,7 +150,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
           mouseX = (e.position.dx - width / 2) / 20;
           mouseY = (e.position.dy - height / 2) / 20;
 
-          animatedParticlesStream.sink.add(
+          animatedParticlesBS.sink.add(
             AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
           );
         },
@@ -197,14 +175,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             },
             child: Stack(
               children: [
-                const HtmlElementView(viewType: AssetsPath.gifBackground4),
-                // Image.asset(AssetsPath.gifBackground4),
-                // GifBackground(
-                //   size: Size(constraints.maxWidth, constraints.maxHeight),
-                //   asset: AssetsPath.gifBackground4,
-                // ),
                 StreamBuilder<AnimatedParticleModel>(
-                  stream: animatedParticlesStream,
+                  stream: animatedParticlesBS.stream,
                   builder: (context, snapshot) {
                     return AnimatedParticlesForth(
                       constraints: constraints,
