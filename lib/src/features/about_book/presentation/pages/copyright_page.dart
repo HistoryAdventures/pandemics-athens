@@ -8,6 +8,8 @@ import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
+import '../../../../core/router.gr.dart';
+
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
 import '../../../../core/widgets/widgets.dart';
@@ -95,15 +97,10 @@ class _CopyrightPageState extends State<CopyrightPage> {
                         textTitle: locale.aboutTheBook,
                         onTap: () {
                           LeafDetails.currentVertex = 26;
-                          // LeafDetails.currentVertex = 26;
+                          LeafDetails.visitedVertexes.add(26);
                           NavigationSharedPreferences.upDateShatedPreferences();
-
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
+                          context.router
+                              .replace(const FurtherReadingPageRoute());
                         }),
                   ),
                 ),

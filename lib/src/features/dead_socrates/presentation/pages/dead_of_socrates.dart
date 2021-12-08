@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/keep_going_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -140,17 +141,14 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                   onPressed: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
+                    context.router.replace(QuitMedicinePageRoute());
                   },
                   icon: const Icon(Icons.arrow_upward),
                   iconSize: HW.getHeight(40, context),
                 ),
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

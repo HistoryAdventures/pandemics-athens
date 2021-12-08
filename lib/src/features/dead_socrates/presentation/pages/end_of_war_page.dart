@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
+import '../../../../core/router.gr.dart';
 
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/shared_preferenses.dart';
@@ -112,18 +113,15 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
                       LeafDetails.currentVertex = 15;
+                      LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();
-
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
+                      context.router.replace(const DeadOfSocratesPageRoute());
                     }),
               ),
               SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

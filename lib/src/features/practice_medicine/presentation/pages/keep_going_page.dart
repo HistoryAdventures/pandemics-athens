@@ -65,12 +65,10 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                     textSubTitle: locals.todoNoHarm,
                     textTitle: locals.chapter1,
                     onTap: () {
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
+                      LeafDetails.currentVertex = 14;
+                      LeafDetails.visitedVertexes.add(14);
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      context.router.replace(const PracticeMedicineRoute());
                     }),
               ),
               SoundAndMenuWidget(

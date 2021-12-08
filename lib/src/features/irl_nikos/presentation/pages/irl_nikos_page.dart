@@ -65,14 +65,9 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 icon: const Icon(Icons.arrow_upward_sharp),
                 onPressed: () {
                   LeafDetails.currentVertex = 17;
+                  LeafDetails.visitedVertexes.add(17);
                   NavigationSharedPreferences.upDateShatedPreferences();
-
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
+                  context.router.replace(const QuizPageRoute());
                 },
                 color: AppColors.white,
               ),

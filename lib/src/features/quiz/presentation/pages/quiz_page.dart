@@ -234,14 +234,9 @@ class _QuizPageState extends State<QuizPage> {
         widget: IconButtonWidget(
           onPressed: () {
             LeafDetails.currentVertex = 15;
+            LeafDetails.visitedVertexes.add(15);
             NavigationSharedPreferences.upDateShatedPreferences();
-
-            if (kIsWeb) {
-              html.window.history.back();
-              context.router.pop();
-            } else {
-              context.router.pop();
-            }
+            context.router.replace(const DeadOfSocratesPageRoute());
           },
           icon: const Icon(Icons.arrow_upward),
         ),

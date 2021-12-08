@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/practice_medicine_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -58,12 +59,10 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
                   onTap: () {
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
+                    LeafDetails.currentVertex = 14;
+                    LeafDetails.visitedVertexes.add(14);
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.replace(const PracticeMedicineRoute());
                   }),
             ),
             SoundAndMenuWidget(
@@ -101,10 +100,9 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                 color: AppColors.black06,
                 child: Text(
                   locals.quitMedicicneText,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      ?.copyWith(color: AppColors.white,fontSize: TextFontSize.getHeight(16, context)),
+                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      color: AppColors.white,
+                      fontSize: TextFontSize.getHeight(16, context)),
                 ),
               ),
             ),

@@ -137,15 +137,10 @@ class _SourcePageState extends State<SourcePage> {
                             textTitle: locale.aboutTheBook,
                             onTap: () {
                               LeafDetails.currentVertex = 24;
+                              LeafDetails.visitedVertexes.add(24);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
-
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
+                              context.router.replace(const CreditsPageRoute());
                             }),
                       ),
                       Flexible(

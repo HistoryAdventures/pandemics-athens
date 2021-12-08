@@ -16,6 +16,7 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/document.dart';
 import '../widgets/points.dart';
+import '../../../../core/router.gr.dart';
 
 class DocumentPage extends StatefulWidget {
   const DocumentPage({Key? key}) : super(key: key);
@@ -412,14 +413,10 @@ class _DocumentPageState extends State<DocumentPage>
                         textTitle: locale.chapter1,
                         onTap: () {
                           LeafDetails.currentVertex = 8;
-                          NavigationSharedPreferences.upDateShatedPreferences();
+                          LeafDetails.visitedVertexes.add(8);
 
-                          if (kIsWeb) {
-                            html.window.history.back();
-                            context.router.pop();
-                          } else {
-                            context.router.pop();
-                          }
+                          NavigationSharedPreferences.upDateShatedPreferences();
+                          context.router.replace(const PanaromaLeftPageRoute());
                         }),
                   ),
                   Positioned(
@@ -440,7 +437,7 @@ class _DocumentPageState extends State<DocumentPage>
                             iconData: Icons.crop_free,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:24),
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: CircleButton(
                               onPressed: _scaleUp,
                               iconData: Icons.add,

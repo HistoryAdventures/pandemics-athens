@@ -315,14 +315,20 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     onPressed: () {
                       LeafDetails.currentVertex = 0;
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      if (kIsWeb) {
-                        html.window.history.back();
-                        context.router.pop();
-                      } else {
-                        context.router.pop();
-                      }
+                      // if (kIsWeb) {
+                      //   html.window.history.back();
+                      //   context.router.pop();
+                      // } else {
+                      //   context.router.pop();
+                      // }
+                      LeafDetails.currentVertex = 0;
+
+                      context.router.replace(
+                          LeandingPageRoute(navigateFromNavigatorPage: true));
                     }),
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+                icons: isSoundOn
+                    ? AssetsPath.iconVolumeOn
+                    : AssetsPath.iconVolumeOff,
                 onTapVolume: isSoundOn
                     ? () {
                         setState(() {

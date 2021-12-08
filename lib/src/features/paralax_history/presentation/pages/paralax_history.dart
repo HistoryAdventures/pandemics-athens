@@ -572,13 +572,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         icon: const Icon(Icons.arrow_upward_sharp),
         onPressed: () {
           LeafDetails.currentVertex = 1;
+          LeafDetails.visitedVertexes.add(1);
           NavigationSharedPreferences.upDateShatedPreferences();
-          if (kIsWeb) {
-            html.window.history.back();
-            context.router.pop();
-          } else {
-            context.router.pop();
-          }
+          context.router.replace(const GlossaryPageRoute());
         },
       ),
       icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,

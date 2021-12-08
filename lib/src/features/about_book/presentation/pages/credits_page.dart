@@ -100,15 +100,11 @@ class _CreditsPageState extends State<CreditsPage> {
                             textTitle: locale.aboutTheBook,
                             onTap: () {
                               LeafDetails.currentVertex = 23;
+                              LeafDetails.visitedVertexes.add(23);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
-
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
+                              context.router
+                                  .replace(const AboutBookPageRoute());
                             }),
                       ),
                       Flexible(

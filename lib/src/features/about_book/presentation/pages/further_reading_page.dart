@@ -100,15 +100,10 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                             textTitle: locale.aboutTheBook,
                             onTap: () {
                               LeafDetails.currentVertex = 25;
+                              LeafDetails.visitedVertexes.add(25);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
-
-                              if (kIsWeb) {
-                                html.window.history.back();
-                                context.router.pop();
-                              } else {
-                                context.router.pop();
-                              }
+                              context.router.replace(const SourcePageRoute());
                             }),
                       ),
                       Flexible(

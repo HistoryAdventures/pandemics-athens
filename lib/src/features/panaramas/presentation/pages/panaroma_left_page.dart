@@ -378,14 +378,9 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
               textTitle: locals.chapter1,
               onTap: () {
                 LeafDetails.currentVertex = 2;
+                LeafDetails.visitedVertexes.add(2);
                 NavigationSharedPreferences.upDateShatedPreferences();
-
-                if (kIsWeb) {
-                  html.window.history.back();
-                  context.router.pop();
-                } else {
-                  context.router.pop();
-                }
+                context.router.replace(const ParalaxHistoryPageRoute());
               }),
         ),
         SoundAndMenuWidget(

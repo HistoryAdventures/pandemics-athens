@@ -126,14 +126,9 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       iconSize: HW.getHeight(40, context),
                       onPressed: () {
                         LeafDetails.currentVertex = 18;
+                        LeafDetails.visitedVertexes.add(18);
                         NavigationSharedPreferences.upDateShatedPreferences();
-
-                        if (kIsWeb) {
-                          html.window.history.back();
-                          context.router.pop();
-                        } else {
-                          context.router.pop();
-                        }
+                        context.router.replace(const IrlNikosPageRoute());
                       },
                       icon: const Icon(
                         Icons.arrow_upward_sharp,
