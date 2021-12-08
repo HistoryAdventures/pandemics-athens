@@ -15,7 +15,7 @@ class ArrowRightTextWidget extends StatelessWidget {
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
-      this.right = 64,
+      this.right = 65,
       this.bottom = 48,
       required this.onTap});
 
@@ -39,32 +39,32 @@ class ArrowRightTextWidget extends StatelessWidget {
                   Flexible(
                     child: AutoSizeText(
                       textTitle.toUpperCase(),
-                      maxFontSize: 14,
+                      maxFontSize: 13,
                       textAlign: TextAlign.right,
                       maxLines: 1,
                       style: Theme.of(context).textTheme.caption?.copyWith(
-                          fontSize: 14, color: color ?? Colors.black),
+                          fontSize: 13, color: color ?? Colors.black),
                     ),
                   ),
                   Flexible(
                     child: AutoSizeText(
                       textSubTitle.toUpperCase(),
-                      maxFontSize: 24,
+                      maxFontSize: 22,
                       maxLines: 1,
                       textAlign: TextAlign.right,
                       style: Theme.of(context).textTheme.headline2?.copyWith(
-                          fontSize: 24, color: color ?? Colors.black),
+                          fontSize: 22, color: color ?? Colors.black),
                     ),
                   )
                 ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 24),
+              margin: const EdgeInsets.only(left: 8),
               child: Icon(
-                Icons.arrow_forward,
+                Icons.arrow_forward_sharp,
                 color: color ?? Colors.black,
-                size: HW.getWidth(40, context),
+                size: HW.getWidth(60, context),
               ),
             ),
           ],

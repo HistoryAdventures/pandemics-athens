@@ -102,36 +102,10 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
             //           image: AssetImage(AssetsPath.virusLoc2),
             //           fit: BoxFit.cover)),
             // ),
-            GestureDetector(
-              onVerticalDragUpdate: (d) {
-                dragEndOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-              },
-              onVerticalDragStart: (d) {
-                dragStartOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-                dragEndOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-              },
-              onVerticalDragEnd: (d) {
-                if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 20) {
-                  return;
-                }
-                if (dragEndOffset.dy > dragStartOffset.dy) {
-                  LeafDetails.currentVertex = 11;
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                color: Colors.transparent,
-              ),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.transparent,
             ),
             Positioned(
                 top: HW.getHeight(192, context),

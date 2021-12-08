@@ -76,30 +76,10 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
             //           image: AssetImage(AssetsPath.virusLoc1),
             //           fit: BoxFit.cover)),
             // ),
-            GestureDetector(
-              onVerticalDragUpdate: (d) {
-                dragEndOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-              },
-              onVerticalDragStart: (d) {
-                dragStartOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-                dragEndOffset =
-                    Offset(d.globalPosition.dx, d.globalPosition.dy);
-              },
-              onVerticalDragEnd: (d) {
-                if ((dragEndOffset.dy - dragStartOffset.dy).abs() < 20) {
-                  return;
-                }
-                if (dragEndOffset.dy < dragStartOffset.dy) {
-                  context.router.push(const VirusLocationSecondPageRoute());
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                color: Colors.transparent,
-              ),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.transparent,
             ),
             Positioned(
                 top: HW.getHeight(192, context),

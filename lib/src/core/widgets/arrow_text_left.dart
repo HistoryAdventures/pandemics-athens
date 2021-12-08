@@ -32,11 +32,11 @@ class ArrowLeftTextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 24),
+              margin: const EdgeInsets.only(right: 8),
               child: Icon(
                 Icons.arrow_back,
                 color: color ?? Colors.black,
-                size: HW.getWidth(40, context),
+                size: HW.getWidth(60, context),
               ),
             ),
             Flexible(
@@ -49,19 +49,19 @@ class ArrowLeftTextWidget extends StatelessWidget {
                       textTitle.toUpperCase(),
                       textAlign: TextAlign.left,
                       maxLines: 1,
-                      maxFontSize: 14,
+                      maxFontSize: 13,
                       style: Theme.of(context).textTheme.caption?.copyWith(
-                          fontSize: 14, color: color ?? Colors.black),
+                          fontSize: 13, color: color ?? Colors.black),
                     ),
                   ),
                   Flexible(
                     child: AutoSizeText(
                       textSubTitle.toUpperCase(),
                       textAlign: TextAlign.left,
-                      maxFontSize: 24,
+                      maxFontSize: 23,
                       maxLines: 1,
                       style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: 24,
+                            fontSize: 23,
                             color: color ?? Colors.black,
                           ),
                     ),

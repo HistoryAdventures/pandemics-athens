@@ -195,7 +195,7 @@ class AssetsPath {
   static const String gifVirusTyphoid =
       'assets/animated_backgrounds/2/virus/typhoid.gif';
 
-  static const String gifVirus = 'assets/animated_backgrounds/virus.gif';
+  static const String gifVirus = 'assets/assets/animated_backgrounds/virus.gif';
 
   static const String gifSmallpox = 'assets/virus_gif/smallpox.gif';
 

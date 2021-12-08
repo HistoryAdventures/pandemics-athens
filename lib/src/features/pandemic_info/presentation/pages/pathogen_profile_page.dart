@@ -267,7 +267,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                   widget: Visibility(
                     visible: soundAndMewnuColor == AppColors.black100,
                     child: IconButtonWidget(
-                      iconSize: HW.getHeight(40, context),
+                      iconSize: HW.getHeight(50, context),
                       icon: const Icon(Icons.arrow_upward_sharp),
                       onPressed: () {
                         LeafDetails.currentVertex = 9;

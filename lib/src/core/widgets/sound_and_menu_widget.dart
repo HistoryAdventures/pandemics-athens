@@ -23,7 +23,8 @@ class SoundAndMenuWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+        padding: EdgeInsets.fromLTRB(
+            HW.getWidth(60, context), 24, HW.getWidth(60, context), 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,8 +32,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapVolume,
               child: SizedBox(
-                height: HW.getHeight(40, context),
-                width: HW.getWidth(40, context),
+                height: HW.getHeight(25, context),
+                width: HW.getWidth(26, context),
                 child: Image.asset(
                   icons,
                   color: color ?? Colors.black,
@@ -43,8 +44,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapMenu,
               child: SizedBox(
-                height: HW.getHeight(40, context),
-                width: HW.getWidth(40, context),
+                height: HW.getHeight(35, context),
+                width: HW.getWidth(35, context),
                 child: Image.asset(
                   AssetsPath.iconMenu,
                   color: color ?? Colors.black,

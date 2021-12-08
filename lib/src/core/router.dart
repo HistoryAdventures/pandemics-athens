@@ -71,6 +71,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
+        initial: true,
         page: PathogenProfilePage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
@@ -135,7 +136,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
-        initial: true,
         page: NavigationPage,
         transitionsBuilder: TransitionsBuilders.slideRight,
         durationInMilliseconds: 500),
