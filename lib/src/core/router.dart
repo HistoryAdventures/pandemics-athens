@@ -43,6 +43,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.fadeIn,
         durationInMilliseconds: 500),
     CustomRoute(
+        initial: true,
         page: VirusesInfoPage,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
@@ -71,7 +72,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
-        initial: true,
         page: PathogenProfilePage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
@@ -93,7 +93,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: VirusLocationPage,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
         durationInMilliseconds: 500),
     CustomRoute(
         page: DocumentPage,

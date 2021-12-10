@@ -170,7 +170,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                 Align(
                   child: Container(
                     margin: EdgeInsets.only(
-                      right: HW.getWidth(129, context),
+                      right: HW.getWidth(131, context),
                     ),
                     child: Row(
                       children: [
@@ -473,17 +473,23 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                   title: title, image: image, descriptiion: text);
             });
           },
-          child: AutoSizeText(title!.toUpperCase(),
+          child: Text(title!.toUpperCase(),
               maxLines: 1,
+              // minFontSize: HW.getHeight(14, context),
               style: bodyModel.title == title || isHoverd
                   ? Theme.of(context)
                       .textTheme
                       .bodyText1
                       ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.grey)),
+                      .copyWith(
+                        fontWeight: FontWeight.w800,
+                        fontSize: HW.getHeight(17, context),
+                      )
+                  : Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: Colors.black.withOpacity(
+                        0.6,
+                      ),
+                      fontSize: HW.getHeight(17, context))),
         ));
   }
 }
