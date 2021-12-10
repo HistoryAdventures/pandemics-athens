@@ -1,3 +1,4 @@
+import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:auto_route/auto_route.dart';
@@ -238,11 +239,9 @@ class _LeandingPageState extends State<LeandingPage> {
     precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
     precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
 
-    final List<Future> precache = AssetsPath.contentImages
-        .map((e) => precacheImage(AssetImage(e), context))
-        .toList();
+    ImagePrecache.precacheImages(AssetsPath.paralaxImages, context);
 
-    await Future.wait(precache);
+    await ImagePrecache.precacheImages(AssetsPath.contentImages, context);
 
     setState(() {
       isImageloaded = true;

@@ -32,6 +32,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
+      initial: true,
       page: LeandingPage,
     ),
     CustomRoute(
@@ -71,7 +72,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
-        initial: true,
         page: PathogenProfilePage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
