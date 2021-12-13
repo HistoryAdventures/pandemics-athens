@@ -114,7 +114,9 @@ class _CharacrterPageState extends State<CharacrterPage> {
         child: Stack(
           children: [
             SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -137,7 +139,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
               left: 0,
               right: 0,
               child: SizedBox(
-                height: HW.getHeight(76, context),
+                height: HW.getHeight(90, context),
                 width: HW.getWidth(276, context),
                 child: Column(
                   children: [
@@ -156,6 +158,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
                         maxLines: 1,
                         style: DefaultTheme.standard.textTheme.subtitle2
                             ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
                                 fontSize: TextFontSize.getHeight(24, context)),
                       ),
                     )
@@ -183,10 +187,12 @@ class _CharacrterPageState extends State<CharacrterPage> {
                                 photo: photo.image,
                                 description: photo.bodyText,
                                 onTap: () {
-                                  context.router.push(CharacterInfoPageRoute(
-                                    listCharacters: list,
-                                    photoHero: photo,
-                                  ));
+                                  context.router
+                                      .push(CharacterInfoPageRoute(
+                                        listCharacters: list,
+                                        photoHero: photo,
+                                      ))
+                                      .then((value) => _startAnimation());
                                 },
                               ),
                             ))
@@ -200,18 +206,19 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   textTitle: locale.athens5thCentury,
                   onTap: () {
                     LeafDetails.currentVertex = 4;
+                    LeafDetails.visitedVertexes.add(4);
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    if (kIsWeb) {
-                      html.window.history.back();
-                      context.router.pop();
-                    } else {
-                      context.router.pop();
-                    }
+
+                    context.router.replace(const MapPageRoute());
                   }),
             ),
           ],
         ),
       );
     });
+  }
+
+  void _startAnimation() {
+    print("start animation");
   }
 }

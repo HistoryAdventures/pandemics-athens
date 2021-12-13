@@ -62,7 +62,7 @@ class ArrowRightTextWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 8),
               child: Icon(
-                Icons.arrow_forward_sharp,
+                Icons.arrow_forward_rounded,
                 color: color ?? Colors.black,
                 size: HW.getWidth(60, context),
               ),

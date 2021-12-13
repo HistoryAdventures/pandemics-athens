@@ -34,7 +34,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(right: 8),
               child: Icon(
-                Icons.arrow_back,
+                Icons.arrow_back_rounded,
                 color: color ?? Colors.black,
                 size: HW.getWidth(60, context),
               ),

@@ -112,11 +112,22 @@ class _CreditsPageState extends State<CreditsPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.asset(AssetsPath.socilaIcons),
+                            Image.asset(
+                              AssetsPath.socilaIcons,
+                            ),
+                            SizedBox(
+                              height: HW.getHeight(14, context),
+                            ),
                             const AutoSizeText(
                               'www.historyadventures.co',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
                               maxLines: 1,
-                            )
+                            ),
+                            SizedBox(
+                              height: HW.getHeight(45, context),
+                            ),
                           ],
                         ),
                       ),
@@ -218,7 +229,8 @@ class _CreditsPageState extends State<CreditsPage> {
                                         UrlLuncherModel(title: 'Nenad Kostic'),
                                         UrlLuncherModel(
                                             title: 'Christina Koval'),
-                                        UrlLuncherModel(title: 'Jerome Bell'),
+                                        UrlLuncherModel(
+                                            title: 'Gustavo Arian Desimone'),
                                         UrlLuncherModel(title: 'Jason Moser'),
                                       ],
                                     ),
