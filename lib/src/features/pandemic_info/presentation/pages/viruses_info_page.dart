@@ -192,6 +192,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                     child: Row(
                       children: [
                         _viruses(constraints),
+                        
                         _descriptionPanel(constraints)
                       ],
                     ),
