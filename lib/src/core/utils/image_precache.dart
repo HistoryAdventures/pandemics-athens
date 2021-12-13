@@ -23,4 +23,8 @@ class ImagePrecache {
       precacheImages(AssetsPath.animatedParticles6Images, context),
     ]);
   }
+
+  static Future<void> precacheVirusGifs(BuildContext context) async {
+    await precacheImages(AssetsPath.virusesInfoPageImages, context);
+  }
 }

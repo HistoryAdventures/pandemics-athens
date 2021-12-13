@@ -3,12 +3,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
-import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/body_info_page.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
-import "package:universal_html/html.dart" as html;
+import 'package:universal_html/html.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/theme.dart';
@@ -20,7 +21,6 @@ import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/virus_model.dart';
-import '../../../../core/router.gr.dart';
 
 class VirusesInfoPage extends StatefulWidget {
   const VirusesInfoPage({Key? key}) : super(key: key);
@@ -55,9 +55,13 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
+  bool showLoading = false;
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
+
+    precacheImages();
 
     virusModel = VirusModel(
       description: locals.introVirusText,
@@ -133,120 +137,145 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     super.dispose();
   }
 
+  Future<void> precacheImages() async {
+    if (window.localStorage.containsKey('virusPageImagesAreCached')) return;
+
+    setState(() {
+      showLoading = true;
+    });
+
+    await Future.wait([
+      ImagePrecache.precacheVirusGifs(context),
+      ImagePrecache.precacheImages(AssetsPath.animatedParticles4Images, context)
+    ]);
+
+    setState(() {
+      showLoading = false;
+    });
+
+    window.localStorage.putIfAbsent('virusPageImagesAreCached', () => 'true');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return MouseRegion(
-        onHover: (e) {
-          if (objWave < 50 && direction == 1) {
-            objWave += .2;
-          } else if (objWave == 50 && direction == 1) {
-            direction = 0;
-          } else if (objWave > -50 && direction == 0) {
-            objWave -= .2;
-          } else if (objWave == -50 && direction == 0) {
-            direction = 1;
-          }
-          mouseX = (e.position.dx - width / 2) / 20;
-          mouseY = (e.position.dy - height / 2) / 20;
+    return Stack(
+      children: [
+        LayoutBuilder(builder: (context, constraints) {
+          return MouseRegion(
+            onHover: (e) {
+              if (objWave < 50 && direction == 1) {
+                objWave += .2;
+              } else if (objWave == 50 && direction == 1) {
+                direction = 0;
+              } else if (objWave > -50 && direction == 0) {
+                objWave -= .2;
+              } else if (objWave == -50 && direction == 0) {
+                direction = 1;
+              }
+              mouseX = (e.position.dx - width / 2) / 20;
+              mouseY = (e.position.dy - height / 2) / 20;
 
-          animatedParticlesBS.sink.add(
-            AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
-          );
-        },
-        child: Scaffold(
-          key: skaffoldKey,
-          endDrawer: const NavigationPage(),
-          body: GestureDetector(
-            onTap: () {
-              setState(() {
-                virusModel.changeState(
-                  description: locals.introVirusText,
-                  title: locals.introVirus,
-                  widgets: [
-                    gifBubonic,
-                    gifTyphus,
-                    gifTyphoid,
-                    gifSmallpox,
-                    gifEbola
-                  ],
-                );
-              });
+              animatedParticlesBS.sink.add(
+                AnimatedParticleModel(x: mouseX, y: mouseY, objWave: objWave),
+              );
             },
-            child: Stack(
-              children: [
-                StreamBuilder<AnimatedParticleModel>(
-                  stream: animatedParticlesBS.stream,
-                  builder: (context, snapshot) {
-                    return AnimatedParticlesForth(
-                      constraints: constraints,
-                      mouseX: snapshot.data!.x,
-                      mouseY: snapshot.data!.y,
-                      objWave: snapshot.data!.objWave,
-                    );
-                  },
-                ),
-                Align(
-                  child: Container(
-                    margin: EdgeInsets.only(right: HW.getWidth(129, context)),
-                    child: Row(
-                      children: [
-                        _viruses(constraints),
-                        
-                        _descriptionPanel(constraints)
+            child: Scaffold(
+              key: skaffoldKey,
+              endDrawer: const NavigationPage(),
+              body: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    virusModel.changeState(
+                      description: locals.introVirusText,
+                      title: locals.introVirus,
+                      widgets: [
+                        gifBubonic,
+                        gifTyphus,
+                        gifTyphoid,
+                        gifSmallpox,
+                        gifEbola
                       ],
+                    );
+                  });
+                },
+                child: Stack(
+                  children: [
+                    StreamBuilder<AnimatedParticleModel>(
+                      stream: animatedParticlesBS.stream,
+                      builder: (context, snapshot) {
+                        return AnimatedParticlesForth(
+                          constraints: constraints,
+                          mouseX: snapshot.data!.x,
+                          mouseY: snapshot.data!.y,
+                          objWave: snapshot.data!.objWave,
+                        );
+                      },
                     ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: ArrowLeftTextWidget(
-                      textSubTitle: locals.whatDidItDo,
-                      textTitle: locals.pathogenProfile,
-                      onTap: () {
-                        // LeafDetails.currentVertex = 12;
-                        // NavigationSharedPreferences.upDateShatedPreferences();
+                    Align(
+                      child: Container(
+                        margin:
+                            EdgeInsets.only(right: HW.getWidth(129, context)),
+                        child: Row(
+                          children: [
+                            _viruses(constraints),
+                            _descriptionPanel(constraints)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: ArrowLeftTextWidget(
+                          textSubTitle: locals.whatDidItDo,
+                          textTitle: locals.pathogenProfile,
+                          onTap: () {
+                            // LeafDetails.currentVertex = 12;
+                            // NavigationSharedPreferences.upDateShatedPreferences();
 
-                        // if (kIsWeb) {
-                        //   html.window.history.back();
-                        //   context.router.pop();
-                        // } else {
-                        //   context.router.pop();
-                        // }
-                        LeafDetails.currentVertex = 12;
-                        LeafDetails.visitedVertexes.add(12);
+                            // if (kIsWeb) {
+                            //   html.window.history.back();
+                            //   context.router.pop();
+                            // } else {
+                            //   context.router.pop();
+                            // }
+                            LeafDetails.currentVertex = 12;
+                            LeafDetails.visitedVertexes.add(12);
 
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.replace(BodyInfoPageRoute());
-                      }),
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
+                            context.router.replace(BodyInfoPageRoute());
+                          }),
+                    ),
+                    SoundAndMenuWidget(
+                      icons: isSoundOn
+                          ? AssetsPath.iconVolumeOn
+                          : AssetsPath.iconVolumeOff,
+                      onTapVolume: isSoundOn
+                          ? () {
+                              setState(() {
+                                isSoundOn = !isSoundOn;
+                                backgroundplayer.pause();
+                              });
+                            }
+                          : () {
+                              setState(() {
+                                isSoundOn = !isSoundOn;
+                                backgroundplayer.play();
+                              });
+                            },
+                      onTapMenu: () {
+                        skaffoldKey.currentState!.openEndDrawer();
+                      },
+                    ),
+                  ],
                 ),
-                SoundAndMenuWidget(
-                  icons: isSoundOn
-                      ? AssetsPath.iconVolumeOn
-                      : AssetsPath.iconVolumeOff,
-                  onTapVolume: isSoundOn
-                      ? () {
-                          setState(() {
-                            isSoundOn = !isSoundOn;
-                            backgroundplayer.pause();
-                          });
-                        }
-                      : () {
-                          setState(() {
-                            isSoundOn = !isSoundOn;
-                            backgroundplayer.play();
-                          });
-                        },
-                  onTapMenu: () {
-                    skaffoldKey.currentState!.openEndDrawer();
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-      );
-    });
+          );
+        }),
+        if (showLoading) const LoadingWidget(),
+      ],
+    );
   }
 
   Widget _viruses(BoxConstraints constraints) => Expanded(

@@ -239,12 +239,14 @@ class _LeandingPageState extends State<LeandingPage> {
     precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
     precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
 
-    ImagePrecache.precacheImages(AssetsPath.paralaxImages, context);
-
     await ImagePrecache.precacheImages(AssetsPath.contentImages, context);
+    await ImagePrecache.precacheBackgroundImages(context);
 
     setState(() {
       isImageloaded = true;
     });
+
+    ImagePrecache.precacheImages(AssetsPath.paralaxImages, context);
+    ImagePrecache.precacheVirusGifs(context);
   }
 }
