@@ -3,6 +3,7 @@ import 'dart:html' as html;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 import '../../features/pandemic_info/presentation/models/virus_model.dart';
 import 'animated_widgets/gif_contrrol.dart';
@@ -60,9 +61,12 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
       child: Material(
         color: Colors.white.withOpacity(0),
         child: widget.virusModel.widgets.length == 1
-            ? SizedBox(
-                height: widget.constraints!.height * 0.4,
-                width: widget.constraints!.height * 0.4,
+            ? Container(
+                padding: EdgeInsets.only(
+                  right: HW.getWidth(200, context),
+                ),
+                height: widget.constraints!.height * 0.7,
+                width: widget.constraints!.height * 0.8,
                 child: IgnorePointer(
                   child: HtmlElementView(
                     viewType: widget.virusModel.widgets[0],
@@ -72,23 +76,8 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
             : Stack(
                 children: [
                   Positioned(
-                    top: widget.constraints!.height * 0.08,
-                    left: widget.constraints!.width * 0.15,
-                    child: Clickable(
-                      onPressed: widget.onTapSmall,
-                      child: SizedBox(
-                        width: widget.constraints!.height * 0.3,
-                        child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[3],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: widget.constraints!.height * 0.16,
-                    left: widget.constraints!.width * 0.25,
+                    top: widget.constraints!.height * 0.10,
+                    left: widget.constraints!.width * 0.30,
                     child: Clickable(
                       onPressed: widget.onTapBubonik,
                       child: SizedBox(
@@ -96,6 +85,21 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                         child: IgnorePointer(
                           child: HtmlElementView(
                             viewType: widget.virusModel.widgets[0],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: widget.constraints!.height * 0.23,
+                    left: widget.constraints!.width * 0.05,
+                    child: Clickable(
+                      onPressed: widget.onTapEbola,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.4,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[4],
                           ),
                         ),
                       ),
@@ -117,6 +121,21 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                     ),
                   ),
                   Positioned(
+                    top: widget.constraints!.height * 0.08,
+                    left: widget.constraints!.width * 0.15,
+                    child: Clickable(
+                      onPressed: widget.onTapSmall,
+                      child: SizedBox(
+                        width: widget.constraints!.height * 0.3,
+                        child: IgnorePointer(
+                          child: HtmlElementView(
+                            viewType: widget.virusModel.widgets[3],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
                     top: widget.constraints!.height * 0.45,
                     left: widget.constraints!.width * 0.13,
                     child: Clickable(
@@ -126,21 +145,6 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                         child: IgnorePointer(
                           child: HtmlElementView(
                             viewType: widget.virusModel.widgets[2],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: widget.constraints!.height * 0.23,
-                    left: widget.constraints!.width * 0.05,
-                    child: Clickable(
-                      onPressed: widget.onTapEbola,
-                      child: SizedBox(
-                        width: widget.constraints!.height * 0.4,
-                        child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[4],
                           ),
                         ),
                       ),

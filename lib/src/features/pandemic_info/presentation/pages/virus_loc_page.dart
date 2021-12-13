@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
@@ -76,10 +77,20 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
             //           image: AssetImage(AssetsPath.virusLoc1),
             //           fit: BoxFit.cover)),
             // ),
-            Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: Colors.transparent,
+            Listener(
+              onPointerSignal: (signal) {
+                if (signal is PointerScrollEvent) {
+                  print(signal);
+                  if (signal.scrollDelta.dy > 0) {
+                    context.router.push(const VirusLocationSecondPageRoute());
+                  }
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.transparent,
+              ),
             ),
             Positioned(
                 top: HW.getHeight(192, context),
