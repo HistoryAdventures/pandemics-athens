@@ -150,7 +150,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Flexible(
+                              Expanded(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                   ],
                                 ),
                               ),
-                              Flexible(
+                              SizedBox(width: HW.getWidth(84, context)),
+                              Expanded(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +223,8 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                                   ],
                                 ),
                               ),
-                              Flexible(
+                              SizedBox(width: HW.getWidth(128, context)),
+                              Expanded(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
