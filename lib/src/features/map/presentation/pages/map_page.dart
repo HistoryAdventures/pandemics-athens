@@ -646,14 +646,9 @@ class _MapPageState extends State<MapPage> {
                 textTitle: locals.chapter1,
                 onTap: () {
                   LeafDetails.currentVertex = 2;
+                  LeafDetails.visitedVertexes.add(2);
                   NavigationSharedPreferences.upDateShatedPreferences();
-
-                  if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
-                  } else {
-                    context.router.pop();
-                  }
+                  context.router.replace(const ParalaxHistoryPageRoute());
                 }),
             SizedBox(
               width: HW.getWidth(980, context),

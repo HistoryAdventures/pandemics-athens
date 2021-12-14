@@ -407,7 +407,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           controller: _scrollController,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 22,
+                            height: MediaQuery.of(context).size.height * 24,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[

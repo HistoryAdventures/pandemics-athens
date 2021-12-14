@@ -36,11 +36,10 @@ class CharacterModel extends StatelessWidget {
           focusColor: AppColors.transpatent,
           hoverColor: AppColors.transpatent,
           onTap: onTap,
-          child: SizedBox(
-            child: Image.asset(
-              photo,
-              fit: BoxFit.contain,
-            ),
+          child: Image.asset(
+            photo,
+            height: height,
+            fit: BoxFit.contain,
           ),
         ),
       ),

@@ -15,12 +15,13 @@ class ArrowRightTextWidget extends StatelessWidget {
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
-      this.right = 65,
+      this.right,
       this.bottom = 48,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    right = right ?? HW.getWidth(64, context);
     return Padding(
       padding: EdgeInsets.only(
           right: HW.getWidth(right!, context),
@@ -62,7 +63,7 @@ class ArrowRightTextWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 8),
               child: Icon(
-                Icons.arrow_forward_sharp,
+                Icons.arrow_forward_rounded,
                 color: color ?? Colors.black,
                 size: HW.getWidth(60, context),
               ),

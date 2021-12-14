@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -113,13 +114,10 @@ class _CopyrightPageState extends State<CopyrightPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Flexible(child: Image.asset(AssetsPath.socilaIcons)),
-                        const Flexible(
-                          child: AutoSizeText(
-                            'www.historyadventures.co',
-                            maxLines: 1,
-                          ),
-                        )
+                        const SocialMediaIcons(),
+                        SizedBox(
+                          height: HW.getHeight(45, context),
+                        ),
                       ],
                     ),
                   ),

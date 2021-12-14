@@ -22,9 +22,8 @@ class AuthorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        bottom: HW.getHeight(20, context),
-        right: HW.getWidth(128, context),
+      padding: EdgeInsets.only(
+        bottom: HW.getHeight(30, context),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,6 +32,9 @@ class AuthorWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
+                  padding: EdgeInsets.only(
+                    bottom: HW.getHeight(4, context),
+                  ),
                   decoration: const BoxDecoration(
                       border: Border(
                     bottom: BorderSide(color: AppColors.grey, width: 1),
@@ -41,7 +43,8 @@ class AuthorWidget extends StatelessWidget {
                     profession.toUpperCase(),
                     maxLines: 1,
                     style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        color: AppColors.grey,
+                        color: Colors.black.withOpacity(0.6),
+                        fontFamily: "OpenSans",
                         fontSize: TextFontSize.getHeight(12, context)),
                   ),
                 ),
@@ -63,9 +66,11 @@ class AuthorWidget extends StatelessWidget {
                     model.title,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        fontSize: TextFontSize.getHeight(16, context),
+                        fontSize: TextFontSize.getHeight(17, context),
                         decoration: textDecoration ?? TextDecoration.underline,
                         height: 1.3,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "OpenSans",
                         decorationColor: Colors.black),
                   ),
                 ),

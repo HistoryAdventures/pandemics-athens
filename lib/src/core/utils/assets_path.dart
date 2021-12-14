@@ -32,22 +32,22 @@ class AssetsPath {
   static const String gifParalaxNikosGif =
       'assets/paralax_new/character_nikos_lottie.gif';
   static const String gifBackground1 =
-      'assets/animated_backgrounds/1/liquid.gif';
+      'assets/assets/animated_backgrounds/1/liquid.gif';
 
   static const String gifBackground2 =
-      'assets/animated_backgrounds/2/liquid.gif';
+      'assets/assets/animated_backgrounds/2/liquid.gif';
 
   static const String gifBackground3 =
-      'assets/animated_backgrounds/3/liquid.gif';
+      'assets/assets/animated_backgrounds/3/liquid.gif';
 
   static const String gifBackground4 =
-      'assets/animated_backgrounds/4/liquid.gif';
+      'assets/assets/animated_backgrounds/4/liquid.gif';
 
   static const String gifBackground5 =
-      'assets/animated_backgrounds/5/liquid.gif';
+      'assets/assets/animated_backgrounds/5/liquid.gif';
 
   static const String gifBackground6 =
-      'assets/animated_backgrounds/6/liquid.gif';
+      'assets/assets/animated_backgrounds/6/liquid.gif';
 
   static const String animatedBack1Vbody0 =
       'assets/animated_backgrounds/1/virus/vbody_0.png';
@@ -193,19 +193,19 @@ class AssetsPath {
   static const String scoreimage = "assets/images_quiz/score.png";
 
   static const String gifVirusTyphoid =
-      'assets/animated_backgrounds/2/virus/typhoid.gif';
+      'assets/assets/animated_backgrounds/2/virus/typhoid.gif';
 
   static const String gifVirus = 'assets/assets/animated_backgrounds/virus.gif';
 
-  static const String gifSmallpox = 'assets/virus_gif/smallpox.gif';
+  static const String gifSmallpox = 'assets/assets/virus_gif/smallpox.gif';
 
-  static const String gifTyphus = 'assets/virus_gif/typhus.gif';
+  static const String gifTyphus = 'assets/assets/virus_gif/typhus.gif';
 
-  static const String gifTyphoid = 'assets/virus_gif/typhoid.gif';
-  static const String gifEbola = 'assets/virus_gif/ebola.gif';
+  static const String gifTyphoid = 'assets/assets/virus_gif/typhoid.gif';
+  static const String gifEbola = 'assets/assets/virus_gif/ebola.gif';
   static const String glossaryBk = 'assets/image_back/glossary_bk.png';
 
-  static const String gifBubonic = 'assets/virus_gif/bubonic.gif';
+  static const String gifBubonic = 'assets/assets/virus_gif/bubonic.gif';
   static const String charactersBackgroundImage =
       'assets/image_back/characters_page_back.png';
   static const String arrowBackImage = 'assets/icons/arrow_back.png';
@@ -380,7 +380,7 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
-  static const String paralaxHtml = 'assets/assets/paralax/index.html';
+  static const String paralaxHtml = ' assets/paralax/index.html';
 
   static const String mapLottie495 =
       'assets/assets/map_lottie/map_11/index.html';
@@ -477,6 +477,13 @@ class AssetsPath {
   static const String gif3 = "assets/assets/virusGifs/ebola.gif";
   static const String gif4 = "assets/assets/virusGifs/typhus.gif";
   static const String gif5 = "assets/assets/virusGifs/typoid.gif";
+
+  //social
+  static const String facebook = "assets/social/facebook-f.png";
+  static const String instagram = "assets/social/instagram.png";
+  static const String linkedin = "assets/social/linkedin-in.png";
+  static const String twitter = "assets/social/twitter.png";
+  static const String youtube = "assets/social/youtube.png";
 
   static const List<String> charactersPageImages = [
     AssetsPath.periclesImage,
@@ -679,6 +686,163 @@ class AssetsPath {
     AssetsPath.keepGoing,
     AssetsPath.medicine,
     AssetsPath.quitMedicine,
+    AssetsPath.document,
+  ];
+
+  static const List<String> allImages = [
+    AssetsPath.periclesImage,
+    AssetsPath.gradient,
+    AssetsPath.mapTimeLineBlur,
+    AssetsPath.mapDialogBlur,
+    AssetsPath.irlGiana,
+    AssetsPath.gifParalaxNikosGif,
+    AssetsPath.irlNikos,
+    AssetsPath.socratesPlatoImage,
+    AssetsPath.aristophanesSophoclesImage,
+    AssetsPath.phidiasImage,
+    AssetsPath.thucydidesImage,
+    AssetsPath.paralaxBackground,
+    AssetsPath.gifBackground1,
+    AssetsPath.aboutBookMap,
+    AssetsPath.animatedBack1Vbody0,
+    AssetsPath.animatedBack1Vbody1,
+    AssetsPath.animatedBack1Vbody2,
+    AssetsPath.animatedBack1Vbody3,
+    AssetsPath.animatedBack1Vbody4,
+    AssetsPath.animatedBack1Vbody5,
+    AssetsPath.animatedBack1Vbody6,
+    AssetsPath.animatedBack1Vbody7,
+    AssetsPath.animatedBack1Vbody8,
+    AssetsPath.animatedBack2Vbody0,
+    AssetsPath.animatedBack2Vbody1,
+    AssetsPath.animatedBack2Vbody2,
+    AssetsPath.animatedBack2Vbody3,
+    AssetsPath.animatedBack2Vbody4,
+    AssetsPath.animatedBack2Vbody5,
+    AssetsPath.animatedBack2Vbody6,
+    AssetsPath.animatedBack2Vbody7,
+    AssetsPath.animatedBack2Vbody8,
+    AssetsPath.animatedBack3Vbody0,
+    AssetsPath.animatedBack3Vbody1,
+    AssetsPath.animatedBack3Vbody2,
+    AssetsPath.animatedBack3Vbody3,
+    AssetsPath.animatedBack3Vbody4,
+    AssetsPath.animatedBack3Vbody5,
+    AssetsPath.animatedBack3Vbody6,
+    AssetsPath.animatedBack3Vbody7,
+    AssetsPath.animatedBack3Vbody8,
+    AssetsPath.animatedBack3Vbody9,
+    AssetsPath.animatedBack3Vbody10,
+    AssetsPath.animatedBack3Vbody11,
+    AssetsPath.animatedBack3Vbody12,
+    AssetsPath.animatedBack3Vbody13,
+    AssetsPath.animatedBack4Vbody0,
+    AssetsPath.animatedBack4Vbody1,
+    AssetsPath.animatedBack4Vbody2,
+    AssetsPath.animatedBack4Vbody3,
+    AssetsPath.animatedBack4Vbody4,
+    AssetsPath.animatedBack4Vbody5,
+    AssetsPath.animatedBack4Vbody6,
+    AssetsPath.animatedBack4Vbody7,
+    AssetsPath.animatedBack4Vbody8,
+    AssetsPath.animatedBack4Vbody9,
+    AssetsPath.animatedBack4Vbody10,
+    AssetsPath.animatedBack5Vbody0,
+    AssetsPath.animatedBack5Vbody1,
+    AssetsPath.animatedBack5Vbody2,
+    AssetsPath.animatedBack5Vbody3,
+    AssetsPath.animatedBack5Vbody4,
+    AssetsPath.animatedBack5Vbody5,
+    AssetsPath.animatedBack5Vbody6,
+    AssetsPath.animatedBack5Vbody7,
+    AssetsPath.animatedBack5Vbody8,
+    AssetsPath.animatedBack5Vbody9,
+    AssetsPath.animatedBack5Vbody10,
+    AssetsPath.animatedBack5Vbody11,
+    AssetsPath.animatedBack6Vbody0,
+    AssetsPath.animatedBack6Vbody1,
+    AssetsPath.animatedBack6Vbody2,
+    AssetsPath.animatedBack6Vbody3,
+    AssetsPath.animatedBack6Vbody4,
+    AssetsPath.animatedBack6Vbody5,
+    AssetsPath.animatedBack6Vbody6,
+    AssetsPath.animatedBack6Vbody7,
+    AssetsPath.gifVirus,
+    AssetsPath.animatedBack6Vbody8,
+    AssetsPath.animatedBack6Vbody9,
+    AssetsPath.animatedBack6Vbody10,
+    AssetsPath.panaramaImage1,
+    AssetsPath.panaramaImage2,
+    AssetsPath.panaramaImage3,
+    AssetsPath.panaramaImage4,
+    AssetsPath.panaramaImage5,
+    AssetsPath.panaramaImage6,
+    AssetsPath.panaramaImage7,
+    AssetsPath.panaramaImage8,
+    AssetsPath.panaramaImage9,
+    AssetsPath.panaramaImage10,
+    AssetsPath.mapImage399,
+    AssetsPath.mapImage414,
+    AssetsPath.mapImage415,
+    AssetsPath.mapImage416,
+    AssetsPath.mapImage427,
+    AssetsPath.mapImage430,
+    AssetsPath.mapImage431,
+    AssetsPath.mapImage438,
+    AssetsPath.mapImage441,
+    AssetsPath.mapImage443,
+    AssetsPath.mapImage446,
+    AssetsPath.mapImage447_432,
+    AssetsPath.mapImage450,
+    AssetsPath.mapImage451,
+    AssetsPath.mapImage454,
+    AssetsPath.mapImage457,
+    AssetsPath.mapImage458,
+    AssetsPath.mapImage461,
+    AssetsPath.mapImage462,
+    AssetsPath.mapImage469,
+    AssetsPath.mapImage471,
+    AssetsPath.mapImage477,
+    AssetsPath.mapImage479,
+    AssetsPath.mapImage480,
+    AssetsPath.mapImage490,
+    AssetsPath.mapImage495,
+    AssetsPath.deadOfSocrates1,
+    AssetsPath.deadOfSocrates2,
+    AssetsPath.deadOfSocrates3,
+    AssetsPath.endOfWar1,
+    AssetsPath.endOfWar2,
+    AssetsPath.endOfWar3,
+    AssetsPath.poitButtonArrowRight,
+    AssetsPath.socilaIcons,
+    AssetsPath.paralaxBuilding,
+    AssetsPath.gifBackground1,
+    AssetsPath.gifBackground2,
+    AssetsPath.gifBackground3,
+    AssetsPath.gifBackground4,
+    AssetsPath.gifBackground5,
+    AssetsPath.gifBackground6,
+    AssetsPath.paralaxWalker,
+    AssetsPath.paralaxTube2Cloud,
+    AssetsPath.paralaxTubeCloud,
+    AssetsPath.paralaxClouds,
+    AssetsPath.gifVirusTyphoid,
+    AssetsPath.gifSmallpox,
+    AssetsPath.gifTyphus,
+    AssetsPath.gifTyphoid,
+    AssetsPath.gifEbola,
+    AssetsPath.glossaryBk,
+    AssetsPath.gifBubonic,
+    AssetsPath.keepGoing,
+    AssetsPath.medicine,
+    AssetsPath.quitMedicine,
+    AssetsPath.manChestImage,
+    AssetsPath.manhandsImage,
+    AssetsPath.manfillImage,
+    AssetsPath.manIntroImage,
+    AssetsPath.manheadImage,
+    AssetsPath.manstomachImage,
+    AssetsPath.manthroatImage,
     AssetsPath.document,
   ];
 }
