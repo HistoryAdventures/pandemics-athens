@@ -111,18 +111,24 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       }),
                 ),
                 SoundAndMenuWidget(
-                  widget: IconButtonWidget(
-                      iconSize: HW.getHeight(55, context),
-                      onPressed: () {
-                        LeafDetails.currentVertex = 18;
-                        LeafDetails.visitedVertexes.add(18);
-                        NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.replace(const IrlNikosPageRoute());
-                      },
-                      icon: const Icon(
-                        Icons.arrow_upward_rounded,
-                        color: AppColors.blackB,
-                      )),
+                  widget: InkWell(
+                    // iconSize: HW.getHeight(55, context),
+                    onTap: () {
+                      LeafDetails.currentVertex = 18;
+                      LeafDetails.visitedVertexes.add(18);
+                      NavigationSharedPreferences.upDateShatedPreferences();
+                      context.router.replace(const IrlNikosPageRoute());
+                    },
+                    child: Container(
+                      color: Colors.red,
+                      width: HW.getWidth(120, context),
+                      height: HW.getHeight(80, context),
+                      child: Image.asset(
+                        AssetsPath.med,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  ),
                   icons: isSoundOn
                       ? AssetsPath.iconVolumeOn
                       : AssetsPath.iconVolumeOff,

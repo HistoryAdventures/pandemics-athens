@@ -346,8 +346,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
         _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
         _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
-        _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book-page'),
-        _i1.RouteConfig(CreditsPageRoute.name, path: '/'),
+        _i1.RouteConfig(AboutBookPageRoute.name, path: '/'),
+        _i1.RouteConfig(CreditsPageRoute.name, path: '/credits-page'),
         _i1.RouteConfig(FurtherReadingPageRoute.name,
             path: '/further-reading-page'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
@@ -512,13 +512,13 @@ class GianaPageRoute extends _i1.PageRouteInfo {
 }
 
 class AboutBookPageRoute extends _i1.PageRouteInfo {
-  const AboutBookPageRoute() : super(name, path: '/about-book-page');
+  const AboutBookPageRoute() : super(name, path: '/');
 
   static const String name = 'AboutBookPageRoute';
 }
 
 class CreditsPageRoute extends _i1.PageRouteInfo {
-  const CreditsPageRoute() : super(name, path: '/');
+  const CreditsPageRoute() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageRoute';
 }

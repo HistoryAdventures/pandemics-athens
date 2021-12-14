@@ -116,11 +116,11 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: AboutBookPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(
         page: CreditsPage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
