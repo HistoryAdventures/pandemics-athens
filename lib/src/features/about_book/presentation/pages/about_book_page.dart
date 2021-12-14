@@ -59,44 +59,29 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   left: 0,
                   right: 0,
                   top: HW.getHeight(128, context),
-                  child: SizedBox(
-                    height: HW.getHeight(91, context),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          flex: 43,
-                          child: AutoSizeText(
-                            locale.aboutTheBook.toUpperCase(),
-                            maxLines: 1,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline2
-                                ?.copyWith(
-                                    fontSize:
-                                        TextFontSize.getHeight(36, context)),
-                          ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        locale.aboutTheBook.toUpperCase(),
+                        maxLines: 1,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            fontSize: TextFontSize.getHeight(36, context)),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: HW.getHeight(15, context)),
+                        child: AutoSizeText(
+                          "meet the interantional team of History Adventures!"
+                              .toLowerCase(),
+                          maxLines: 1,
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2
+                              ?.copyWith(fontSize: HW.getHeight(25, context)),
                         ),
-                        Spacer(),
-                        Expanded(
-                          flex: 33,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(top: HW.getHeight(15, context)),
-                            child: AutoSizeText(
-                              locale.meetTheTeamText.toLowerCase(),
-                              maxLines: 1,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle2
-                                  ?.copyWith(
-                                      fontSize:
-                                          TextFontSize.getHeight(24, context)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Align(
@@ -127,7 +112,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                 ),
                 SoundAndMenuWidget(
                   widget: IconButtonWidget(
-                      iconSize: HW.getHeight(40, context),
+                      iconSize: HW.getHeight(55, context),
                       onPressed: () {
                         LeafDetails.currentVertex = 18;
                         LeafDetails.visitedVertexes.add(18);
@@ -135,7 +120,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         context.router.replace(const IrlNikosPageRoute());
                       },
                       icon: const Icon(
-                        Icons.arrow_upward_sharp,
+                        Icons.arrow_upward_rounded,
                         color: AppColors.blackB,
                       )),
                   icons: isSoundOn
