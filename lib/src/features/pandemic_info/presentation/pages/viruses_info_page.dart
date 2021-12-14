@@ -138,7 +138,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   }
 
   Future<void> precacheImages() async {
-    if (window.localStorage.containsKey('virusPageImagesAreCached')) return;
+    if (window.sessionStorage.containsKey('virusPageImagesAreCached')) return;
 
     setState(() {
       showLoading = true;
@@ -153,7 +153,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       showLoading = false;
     });
 
-    window.localStorage.putIfAbsent('virusPageImagesAreCached', () => 'true');
+    window.sessionStorage.putIfAbsent('virusPageImagesAreCached', () => 'true');
   }
 
   @override

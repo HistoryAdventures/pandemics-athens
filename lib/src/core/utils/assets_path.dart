@@ -380,7 +380,7 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
-  static const String paralaxHtml = ' assets/paralax/index.html';
+  static const String paralaxHtml = ' assets/assets/paralax/index.html';
 
   static const String mapLottie495 =
       'assets/assets/map_lottie/map_11/index.html';
@@ -689,7 +689,6 @@ class AssetsPath {
     AssetsPath.document,
   ];
 
-<<<<<<< Updated upstream
   static const List<String> allImages = [
     AssetsPath.periclesImage,
     AssetsPath.gradient,
@@ -846,11 +845,6 @@ class AssetsPath {
     AssetsPath.manthroatImage,
     AssetsPath.document,
   ];
-=======
- 
-
- 
->>>>>>> Stashed changes
 }
 
 // Future<bool> loadContent(List<String> context) async {
