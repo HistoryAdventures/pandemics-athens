@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -111,11 +112,10 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.asset(AssetsPath.socilaIcons),
-                            const AutoSizeText(
-                              'www.historyadventures.co',
-                              maxLines: 1,
-                            )
+                            const SocialMediaIcons(),
+                            SizedBox(
+                              height: HW.getHeight(45, context),
+                            ),
                           ],
                         ),
                       ),

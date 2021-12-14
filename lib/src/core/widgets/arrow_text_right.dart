@@ -15,12 +15,13 @@ class ArrowRightTextWidget extends StatelessWidget {
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
-      this.right = 65,
+      this.right,
       this.bottom = 48,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    right = right ?? HW.getWidth(64, context);
     return Padding(
       padding: EdgeInsets.only(
           right: HW.getWidth(right!, context),

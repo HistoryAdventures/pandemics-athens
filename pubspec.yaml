@@ -220,8 +220,13 @@ flutter:
 
     - family: OpenSans
       fonts:
-        - asset: fonts/OpenSans-Italic.ttf
         - asset: fonts/OpenSans-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: fonts/OpenSans-Italic.ttf
+        
+
+
 
     - family: Lora
       fonts:

@@ -24,8 +24,8 @@ class SoundAndMenuWidget extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Container(
         padding: EdgeInsets.only(
-            left: HW.getWidth(66, context),
-            right: HW.getWidth(66, context),
+            left: HW.getWidth(60, context),
+            right: HW.getWidth(60, context),
             top: HW.getHeight(52, context),
             bottom: 0),
         child: Row(
@@ -35,8 +35,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapVolume,
               child: SizedBox(
-                height: HW.getHeight(34, context),
-                width: HW.getWidth(28, context),
+                height: HW.getWidth(32, context),
+                width: HW.getWidth(32, context),
                 child: Image.asset(
                   icons,
                   fit: BoxFit.contain,
@@ -48,8 +48,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapMenu,
               child: SizedBox(
-                height: HW.getHeight(26, context),
-                width: HW.getWidth(38, context),
+                height: HW.getHeight(24, context),
+                width: HW.getWidth(36, context),
                 child: Image.asset(
                   AssetsPath.iconMenu,
                   fit: BoxFit.contain,

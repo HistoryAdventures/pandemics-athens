@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -59,12 +60,13 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   right: 0,
                   top: HW.getHeight(128, context),
                   child: SizedBox(
-                    height: HW.getHeight(98, context),
+                    height: HW.getHeight(91, context),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Flexible(
-                          child: Text(
+                        Expanded(
+                          flex: 43,
+                          child: AutoSizeText(
                             locale.aboutTheBook.toUpperCase(),
                             maxLines: 1,
                             style: Theme.of(context)
@@ -75,11 +77,13 @@ class _AboutBookPageState extends State<AboutBookPage> {
                                         TextFontSize.getHeight(36, context)),
                           ),
                         ),
-                        Flexible(
+                        Spacer(),
+                        Expanded(
+                          flex: 33,
                           child: Padding(
                             padding:
                                 EdgeInsets.only(top: HW.getHeight(15, context)),
-                            child: Text(
+                            child: AutoSizeText(
                               locale.meetTheTeamText.toLowerCase(),
                               maxLines: 1,
                               style: Theme.of(context)
@@ -101,8 +105,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                     margin: EdgeInsets.only(
                       top: constraints.maxHeight * 0.2,
                     ),
-                    width: constraints.maxWidth * 0.9,
-                    height: constraints.maxHeight * 0.5,
+                    width: HW.getWidth(1265, context),
+                    height: HW.getHeight(655, context),
                     child: Image.asset(
                       AssetsPath.aboutBookMap,
                       fit: BoxFit.contain,
