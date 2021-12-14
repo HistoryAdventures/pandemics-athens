@@ -119,8 +119,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       NavigationSharedPreferences.upDateShatedPreferences();
                       context.router.replace(const IrlNikosPageRoute());
                     },
-                    child: Container(
-                      color: Colors.red,
+                    child: SizedBox(
                       width: HW.getWidth(120, context),
                       height: HW.getHeight(80, context),
                       child: Image.asset(
