@@ -1,13 +1,12 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
 import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
 // import 'package:just_audio/just_audio.dart';
-import 'package:panorama/panorama.dart';
-import "package:universal_html/html.dart" as html;
+// import 'package:panorama/panorama.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -292,6 +291,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     return Stack(
       children: [
         Panorama(
+          deformHotspots: false,
           onViewChanged: (a, b, c) {
             onChangeView();
           },
