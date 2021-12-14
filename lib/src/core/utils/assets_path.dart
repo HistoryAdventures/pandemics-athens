@@ -380,7 +380,7 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
-  static const String paralaxHtml = 'assets/assets/paralax/index.html';
+  static const String paralaxHtml = ' assets/paralax/index.html';
 
   static const String mapLottie495 =
       'assets/assets/map_lottie/map_11/index.html';
@@ -471,6 +471,13 @@ class AssetsPath {
 
   static const String checkIcon = "assets/icons/checkIcon.png";
   static const String restartIcon = "assets/icons/restartIcon.png";
+
+  //social
+  static const String facebook = "assets/social/facebook-f.png";
+  static const String instagram = "assets/social/instagram.png";
+  static const String linkedin = "assets/social/linkedin-in.png";
+  static const String twitter = "assets/social/twitter.png";
+  static const String youtube = "assets/social/youtube.png";
 
   static const List<String> contentImages = [
     AssetsPath.periclesImage,
