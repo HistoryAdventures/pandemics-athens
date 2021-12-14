@@ -689,6 +689,7 @@ class AssetsPath {
     AssetsPath.document,
   ];
 
+<<<<<<< Updated upstream
   static const List<String> allImages = [
     AssetsPath.periclesImage,
     AssetsPath.gradient,
@@ -845,6 +846,11 @@ class AssetsPath {
     AssetsPath.manthroatImage,
     AssetsPath.document,
   ];
+=======
+ 
+
+ 
+>>>>>>> Stashed changes
 }
 
 // Future<bool> loadContent(List<String> context) async {
