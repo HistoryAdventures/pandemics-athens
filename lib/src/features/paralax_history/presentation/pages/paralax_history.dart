@@ -2,8 +2,10 @@ import 'dart:html' as htm;
 import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -402,19 +404,19 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                           return false;
                         },
                         child: SingleChildScrollView(
-                          physics: const ClampingScrollPhysics(),
                           padding: EdgeInsets.zero,
                           controller: _scrollController,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 24,
+                            height: MediaQuery.of(context).size.height *
+                                (24 / 2.45),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
-                                _topBar,
+                                _topBar(false),
                                 _title,
                                 SizedBox(
-                                  height: HW.getHeight(3700, context),
+                                  height: HW.getHeight(1700, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
@@ -425,7 +427,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                       HW.getHeight(216, context)),
                                 ),
                                 SizedBox(
-                                  height: HW.getHeight(3000, context),
+                                  height: HW.getHeight(850, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
@@ -436,7 +438,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   text: locals.paralaxText2,
                                 ),
                                 SizedBox(
-                                  height: HW.getHeight(3300, context),
+                                  height: HW.getHeight(1250, context),
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
@@ -447,10 +449,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   text: locals.paralaxText3,
                                 ),
                                 SizedBox(
-                                  height: HW.getHeight(2800, context),
+                                  height: HW.getHeight(650, context),
                                 ),
                                 _athens5th(),
-                                SizedBox(height: HW.getHeight(500, context)),
+                                SizedBox(height: HW.getHeight(450, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
                                   top: rateParalaxWalker - 1000,
@@ -459,7 +461,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                   size: Size(HW.getWidth(605, context),
                                       HW.getHeight(330, context)),
                                 ),
-                                SizedBox(height: HW.getHeight(6200, context)),
+                                SizedBox(height: HW.getHeight(2300, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
                                   top: rateParalaxHotTubLottie + 850,
@@ -492,6 +494,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   },
                   icon: Icon(Icons.arrow_downward),
                 ),
+              ),
+            ),
+            Visibility(
+              visible: _videoController.value.isPlaying,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: _topBar(true),
               ),
             ),
             Opacity(
@@ -564,19 +573,26 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     );
   }
 
-  Widget get _topBar {
+  Widget _topBar(bool isOnVideo) {
     return SoundAndMenuWidget(
-      widget: IconButtonWidget(
-        color: AppColors.black100,
-        iconSize: HW.getHeight(40, context),
-        icon: const Icon(Icons.arrow_upward_sharp),
-        onPressed: () {
-          LeafDetails.currentVertex = 1;
-          LeafDetails.visitedVertexes.add(1);
-          NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const GlossaryPageRoute());
-        },
-      ),
+      widget: isOnVideo
+          ? SizedBox()
+          : InkWell(
+              onTap: () {
+                LeafDetails.currentVertex = 1;
+                LeafDetails.visitedVertexes.add(1);
+                NavigationSharedPreferences.upDateShatedPreferences();
+                context.router.replace(const GlossaryPageRoute());
+              },
+              child: SizedBox(
+                width: HW.getWidth(32, context),
+                height: HW.getWidth(32, context),
+                child: Image.asset(
+                  AssetsPath.med,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
       icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
       onTapVolume: isSoundOn
           ? () {
@@ -602,37 +618,52 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       alignment: Alignment.centerLeft,
       width: MediaQuery.of(context).size.width * 0.4,
       margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.25,
-        left: MediaQuery.of(context).size.width * 0.1,
+        top: HW.getHeight(183, context),
+        left: HW.getWidth(177, context),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Text(locals.chapter1.toUpperCase()),
+            padding: const EdgeInsets.only(left: 0),
+            child: Text(
+              " ${locals.chapter1.toUpperCase()}",
+              style: TextStyle(
+                fontSize: HW.getHeight(25.68, context),
+              ),
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 0),
             child: Text(locals.todoNoHarm.toUpperCase(),
                 maxLines: 1,
+
                 // minFontSize: 8,
                 style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                    fontSize: TextFontSize.getHeight(80, context),
-                    fontStyle: FontStyle.italic)),
+                      fontSize: TextFontSize.getHeight(105, context),
+                      height: 1.4,
+                    )),
           ),
+          SizedBox(height: HW.getHeight(17, context)),
           Container(
-            decoration: const BoxDecoration(
+            padding: EdgeInsets.only(left: HW.getWidth(10, context)),
+            height: HW.getHeight(83, context),
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
                 border: Border(
-                    left: BorderSide(color: AppColors.orange, width: 8))),
+                    left: BorderSide(
+              color: AppColors.orange,
+              width: HW.getWidth(10, context),
+            ))),
             child: Text(
               locals.athens429Bc,
               maxLines: 1,
               // minFontSize: 8,
               style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontSize: TextFontSize.getHeight(80, context),
+                    fontSize: TextFontSize.getHeight(65, context),
                     fontWeight: FontWeight.w100,
+                    height: 1,
                   ),
             ),
           ),
@@ -684,6 +715,50 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomPageViewScrollPhysics extends ScrollPhysics {
+  const CustomPageViewScrollPhysics({required ScrollPhysics parent})
+      : super(parent: parent);
+
+  @override
+  ScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 200,
+        stiffness: 200,
+        damping: 2,
+      );
+}
+
+class CustomScrollPhysics extends ScrollPhysics {
+  const CustomScrollPhysics({required ScrollPhysics parent})
+      : super(parent: parent);
+
+  @override
+  ScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomScrollPhysics(parent: buildParent(ancestor)!);
+  }
+
+  @override
+  Simulation? createBallisticSimulation(
+      ScrollMetrics position, double velocity) {
+    final tolerance = this.tolerance;
+    if ((velocity.abs() < tolerance.velocity) ||
+        (velocity > 0.0 && position.pixels >= position.maxScrollExtent) ||
+        (velocity < 0.0 && position.pixels <= position.minScrollExtent)) {
+      return null;
+    }
+    return ClampingScrollSimulation(
+      position: position.pixels,
+      velocity: velocity,
+      friction: 1000, // <--- HERE
+      tolerance: tolerance,
     );
   }
 }

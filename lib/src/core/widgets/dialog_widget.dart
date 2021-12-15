@@ -70,74 +70,72 @@ class _DialogWidgetState extends State<DialogWidget> {
           width: HW.getWidth(1200, context),
           height: HW.getHeight(676, context),
           child: Scaffold(
-              backgroundColor: AppColors.white.withOpacity(0.9),
-              body: Container(
-                padding: EdgeInsets.all(HW.getHeight(24, context)),
-                child: Row(
-                  children: [
-                    SizedBox(
-                        height: HW.getHeight(628, context),
-                        width: HW.getWidth(400, context),
-                        child: SizedBox(
-                          height: widget.constraints.maxHeight,
-                          child: AnimatedSwitcher(
-                            duration: Times.medium,
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                            child: Container(
-                                key: ValueKey(infoDialogModel.image),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image:
-                                            AssetImage(infoDialogModel.image),
-                                        fit: BoxFit.cover)),
-                                child: Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Clickable(
-                                      onPressed: () {
-                                        showGeneralDialog(
-                                            context: context,
-                                            barrierColor:
-                                                Colors.black.withOpacity(0.5),
-                                            transitionBuilder:
-                                                (BuildContext context,
-                                                    Animation<double> animation,
-                                                    Animation<double>
-                                                        secondaryAnimation,
-                                                    Widget child) {
-                                              return LayoutBuilder(
-                                                  builder: (context,
-                                                          constraints) =>
-                                                      DialogImageWidget(
-                                                        animation: animation,
-                                                        selectedImage:
-                                                            infoDialogModel
-                                                                .image,
-                                                        selectedImageText:
-                                                            infoDialogModel
-                                                                .imageDescription,
-                                                        constraints:
-                                                            constraints,
-                                                      ));
-                                            },
-                                            transitionDuration: Times.fast,
-                                            barrierDismissible: true,
-                                            barrierLabel: '',
-                                            pageBuilder: (context, animation1,
-                                                animation2) {
-                                              return Container();
-                                            });
-                                      },
-                                      child: const ZoomInNotesWidget()),
-                                )),
-                          ),
-                        )),
-                    Expanded(
+            backgroundColor: AppColors.white.withOpacity(0.9),
+            body: Container(
+              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: HW.getHeight(628, context),
+                    width: HW.getHeight(628, context) * 0.64,
+                    child: SizedBox(
+                      height: widget.constraints.maxHeight,
+                      child: AnimatedSwitcher(
+                        duration: Times.medium,
+                        transitionBuilder: (child, animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
                         child: Container(
+                          key: ValueKey(infoDialogModel.image),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(infoDialogModel.image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Clickable(
+                              onPressed: () {
+                                showGeneralDialog(
+                                  context: context,
+                                  barrierColor: Colors.black.withOpacity(0.5),
+                                  transitionBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secondaryAnimation,
+                                      Widget child) {
+                                    return LayoutBuilder(
+                                      builder: (context, constraints) =>
+                                          DialogImageWidget(
+                                        animation: animation,
+                                        selectedImage: infoDialogModel.image,
+                                        selectedImageText:
+                                            infoDialogModel.imageDescription,
+                                        constraints: constraints,
+                                      ),
+                                    );
+                                  },
+                                  transitionDuration: Times.fast,
+                                  barrierDismissible: true,
+                                  barrierLabel: '',
+                                  pageBuilder:
+                                      (context, animation1, animation2) {
+                                    return Container();
+                                  },
+                                );
+                              },
+                              child: const ZoomInNotesWidget(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
                       padding: const EdgeInsets.only(left: 24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,72 +147,76 @@ class _DialogWidgetState extends State<DialogWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                    height: HW.getHeight(68, context),
-                                    child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            flex: 3,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Flexible(
-                                                  child: Container(
-                                                    margin: EdgeInsets.only(
-                                                        bottom: HW.getHeight(
-                                                            8, context)),
-                                                    child: Text(
-                                                      widget.titleText,
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline1
-                                                          ?.copyWith(
-                                                              fontSize: TextFontSize
-                                                                  .getHeight(16,
-                                                                      context),
-                                                              color: AppColors
-                                                                  .black54),
-                                                    ),
-                                                  ),
+                                  height: HW.getHeight(68, context),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Flexible(
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    bottom: HW.getHeight(
+                                                        8, context)),
+                                                child: Text(
+                                                  widget.titleText,
+                                                  maxLines: 1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.copyWith(
+                                                          fontSize: TextFontSize
+                                                              .getHeight(
+                                                                  16, context),
+                                                          color: AppColors
+                                                              .black54),
                                                 ),
-                                                Expanded(
-                                                    child: Text(
-                                                        widget.subTitleText,
-                                                        maxLines: 1,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline2
-                                                            ?.copyWith(
-                                                                fontSize: TextFontSize
-                                                                    .getHeight(
-                                                                        32,
-                                                                        context)))),
-                                              ],
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                widget.subTitleText,
+                                                maxLines: 1,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2
+                                                    ?.copyWith(
+                                                      fontSize: TextFontSize
+                                                          .getHeight(
+                                                              32, context),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Flexible(
+                                        child: Clickable(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: SizedBox(
+                                            height: HW.getHeight(19, context),
+                                            width: HW.getHeight(19, context),
+                                            child: Image.asset(
+                                              AssetsPath.iconClose,
+                                              fit: BoxFit.contain,
+                                              color: AppColors.grey35,
                                             ),
                                           ),
-                                          Flexible(
-                                              child: Clickable(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: SizedBox(
-                                                    height: HW.getHeight(
-                                                        19, context),
-                                                    width: HW.getHeight(
-                                                        19, context),
-                                                    child: Image.asset(
-                                                        AssetsPath.iconClose,
-                                                        fit: BoxFit.contain,
-                                                        color:
-                                                            AppColors.grey35),
-                                                  )))
-                                        ])),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                                 Expanded(
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
@@ -254,7 +256,12 @@ class _DialogWidgetState extends State<DialogWidget> {
                                               infoDialogModel.description,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyText1,
+                                                  .bodyText1!
+                                                  .copyWith(
+                                                      height: 26 / 16,
+                                                      color: Colors.black
+                                                          .withOpacity(0.7),
+                                                      letterSpacing: 0.25),
                                             ),
                                           ],
                                         ),
@@ -284,8 +291,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                                             });
                                           },
                                           child: charactersNameListWidget(
-                                            isHoverd:
-                                                hoveredItemIndex == data.title,
+                                            isHoverd: hoveredItemIndex ==
+                                                data.title,
                                             title: data.title,
                                             image: data.image,
                                             text: data.description,
@@ -297,22 +304,25 @@ class _DialogWidgetState extends State<DialogWidget> {
                           )
                         ],
                       ),
-                    )),
-                  ],
-                ),
-              )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget charactersNameListWidget(
-      {String? title,
-      String? image,
-      String? text,
-      String? subTitle,
-      String? imageText,
-      bool isHoverd = false}) {
+  Widget charactersNameListWidget({
+    String? title,
+    String? image,
+    String? text,
+    String? subTitle,
+    String? imageText,
+    bool isHoverd = false,
+  }) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
@@ -327,15 +337,19 @@ class _DialogWidgetState extends State<DialogWidget> {
             );
           });
         },
-        child: AutoSizeText(title!.toUpperCase(),
-            maxLines: 1,
-            style: infoDialogModel.title == title || isHoverd
-                ? Theme.of(context).textTheme.bodyText1?.copyWith(
+        child: AutoSizeText(
+          title!.toUpperCase(),
+          maxLines: 1,
+          style: infoDialogModel.title == title || isHoverd
+              ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
-                    fontSize: TextFontSize.getHeight(16, context))
-                : Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontSize: TextFontSize.getHeight(16, context),
+                  )
+              : Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.grey,
-                    fontSize: TextFontSize.getHeight(16, context))),
+                    fontSize: TextFontSize.getHeight(16, context),
+                  ),
+        ),
       ),
     );
   }
