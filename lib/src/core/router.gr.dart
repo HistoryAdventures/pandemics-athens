@@ -324,18 +324,18 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
-        _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
+        _i1.RouteConfig(ParalaxHistoryPageRoute.name,
+            path: '/paralax-history-page'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
             path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaRightPageRoute.name,
             path: '/panaroma-right-page'),
-        _i1.RouteConfig(PathogenProfilePageRoute.name,
-            path: '/pathogen-profile-page'),
+        _i1.RouteConfig(PathogenProfilePageRoute.name, path: '/'),
         _i1.RouteConfig(KeepGoingPageRoute.name, path: '/keep-going-page'),
         _i1.RouteConfig(QuitMedicinePageRoute.name,
             path: '/quit-medicine-page'),
-        _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
+        _i1.RouteConfig(PracticeMedicineRoute.name, path: '/'),
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
@@ -420,7 +420,7 @@ class QuizPageRoute extends _i1.PageRouteInfo {
 }
 
 class ParalaxHistoryPageRoute extends _i1.PageRouteInfo {
-  const ParalaxHistoryPageRoute() : super(name, path: '/');
+  const ParalaxHistoryPageRoute() : super(name, path: '/paralax-history-page');
 
   static const String name = 'ParalaxHistoryPageRoute';
 }
@@ -444,8 +444,7 @@ class PanaromaRightPageRoute extends _i1.PageRouteInfo {
 }
 
 class PathogenProfilePageRoute extends _i1.PageRouteInfo {
-  const PathogenProfilePageRoute()
-      : super(name, path: '/pathogen-profile-page');
+  const PathogenProfilePageRoute() : super(name, path: '/');
 
   static const String name = 'PathogenProfilePageRoute';
 }
@@ -463,7 +462,7 @@ class QuitMedicinePageRoute extends _i1.PageRouteInfo {
 }
 
 class PracticeMedicineRoute extends _i1.PageRouteInfo {
-  const PracticeMedicineRoute() : super(name, path: '/practice-medicine');
+  const PracticeMedicineRoute() : super(name, path: '/');
 
   static const String name = 'PracticeMedicineRoute';
 }

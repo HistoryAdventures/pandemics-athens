@@ -35,9 +35,9 @@ class ArrowRightWidget extends StatelessWidget {
           onPressed: onTap,
           child: Container(
             margin: const EdgeInsets.only(left: 16),
-            child: Icon(Icons.arrow_forward,
+            child: Icon(Icons.arrow_forward_rounded,
                 color: arrowColor ?? Colors.white,
-                size: HW.getHeight(40, context)),
+                size: HW.getHeight(65, context)),
           ),
         ),
       ],

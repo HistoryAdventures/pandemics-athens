@@ -27,9 +27,9 @@ class ArrowLeftWidget extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.only(right: 16),
             child: Icon(
-              Icons.arrow_back,
+              Icons.arrow_back_rounded,
               color: arrowColor ?? Colors.white,
-              size: HW.getHeight(40, context),
+              size: HW.getHeight(65, context),
             ),
           ),
         ),

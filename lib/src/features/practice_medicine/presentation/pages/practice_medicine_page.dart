@@ -178,18 +178,19 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
           alignment: Alignment.topCenter,
           child: Container(
             margin: EdgeInsets.only(
-              top: HW.getHeight(143, context),
+              top: HW.getHeight(115, context),
             ),
             color: AppColors.black06,
-            width: HW.getWidth(668, context),
-            height: HW.getHeight(153, context),
+            width: HW.getWidth(647, context),
             padding: EdgeInsets.symmetric(
-              vertical: HW.getHeight(36, context),
-              horizontal: HW.getWidth(36, context),
+              vertical: HW.getWidth(40, context),
+              horizontal: HW.getWidth(40, context),
             ),
             child: Text(
               locals.medicineText,
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  height: 1.7,
+                  fontFamily: "Lora",
                   color: AppColors.white,
                   fontSize: TextFontSize.getHeight(16, context)),
             ),
