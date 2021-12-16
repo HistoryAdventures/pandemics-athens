@@ -111,7 +111,7 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                     child: Clickable(
                       onPressed: widget.onTapTiphius,
                       child: SizedBox(
-                        width: widget.constraints!.width * 0.3,
+                        width: widget.constraints!.width * 0.24,
                         child: IgnorePointer(
                           child: HtmlElementView(
                             viewType: widget.virusModel.widgets[1],

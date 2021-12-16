@@ -1,3 +1,4 @@
+import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:auto_route/auto_route.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:universal_html/html.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -63,7 +65,6 @@ class _LeandingPageState extends State<LeandingPage> {
     if (widget.navigateFromNavigatorPage != null) {
       isImageloaded = widget.navigateFromNavigatorPage!;
     } else if (loadingCount == '0') {
-      loadingCount = '1';
       precacheImages();
     }
     super.didChangeDependencies();
@@ -225,24 +226,28 @@ class _LeandingPageState extends State<LeandingPage> {
             },
           ),
         ),
-        if (isImageloaded == false) const LoadingWidget(),
+        if (isImageloaded == false) LoadingWidget(loadingCound: loadingCount)
       ],
     );
   }
 
   Future<void> precacheImages() async {
+    if (window.sessionStorage.containsKey('allImagesAreCached')) return;
+
     setState(() {
       isImageloaded = false;
     });
 
-    precacheImage(const AssetImage(AssetsPath.lottieAssetsTube), context);
-    precacheImage(const AssetImage(AssetsPath.lottieAssetsCrowd), context);
+    for (int i = 0; i < AssetsPath.allImages.length; i++) {
+      await precacheImage(AssetImage(AssetsPath.allImages[i]), context);
 
-    final List<Future> precache = AssetsPath.contentImages
-        .map((e) => precacheImage(AssetImage(e), context))
-        .toList();
+      setState(() {
+        loadingCount = ((i * 100).toDouble() / AssetsPath.allImages.length)
+            .toStringAsFixed(0);
+      });
+    }
 
-    await Future.wait(precache);
+    window.sessionStorage.putIfAbsent('allImagesAreCached', () => 'true');
 
     setState(() {
       isImageloaded = true;
