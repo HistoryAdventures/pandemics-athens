@@ -15,13 +15,14 @@ class ArrowRightTextWidget extends StatelessWidget {
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
+      this.bottom,
       this.right,
-      this.bottom = 48,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    right = right ?? HW.getWidth(64, context);
+    right = right ?? HW.getWidth(52, context);
+    bottom = bottom ?? HW.getHeight(55, context);
     return Padding(
       padding: EdgeInsets.only(
           right: HW.getWidth(right!, context),
@@ -37,31 +38,28 @@ class ArrowRightTextWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      textTitle.toUpperCase(),
-                      maxFontSize: 13,
-                      textAlign: TextAlign.right,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.caption?.copyWith(
-                          fontSize: 13, color: color ?? Colors.black),
-                    ),
+                  AutoSizeText(
+                    textTitle.toUpperCase(),
+                    textAlign: TextAlign.right,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontSize: HW.getHeight(15, context),
+                        color: color ?? Colors.black),
                   ),
-                  Flexible(
-                    child: AutoSizeText(
-                      textSubTitle.toUpperCase(),
-                      maxFontSize: 22,
-                      maxLines: 1,
-                      textAlign: TextAlign.right,
-                      style: Theme.of(context).textTheme.headline2?.copyWith(
-                          fontSize: 22, color: color ?? Colors.black),
-                    ),
+                  SizedBox(height: HW.getHeight(5, context)),
+                  Text(
+                    textSubTitle.toUpperCase(),
+                    maxLines: 1,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                        fontSize: HW.getHeight(25, context),
+                        color: color ?? Colors.black),
                   )
                 ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 8),
+              margin: EdgeInsets.only(left: HW.getWidth(15, context)),
               child: Icon(
                 Icons.arrow_forward_rounded,
                 color: color ?? Colors.black,
