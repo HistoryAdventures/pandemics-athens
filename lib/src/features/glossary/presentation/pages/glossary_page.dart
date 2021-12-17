@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -308,24 +309,20 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 ),
               ),
               SoundAndMenuWidget(
-                widget: IconButtonWidget(
-                    color: AppColors.black100,
-                    iconSize: HW.getHeight(40, context),
-                    icon: const Icon(Icons.arrow_upward_sharp),
-                    onPressed: () {
-                      LeafDetails.currentVertex = 0;
-                      NavigationSharedPreferences.upDateShatedPreferences();
-                      // if (kIsWeb) {
-                      //   html.window.history.back();
-                      //   context.router.pop();
-                      // } else {
-                      //   context.router.pop();
-                      // }
-                      LeafDetails.currentVertex = 0;
+                widget: AppUpButton(onTap: () {
+                  LeafDetails.currentVertex = 0;
+                  NavigationSharedPreferences.upDateShatedPreferences();
+                  // if (kIsWeb) {
+                  //   html.window.history.back();
+                  //   context.router.pop();
+                  // } else {
+                  //   context.router.pop();
+                  // }
+                  LeafDetails.currentVertex = 0;
 
-                      context.router.replace(
-                          LeandingPageRoute(navigateFromNavigatorPage: true));
-                    }),
+                  context.router.replace(
+                      LeandingPageRoute(navigateFromNavigatorPage: true));
+                }),
                 icons: isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/image_button.dart';
@@ -231,14 +232,13 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget get _menu => SoundAndMenuWidget(
-        widget: IconButtonWidget(
-          onPressed: () {
+        widget: AppUpButton(
+          onTap: () {
             LeafDetails.currentVertex = 15;
             LeafDetails.visitedVertexes.add(15);
             NavigationSharedPreferences.upDateShatedPreferences();
             context.router.replace(const DeadOfSocratesPageRoute());
           },
-          icon: const Icon(Icons.arrow_upward),
         ),
         icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
         onTapVolume: isSoundOn
