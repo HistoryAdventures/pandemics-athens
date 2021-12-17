@@ -56,8 +56,8 @@ class _AnimatedParticlesSecondState extends State<AnimatedParticlesSecond> {
         // ignore: unsafe_html
         ..src = AssetsPath.gifVirusTyphoid
         ..style.objectFit = 'contain'
-        ..height = (widget.constraints.maxHeight * 0.5).toInt()
-        ..width = (widget.constraints.maxWidth * 0.5).toInt(),
+        ..height = (widget.constraints.maxHeight * 0.2).toInt()
+        ..width = (widget.constraints.maxWidth * 0.2).toInt(),
     );
     super.initState();
   }
@@ -215,10 +215,10 @@ class _AnimatedParticlesSecondState extends State<AnimatedParticlesSecond> {
           ),
         ),
         Positioned(
-          top: widget.constraints.maxHeight * 0.25,
+          top: widget.constraints.maxHeight * 0.3,
           right: widget.constraints.maxWidth * 0.05,
-          height: widget.constraints.maxHeight * 0.5,
-          width: widget.constraints.maxWidth * 0.5,
+          height: widget.constraints.maxHeight * 0.28,
+          width: widget.constraints.maxWidth * 0.4,
           child: Transform.translate(
             offset: Offset(
               widget.mouseX / -4 + widget.objWave / -4,

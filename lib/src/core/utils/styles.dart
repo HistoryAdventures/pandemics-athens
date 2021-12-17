@@ -22,6 +22,15 @@ class Shadows {
         ),
       ];
 
+  static List<Color> pathogenGradiend = [
+    Colors.white.withOpacity(0.8),
+    Colors.white.withOpacity(0.8),
+    Colors.white.withOpacity(0.9),
+    Colors.white.withOpacity(0.9),
+    Colors.white.withOpacity(0.7),
+    Colors.white.withOpacity(0.8),
+  ];
+
   static List<BoxShadow> get allBorders => const [
         BoxShadow(offset: Offset(0, 1), color: AppColors.grey, blurRadius: 1),
         BoxShadow(offset: Offset(1, 0), color: AppColors.grey, blurRadius: 1),
