@@ -87,17 +87,19 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                             width: snapshot.data?.width,
                             child: SingleChildScrollView(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
                                 widget.selectedImageText,
-                                textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
                                     .subtitle2
                                     ?.copyWith(
-                                        fontSize:
-                                            TextFontSize.getHeight(16, context),
-                                        color: AppColors.white),
+                                      fontSize:
+                                          TextFontSize.getHeight(16, context),
+                                      color: AppColors.white.withOpacity(0.6),
+                                      letterSpacing: 0.25,
+                                      height: 26 / 16,
+                                    ),
                               ),
                             ),
                           ),

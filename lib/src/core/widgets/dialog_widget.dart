@@ -324,7 +324,7 @@ class _DialogWidgetState extends State<DialogWidget> {
     bool isHoverd = false,
   }) {
     return Container(
-      margin: const EdgeInsets.only(right: 30),
+      margin: const EdgeInsets.only(right: 15, bottom: 5),
       child: Clickable(
         onPressed: () {
           setState(() {
