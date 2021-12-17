@@ -31,7 +31,7 @@ class ParalaxTextWidget extends StatelessWidget {
           left: left ?? 0,
           right: right ?? 0,
         ),
-        alignment: Alignment.centerLeft,
+        // alignment: Alignment.centerLeft,
         width: size.width,
         // height: size.height,
         child: Text(

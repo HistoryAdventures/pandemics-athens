@@ -15,13 +15,15 @@ class ArrowLeftTextWidget extends StatelessWidget {
       {required this.textSubTitle,
       required this.textTitle,
       this.color,
+      this.bottom,
       this.left,
-      this.bottom = 48,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    left = left ?? HW.getWidth(64, context);
+    left = left ?? HW.getWidth(55, context);
+    bottom = bottom ?? HW.getHeight(55, context);
+
     return Padding(
       padding: EdgeInsets.only(
           left: HW.getWidth(left!, context),
@@ -33,7 +35,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 8),
+              margin: EdgeInsets.only(right: HW.getWidth(25, context)),
               child: Icon(
                 Icons.arrow_back_rounded,
                 color: color ?? Colors.black,
@@ -45,27 +47,23 @@ class ArrowLeftTextWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      textTitle.toUpperCase(),
-                      textAlign: TextAlign.left,
-                      maxLines: 1,
-                      maxFontSize: 13,
-                      style: Theme.of(context).textTheme.caption?.copyWith(
-                          fontSize: 13, color: color ?? Colors.black),
-                    ),
+                  Text(
+                    textTitle.toUpperCase(),
+                    textAlign: TextAlign.left,
+                    maxLines: 1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.copyWith(fontSize: 15, color: color ?? Colors.black),
                   ),
-                  Flexible(
-                    child: AutoSizeText(
-                      textSubTitle.toUpperCase(),
-                      textAlign: TextAlign.left,
-                      maxFontSize: 23,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: 23,
-                            color: color ?? Colors.black,
-                          ),
-                    ),
+                  Text(
+                    textSubTitle.toUpperCase(),
+                    textAlign: TextAlign.left,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                          fontSize: 25,
+                          color: color ?? Colors.black,
+                        ),
                   )
                 ],
               ),

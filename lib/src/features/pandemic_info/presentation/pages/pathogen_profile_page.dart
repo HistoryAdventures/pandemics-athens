@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
@@ -32,6 +33,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   late AppLocalizations locals;
   Offset offset = const Offset(0, 0);
   late ScrollController _scrollController;
+  final ScrollController _textPanelScrollController = ScrollController();
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   Color soundAndMewnuColor = AppColors.black100;
@@ -135,13 +137,17 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                               },
                             ),
                             Positioned(
-                                top: HW.getHeight(192, context),
-                                left: HW.getWidth(128, context),
+                                top: HW.getHeight(255, context),
+                                left: HW.getWidth(200, context),
                                 child: Container(
-                                  height: HW.getHeight(676, context),
-                                  width: HW.getWidth(768, context),
+                                  height: HW.getHeight(650, context),
+                                  width: HW.getWidth(800, context),
                                   decoration: BoxDecoration(
-                                      color: AppColors.white,
+                                      gradient: LinearGradient(
+                                          tileMode: TileMode.mirror,
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: Shadows.pathogenGradiend),
                                       boxShadow: Shadows.universal),
                                   child: Padding(
                                     padding: const EdgeInsets.all(24),
@@ -168,8 +174,10 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                                           .textTheme
                                                           .bodyText1
                                                           ?.copyWith(
+                                                              color:
+                                                                  Colors.grey,
                                                               fontSize: TextFontSize
-                                                                  .getHeight(16,
+                                                                  .getHeight(17,
                                                                       context))),
                                                 ),
                                               ),
@@ -184,7 +192,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                                       ?.copyWith(
                                                           fontSize: TextFontSize
                                                               .getHeight(
-                                                                  32, context)),
+                                                                  34, context)),
                                                 ),
                                               ),
                                             ],
@@ -198,30 +206,49 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                             margin: EdgeInsets.only(
                                               top: HW.getHeight(16, context),
                                             ),
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               border: Border(
                                                 top: BorderSide(
-                                                    color: AppColors.grey,
-                                                    width: 1.2),
+                                                    color: Colors.grey,
+                                                    width: HW.getHeight(
+                                                        0.5, context)),
                                               ),
                                             ),
                                             child: HAScrollbar(
+                                              controller:
+                                                  _textPanelScrollController,
+                                              isAlwaysShown: true,
                                               child: ListView(
+                                                  controller:
+                                                      _textPanelScrollController,
                                                   shrinkWrap: true,
                                                   children: [
                                                     Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 24,
-                                                              top: 16),
+                                                      padding: EdgeInsets.only(
+                                                        right: 24,
+                                                        top: HW.getHeight(
+                                                            16, context),
+                                                      ),
                                                       child: AutoSizeText(
                                                         locals
                                                             .pathogenProfileText,
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyText2,
+                                                            .bodyText2!
+                                                            .copyWith(
+                                                              fontFamily:
+                                                                  "OpenSans",
+                                                              height: 1.7,
+                                                              fontSize:
+                                                                  HW.getHeight(
+                                                                      17,
+                                                                      context),
+                                                            ),
                                                       ),
-                                                    )
+                                                    ),
+                                                    Container(
+                                                      height: 100,
+                                                    ),
                                                   ]),
                                             ),
                                           ),
@@ -266,17 +293,18 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                   color: soundAndMewnuColor,
                   widget: Visibility(
                     visible: soundAndMewnuColor == AppColors.black100,
-                    child: IconButtonWidget(
-                      iconSize: HW.getHeight(50, context),
-                      icon: const Icon(Icons.arrow_upward_sharp),
-                      onPressed: () {
+                    child: AppUpButton(
+                      // iconSize: HW.getHeight(50, context),
+                      // icon: const Icon(Icons.arrow_upward_sharp),
+                      onTap: () {
                         LeafDetails.currentVertex = 9;
                         LeafDetails.visitedVertexes.add(9);
 
                         NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.replace(const PanaromaRightPageRoute());
                       },
-                      color: soundAndMewnuColor,
+
+                      // color: soundAndMewnuColor,
                     ),
                   ),
                   icons: isSoundOn

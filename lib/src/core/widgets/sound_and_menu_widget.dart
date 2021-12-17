@@ -48,8 +48,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapMenu,
               child: SizedBox(
-                height: HW.getHeight(24, context),
-                width: HW.getWidth(36, context),
+                height: HW.getHeight(30, context),
+                width: HW.getWidth(40, context),
                 child: Image.asset(
                   AssetsPath.iconMenu,
                   fit: BoxFit.contain,

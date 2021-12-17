@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/keep_going_page.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
@@ -161,14 +162,12 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     }),
               ),
               SoundAndMenuWidget(
-                widget: IconButtonWidget(
-                  onPressed: () {
+                widget: AppUpButton(
+                  onTap: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
                     context.router.replace(QuitMedicinePageRoute());
                   },
-                  icon: const Icon(Icons.arrow_upward),
-                  iconSize: HW.getHeight(40, context),
                 ),
                 icons: isSoundOn
                     ? AssetsPath.iconVolumeOn

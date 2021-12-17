@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
@@ -60,16 +61,13 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             )),
             SoundAndMenuWidget(
               color: AppColors.white,
-              widget: IconButtonWidget(
-                iconSize: HW.getHeight(40, context),
-                icon: const Icon(Icons.arrow_upward_sharp),
-                onPressed: () {
+              widget: AppUpButton(
+                onTap: () {
                   LeafDetails.currentVertex = 17;
                   LeafDetails.visitedVertexes.add(17);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.replace(const QuizPageRoute());
                 },
-                color: AppColors.white,
               ),
               icons: isSoundOn
                   ? AssetsPath.iconVolumeOn

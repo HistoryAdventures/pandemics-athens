@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/paralax_text_widget.dart';
@@ -577,21 +578,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return SoundAndMenuWidget(
       widget: isOnVideo
           ? SizedBox()
-          : InkWell(
+          : AppUpButton(
               onTap: () {
                 LeafDetails.currentVertex = 1;
                 LeafDetails.visitedVertexes.add(1);
                 NavigationSharedPreferences.upDateShatedPreferences();
                 context.router.replace(const GlossaryPageRoute());
               },
-              child: SizedBox(
-                width: HW.getWidth(32, context),
-                height: HW.getWidth(32, context),
-                child: Image.asset(
-                  AssetsPath.med,
-                  fit: BoxFit.contain,
-                ),
-              ),
             ),
       icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
       onTapVolume: isSoundOn

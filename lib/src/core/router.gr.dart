@@ -331,11 +331,12 @@ class FlutterRouter extends _i1.RootStackRouter {
             path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaRightPageRoute.name,
             path: '/panaroma-right-page'),
-        _i1.RouteConfig(PathogenProfilePageRoute.name, path: '/'),
+        _i1.RouteConfig(PathogenProfilePageRoute.name,
+            path: '/pathogen-profile-page'),
         _i1.RouteConfig(KeepGoingPageRoute.name, path: '/keep-going-page'),
         _i1.RouteConfig(QuitMedicinePageRoute.name,
             path: '/quit-medicine-page'),
-        _i1.RouteConfig(PracticeMedicineRoute.name, path: '/'),
+        _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
@@ -350,7 +351,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(FurtherReadingPageRoute.name,
             path: '/further-reading-page'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
-        _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
+        _i1.RouteConfig(SourcePageRoute.name, path: '/'),
         _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
             path: '/virus-location-second-page')
@@ -444,7 +445,8 @@ class PanaromaRightPageRoute extends _i1.PageRouteInfo {
 }
 
 class PathogenProfilePageRoute extends _i1.PageRouteInfo {
-  const PathogenProfilePageRoute() : super(name, path: '/');
+  const PathogenProfilePageRoute()
+      : super(name, path: '/pathogen-profile-page');
 
   static const String name = 'PathogenProfilePageRoute';
 }
@@ -462,7 +464,7 @@ class QuitMedicinePageRoute extends _i1.PageRouteInfo {
 }
 
 class PracticeMedicineRoute extends _i1.PageRouteInfo {
-  const PracticeMedicineRoute() : super(name, path: '/');
+  const PracticeMedicineRoute() : super(name, path: '/practice-medicine');
 
   static const String name = 'PracticeMedicineRoute';
 }
@@ -534,7 +536,7 @@ class CopyrightPageRoute extends _i1.PageRouteInfo {
 }
 
 class SourcePageRoute extends _i1.PageRouteInfo {
-  const SourcePageRoute() : super(name, path: '/source-page');
+  const SourcePageRoute() : super(name, path: '/');
 
   static const String name = 'SourcePageRoute';
 }

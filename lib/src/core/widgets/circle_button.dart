@@ -15,8 +15,8 @@ class CircleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: HW.getHeight(48, context),
-      width: HW.getWidth(48, context),
+      height: HW.getHeight(50, context),
+      width: HW.getWidth(50, context),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: AppColors.white,
@@ -26,7 +26,7 @@ class CircleButton extends StatelessWidget {
           onPressed: onPressed,
           child: Icon(
             iconData,
-            size: HW.getHeight(21, context),
+            size: HW.getHeight(30, context),
             color: AppColors.blackB,
           )),
     );
