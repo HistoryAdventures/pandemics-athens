@@ -420,7 +420,7 @@ class _DocumentPageState extends State<DocumentPage>
                         }),
                   ),
                   Positioned(
-                    bottom: 0,
+                    bottom: HW.getHeight(5, context),
                     left: HW.getWidth(800, context),
                     child: SizedBox(
                       height: HW.getHeight(144, context),
@@ -437,7 +437,7 @@ class _DocumentPageState extends State<DocumentPage>
                             iconData: Icons.crop_free,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            padding: const EdgeInsets.symmetric(horizontal: 22),
                             child: CircleButton(
                               onPressed: _scaleUp,
                               iconData: Icons.add,
