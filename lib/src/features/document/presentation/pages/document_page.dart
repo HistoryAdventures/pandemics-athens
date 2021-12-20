@@ -133,22 +133,22 @@ class _DocumentPageState extends State<DocumentPage>
           text: locale.documentTranscriptionText),
       DocumentModel(
           top: MediaQuery.of(context).size.height * 0.31,
-          left: MediaQuery.of(context).size.width * 0.41,
+          left: MediaQuery.of(context).size.width * 0.45,
           name: locale.document1,
           text: locale.document1Text),
       DocumentModel(
           top: MediaQuery.of(context).size.height * 0.45,
-          left: MediaQuery.of(context).size.width * 0.45,
+          left: MediaQuery.of(context).size.width * 0.48,
           name: locale.document2,
           text: locale.document2Text),
       DocumentModel(
           top: MediaQuery.of(context).size.height * 0.62,
-          left: MediaQuery.of(context).size.width * 0.41,
+          left: MediaQuery.of(context).size.width * 0.45,
           name: locale.document3,
           text: locale.document3Text),
       DocumentModel(
           top: MediaQuery.of(context).size.height * 0.68,
-          left: MediaQuery.of(context).size.width * 0.55,
+          left: MediaQuery.of(context).size.width * 0.50,
           name: locale.document4,
           text: locale.document4Text),
     ];
@@ -224,9 +224,10 @@ class _DocumentPageState extends State<DocumentPage>
                                   });
                                 },
                                 child: PointWidget(
+                                  width: HW.getWidth(20, context),
                                   color: documentModel.name == data.name
                                       ? AppColors.orange
-                                      : Colors.black,
+                                      : Colors.black.withOpacity(0.8),
                                   text: data.name!.substring(1),
                                 ),
                               ),
@@ -273,19 +274,37 @@ class _DocumentPageState extends State<DocumentPage>
                                               Flexible(
                                                 child: Clickable(
                                                   onPressed: () {},
-                                                  child: const Icon(
-                                                      Icons.volume_up),
+                                                  child: SizedBox(
+                                                    height: HW.getWidth(
+                                                        32, context),
+                                                    width: HW.getWidth(
+                                                        32, context),
+                                                    child: Image.asset(
+                                                      AssetsPath.iconVolumeOn,
+                                                      fit: BoxFit.contain,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               Flexible(
-                                                child: Clickable(
-                                                    onPressed: () {
-                                                      scaffoldkey.currentState!
-                                                          .openEndDrawer();
-                                                    },
-                                                    child:
-                                                        const Icon(Icons.menu)),
-                                              )
+                                                  child: Clickable(
+                                                onPressed: () {
+                                                  scaffoldkey.currentState!
+                                                      .openEndDrawer();
+                                                },
+                                                child: SizedBox(
+                                                  height:
+                                                      HW.getHeight(30, context),
+                                                  width:
+                                                      HW.getWidth(40, context),
+                                                  child: Image.asset(
+                                                    AssetsPath.iconMenu,
+                                                    fit: BoxFit.contain,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              )),
                                             ],
                                           ),
                                         ),
@@ -379,7 +398,10 @@ class _DocumentPageState extends State<DocumentPage>
                                               ),
                                             ),
                                             SizedBox(
-                                              height: HW.getHeight(19, context),
+                                              height: HW.getHeight(20, context),
+                                            ),
+                                            SizedBox(
+                                              height: HW.getHeight(23, context),
                                               child: SingleChildScrollView(
                                                   scrollDirection:
                                                       Axis.horizontal,
@@ -429,23 +451,38 @@ class _DocumentPageState extends State<DocumentPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CircleButton(
+                            padding: EdgeInsets.all(
+                              HW.getWidth(5, context),
+                            ),
                             onPressed: () {
                               setState(() {
                                 isInfoBorderOpen = !isInfoBorderOpen;
                               });
                             },
                             iconData: Icons.crop_free,
+                            child: Image.asset(AssetsPath.expand),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22),
                             child: CircleButton(
+                              padding: EdgeInsets.all(
+                                HW.getWidth(5, context),
+                              ),
                               onPressed: _scaleUp,
                               iconData: Icons.add,
+                              child: Image.asset(AssetsPath.inc),
                             ),
                           ),
                           CircleButton(
+                            padding: EdgeInsets.all(
+                              HW.getHeight(5, context),
+                            ),
                             onPressed: _scaleDown,
                             iconData: Icons.remove,
+                            child: Image.asset(
+                              AssetsPath.dec,
+                              width: HW.getWidth(20, context),
+                            ),
                           ),
                         ],
                       ),
@@ -468,7 +505,7 @@ class _DocumentPageState extends State<DocumentPage>
   }) {
     return SizedBox(
       child: Padding(
-        padding: const EdgeInsets.only(right: 30),
+        padding: EdgeInsets.only(right: HW.getWidth(20, context)),
         child: Clickable(
           onPressed: () {
             setState(() {
@@ -477,17 +514,15 @@ class _DocumentPageState extends State<DocumentPage>
           },
           child: AutoSizeText(name!.toUpperCase(),
               maxLines: 1,
-              maxFontSize: 15,
-              minFontSize: 5,
+              maxFontSize: 20,
+              minFontSize: 10,
               style: documentModel.name == selected
-                  ? Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.orange)
-                  : Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: AppColors.blackG)),
+                  ? Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppColors.orange, fontWeight: FontWeight.w500)
+                  : Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.w500,
+                      )),
         ),
       ),
     );

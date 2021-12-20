@@ -5,11 +5,15 @@ import 'package:history_of_adventures/src/core/utils/styles.dart';
 class CircleButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData iconData;
+  final Widget? child;
+  final EdgeInsets? padding;
 
   const CircleButton({
     Key? key,
     required this.onPressed,
     required this.iconData,
+    this.child,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -24,10 +28,14 @@ class CircleButton extends StatelessWidget {
             elevation: 5,
           ),
           onPressed: onPressed,
-          child: Icon(
-            iconData,
-            size: HW.getHeight(30, context),
-            color: AppColors.blackB,
+          child: Container(
+            padding: padding,
+            child: child ??
+                Icon(
+                  iconData,
+                  size: HW.getHeight(30, context),
+                  color: AppColors.blackB,
+                ),
           )),
     );
   }

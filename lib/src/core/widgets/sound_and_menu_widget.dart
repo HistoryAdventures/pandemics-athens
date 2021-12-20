@@ -6,17 +6,25 @@ import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
 class SoundAndMenuWidget extends StatelessWidget {
   final Function() onTapVolume;
   final Function() onTapMenu;
+  final double? soundIconWidth;
+  final double? soundIconHeight;
+  final double? menuButtonWidth;
+  final double? menuButtonHeight;
   final String icons;
   final Color? color;
   final Widget? widget;
-  const SoundAndMenuWidget(
-      {Key? key,
-      required this.onTapVolume,
-      required this.icons,
-      this.color,
-      this.widget,
-      required this.onTapMenu})
-      : super(key: key);
+  const SoundAndMenuWidget({
+    Key? key,
+    required this.onTapVolume,
+    required this.icons,
+    this.color,
+    this.widget,
+    required this.onTapMenu,
+    this.menuButtonHeight,
+    this.menuButtonWidth,
+    this.soundIconHeight,
+    this.soundIconWidth,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +43,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapVolume,
               child: SizedBox(
-                height: HW.getWidth(32, context),
-                width: HW.getWidth(32, context),
+                height: soundIconHeight ?? HW.getWidth(32, context),
+                width: soundIconWidth ?? HW.getWidth(32, context),
                 child: Image.asset(
                   icons,
                   fit: BoxFit.contain,
@@ -48,8 +56,8 @@ class SoundAndMenuWidget extends StatelessWidget {
             Clickable(
               onPressed: onTapMenu,
               child: SizedBox(
-                height: HW.getHeight(30, context),
-                width: HW.getWidth(40, context),
+                height: menuButtonHeight ?? HW.getHeight(30, context),
+                width: menuButtonWidth ?? HW.getWidth(40, context),
                 child: Image.asset(
                   AssetsPath.iconMenu,
                   fit: BoxFit.contain,
