@@ -142,13 +142,13 @@ class _DocumentPageState extends State<DocumentPage>
           name: locale.document2,
           text: locale.document2Text),
       DocumentModel(
-          top: MediaQuery.of(context).size.height * 0.62,
+          top: MediaQuery.of(context).size.height * 0.58,
           left: MediaQuery.of(context).size.width * 0.45,
           name: locale.document3,
           text: locale.document3Text),
       DocumentModel(
-          top: MediaQuery.of(context).size.height * 0.68,
-          left: MediaQuery.of(context).size.width * 0.50,
+          top: MediaQuery.of(context).size.height * 0.62,
+          left: MediaQuery.of(context).size.width * 0.51,
           name: locale.document4,
           text: locale.document4Text),
     ];
