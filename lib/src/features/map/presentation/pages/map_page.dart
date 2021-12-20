@@ -458,165 +458,189 @@ class _MapPageState extends State<MapPage> {
             : HW.getHeight(341, context),
         left: HW.getWidth(128, context),
         child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(AssetsPath.mapDialogBlur),
-                  fit: BoxFit.cover),
-              //gradient: AppColors.linearGradientForBackground,
-            ),
-            padding: EdgeInsets.all(HW.getHeight(24, context)),
-            height: mapInfoModel!.text == locals.introTimeLineText
-                ? HW.getHeight(676, context)
-                : HW.getHeight(398, context),
-            width: HW.getWidth(768, context),
-            child: Row(
-              children: [
-                Visibility(
-                  visible: mapInfoModel?.image != '',
-                  child: SizedBox(
-                    height: HW.getHeight(350, context),
-                    width: HW.getWidth(276, context),
-                    child: AnimatedSwitcher(
-                      duration: Times.medium,
-                      transitionBuilder: (child, animation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        );
-                      },
-                      child: Container(
-                        key: ValueKey(mapInfoModel?.title),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage(mapInfoModel!.image),
-                          fit: BoxFit.cover,
-                        )),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Clickable(
-                              onPressed: () {
-                                showGeneralDialog(
-                                    context: context,
-                                    barrierColor: Colors.black.withOpacity(0.5),
-                                    transitionBuilder: (BuildContext context,
-                                        Animation<double> animation,
-                                        Animation<double> secondaryAnimation,
-                                        Widget child) {
-                                      return LayoutBuilder(
-                                          builder: (context, constraints) =>
-                                              DialogImageWidget(
-                                                animation: animation,
-                                                selectedImage:
-                                                    mapInfoModel!.image,
-                                                selectedImageText: mapInfoModel!
-                                                    .imageDescription,
-                                                constraints: constraints,
-                                              ));
-                                    },
-                                    transitionDuration: Times.fast,
-                                    barrierDismissible: true,
-                                    barrierLabel: '',
-                                    pageBuilder:
-                                        (context, animation1, animation2) {
-                                      return Container();
-                                    });
-                              },
-                              child: const ZoomInNotesWidget()),
+          color: Colors.white,
+          child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white.withOpacity(0.3),
+                    Colors.white.withOpacity(0.7),
+                    Colors.white.withOpacity(0.9),
+                    Colors.white.withOpacity(0.9),
+                    Colors.white.withOpacity(0.6),
+                    Colors.white.withOpacity(0.3),
+                  ],
+                  // transform: GradientRotation(104),
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              padding: EdgeInsets.all(HW.getHeight(24, context)),
+              height: mapInfoModel!.text == locals.introTimeLineText
+                  ? HW.getHeight(676, context)
+                  : HW.getHeight(398, context),
+              width: HW.getWidth(768, context),
+              child: Row(
+                children: [
+                  Visibility(
+                    visible: mapInfoModel?.image != '',
+                    child: SizedBox(
+                      height: HW.getHeight(350, context),
+                      width: HW.getWidth(276, context),
+                      child: AnimatedSwitcher(
+                        duration: Times.medium,
+                        transitionBuilder: (child, animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                        child: Container(
+                          key: ValueKey(mapInfoModel?.title),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage(mapInfoModel!.image),
+                            fit: BoxFit.cover,
+                          )),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Clickable(
+                                onPressed: () {
+                                  showGeneralDialog(
+                                      context: context,
+                                      barrierColor:
+                                          Colors.black.withOpacity(0.5),
+                                      transitionBuilder: (BuildContext context,
+                                          Animation<double> animation,
+                                          Animation<double> secondaryAnimation,
+                                          Widget child) {
+                                        return LayoutBuilder(
+                                            builder: (context, constraints) =>
+                                                DialogImageWidget(
+                                                  animation: animation,
+                                                  selectedImage:
+                                                      mapInfoModel!.image,
+                                                  selectedImageText:
+                                                      mapInfoModel!
+                                                          .imageDescription,
+                                                  constraints: constraints,
+                                                ));
+                                      },
+                                      transitionDuration: Times.fast,
+                                      barrierDismissible: true,
+                                      barrierLabel: '',
+                                      pageBuilder:
+                                          (context, animation1, animation2) {
+                                        return Container();
+                                      });
+                                },
+                                child: const ZoomInNotesWidget()),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                    child: Container(
-                  padding:
-                      EdgeInsets.only(left: mapInfoModel?.image != '' ? 24 : 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: HW.getHeight(68, context),
-                        width: constraints.maxWidth,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
-                              child: Container(
-                                padding: EdgeInsets.only(
-                                    bottom: HW.getHeight(8, context)),
+                  Expanded(
+                      child: Container(
+                    padding: EdgeInsets.only(
+                        left: mapInfoModel?.image != '' ? 24 : 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: HW.getHeight(68, context),
+                          width: constraints.maxWidth,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                      bottom: HW.getHeight(8, context)),
+                                  child: Text(
+                                    "${locals.chapter1Athens5thCentury}\n",
+                                    maxLines: 1,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                          color: Colors.black.withOpacity(0.5),
+                                          fontSize: TextFontSize.getHeight(
+                                              16, context),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                              Flexible(
                                 child: Text(
-                                  "${locals.chapter1Athens5thCentury}\n",
+                                  '${locals.timelineOfMainEvents}\n'
+                                      .toUpperCase(),
                                   maxLines: 1,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline1
+                                      .headline2
                                       ?.copyWith(
-                                          color: AppColors.grey,
                                           fontSize: TextFontSize.getHeight(
-                                              16, context)),
+                                              32, context)),
                                 ),
                               ),
-                            ),
-                            Flexible(
-                              child: Text(
-                                '${locals.timelineOfMainEvents}\n'
-                                    .toUpperCase(),
-                                maxLines: 1,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline2
-                                    ?.copyWith(
-                                        fontSize: TextFontSize.getHeight(
-                                            32, context)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          margin:
-                              EdgeInsets.only(top: HW.getHeight(16, context)),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  top: BorderSide(
-                                      color: AppColors.grey, width: 1.2))),
-                          child: HAScrollbar(
-                            // isAlwaysShown: true,
-                            showTrackOnHover: true,
-                            child: ListView(shrinkWrap: true, children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16.0, right: 30),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: "${mapInfoModel?.title}\n\n"
-                                          .toUpperCase(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline3),
-                                  TextSpan(
-                                    text: mapInfoModel?.text,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        ?.copyWith(),
-                                  ),
-                                ])),
-                              )
-                            ]),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )),
-              ],
-            )));
+                        // SizedBox(
+                        //   height: HW.getHeight(20, context),
+                        // ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            margin:
+                                EdgeInsets.only(top: HW.getHeight(16, context)),
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    top: BorderSide(
+                                        color: AppColors.grey, width: 1.2))),
+                            child: HAScrollbar(
+                              isAlwaysShown: true,
+                              showTrackOnHover: true,
+                              child: ListView(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      padding: const EdgeInsets.only(
+                                          top: 10.0, right: 30),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: "${mapInfoModel?.title}"
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline3),
+                                        TextSpan(
+                                          text: mapInfoModel?.text,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1
+                                              ?.copyWith(),
+                                        ),
+                                      ])),
+                                    )
+                                  ]),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+                ],
+              )),
+        ));
   }
 
   Widget _timeLineWidget(BoxConstraints constraints) {
@@ -650,27 +674,14 @@ class _MapPageState extends State<MapPage> {
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.replace(const ParalaxHistoryPageRoute());
                 }),
-            SizedBox(
+            Container(
               width: HW.getWidth(980, context),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  IconButtonWidget(
-                    paddingBottom: 0,
-                    onPressed: () {
-                      _scrollController.animateTo(
-                        0.0,
-                        curve: Curves.easeOut,
-                        duration: const Duration(milliseconds: 300),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.navigate_before,
-                    ),
-                  ),
                   Expanded(
-                    child: SizedBox(
+                    child: Container(
                       height: HW.getHeight(42, context),
                       width: HW.getWidth(930, context),
                       child: Theme(
@@ -692,36 +703,62 @@ class _MapPageState extends State<MapPage> {
                           controller: _scrollController,
                           isAlwaysShown: true,
                           showTrackOnHover: true,
-                          child: ListView.builder(
-                              controller: _scrollController,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: mapInfoList?.length,
-                              itemBuilder: (context, index) {
-                                return yearsWidget(
-                                    lottie: mapInfoList![index].lottie,
-                                    year: mapInfoList![index].year,
-                                    image: mapInfoList![index].image,
-                                    text: mapInfoList![index].text,
-                                    map: mapInfoList![index].mapImage,
-                                    title: mapInfoList![index].title,
-                                    imageText:
-                                        mapInfoList![index].imageDescription);
-                              }),
+                          child: Container(
+                            color: Colors.red,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButtonWidget(
+                                  paddingBottom: 0,
+                                  onPressed: () {
+                                    _scrollController.animateTo(
+                                      0.0,
+                                      curve: Curves.easeOut,
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    Icons.navigate_before,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                      controller: _scrollController,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: mapInfoList?.length,
+                                      itemBuilder: (context, index) {
+                                        return yearsWidget(
+                                            lottie: mapInfoList![index].lottie,
+                                            year: mapInfoList![index].year,
+                                            image: mapInfoList![index].image,
+                                            text: mapInfoList![index].text,
+                                            map: mapInfoList![index].mapImage,
+                                            title: mapInfoList![index].title,
+                                            imageText: mapInfoList![index]
+                                                .imageDescription);
+                                      }),
+                                ),
+                                IconButtonWidget(
+                                  paddingBottom: 0,
+                                  onPressed: () {
+                                    _scrollController.animateTo(
+                                      _scrollController
+                                          .position.maxScrollExtent,
+                                      curve: Curves.easeOut,
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.navigate_next),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  IconButtonWidget(
-                    paddingBottom: 0,
-                    onPressed: () {
-                      _scrollController.animateTo(
-                        _scrollController.position.maxScrollExtent,
-                        curve: Curves.easeOut,
-                        duration: const Duration(milliseconds: 300),
-                      );
-                    },
-                    icon: const Icon(Icons.navigate_next),
                   ),
                 ],
               ),

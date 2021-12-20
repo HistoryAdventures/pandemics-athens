@@ -322,7 +322,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
-        _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
+        _i1.RouteConfig(MapPageRoute.name, path: '/'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
@@ -340,7 +340,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
-        _i1.RouteConfig(DocumentPageRoute.name, path: '/'),
+        _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
         _i1.RouteConfig(DeadOfSocratesPageRoute.name,
             path: '/dead-of-socrates-page'),
         _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
@@ -351,7 +351,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(FurtherReadingPageRoute.name,
             path: '/further-reading-page'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
-        _i1.RouteConfig(SourcePageRoute.name, path: '/'),
+        _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
         _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
             path: '/virus-location-second-page')
@@ -409,7 +409,7 @@ class VirusesInfoPageRoute extends _i1.PageRouteInfo {
 }
 
 class MapPageRoute extends _i1.PageRouteInfo {
-  const MapPageRoute() : super(name, path: '/map-page');
+  const MapPageRoute() : super(name, path: '/');
 
   static const String name = 'MapPageRoute';
 }
@@ -482,7 +482,7 @@ class VirusLocationPageRoute extends _i1.PageRouteInfo {
 }
 
 class DocumentPageRoute extends _i1.PageRouteInfo {
-  const DocumentPageRoute() : super(name, path: '/');
+  const DocumentPageRoute() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageRoute';
 }
@@ -536,7 +536,7 @@ class CopyrightPageRoute extends _i1.PageRouteInfo {
 }
 
 class SourcePageRoute extends _i1.PageRouteInfo {
-  const SourcePageRoute() : super(name, path: '/');
+  const SourcePageRoute() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageRoute';
 }

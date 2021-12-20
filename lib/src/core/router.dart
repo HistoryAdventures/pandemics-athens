@@ -48,6 +48,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: MapPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -96,7 +97,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: DocumentPage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideRight,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -133,7 +133,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: SourcePage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
