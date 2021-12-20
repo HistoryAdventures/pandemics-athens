@@ -10,6 +10,7 @@ class AssetsPath {
   static String inc = "assets/icons/inc.png";
   static String dec = "assets/icons/dec.png";
   static String expand = "assets/icons/expand.png";
+  static String unExpand = "assets/icons/unExpand.png";
 
   static const String iconVolumeOn = 'assets/icons/sound_on.png';
   static const String iconVolumeOff = 'assets/icons/sound_off.png';

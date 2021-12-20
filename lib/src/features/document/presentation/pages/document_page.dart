@@ -428,22 +428,28 @@ class _DocumentPageState extends State<DocumentPage>
                       }),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: ArrowRightTextWidget(
-                        textSubTitle: locale.medicalToolsKnowledge,
-                        textTitle: locale.chapter1,
-                        onTap: () {
-                          LeafDetails.currentVertex = 8;
-                          LeafDetails.visitedVertexes.add(8);
+                  Visibility(
+                    visible: isInfoBorderOpen,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: ArrowRightTextWidget(
+                          textSubTitle: locale.medicalToolsKnowledge,
+                          textTitle: locale.chapter1,
+                          onTap: () {
+                            LeafDetails.currentVertex = 8;
+                            LeafDetails.visitedVertexes.add(8);
 
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.replace(const PanaromaLeftPageRoute());
-                        }),
+                            NavigationSharedPreferences
+                                .upDateShatedPreferences();
+                            context.router
+                                .replace(const PanaromaLeftPageRoute());
+                          }),
+                    ),
                   ),
                   Positioned(
                     bottom: HW.getHeight(5, context),
-                    left: HW.getWidth(800, context),
+                    left: isInfoBorderOpen ? HW.getWidth(800, context) : null,
+                    right: !isInfoBorderOpen ? HW.getWidth(50, context) : null,
                     child: SizedBox(
                       height: HW.getHeight(144, context),
                       width: HW.getWidth(320, context),
@@ -460,7 +466,11 @@ class _DocumentPageState extends State<DocumentPage>
                               });
                             },
                             iconData: Icons.crop_free,
-                            child: Image.asset(AssetsPath.expand),
+                            child: Image.asset(
+                              isInfoBorderOpen
+                                  ? AssetsPath.expand
+                                  : AssetsPath.unExpand,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22),
