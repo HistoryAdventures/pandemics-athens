@@ -454,31 +454,37 @@ class _MapPageState extends State<MapPage> {
   Widget _yearDescriptionField(BoxConstraints constraints) {
     return Positioned(
         top: mapInfoModel!.text == locals.introTimeLineText
-            ? HW.getHeight(192, context)
+            ? HW.getHeight(180, context)
             : HW.getHeight(341, context),
         left: HW.getWidth(128, context),
         child: Container(
-          color: Colors.white,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(4),
+          ),
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 gradient: LinearGradient(
                   colors: [
-                    Colors.white.withOpacity(0.3),
-                    Colors.white.withOpacity(0.7),
-                    Colors.white.withOpacity(0.9),
-                    Colors.white.withOpacity(0.9),
-                    Colors.white.withOpacity(0.6),
-                    Colors.white.withOpacity(0.3),
+                    Colors.white10,
+                    Colors.white54,
+                    Colors.white54,
+                    Colors.white54,
+                    Colors.white54,
+                    Colors.white54,
+                    Colors.white54,
+                    Colors.white10,
                   ],
-                  // transform: GradientRotation(104),
+                  transform: GradientRotation(104),
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
+                borderRadius: BorderRadius.circular(4),
               ),
               padding: EdgeInsets.all(HW.getHeight(24, context)),
               height: mapInfoModel!.text == locals.introTimeLineText
-                  ? HW.getHeight(676, context)
+                  ? HW.getHeight(735, context)
                   : HW.getHeight(398, context),
               width: HW.getWidth(768, context),
               child: Row(
@@ -568,8 +574,8 @@ class _MapPageState extends State<MapPage> {
                                         ?.copyWith(
                                           color: Colors.black.withOpacity(0.5),
                                           fontSize: TextFontSize.getHeight(
-                                              16, context),
-                                          fontWeight: FontWeight.w600,
+                                              17, context),
+                                          fontWeight: FontWeight.w500,
                                         ),
                                   ),
                                 ),
@@ -584,7 +590,7 @@ class _MapPageState extends State<MapPage> {
                                       .headline2
                                       ?.copyWith(
                                           fontSize: TextFontSize.getHeight(
-                                              32, context)),
+                                              34, context)),
                                 ),
                               ),
                             ],
@@ -620,13 +626,18 @@ class _MapPageState extends State<MapPage> {
                                                 .toUpperCase(),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline3),
+                                                .headline3!
+                                                .copyWith(
+                                                  height: 1.7,
+                                                )),
                                         TextSpan(
                                           text: mapInfoModel?.text,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1
-                                              ?.copyWith(),
+                                              ?.copyWith(
+                                                height: 1.7,
+                                              ),
                                         ),
                                       ])),
                                     )
@@ -681,7 +692,7 @@ class _MapPageState extends State<MapPage> {
                 children: [
                   Expanded(
                     child: Container(
-                      height: HW.getHeight(60, context),
+                      height: HW.getHeight(40, context),
                       width: HW.getWidth(930, context),
                       child: Theme(
                         data: ThemeData(
@@ -707,26 +718,27 @@ class _MapPageState extends State<MapPage> {
                                 isAlwaysShown: true,
                                 showTrackOnHover: true,
                                 child: ListView.builder(
-                                    padding: EdgeInsets.only(
-                                      left: HW.getWidth(20, context),
-                                      right: HW.getWidth(20, context),
-                                      bottom: HW.getHeight(10, context),
-                                    ),
-                                    controller: _scrollController,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: mapInfoList?.length,
-                                    itemBuilder: (context, index) {
-                                      return yearsWidget(
-                                          lottie: mapInfoList![index].lottie,
-                                          year: mapInfoList![index].year,
-                                          image: mapInfoList![index].image,
-                                          text: mapInfoList![index].text,
-                                          map: mapInfoList![index].mapImage,
-                                          title: mapInfoList![index].title,
-                                          imageText: mapInfoList![index]
-                                              .imageDescription);
-                                    }),
+                                  padding: EdgeInsets.only(
+                                    left: HW.getWidth(20, context),
+                                    right: HW.getWidth(20, context),
+                                    bottom: HW.getHeight(5, context),
+                                  ),
+                                  controller: _scrollController,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: mapInfoList?.length,
+                                  itemBuilder: (context, index) {
+                                    return yearsWidget(
+                                        lottie: mapInfoList![index].lottie,
+                                        year: mapInfoList![index].year,
+                                        image: mapInfoList![index].image,
+                                        text: mapInfoList![index].text,
+                                        map: mapInfoList![index].mapImage,
+                                        title: mapInfoList![index].title,
+                                        imageText: mapInfoList![index]
+                                            .imageDescription);
+                                  },
+                                ),
                               ),
                             ),
                             _rightArrow,
@@ -799,11 +811,20 @@ class _MapPageState extends State<MapPage> {
 
   Widget get leftArrow => IconButton(
         onPressed: () {
-          _scrollController.animateTo(
-            0.0,
-            curve: Curves.easeOut,
-            duration: const Duration(milliseconds: 300),
-          );
+          if (_scrollController.offset >
+              _scrollController.position.maxScrollExtent / 2) {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent / 2,
+              curve: Curves.easeOut,
+              duration: const Duration(milliseconds: 300),
+            );
+          } else {
+            _scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOut,
+              duration: const Duration(milliseconds: 300),
+            );
+          }
         },
         padding: EdgeInsets.zero,
         alignment: Alignment.centerRight,
@@ -817,11 +838,20 @@ class _MapPageState extends State<MapPage> {
   Widget get _rightArrow => IconButton(
         alignment: Alignment.centerLeft,
         onPressed: () {
-          _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            curve: Curves.easeOut,
-            duration: const Duration(milliseconds: 300),
-          );
+          if (_scrollController.offset <
+              _scrollController.position.maxScrollExtent / 2) {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent / 2,
+              curve: Curves.easeOut,
+              duration: const Duration(milliseconds: 300),
+            );
+          } else {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              curve: Curves.easeOut,
+              duration: const Duration(milliseconds: 300),
+            );
+          }
         },
         padding: EdgeInsets.only(right: 0),
         icon: Icon(
