@@ -455,7 +455,7 @@ class _MapPageState extends State<MapPage> {
     return Positioned(
         top: mapInfoModel!.text == locals.introTimeLineText
             ? HW.getHeight(180, context)
-            : HW.getHeight(341, context),
+            : HW.getHeight(280, context),
         left: HW.getWidth(128, context),
         child: Container(
           decoration: BoxDecoration(
