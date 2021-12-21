@@ -604,7 +604,6 @@ class _MapPageState extends State<MapPage> {
                                     top: BorderSide(
                                         color: AppColors.grey, width: 1.2))),
                             child: HAScrollbar(
-                              isAlwaysShown: true,
                               showTrackOnHover: true,
                               child: ListView(
                                   padding: EdgeInsets.zero,
@@ -648,7 +647,7 @@ class _MapPageState extends State<MapPage> {
       alignment: Alignment.bottomCenter,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: HW.getWidth(54, context),
+          horizontal: HW.getWidth(40, context),
         ),
         height: HW.getHeight(149, context),
         decoration: const BoxDecoration(
@@ -677,12 +676,12 @@ class _MapPageState extends State<MapPage> {
             Container(
               width: HW.getWidth(980, context),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Container(
-                      height: HW.getHeight(42, context),
+                      height: HW.getHeight(60, context),
                       width: HW.getWidth(930, context),
                       child: Theme(
                         data: ThemeData(
@@ -699,63 +698,39 @@ class _MapPageState extends State<MapPage> {
                                   MaterialStateProperty.all(AppColors.orange),
                               showTrackOnHover: true),
                         ),
-                        child: HAScrollbar(
-                          controller: _scrollController,
-                          isAlwaysShown: true,
-                          showTrackOnHover: true,
-                          child: Container(
-                            color: Colors.red,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                IconButtonWidget(
-                                  paddingBottom: 0,
-                                  onPressed: () {
-                                    _scrollController.animateTo(
-                                      0.0,
-                                      curve: Curves.easeOut,
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                    );
-                                  },
-                                  icon: const Icon(
-                                    Icons.navigate_before,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ListView.builder(
-                                      controller: _scrollController,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: mapInfoList?.length,
-                                      itemBuilder: (context, index) {
-                                        return yearsWidget(
-                                            lottie: mapInfoList![index].lottie,
-                                            year: mapInfoList![index].year,
-                                            image: mapInfoList![index].image,
-                                            text: mapInfoList![index].text,
-                                            map: mapInfoList![index].mapImage,
-                                            title: mapInfoList![index].title,
-                                            imageText: mapInfoList![index]
-                                                .imageDescription);
-                                      }),
-                                ),
-                                IconButtonWidget(
-                                  paddingBottom: 0,
-                                  onPressed: () {
-                                    _scrollController.animateTo(
-                                      _scrollController
-                                          .position.maxScrollExtent,
-                                      curve: Curves.easeOut,
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.navigate_next),
-                                ),
-                              ],
+                        child: Row(
+                          children: [
+                            leftArrow,
+                            Expanded(
+                              child: HAScrollbar(
+                                controller: _scrollController,
+                                isAlwaysShown: true,
+                                showTrackOnHover: true,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.only(
+                                      left: HW.getWidth(20, context),
+                                      right: HW.getWidth(20, context),
+                                      bottom: HW.getHeight(10, context),
+                                    ),
+                                    controller: _scrollController,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: mapInfoList?.length,
+                                    itemBuilder: (context, index) {
+                                      return yearsWidget(
+                                          lottie: mapInfoList![index].lottie,
+                                          year: mapInfoList![index].year,
+                                          image: mapInfoList![index].image,
+                                          text: mapInfoList![index].text,
+                                          map: mapInfoList![index].mapImage,
+                                          title: mapInfoList![index].title,
+                                          imageText: mapInfoList![index]
+                                              .imageDescription);
+                                    }),
+                              ),
                             ),
-                          ),
+                            _rightArrow,
+                          ],
                         ),
                       ),
                     ),
@@ -809,13 +784,50 @@ class _MapPageState extends State<MapPage> {
           year!,
           textAlign: TextAlign.end,
           style: mapInfoModel?.title == title
-              ? Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(color: AppColors.orange, fontSize: 36)
-              : Theme.of(context).textTheme.headline5,
+              ? Theme.of(context).textTheme.headline5?.copyWith(
+                    color: AppColors.orange,
+                    fontSize: 36,
+                    fontWeight: FontWeight.w600,
+                  )
+              : Theme.of(context).textTheme.headline5!.copyWith(
+                    color: Colors.black.withOpacity(0.5),
+                  ),
         ),
       ),
     );
   }
+
+  Widget get leftArrow => IconButton(
+        onPressed: () {
+          _scrollController.animateTo(
+            0.0,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+        },
+        padding: EdgeInsets.zero,
+        alignment: Alignment.centerRight,
+        icon: Icon(
+          Icons.navigate_before,
+          color: Colors.black.withOpacity(0.6),
+          size: HW.getWidth(30, context),
+        ),
+      );
+
+  Widget get _rightArrow => IconButton(
+        alignment: Alignment.centerLeft,
+        onPressed: () {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+        },
+        padding: EdgeInsets.only(right: 0),
+        icon: Icon(
+          Icons.navigate_next,
+          color: Colors.black.withOpacity(0.6),
+          size: HW.getWidth(30, context),
+        ),
+      );
 }
