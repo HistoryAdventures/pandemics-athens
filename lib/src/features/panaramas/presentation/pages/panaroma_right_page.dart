@@ -35,7 +35,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
-  bool panelVisibility = true;
   bool? onViewChanged;
 
   @override
@@ -161,17 +160,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     super.didChangeDependencies();
   }
 
-  void onChangeView() {
-    setState(() {
-      panelVisibility = false;
-    });
-    Future.delayed(const Duration(milliseconds: 1)).then((value) {
-      setState(() {
-        panelVisibility = true;
-      });
-    });
-  }
-
   Future<void> init() async {
     if (isSoundOn == true) {
       setState(() {
@@ -210,9 +198,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
           children: [
             Panorama(
               deformHotspots: false,
-              onViewChanged: (a, b, c) {
-                onChangeView();
-              },
               hotspots: infoListHotspot.map((info) {
                 if (info is InfoDialogModel) {
                   return Hotspot(
