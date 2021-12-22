@@ -9,7 +9,10 @@ class ZoomInNotesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         height: HW.getHeight(48, context),
-        width: HW.getWidth(96, context),
-        child: Image.asset(AssetsPath.iconInfo,fit: BoxFit.cover,));
+        width: HW.getWidth(85, context),
+        child: Image.asset(
+          AssetsPath.iconInfo,
+          fit: BoxFit.contain,
+        ));
   }
 }

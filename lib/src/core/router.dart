@@ -48,7 +48,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: MapPage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -101,6 +100,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: DeadOfSocratesPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(

@@ -16,15 +16,17 @@ class CardTextAndImageWidget extends StatefulWidget {
   final List<SocratesInfoModel> listDialogInfo;
   final String subTitleText;
   final String titleText;
+  final bool usePositionedParent;
 
-  const CardTextAndImageWidget(
-      {Key? key,
-      required this.titleText,
-      required this.slectedInfoDialog,
-      required this.listDialogInfo,
-      required this.constraints,
-      required this.subTitleText})
-      : super(key: key);
+  const CardTextAndImageWidget({
+    Key? key,
+    required this.titleText,
+    required this.slectedInfoDialog,
+    required this.listDialogInfo,
+    required this.constraints,
+    required this.subTitleText,
+    this.usePositionedParent = false,
+  }) : super(key: key);
 
   @override
   _CardTextAndImageWidgetState createState() => _CardTextAndImageWidgetState();
@@ -52,12 +54,26 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
     super.didChangeDependencies();
   }
 
+  Widget parent({required Widget child}) {
+    if (widget.usePositionedParent) {
+      return Container(
+        margin: EdgeInsets.only(
+          top: HW.getHeight(220, context),
+        ),
+        child: child,
+        alignment: Alignment.topCenter,
+      );
+    } else {
+      return Align(child: child);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return parent(
       child: SizedBox(
         width: HW.getWidth(1200, context),
-        height: HW.getHeight(676, context),
+        height: HW.getHeight(720, context),
         child: Scaffold(
             backgroundColor: AppColors.white.withOpacity(0.9),
             body: Container(
@@ -67,7 +83,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
               child: Row(
                 children: [
                   SizedBox(
-                    height: HW.getHeight(628, context),
+                    height: HW.getHeight(670, context),
                     width: HW.getWidth(400, context),
                     child: AnimatedSwitcher(
                       duration: Times.medium,
@@ -287,10 +303,10 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
             style: socratesInfoModel.name == selected || isHoverd
                 ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
-                    fontSize: TextFontSize.getHeight(16, context))
+                    fontSize: TextFontSize.getHeight(17, context))
                 : Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.grey,
-                    fontSize: TextFontSize.getHeight(16, context))),
+                    fontSize: TextFontSize.getHeight(17, context))),
       ),
     );
   }

@@ -322,7 +322,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
-        _i1.RouteConfig(MapPageRoute.name, path: '/'),
+        _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
             path: '/paralax-history-page'),
@@ -341,8 +341,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
-        _i1.RouteConfig(DeadOfSocratesPageRoute.name,
-            path: '/dead-of-socrates-page'),
+        _i1.RouteConfig(DeadOfSocratesPageRoute.name, path: '/'),
         _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
         _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
         _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
@@ -409,7 +408,7 @@ class VirusesInfoPageRoute extends _i1.PageRouteInfo {
 }
 
 class MapPageRoute extends _i1.PageRouteInfo {
-  const MapPageRoute() : super(name, path: '/');
+  const MapPageRoute() : super(name, path: '/map-page');
 
   static const String name = 'MapPageRoute';
 }
@@ -488,7 +487,7 @@ class DocumentPageRoute extends _i1.PageRouteInfo {
 }
 
 class DeadOfSocratesPageRoute extends _i1.PageRouteInfo {
-  const DeadOfSocratesPageRoute() : super(name, path: '/dead-of-socrates-page');
+  const DeadOfSocratesPageRoute() : super(name, path: '/');
 
   static const String name = 'DeadOfSocratesPageRoute';
 }

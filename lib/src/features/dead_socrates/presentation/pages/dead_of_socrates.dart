@@ -129,6 +129,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 },
               ),
               CardTextAndImageWidget(
+                usePositionedParent: true,
                 constraints: constraints,
                 listDialogInfo: socratesList,
                 slectedInfoDialog: socratesList[0],
