@@ -217,7 +217,6 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                             child: HAScrollbar(
                                               controller:
                                                   _textPanelScrollController,
-                                              isAlwaysShown: true,
                                               child: ListView(
                                                   controller:
                                                       _textPanelScrollController,
@@ -238,16 +237,13 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                                             .copyWith(
                                                               fontFamily:
                                                                   "OpenSans",
-                                                              height: 1.7,
+                                                              height: 1.6,
                                                               fontSize:
                                                                   HW.getHeight(
                                                                       17,
                                                                       context),
                                                             ),
                                                       ),
-                                                    ),
-                                                    Container(
-                                                      height: 100,
                                                     ),
                                                   ]),
                                             ),

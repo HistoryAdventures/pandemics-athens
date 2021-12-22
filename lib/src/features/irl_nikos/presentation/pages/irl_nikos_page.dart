@@ -62,6 +62,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
             SoundAndMenuWidget(
               color: AppColors.white,
               widget: AppUpButton(
+                iconColor: Colors.white,
                 onTap: () {
                   LeafDetails.currentVertex = 17;
                   LeafDetails.visitedVertexes.add(17);

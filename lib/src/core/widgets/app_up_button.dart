@@ -4,9 +4,11 @@ import 'package:history_of_adventures/src/core/utils/styles.dart';
 
 class AppUpButton extends StatelessWidget {
   final Function? onTap;
+  final Color iconColor;
   const AppUpButton({
     Key? key,
     this.onTap,
+    this.iconColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class AppUpButton extends StatelessWidget {
       child: Image.asset(
         AssetsPath.med,
         fit: BoxFit.contain,
+        color: iconColor,
         height: HW.getHeight(36, context),
       ),
     );

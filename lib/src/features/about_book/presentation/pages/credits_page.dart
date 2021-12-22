@@ -282,7 +282,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title:
-                                                'Northwestern University in Qatar'),
+                                                'NORTHWESTERN UNIVERSITY IN QATAR'),
                                       ],
                                     ),
                                     AuthorWidget(

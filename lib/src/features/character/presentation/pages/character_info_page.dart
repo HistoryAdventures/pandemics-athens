@@ -175,8 +175,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                             NavigationSharedPreferences
                                                 .upDateShatedPreferences();
 
-                                            context.router
-                                                .replace(const MapPageRoute());
+                                            context.router.pop();
                                           },
                                           child: SizedBox(
                                             height: HW.getHeight(19, context),

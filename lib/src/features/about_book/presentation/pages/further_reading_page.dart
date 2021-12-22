@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
@@ -29,6 +30,12 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
 
   final backgroundplayer = AudioPlayer();
   bool isSoundOn = false;
+
+  String _selectedItem = "Nikos";
+
+  List<String> characters = [
+    "Nikos",
+  ];
 
   @override
   void didChangeDependencies() {
@@ -69,6 +76,21 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                             fontSize: TextFontSize.getHeight(36, context)),
                       ),
                     )),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: HW.getHeight(24, context),
+                  ),
+                  height: HW.getHeight(30, context),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: characters
+                          .map((data) => charactersListWidget(
+                              name: data,
+                              text: data,
+                              image: data,
+                              selected: data))
+                          .toList()),
+                ),
                 SoundAndMenuWidget(
                   icons: isSoundOn
                       ? AssetsPath.iconVolumeOn
@@ -272,5 +294,38 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
         ),
       ),
     );
+  }
+
+  Widget charactersListWidget(
+      {String? name, String? selected, String? image, String? text}) {
+    return Clickable(
+      onPressed: () {
+        chandeState(selected, image, text);
+      },
+      child: Container(
+        //margin: const EdgeInsets.only(right: 30),
+        decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+                    width: 2,
+                    color: _selectedItem == selected
+                        ? AppColors.orange
+                        : AppColors.transpatent))),
+        child: AutoSizeText(name!,
+            maxLines: 1,
+            style: Theme.of(context)
+                .textTheme
+                .headline2
+                ?.copyWith(color: AppColors.black100, fontSize: 24)),
+      ),
+    );
+  }
+
+  void chandeState(String? selctedItem, String? image, String? text) {
+    setState(() {
+      _selectedItem = selctedItem!;
+      // _selectedImg = image!;
+      // _selectedText = text!;
+    });
   }
 }
