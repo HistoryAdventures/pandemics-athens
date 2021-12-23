@@ -72,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ1,
         listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion1,
       ),
-      const QuizEditTextWidget(
+      QuizEditTextWidget(
         questionIndex: 2,
         question: 'Hippocrates is famous for his theory of the Four Humours...',
       ),
@@ -98,13 +98,14 @@ class _QuizPageState extends State<QuizPage> {
         quizWithImage: false,
         answers: QuizData.answersForQ5,
         questionIndex: 4,
-        question: 'Which of the pathogens...',
+        question:
+            'Which of the pathogens is thought to be the most likely cause of the Plague of Athens?',
       ),
       QuizRadioBottonWidget(
         quizWithImage: true,
         answers: QuizData.answersForQ6,
         questionIndex: 5,
-        question: 'What is the prominent Athenian?',
+        question: 'Who is the prominent Athenian?',
       ),
       QuizCheckBox(
         answers: QuizData.answersForQuestion8,

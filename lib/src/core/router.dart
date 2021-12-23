@@ -52,6 +52,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     CustomRoute(
         page: QuizPage,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -99,7 +100,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         transitionsBuilder: TransitionsBuilders.slideRight,
         durationInMilliseconds: 500),
     CustomRoute(
-        initial: true,
         page: DeadOfSocratesPage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
