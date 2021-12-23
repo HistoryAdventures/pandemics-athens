@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/pathogen_profile_page.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -68,7 +69,8 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                       LeafDetails.currentVertex = 14;
                       LeafDetails.visitedVertexes.add(14);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.replace(const PracticeMedicineRoute());
+                      context.router.replace(PathogenProfilePageRoute(
+                          needJumpToPracticeMedicinePart: true));
                     }),
               ),
               SoundAndMenuWidget(

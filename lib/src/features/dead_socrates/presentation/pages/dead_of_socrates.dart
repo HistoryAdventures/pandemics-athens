@@ -167,7 +167,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                   onTap: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.replace(QuitMedicinePageRoute());
+                    context.router.replace(KeepGoingPageRoute());
                   },
                 ),
                 icons: isSoundOn

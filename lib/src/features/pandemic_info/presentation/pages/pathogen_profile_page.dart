@@ -23,7 +23,11 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class PathogenProfilePage extends StatefulWidget {
-  const PathogenProfilePage({Key? key}) : super(key: key);
+  bool? needJumpToPracticeMedicinePart;
+  PathogenProfilePage({
+    Key? key,
+    this.needJumpToPracticeMedicinePart = false,
+  }) : super(key: key);
 
   @override
   _PathogenProfilePageState createState() => _PathogenProfilePageState();
@@ -50,8 +54,10 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
     _scrollController = ScrollController();
 
     _scrollController.addListener(() {
+      print("SCROLL LISTENER");
       if (_scrollController.offset ==
-          _scrollController.position.maxScrollExtent) {
+              _scrollController.position.maxScrollExtent ||
+          widget.needJumpToPracticeMedicinePart!) {
         LeafDetails.currentVertex = 14;
         LeafDetails.visitedVertexes.add(14);
         NavigationSharedPreferences.upDateShatedPreferences();
@@ -90,6 +96,12 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      if (widget.needJumpToPracticeMedicinePart!) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+        widget.needJumpToPracticeMedicinePart = false;
+      }
+    });
     return Scaffold(
       endDrawer: const NavigationPage(),
       body: LayoutBuilder(builder: (context, constraints) {

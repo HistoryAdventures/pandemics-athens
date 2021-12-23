@@ -153,8 +153,13 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     PathogenProfilePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i13.PathogenProfilePage();
+        builder: (data) {
+          final args = data.argsAs<PathogenProfilePageRouteArgs>(
+              orElse: () => const PathogenProfilePageRouteArgs());
+          return _i13.PathogenProfilePage(
+              key: args.key,
+              needJumpToPracticeMedicinePart:
+                  args.needJumpToPracticeMedicinePart);
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500,
@@ -318,7 +323,7 @@ class FlutterRouter extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
-        _i1.RouteConfig(CharacrterPageRoute.name, path: '/'),
+        _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
@@ -341,8 +346,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
-        _i1.RouteConfig(DeadOfSocratesPageRoute.name,
-            path: '/dead-of-socrates-page'),
+        _i1.RouteConfig(DeadOfSocratesPageRoute.name, path: '/'),
         _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
         _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
         _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
@@ -375,7 +379,7 @@ class LeandingPageRouteArgs {
 }
 
 class CharacrterPageRoute extends _i1.PageRouteInfo {
-  const CharacrterPageRoute() : super(name, path: '/');
+  const CharacrterPageRoute() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacrterPageRoute';
 }
@@ -444,11 +448,26 @@ class PanaromaRightPageRoute extends _i1.PageRouteInfo {
   static const String name = 'PanaromaRightPageRoute';
 }
 
-class PathogenProfilePageRoute extends _i1.PageRouteInfo {
-  const PathogenProfilePageRoute()
-      : super(name, path: '/pathogen-profile-page');
+class PathogenProfilePageRoute
+    extends _i1.PageRouteInfo<PathogenProfilePageRouteArgs> {
+  PathogenProfilePageRoute({_i2.Key? key, bool? needJumpToPracticeMedicinePart})
+      : super(name,
+            path: '/pathogen-profile-page',
+            args: PathogenProfilePageRouteArgs(
+                key: key,
+                needJumpToPracticeMedicinePart:
+                    needJumpToPracticeMedicinePart));
 
   static const String name = 'PathogenProfilePageRoute';
+}
+
+class PathogenProfilePageRouteArgs {
+  const PathogenProfilePageRouteArgs(
+      {this.key, this.needJumpToPracticeMedicinePart});
+
+  final _i2.Key? key;
+
+  final bool? needJumpToPracticeMedicinePart;
 }
 
 class KeepGoingPageRoute extends _i1.PageRouteInfo {
@@ -488,7 +507,7 @@ class DocumentPageRoute extends _i1.PageRouteInfo {
 }
 
 class DeadOfSocratesPageRoute extends _i1.PageRouteInfo {
-  const DeadOfSocratesPageRoute() : super(name, path: '/dead-of-socrates-page');
+  const DeadOfSocratesPageRoute() : super(name, path: '/');
 
   static const String name = 'DeadOfSocratesPageRoute';
 }

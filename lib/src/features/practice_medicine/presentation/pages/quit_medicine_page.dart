@@ -62,7 +62,8 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                     LeafDetails.currentVertex = 14;
                     LeafDetails.visitedVertexes.add(14);
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.replace(const PracticeMedicineRoute());
+                    context.router.replace(PathogenProfilePageRoute(
+                        needJumpToPracticeMedicinePart: true));
                   }),
             ),
             SoundAndMenuWidget(

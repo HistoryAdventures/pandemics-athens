@@ -201,8 +201,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                           LeafDetails.currentVertex = 10;
                           LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router
-                              .replace(const PathogenProfilePageRoute());
+                          context.router.replace(PathogenProfilePageRoute());
                         }),
                   ),
                   Flexible(

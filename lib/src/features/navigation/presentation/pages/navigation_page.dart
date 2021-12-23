@@ -312,10 +312,11 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [11, 14],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
+          print("NAVIGATION FROM PATHOGEN");
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const PathogenProfilePageRoute());
+          context.router.push(PathogenProfilePageRoute());
         },
         pointOffset: const Offset(425, 375),
         lineStartOffset: const Offset(5, 0),
@@ -391,7 +392,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 14;
           LeafDetails.visitedVertexes.add(14);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const PracticeMedicineRoute());
+          context.router.push(
+              PathogenProfilePageRoute(needJumpToPracticeMedicinePart: true));
         },
         pointOffset: const Offset(350, 430),
         lineStartOffset: const Offset(5, 0),
