@@ -194,6 +194,24 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 bodyModel: bodyModel,
                                 height: constraints.maxHeight,
                                 width: constraints.maxWidth,
+                                onExit: () {
+                                  setState(() {
+                                    bodyModel = BodyModel(
+                                      title: locale.bodyIntro,
+                                      image: AssetsPath.manIntroImage,
+                                      descriptiion: locale.intrBodyText,
+                                    );
+                                  });
+                                },
+                                onTapSkin: () {
+                                  setState(() {
+                                    bodyModel.chandeState(
+                                      descriptiion: locale.skinText,
+                                      image: AssetsPath.manfillImage,
+                                      title: locale.skin,
+                                    );
+                                  });
+                                },
                                 onTapStomach: () {
                                   setState(() {
                                     bodyModel.chandeState(
