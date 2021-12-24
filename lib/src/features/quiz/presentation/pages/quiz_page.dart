@@ -75,6 +75,8 @@ class _QuizPageState extends State<QuizPage> {
       QuizEditTextWidget(
         questionIndex: 2,
         question: 'Hippocrates is famous for his theory of the Four Humours...',
+        answers: QuizData.answersForDD2,
+        score: 6,
       ),
       QuizDragDropWidget(
         question: 'Fill in the blanks...',

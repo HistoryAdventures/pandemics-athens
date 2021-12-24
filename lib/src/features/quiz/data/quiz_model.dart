@@ -353,39 +353,57 @@ class QuizData {
 
   static List<dynamic> usersAnswersForQ2 = [];
 
+  static List<Answers> userAnswer1ForQ2 = [];
+  static List<Answers> userAnswer2ForQ2 = [];
+  static List<Answers> userAnswer3ForQ2 = [];
+  static List<Answers> userAnswer4ForQ2 = [];
+  static List<Answers> userAnswer5ForQ2 = [];
+  static List<Answers> userAnswer6ForQ2 = [];
+  static List<Answers> userAnswer7ForQ2 = [];
+  static List<Answers> userAnswer8ForQ2 = [];
+
   static final List<dynamic> listQuestionBody2 = [
     'Hippocrates suggested that the body contained four',
-    EditTextWidget(
-        controller: QuizData.answerTextController1,
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ2,
         isRight: null,
         correctAnswer: 'humours'),
     '. These were vital bodily fluids that kept people healthy if they were kept',
-    EditTextWidget(
-        controller: QuizData.answerTextController2,
+    DragWordsWidget(
+        answers: QuizData.userAnswer2ForQ2,
         isRight: null,
         correctAnswer: 'balanced'),
     '. He studied the body through ',
-    EditTextWidget(
-        controller: QuizData.answerTextController3,
+    DragWordsWidget(
+        answers: QuizData.userAnswer3ForQ2,
         isRight: null,
         correctAnswer: 'phlegm'),
     '. They are: blood, ',
-    EditTextWidget(
-        controller: QuizData.answerTextController4,
+    DragWordsWidget(
+        answers: QuizData.userAnswer4ForQ2,
         isRight: null,
         correctAnswer: 'black'),
     ",",
     'bile, yellow',
-    EditTextWidget(
-        controller: QuizData.answerTextController5,
+    DragWordsWidget(
+        answers: QuizData.userAnswer5ForQ2,
         isRight: null,
         correctAnswer: 'bile'),
     'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
-    EditTextWidget(
-        controller: QuizData.answerTextController6,
+    DragWordsWidget(
+        answers: QuizData.userAnswer6ForQ2,
         isRight: null,
         correctAnswer: 'eucrasia'),
     ' in Greek.',
+  ];
+
+  static List<Answers> answersForDD2 = [
+    Answers(value: 1, text: "humours"),
+    Answers(value: 2, text: "balanced"),
+    Answers(value: 3, text: "phlegm"),
+    Answers(value: 4, text: "black"),
+    Answers(value: 5, text: "bile"),
+    Answers(value: 6, text: "eucrasia"),
   ];
 
   static final List<dynamic> correctAnswersForQ2 = [
@@ -722,10 +740,10 @@ class QuizData {
     rightAnswersForQ4 += QuizData.secondDragDropResult;
 
     listQuestionBody2.forEach((element) {
-      if (element is EditTextWidget) {
-        if (element.controller.text.isEmpty) {
-          usersAnswersForQ2.add(EditTextWidget(
-              controller: TextEditingController(),
+      if (element is DragWordsWidget) {
+        if (element.answers.isEmpty) {
+          usersAnswersForQ2.add(DragWordsWidget(
+              answers: [Answers(value: 0, text: '')],
               isRight: false,
               correctAnswer: element.correctAnswer));
           //  print('add null');
@@ -775,10 +793,10 @@ class QuizData {
     }
 
     for (var i = 0; i < usersAnswersForQ2.length; i++) {
-      if (usersAnswersForQ2[i] is EditTextWidget &&
+      if (usersAnswersForQ2[i] is DragWordsWidget &&
           correctAnswersForQ2[i] is List<String>) {
         if (correctAnswersForQ2[i].first ==
-            usersAnswersForQ2[i].controller.text) {
+            usersAnswersForQ2[i].answers.first.text) {
           usersAnswersForQ2[i].isRight = true;
           rightAnswersForQ2++;
         } else {
@@ -898,6 +916,15 @@ class QuizData {
     answersForQuestion10.forEach((element) {
       if (element is CheckBoxWidget) {
         element.isRight = null;
+      }
+    });
+
+    listQuestionBody2.forEach((element) {
+      if (element is DragWordsWidget) {
+        if (element.answers.isNotEmpty) {
+          answersForDD3.add(element.answers.first);
+          element.answers.removeLast();
+        }
       }
     });
 
