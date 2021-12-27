@@ -27,67 +27,21 @@ import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
+  final bool? mustScrollToMiddle;
+  final bool? mustScrollToEnd;
+  const ParalaxHistoryPage({
+    this.mustScrollToEnd = false,
+    this.mustScrollToMiddle = false,
+  });
   @override
   _ParalaxHistoryPageState createState() => _ParalaxHistoryPageState();
 }
 
 class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     with TickerProviderStateMixin {
-  late double rateFire;
-  late double rateBuilding;
-  late double rateCharactersNikosGif;
-  late double rateCrows;
-  late double rateCharactersNikosClouds;
-  // late double rateFour;
-  late double rateSmoke;
-  late double rateLeftCrowd;
-  late double rateParalaxCrowdLottie;
-  late double rateParalaxYoungManLottie;
-  late double rateParalaxWalker;
-  late double rateParalaxHotTubLottie;
-  late double rateBottomClouds;
-
-  late double _scrollParalaxText1;
-  late double _scrollParalaxText2;
-  late double _scrollParalaxText5;
-  late double _scrollParalaxText3;
   late double _scrollLearnMoreText;
-  late double _scrollParalaxText4;
-  late double _scrollParalaxText4_4;
 
-  late AnimationController _animationControllerForCharacterNikos;
-  Animation<double>? animationForCharacterNikos;
-
-  late AnimationController _animationControllerForMovingLeftAndRightCrows;
-  Animation<double>? animationForMovingLeftAndRightCrows;
-
-  late AnimationController _animationControllerForMovingTopCrows;
-  Animation<double>? animationForMovingTopCrows;
-
-  late AnimationController _animationControllerForProgressLeftFighters;
-  Animation<double>? animationForProgressLeftFighters;
-
-  late AnimationController _animationControllerForCloudsTop;
-  Animation<double>? animationForCloudsTop;
-
-  late AnimationController _animationControllerForProgressRightFighters;
-  Animation<double>? animationForProgressRightFighters;
-
-  late AnimationController _animationControllerForWalker;
-  Animation<double>? animationForWalker;
-
-  late AnimationController _animationControllerForHotTubeRight;
-  Animation<double>? animationForHotTubeRight;
-
-  double _progressCaracterNikos = -200;
-  double _progressLeftFighters = -200;
-  double _progressRightFighters = -200;
-  double _progressTopClouds = -200;
-  double _progressRightHotTube = -200;
-  double _progressWeightWalker = 0;
-  double _progressCrows = 100;
   double _topTextOpasyty = 1;
-  double _progressTopCrows = 0;
 
   double _bottomFieldOpasity = 0;
   double youngManOpacity = 0;
@@ -107,29 +61,33 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
+  bool get _mustScrollToEnd => widget.mustScrollToEnd ?? false;
+  bool get _mustScrollToMiddle => widget.mustScrollToMiddle ?? false;
+  bool _videoEnded = false;
+
+  final GlobalKey _athensButtonKey = GlobalKey();
+
+  double get _athensButtonPosition {
+    RenderBox box =
+        _athensButtonKey.currentContext!.findRenderObject() as RenderBox;
+    Offset position = box.localToGlobal(Offset.zero);
+    double y = position.dy;
+    return y;
+  }
+
+  double get _athensButtonHeight {
+    RenderBox box =
+        _athensButtonKey.currentContext!.findRenderObject() as RenderBox;
+    Size size = box.size;
+    return size.height;
+  }
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     height = MediaQuery.of(context).size.height;
-    rateBuilding = height;
-    rateFire = height * 1.9;
-    rateCharactersNikosGif = height * 1.7;
-    rateCrows = height * 2.5;
 
-    rateCharactersNikosClouds = height * 1.7;
-    rateLeftCrowd = height * 3.5;
-    rateParalaxCrowdLottie = height * 4.15;
-    rateParalaxYoungManLottie = height * 6;
-    rateParalaxWalker = height * 6.5;
-    rateParalaxHotTubLottie = height * 7.5;
-
-    _scrollParalaxText2 = height * 2.3;
-    _scrollParalaxText1 = height * 1.7;
-    _scrollParalaxText3 = height * 3.5;
     _scrollLearnMoreText = height * 3.8;
-    _scrollParalaxText4 = height * 5;
-    _scrollParalaxText4_4 = height * 5.8;
-    _scrollParalaxText5 = height * 7.5;
 
     super.didChangeDependencies();
   }
@@ -137,94 +95,38 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void initState() {
     _videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
-      ..initialize().then((_) => setState(() {}));
-    _videoController.setVolume(0.0);
-    _videoController.play();
+      ..initialize().then((_) {
+        if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+          setState(() {});
+        }
+      });
+    if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+      _videoController.setVolume(0.0);
+      _videoController.play();
+    }
+
+    if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+      _videoController.addListener(() {
+        if (_videoController.value.isInitialized &&
+            _videoController.value.position ==
+                _videoController.value.duration) {
+          setState(() {
+            _videoEnded = true;
+          });
+        }
+      });
+    } else {
+      _videoEnded = false;
+    }
+
     NavigationSharedPreferences.getNavigationListFromSF();
-    _animationControllerForMovingLeftAndRightCrows =
-        AnimationController(vsync: this, duration: const Duration(seconds: 20));
-    _animationControllerForMovingTopCrows =
-        AnimationController(vsync: this, duration: const Duration(seconds: 20));
-
-    _animationControllerForCharacterNikos =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-
-    _animationControllerForProgressLeftFighters =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-
-    _animationControllerForProgressRightFighters =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-
-    _animationControllerForHotTubeRight =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-
-    _animationControllerForWalker = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1500));
-
-    _animationControllerForCloudsTop =
-        AnimationController(vsync: this, duration: const Duration(seconds: 60));
-
-    animationForCloudsTop = Tween<double>(begin: -width, end: width)
-        .animate(_animationControllerForCloudsTop)
-          ..addListener(() {
-            if (mounted) {
-              setState(() {
-                _progressTopClouds = animationForCloudsTop!.value;
-              });
-            }
-          });
-
-    animationForCloudsTop?.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _animationControllerForCloudsTop.repeat();
-      } else if (status == AnimationStatus.dismissed) {
-        _animationControllerForCloudsTop.forward();
-      }
-    });
-
-    _animationControllerForCloudsTop.forward();
-
-    animationForMovingLeftAndRightCrows = Tween<double>(begin: 0, end: width)
-        .animate(_animationControllerForMovingLeftAndRightCrows)
-          ..addListener(() {
-            if (mounted) {
-              setState(() {
-                _progressCrows = animationForMovingLeftAndRightCrows!.value;
-              });
-            }
-          });
-
-    animationForMovingLeftAndRightCrows?.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _animationControllerForMovingLeftAndRightCrows.repeat();
-      } else if (status == AnimationStatus.dismissed) {
-        _animationControllerForMovingLeftAndRightCrows.forward();
-      }
-    });
-    _animationControllerForMovingLeftAndRightCrows.forward();
-
-    animationForMovingTopCrows =
-        Tween<double>(begin: height * 2.5, end: height * 1.5)
-            .animate(_animationControllerForMovingTopCrows)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressTopCrows = animationForMovingTopCrows!.value;
-                  });
-                }
-              });
-
-    animationForMovingTopCrows?.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _animationControllerForMovingTopCrows.repeat();
-      } else if (status == AnimationStatus.dismissed) {
-        _animationControllerForMovingTopCrows.forward();
-      }
-    });
-    _animationControllerForMovingTopCrows.forward();
 
     _scrollController.addListener(() {
+      if (_mustScrollToEnd || _mustScrollToMiddle) {
+        return;
+      }
       if (_scrollController.offset > 10) {
+        print("code is here");
         _topTextOpasyty = 0;
       } else {
         _topTextOpasyty = 1;
@@ -250,84 +152,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _lernMoreOpasyty = 0;
         _lernMoreVisibility = false;
       }
-
-      if (_scrollController.offset > _scrollParalaxText1) {
-        animationForCharacterNikos = Tween<double>(begin: -200, end: 0)
-            .animate(_animationControllerForCharacterNikos)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressCaracterNikos = animationForCharacterNikos!.value;
-                  });
-                }
-              });
-
-        _animationControllerForCharacterNikos.forward();
-      } else {
-        _animationControllerForCharacterNikos.reverse();
-      }
-      if (_scrollController.offset > _scrollParalaxText2 + 800) {
-        animationForProgressLeftFighters = Tween<double>(begin: -200, end: 0)
-            .animate(_animationControllerForProgressLeftFighters)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressLeftFighters =
-                        animationForProgressLeftFighters!.value;
-                  });
-                }
-              });
-
-        _animationControllerForProgressLeftFighters.forward();
-
-        animationForProgressRightFighters = Tween<double>(begin: -200, end: 0)
-            .animate(_animationControllerForProgressRightFighters)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressRightFighters =
-                        animationForProgressRightFighters!.value;
-                  });
-                }
-              });
-
-        _animationControllerForProgressRightFighters.forward();
-      } else {
-        _animationControllerForProgressLeftFighters.reverse();
-        _animationControllerForProgressRightFighters.reverse();
-      }
-
-      if (_scrollController.offset > _scrollParalaxText4 + 700) {
-        animationForWalker = Tween<double>(begin: 0, end: width * 0.1)
-            .animate(_animationControllerForWalker)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressWeightWalker = animationForWalker!.value;
-                  });
-                }
-              });
-        _animationControllerForWalker.forward();
-        youngManOpacity = 1;
-      } else {
-        youngManOpacity = 0;
-        _animationControllerForWalker.reverse();
-      }
-
-      if (_scrollController.offset > _scrollParalaxText5 - 300) {
-        animationForHotTubeRight = Tween<double>(begin: -200, end: 0)
-            .animate(_animationControllerForHotTubeRight)
-              ..addListener(() {
-                if (mounted) {
-                  setState(() {
-                    _progressRightHotTube = animationForHotTubeRight!.value;
-                  });
-                }
-              });
-        _animationControllerForHotTubeRight.forward();
-      } else {
-        _animationControllerForHotTubeRight.reverse();
-      }
+      setState(() {});
     });
 
     super.initState();
@@ -340,24 +165,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           // ..height = '8838'
           ..src = AssetsPath.paralaxHtml
           ..style.border = 'none');
-    htm.window.onMessage.listen((event) {
-      if (event.data["scroll"] == true) {
-        _scrollController.jumpTo((event.data["y"] as num).toDouble());
-      }
-    });
+    // htm.window.onMessage.listen((event) {
+    //   if (event.data["scroll"] == true) {
+    //     _scrollController.jumpTo((event.data["y"] as num).toDouble());
+    //   }
+    // });
   }
 
   @override
   void dispose() {
-    _animationControllerForCharacterNikos.dispose();
-    _animationControllerForCloudsTop.dispose();
-    _animationControllerForMovingLeftAndRightCrows.dispose();
-    _animationControllerForProgressLeftFighters.dispose();
-    _animationControllerForProgressRightFighters.dispose();
-    _animationControllerForWalker.dispose();
-    _animationControllerForMovingTopCrows.dispose();
-    _videoController.dispose();
-
     super.dispose();
   }
 
@@ -365,28 +181,63 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return HtmlElementView(viewType: "paralax");
   }
 
+  Widget get _loading => !_videoController.value.isInitialized
+      ? const LoadingVideoWidget()
+      : Container();
+
+  Widget get _video =>
+      _videoController.value.isInitialized && _videoController.value.isPlaying
+          ? SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _videoController.value.size.width,
+                  height: _videoController.value.size.height,
+                  child: VideoPlayer(_videoController),
+                ),
+              ),
+            )
+          : Container();
+
+  bool scrolled = false;
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      if (scrolled) {
+        return;
+      }
+      if (_mustScrollToMiddle) {
+        if (_athensButtonPosition > 0) {
+          print("scrolling to athens button ${_athensButtonPosition}");
+          double scrollY = _athensButtonPosition -
+              (MediaQuery.of(context).size.height / 2 -
+                  _athensButtonHeight / 2);
+          _scrollController.jumpTo(scrollY);
+
+          Future.delayed(Duration(milliseconds: 200)).then((value) {
+            htm.window.postMessage(
+                {"scroll": false, "y": _scrollController.position.pixels}, "*");
+            scrolled = true;
+            setState(() {});
+            print("SCROL IS CALLED");
+          });
+        }
+      }
+      if (_mustScrollToEnd) {
+        _scrollController.jumpTo(
+          _scrollController.position.maxScrollExtent,
+        );
+      }
+    });
     return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
       body: SizedBox(
         child: Stack(
           children: <Widget>[
-            if (_videoController.value.isPlaying)
-              _videoController.value.isInitialized
-                  ? SizedBox.expand(
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _videoController.value.size.width,
-                          height: _videoController.value.size.height,
-                          child: VideoPlayer(_videoController),
-                        ),
-                      ),
-                    )
-                  : const LoadingVideoWidget()
-            else
+            if (!_mustScrollToEnd && !_mustScrollToMiddle) _loading,
+            if (!_mustScrollToEnd && !_mustScrollToMiddle) _video,
+            if (_videoEnded || _mustScrollToEnd || _mustScrollToMiddle)
               Stack(
                 children: [
                   _paralax,
@@ -397,7 +248,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         onNotification: (event) {
                           if (event is ScrollUpdateNotification) {
                             double value = _scrollController.position.pixels;
-                            print("Value $value");
                             htm.window.postMessage(
                                 {"scroll": false, "y": value}, "*");
                           }
@@ -422,7 +272,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
                                   right: HW.getWidth(238, context),
-                                  top: rateCharactersNikosClouds + 100,
                                   text: locals.paralaxText1,
                                   size: Size(HW.getWidth(700, context),
                                       HW.getHeight(216, context)),
@@ -432,7 +281,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
-                                  top: rateLeftCrowd - 300,
                                   size: Size(HW.getWidth(557, context),
                                       HW.getHeight(230, context)),
                                   left: HW.getWidth(157, context),
@@ -443,7 +291,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 ),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerRight,
-                                  top: rateParalaxCrowdLottie + 200,
                                   right: HW.getWidth(150, context),
                                   size: Size(HW.getWidth(600, context),
                                       HW.getHeight(264, context)),
@@ -456,7 +303,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 SizedBox(height: HW.getHeight(450, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
-                                  top: rateParalaxWalker - 1000,
                                   left: HW.getWidth(250, context),
                                   text: locals.paralaxText4,
                                   size: Size(HW.getWidth(605, context),
@@ -465,7 +311,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 SizedBox(height: HW.getHeight(2300, context)),
                                 ParalaxTextWidget(
                                   alignment: Alignment.centerLeft,
-                                  top: rateParalaxHotTubLottie + 850,
                                   left: HW.getWidth(220, context),
                                   text: locals.paralaxText5,
                                   size: Size(HW.getWidth(616, context),
@@ -491,6 +336,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   onPressed: () {
                     setState(() {
                       _videoController.pause();
+                      _videoEnded = true;
                     });
                   },
                   icon: Icon(Icons.arrow_downward),
@@ -517,7 +363,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                         width: HW.getWidth(24, context),
                         child: Image.asset(AssetsPath.scrollIcon)),
                   )),
-            )
+            ),
           ],
         ),
       ),
@@ -667,6 +513,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   Widget _athens5th() {
     return Container(
+      key: _athensButtonKey,
       padding: EdgeInsets.only(right: HW.getWidth(115, context)),
       height: MediaQuery.of(context).size.height * 0.1,
       width: MediaQuery.of(context).size.width,

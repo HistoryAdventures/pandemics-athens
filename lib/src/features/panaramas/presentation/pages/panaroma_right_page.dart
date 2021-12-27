@@ -292,7 +292,9 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                     LeafDetails.currentVertex = 2;
                     LeafDetails.visitedVertexes.add(2);
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.replace(const ParalaxHistoryPageRoute());
+                    context.router.replace(ParalaxHistoryPageRoute(
+                      mustScrollToEnd: true,
+                    ));
                   }),
             ),
             Align(

@@ -616,31 +616,37 @@ class _MapPageState extends State<MapPage> {
                                   shrinkWrap: true,
                                   children: [
                                     Container(
-                                      alignment: Alignment.topCenter,
-                                      padding: const EdgeInsets.only(
-                                          top: 10.0, right: 30),
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: "${mapInfoModel?.title}"
-                                                .toUpperCase(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3!
-                                                .copyWith(
-                                                  height: 1.7,
-                                                )),
-                                        TextSpan(
-                                          text: mapInfoModel?.text,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1
-                                              ?.copyWith(
-                                                height: 1.7,
+                                        alignment: Alignment.topCenter,
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0, right: 30),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${mapInfoModel?.title}"
+                                                    .toUpperCase(),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline3!
+                                                    .copyWith(
+                                                      height: 1.7,
+                                                    ),
                                               ),
-                                        ),
-                                      ])),
-                                    )
+                                              SizedBox(
+                                                height:
+                                                    HW.getHeight(16, context),
+                                              ),
+                                              Text(
+                                                mapInfoModel?.text ?? "",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1
+                                                    ?.copyWith(
+                                                      height: 1.7,
+                                                    ),
+                                              ),
+                                            ])),
                                   ]),
                             ),
                           ),
@@ -682,7 +688,9 @@ class _MapPageState extends State<MapPage> {
                   LeafDetails.currentVertex = 2;
                   LeafDetails.visitedVertexes.add(2);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.replace(const ParalaxHistoryPageRoute());
+                  context.router.replace(ParalaxHistoryPageRoute(
+                    mustScrollToMiddle: true,
+                  ));
                 }),
             Container(
               width: HW.getWidth(980, context),

@@ -38,7 +38,7 @@ class ArrowRightTextWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  AutoSizeText(
+                  Text(
                     textTitle.toUpperCase(),
                     textAlign: TextAlign.right,
                     maxLines: 1,

@@ -302,7 +302,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     LeafDetails.visitedVertexes.add(2);
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const ParalaxHistoryPageRoute());
+                    context.router.push(ParalaxHistoryPageRoute());
                   },
                   textChapter: locales.chapter1,
                   textChapterName: locales.todoNoHarm,

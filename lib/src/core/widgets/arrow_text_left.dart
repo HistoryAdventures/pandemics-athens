@@ -21,7 +21,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    left = left ?? HW.getWidth(55, context);
+    left = left ?? HW.getWidth(52, context);
     bottom = bottom ?? HW.getHeight(55, context);
 
     return Padding(
@@ -35,7 +35,7 @@ class ArrowLeftTextWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(right: HW.getWidth(25, context)),
+              margin: EdgeInsets.only(right: HW.getWidth(15, context)),
               child: Icon(
                 Icons.arrow_back_rounded,
                 color: color ?? Colors.black,
@@ -49,21 +49,20 @@ class ArrowLeftTextWidget extends StatelessWidget {
                 children: [
                   Text(
                     textTitle.toUpperCase(),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.right,
                     maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption
-                        ?.copyWith(fontSize: 15, color: color ?? Colors.black),
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontSize: HW.getHeight(15, context),
+                        color: color ?? Colors.black),
                   ),
+                  SizedBox(height: HW.getHeight(5, context)),
                   Text(
                     textSubTitle.toUpperCase(),
-                    textAlign: TextAlign.left,
                     maxLines: 1,
+                    textAlign: TextAlign.right,
                     style: Theme.of(context).textTheme.headline2?.copyWith(
-                          fontSize: 25,
-                          color: color ?? Colors.black,
-                        ),
+                        fontSize: HW.getHeight(25, context),
+                        color: color ?? Colors.black),
                   )
                 ],
               ),

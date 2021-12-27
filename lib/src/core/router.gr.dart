@@ -117,8 +117,12 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     ParalaxHistoryPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i9.ParalaxHistoryPage();
+        builder: (data) {
+          final args = data.argsAs<ParalaxHistoryPageRouteArgs>(
+              orElse: () => const ParalaxHistoryPageRouteArgs());
+          return _i9.ParalaxHistoryPage(
+              mustScrollToEnd: args.mustScrollToEnd,
+              mustScrollToMiddle: args.mustScrollToMiddle);
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500,
@@ -329,8 +333,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
-        _i1.RouteConfig(ParalaxHistoryPageRoute.name,
-            path: '/paralax-history-page'),
+        _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
             path: '/panaroma-left-page'),
@@ -342,7 +345,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(QuitMedicinePageRoute.name,
             path: '/quit-medicine-page'),
         _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
-        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/'),
+        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
@@ -425,10 +428,25 @@ class QuizPageRoute extends _i1.PageRouteInfo {
   static const String name = 'QuizPageRoute';
 }
 
-class ParalaxHistoryPageRoute extends _i1.PageRouteInfo {
-  const ParalaxHistoryPageRoute() : super(name, path: '/paralax-history-page');
+class ParalaxHistoryPageRoute
+    extends _i1.PageRouteInfo<ParalaxHistoryPageRouteArgs> {
+  ParalaxHistoryPageRoute({bool? mustScrollToEnd, bool? mustScrollToMiddle})
+      : super(name,
+            path: '/',
+            args: ParalaxHistoryPageRouteArgs(
+                mustScrollToEnd: mustScrollToEnd,
+                mustScrollToMiddle: mustScrollToMiddle));
 
   static const String name = 'ParalaxHistoryPageRoute';
+}
+
+class ParalaxHistoryPageRouteArgs {
+  const ParalaxHistoryPageRouteArgs(
+      {this.mustScrollToEnd, this.mustScrollToMiddle});
+
+  final bool? mustScrollToEnd;
+
+  final bool? mustScrollToMiddle;
 }
 
 class GlossaryPageRoute extends _i1.PageRouteInfo {
@@ -490,7 +508,7 @@ class PracticeMedicineRoute extends _i1.PageRouteInfo {
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
-  const BodyInfoPageRoute() : super(name, path: '/');
+  const BodyInfoPageRoute() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageRoute';
 }

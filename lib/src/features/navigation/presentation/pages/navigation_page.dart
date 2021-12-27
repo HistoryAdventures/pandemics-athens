@@ -155,7 +155,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const ParalaxHistoryPageRoute());
+          context.router.replace(ParalaxHistoryPageRoute());
         },
         pointOffset: const Offset(325, 105),
         lineStartOffset: const Offset(5, 0),
@@ -175,7 +175,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const ParalaxHistoryPageRoute());
+          context.router.replace(ParalaxHistoryPageRoute());
         },
         pointOffset: const Offset(330, 157),
         lineStartOffset: const Offset(5, 0),
@@ -215,7 +215,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const ParalaxHistoryPageRoute());
+          context.router.replace(ParalaxHistoryPageRoute());
         },
         alignment: Alignment.centerLeft,
         pointOffset: const Offset(325, 209),
