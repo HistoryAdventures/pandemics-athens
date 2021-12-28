@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -246,6 +247,8 @@ class _LeandingPageState extends State<LeandingPage> {
             .toStringAsFixed(0);
       });
     }
+
+    rootBundle.loadString(AssetsPath.paralaxHtml);
 
     window.sessionStorage.putIfAbsent('allImagesAreCached', () => 'true');
 

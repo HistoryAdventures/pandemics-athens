@@ -91,35 +91,38 @@ class _CopyrightPageState extends State<CopyrightPage> {
                   },
                 ),
                 Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Flexible(
-                    child: ArrowLeftTextWidget(
-                        textSubTitle: locale.furtherReading,
-                        textTitle: locale.aboutTheBook,
-                        onTap: () {
-                          LeafDetails.currentVertex = 26;
-                          LeafDetails.visitedVertexes.add(26);
-                          NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router
-                              .replace(const FurtherReadingPageRoute());
-                        }),
-                  ),
-                ),
-                Align(
                   alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: HW.getHeight(48, context)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SocialMediaIcons(),
-                        SizedBox(
-                          height: HW.getHeight(45, context),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: ArrowLeftTextWidget(
+                            textSubTitle: locale.furtherReading,
+                            textTitle: locale.aboutTheBook,
+                            onTap: () {
+                              LeafDetails.currentVertex = 26;
+                              LeafDetails.visitedVertexes.add(26);
+                              NavigationSharedPreferences
+                                  .upDateShatedPreferences();
+                              context.router
+                                  .replace(const FurtherReadingPageRoute());
+                            }),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SocialMediaIcons(),
+                            SizedBox(
+                              height: HW.getHeight(45, context),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Spacer(),
+                    ],
                   ),
                 ),
                 Align(
