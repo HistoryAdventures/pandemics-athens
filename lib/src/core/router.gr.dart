@@ -333,7 +333,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
         _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
         _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
-        _i1.RouteConfig(ParalaxHistoryPageRoute.name, path: '/'),
+        _i1.RouteConfig(ParalaxHistoryPageRoute.name,
+            path: '/paralax-history-page'),
         _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
             path: '/panaroma-left-page'),
@@ -356,8 +357,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
         _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book-page'),
         _i1.RouteConfig(CreditsPageRoute.name, path: '/credits-page'),
-        _i1.RouteConfig(FurtherReadingPageRoute.name,
-            path: '/further-reading-page'),
+        _i1.RouteConfig(FurtherReadingPageRoute.name, path: '/'),
         _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
         _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
         _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
@@ -432,7 +432,7 @@ class ParalaxHistoryPageRoute
     extends _i1.PageRouteInfo<ParalaxHistoryPageRouteArgs> {
   ParalaxHistoryPageRoute({bool? mustScrollToEnd, bool? mustScrollToMiddle})
       : super(name,
-            path: '/',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageRouteArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle));
@@ -562,7 +562,7 @@ class CreditsPageRoute extends _i1.PageRouteInfo {
 }
 
 class FurtherReadingPageRoute extends _i1.PageRouteInfo {
-  const FurtherReadingPageRoute() : super(name, path: '/further-reading-page');
+  const FurtherReadingPageRoute() : super(name, path: '/');
 
   static const String name = 'FurtherReadingPageRoute';
 }

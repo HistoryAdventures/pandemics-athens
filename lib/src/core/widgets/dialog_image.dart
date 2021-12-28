@@ -62,49 +62,61 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Image.asset(
-                                        widget.selectedImage,
-                                        fit: BoxFit.contain,
-                                        key: imageKey,
-                                      ),
-                                      IconButtonWidget(
-                                          icon: const Icon(
-                                            Icons.close,
-                                            color: AppColors.grey,
-                                          ),
-                                          onPressed: () {
-                                            context.router.pop();
-                                          })
-                                    ],
-                                  ),
                                   Container(
-                                    margin: EdgeInsets.only(
-                                        top: HW.getHeight(32, context),
-                                        bottom: HW.getHeight(64, context)),
-                                    height: HW.getWidth(78, context),
-                                    width: snapshot.data?.width,
-                                    child: SingleChildScrollView(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Text(
-                                        widget.selectedImageText,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2
-                                            ?.copyWith(
-                                              fontSize: TextFontSize.getHeight(
-                                                  16, context),
-                                              color: AppColors.white
-                                                  .withOpacity(0.6),
-                                              letterSpacing: 0.25,
-                                              height: 26 / 16,
+                                    constraints: BoxConstraints(
+                                      maxHeight:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Image.asset(
+                                          widget.selectedImage,
+                                          fit: BoxFit.contain,
+                                          key: imageKey,
+                                        ),
+                                        IconButtonWidget(
+                                            icon: const Icon(
+                                              Icons.close,
+                                              color: AppColors.grey,
                                             ),
+                                            onPressed: () {
+                                              context.router.pop();
+                                            })
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.topCenter,
+                                      margin: EdgeInsets.only(
+                                          top: HW.getHeight(32, context),
+                                          bottom: HW.getHeight(64, context)),
+                                      height: HW.getWidth(78, context),
+                                      width: snapshot.data?.width,
+                                      child: SingleChildScrollView(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Text(
+                                          widget.selectedImageText,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2
+                                              ?.copyWith(
+                                                fontSize:
+                                                    TextFontSize.getHeight(
+                                                        16, context),
+                                                color: AppColors.white
+                                                    .withOpacity(0.6),
+                                                letterSpacing: 0.25,
+                                                height: 26 / 16,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ),

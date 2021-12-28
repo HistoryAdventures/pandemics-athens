@@ -46,7 +46,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     locals = AppLocalizations.of(context)!;
     infoListHotspots = [
       InfoDialogModel(
-        imageDescription: locals.hippocratesImageText,
+        imageDescription:
+            "${locals.hippocratesImageText} this is some dummy text to test scroll if text is logn",
         description: locals.hippocratesText,
         title: locals.hippocrates,
         subTitle: locals.hippocrates,

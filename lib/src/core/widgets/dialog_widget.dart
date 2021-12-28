@@ -291,8 +291,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                                             });
                                           },
                                           child: charactersNameListWidget(
-                                            isHoverd: hoveredItemIndex ==
-                                                data.title,
+                                            isHoverd:
+                                                hoveredItemIndex == data.title,
                                             title: data.title,
                                             image: data.image,
                                             text: data.description,

@@ -123,6 +123,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     _scrollController.addListener(() {
       if (_mustScrollToEnd || _mustScrollToMiddle) {
+        _topTextOpasyty = 0;
         return;
       }
       if (_scrollController.offset > 10) {
@@ -214,7 +215,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   _athensButtonHeight / 2);
           _scrollController.jumpTo(scrollY);
 
-          Future.delayed(Duration(milliseconds: 200)).then((value) {
+          Future.delayed(Duration(milliseconds: 1000)).then((value) {
             htm.window.postMessage(
                 {"scroll": false, "y": _scrollController.position.pixels}, "*");
             scrolled = true;
@@ -227,6 +228,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         _scrollController.jumpTo(
           _scrollController.position.maxScrollExtent,
         );
+        Future.delayed(Duration(milliseconds: 1000)).then((value) {
+          htm.window.postMessage({
+            "scroll": false,
+            "y": _scrollController.position.maxScrollExtent
+          }, "*");
+          scrolled = true;
+          setState(() {});
+          print("SCROL IS CALLED");
+        });
       }
     });
     return Scaffold(

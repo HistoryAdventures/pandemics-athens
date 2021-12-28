@@ -67,30 +67,38 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                     left: 0,
                     right: 0,
                     top: HW.getHeight(128, context),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: HW.getHeight(43, context),
-                      child: Text(
-                        locale.furtherReading.toUpperCase(),
-                        style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: TextFontSize.getHeight(36, context)),
-                      ),
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: HW.getHeight(43, context),
+                          child: Text(
+                            locale.furtherReading.toUpperCase(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(
+                                    fontSize:
+                                        TextFontSize.getHeight(36, context)),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: HW.getHeight(24, context),
+                          ),
+                          height: HW.getHeight(30, context),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: characters
+                                  .map((data) => charactersListWidget(
+                                      name: data,
+                                      text: data,
+                                      image: data,
+                                      selected: data))
+                                  .toList()),
+                        ),
+                      ],
                     )),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: HW.getHeight(24, context),
-                  ),
-                  height: HW.getHeight(30, context),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: characters
-                          .map((data) => charactersListWidget(
-                              name: data,
-                              text: data,
-                              image: data,
-                              selected: data))
-                          .toList()),
-                ),
                 SoundAndMenuWidget(
                   icons: isSoundOn
                       ? AssetsPath.iconVolumeOn
