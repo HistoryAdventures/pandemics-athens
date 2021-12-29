@@ -32,8 +32,8 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
-      initial: true,
       page: LeandingPage,
+      initial: true,
     ),
     CustomRoute(
         page: CharacrterPage,
