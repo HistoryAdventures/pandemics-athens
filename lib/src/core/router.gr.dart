@@ -155,11 +155,11 @@ class FlutterRouter extends _i1.RootStackRouter {
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
-    PathogenProfilePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    PathogenProfilePageBottomRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<PathogenProfilePageRouteArgs>(
-              orElse: () => const PathogenProfilePageRouteArgs());
+          final args = data.argsAs<PathogenProfilePageBottomRouteArgs>(
+              orElse: () => const PathogenProfilePageBottomRouteArgs());
           return _i13.PathogenProfilePage(
               key: args.key,
               needJumpToPracticeMedicinePart:
@@ -169,12 +169,49 @@ class FlutterRouter extends _i1.RootStackRouter {
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
-    KeepGoingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    PathogenProfilePageRightRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<PathogenProfilePageRightRouteArgs>(
+              orElse: () => const PathogenProfilePageRightRouteArgs());
+          return _i13.PathogenProfilePage(
+              key: args.key,
+              needJumpToPracticeMedicinePart:
+                  args.needJumpToPracticeMedicinePart);
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideRight,
+        durationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false),
+    PathogenProfilePageLeftRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<PathogenProfilePageLeftRouteArgs>(
+              orElse: () => const PathogenProfilePageLeftRouteArgs());
+          return _i13.PathogenProfilePage(
+              key: args.key,
+              needJumpToPracticeMedicinePart:
+                  args.needJumpToPracticeMedicinePart);
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false),
+    KeepGoingPageLeftRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i14.KeepGoingPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false),
+    KeepGoingPageBottomRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i14.KeepGoingPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
@@ -326,7 +363,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
             path: '/character-info-page'),
@@ -340,9 +377,14 @@ class FlutterRouter extends _i1.RootStackRouter {
             path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaRightPageRoute.name,
             path: '/panaroma-right-page'),
-        _i1.RouteConfig(PathogenProfilePageRoute.name,
+        _i1.RouteConfig(PathogenProfilePageBottomRoute.name, path: '/'),
+        _i1.RouteConfig(PathogenProfilePageRightRoute.name,
             path: '/pathogen-profile-page'),
-        _i1.RouteConfig(KeepGoingPageRoute.name, path: '/keep-going-page'),
+        _i1.RouteConfig(PathogenProfilePageLeftRoute.name,
+            path: '/pathogen-profile-page'),
+        _i1.RouteConfig(KeepGoingPageLeftRoute.name, path: '/keep-going-page'),
+        _i1.RouteConfig(KeepGoingPageBottomRoute.name,
+            path: '/keep-going-page'),
         _i1.RouteConfig(QuitMedicinePageRoute.name,
             path: '/quit-medicine-page'),
         _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
@@ -370,7 +412,7 @@ class FlutterRouter extends _i1.RootStackRouter {
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/',
+            path: '/leanding-page',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -468,21 +510,22 @@ class PanaromaRightPageRoute extends _i1.PageRouteInfo {
   static const String name = 'PanaromaRightPageRoute';
 }
 
-class PathogenProfilePageRoute
-    extends _i1.PageRouteInfo<PathogenProfilePageRouteArgs> {
-  PathogenProfilePageRoute({_i2.Key? key, bool? needJumpToPracticeMedicinePart})
+class PathogenProfilePageBottomRoute
+    extends _i1.PageRouteInfo<PathogenProfilePageBottomRouteArgs> {
+  PathogenProfilePageBottomRoute(
+      {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
       : super(name,
-            path: '/pathogen-profile-page',
-            args: PathogenProfilePageRouteArgs(
+            path: '/',
+            args: PathogenProfilePageBottomRouteArgs(
                 key: key,
                 needJumpToPracticeMedicinePart:
                     needJumpToPracticeMedicinePart));
 
-  static const String name = 'PathogenProfilePageRoute';
+  static const String name = 'PathogenProfilePageBottomRoute';
 }
 
-class PathogenProfilePageRouteArgs {
-  const PathogenProfilePageRouteArgs(
+class PathogenProfilePageBottomRouteArgs {
+  const PathogenProfilePageBottomRouteArgs(
       {this.key, this.needJumpToPracticeMedicinePart});
 
   final _i2.Key? key;
@@ -490,10 +533,62 @@ class PathogenProfilePageRouteArgs {
   final bool? needJumpToPracticeMedicinePart;
 }
 
-class KeepGoingPageRoute extends _i1.PageRouteInfo {
-  const KeepGoingPageRoute() : super(name, path: '/keep-going-page');
+class PathogenProfilePageRightRoute
+    extends _i1.PageRouteInfo<PathogenProfilePageRightRouteArgs> {
+  PathogenProfilePageRightRoute(
+      {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
+      : super(name,
+            path: '/pathogen-profile-page',
+            args: PathogenProfilePageRightRouteArgs(
+                key: key,
+                needJumpToPracticeMedicinePart:
+                    needJumpToPracticeMedicinePart));
 
-  static const String name = 'KeepGoingPageRoute';
+  static const String name = 'PathogenProfilePageRightRoute';
+}
+
+class PathogenProfilePageRightRouteArgs {
+  const PathogenProfilePageRightRouteArgs(
+      {this.key, this.needJumpToPracticeMedicinePart});
+
+  final _i2.Key? key;
+
+  final bool? needJumpToPracticeMedicinePart;
+}
+
+class PathogenProfilePageLeftRoute
+    extends _i1.PageRouteInfo<PathogenProfilePageLeftRouteArgs> {
+  PathogenProfilePageLeftRoute(
+      {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
+      : super(name,
+            path: '/pathogen-profile-page',
+            args: PathogenProfilePageLeftRouteArgs(
+                key: key,
+                needJumpToPracticeMedicinePart:
+                    needJumpToPracticeMedicinePart));
+
+  static const String name = 'PathogenProfilePageLeftRoute';
+}
+
+class PathogenProfilePageLeftRouteArgs {
+  const PathogenProfilePageLeftRouteArgs(
+      {this.key, this.needJumpToPracticeMedicinePart});
+
+  final _i2.Key? key;
+
+  final bool? needJumpToPracticeMedicinePart;
+}
+
+class KeepGoingPageLeftRoute extends _i1.PageRouteInfo {
+  const KeepGoingPageLeftRoute() : super(name, path: '/keep-going-page');
+
+  static const String name = 'KeepGoingPageLeftRoute';
+}
+
+class KeepGoingPageBottomRoute extends _i1.PageRouteInfo {
+  const KeepGoingPageBottomRoute() : super(name, path: '/keep-going-page');
+
+  static const String name = 'KeepGoingPageBottomRoute';
 }
 
 class QuitMedicinePageRoute extends _i1.PageRouteInfo {

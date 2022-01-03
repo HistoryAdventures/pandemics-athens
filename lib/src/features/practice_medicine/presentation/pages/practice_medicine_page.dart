@@ -129,7 +129,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       onTap: () {
                         ////????????
                         NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const KeepGoingPageRoute());
+                        context.router.push(const KeepGoingPageLeftRoute());
                       }),
                 ),
               ],

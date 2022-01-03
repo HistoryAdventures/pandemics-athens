@@ -69,7 +69,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                       LeafDetails.currentVertex = 14;
                       LeafDetails.visitedVertexes.add(14);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.replace(PathogenProfilePageRoute(
+                      context.router.replace(PathogenProfilePageRightRoute(
                           needJumpToPracticeMedicinePart: true));
                     }),
               ),

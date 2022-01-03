@@ -251,7 +251,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             if (!_mustScrollToEnd && !_mustScrollToMiddle) _video,
             if (_videoEnded || _mustScrollToEnd || _mustScrollToMiddle)
               Builder(builder: (c) {
-                Future.delayed(const Duration(seconds: 4)).then((value) {
+                Future.delayed(const Duration(seconds: 7)).then((value) {
                   setState(() {
                     showLoading = false;
                   });

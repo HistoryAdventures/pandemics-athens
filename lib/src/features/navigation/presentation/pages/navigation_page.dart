@@ -308,7 +308,7 @@ class _NavigationPageState extends State<NavigationPage> {
         Vertex(
             index: 10,
             visited: LeafDetails.visitedVertexes.contains(10),
-            path: PathogenProfilePageRoute.name,
+            path: PathogenProfilePageBottomRoute.name,
             adjacentEdges: [11, 14],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
@@ -316,7 +316,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.push(PathogenProfilePageRoute());
+          context.router.push(PathogenProfilePageBottomRoute());
         },
         pointOffset: const Offset(425, 375),
         lineStartOffset: const Offset(5, 0),
@@ -392,8 +392,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 14;
           LeafDetails.visitedVertexes.add(14);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.push(
-              PathogenProfilePageRoute(needJumpToPracticeMedicinePart: true));
+          context.router.push(PathogenProfilePageBottomRoute(
+              needJumpToPracticeMedicinePart: true));
         },
         pointOffset: const Offset(350, 430),
         lineStartOffset: const Offset(5, 0),
