@@ -94,7 +94,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
     CustomRoute(
         name: "KeepGoingPageBottomRoute",
         page: KeepGoingPage,
-        transitionsBuilder: TransitionsBuilders.slideBottom,
+        transitionsBuilder: TransitionsBuilders.slideTop,
         durationInMilliseconds: 500),
     CustomRoute(
         page: QuitMedicinePage,

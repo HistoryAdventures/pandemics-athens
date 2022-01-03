@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
             ),
           )
         : MaterialApp.router(
+            title: "History Adventures - Global Pandemics",
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             routerDelegate: _appRouter.delegate(),
             routeInformationParser: _appRouter.defaultRouteParser(),

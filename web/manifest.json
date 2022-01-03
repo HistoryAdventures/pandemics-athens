@@ -1,11 +1,11 @@
 {
-    "name": "history_of_adventures",
-    "short_name": "history_of_adventures",
+    "name": "History Adventures - Global Pandemics",
+    "short_name": "History Adventures - Global Pandemics",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "History Adventures - Global Pandemics",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

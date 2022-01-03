@@ -211,7 +211,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i14.KeepGoingPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+        transitionsBuilder: _i1.TransitionsBuilders.slideTop,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
