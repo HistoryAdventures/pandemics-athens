@@ -49,6 +49,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double _lernMoreOpasyty = 0;
 
   bool isSoundOn = false;
+  bool paralaxAssetsPreloaded = false;
   final backgroundplayer = AudioPlayer();
 
   late AppLocalizations locals;
@@ -156,6 +157,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       setState(() {});
     });
 
+    htm.window.onMessage.listen((event) {
+      if (event.data == "paralaxAssetsLoaded") {}
+      print("receied message from js ${event.data}");
+      setState(() {
+        paralaxAssetsPreloaded = true;
+      });
+    });
+
     super.initState();
 
     // ignore: undefined_prefixed_name
@@ -250,107 +259,100 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             if (!_mustScrollToEnd && !_mustScrollToMiddle) _loading,
             if (!_mustScrollToEnd && !_mustScrollToMiddle) _video,
             if (_videoEnded || _mustScrollToEnd || _mustScrollToMiddle)
-              Builder(builder: (c) {
-                Future.delayed(const Duration(seconds: 7)).then((value) {
-                  setState(() {
-                    showLoading = false;
-                  });
-                });
-                return Stack(
-                  children: [
-                    _paralax,
-                    Container(
-                      // height: 8838,
-                      child: PointerInterceptor(
-                        child: NotificationListener(
-                          onNotification: (event) {
-                            if (event is ScrollUpdateNotification) {
-                              double value = _scrollController.position.pixels;
-                              htm.window.postMessage(
-                                  {"scroll": false, "y": value}, "*");
-                            }
+              Stack(
+                children: [
+                  _paralax,
+                  Container(
+                    // height: 8838,
+                    child: PointerInterceptor(
+                      child: NotificationListener(
+                        onNotification: (event) {
+                          if (event is ScrollUpdateNotification) {
+                            double value = _scrollController.position.pixels;
+                            htm.window.postMessage(
+                                {"scroll": false, "y": value}, "*");
+                          }
 
-                            return false;
-                          },
-                          child: SingleChildScrollView(
-                            padding: EdgeInsets.zero,
-                            controller: _scrollController,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height *
-                                  (24 / 2.45),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  _topBar(false),
-                                  _title,
-                                  SizedBox(
-                                    height: HW.getHeight(1700, context),
-                                  ),
-                                  ParalaxTextWidget(
-                                    alignment: Alignment.centerRight,
-                                    right: HW.getWidth(238, context),
-                                    text: locals.paralaxText1,
-                                    size: Size(HW.getWidth(700, context),
-                                        HW.getHeight(216, context)),
-                                  ),
-                                  SizedBox(
-                                    height: HW.getHeight(850, context),
-                                  ),
-                                  ParalaxTextWidget(
-                                    alignment: Alignment.centerLeft,
-                                    size: Size(HW.getWidth(557, context),
-                                        HW.getHeight(230, context)),
-                                    left: HW.getWidth(157, context),
-                                    text: locals.paralaxText2,
-                                  ),
-                                  SizedBox(
-                                    height: HW.getHeight(1250, context),
-                                  ),
-                                  ParalaxTextWidget(
-                                    alignment: Alignment.centerRight,
-                                    right: HW.getWidth(150, context),
-                                    size: Size(HW.getWidth(600, context),
-                                        HW.getHeight(264, context)),
-                                    text: locals.paralaxText3,
-                                  ),
-                                  SizedBox(
-                                    height: HW.getHeight(650, context),
-                                  ),
-                                  _athens5th(),
-                                  SizedBox(height: HW.getHeight(450, context)),
-                                  ParalaxTextWidget(
-                                    alignment: Alignment.centerLeft,
-                                    left: HW.getWidth(250, context),
-                                    text: locals.paralaxText4,
-                                    size: Size(HW.getWidth(605, context),
-                                        HW.getHeight(330, context)),
-                                  ),
-                                  SizedBox(height: HW.getHeight(2300, context)),
-                                  ParalaxTextWidget(
-                                    alignment: Alignment.centerLeft,
-                                    left: HW.getWidth(220, context),
-                                    text: locals.paralaxText5,
-                                    size: Size(HW.getWidth(616, context),
-                                        HW.getHeight(268, context)),
-                                  ),
-                                  Spacer(),
-                                  _bottomBar,
-                                ],
-                              ),
+                          return false;
+                        },
+                        child: SingleChildScrollView(
+                          padding: EdgeInsets.zero,
+                          controller: _scrollController,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height *
+                                (24 / 2.45),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                _topBar(false),
+                                _title,
+                                SizedBox(
+                                  height: HW.getHeight(1700, context),
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerRight,
+                                  right: HW.getWidth(238, context),
+                                  text: locals.paralaxText1,
+                                  size: Size(HW.getWidth(700, context),
+                                      HW.getHeight(216, context)),
+                                ),
+                                SizedBox(
+                                  height: HW.getHeight(850, context),
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  size: Size(HW.getWidth(557, context),
+                                      HW.getHeight(230, context)),
+                                  left: HW.getWidth(157, context),
+                                  text: locals.paralaxText2,
+                                ),
+                                SizedBox(
+                                  height: HW.getHeight(1250, context),
+                                ),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerRight,
+                                  right: HW.getWidth(150, context),
+                                  size: Size(HW.getWidth(600, context),
+                                      HW.getHeight(264, context)),
+                                  text: locals.paralaxText3,
+                                ),
+                                SizedBox(
+                                  height: HW.getHeight(650, context),
+                                ),
+                                _athens5th(),
+                                SizedBox(height: HW.getHeight(450, context)),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  left: HW.getWidth(250, context),
+                                  text: locals.paralaxText4,
+                                  size: Size(HW.getWidth(605, context),
+                                      HW.getHeight(330, context)),
+                                ),
+                                SizedBox(height: HW.getHeight(2300, context)),
+                                ParalaxTextWidget(
+                                  alignment: Alignment.centerLeft,
+                                  left: HW.getWidth(220, context),
+                                  text: locals.paralaxText5,
+                                  size: Size(HW.getWidth(616, context),
+                                      HW.getHeight(268, context)),
+                                ),
+                                Spacer(),
+                                _bottomBar,
+                              ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                    if (showLoading)
-                      const Align(
-                        alignment: Alignment.center,
-                        child: LoadingVideoWidget(),
-                      ),
-                  ],
-                );
-              }),
+                  ),
+                  if (!paralaxAssetsPreloaded)
+                    const Align(
+                      alignment: Alignment.center,
+                      child: LoadingVideoWidget(),
+                    ),
+                ],
+              ),
             Visibility(
               visible: _videoController.value.isPlaying,
               child: Align(
