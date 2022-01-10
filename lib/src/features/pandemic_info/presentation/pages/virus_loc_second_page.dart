@@ -43,6 +43,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
     super.didChangeDependencies();
   }
 
+  bool mapLoading = true;
+
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
@@ -54,6 +56,13 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
           ..height = MediaQuery.of(context).size.height.toString()
           ..src = AssetsPath.virusLoc2
           ..style.border = 'none');
+
+    html.window.onMessage.listen((event) {
+      print("cancel loading");
+      mapLoading = false;
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -256,6 +265,10 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                 Scaffold.of(context).openEndDrawer();
               },
             ),
+            if (mapLoading)
+              const LoadingWidget(
+                color: Colors.black,
+              ),
           ],
         );
       }),

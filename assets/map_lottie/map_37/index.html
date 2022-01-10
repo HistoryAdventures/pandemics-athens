@@ -21,11 +21,17 @@
       z-index: 2;
     }
   </style>
+  <link rel="preload" href="map_01.png" as="image" onload="cancelLoading()" onabort="cancelLoading()" onerror="cancelLoading()">
+
 </head>
 <body>
 <img src="map_37.png">
 <div id="lottie"></div>
 <script>
+  function cancelLoading(){
+    console.log("this is called");
+    window.parent.postMessage("map1","*");
+  }
   var animation = bodymovin.loadAnimation({
   container: document.getElementById('lottie'),
   path: 'data.json',

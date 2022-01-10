@@ -1409,13 +1409,12 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(PracticeMedicineToTop.name, path: '/practice-medicine'),
         _i1.RouteConfig(PracticeMedicineToBottom.name,
             path: '/practice-medicine'),
-        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/'),
+        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToLeft.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToRight.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToTop.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToBottom.name, path: '/body-info-page'),
-        _i1.RouteConfig(VirusLocationPageRoute.name,
-            path: '/virus-location-page'),
+        _i1.RouteConfig(VirusLocationPageRoute.name, path: '/'),
         _i1.RouteConfig(VirusLocationPageToLeft.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToRight.name,
@@ -2145,7 +2144,7 @@ class PracticeMedicineToBottom extends _i1.PageRouteInfo {
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
-  const BodyInfoPageRoute() : super(name, path: '/');
+  const BodyInfoPageRoute() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageRoute';
 }
@@ -2175,7 +2174,7 @@ class BodyInfoPageToBottom extends _i1.PageRouteInfo {
 }
 
 class VirusLocationPageRoute extends _i1.PageRouteInfo {
-  const VirusLocationPageRoute() : super(name, path: '/virus-location-page');
+  const VirusLocationPageRoute() : super(name, path: '/');
 
   static const String name = 'VirusLocationPageRoute';
 }

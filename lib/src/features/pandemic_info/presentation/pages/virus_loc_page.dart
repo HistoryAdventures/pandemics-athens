@@ -40,6 +40,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
     super.didChangeDependencies();
   }
 
+  bool mapLoading = true;
+
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
@@ -52,6 +54,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
           ..src = AssetsPath.virusLoc1
           ..style.border = 'none');
     super.initState();
+
+    html.window.onMessage.listen((event) {
+      print("cancel loading");
+      mapLoading = false;
+      setState(() {
+        
+      });
+    });
   }
 
   @override
@@ -238,6 +248,10 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 Scaffold.of(context).openEndDrawer();
               },
             ),
+            if (mapLoading)
+              const LoadingWidget(
+                color: Colors.black,
+              ),
           ],
         );
       }),

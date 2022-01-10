@@ -360,7 +360,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
 
     ///
     CustomRoute(
-        initial: true,
         page: BodyInfoPage,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
@@ -386,6 +385,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     ////
     CustomRoute(
+        initial: true,
         page: VirusLocationPage,
         transitionsBuilder: TransitionsBuilders.fadeIn,
         durationInMilliseconds: 500),

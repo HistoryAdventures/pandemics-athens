@@ -6,9 +6,11 @@ import 'animated_widgets/pulsing_widget.dart';
 
 class LoadingWidget extends StatelessWidget {
   final String? loadingCound;
+  final Color? color;
   const LoadingWidget({
     Key? key,
     this.loadingCound,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class LoadingWidget extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.black100.withOpacity(0.5),
       body: Container(
-        color: AppColors.black100.withOpacity(0.5),
+        color: color ?? AppColors.black100.withOpacity(0.5),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
