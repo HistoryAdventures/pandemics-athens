@@ -143,7 +143,9 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.replace(const DeadOfSocratesPageRoute());
+                      context.router.replace(DeadOfSocratesPageToRight(
+                        fromKeepGoing: false,
+                      ));
                     }),
               ),
               SoundAndMenuWidget(

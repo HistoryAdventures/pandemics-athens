@@ -688,7 +688,7 @@ class _MapPageState extends State<MapPage> {
                   LeafDetails.currentVertex = 2;
                   LeafDetails.visitedVertexes.add(2);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.replace(ParalaxHistoryPageRoute(
+                  context.router.replace(ParalaxHistoryPageToRight(
                     mustScrollToMiddle: true,
                   ));
                 }),
@@ -767,7 +767,7 @@ class _MapPageState extends State<MapPage> {
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const CharacrterPageRoute());
+                  context.router.push(const CharacterPageToLeft());
                 }),
           ],
         ),

@@ -105,7 +105,7 @@ class _CopyrightPageState extends State<CopyrightPage> {
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
                               context.router
-                                  .replace(const FurtherReadingPageRoute());
+                                  .replace(const FurtherReadingPageToRight());
                             }),
                       ),
                       Expanded(

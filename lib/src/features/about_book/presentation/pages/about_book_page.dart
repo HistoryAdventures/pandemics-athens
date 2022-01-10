@@ -73,7 +73,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         padding:
                             EdgeInsets.only(top: HW.getHeight(15, context)),
                         child: AutoSizeText(
-                          "meet the interantional team of History Adventures!"
+                          "meet the international team of History Adventures!"
                               .toLowerCase(),
                           maxLines: 1,
                           style: Theme.of(context)
@@ -118,7 +118,7 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       LeafDetails.currentVertex = 18;
                       LeafDetails.visitedVertexes.add(18);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.replace(const IrlNikosPageRoute());
+                      context.router.replace(const IrlNikosPageToBottom());
                     },
                   ),
                   icons: isSoundOn

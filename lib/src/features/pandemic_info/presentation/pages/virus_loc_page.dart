@@ -211,7 +211,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textTitle: locals.pathogenProfile,
                         onTap: () {
                           context.router
-                              .push(const VirusLocationSecondPageRoute());
+                              .push(const VirusLocationSecondPageToLeft());
                         }),
                   ),
                 ],

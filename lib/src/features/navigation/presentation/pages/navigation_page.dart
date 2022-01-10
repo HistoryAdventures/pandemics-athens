@@ -412,7 +412,9 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 15;
           LeafDetails.visitedVertexes.add(15);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(const DeadOfSocratesPageRoute());
+          context.router.replace(DeadOfSocratesPageRoute(
+            fromKeepGoing: false,
+          ));
         },
         pointOffset: const Offset(340, 500),
         lineStartOffset: const Offset(5, 0),

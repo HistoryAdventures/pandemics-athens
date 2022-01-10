@@ -381,7 +381,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                 LeafDetails.currentVertex = 2;
                 LeafDetails.visitedVertexes.add(2);
                 NavigationSharedPreferences.upDateShatedPreferences();
-                context.router.replace(ParalaxHistoryPageRoute(
+                context.router.replace(ParalaxHistoryPageToLeft(
                   mustScrollToEnd: true,
                 ));
               }),

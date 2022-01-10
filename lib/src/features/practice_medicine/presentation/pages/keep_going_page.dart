@@ -122,7 +122,9 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const DeadOfSocratesPageRoute());
+                      context.router.push(DeadOfSocratesPageRoute(
+                        fromKeepGoing: true,
+                      ));
                     },
                     icon: const Icon(
                       Icons.arrow_downward,

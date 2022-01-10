@@ -134,7 +134,7 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
                               LeafDetails.visitedVertexes.add(25);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
-                              context.router.replace(const SourcePageRoute());
+                              context.router.replace(const SourcePageToRight());
                             }),
                       ),
                       Flexible(

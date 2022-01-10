@@ -240,7 +240,9 @@ class _QuizPageState extends State<QuizPage> {
             LeafDetails.currentVertex = 15;
             LeafDetails.visitedVertexes.add(15);
             NavigationSharedPreferences.upDateShatedPreferences();
-            context.router.replace(const DeadOfSocratesPageRoute());
+            context.router.replace(DeadOfSocratesPageToBottom(
+              fromKeepGoing: false,
+            ));
           },
         ),
         icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,

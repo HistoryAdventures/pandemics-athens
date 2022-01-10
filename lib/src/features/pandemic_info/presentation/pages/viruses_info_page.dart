@@ -243,7 +243,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
                             NavigationSharedPreferences
                                 .upDateShatedPreferences();
-                            context.router.replace(BodyInfoPageRoute());
+                            context.router.replace(BodyInfoPageToRight());
                           }),
                     ),
                     SoundAndMenuWidget(

@@ -209,7 +209,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                     LeafDetails.visitedVertexes.add(4);
                     NavigationSharedPreferences.upDateShatedPreferences();
 
-                    context.router.replace(const MapPageRoute());
+                    context.router.replace(const MapPageToRight());
                   }),
             ),
           ],

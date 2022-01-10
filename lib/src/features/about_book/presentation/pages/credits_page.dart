@@ -107,7 +107,7 @@ class _CreditsPageState extends State<CreditsPage> {
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
                               context.router
-                                  .replace(const AboutBookPageRoute());
+                                  .replace(const AboutBookPageToRight());
                             }),
                       ),
                       Flexible(
@@ -176,6 +176,8 @@ class _CreditsPageState extends State<CreditsPage> {
                                       // peoples: ['Darrell Steward'],
                                       profession: 'project manager',
                                       urlModeles: [
+                                        UrlLuncherModel(
+                                            title: 'Raya Harutyunyan'),
                                         UrlLuncherModel(
                                             title: 'Laiba Mubashar'),
                                       ],
@@ -273,7 +275,13 @@ class _CreditsPageState extends State<CreditsPage> {
                                       profession: 'developers',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'DIGITAL POMEGRANATE'),
+                                            title: 'DIGITAL POMEGRANATE:'),
+                                        UrlLuncherModel(
+                                            title: 'Karen Ghazaryan'),
+                                        UrlLuncherModel(
+                                            title: 'Gohar Movsisyan'),
+                                        UrlLuncherModel(
+                                            title: 'Ellen Ghandilyan'),
                                       ],
                                     ),
                                     AuthorWidget(
@@ -290,12 +298,17 @@ class _CreditsPageState extends State<CreditsPage> {
                                       profession: 'special thanks',
                                       urlModeles: [
                                         UrlLuncherModel(
-                                            title: 'Elizabeth Lance'),
-                                        UrlLuncherModel(title: 'Bianca Simon'),
+                                            title: 'Marwan M. Kraidy, PhD'),
+
                                         UrlLuncherModel(
-                                            title: 'Everette E. Dennis, PhD'),
-                                        UrlLuncherModel(
-                                            title: 'Hariclea Zengos, Ph'),
+                                            title:
+                                                'Kathleen Hewett-Smith, PhD'),
+
+                                        // UrlLuncherModel(
+                                        //     title: 'Everette E. Dennis, PhD'),
+                                        // UrlLuncherModel(
+                                        //     title: 'Hariclea Zengos, Ph'),
+
                                         UrlLuncherModel(
                                             title: 'Gregory Ferrell Lowe, PhD'),
                                         UrlLuncherModel(
@@ -311,6 +324,9 @@ class _CreditsPageState extends State<CreditsPage> {
                                         UrlLuncherModel(title: 'Todd Fabacher'),
                                         UrlLuncherModel(
                                             title: 'Abir Younis Maarouf'),
+                                        UrlLuncherModel(
+                                            title: 'Elizabeth Lance'),
+                                        UrlLuncherModel(title: 'Bianca Simon'),
                                       ],
                                     ),
                                   ],

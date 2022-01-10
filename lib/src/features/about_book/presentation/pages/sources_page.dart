@@ -141,7 +141,8 @@ class _SourcePageState extends State<SourcePage> {
                               LeafDetails.visitedVertexes.add(24);
                               NavigationSharedPreferences
                                   .upDateShatedPreferences();
-                              context.router.replace(const CreditsPageRoute());
+                              context.router
+                                  .replace(const CreditsPageToRight());
                             }),
                       ),
                       Flexible(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -124,6 +126,9 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     super.didChangeDependencies();
   }
 
+  bool ignoringBody = true;
+  Timer? timer;
+
   @override
   void dispose() {
     animatedParticlesBS.close();
@@ -181,83 +186,122 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                 vertical: constraints.maxHeight * 0.1),
                             //  color: Colors.red,
                             height: constraints.maxHeight,
-                            child: AnimatedSwitcher(
-                              duration: Times.medium,
-                              transitionBuilder: (child, animation) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                );
-                              },
-                              child: BodyOnTapsModel(
-                                key: ValueKey(bodyModel.image),
-                                bodyModel: bodyModel,
-                                height: constraints.maxHeight,
-                                width: constraints.maxWidth,
-                                onExit: () {
-                                  setState(() {
-                                    bodyModel = BodyModel(
-                                      title: locale.bodyIntro,
-                                      image: AssetsPath.manIntroImage,
-                                      descriptiion: locale.intrBodyText,
-                                    );
-                                  });
-                                },
-                                onTapSkin: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.skinText,
-                                      image: AssetsPath.manfillImage,
-                                      title: locale.skin,
-                                    );
-                                  });
-                                },
-                                onTapStomach: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.stomachText,
-                                      image: AssetsPath.manstomachImage,
-                                      title: locale.bodyStomach,
-                                    );
-                                  });
-                                },
-                                onTapHends: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.hendsText,
-                                      image: AssetsPath.manhandsImage,
-                                      title: locale.bodyhands,
-                                    );
-                                  });
-                                },
-                                onTapChest: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.chestText,
-                                      image: AssetsPath.manChestImage,
-                                      title: locale.bodyCheast,
-                                    );
-                                  });
-                                },
-                                onTapThroat: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.throatText,
-                                      image: AssetsPath.manthroatImage,
-                                      title: locale.bodyThroat,
-                                    );
-                                  });
-                                },
-                                onTapHead: () {
-                                  setState(() {
-                                    bodyModel.chandeState(
-                                      descriptiion: locale.headText,
-                                      image: AssetsPath.manheadImage,
-                                      title: locale.bodyHead,
-                                    );
-                                  });
-                                },
-                              ),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                MouseRegion(
+                                  onExit: (_) {
+                                    ignoringBody = true;
+                                    print("this is worked");
+                                    timer = null;
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: AnimatedSwitcher(
+                                      duration: Times.medium,
+                                      transitionBuilder: (child, animation) {
+                                        return FadeTransition(
+                                          opacity: animation,
+                                          child: child,
+                                        );
+                                      },
+                                      child: BodyOnTapsModel(
+                                        key: ValueKey(bodyModel.image),
+                                        bodyModel: bodyModel,
+                                        height: constraints.maxHeight,
+                                        width: constraints.maxWidth,
+                                        onExit: () {
+                                          setState(() {
+                                            bodyModel = BodyModel(
+                                              title: locale.bodyIntro,
+                                              image: AssetsPath.manIntroImage,
+                                              descriptiion: locale.intrBodyText,
+                                            );
+                                          });
+                                        },
+                                        onTapSkin: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.skinText,
+                                              image: AssetsPath.manfillImage,
+                                              title: locale.skin,
+                                            );
+                                          });
+                                        },
+                                        onTapStomach: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.stomachText,
+                                              image: AssetsPath.manstomachImage,
+                                              title: locale.bodyStomach,
+                                            );
+                                          });
+                                        },
+                                        onTapHends: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.hendsText,
+                                              image: AssetsPath.manhandsImage,
+                                              title: locale.bodyhands,
+                                            );
+                                          });
+                                        },
+                                        onTapChest: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.chestText,
+                                              image: AssetsPath.manChestImage,
+                                              title: locale.bodyCheast,
+                                            );
+                                          });
+                                        },
+                                        onTapThroat: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.throatText,
+                                              image: AssetsPath.manthroatImage,
+                                              title: locale.bodyThroat,
+                                            );
+                                          });
+                                        },
+                                        onTapHead: () {
+                                          setState(() {
+                                            bodyModel.chandeState(
+                                              descriptiion: locale.headText,
+                                              image: AssetsPath.manheadImage,
+                                              title: locale.bodyHead,
+                                            );
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if (ignoringBody)
+                                  MouseRegion(
+                                    onExit: (_) {
+                                      if (timer != null) {
+                                        timer!.cancel();
+                                        timer = null;
+                                      }
+                                    },
+                                    onHover: (_) {
+                                      print("on hover");
+                                      timer ??=
+                                          Timer(const Duration(seconds: 1), () {
+                                        print("condition");
+                                        ignoringBody = false;
+                                        setState(() {});
+                                      });
+                                    },
+                                    child: Container(
+                                      height: HW.getHeight(750, context),
+                                      width: HW.getWidth(240, context),
+                                      color: Colors.transparent,
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                         ),
@@ -436,7 +480,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                         //   context.router.pop();
                         // }
                         context.router
-                            .push(const VirusLocationSecondPageRoute());
+                            .push(const VirusLocationSecondPageToRight());
                       }),
                 ),
                 SoundAndMenuWidget(

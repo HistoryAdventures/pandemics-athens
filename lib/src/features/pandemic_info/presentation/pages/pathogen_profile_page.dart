@@ -309,7 +309,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                         LeafDetails.visitedVertexes.add(9);
 
                         NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.replace(const PanaromaRightPageRoute());
+                        context.router
+                            .replace(const PanaromaRightPageToBottom());
                       },
 
                       // color: soundAndMewnuColor,

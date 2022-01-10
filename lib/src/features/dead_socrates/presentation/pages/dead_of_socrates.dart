@@ -23,7 +23,11 @@ import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../modesl/socrates_info_model.dart';
 
 class DeadOfSocratesPage extends StatefulWidget {
-  const DeadOfSocratesPage({Key? key}) : super(key: key);
+  final bool fromKeepGoing;
+  const DeadOfSocratesPage({
+    Key? key,
+    required this.fromKeepGoing,
+  }) : super(key: key);
 
   @override
   _DeadOfSocratesPageState createState() => _DeadOfSocratesPageState();
@@ -167,7 +171,11 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                   onTap: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.replace(KeepGoingPageBottomRoute());
+                    if (widget.fromKeepGoing) {
+                      context.router.replace(KeepGoingPageBottomRoute());
+                    } else {
+                      context.router.replace(QuitMedicinePageToBottom());
+                    }
                   },
                 ),
                 icons: isSoundOn

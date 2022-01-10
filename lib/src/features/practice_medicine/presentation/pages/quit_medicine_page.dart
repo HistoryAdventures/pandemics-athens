@@ -115,7 +115,9 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                     LeafDetails.visitedVertexes.add(15);
                     LeafDetails.currentVertex = 15;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const DeadOfSocratesPageRoute());
+                    context.router.push(DeadOfSocratesPageRoute(
+                      fromKeepGoing: false,
+                    ));
                   },
                   icon: const Icon(
                     Icons.arrow_downward,

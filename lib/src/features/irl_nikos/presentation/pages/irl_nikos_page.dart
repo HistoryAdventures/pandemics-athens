@@ -67,7 +67,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   LeafDetails.currentVertex = 17;
                   LeafDetails.visitedVertexes.add(17);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.replace(const QuizPageRoute());
+                  context.router.replace(const QuizPageToBottom());
                 },
               ),
               icons: isSoundOn

@@ -321,7 +321,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   LeafDetails.currentVertex = 0;
 
                   context.router.replace(
-                      LeandingPageRoute(navigateFromNavigatorPage: true));
+                      LeandingPageToBottom(navigateFromNavigatorPage: true));
                 }),
                 icons: isSoundOn
                     ? AssetsPath.iconVolumeOn

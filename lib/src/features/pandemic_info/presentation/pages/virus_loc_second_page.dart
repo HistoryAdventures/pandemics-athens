@@ -204,26 +204,22 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ArrowLeftTextWidget(
-                          textSubTitle: locals.pathogenProfile,
-                          textTitle: locals.chapter1,
-                          onTap: () {
-                            LeafDetails.currentVertex = 11;
-                            // if (kIsWeb) {
-                            //   html.window.history.back();
-                            //   context.router.pop();
-                            // } else {
-                            //   context.router.pop();
-                            // }
-                            LeafDetails.currentVertex = 11;
-                            LeafDetails.visitedVertexes.add(11);
-                            NavigationSharedPreferences
-                                .upDateShatedPreferences();
-                            context.router.push(const VirusLocationPageRoute());
-                          }),
-                    ),
+                    child: ArrowLeftTextWidget(
+                        textSubTitle: locals.pathogenProfile,
+                        textTitle: locals.chapter1,
+                        onTap: () {
+                          LeafDetails.currentVertex = 11;
+                          // if (kIsWeb) {
+                          //   html.window.history.back();
+                          //   context.router.pop();
+                          // } else {
+                          //   context.router.pop();
+                          // }
+                          LeafDetails.currentVertex = 11;
+                          LeafDetails.visitedVertexes.add(11);
+                          NavigationSharedPreferences.upDateShatedPreferences();
+                          context.router.push(const VirusLocationPageToRight());
+                        }),
                   ),
                   Flexible(
                     child: ArrowRightTextWidget(

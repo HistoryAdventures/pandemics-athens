@@ -441,8 +441,7 @@ class _DocumentPageState extends State<DocumentPage>
 
                             NavigationSharedPreferences
                                 .upDateShatedPreferences();
-                            context.router
-                                .replace(const PanaromaLeftPageRoute());
+                            context.router.replace(PanaromaLeftPageToLeft());
                           }),
                     ),
                   ),
