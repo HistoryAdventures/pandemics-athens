@@ -58,9 +58,12 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
     html.window.onMessage.listen((event) {
       print("cancel loading");
       mapLoading = false;
-      setState(() {
-        
-      });
+      setState(() {});
+    });
+
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      mapLoading = false;
+      setState(() {});
     });
   }
 

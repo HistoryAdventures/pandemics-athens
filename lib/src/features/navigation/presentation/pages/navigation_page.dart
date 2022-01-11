@@ -457,7 +457,7 @@ class _NavigationPageState extends State<NavigationPage> {
         lineStartOffset: const Offset(5, 0),
         lineEndOffset: const Offset(2, -50),
         alignment: Alignment.centerLeft,
-        title: 'assesment',
+        title: 'assessment',
       ),
       LeafDetails(
         Vertex(

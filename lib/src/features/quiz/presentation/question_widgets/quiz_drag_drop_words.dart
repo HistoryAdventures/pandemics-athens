@@ -77,8 +77,10 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
     } else {
       correctAnswers = QuizData.correctAnswersForQ7;
       usersAnswers = QuizData.usersAnswersForQ7;
+
       listQuestionBody = QuizData.listQuestionBody7;
     }
+
     super.didChangeDependencies();
   }
 
@@ -104,12 +106,16 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.question,
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle1
-                            ?.copyWith(fontSize: HW.getHeight(24, context)),
+                      Container(
+                        width:
+                            constraints.maxWidth - HW.getWidth(24, context) * 2,
+                        child: Text(
+                          widget.question,
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1
+                              ?.copyWith(fontSize: HW.getHeight(24, context)),
+                        ),
                       ),
                       Text(
                         '*helper text',
@@ -284,7 +290,7 @@ Widget _buildCheckdTarget({
             ? Column(
                 children: [
                   Text(
-                    correctAnswer!,
+                    correctAnswer ?? "undefined",
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppColors.blueDeep,
                         fontSize: TextFontSize.getHeight(12, context)),
@@ -301,7 +307,7 @@ Widget _buildCheckdTarget({
             : Column(
                 children: [
                   Text(
-                    correctAnswer!,
+                    correctAnswer ?? "undefined",
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppColors.blueDeep,
                         fontSize: TextFontSize.getHeight(12, context)),
@@ -318,6 +324,7 @@ Widget _buildCheckdTarget({
   );
 }
 
+List<String> gettedCorectAnswers = [];
 Widget buildTarget({
   bool inTopContainer = false,
   bool? isCorrect,

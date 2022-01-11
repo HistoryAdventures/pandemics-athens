@@ -1342,7 +1342,7 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(MapPageToRight.name, path: '/map-page'),
         _i1.RouteConfig(MapPageToTop.name, path: '/map-page'),
         _i1.RouteConfig(MapPageToBottom.name, path: '/map-page'),
-        _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageRoute.name, path: '/'),
         _i1.RouteConfig(QuizPageToLeft.name, path: '/quiz-page'),
         _i1.RouteConfig(QuizPageToRight.name, path: '/quiz-page'),
         _i1.RouteConfig(QuizPageToTop.name, path: '/quiz-page'),
@@ -1414,7 +1414,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(BodyInfoPageToRight.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToTop.name, path: '/body-info-page'),
         _i1.RouteConfig(BodyInfoPageToBottom.name, path: '/body-info-page'),
-        _i1.RouteConfig(VirusLocationPageRoute.name, path: '/'),
+        _i1.RouteConfig(VirusLocationPageRoute.name,
+            path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToLeft.name,
             path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToRight.name,
@@ -1778,7 +1779,7 @@ class MapPageToBottom extends _i1.PageRouteInfo {
 }
 
 class QuizPageRoute extends _i1.PageRouteInfo {
-  const QuizPageRoute() : super(name, path: '/quiz-page');
+  const QuizPageRoute() : super(name, path: '/');
 
   static const String name = 'QuizPageRoute';
 }
@@ -2174,7 +2175,7 @@ class BodyInfoPageToBottom extends _i1.PageRouteInfo {
 }
 
 class VirusLocationPageRoute extends _i1.PageRouteInfo {
-  const VirusLocationPageRoute() : super(name, path: '/');
+  const VirusLocationPageRoute() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageRoute';
 }

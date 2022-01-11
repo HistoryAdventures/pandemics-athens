@@ -8,6 +8,7 @@ class QuizData {
   static int questionIndex = 0;
   static int firstDragDropResult = 0;
   static int secondDragDropResult = 0;
+  static int thirdDragResult = 0;
 
   static int finalScore = 0;
 
@@ -19,6 +20,8 @@ class QuizData {
     Score(currentScore: rightAnswersForQ5, scorsCount: 1),
     Score(currentScore: rightAnswersForQ6, scorsCount: 1),
     Score(currentScore: rightAnswersForQ7, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ7, scorsCount: 6),
+    Score(currentScore: rightAnswersForQ11, scorsCount: 9),
     Score(currentScore: rightAnswersForQ8, scorsCount: 1),
   ];
 
@@ -534,32 +537,38 @@ class QuizData {
   static final List<dynamic> listQuestionBody7 = [
     'Galen was a  ',
     DragWordsWidget(
+      correctAnswer: "Roman",
       answers: QuizData.userAnswer1ForQ7,
       isRight: null,
     ),
     ' doctor who was influenced by and developed the theories of ',
     DragWordsWidget(
+      correctAnswer: "Hippocrates",
       answers: QuizData.userAnswer2ForQ7,
       isRight: null,
     ),
     '. He studied the body through ',
     DragWordsWidget(
+      correctAnswer: "dissection",
       answers: QuizData.userAnswer3ForQ7,
       isRight: null,
     ),
     '. Because this was illegal, he encouraged his students to investigate the corpses of ',
     DragWordsWidget(
+      correctAnswer: "gladiators",
       answers: QuizData.userAnswer4ForQ7,
       isRight: null,
     ),
     "'!\n'",
     'Galen also lived through a ',
     DragWordsWidget(
+      correctAnswer: "plague",
       answers: QuizData.userAnswer5ForQ7,
       isRight: null,
     ),
     "  . His ideas were very influential, and were only challenged and developed during the ",
     DragWordsWidget(
+      correctAnswer: "Renaissance",
       answers: QuizData.userAnswer6ForQ7,
       isRight: null,
     ),
@@ -713,7 +722,7 @@ class QuizData {
   static int rightAnswersForQ4 = 0;
 
   static int rightAnswersForQ1 = 0;
-
+  static int rightAnswersForQ11 = 0;
   static int rightAnswersForQ9 = 0;
   static int rightAnswersForQ10 = 0;
 
@@ -738,6 +747,7 @@ class QuizData {
     }
     rightAnswersForQ1 += QuizData.firstDragDropResult;
     rightAnswersForQ4 += QuizData.secondDragDropResult;
+    rightAnswersForQ11 += QuizData.thirdDragResult;
 
     listQuestionBody2.forEach((element) {
       if (element is DragWordsWidget) {
@@ -774,8 +784,11 @@ class QuizData {
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
+          print("correctAnswer in ${element.correctAnswer}");
           usersAnswersForQ7.add(DragWordsWidget(
-              answers: [Answers(value: 0, text: '')], isRight: false));
+              correctAnswer: element.correctAnswer,
+              answers: [Answers(value: 0, text: '')],
+              isRight: false));
         } else {
           usersAnswersForQ7.add(element);
         }
@@ -881,6 +894,7 @@ class QuizData {
     listCorrectrAnswersQuestion4 = [];
     QuizData.firstDragDropResult = 0;
     QuizData.secondDragDropResult = 0;
+    QuizData.thirdDragResult = 0;
     listCorrectrAnswersQuestion9 = [];
 
     finalScore = 0;

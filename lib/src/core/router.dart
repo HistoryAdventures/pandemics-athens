@@ -155,6 +155,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     /////
     CustomRoute(
+        initial: true,
         page: QuizPage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500),
@@ -385,7 +386,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
         durationInMilliseconds: 500),
     ////
     CustomRoute(
-        initial: true,
         page: VirusLocationPage,
         transitionsBuilder: TransitionsBuilders.fadeIn,
         durationInMilliseconds: 500),

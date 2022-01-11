@@ -10,6 +10,7 @@ import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/image_button.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/show_dialog.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/golden_age_drag_drop.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_check_box.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_words.dart';
@@ -85,40 +86,37 @@ class _QuizPageState extends State<QuizPage> {
         score: 8,
       ),
       QuizMapImage(),
-      // QuizDragDropCirclesWidget(
-      //   quizWithImage: true,
-      //   variants: QuizData.variantsDD4,
-      //   answers: QuizData.answersDD4,
-      //   question: 'What happened where?',
-      //   questionIndex: 4,
-      //   score: 8,
-      //   userAnswer: QuizData.userAnswerForQ4,
-      //   userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
-      //   listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
-      // ),
       QuizRadioBottonWidget(
         quizWithImage: false,
         answers: QuizData.answersForQ5,
-        questionIndex: 4,
+        questionIndex: 5,
         question:
             'Which of the pathogens is thought to be the most likely cause of the Plague of Athens?',
       ),
       QuizRadioBottonWidget(
         quizWithImage: true,
         answers: QuizData.answersForQ6,
-        questionIndex: 5,
+        questionIndex: 6,
         question: 'Who is the prominent Athenian?',
+      ),
+      QuizDragDropWidget(
+        question:
+            'Much of what we know about Hippocrates and his approach to medicine is because of the works of Galen. Fill in the correct responses below.',
+        questionIndex: 7,
+        answers: QuizData.answersForDD7,
+        score: 6,
       ),
       QuizCheckBox(
         answers: QuizData.answersForQuestion8,
         question: "Look at... Which of the following statements is true...",
-        questionIndex: 6,
+        questionIndex: 8,
         userAnswers: QuizData.usersAnswersForQ8,
       ),
+      GoldenAgeDragDrop(),
       QuizSelectImage(
-        questionIndex: 7,
+        questionIndex: 10,
         question:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non?",
+            "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
         answers: QuizData.answersForQuestion10,
         userAnswers: QuizData.usersAnswersForQ10,
       ),
@@ -153,6 +151,7 @@ class _QuizPageState extends State<QuizPage> {
         previousButtonisAvailibaleToPress = true;
       });
     }
+    print("QUESTION INDEX ${QuizData.questionIndex}");
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -185,6 +184,7 @@ class _QuizPageState extends State<QuizPage> {
                           child: Container(
                             key: ValueKey(QuizData.questionIndex),
                             child: IndexedStack(
+                              // index: QuizData.questionIndex,
                               index: QuizData.questionIndex,
                               children: [
                                 ...questionsWidgets,
@@ -264,86 +264,94 @@ class _QuizPageState extends State<QuizPage> {
         },
       );
 
-  Widget get _score => Visibility(
-        visible: QuizData.showRightAnswers,
-        child: Container(
-          height: HW.getHeight(52, context),
-          width: HW.getWidth(246, context),
-          padding: EdgeInsets.only(
-            right: HW.getWidth(31, context),
-            left: HW.getWidth(24, context),
-          ),
-          decoration: const BoxDecoration(
-              color: AppColors.orange,
-              borderRadius: BorderRadius.only(
-                topRight: Corners.bigRadius,
-                bottomRight: Corners.bigRadius,
-              )),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: HW.getWidth(24, context)),
-                height: HW.getHeight(30, context),
-                width: HW.getWidth(30, context),
-                child: Image.asset(AssetsPath.scoreimage),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'total Score:'.toUpperCase(),
-                          style: Theme.of(context).textTheme.overline?.copyWith(
-                                fontSize: TextFontSize.getHeight(18, context),
-                                color: AppColors.white,
-                              ),
-                        ),
-                        Text(
-                          '${QuizData.finalScore} / 50'.toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              ?.copyWith(
-                                fontSize: TextFontSize.getHeight(14, context),
-                                color: AppColors.white,
-                              ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'this question:'.toUpperCase(),
-                          style: Theme.of(context).textTheme.overline?.copyWith(
-                                fontSize: TextFontSize.getHeight(18, context),
-                                color: AppColors.white,
-                              ),
-                        ),
-                        Text(
-                          '${QuizData.listScore[QuizData.questionIndex].currentScore} / ${QuizData.listScore[QuizData.questionIndex].scorsCount}'
-                              .toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              ?.copyWith(
-                                fontSize: TextFontSize.getHeight(14, context),
-                                color: AppColors.white,
-                              ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+  Widget get _score {
+    QuizData.listScore = [
+      Score(currentScore: QuizData.rightAnswersForQ1, scorsCount: 3),
+      Score(currentScore: QuizData.rightAnswersForQ2, scorsCount: 6),
+      Score(currentScore: QuizData.rightAnswersForQ3, scorsCount: 7),
+      Score(currentScore: QuizData.rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: QuizData.rightAnswersForQ5, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ6, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 6),
+      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 9),
+      Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
+    ];
+    return Visibility(
+      visible: QuizData.showRightAnswers,
+      child: Container(
+        height: HW.getHeight(52, context),
+        width: HW.getWidth(246, context),
+        padding: EdgeInsets.only(
+          right: HW.getWidth(31, context),
+          left: HW.getWidth(24, context),
         ),
-      );
+        decoration: const BoxDecoration(
+            color: AppColors.orange,
+            borderRadius: BorderRadius.only(
+              topRight: Corners.bigRadius,
+              bottomRight: Corners.bigRadius,
+            )),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: HW.getWidth(24, context)),
+              height: HW.getHeight(30, context),
+              width: HW.getWidth(30, context),
+              child: Image.asset(AssetsPath.scoreimage),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'total Score:'.toUpperCase(),
+                        style: Theme.of(context).textTheme.overline?.copyWith(
+                              fontSize: TextFontSize.getHeight(18, context),
+                              color: AppColors.white,
+                            ),
+                      ),
+                      Text(
+                        '${QuizData.finalScore} / 50'.toUpperCase(),
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                              fontSize: TextFontSize.getHeight(14, context),
+                              color: AppColors.white,
+                            ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'this question:'.toUpperCase(),
+                        style: Theme.of(context).textTheme.overline?.copyWith(
+                              fontSize: TextFontSize.getHeight(18, context),
+                              color: AppColors.white,
+                            ),
+                      ),
+                      Text(
+                        '${QuizData.listScore[QuizData.questionIndex].currentScore} / ${QuizData.listScore[QuizData.questionIndex].scorsCount}'
+                            .toUpperCase(),
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                              fontSize: TextFontSize.getHeight(14, context),
+                              color: AppColors.white,
+                            ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget get _indicator => Container(
         child: Row(
@@ -415,7 +423,7 @@ class _QuizPageState extends State<QuizPage> {
                 children: [
                   Expanded(
                     child: Text(
-                      'QUESTION ${QuizData.questionIndex + 1}/8',
+                      'QUESTION ${QuizData.questionIndex + 1}/9',
                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
                             fontSize: HW.getHeight(18, context),
                             fontWeight: FontWeight.bold,
@@ -446,6 +454,13 @@ class _QuizPageState extends State<QuizPage> {
                                   accept: 'Yes',
                                   cancel: 'No',
                                   onTapAccept: () {
+                                    if (GoldenAgeDragDrop
+                                            .quizMapImageKey.currentState !=
+                                        null) {
+                                      GoldenAgeDragDrop
+                                          .quizMapImageKey.currentState!
+                                          .resetQuiz();
+                                    }
                                     if (DragDropQuizBody
                                             .dragDropBodyKey.currentState !=
                                         null) {
@@ -492,6 +507,22 @@ class _QuizPageState extends State<QuizPage> {
                                   accept: 'Yes',
                                   cancel: 'No',
                                   onTapAccept: () {
+                                    if (GoldenAgeDragDrop
+                                            .quizMapImageKey.currentState !=
+                                        null) {
+                                      print("not null");
+                                      if (GoldenAgeDragDrop
+                                          .quizMapImageKey
+                                          .currentState!
+                                          .rightLines
+                                          .isNotEmpty) {
+                                        Navigator.of(context).pop();
+                                        return;
+                                      }
+                                      GoldenAgeDragDrop
+                                          .quizMapImageKey.currentState!
+                                          .checkAnswers();
+                                    }
                                     if (DragDropQuizBody
                                             .dragDropBodyKey.currentState !=
                                         null) {

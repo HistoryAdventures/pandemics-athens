@@ -63,6 +63,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
       setState(() {});
     });
 
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      mapLoading = false;
+      setState(() {});
+    });
+
     super.initState();
   }
 
