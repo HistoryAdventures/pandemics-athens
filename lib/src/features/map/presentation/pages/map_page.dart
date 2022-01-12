@@ -788,7 +788,8 @@ class _MapPageState extends State<MapPage> {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
-        onPressed: () {
+        onPressed: () async {
+          await Future.delayed(const Duration(seconds: 1));
           setState(() {
             mapInfoModel?.chandeState(
               lottie: lottie,

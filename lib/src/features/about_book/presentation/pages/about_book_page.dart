@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -56,6 +57,20 @@ class _AboutBookPageState extends State<AboutBookPage> {
           builder: (context, constraints) {
             return Stack(
               children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SocialMediaIcons(),
+                      SizedBox(
+                        height: HW.getHeight(45, context),
+                      ),
+                    ],
+                  ),
+                ),
                 Positioned(
                   left: 0,
                   right: 0,
