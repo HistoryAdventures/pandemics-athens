@@ -87,7 +87,7 @@ dependencies:
 
   path_drawing: ^0.5.1+1
 
-
+  restart_app: ^1.1.0
 
   #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
   

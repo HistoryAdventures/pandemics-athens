@@ -9,6 +9,7 @@ import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:webviewx/webviewx.dart';
@@ -23,8 +24,10 @@ import '../../../../core/widgets/zoom_in_notes_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
+import 'package:restart_app/restart_app.dart';
 
 class MapPage extends StatefulWidget {
+  static bool mapPageRestarted = false;
   const MapPage({Key? key}) : super(key: key);
 
   @override
@@ -49,10 +52,10 @@ class _MapPageState extends State<MapPage> {
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-
+   
     if (mapInfoModel == null) {
       mapInfoModel = MapInfoModel(
-        lottie: AssetsPath.mapIntroImage,
+        lottie: AssetsPath.mapLottie508,
         imageDescription: '',
         image: '',
         text: locals.introTimeLineText,
@@ -344,12 +347,33 @@ class _MapPageState extends State<MapPage> {
       ];
     }
 
+    // setIframElementPlatform();
+    // setState(() {
+    //   additionalLoading = false;
+    //   mapScreenLoading = false;
+    // });
     super.didChangeDependencies();
   }
 
+  // bool additionalLoading = true;
+  
   @override
   void initState() {
-    NavigationSharedPreferences.getNavigationListFromSF();
+    
+    Future.delayed(Duration(milliseconds:100)).then((value)async{
+       SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
+    bool? load =  _sharedPrefs.getBool(reloadKey);
+    if(load == null || load == false){
+      setLoading();
+    }
+   
+    });
+    setIframElementPlatform();
+   
+    super.initState();
+  }
+
+  void setIframElementPlatform() {
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         viewID,
@@ -358,10 +382,20 @@ class _MapPageState extends State<MapPage> {
           ..height = MediaQuery.of(context).size.height.toString()
           ..src = mapInfoModel?.lottie
           ..style.border = 'none');
-
-    super.initState();
   }
 
+  // bool mapScreenLoading = true;
+  String reloadKey = "mapPageReload";
+  void setLoading() {
+    Future.delayed(Duration(milliseconds: 10)).then((value)async {
+     SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
+     _sharedPrefs.setBool(reloadKey, true);
+     Restart.restartApp(webOrigin: '/map-page');
+     print("map page 2");
+   
+    });
+  }
+ 
   @override
   void dispose() {
     super.dispose();
@@ -371,7 +405,11 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
-      body: LayoutBuilder(builder: (context, constraints) {
+      body:
+          // mapScreenLoading || additionalLoading
+          //     ? const LoadingWidget()
+          //:
+          LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
             IgnorePointer(
@@ -789,17 +827,39 @@ class _MapPageState extends State<MapPage> {
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          setState(() {
-            mapInfoModel?.chandeState(
-              lottie: lottie,
-              image: image,
-              text: text,
-              title: title,
-              imageDescription: imageText,
-              mapImage: map,
-            );
+          //  await Future.delayed(const Duration(seconds: 1));
+          //
+
+          // setState(() {
+          //   additionalLoading = true;
+          //   mapScreenLoading = true;
+          // });
+          //
+          //  setIframElementPlatform();
+          mapInfoModel?.chandeState(
+            lottie: lottie,
+            image: image,
+            text: text,
+            title: title,
+            imageDescription: imageText,
+            mapImage: map,
+          );
+
+          // Future.delayed(Duration(milliseconds: 400)).then((value) {
+          //   setIframElementPlatform();
+          // });
+          Future.delayed(Duration(milliseconds: 400)).then((value) {
+            setState(() {});
           });
+
+          // setIframElementPlatform();
+
+          // Future.delayed(Duration(milliseconds: 200)).then((value) {
+          //   setState(() {
+          //     additionalLoading = false;
+          //     mapScreenLoading = false;
+          //   });
+          // });
         },
         child: AutoSizeText(
           year!,

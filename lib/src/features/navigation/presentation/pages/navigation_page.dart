@@ -5,9 +5,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
+import 'package:history_of_adventures/src/features/map/presentation/pages/map_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/router.gr.dart';
 import '../../../../core/utils/assets_path.dart';
@@ -195,8 +198,13 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
           NavigationSharedPreferences.upDateShatedPreferences();
-
-          context.router.replace(const MapPageRoute());
+          MapPage.mapPageRestarted = false;
+          
+            SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
+            _sharedPrefs.setBool("mapPageReload", false);
+            context.router.replace(const MapPageRoute());
+          
+          
         },
         pointOffset: const Offset(520, 123),
         lineStartOffset: const Offset(0, 6),
