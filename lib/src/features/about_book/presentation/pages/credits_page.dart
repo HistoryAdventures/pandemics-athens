@@ -165,16 +165,18 @@ class _CreditsPageState extends State<CreditsPage> {
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'ART director, producer',
+                                      profession: 'CREATOR, DESIGN DIRECTOR, PRODUCER',
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title: 'Julius Krunglevičius '),
+                                         UrlLuncherModel(
+                                            title: 'Spencer Striker '),    
                                       ],
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
                                       // peoples: ['Darrell Steward'],
-                                      profession: 'project manager',
+                                      profession: 'project managers',
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title: 'Raya Harutyunyan'),
@@ -184,7 +186,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'Research assistans, QA',
+                                      profession: 'Research assistants, QA',
                                       urlModeles: [
                                         UrlLuncherModel(title: 'Yingyin Chen'),
                                         UrlLuncherModel(title: 'Xingyu Qin'),
@@ -192,7 +194,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'writer',
+                                      profession: 'NARRATIVE DESIGNER',
                                       urlModeles: [
                                         UrlLuncherModel(title: 'Olivia Frias'),
                                       ],
@@ -322,8 +324,6 @@ class _CreditsPageState extends State<CreditsPage> {
                                         UrlLuncherModel(
                                             title: 'Thom Gillespie, PhD'),
                                         UrlLuncherModel(title: 'Todd Fabacher'),
-                                        UrlLuncherModel(
-                                            title: 'Abir Younis Maarouf'),
                                         UrlLuncherModel(
                                             title: 'Elizabeth Lance'),
                                         UrlLuncherModel(title: 'Bianca Simon'),
