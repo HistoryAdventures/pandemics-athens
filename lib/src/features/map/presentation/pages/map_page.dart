@@ -48,11 +48,11 @@ class _MapPageState extends State<MapPage> {
   OverlayEntry? overlayEntry;
   final LayerLink layerLink = LayerLink();
   String viewID = "your-view-id";
-
+  bool _visible = false;
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-   
+
     if (mapInfoModel == null) {
       mapInfoModel = MapInfoModel(
         lottie: AssetsPath.mapLottie508,
@@ -356,20 +356,15 @@ class _MapPageState extends State<MapPage> {
   }
 
   // bool additionalLoading = true;
-  
+
   @override
   void initState() {
-    
-    Future.delayed(Duration(milliseconds:100)).then((value)async{
-       SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
-    bool? load =  _sharedPrefs.getBool(reloadKey);
-    if(load == null || load == false){
-      setLoading();
-    }
-   
+    Future.delayed(const Duration(seconds: 1)).then((value) async {
+      _visible = true;
+      setState(() {});
     });
     setIframElementPlatform();
-   
+
     super.initState();
   }
 
@@ -385,17 +380,16 @@ class _MapPageState extends State<MapPage> {
   }
 
   // bool mapScreenLoading = true;
-  String reloadKey = "mapPageReload";
-  void setLoading() {
-    Future.delayed(Duration(milliseconds: 10)).then((value)async {
-     SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
-     _sharedPrefs.setBool(reloadKey, true);
-     Restart.restartApp(webOrigin: '/map-page');
-     print("map page 2");
-   
-    });
-  }
- 
+  // String reloadKey = "mapPageReload";
+  // void setLoading() {
+  //   Future.delayed(Duration(milliseconds: 10)).then((value)async {
+  //    SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
+  //    _sharedPrefs.setBool(reloadKey, true);
+  //    Restart.restartApp(webOrigin: '/map-page');
+
+  //   });
+  // }
+
   @override
   void dispose() {
     super.dispose();
@@ -433,7 +427,7 @@ class _MapPageState extends State<MapPage> {
                     : Container(
                         key: ValueKey(mapInfoModel?.title),
                         color: Colors.transparent,
-                        child: _iframeIgnorePointer(viewID: viewID),
+                       child: _iframeIgnorePointer(viewID: viewID),
                       ),
               ),
             ),
@@ -490,211 +484,217 @@ class _MapPageState extends State<MapPage> {
   }
 
   Widget _yearDescriptionField(BoxConstraints constraints) {
-    return Positioned(
-        top: mapInfoModel!.text == locals.introTimeLineText
-            ? HW.getHeight(180, context)
-            : HW.getHeight(280, context),
-        left: HW.getWidth(128, context),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4),
-          ),
+    return Visibility(
+      visible: _visible,
+      child: Positioned(
+          top: mapInfoModel!.text == locals.introTimeLineText
+              ? HW.getHeight(180, context)
+              : HW.getHeight(280, context),
+          left: HW.getWidth(128, context),
           child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white10,
-                    Colors.white54,
-                    Colors.white54,
-                    Colors.white54,
-                    Colors.white54,
-                    Colors.white54,
-                    Colors.white54,
-                    Colors.white10,
-                  ],
-                  transform: GradientRotation(104),
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.white10,
+                      Colors.white54,
+                      Colors.white54,
+                      Colors.white54,
+                      Colors.white54,
+                      Colors.white54,
+                      Colors.white54,
+                      Colors.white10,
+                    ],
+                    transform: GradientRotation(104),
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(4),
                 ),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              padding: EdgeInsets.all(HW.getHeight(24, context)),
-              height: mapInfoModel!.text == locals.introTimeLineText
-                  ? HW.getHeight(735, context)
-                  : HW.getHeight(398, context),
-              width: HW.getWidth(768, context),
-              child: Row(
-                children: [
-                  Visibility(
-                    visible: mapInfoModel?.image != '',
-                    child: SizedBox(
-                      height: HW.getHeight(350, context),
-                      width: HW.getWidth(276, context),
-                      child: AnimatedSwitcher(
-                        duration: Times.medium,
-                        transitionBuilder: (child, animation) {
-                          return FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          );
-                        },
-                        child: Container(
-                          key: ValueKey(mapInfoModel?.title),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            image: AssetImage(mapInfoModel!.image),
-                            fit: BoxFit.cover,
-                          )),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Clickable(
-                                onPressed: () {
-                                  showGeneralDialog(
-                                      context: context,
-                                      barrierColor:
-                                          Colors.black.withOpacity(0.5),
-                                      transitionBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return LayoutBuilder(
-                                            builder: (context, constraints) =>
-                                                DialogImageWidget(
-                                                  animation: animation,
-                                                  selectedImage:
-                                                      mapInfoModel!.image,
-                                                  selectedImageText:
-                                                      mapInfoModel!
-                                                          .imageDescription,
-                                                  constraints: constraints,
-                                                ));
-                                      },
-                                      transitionDuration: Times.fast,
-                                      barrierDismissible: true,
-                                      barrierLabel: '',
-                                      pageBuilder:
-                                          (context, animation1, animation2) {
-                                        return Container();
-                                      });
-                                },
-                                child: const ZoomInNotesWidget()),
+                padding: EdgeInsets.all(HW.getHeight(24, context)),
+                height: mapInfoModel!.text == locals.introTimeLineText
+                    ? HW.getHeight(735, context)
+                    : HW.getHeight(398, context),
+                width: HW.getWidth(768, context),
+                child: Row(
+                  children: [
+                    Visibility(
+                      visible: mapInfoModel?.image != '',
+                      child: SizedBox(
+                        height: HW.getHeight(350, context),
+                        width: HW.getWidth(276, context),
+                        child: AnimatedSwitcher(
+                          duration: Times.medium,
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          child: Container(
+                            key: ValueKey(mapInfoModel?.title),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(mapInfoModel!.image),
+                              fit: BoxFit.cover,
+                            )),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Clickable(
+                                  onPressed: () {
+                                    showGeneralDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        transitionBuilder:
+                                            (BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double>
+                                                    secondaryAnimation,
+                                                Widget child) {
+                                          return LayoutBuilder(
+                                              builder: (context, constraints) =>
+                                                  DialogImageWidget(
+                                                    animation: animation,
+                                                    selectedImage:
+                                                        mapInfoModel!.image,
+                                                    selectedImageText:
+                                                        mapInfoModel!
+                                                            .imageDescription,
+                                                    constraints: constraints,
+                                                  ));
+                                        },
+                                        transitionDuration: Times.fast,
+                                        barrierDismissible: true,
+                                        barrierLabel: '',
+                                        pageBuilder:
+                                            (context, animation1, animation2) {
+                                          return Container();
+                                        });
+                                  },
+                                  child: const ZoomInNotesWidget()),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    padding: EdgeInsets.only(
-                        left: mapInfoModel?.image != '' ? 24 : 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: HW.getHeight(68, context),
-                          width: constraints.maxWidth,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      bottom: HW.getHeight(8, context)),
+                    Expanded(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          left: mapInfoModel?.image != '' ? 24 : 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: HW.getHeight(68, context),
+                            width: constraints.maxWidth,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        bottom: HW.getHeight(8, context)),
+                                    child: Text(
+                                      "${locals.chapter1Athens5thCentury}\n",
+                                      maxLines: 1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1
+                                          ?.copyWith(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            fontSize: TextFontSize.getHeight(
+                                                17, context),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
                                   child: Text(
-                                    "${locals.chapter1Athens5thCentury}\n",
+                                    '${locals.timelineOfMainEvents}\n'
+                                        .toUpperCase(),
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline1
+                                        .headline2
                                         ?.copyWith(
-                                          color: Colors.black.withOpacity(0.5),
-                                          fontSize: TextFontSize.getHeight(
-                                              17, context),
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                            fontSize: TextFontSize.getHeight(
+                                                34, context)),
                                   ),
                                 ),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  '${locals.timelineOfMainEvents}\n'
-                                      .toUpperCase(),
-                                  maxLines: 1,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      ?.copyWith(
-                                          fontSize: TextFontSize.getHeight(
-                                              34, context)),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // SizedBox(
-                        //   height: HW.getHeight(20, context),
-                        // ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            margin:
-                                EdgeInsets.only(top: HW.getHeight(16, context)),
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    top: BorderSide(
-                                        color: AppColors.grey, width: 1.2))),
-                            child: HAScrollbar(
-                              showTrackOnHover: true,
-                              child: ListView(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.topCenter,
-                                        padding: const EdgeInsets.only(
-                                            top: 10.0, right: 30),
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "${mapInfoModel?.title}"
-                                                    .toUpperCase(),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      height: 1.7,
-                                                    ),
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                    HW.getHeight(16, context),
-                                              ),
-                                              Text(
-                                                mapInfoModel?.text ?? "",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1
-                                                    ?.copyWith(
-                                                      height: 1.7,
-                                                    ),
-                                              ),
-                                            ])),
-                                  ]),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )),
-                ],
-              )),
-        ));
+                          // SizedBox(
+                          //   height: HW.getHeight(20, context),
+                          // ),
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              margin: EdgeInsets.only(
+                                  top: HW.getHeight(16, context)),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      top: BorderSide(
+                                          color: AppColors.grey, width: 1.2))),
+                              child: HAScrollbar(
+                                showTrackOnHover: true,
+                                child: ListView(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.topCenter,
+                                          padding: const EdgeInsets.only(
+                                              top: 10.0, right: 30),
+                                          child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "${mapInfoModel?.title}"
+                                                      .toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        height: 1.7,
+                                                      ),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      HW.getHeight(16, context),
+                                                ),
+                                                Text(
+                                                  mapInfoModel?.text ?? "",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1
+                                                      ?.copyWith(
+                                                        height: 1.7,
+                                                      ),
+                                                ),
+                                              ])),
+                                    ]),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+                  ],
+                )),
+          )),
+    );
   }
 
   Widget _timeLineWidget(BoxConstraints constraints) {
@@ -827,6 +827,10 @@ class _MapPageState extends State<MapPage> {
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () async {
+          _visible = false;
+          setState(() {
+            
+          });
           //  await Future.delayed(const Duration(seconds: 1));
           //
 
@@ -836,7 +840,7 @@ class _MapPageState extends State<MapPage> {
           // });
           //
           //  setIframElementPlatform();
-          mapInfoModel?.chandeState(
+        await  mapInfoModel?.chandeState(
             lottie: lottie,
             image: image,
             text: text,
@@ -844,13 +848,17 @@ class _MapPageState extends State<MapPage> {
             imageDescription: imageText,
             mapImage: map,
           );
-
+      
+       Future.delayed(const Duration(seconds: 1)).then((value) {
+            _visible = true;
+            setState(() {});
+          });
           // Future.delayed(Duration(milliseconds: 400)).then((value) {
           //   setIframElementPlatform();
           // });
-          Future.delayed(Duration(milliseconds: 400)).then((value) {
-            setState(() {});
-          });
+          // Future.delayed(Duration(milliseconds: 400)).then((value) {
+          //   setState(() {});
+          // });
 
           // setIframElementPlatform();
 

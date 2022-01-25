@@ -23,16 +23,20 @@
   </style>
 </head>
 <body>
-<img src="map_26.png">
+<img src="map_26.png"> 
 <div id="lottie"></div>
 <script>
-  var animation = bodymovin.loadAnimation({
+  setTimeout(()=>{
+    var animation = bodymovin.loadAnimation({
   container: document.getElementById('lottie'),
   path: 'data.json',
   renderer: 'svg',
   loop: false,
   autoplay: true
 });
+  },1000)
+
+
 </script>
 </body>
 </html>

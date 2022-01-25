@@ -17,14 +17,14 @@ class MapInfoModel {
       required this.imageDescription,
       required this.lottie,
       required this.year});
-  void chandeState({
+  Future<void> chandeState({
     required String? image,
     required String? text,
     required String? title,
     required String? imageDescription,
     required String? mapImage,
     required String? lottie,
-  }) {
+  }) async {
     this.lottie = lottie!;
     this.title = title!;
     this.image = image!;
