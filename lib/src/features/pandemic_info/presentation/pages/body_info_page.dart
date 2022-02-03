@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:just_audio/just_audio.dart';
@@ -66,6 +68,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
 
   @override
   void didChangeDependencies() {
+    precacheImages();
     locale = AppLocalizations.of(context)!;
     bodyModel = BodyModel(
       title: locale.bodyIntro,
@@ -135,6 +138,18 @@ class _BodyInfoPageState extends State<BodyInfoPage>
     super.dispose();
   }
 
+  Future<void> precacheImages() async {
+    if (window.sessionStorage.containsKey('bodyImageIsCashed')) return;
+
+    // setState(() {
+    //   showLoading = true;
+    // });
+
+    await Future.wait([ImagePrecache.precacheBodyImages(context)]);
+
+    window.sessionStorage.putIfAbsent('bodyImageIsCashed', () => 'true');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,6 +176,12 @@ class _BodyInfoPageState extends State<BodyInfoPage>
           builder: (context, constraints) {
             return Stack(
               children: [
+                // SizedBox(
+                //   child: Image.asset(
+                //     bodyModel.image,
+                //     fit: BoxFit.contain,
+                //   ),
+                // ),
                 StreamBuilder<AnimatedParticleModel>(
                   stream: animatedParticlesBS.stream,
                   builder: (context, snapshot) {
@@ -198,98 +219,126 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                                   },
                                   child: Container(
                                     color: Colors.transparent,
-                                    child: AnimatedSwitcher(
-                                      duration: Times.medium,
-                                      transitionBuilder: (child, animation) {
-                                        return FadeTransition(
-                                          opacity: animation,
-                                          child: child,
-                                        );
-                                      },
-                                      child: BodyOnTapsModel(
-                                        key: ValueKey(bodyModel.image),
-                                        bodyModel: bodyModel,
-                                        height: constraints.maxHeight,
-                                        width: constraints.maxWidth,
-                                        onExit: () {
-                                          setState(() {
-                                            bodyModel = BodyModel(
-                                              title: locale.bodyIntro,
-                                              image: AssetsPath.manIntroImage,
-                                              descriptiion: locale.intrBodyText,
+                                    child: Stack(
+                                      children: [
+                                        SizedBox(
+                                          child: Image.asset(
+                                            bodyModel.image,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                        AnimatedSwitcher(
+                                          duration: Times.medium,
+                                          transitionBuilder:
+                                              (child, animation) {
+                                            return FadeTransition(
+                                              opacity: animation,
+                                              child: child,
                                             );
-                                          });
-                                        },
-                                        onTapSkin: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.skinText,
-                                              image: AssetsPath.manfillImage,
-                                              title: locale.skin,
-                                            );
-                                          });
-                                        },
-                                        onTapStomach: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.stomachText,
-                                              image: AssetsPath.manstomachImage,
-                                              title: locale.bodyStomach,
-                                            );
-                                          });
-                                        },
-                                        onTapHends: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.hendsText,
-                                              image: AssetsPath.manhandsImage,
-                                              title: locale.bodyhands,
-                                            );
-                                          });
-                                        },
-                                        onTapChest: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.chestText,
-                                              image: AssetsPath.manChestImage,
-                                              title: locale.bodyCheast,
-                                            );
-                                          });
-                                        },
-                                        onTapThroat: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.throatText,
-                                              image: AssetsPath.manthroatImage,
-                                              title: locale.bodyThroat,
-                                            );
-                                          });
-                                        },
-                                        onTapHead: () {
-                                          setState(() {
-                                            bodyModel.chandeState(
-                                              descriptiion: locale.headText,
-                                              image: AssetsPath.manheadImage,
-                                              title: locale.bodyHead,
-                                            );
-                                          });
-                                        },
-                                      ),
+                                          },
+                                          child: BodyOnTapsModel(
+                                            key: ValueKey(bodyModel.image),
+                                            bodyModel: bodyModel,
+                                            height: constraints.maxHeight,
+                                            width: constraints.maxWidth,
+                                            onExit: () {
+                                              setState(() {
+                                                bodyModel = BodyModel(
+                                                  title: locale.bodyIntro,
+                                                  image:
+                                                      AssetsPath.manIntroImage,
+                                                  descriptiion:
+                                                      locale.intrBodyText,
+                                                );
+                                              });
+                                            },
+                                            onTapSkin: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion: locale.skinText,
+                                                  image:
+                                                      AssetsPath.manfillImage,
+                                                  title: locale.skin,
+                                                );
+                                              });
+                                            },
+                                            onTapStomach: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion:
+                                                      locale.stomachText,
+                                                  image: AssetsPath
+                                                      .manstomachImage,
+                                                  title: locale.bodyStomach,
+                                                );
+                                              });
+                                            },
+                                            onTapHands: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion:
+                                                      locale.hendsText,
+                                                  image:
+                                                      AssetsPath.manhandsImage,
+                                                  title: locale.bodyhands,
+                                                );
+                                              });
+                                            },
+                                            onTapChest: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion:
+                                                      locale.chestText,
+                                                  image:
+                                                      AssetsPath.manChestImage,
+                                                  title: locale.bodyCheast,
+                                                );
+                                              });
+                                            },
+                                            onTapThroat: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion:
+                                                      locale.throatText,
+                                                  image:
+                                                      AssetsPath.manthroatImage,
+                                                  title: locale.bodyThroat,
+                                                );
+                                              });
+                                            },
+                                            onTapHead: () {
+                                              setState(() {
+                                                bodyModel.chandeState(
+                                                  descriptiion: locale.headText,
+                                                  image:
+                                                      AssetsPath.manheadImage,
+                                                  title: locale.bodyHead,
+                                                );
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                                 if (ignoringBody)
                                   MouseRegion(
+                                    opaque: false,
                                     onExit: (_) {
                                       if (timer != null) {
-                                        timer!.cancel();
-                                        timer = null;
+                                        Timer(const Duration(milliseconds: 50),
+                                            () {
+                                          timer!.cancel();
+                                          timer = null;
+                                        });
                                       }
                                     },
                                     onHover: (_) {
                                       print("on hover");
-                                      timer ??=
-                                          Timer(const Duration(seconds: 1), () {
+                                      timer ??= Timer(
+                                          const Duration(milliseconds: 2000),
+                                          () {
                                         print("condition");
                                         ignoringBody = false;
                                         setState(() {});

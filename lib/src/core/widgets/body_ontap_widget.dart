@@ -15,14 +15,14 @@ class BodyOnTapsModel extends StatelessWidget {
 
   final double? height;
   final double? width;
-  final VoidCallback? onTapHends;
+  final VoidCallback? onTapHands;
 
   const BodyOnTapsModel({
     Key? key,
     this.onTapHead,
     required this.bodyModel,
     this.onTapStomach,
-    this.onTapHends,
+    this.onTapHands,
     this.onTapChest,
     this.onTap,
     this.onTapThroat,
@@ -53,12 +53,12 @@ class BodyOnTapsModel extends StatelessWidget {
                     bodyModel.image,
                     fit: BoxFit.contain,
                   ),
-                ),
+                ),     
                 Positioned(
                   top: size.height * 0.34,
-                  left: size.width * 0.03,
+                  left: size.width * 0.026,
                   child: Transform.rotate(
-                    angle: 0.1,
+                    angle: 0,
                     child: InkWell(
                       splashColor: AppColors.transpatent,
                       highlightColor: AppColors.transpatent,
@@ -78,18 +78,18 @@ class BodyOnTapsModel extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          height: size.height * 0.27,
-                          width: size.width * 0.017,
+                          height: size.height,
+                          width: size.width * 0.03,
                         ),
                       ),
                     ),
                   ),
                 ),
                 Positioned(
-                  top: size.height * 0.36,
-                  left: size.width * 0.075,
+                  top: size.height * 0.30,
+                  left: size.width * 0.080,
                   child: Transform.rotate(
-                    angle: -0.02,
+                    angle: 0,
                     child: InkWell(
                       splashColor: AppColors.transpatent,
                       highlightColor: AppColors.transpatent,
@@ -109,8 +109,8 @@ class BodyOnTapsModel extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          height: size.height * 0.27,
-                          width: size.width * 0.017,
+                          height: size.height ,
+                          width: size.width * 0.03,
                         ),
                       ),
                     ),
@@ -188,6 +188,7 @@ class BodyOnTapsModel extends StatelessWidget {
                     hoverColor: AppColors.transpatent,
                     onTap: onTapHead ?? () {},
                     child: MouseRegion(
+                      opaque: false,
                       onExit: (_) {
                         if (onExit != null) {
                           onExit!();
@@ -291,7 +292,8 @@ class BodyOnTapsModel extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: size.height * 0.3,
+                  
+                  top: size.height * 0.38,
                   left: 1,
                   right: 1,
                   child: Row(
@@ -305,26 +307,30 @@ class BodyOnTapsModel extends StatelessWidget {
                           }
                         },
                         onEnter: (d) {
-                          if (onTapHends != null) {
-                            onTapHends!();
+                          if (onTapHands != null) {
+                            onTapHands!();
                           }
                         },
-                        child: Container(
-                          color: Colors.transparent,
-                          height: height! / 10,
-                          child: InkWell(
-                            splashColor: AppColors.transpatent,
-                            highlightColor: AppColors.transpatent,
-                            focusColor: AppColors.transpatent,
-                            hoverColor: AppColors.transpatent,
-                            onTap: onTapHends ?? () {},
+                        child: Transform.rotate(
+                          angle: 3,
+                          child: Container(
+                            color: Colors.transparent,
+                            height: height! / 12,
+                            child: InkWell(
+                              splashColor: AppColors.transpatent,
+                              highlightColor: AppColors.transpatent,
+                              focusColor: AppColors.transpatent,
+                              hoverColor: AppColors.transpatent,
+                              onTap: onTapHands ?? () {},
+                            ),
                           ),
                         ),
                       )),
                       Expanded(
                           flex: 6,
                           child: SizedBox(
-                            height: height! / 10,
+
+                            height: height! / 13,
                           )),
                       Expanded(
                           child: MouseRegion(
@@ -334,19 +340,19 @@ class BodyOnTapsModel extends StatelessWidget {
                           }
                         },
                         onEnter: (d) {
-                          if (onTapHends != null) {
-                            onTapHends!();
+                          if (onTapHands != null) {
+                            onTapHands!();
                           }
                         },
                         child: Container(
                           color: Colors.transparent,
-                          height: height! / 10,
+                          height: height! / 12,
                           child: InkWell(
                             splashColor: AppColors.transpatent,
                             highlightColor: AppColors.transpatent,
                             focusColor: AppColors.transpatent,
                             hoverColor: AppColors.transpatent,
-                            onTap: onTapHends,
+                            onTap: onTapHands,
                           ),
                           //width: width,
                         ),

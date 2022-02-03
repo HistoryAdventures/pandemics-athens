@@ -558,6 +558,16 @@ class AssetsPath {
     AssetsPath.animatedBack1Vbody8,
   ];
 
+  static const List<String> bodyImages = [
+    AssetsPath.manChestImage,
+    AssetsPath.manhandsImage,
+    AssetsPath.manfillImage,
+    AssetsPath.manIntroImage,
+    AssetsPath.manheadImage,
+    AssetsPath.manstomachImage,
+    AssetsPath.manthroatImage,
+  ];
+
   static const List<String> animatedParticles2Images = [
     AssetsPath.gifBackground2,
     AssetsPath.gifVirusTyphoid,

@@ -24,6 +24,12 @@ class ImagePrecache {
     ]);
   }
 
+  static Future<void> precacheBodyImages(BuildContext context) async {
+    await Future.wait([
+      precacheImages(AssetsPath.bodyImages, context),
+    ]);
+  }
+
   static Future<void> precacheVirusGifs(BuildContext context) async {
     await precacheImages(AssetsPath.virusesInfoPageImages, context);
   }
