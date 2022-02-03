@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/paralax_text_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:video_player/video_player.dart';
 
@@ -29,10 +31,11 @@ import '../../../navigation/presentation/pages/navigation_page.dart';
 class ParalaxHistoryPage extends StatefulWidget {
   final bool? mustScrollToMiddle;
   final bool? mustScrollToEnd;
-  const ParalaxHistoryPage({
-    this.mustScrollToEnd = false,
-    this.mustScrollToMiddle = false,
-  });
+  final bool? showVideo;
+  const ParalaxHistoryPage(
+      {this.mustScrollToEnd = false,
+      this.mustScrollToMiddle = false,
+      this.showVideo = true});
   @override
   _ParalaxHistoryPageState createState() => _ParalaxHistoryPageState();
 }
@@ -61,9 +64,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   final ScrollController _scrollController = ScrollController();
   final scaffoldkey = GlobalKey<ScaffoldState>();
+  SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
 
   bool get _mustScrollToEnd => widget.mustScrollToEnd ?? false;
   bool get _mustScrollToMiddle => widget.mustScrollToMiddle ?? false;
+  bool? get _showVideo => _sharedPrefs.getBool("showVideo");
   bool _videoEnded = false;
 
   final GlobalKey _athensButtonKey = GlobalKey();
@@ -97,16 +102,16 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   void initState() {
     _videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
       ..initialize().then((_) {
-        if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+        if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
           setState(() {});
         }
       });
-    if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+    if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
       _videoController.setVolume(0.0);
       _videoController.play();
     }
 
-    if (!_mustScrollToEnd && !_mustScrollToMiddle) {
+    if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
       _videoController.addListener(() {
         if (_videoController.value.isInitialized &&
             _videoController.value.position ==
@@ -164,7 +169,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         paralaxAssetsPreloaded = true;
       });
     });
-
+    init();
     super.initState();
 
     // ignore: undefined_prefixed_name
@@ -180,6 +185,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     //     _scrollController.jumpTo((event.data["y"] as num).toDouble());
     //   }
     // });
+  }
+
+  Future init() async {
+    //var duration = await backgroundplayer.setFilePath('assets/sound1.wav');
   }
 
   @override
@@ -261,15 +270,24 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       body: SizedBox(
         child: Stack(
           children: <Widget>[
-            if (!_mustScrollToEnd && !_mustScrollToMiddle) _loading,
-            if (!_mustScrollToEnd && !_mustScrollToMiddle) _video,
-            if (_videoEnded || _mustScrollToEnd || _mustScrollToMiddle)
+            if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!)
+              _loading,
+            if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!)
+              _video,
+            if (_videoEnded ||
+                _mustScrollToEnd ||
+                _mustScrollToMiddle ||
+                !_showVideo!)
               Builder(
                 builder: (c) {
-                  Future.delayed(Duration(seconds: 10)).then((v) {
+                  int seconds =
+                      _sharedPrefs.getBool("showLongLoading") == false ? 2 : 10;
+                  Future.delayed(Duration(seconds: seconds)).then((v) {
                     setState(() {
                       paralaxAssetsPreloaded = true;
                     });
+
+                    _sharedPrefs.setBool("showLongLoading", false);
                   });
                   return Stack(
                     children: [
@@ -383,7 +401,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       _videoEnded = true;
                     });
                   },
-                  icon: Icon(Icons.arrow_downward),
+                  icon: Icon(
+                    Icons.arrow_downward,
+                    color: Colors.orange,
+                  ),
                 ),
               ),
             ),
