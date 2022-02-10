@@ -230,6 +230,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                 ],
               ),
             ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                  height: 50,
+                  width: 50,
+                  margin: const EdgeInsets.all(24),
+                  child: Image.asset(AssetsPath.scrollIcon)),
+            ),
             SoundAndMenuWidget(
               icons: isSoundOn
                   ? AssetsPath.iconVolumeOn

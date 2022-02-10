@@ -131,6 +131,10 @@ class GetOffset {
 class TextFontSize {
   static double getHeight(double value, BuildContext context) =>
       value * MediaQuery.of(context).size.height / 1080;
+
+  static double getWidth(double width, BuildContext context) {
+    return width * MediaQuery.of(context).size.width / 1920;
+  }
 }
 
 /// Used for all animations in the  app

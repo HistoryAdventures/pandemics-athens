@@ -4,7 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:just_audio/just_audio.dart';
 // import 'package:panorama/panorama.dart';
 
@@ -311,11 +313,12 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                         width: 30,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
                         // openInfoPlayer.play();
                         //print("object");
                       });
+
                       showGeneralDialog(
                           context: context,
                           barrierColor: Colors.black.withOpacity(0.5),

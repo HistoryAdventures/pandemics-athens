@@ -39,6 +39,7 @@ class CharacterModel extends StatelessWidget {
           child: Image.asset(
             photo,
             height: height,
+            width: width,
             fit: BoxFit.contain,
           ),
         ),

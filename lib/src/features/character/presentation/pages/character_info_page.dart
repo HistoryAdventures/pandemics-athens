@@ -57,7 +57,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
       body: Stack(
@@ -77,7 +77,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
               children: [
                 Container(
                   child: AnimatedSwitcher(
-                    duration: Times.medium,
+                    duration: Times.slowest,
                     transitionBuilder: (child, animation) {
                       return FadeTransition(
                         opacity: animation,
@@ -86,6 +86,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                     },
                     child: CharacterModel(
                       height: HW.getHeight(870, context),
+                      width: HW.getWidth(500, context),
                       subTitle: characterModelNotifierprovider.subTitle,
                       key: ValueKey(characterModelNotifierprovider.name),
                       name: characterModelNotifierprovider.name,

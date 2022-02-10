@@ -196,69 +196,71 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
       body: GestureDetector(
         child: Stack(
           children: [
-            Panorama(
-              deformHotspots: false,
-              hotspots: infoListHotspot.map((info) {
-                if (info is InfoDialogModel) {
-                  return Hotspot(
-                    height: info.height,
-                    width: info.width,
-                    latitude: info.latitude,
-                    longitude: info.longitude,
-                    widget: hotspotButton(
-                        icon: const AnimatedPulse(
-                          pulseDuration: Duration(seconds: 3),
-                          child: SizedBox(
-                            height: 30,
-                            width: 30,
+            ClipRRect(
+              child: Panorama(
+                deformHotspots: false,
+                hotspots: infoListHotspot.map((info) {
+                  if (info is InfoDialogModel) {
+                    return Hotspot(
+                      height: info.height,
+                      width: info.width,
+                      latitude: info.latitude,
+                      longitude: info.longitude,
+                      widget: hotspotButton(
+                          icon: const AnimatedPulse(
+                            pulseDuration: Duration(seconds: 3),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            // openInfoPlayer.play();
-                            //print("object");
-                          });
-                          showGeneralDialog(
-                              context: context,
-                              barrierColor: Colors.black.withOpacity(0.5),
-                              transitionBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secondaryAnimation,
-                                  Widget child) {
-                                return LayoutBuilder(
-                                    builder: (context, constraints) =>
-                                        BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 3, sigmaY: 3),
-                                          child: DialogWidget(
-                                            titleText: locals.chapter1,
-                                            subTitleText: locals
-                                                .plaguePoliticalInstability,
-                                            animation: animation,
-                                            slectedInfoDialog: info,
-                                            constraints: constraints,
-                                            listDialogInfo: infoList,
-                                          ),
-                                        ));
-                              },
-                              transitionDuration: Times.fast,
-                              barrierDismissible: true,
-                              barrierLabel: '',
-                              pageBuilder: (context, animation1, animation2) {
-                                return Container();
-                              });
-                        }),
-                  );
-                } else {
-                  return Hotspot(
-                      width: HW.getWidth(772, context),
-                      height: HW.getHeight(384, context),
-                      latitude: 0,
-                      longitude: -30,
-                      widget: PanelWidget(text: info as String));
-                }
-              }).toList(),
-              child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
+                          onPressed: () {
+                            setState(() {
+                              // openInfoPlayer.play();
+                              //print("object");
+                            });
+                            showGeneralDialog(
+                                context: context,
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                transitionBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secondaryAnimation,
+                                    Widget child) {
+                                  return LayoutBuilder(
+                                      builder: (context, constraints) =>
+                                          BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                                sigmaX: 3, sigmaY: 3),
+                                            child: DialogWidget(
+                                              titleText: locals.chapter1,
+                                              subTitleText: locals
+                                                  .plaguePoliticalInstability,
+                                              animation: animation,
+                                              slectedInfoDialog: info,
+                                              constraints: constraints,
+                                              listDialogInfo: infoList,
+                                            ),
+                                          ));
+                                },
+                                transitionDuration: Times.fast,
+                                barrierDismissible: true,
+                                barrierLabel: '',
+                                pageBuilder: (context, animation1, animation2) {
+                                  return Container();
+                                });
+                          }),
+                    );
+                  } else {
+                    return Hotspot(
+                        width: HW.getWidth(772, context),
+                        height: HW.getHeight(384, context),
+                        latitude: 0,
+                        longitude: -30,
+                        widget: PanelWidget(text: info as String));
+                  }
+                }).toList(),
+                child: Image.asset(AssetsPath.panaramaBackgroundImageRight),
+              ),
             ),
             SoundAndMenuWidget(
               color: AppColors.white,

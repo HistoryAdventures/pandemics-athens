@@ -47,12 +47,12 @@ class _DraggableCirclesWidgetState extends State<DraggableCirclesWidget> {
               feedback: Material(
                 color: Colors.transparent,
                 child: Container(
-                  child: buildText(context, widget.answer.text, false,
+                  child: buildText(context, widget.answer.text!, false,
                       widget.answer.circleColor),
                 ),
               ),
               child: buildText(
-                  context, widget.answer.text, true, widget.answer.circleColor),
+                  context, widget.answer.text!, true, widget.answer.circleColor),
               //childWhenDragging: Container(height: size),
             ),
           ),

@@ -78,7 +78,7 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                             margin: const EdgeInsets.all(15),
                             child: SelectImage(
                               answers: answers,
-                              image: answers.answers.text,
+                              image: answers.answers.text!,
                               groupValue: QuizData.valueQ10,
                               value: answers.answers.value,
                               onTap: (val) {

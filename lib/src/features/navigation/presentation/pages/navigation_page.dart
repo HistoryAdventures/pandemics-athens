@@ -155,6 +155,9 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         onTap: () {
+              
+            SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
+          _sharedPrefs.setBool("showVideo", false);
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
@@ -178,7 +181,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(ParalaxHistoryPageRoute());
+          context.router.replace(ParalaxHistoryPageRoute(mustScrollToMiddle: true));
         },
         pointOffset: const Offset(330, 157),
         lineStartOffset: const Offset(5, 0),
@@ -199,9 +202,6 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.visitedVertexes.add(4);
           NavigationSharedPreferences.upDateShatedPreferences();
           MapPage.mapPageRestarted = false;
-          
-            SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
-            _sharedPrefs.setBool("mapPageReload", false);
             context.router.replace(const MapPageRoute());
           
           
@@ -210,7 +210,7 @@ class _NavigationPageState extends State<NavigationPage> {
         lineStartOffset: const Offset(0, 6),
         lineEndOffset: const Offset(-180, 40),
         alignment: Alignment.topCenter,
-        title: 'timeline of man events        ',
+        title: 'timeline of main events        ',
       ),
       LeafDetails(
         Vertex(
@@ -223,7 +223,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(ParalaxHistoryPageRoute());
+          context.router.replace(ParalaxHistoryPageRoute(mustScrollToEnd: true));
         },
         alignment: Alignment.centerLeft,
         pointOffset: const Offset(325, 209),

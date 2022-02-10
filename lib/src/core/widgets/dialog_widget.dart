@@ -2,6 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
+import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/panaramas/presentation/models/dialog_model.dart';
 import '../colors.dart';
@@ -35,23 +38,29 @@ class DialogWidget extends StatefulWidget {
 
 class _DialogWidgetState extends State<DialogWidget> {
   late AppLocalizations locals;
-  late InfoDialogModel infoDialogModel;
+  InfoDialogModel? infoDialogModel;
 
   String? hoveredItemIndex;
 
+  SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
+
   @override
   void initState() {
-    infoDialogModel = InfoDialogModel(
-      description: widget.slectedInfoDialog.description,
-      height: widget.slectedInfoDialog.height,
-      image: widget.slectedInfoDialog.image,
-      imageDescription: widget.slectedInfoDialog.imageDescription,
-      latitude: widget.slectedInfoDialog.latitude,
-      longitude: widget.slectedInfoDialog.longitude,
-      subTitle: widget.slectedInfoDialog.subTitle,
-      title: widget.slectedInfoDialog.title,
-      width: widget.slectedInfoDialog.width,
-    );
+    _sharedPrefs.getBool("showPanoramaLeftLoading") != false
+        ? init()
+        : infoDialogModel = InfoDialogModel(
+            description: widget.slectedInfoDialog.description,
+            height: widget.slectedInfoDialog.height,
+            image: widget.slectedInfoDialog.image,
+            imageDescription: widget.slectedInfoDialog.imageDescription,
+            latitude: widget.slectedInfoDialog.latitude,
+            longitude: widget.slectedInfoDialog.longitude,
+            subTitle: widget.slectedInfoDialog.subTitle,
+            title: widget.slectedInfoDialog.title,
+            width: widget.slectedInfoDialog.width,
+          );
+
+    _sharedPrefs.setBool("showPanoramaLeftLoading", false);
     super.initState();
   }
 
@@ -61,258 +70,304 @@ class _DialogWidgetState extends State<DialogWidget> {
     super.didChangeDependencies();
   }
 
+  init() async {
+    await Future.delayed(const Duration(seconds: 1))
+        .then((value) => infoDialogModel = InfoDialogModel(
+              description: widget.slectedInfoDialog.description,
+              height: widget.slectedInfoDialog.height,
+              image: widget.slectedInfoDialog.image,
+              imageDescription: widget.slectedInfoDialog.imageDescription,
+              latitude: widget.slectedInfoDialog.latitude,
+              longitude: widget.slectedInfoDialog.longitude,
+              subTitle: widget.slectedInfoDialog.subTitle,
+              title: widget.slectedInfoDialog.title,
+              width: widget.slectedInfoDialog.width,
+            ));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: FadeTransition(
-        opacity: widget.animation,
-        child: SizedBox(
-          width: HW.getWidth(1200, context),
-          height: HW.getHeight(676, context),
-          child: Scaffold(
-            backgroundColor: AppColors.white.withOpacity(0.9),
-            body: Container(
-              padding: EdgeInsets.all(HW.getHeight(24, context)),
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: HW.getHeight(628, context),
-                    width: HW.getHeight(628, context) * 0.64,
-                    child: SizedBox(
-                      height: widget.constraints.maxHeight,
-                      child: AnimatedSwitcher(
-                        duration: Times.medium,
-                        transitionBuilder: (child, animation) {
-                          return FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          );
-                        },
-                        child: Container(
-                          key: ValueKey(infoDialogModel.image),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(infoDialogModel.image),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Clickable(
-                              onPressed: () {
-                                showGeneralDialog(
-                                  context: context,
-                                  barrierColor: Colors.black.withOpacity(0.5),
-                                  transitionBuilder: (BuildContext context,
-                                      Animation<double> animation,
-                                      Animation<double> secondaryAnimation,
-                                      Widget child) {
-                                    return LayoutBuilder(
-                                      builder: (context, constraints) =>
-                                          DialogImageWidget(
-                                        animation: animation,
-                                        selectedImage: infoDialogModel.image,
-                                        selectedImageText:
-                                            infoDialogModel.imageDescription,
-                                        constraints: constraints,
-                                      ),
-                                    );
-                                  },
-                                  transitionDuration: Times.fast,
-                                  barrierDismissible: true,
-                                  barrierLabel: '',
-                                  pageBuilder:
-                                      (context, animation1, animation2) {
-                                    return Container();
-                                  },
+    return infoDialogModel == null
+        ? const LoadingVideoWidget()
+        : Align(
+            child: FadeTransition(
+              opacity: widget.animation,
+              child: SizedBox(
+                width: HW.getWidth(1200, context),
+                height: HW.getHeight(676, context),
+                child: Scaffold(
+                  backgroundColor: AppColors.white.withOpacity(0.9),
+                  body: Container(
+                    padding: EdgeInsets.all(HW.getHeight(24, context)),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: HW.getHeight(628, context),
+                          width: HW.getHeight(628, context) * 0.64,
+                          child: SizedBox(
+                            height: widget.constraints.maxHeight,
+                            child: AnimatedSwitcher(
+                              duration: Times.medium,
+                              transitionBuilder: (child, animation) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
                                 );
                               },
-                              child: const ZoomInNotesWidget(),
+                              child: Container(
+                                key: ValueKey(infoDialogModel!.image),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(infoDialogModel!.image),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Clickable(
+                                    onPressed: () {
+                                      _sharedPrefs.setBool("showPanoramaLeftLoading", true);
+                                      showGeneralDialog(
+                                        context: context,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        transitionBuilder:
+                                            (BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double>
+                                                    secondaryAnimation,
+                                                Widget child) {
+                                          return LayoutBuilder(
+                                            builder: (context, constraints) =>
+                                                DialogImageWidget(
+                                              animation: animation,
+                                              selectedImage:
+                                                  infoDialogModel!.image,
+                                              selectedImageText:
+                                                  infoDialogModel!
+                                                      .imageDescription,
+                                              constraints: constraints,
+                                            ),
+                                          );
+                                        },
+                                        transitionDuration: Times.fast,
+                                        barrierDismissible: true,
+                                        barrierLabel: '',
+                                        pageBuilder:
+                                            (context, animation1, animation2) {
+                                          return Container();
+                                        },
+                                      );
+                                    },
+                                    child: const ZoomInNotesWidget(),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 24),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
-                                  height: HW.getHeight(68, context),
-                                  child: Row(
+                                Expanded(
+                                  child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(
-                                        flex: 3,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
+                                      SizedBox(
+                                        height: HW.getHeight(68, context),
+                                        child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            Expanded(
+                                              flex: 3,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Flexible(
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          bottom: HW.getHeight(
+                                                              8, context)),
+                                                      child: Text(
+                                                        widget.titleText,
+                                                        maxLines: 1,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline1
+                                                            ?.copyWith(
+                                                                fontSize: TextFontSize
+                                                                    .getHeight(
+                                                                        16,
+                                                                        context),
+                                                                color: AppColors
+                                                                    .black54),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      widget.subTitleText,
+                                                      maxLines: 1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline2
+                                                          ?.copyWith(
+                                                            fontSize:
+                                                                TextFontSize
+                                                                    .getHeight(
+                                                                        32,
+                                                                        context),
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             Flexible(
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: HW.getHeight(
-                                                        8, context)),
-                                                child: Text(
-                                                  widget.titleText,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1
-                                                      ?.copyWith(
-                                                          fontSize: TextFontSize
-                                                              .getHeight(
-                                                                  16, context),
-                                                          color: AppColors
-                                                              .black54),
+                                              child: Clickable(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: SizedBox(
+                                                  height:
+                                                      HW.getHeight(19, context),
+                                                  width:
+                                                      HW.getHeight(19, context),
+                                                  child: Image.asset(
+                                                    AssetsPath.iconClose,
+                                                    fit: BoxFit.contain,
+                                                    color: AppColors.grey35,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                widget.subTitleText,
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline2
-                                                    ?.copyWith(
-                                                      fontSize: TextFontSize
-                                                          .getHeight(
-                                                              32, context),
-                                                    ),
-                                              ),
-                                            ),
+                                            )
                                           ],
                                         ),
                                       ),
-                                      Flexible(
-                                        child: Clickable(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: SizedBox(
-                                            height: HW.getHeight(19, context),
-                                            width: HW.getHeight(19, context),
-                                            child: Image.asset(
-                                              AssetsPath.iconClose,
-                                              fit: BoxFit.contain,
-                                              color: AppColors.grey35,
+                                      Expanded(
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          margin: EdgeInsets.only(
+                                            top: HW.getHeight(16, context),
+                                            bottom: HW.getHeight(16, context),
+                                          ),
+                                          decoration: const BoxDecoration(
+                                            border: Border(
+                                              top: BorderSide(
+                                                  color: AppColors.grey,
+                                                  width: 1.2),
+                                              bottom: BorderSide(
+                                                  color: AppColors.grey,
+                                                  width: 1.2),
                                             ),
                                           ),
+                                          child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 24, top: 16),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                bottom: 16),
+                                                        child: Text(
+                                                            infoDialogModel!
+                                                                .subTitle
+                                                                .toUpperCase(),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline3),
+                                                      ),
+                                                      Text(
+                                                        infoDialogModel!
+                                                            .description,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .copyWith(
+                                                                height: 26 / 16,
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.7),
+                                                                letterSpacing:
+                                                                    0.25),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ]),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    margin: EdgeInsets.only(
-                                      top: HW.getHeight(16, context),
-                                      bottom: HW.getHeight(16, context),
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
-                                        bottom: BorderSide(
-                                            color: AppColors.grey, width: 1.2),
-                                      ),
-                                    ),
-                                    child:
-                                        ListView(shrinkWrap: true, children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 24, top: 16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 16),
-                                              child: Text(
-                                                  infoDialogModel.subTitle
-                                                      .toUpperCase(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3),
-                                            ),
-                                            Text(
-                                              infoDialogModel.description,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1!
-                                                  .copyWith(
-                                                      height: 26 / 16,
-                                                      color: Colors.black
-                                                          .withOpacity(0.7),
-                                                      letterSpacing: 0.25),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ]),
-                                  ),
-                                ),
+                                SizedBox(
+                                  height: widget.subTitleText ==
+                                          locals.medicalToolsKnowledge
+                                      ? HW.getHeight(22, context)
+                                      : HW.getHeight(56, context),
+                                  child: Wrap(
+                                      children: widget.listDialogInfo
+                                          .map((data) => MouseRegion(
+                                                onHover: (_) {
+                                                  setState(() {
+                                                    hoveredItemIndex =
+                                                        data.title;
+                                                  });
+                                                },
+                                                onExit: (_) {
+                                                  setState(() {
+                                                    hoveredItemIndex = null;
+                                                  });
+                                                },
+                                                child: charactersNameListWidget(
+                                                  isHoverd: hoveredItemIndex ==
+                                                      data.title,
+                                                  title: data.title,
+                                                  image: data.image,
+                                                  text: data.description,
+                                                  subTitle: data.subTitle,
+                                                  imageText:
+                                                      data.imageDescription,
+                                                ),
+                                              ))
+                                          .toList()),
+                                )
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: widget.subTitleText ==
-                                    locals.medicalToolsKnowledge
-                                ? HW.getHeight(22, context)
-                                : HW.getHeight(56, context),
-                            child: Wrap(
-                                children: widget.listDialogInfo
-                                    .map((data) => MouseRegion(
-                                          onHover: (_) {
-                                            setState(() {
-                                              hoveredItemIndex = data.title;
-                                            });
-                                          },
-                                          onExit: (_) {
-                                            setState(() {
-                                              hoveredItemIndex = null;
-                                            });
-                                          },
-                                          child: charactersNameListWidget(
-                                            isHoverd:
-                                                hoveredItemIndex == data.title,
-                                            title: data.title,
-                                            image: data.image,
-                                            text: data.description,
-                                            subTitle: data.subTitle,
-                                            imageText: data.imageDescription,
-                                          ),
-                                        ))
-                                    .toList()),
-                          )
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 
   Widget charactersNameListWidget({
@@ -328,7 +383,7 @@ class _DialogWidgetState extends State<DialogWidget> {
       child: Clickable(
         onPressed: () {
           setState(() {
-            infoDialogModel.chandeState(
+            infoDialogModel!.chandeState(
               title: title,
               image: image,
               description: text,
@@ -340,7 +395,7 @@ class _DialogWidgetState extends State<DialogWidget> {
         child: AutoSizeText(
           title!.toUpperCase(),
           maxLines: 1,
-          style: infoDialogModel.title == title || isHoverd
+          style: infoDialogModel!.title == title || isHoverd
               ? Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.orange,
                     fontSize: TextFontSize.getHeight(16, context),

@@ -157,7 +157,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                   children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'creator, design director',
+                                      profession: 'CREATOR, DESIGN DIRECTOR, PRODUCER',
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title: 'Spencer Striker, PhD')
@@ -165,12 +165,12 @@ class _CreditsPageState extends State<CreditsPage> {
                                     ),
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'CREATOR, DESIGN DIRECTOR, PRODUCER',
+                                      profession: 'ART director, producer',
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title: 'Julius Krunglevičius '),
-                                         UrlLuncherModel(
-                                            title: 'Spencer Striker '),    
+                                        //  UrlLuncherModel(
+                                        //     title: 'Spencer Striker '),    
                                       ],
                                     ),
                                     AuthorWidget(

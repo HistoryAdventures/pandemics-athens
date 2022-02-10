@@ -3,10 +3,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -299,6 +301,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 alignment: Alignment.bottomCenter,
                 child: ArrowTextBottomWidget(
                   onPressed: () {
+                    SharedPreferences _sharedPrefs =
+                        SharedPreferancesManagment().prefs;
+                    _sharedPrefs.setBool("showVideo", true);
                     LeafDetails.visitedVertexes.add(2);
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();

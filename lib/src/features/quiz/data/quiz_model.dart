@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_drop_models.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
 
 class QuizData {
@@ -22,7 +23,6 @@ class QuizData {
     Score(currentScore: rightAnswersForQ7, scorsCount: 1),
     Score(currentScore: rightAnswersForQ7, scorsCount: 6),
     Score(currentScore: rightAnswersForQ11, scorsCount: 9),
-    Score(currentScore: rightAnswersForQ8, scorsCount: 1),
   ];
 
   ///[QUESTION 1]
@@ -35,99 +35,193 @@ class QuizData {
   static final GlobalKey globalKeyA3Q1 = GlobalKey();
   static final GlobalKey globalKeyA4Q1 = GlobalKey();
   static final GlobalKey globalKeyA5Q1 = GlobalKey();
-  static final GlobalKey globalKeyA6Q1 = GlobalKey();
-  static final GlobalKey globalKeyA7Q1 = GlobalKey();
+
   static final GlobalKey globalKeyV1Q1 = GlobalKey();
   static final GlobalKey globalKeyV2Q1 = GlobalKey();
   static final GlobalKey globalKeyV3Q1 = GlobalKey();
   static final GlobalKey globalKeyV4Q1 = GlobalKey();
   static final GlobalKey globalKeyV5Q1 = GlobalKey();
-  static final GlobalKey globalKeyV6Q1 = GlobalKey();
-  static final GlobalKey globalKeyV7Q1 = GlobalKey();
+
+  static List<QuizItem> quizItemListQ1 = [
+    QuizItem(
+      question: Question(key: globalKeyA1Q1),
+      target: Target(
+        key: globalKeyV1Q1,
+      ),
+    ),
+    QuizItem(
+      question: Question(key: globalKeyA2Q1),
+      target: Target(
+        key: globalKeyV2Q1,
+      ),
+    ),
+    QuizItem(
+      question: Question(key: globalKeyA3Q1),
+      target: Target(
+        key: globalKeyV3Q1,
+      ),
+    ),
+    QuizItem(
+      question: Question(key: globalKeyA4Q1),
+      target: Target(
+        key: globalKeyV4Q1,
+      ),
+    ),
+    QuizItem(
+      question: Question(key: globalKeyA5Q1),
+      target: Target(
+        key: globalKeyV5Q1,
+      ),
+    ),
+  ];
+  static List<Widget> targetListQ1 = [];
+  static List<Widget> dragalbeListQ1 = [];
   static final List<Answers<int>> answersForQ1 = [
     Answers(
         globalKey: globalKeyA1Q1,
         value: 1,
-        text: "Battle of Thermopylae",
+        image: AssetsPath.democracy,
         correctAnswers: CorrectAnswers.answer1),
     Answers(
         value: 2,
         globalKey: globalKeyA2Q1,
-        text: "Birth of Socrates",
+        image: AssetsPath.humours,
         correctAnswers: CorrectAnswers.answer2),
     Answers(
         value: 3,
         globalKey: globalKeyA3Q1,
-        text: "The Plague arrives in Athens",
+        image: AssetsPath.ostracism,
         correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 4,
         globalKey: globalKeyA4Q1,
-        text: "Death of Pericles",
+        image: AssetsPath.philosophy,
         correctAnswers: CorrectAnswers.answer4),
     Answers(
         value: 5,
         globalKey: globalKeyA5Q1,
-        text: "Herodotus writes his 'Histories'",
+        image: AssetsPath.typhus,
         correctAnswers: CorrectAnswers.answer5),
-    Answers(
-        value: 6,
-        globalKey: globalKeyA6Q1,
-        text: "End of the Peloponnesian War",
-        correctAnswers: CorrectAnswers.answer6),
-    Answers(
-        value: 7,
-        globalKey: globalKeyA7Q1,
-        text: "Cleisthenes' reforms and the birth of Democracy",
-        correctAnswers: CorrectAnswers.answer7),
   ];
   static final List<Answers<int>> variantsForQ1 = [
     Answers(
       value: 3,
-      globalKey: globalKeyV3Q1,
-      text: "430 BC",
+      globalKey: globalKeyV1Q1,
+      text:
+          "A infectious disease often carried by fleas, lice, or mites, which are themselves carried by small animals… and people. ",
       correctAnswers: CorrectAnswers.answer3,
     ),
     Answers(
       value: 4,
-      globalKey: globalKeyV4Q1,
-      text: "429 BC",
+      globalKey: globalKeyV2Q1,
+      text:
+          "Meaning literally “the love of wisdom,” the pursuit of answers to big questions, such as what it mean to lead a good life. ",
       correctAnswers: CorrectAnswers.answer4,
     ),
     Answers(
       value: 5,
-      globalKey: globalKeyV5Q1,
-      text: "415 BC",
-      correctAnswers: CorrectAnswers.answer5,
-    ),
-    Answers(
-      value: 2,
-      globalKey: globalKeyV2Q1,
-      text: "469 BC",
-      correctAnswers: CorrectAnswers.answer2,
-    ),
-    Answers(
-      value: 6,
-      globalKey: globalKeyV6Q1,
-      text: "404 BC",
-      correctAnswers: CorrectAnswers.answer6,
-    ),
-    Answers(
-      value: 1,
-      globalKey: globalKeyV1Q1,
-      text: "480 BC",
+      globalKey: globalKeyV3Q1,
+      text:
+          "A type of politics invented in Athens in the 5th Century. It allowed citizens to decide how their city would be governed. ",
       correctAnswers: CorrectAnswers.answer1,
     ),
     Answers(
-      value: 7,
-      globalKey: globalKeyV7Q1,
-      text: "508 BC",
-      correctAnswers: CorrectAnswers.answer7,
+      value: 2,
+      globalKey: globalKeyV4Q1,
+      text:
+          "A democratic vote that could expel a citizen from Athens for up to ten years. Though designed to prevent a citizen from becoming a tyrant, was often abused in factional politics.",
+      correctAnswers: CorrectAnswers.answer3,
+    ),
+    Answers(
+      value: 6,
+      globalKey: globalKeyV5Q1,
+      text:
+          "Thought to determine a person’s health and temperment; an imbalance could lead a person to become ill. ",
+      correctAnswers: CorrectAnswers.answer5,
     ),
   ];
   static List<DrowLineWidget> userAnswerWithCheckForQ1 = [];
   static List<DrowLineWidget> userAnswerForQ1 = [];
   static bool valueForDrowColoredLineFor = false;
+
+  ///[QUESTION 2]
+  ///
+  static final List<Answers<int>> answersForQ2 = [
+    Answers(
+        value: 1,
+        text:
+            "Hippocrates, the “Father of Medicine,” the master physician under whom he had trained."),
+    Answers(
+        isCorrect: true,
+        value: 2,
+        text:
+            "Raphael, the archangel, identified with healing, visited Abraham at the Oak of Mamre."),
+    Answers(
+        value: 3,
+        text:
+            "Apollo, the Greek god of the Sun, and also of medicine, healing, and diseases."),
+    Answers(
+        value: 4,
+        text:
+            "Asclepius, son of Apollo. A healer, he carried a snake-entwined staff, a symbol of medicine"),
+  ];
+
+  ///[QUESTION 3]
+  ///
+
+  static List<Answers> answersForDD3Images = [
+    Answers(value: 1, text: "PHIDIAS"),
+    Answers(value: 2, text: "ARISTOPHANES AND SOPHOCLES "),
+    Answers(value: 3, text: "THUCYDIDES"),
+    Answers(value: 4, text: "SOCRATES AND PLATO "),
+    Answers(value: 5, text: "PERICLES"),
+  ];
+
+  static final List<Answers<int>> answersForQ7 = [
+    Answers(
+        value: 1,
+        text:
+            "Here it becomes clear that although Hippocrates and his pupils established a new way of practicing medicine, that involved observation and diagnosis, the supernatural and the spiritual still fulfilled a prominent role in the treatment of illnesses."),
+    Answers(
+        isCorrect: true,
+        value: 2,
+        text:
+            'The germ theory of disease states that microorganisms known as pathogens or "germs" can lead to disease. These small organisms, too small to see without magnification, invade humans, other animals, and other living hosts. Their growth and reproduction within their hosts can cause disease.'),
+    Answers(
+        value: 3,
+        text:
+            "Although the gods are invoked, the Hippocratic approach to medicine was marked by attempts to distance the attribution of illness to the gods and other superstitious factors. Illness was the result of physical and environmental factors. This could include the environment in which one lived, as well as what people ate."),
+    Answers(
+        value: 4,
+        text:
+            "One of the most important principles contained within the Hippocratic Oath, and underpins much of medical ethics: the commitment not to cause harm to the patient. One can find this principle expressed in the term “First, do no harm” (or sometimes in Latin: primum non nocere). As is clear from this papyrus document, the principle existed even in antiquity."),
+  ];
+
+  static final List<Answers<int>> answersForQ10 = [
+    Answers(
+        value: 1,
+        text:
+            "Thucydides describes how the disease began in the patient’s head. It could attack anyone, including those who were previously healthy. Eyes would become red and irritated, and a strong fever would set in, increasing the patient’s temperature."),
+    Answers(
+        value: 2,
+        text:
+            'The illness then spread lower, affecting the throat which would become inflamed and painful. Sneezing, coughing, and general hoarseness followed soon after, along with a ferocious, debilitating cough. Thucydides also describes that victims of the disease, with their throat inflamed, suffered from terrible breath, which became “unnatural and malodorous.”'),
+    Answers(
+        value: 3,
+        text:
+            "As they suffered from this debilitating coughing, the sufferers of the plague found themselves weakened further by constant retching. Thucydides describes how, “in a short time, the affliction descended to the chest… when it became established in the heart”. This demonstrates the limits of ancient medicine and anatomy, as the symptoms the historian describes do not point to cardiac symptoms, but rather the disease affecting the lungs."),
+    Answers(
+        isCorrect: true,
+        value: 4,
+        text:
+            "Human immunodeficiency virus infection and acquired immunodeficiency syndrome is a spectrum of conditions caused by infection with a retrovirus. By damaging the immune system, this sexually transmitted infection interferes with the body's ability to fight disease. "),
+  ];
+
+  static final List<Answers<int>> answersForQ13 = [
+    Answers(value: 1, image: AssetsPath.nikosChoose1, checked: true),
+    Answers(value: 2, image: AssetsPath.nikosChoose2, checked: true),
+    Answers(value: 3, image: AssetsPath.nikosChoose3, checked: true),
+  ];
 
   static final List<Answers<int>> answersForKeyPeople6 = [
     Answers(value: 1, text: "Thucydides"),
@@ -143,76 +237,164 @@ class QuizData {
   static final GlobalKey globalKeyA2Q4 = GlobalKey();
   static final GlobalKey globalKeyA3Q4 = GlobalKey();
   static final GlobalKey globalKeyA4Q4 = GlobalKey();
-  static final GlobalKey globalKeyA5Q4 = GlobalKey();
 
   static final GlobalKey globalKeyV1Q4 = GlobalKey();
   static final GlobalKey globalKeyV2Q4 = GlobalKey();
   static final GlobalKey globalKeyV3Q4 = GlobalKey();
   static final GlobalKey globalKeyV4Q4 = GlobalKey();
-  static final GlobalKey globalKeyV5Q4 = GlobalKey();
   static List<DrowLineWidget> userAnswerWithCheckForQ4 = [];
   static List<DrowLineWidget> userAnswerForQ4 = [];
 
-  static final List<Answers<int>> answersDD4 = [
-    Answers(
-      value: 1,
-      text: "Construction of the Parthenon in 447-432 BC. (ATHENS - Slide 25)",
-      correctAnswers: CorrectAnswers.answer1,
-      globalKey: globalKeyA1Q4,
+  static List<QuizItem> quizItemListQ4 = [
+    QuizItem(
+      question: Question(key: globalKeyA1Q4),
+      target: Target(
+        key: globalKeyV1Q4,
+      ),
     ),
-    Answers(
-      value: 2,
-      text:
-          "The 'First' Peloponnesian War begins in 461. (ATHENS, SPARTA, OENOE - Slide 19)",
-      correctAnswers: CorrectAnswers.answer2,
-      globalKey: globalKeyA2Q4,
+    QuizItem(
+      question: Question(key: globalKeyA2Q4),
+      target: Target(
+        key: globalKeyV2Q4,
+      ),
     ),
+    QuizItem(
+      question: Question(key: globalKeyA3Q4),
+      target: Target(
+        key: globalKeyV3Q4,
+      ),
+    ),
+    QuizItem(
+      question: Question(key: globalKeyA4Q4),
+      target: Target(
+        key: globalKeyV4Q4,
+      ),
+    )
+  ];
+  static List<Widget> targetListQ4 = [];
+  static List<Widget> dragalbeListQ4 = [];
+
+  static final List<Answers<int>> answersForQ4 = [
+    Answers(
+        globalKey: globalKeyA1Q4,
+        value: 1,
+        text: '490 BC Battle of Marathon',
+        image: AssetsPath.map490,
+        correctAnswers: CorrectAnswers.answer1),
+    Answers(
+        value: 2,
+        globalKey: globalKeyA2Q4,
+        text: '399 BC City of Athens',
+        image: AssetsPath.map491,
+        correctAnswers: CorrectAnswers.answer2),
     Answers(
         value: 3,
         globalKey: globalKeyA3Q4,
-        text: "The Sicilian Expedition in 413 BC. (SICILY)",
+        text: '430 BC Port of Piraeus',
+        image: AssetsPath.map430,
         correctAnswers: CorrectAnswers.answer3),
     Answers(
         value: 4,
         globalKey: globalKeyA4Q4,
-        text:
-            "The Greeks defeat the Persians at the Battle of Marathon in 490 BC. (MARATHON - SLIDE 12)",
+        text: '461 BC Battle of Oenoe',
+        image: AssetsPath.map461,
         correctAnswers: CorrectAnswers.answer4),
-    Answers(
-        value: 5,
-        globalKey: globalKeyA5Q4,
-        text:
-            "The Athenians establlish the Delian League in 477 BC. (DELOS - Slide 15)",
-        correctAnswers: CorrectAnswers.answer5),
   ];
 
-  static final List<Answers<int>> variantsDD4 = [
+  static final List<Answers<int>> variantsForQ4 = [
     Answers(
-        value: 5,
-        globalKey: globalKeyV5Q4,
-        text: "assets/map/map477image.png",
-        correctAnswers: CorrectAnswers.answer5),
+      value: 1,
+      globalKey: globalKeyV1Q4,
+      text:
+          "Combined Greek forces defeat the Persian invaders, led by Darius, at this location. Famous for the myth of Athenian runner, Pheidippides, who ran from the battleground to Athens to announce the Greek victory.",
+      correctAnswers: CorrectAnswers.answer2,
+    ),
     Answers(
-        value: 3,
-        globalKey: globalKeyV3Q4,
-        text: "assets/map/map413image.png",
-        correctAnswers: CorrectAnswers.answer3),
+      value: 2,
+      globalKey: globalKeyV2Q4,
+      text:
+          "First Peloponnesian War begins here. Spartan forces are defeated by an alliance of two city states. Pericles emerges as leading political figure. ",
+      correctAnswers: CorrectAnswers.answer2,
+    ),
     Answers(
-        value: 2,
-        globalKey: globalKeyV2Q4,
-        text: "assets/map/map461image.png",
-        correctAnswers: CorrectAnswers.answer2),
+      value: 3,
+      globalKey: globalKeyV3Q4,
+      text:
+          "The malady spread quickly from here. In a matter of weeks, the disease had spread to the heart of the city and was affecting people of all ages and backgrounds in alarmingly high numbers.",
+      correctAnswers: CorrectAnswers.answer2,
+    ),
     Answers(
-        value: 1,
-        globalKey: globalKeyV1Q4,
-        text: "assets/map/map447_432image.png",
-        correctAnswers: CorrectAnswers.answer1),
-    Answers(
-        value: 4,
-        globalKey: globalKeyV4Q4,
-        text: "assets/map/map490image.png",
-        correctAnswers: CorrectAnswers.answer4),
+      value: 4,
+      globalKey: globalKeyV4Q4,
+      text:
+          "The trial and death of Socrates occurs here; the philosopher was convicted of corrupting the minds of the youth; rather than renounce his beliefs, he died willingly, discoursing on the immortality of the soul before drinking poisonous hemlock. ",
+      correctAnswers: CorrectAnswers.answer4,
+    ),
   ];
+
+  // static final List<Answers<int>> answersDD4 = [
+  //   Answers(
+  //     value: 1,
+  //     text: "Construction of the Parthenon in 447-432 BC. (ATHENS - Slide 25)",
+  //     correctAnswers: CorrectAnswers.answer1,
+  //     globalKey: globalKeyA1Q4,
+  //   ),
+  //   Answers(
+  //     value: 2,
+  //     text:
+  //         "The 'First' Peloponnesian War begins in 461. (ATHENS, SPARTA, OENOE - Slide 19)",
+  //     correctAnswers: CorrectAnswers.answer2,
+  //     globalKey: globalKeyA2Q4,
+  //   ),
+  //   Answers(
+  //       value: 3,
+  //       globalKey: globalKeyA3Q4,
+  //       text: "The Sicilian Expedition in 413 BC. (SICILY)",
+  //       correctAnswers: CorrectAnswers.answer3),
+  //   Answers(
+  //       value: 4,
+  //       globalKey: globalKeyA4Q4,
+  //       text:
+  //           "The Greeks defeat the Persians at the Battle of Marathon in 490 BC. (MARATHON - SLIDE 12)",
+  //       correctAnswers: CorrectAnswers.answer4),
+  //   Answers(
+  //       value: 5,
+  //       globalKey: globalKeyA5Q4,
+  //       text:
+  //           "The Athenians establlish the Delian League in 477 BC. (DELOS - Slide 15)",
+  //       correctAnswers: CorrectAnswers.answer5),
+  // ];
+
+  // static final List<Answers<int>> answerDD4 = [
+  //   Answers(
+  //       value: 5,
+  //       globalKey: globalKeyV5Q4,
+  //       text: "assets/map/map477image.png",
+  //       correctAnswers: CorrectAnswers.answer5),
+  //   Answers(
+  //       value: 3,
+  //       globalKey: globalKeyV3Q4,
+  //       text: "assets/map/map413image.png",
+  //       correctAnswers: CorrectAnswers.answer3),
+  //   Answers(
+  //       value: 2,
+  //       globalKey: globalKeyV2Q4,
+  //       text: "assets/map/map461image.png",
+  //       correctAnswers: CorrectAnswers.answer2),
+  //   Answers(
+  //       value: 1,
+  //       globalKey: globalKeyV1Q4,
+  //       text: "assets/map/map447_432image.png",
+  //       correctAnswers: CorrectAnswers.answer1),
+  //   Answers(
+  //       value: 4,
+  //       globalKey: globalKeyV4Q4,
+  //       text: "assets/map/map490image.png",
+  //       correctAnswers: CorrectAnswers.answer4),
+  // ];
+
+  static List<dynamic> userAnswerForQ5 = [];
+  static List<dynamic> userAnswerForQ8 = [];
 
   ///[QUESTION 9]
   ///
@@ -356,6 +538,8 @@ class QuizData {
 
   static List<dynamic> usersAnswersForQ2 = [];
 
+  static List<dynamic> usersAnswersForQ11 = [];
+
   static List<Answers> userAnswer1ForQ2 = [];
   static List<Answers> userAnswer2ForQ2 = [];
   static List<Answers> userAnswer3ForQ2 = [];
@@ -365,40 +549,40 @@ class QuizData {
   static List<Answers> userAnswer7ForQ2 = [];
   static List<Answers> userAnswer8ForQ2 = [];
 
-  static final List<dynamic> listQuestionBody2 = [
-    'Hippocrates suggested that the body contained four',
-    DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ2,
-        isRight: null,
-        correctAnswer: 'humours'),
-    '. These were vital bodily fluids that kept people healthy if they were kept',
-    DragWordsWidget(
-        answers: QuizData.userAnswer2ForQ2,
-        isRight: null,
-        correctAnswer: 'balanced'),
-    '. He studied the body through ',
-    DragWordsWidget(
-        answers: QuizData.userAnswer3ForQ2,
-        isRight: null,
-        correctAnswer: 'phlegm'),
-    '. They are: blood, ',
-    DragWordsWidget(
-        answers: QuizData.userAnswer4ForQ2,
-        isRight: null,
-        correctAnswer: 'black'),
-    ",",
-    'bile, yellow',
-    DragWordsWidget(
-        answers: QuizData.userAnswer5ForQ2,
-        isRight: null,
-        correctAnswer: 'bile'),
-    'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
-    DragWordsWidget(
-        answers: QuizData.userAnswer6ForQ2,
-        isRight: null,
-        correctAnswer: 'eucrasia'),
-    ' in Greek.',
-  ];
+  // static final List<dynamic> listQuestionBody2 = [
+  //   'Hippocrates suggested that the body contained four',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer1ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'humours'),
+  //   '. These were vital bodily fluids that kept people healthy if they were kept',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer2ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'balanced'),
+  //   '. He studied the body through ',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer3ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'phlegm'),
+  //   '. They are: blood, ',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer4ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'black'),
+  //   ",",
+  //   'bile, yellow',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer5ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'bile'),
+  //   'A person became sick if they had too much, or not enough, of one of these fluids. The aim was to keep them level. This was called  ',
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer6ForQ2,
+  //       isRight: null,
+  //       correctAnswer: 'eucrasia'),
+  //   ' in Greek.',
+  // ];
 
   static List<Answers> answersForDD2 = [
     Answers(value: 1, text: "humours"),
@@ -440,78 +624,299 @@ class QuizData {
   static List<Answers> userAnswer7ForQ3 = [];
   static List<Answers> userAnswer8ForQ3 = [];
 
-  static List<Answers> answersForDD3 = [
-    Answers(value: 1, text: "slaves"),
-    Answers(value: 2, text: "demos"),
-    Answers(value: 3, text: "oligarchy"),
-    Answers(value: 4, text: "Women"),
-    Answers(value: 5, text: "metics"),
-    Answers(value: 6, text: "power"),
-    Answers(value: 7, text: "King"),
-    Answers(value: 8, text: "citizens"),
+  static List<Answers> userAnswer1ForQ5 = [];
+  static List<Answers> userAnswer2ForQ5 = [];
+  static List<Answers> userAnswer3ForQ5 = [];
+  static List<Answers> userAnswer4ForQ5 = [];
+  static List<Answers> userAnswer5ForQ5 = [];
+  static List<Answers> userAnswer6ForQ5 = [];
+  static List<Answers> userAnswer7ForQ5 = [];
+  static List<Answers> userAnswer8ForQ5 = [];
+
+  static List<Answers> userAnswer1ForQ8 = [];
+  static List<Answers> userAnswer2ForQ8 = [];
+  static List<Answers> userAnswer3ForQ8 = [];
+  static List<Answers> userAnswer4ForQ8 = [];
+  static List<Answers> userAnswer5ForQ8 = [];
+  static List<Answers> userAnswer6ForQ8 = [];
+  static List<Answers> userAnswer7ForQ8 = [];
+  static List<Answers> userAnswer8ForQ8 = [];
+
+  static List<Answers> userAnswer1ForQ11 = [];
+  static List<Answers> userAnswer2ForQ11 = [];
+  static List<Answers> userAnswer3ForQ11 = [];
+  static List<Answers> userAnswer4ForQ11 = [];
+  static List<Answers> userAnswer5ForQ11 = [];
+  static List<Answers> userAnswer6ForQ11 = [];
+  static List<Answers> userAnswer7ForQ11 = [];
+  static List<Answers> userAnswer8ForQ11 = [];
+
+  static List<Answers> answersForDD5 = [
+    Answers(value: 1, text: "bile"),
+    Answers(value: 2, text: "Hippocrates"),
+    Answers(value: 3, text: "phlegm"),
+    Answers(value: 4, text: "health"),
+    Answers(value: 5, text: "black"),
+    Answers(value: 6, text: "pain"),
+    Answers(value: 7, text: "humours"),
   ];
 
-  static final List<dynamic> listQuestionBody3 = [
-    "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
+  static List<Answers> answersForDD8 = [
+    Answers(value: 1, text: "justice"),
+    Answers(value: 2, text: "sentence"),
+    Answers(value: 3, text: "lawlessness"),
+    Answers(value: 4, text: "enjoyment"),
+    Answers(value: 5, text: "distinction"),
+  ];
+
+  // static List<Answers> answersForDD3 = [
+  //   Answers(value: 1, text: "slaves"),
+  //   Answers(value: 2, text: "demos"),
+  //   Answers(value: 3, text: "oligarchy"),
+  //   Answers(value: 4, text: "Women"),
+  //   Answers(value: 5, text: "metics"),
+  //   Answers(value: 6, text: "power"),
+  //   Answers(value: 7, text: "King"),
+  //   Answers(value: 8, text: "citizens"),
+  // ];
+
+  static final List<DragWordsWidget> dragWordsWidget3 = [
     DragWordsWidget(
         answers: QuizData.userAnswer1ForQ3,
         isRight: null,
-        correctAnswer: 'King'),
-    ", nor was it ruled by a small band of aritocrats (an ",
+        correctAnswer: 'PERICLES'),
     DragWordsWidget(
         answers: QuizData.userAnswer2ForQ3,
         isRight: null,
-        correctAnswer: 'oligarchy'),
-    "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
+        correctAnswer: 'THUCYDIDES'),
     DragWordsWidget(
         answers: QuizData.userAnswer3ForQ3,
         isRight: null,
-        correctAnswer: 'demos'),
-    " meaning people, and kratos, which means ",
+        correctAnswer: 'SOCRATES AND PLATO'),
     DragWordsWidget(
         answers: QuizData.userAnswer4ForQ3,
         isRight: null,
-        correctAnswer: 'power'),
-    "Athenian democracy was very different to modern democracy, however. Only adult male ",
+        correctAnswer: 'ARISTOPHANES AND SOPHOCLES'),
     DragWordsWidget(
         answers: QuizData.userAnswer5ForQ3,
         isRight: null,
-        correctAnswer: 'citizens'),
-    " could take part. ",
-    DragWordsWidget(
-        answers: QuizData.userAnswer6ForQ3,
-        isRight: null,
-        correctAnswer: 'Women'),
-    " and non-Athenians ",
-    DragWordsWidget(
-        answers: QuizData.userAnswer7ForQ3,
-        isRight: null,
-        correctAnswer: 'slaves'),
-    " were excluded. ",
-    DragWordsWidget(
-        answers: QuizData.userAnswer8ForQ3,
-        isRight: null,
-        correctAnswer: 'metics'),
+        correctAnswer: 'PHIDIAS'),
   ];
 
-  static final List<dynamic> correctAnswersForQ3 = [
-    "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
-    ['King'],
-    ", nor was it ruled by a small band of aritocrats (an ",
-    ['oligarchy'],
-    "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
-    ['demos'],
-    " meaning people, and kratos, which means ",
-    ['power'],
-    "Athenian democracy was very different to modern democracy, however. Only adult male ",
-    ['citizens'],
-    " could take part. ",
-    ['Women'],
-    " and non-Athenians ",
-    ['slaves'],
-    " were excluded. ",
-    ['metics'],
+  static final List<DragWordsWidget> dragWordsWidget11 = [
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ11,
+        isRight: null,
+        correctAnswer: 'King'),
+    DragWordsWidget(
+        answers: QuizData.userAnswer2ForQ11,
+        isRight: null,
+        correctAnswer: 'King'),
+    DragWordsWidget(
+        answers: QuizData.userAnswer3ForQ11,
+        isRight: null,
+        correctAnswer: 'King'),
+    DragWordsWidget(
+        answers: QuizData.userAnswer4ForQ11,
+        isRight: null,
+        correctAnswer: 'King'),
+    DragWordsWidget(
+        answers: QuizData.userAnswer5ForQ11,
+        isRight: null,
+        correctAnswer: 'King'),
   ];
+  static final List<dynamic> listQuestionBody5 = [
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ5,
+        isRight: null,
+        correctAnswer: 'Hippocrates'),
+    " is famous for his theory of the Four ",
+    DragWordsWidget(
+        answers: QuizData.userAnswer2ForQ5,
+        isRight: null,
+        correctAnswer: 'Humours'),
+    " In On the Nature of Man, ",
+    " he describes the theory as follows: ",
+    SizedBox(),
+    " “The Human body contains blood, ",
+    DragWordsWidget(
+        answers: QuizData.userAnswer3ForQ5,
+        isRight: null,
+        correctAnswer: 'phlegm'),
+    " , yellow ",
+    DragWordsWidget(
+        answers: QuizData.userAnswer4ForQ5,
+        isRight: null,
+        correctAnswer: 'bile'),
+    ", and",
+    DragWordsWidget(
+        answers: QuizData.userAnswer5ForQ5,
+        isRight: null,
+        correctAnswer: 'black'),
+    ", bile",
+    "These are the things that make up its constitution and cause its pains and health.",
+    DragWordsWidget(
+        answers: QuizData.userAnswer6ForQ5,
+        isRight: null,
+        correctAnswer: 'Health'),
+    " is primarily that state in which these... substances are in the correct proportion to each other, both in strength and quantity, and are well mixed.",
+    DragWordsWidget(
+        answers: QuizData.userAnswer7ForQ5,
+        isRight: null,
+        correctAnswer: 'Pain'),
+    "occurs when one of the substances"    ,
+    "  presents either a deficiency or an excess,",
+    " or is separated in the body and not mixed with others.” "
+  ];
+
+  static final List<dynamic> listQuestionBody8 = [
+    "In History of the Peloponnesian War, Thucydides comments on the role of plague and political upheaval as follows:",
+    "\n",
+    "“In other respects too, the plague was the beginning of increased ",
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ8,
+        isRight: null,
+        correctAnswer: 'lawlessness'),
+    "in the city... No fear of god or human law was any constraint. Pious or impious made no difference in their view, when they could see all dying without",
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ8,
+        isRight: null,
+        correctAnswer: 'distinction'),
+    ". As for offences against the law, no one expected to live long enough to be brought to ",
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ8,
+        isRight: null,
+        correctAnswer: 'justice'),
+    "and pay the penalty: they thought that a much heavier",
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ8,
+        isRight: null,
+        correctAnswer: 'sentence'),
+    "had already been passed and was hanging over them, so that might as well have some",
+    DragWordsWidget(
+        answers: QuizData.userAnswer1ForQ8,
+        isRight: null,
+        correctAnswer: 'enjoyment'),
+    " of life before it fell.”",
+  ];
+
+  static final List<Map<String, dynamic>> listQuestion3WithImages = [
+    {
+      "image": AssetsPath.pericles,
+      "text":
+          "General, statesman, orator. Led the Athenian state during its Golden Age."
+    },
+    {
+      "image": AssetsPath.thucydides,
+      "text":
+          "Wrote the “History of the Peloponnesian War,” the primary source for the Plague of Athens."
+    },
+    {
+      "image": AssetsPath.socratesPlato,
+      "text":
+          "Two of the most influential philosophers in history. Much of what we know about one is filtered through the dialogues of the other."
+    },
+    {
+      "image": AssetsPath.sophoclesAristophanes,
+      "text":
+          "Two of the most influential playwrights in history. One wrote haunting tragedies and the other wrote comedies that satirized Athenian society and politics."
+    },
+    {
+      "image": AssetsPath.phidias,
+      "text":
+          "A polymath who was a gifted painter, architect, and sculptor. Designed the Statue of Olympian Zeus, one of the Seven Wonders of the Ancient World."
+    }
+  ];
+
+  static final List<Map<String, dynamic>> listQuestion11WithImages = [
+    {
+      "image": AssetsPath.smallpox,
+      "text":
+          "A disease that is sometimes attributed to the Plague of Athens. Although responsible for killing masses of people throughout history, including devastating effects on the indigenous peoples of the Americas, it does not appear to be the most likely suspect here. "
+    },
+    {
+      "image": AssetsPath.ebola,
+      "text":
+          "Type of viral haemorrhagic fever (VHF), has also been identified as a possible suspect for the plague of Athens. What can be said with some confidence, is that the disease could have spread from Africa to Greece as a result of the virus’ incubation period."
+    },
+    {
+      "image": AssetsPath.typiod,
+      "text":
+          "DNA evidence drawn from the roots of teeth recovered from mass burial sites uncovered in the city of Athens have indicated that this disease was the most likely culprit. A number of the symptoms are recognisable from the historical narrative, including a high fever, diarrhoea, and headaches."
+    },
+    {
+      "image": AssetsPath.plague,
+      "text":
+          "The plague of Athens was for a long time attributed to a form of this disease, which devastated Europe in the Middle Ages. It is caused by the bacterium Yersinia pestis, spread by fleas, but it can also take a secondary form where it is spread person-to-person contact via aerosols. Highly contagious. "
+    },
+    {
+      "image": AssetsPath.typhusFever,
+      "text":
+          "A common culprit when investigating the plague of Athens, due to the similarity of known symptoms with those described by Thucydides. Known to develop in places suffering the effects of war and squalid, cramped conditions. Some patients that survive suffer gangrene in their extremities, another symptom from Thucydides’ account."
+    }
+  ];
+
+  // static final List<dynamic> listQuestionBody3 = [
+  //   "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer1ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'King'),
+  //   ", nor was it ruled by a small band of aristocrats (an ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer2ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'oligarchy'),
+  //   "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer3ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'demos'),
+  //   " meaning people, and kratos, which means ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer4ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'power'),
+  //   "Athenian democracy was very different to modern democracy, however. Only adult male ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer5ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'citizens'),
+  //   " could take part. ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer6ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'Women'),
+  //   " and non-Athenians ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer7ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'slaves'),
+  //   " were excluded. ",
+  //   DragWordsWidget(
+  //       answers: QuizData.userAnswer8ForQ3,
+  //       isRight: null,
+  //       correctAnswer: 'metics'),
+  // ];
+
+  // static final List<dynamic> correctAnswersForQ3 = [
+  //   "In the 5th century BC, Athens was a democracy. It was not a monarchy, ruled by a '",
+  //   ['King'],
+  //   ", nor was it ruled by a small band of aritocrats (an ",
+  //   ['oligarchy'],
+  //   "). Instead, the people represented themselves.\n Democracy derives from two Greek words ",
+  //   ['demos'],
+  //   " meaning people, and kratos, which means ",
+  //   ['power'],
+  //   "Athenian democracy was very different to modern democracy, however. Only adult male ",
+  //   ['citizens'],
+  //   " could take part. ",
+  //   ['Women'],
+  //   " and non-Athenians ",
+  //   ['slaves'],
+  //   " were excluded. ",
+  //   ['metics'],
+  // ];
 
   ///[QUESTION 7]
   /// users Answer List and Correct Answers
@@ -592,8 +997,9 @@ class QuizData {
 
   ///[QUESTION 8]
   /// users Answer List and Correct Answers
-  static List<CheckBoxWidget<bool>> usersAnswersForQ8 = [];
-  static final List<CorrectAnswers> correctAnswersForQ8 = [
+  static List<CheckBoxWidget<bool>> usersAnswersForQ12 = [];
+  static List<CheckBoxWidget<bool>> usersAnswersForQ9 = [];
+  static final List<CorrectAnswers> correctAnswersForQ12 = [
     CorrectAnswers.answer2,
     CorrectAnswers.answer4,
     CorrectAnswers.answer5
@@ -603,7 +1009,7 @@ class QuizData {
     CheckBoxWidget(
       answers: Answers(
           value: false,
-          text: "This paiting is called the 'Death of Plato'.",
+          text: "This panting is called the 'Death of Plato'.",
           correctAnswers: CorrectAnswers.answer1),
       isRight: null,
     ),
@@ -617,14 +1023,14 @@ class QuizData {
     CheckBoxWidget(
       answers: Answers(
           value: false,
-          text: "This was painted by Jacques-Louis Davi",
+          text: "This was painted by Jacques-Louis David.",
           correctAnswers: CorrectAnswers.answer3),
       isRight: null,
     ),
     CheckBoxWidget(
       answers: Answers(
           value: false,
-          text: "This is a painting by Leonardo da Vinci.",
+          text: "This is a panting by Leonardo da Vinci.",
           correctAnswers: CorrectAnswers.answer4),
       isRight: null,
     ),
@@ -638,8 +1044,95 @@ class QuizData {
     CheckBoxWidget(
       answers: Answers(
           value: false,
-          text: "Socrates was sentecend to death for murder.",
+          text: "Socrates was sentenced to death for murder.",
           correctAnswers: CorrectAnswers.answer6),
+      isRight: null,
+    ),
+  ];
+
+  static final List<CheckBoxWidget<bool>> answersForQuestion12 = [
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "The painting is called the “Death of Nero”",
+          correctAnswers: CorrectAnswers.answer1),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          isCorrect: true,
+          value: false,
+          text: "It was painted by Jacques-Louis David",
+          correctAnswers: CorrectAnswers.answer2),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "It was painted in real time during the trial",
+          correctAnswers: CorrectAnswers.answer3),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text: "His last words were: “what an artist dies with me”",
+          correctAnswers: CorrectAnswers.answer4),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          isCorrect: true,
+          value: false,
+          text:
+              "He was sentenced to death for corrupting the minds of the youth ",
+          correctAnswers: CorrectAnswers.answer5),
+      isRight: null,
+    ),
+  ];
+
+  static final List<CheckBoxWidget<bool>> answersForQuestion9 = [
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          isCorrect: true,
+          text:
+              "Thucydides infers that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city.",
+          correctAnswers: CorrectAnswers.answer1),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text:
+              "Smallpox arrived in the Americas via the Caribbean, inadvertently carried by Spanish colonizers from Europe. Native populations, lacking immunity, were devastated by the disease. ",
+          correctAnswers: CorrectAnswers.answer2),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          isCorrect: true,
+          value: false,
+          text:
+              "The disease arrived in the port of Piraeus, connected to the city by the Long Walls, and spread to Athens from there. ",
+          correctAnswers: CorrectAnswers.answer3),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          value: false,
+          text:
+              "The Silk Road brought goods, spices, and new ideas from China and Central Asia to Europe. The trade also carried the deadly bubonic plague that killed half of all Europeans within 7 years.",
+          correctAnswers: CorrectAnswers.answer4),
+      isRight: null,
+    ),
+    CheckBoxWidget(
+      answers: Answers(
+          isCorrect: true,
+          value: false,
+          text:
+              "Fearing a Spartan invasion, Athenians and people from the surrounding countryside retreated behind the city walls. The city’s population – already dense – exploded in number. An overcrowded Athens became an ideal environment for the novel disease to spread.",
+          correctAnswers: CorrectAnswers.answer5),
       isRight: null,
     ),
   ];
@@ -648,17 +1141,22 @@ class QuizData {
   /// users Answer List and Correct Answers
   ///List for question body widget
 
-  static int valueQ5 = -1;
+  static bool valueQ5 = false;
+
+  static bool valueQ13 = false;
+
+  static List<bool> question2Cheking = [false, false, false, false];
+  static int rightAnswerValueQ2 = 2;
   static int valueQ10 = -1;
 
   static const int correctAnswerQ5 = 4;
 
-  static final List<Answers<int>> answersForQ5 = [
-    Answers(value: 1, text: "Ebola"),
-    Answers(value: 2, text: "Bubonic Plague"),
-    Answers(value: 3, text: "Typhis"),
-    Answers(value: 4, text: "Typhoid"),
-    Answers(value: 5, text: "Smallpox"),
+  static final List<Answers<int>> answersForQ11 = [
+    Answers(value: 1, text: "Bubonic Plague"),
+    Answers(value: 2, text: "Typhus"),
+    Answers(value: 3, text: "Typhoid"),
+    Answers(value: 4, text: "Smallpox"),
+    Answers(value: 5, text: "Ebola"),
   ];
 
   ///[QUESTION 6]
@@ -749,37 +1247,77 @@ class QuizData {
     rightAnswersForQ4 += QuizData.secondDragDropResult;
     rightAnswersForQ11 += QuizData.thirdDragResult;
 
-    listQuestionBody2.forEach((element) {
+    listQuestionBody5.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
-          usersAnswersForQ2.add(DragWordsWidget(
+          userAnswerForQ5.add(DragWordsWidget(
               answers: [Answers(value: 0, text: '')],
               isRight: false,
               correctAnswer: element.correctAnswer));
           //  print('add null');
         } else {
+          if (element.answers.first.text != element.correctAnswer) {
+            element.isRight = false;
+          }
           // print("EditText::::: ${element.controller.text}");
-          usersAnswersForQ2.add(element);
+          userAnswerForQ5.add(element);
         }
       } else {
         // print('Text:::: $element');
-        usersAnswersForQ2.add(element);
+        userAnswerForQ5.add(element);
       }
     });
-    listQuestionBody3.forEach((element) {
-      if (element is DragWordsWidget) {
-        if (element.answers.isEmpty) {
-          usersAnswersForQ3.add(DragWordsWidget(
-              correctAnswer: element.correctAnswer,
-              answers: [Answers(value: 0, text: '')],
-              isRight: false));
-        } else {
+
+    dragWordsWidget3.forEach((element) {
+      if (element.answers.isEmpty) {
+        
+        usersAnswersForQ3.add(DragWordsWidget(
+            answers: [Answers(value: 0, text: '')],
+            isRight: false,
+            correctAnswer: element.correctAnswer));
+      } else {
+        if (element.answers.first.text != element.correctAnswer) {
+          element.isRight = false;
           usersAnswersForQ3.add(element);
         }
-      } else {
-        usersAnswersForQ3.add(element);
       }
     });
+
+    listQuestionBody8.forEach((element) {
+      if (element is DragWordsWidget) {
+        if (element.answers.isEmpty) {
+          userAnswerForQ8.add(DragWordsWidget(
+              answers: [Answers(value: 0, text: '')],
+              isRight: false,
+              correctAnswer: element.correctAnswer));
+          //  print('add null');
+        } else {
+          if (element.answers.first.text != element.correctAnswer) {
+            element.isRight = false;
+          }
+          // print("EditText::::: ${element.controller.text}");
+          userAnswerForQ8.add(element);
+        }
+      } else {
+        // print('Text:::: $element');
+        userAnswerForQ8.add(element);
+      }
+    });
+
+    // listQuestionBody3.forEach((element) {
+    //   if (element is DragWordsWidget) {
+    //     if (element.answers.isEmpty) {
+    //       usersAnswersForQ3.add(DragWordsWidget(
+    //           correctAnswer: element.correctAnswer,
+    //           answers: [Answers(value: 0, text: '')],
+    //           isRight: false));
+    //     } else {
+    //       usersAnswersForQ3.add(element);
+    //     }
+    //   } else {
+    //     usersAnswersForQ3.add(element);
+    //   }
+    // });
 
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
@@ -818,18 +1356,18 @@ class QuizData {
       }
     }
 
-    for (var i = 0; i < usersAnswersForQ3.length; i++) {
-      if (usersAnswersForQ3[i] is DragWordsWidget &&
-          correctAnswersForQ3[i] is List<String>) {
-        if (correctAnswersForQ3[i].first ==
-            usersAnswersForQ3[i].answers.first.text) {
-          usersAnswersForQ3[i].isRight = true;
-          rightAnswersForQ3++;
-        } else {
-          usersAnswersForQ3[i].isRight = false;
-        }
-      }
-    }
+    // for (var i = 0; i < usersAnswersForQ3.length; i++) {
+    //   if (usersAnswersForQ3[i] is DragWordsWidget &&
+    //       correctAnswersForQ3[i] is List<String>) {
+    //     if (correctAnswersForQ3[i].first ==
+    //         usersAnswersForQ3[i].answers.first.text) {
+    //       usersAnswersForQ3[i].isRight = true;
+    //       rightAnswersForQ3++;
+    //     } else {
+    //       usersAnswersForQ3[i].isRight = false;
+    //     }
+    //   }
+    // }
 
     for (var i = 0; i < usersAnswersForQ7.length; i++) {
       if (usersAnswersForQ7[i] is DragWordsWidget &&
@@ -844,16 +1382,16 @@ class QuizData {
       }
     }
 
-    for (var i = 0; i < usersAnswersForQ8.length; i++) {
-      if (correctAnswersForQ8
-          .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
-        print('answwer is true  correctAnswersForQ8');
-        usersAnswersForQ8[i].isRight = true;
-        rightAnswersForQ8++;
-      } else {
-        usersAnswersForQ8[i].isRight = false;
-      }
-    }
+    // for (var i = 0; i < usersAnswersForQ8.length; i++) {
+    //   if (correctAnswersForQ8
+    //       .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
+    //     print('answwer is true  correctAnswersForQ8');
+    //     usersAnswersForQ8[i].isRight = true;
+    //     rightAnswersForQ8++;
+    //   } else {
+    //     usersAnswersForQ8[i].isRight = false;
+    //   }
+    // }
 
     print("Score Question 2 $rightAnswersForQ2");
     print('Score Question 3 $rightAnswersForQ3');
@@ -914,7 +1452,7 @@ class QuizData {
 
     usersAnswersForQ7 = [];
 
-    usersAnswersForQ8.clear();
+    // usersAnswersForQ8.clear();
 
     usersAnswersForQ3 = [];
 
@@ -933,23 +1471,30 @@ class QuizData {
       }
     });
 
-    listQuestionBody2.forEach((element) {
+    listQuestionBody5.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isNotEmpty) {
-          answersForDD3.add(element.answers.first);
+          answersForDD5.add(element.answers.first);
           element.answers.removeLast();
         }
       }
     });
 
-    listQuestionBody3.forEach((element) {
-      if (element is DragWordsWidget) {
-        if (element.answers.isNotEmpty) {
-          answersForDD3.add(element.answers.first);
-          element.answers.removeLast();
-        }
+    dragWordsWidget3.forEach((element) {
+      if (element.answers.isNotEmpty) {
+        answersForDD3Images.add(element.answers.first);
+        element.answers.removeLast();
       }
     });
+
+    // listQuestionBody3.forEach((element) {
+    //   if (element is DragWordsWidget) {
+    //     if (element.answers.isNotEmpty) {
+    //       answersForDD5.add(element.answers.first);
+    //       element.answers.removeLast();
+    //     }
+    //   }
+    // });
 
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
@@ -960,7 +1505,7 @@ class QuizData {
       }
     });
 
-    valueQ5 = -1;
+    valueQ5 = false;
     valueQ6 = -1;
     valueQ10 = -1;
     answerTextController1.clear();

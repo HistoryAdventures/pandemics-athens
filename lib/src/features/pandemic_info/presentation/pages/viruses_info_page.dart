@@ -61,8 +61,6 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
 
-    precacheImages();
-
     virusModel = VirusModel(
       description: locals.introVirusText,
       title: locals.introVirus,
@@ -113,7 +111,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         ),
       ),
     ];
-
+    precacheImages();
     super.didChangeDependencies();
   }
 
@@ -121,7 +119,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   void initState() {
     super.initState();
     NavigationSharedPreferences.getNavigationListFromSF();
-
+    // virusModel = VirusModel(
+    //   description: "locals.introVirusText",
+    //   title: "locals.introVirus",
+    //   widgets: [gifBubonic, gifTyphus, gifTyphoid, gifSmallpox, gifEbola],
+    // );
     animatedParticlesBS = BehaviorSubject<AnimatedParticleModel>.seeded(
       AnimatedParticleModel(
         x: mouseX,
@@ -129,6 +131,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         objWave: objWave,
       ),
     );
+    precacheImages();
   }
 
   @override
@@ -138,7 +141,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   }
 
   Future<void> precacheImages() async {
+    print(window.sessionStorage.containsKey('virusPageImagesAreCached'));
+    print("++++++++++++++++");
     if (window.sessionStorage.containsKey('virusPageImagesAreCached')) return;
+     
 
     setState(() {
       showLoading = true;
@@ -149,9 +155,12 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       ImagePrecache.precacheImages(AssetsPath.animatedParticles4Images, context)
     ]);
 
-    setState(() {
-      showLoading = false;
+  Future.delayed(const Duration(seconds: 14)).then((value) {
+      setState(() {
+         showLoading = false;
+      });
     });
+ 
 
     window.sessionStorage.putIfAbsent('virusPageImagesAreCached', () => 'true');
   }

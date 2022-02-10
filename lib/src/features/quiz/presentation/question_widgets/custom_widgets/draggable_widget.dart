@@ -25,15 +25,16 @@ class DraggableWidget extends StatelessWidget {
         //     ?
         Container(
       child: Text(
-        answers.text,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+        answers.text!,
+        
+        style: Theme.of(context).textTheme.subtitle1?.copyWith(
             decoration: isCorrect == null
                 ? TextDecoration.none
                 : isCorrect!
                     ? TextDecoration.none
                     : TextDecoration.lineThrough,
             fontSize: TextFontSize.getHeight(16, context),
-            color: AppColors.green),
+            color: AppColors.black100 , fontWeight: FontWeight.w400),
       ),
     );
     // : isCorrect!

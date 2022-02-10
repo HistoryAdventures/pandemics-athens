@@ -335,7 +335,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                                 _draggable(
                                   questions[0].question,
                                   0,
-                                  "Battke of Thermopylae",
+                                  "Battle of Thermopylae",
                                 ),
                                 _draggable(
                                   questions[1].question,
@@ -422,10 +422,11 @@ class _QuizMapImageState extends State<QuizMapImage> {
                               model: e,
                             ),
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
+                          Container(width: 10,)
+                          // Expanded(
+                          //   flex: 1,
+                          //   child: Container(),
+                          // ),
                         ],
                       ),
                     ))

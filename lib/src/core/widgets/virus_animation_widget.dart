@@ -39,9 +39,9 @@ class VirusModelWidget extends StatefulWidget {
 class _VirusModelWidgetState extends State<VirusModelWidget> {
   @override
   void initState() {
-    widget.virusModel.widgets.forEach((element) {
+    widget.virusModel.widgets.forEach((element) async {
       // ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory(
+    await  ui.platformViewRegistry.registerViewFactory(
         element,
         (int id) => html.ImageElement()
           // ignore: unsafe_html

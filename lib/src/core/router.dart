@@ -35,6 +35,7 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
       page: LeandingPage,
     ),
     CustomRoute(
+        initial: true,
         name: "LeandingPageToLeft",
         page: LeandingPage,
         transitionsBuilder: TransitionsBuilders.slideLeft,
@@ -131,7 +132,6 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
     //////
     CustomRoute(
         page: MapPage,
-        initial: true,
         transitionsBuilder: TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500),
     CustomRoute(
@@ -280,14 +280,16 @@ import '../features/quiz/presentation/pages/quiz_page.dart';
     CustomRoute(
         name: "PanaromaRightPageToBottom",
         page: PanaromaRightPage,
+        barrierDismissible: true,
         transitionsBuilder: TransitionsBuilders.slideTop,
-        durationInMilliseconds: 500),
+        durationInMilliseconds: 4500),
 
     ////
     CustomRoute(
         name: "PathogenProfilePageBottomRoute",
         page: PathogenProfilePage,
         transitionsBuilder: TransitionsBuilders.slideBottom,
+        fullscreenDialog: true,
         durationInMilliseconds: 500),
     CustomRoute(
         name: "PathogenProfilePageRightRoute",

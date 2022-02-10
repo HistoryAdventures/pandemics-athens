@@ -73,7 +73,7 @@ class _QuizEditTextWidgetState extends State<QuizEditTextWidget> {
     if (widget.questionIndex == 2) {
       correctAnswers = QuizData.correctAnswersForQ2;
       usersAnswers = QuizData.usersAnswersForQ2;
-      listQuestionBody = QuizData.listQuestionBody2;
+      //listQuestionBody = QuizData.listQuestionBody2;
     } else {
       correctAnswers = QuizData.correctAnswersForQ7;
       usersAnswers = QuizData.usersAnswersForQ7;
@@ -307,7 +307,7 @@ Widget _buildCheckdTarget({
                         fontSize: TextFontSize.getHeight(12, context)),
                   ),
                   Text(
-                    answers.text,
+                    answers.text!,
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppColors.red,
                         fontSize: TextFontSize.getHeight(16, context),

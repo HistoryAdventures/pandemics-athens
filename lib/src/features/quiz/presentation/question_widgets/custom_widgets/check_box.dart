@@ -82,20 +82,24 @@ class _CheckboxTextState extends State<CheckboxText> {
               ),
             ),
           ),
-          AutoSizeText(
-            widget.text,
-            style: widget.isCorrect == null
-                ? Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(fontSize: TextFontSize.getHeight(16, context))
-                : widget.isCorrect!
-                    ? Theme.of(context).textTheme.bodyText1?.copyWith(
-                        color: Colors.green,
-                        fontSize: TextFontSize.getHeight(16, context))
-                    : Theme.of(context).textTheme.bodyText1?.copyWith(
-                        color: Colors.red,
-                        fontSize: TextFontSize.getHeight(16, context)),
+          Container(
+            width: HW.getWidth(450, context),
+            child: AutoSizeText(
+              widget.text,
+              maxLines: 4,
+              style: widget.isCorrect == null
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(fontSize: TextFontSize.getHeight(16, context))
+                  : widget.isCorrect!
+                      ? Theme.of(context).textTheme.bodyText1?.copyWith(
+                          color: Colors.green,
+                          fontSize: TextFontSize.getHeight(16, context))
+                      : Theme.of(context).textTheme.bodyText1?.copyWith(
+                          color: Colors.red,
+                          fontSize: TextFontSize.getHeight(16, context)),
+            ),
           ),
         ],
       ),

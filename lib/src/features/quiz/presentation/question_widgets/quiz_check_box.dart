@@ -8,6 +8,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 class QuizCheckBox extends StatefulWidget {
   final int questionIndex;
   final String question;
+  final String image;
 
   final List<CheckBoxWidget<bool>> answers;
   final List<CheckBoxWidget<bool>> userAnswers;
@@ -17,6 +18,7 @@ class QuizCheckBox extends StatefulWidget {
       required this.questionIndex,
       required this.question,
       required this.userAnswers,
+      required this.image,
       required this.answers})
       : super(key: key);
 
@@ -61,12 +63,12 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: HW.getHeight(283, context),
+                    height: HW.getHeight(480, context),
                     width: HW.getWidth(430, context),
                     margin: EdgeInsets.symmetric(
                         horizontal: HW.getWidth(48, context)),
                     child: Image.asset(
-                      AssetsPath.quizImage8,
+                      widget.image,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -87,12 +89,13 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                                     horizontal: HW.getWidth(10, context),
                                   ),
                                   decoration: QuizData.showRightAnswers &&
-                                          (answers.answers.correctAnswers ==
-                                                  CorrectAnswers.answer2 ||
-                                              answers.answers.correctAnswers ==
-                                                  CorrectAnswers.answer4 ||
-                                              answers.answers.correctAnswers ==
-                                                  CorrectAnswers.answer5)
+                                          answers.answers.isCorrect == true
+                                      // (answers.answers.correctAnswers ==
+                                      //         CorrectAnswers.answer2 ||
+                                      //     answers.answers.correctAnswers ==
+                                      //         CorrectAnswers.answer4 ||
+                                      //     answers.answers.correctAnswers ==
+                                      //         CorrectAnswers.answer5)
                                       ? BoxDecoration(
                                           color: AppColors.white,
                                           border: Border.all(
@@ -106,7 +109,7 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                                     answers: answers,
                                     isCorrect: answers.isRight,
                                     value: answers.answers.value,
-                                    text: answers.answers.text,
+                                    text: answers.answers.text!,
                                     onTap: (val) {
                                       if (val) {
                                         widget.userAnswers.remove(answers);

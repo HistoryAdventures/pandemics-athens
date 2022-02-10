@@ -9,7 +9,9 @@ import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/image_button.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/show_dialog.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_drop_models.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/golden_age_drag_drop.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_check_box.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_drag_drop_circles.dart';
@@ -18,6 +20,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_select_image.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
+import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/radiobutton_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -63,63 +66,195 @@ class _QuizPageState extends State<QuizPage> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     questionsWidgets = [
+
+      
       QuizDragDropCirclesWidget(
         variants: QuizData.variantsForQ1,
         answers: QuizData.answersForQ1,
-        question: 'What happened during the Golden Age of Athens?',
+        question: 'Match the Glossary Term to the Definition',
         questionIndex: 1,
-        score: 0,
+        score: 1,
+        quizItemList: QuizData.quizItemListQ1,
         userAnswer: QuizData.userAnswerForQ1,
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ1,
         listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion1,
+        imageWidth: 105,
+        imageHeight: 105,
       ),
-      QuizEditTextWidget(
-        questionIndex: 2,
-        question: 'Hippocrates is famous for his theory of the Four Humours...',
-        answers: QuizData.answersForDD2,
-        score: 6,
-      ),
-      QuizDragDropWidget(
-        question: 'Fill in the blanks...',
-        questionIndex: 3,
-        answers: QuizData.answersForDD3,
-        score: 8,
-      ),
-      QuizMapImage(),
-      QuizRadioBottonWidget(
-        quizWithImage: false,
-        answers: QuizData.answersForQ5,
-        questionIndex: 5,
-        question:
-            'Which of the pathogens is thought to be the most likely cause of the Plague of Athens?',
-      ),
+
       QuizRadioBottonWidget(
         quizWithImage: true,
-        answers: QuizData.answersForQ6,
-        questionIndex: 6,
-        question: 'Who is the prominent Athenian?',
+        image: AssetsPath.nikos,
+        answers: QuizData.answersForQ2,
+        questionIndex: 2,
+        boldWords: true,
+        question:
+            'Nikos of Athens had vowed to serve the sick within the city during the Plague of Athens. He made this vow to all of the following, EXCEPT:',
       ),
       QuizDragDropWidget(
         question:
-            'Much of what we know about Hippocrates and his approach to medicine is because of the works of Galen. Fill in the correct responses below.',
-        questionIndex: 7,
-        answers: QuizData.answersForDD7,
+            'For these Key People of the Age, drag and drop the name that goes with their portrait and description. ',
+        questionIndex: 3,
+        answers: QuizData.answersForDD3Images,
+        questionWithImages: true,
         score: 6,
+        listQuestionWIthImages: true,
+        listQuestionBody: QuizData.listQuestion3WithImages,
+        usersAnswers: QuizData.usersAnswersForQ3,
+        dragWordsList: QuizData.dragWordsWidget3,
+        image: null,
+        bgImage: AssetsPath.backgorund1,
+        bgHeight: 320,
+        bgWidth: 218,
+        imageHeight: 320,
+        imageWidth: 180,
       ),
-      QuizCheckBox(
-        answers: QuizData.answersForQuestion8,
-        question: "Look at... Which of the following statements is true...",
-        questionIndex: 8,
-        userAnswers: QuizData.usersAnswersForQ8,
+
+      QuizDragDropCirclesWidget(
+        variants: QuizData.variantsForQ4,
+        answers: QuizData.answersForQ4,
+        question:
+            'What Happend Where? Match the Description to the Correct Map',
+        questionIndex: 4,
+        score: 4,
+        quizItemList: QuizData.quizItemListQ4,
+        userAnswer: QuizData.userAnswerForQ4,
+        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
+        listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
+        imageHeight: 125,
+        imageWidth: 200,
       ),
-      GoldenAgeDragDrop(),
+
+      QuizDragDropWidget(
+          question:
+              'Read the following passage and drag the correct words into place',
+          listQuestionBody: QuizData.listQuestionBody5,
+          questionIndex: 5,
+          answers: QuizData.answersForDD5,
+          usersAnswers: QuizData.userAnswerForQ5,
+          score: 1,
+          image: AssetsPath.quintaEssentia,
+          questionWithImages: false),
+
       QuizSelectImage(
-        questionIndex: 10,
+        questionIndex: 6,
         question:
             "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
         answers: QuizData.answersForQuestion10,
         userAnswers: QuizData.usersAnswersForQ10,
       ),
+
+      QuizRadioBottonWidget(
+        quizWithImage: true,
+        image: AssetsPath.sourceAnalysis,
+        answers: QuizData.answersForQ7,
+        questionIndex: 7,
+        question: 'Which of the following annotations is NOT accurate?',
+      ),
+
+      QuizDragDropWidget(
+          question:
+              'Read the following passage and drag the correct words into place',
+          listQuestionBody: QuizData.listQuestionBody8,
+          questionIndex: 8,
+          answers: QuizData.answersForDD5,
+          usersAnswers: QuizData.userAnswerForQ8,
+          score: 1,
+          image: AssetsPath.thucydides1,
+          questionWithImages: false),
+
+      QuizCheckBox(
+        answers: QuizData.answersForQuestion9,
+        question:
+            "In reference to the image, check all of the following statements that are accurate:",
+        questionIndex: 9,
+        userAnswers: QuizData.usersAnswersForQ9,
+        image: AssetsPath.piraeusAthens,
+      ),
+
+      QuizRadioBottonWidget(
+        quizWithImage: true,
+        image: AssetsPath.body,
+        bgImage: AssetsPath.bodyBG,
+        answers: QuizData.answersForQ10,
+        questionIndex: 10,
+        question: 'Which of the following annotations is NOT accurate?',
+      ),
+
+      QuizDragDropWidget(
+        question:
+            'For these Pathogens, drag and drop the name that goes with their portrait and description.  ',
+        questionIndex: 11,
+        answers: QuizData.answersForQ11,
+        questionWithImages: true,
+        score: 6,
+        listQuestionWIthImages: true,
+        listQuestionBody: QuizData.listQuestion11WithImages,
+        usersAnswers: QuizData.usersAnswersForQ11,
+        dragWordsList: QuizData.dragWordsWidget11,
+        image: null,
+        bgImage: AssetsPath.feverBG,
+        bgHeight: 200,
+        bgWidth: 228,
+        imageHeight: 150,
+        imageWidth: 320,
+      ),
+
+      QuizCheckBox(
+        answers: QuizData.answersForQuestion12,
+        question:
+            "In reference to the image, check all of the following statements that are accurate:",
+        questionIndex: 12,
+        userAnswers: QuizData.usersAnswersForQ12,
+        image: AssetsPath.painting,
+      ),
+
+      // option2,
+      RadioButtonModel(
+        question: "If you were Nikos, what would you have done?",
+        answers: QuizData.answersForQ13,
+        questionIndex: 13,
+      ),
+
+      // QuizRadioBottonWidget(
+      //   quizWithImage: true,
+      //   image: AssetsPath.sourceAnalysis,
+      //   answers: QuizData.answersForQ7,
+      //   questionIndex: 2,
+      //   question: 'Which of the following annotations is not accurate?',
+
+      // ),
+
+      // QuizEditTextWidget(
+      //   questionIndex: 2,
+      //   question: 'Hippocrates is famous for his theory of the Four Humours...',
+      //   answers: QuizData.answersForDD2,
+      //   score: 6,
+      // ),
+
+      // QuizMapImage(),
+      // QuizRadioBottonWidget(
+      //   quizWithImage: false,
+      //   answers: QuizData.answersForQ5,
+      //   questionIndex: 5,
+      //   question:
+      //       'Which of the pathogens is thought to be the most likely cause of the Plague of Athens?',
+      // ),
+      // QuizRadioBottonWidget(
+      //   quizWithImage: true,
+      //   answers: QuizData.answersForQ6,
+      //   questionIndex: 6,
+      //   question: 'Who is the prominent Athenian?',
+      // ),
+      // QuizDragDropWidget(
+      //   question:
+      //       'Much of what we know about Hippocrates and his approach to medicine is because of the works of Galen. Fill in the correct responses below.',
+      //   questionIndex: 7,
+      //   answers: QuizData.answersForDD7,
+      //   score: 6,
+      // ),
+
+      // GoldenAgeDragDrop(),
     ];
     super.didChangeDependencies();
   }
@@ -127,12 +262,11 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void initState() {
     super.initState();
-
-    NavigationSharedPreferences.getNavigationListFromSF();
+    var listQuestion3WithImages = QuizData.listQuestion3WithImages;
+     NavigationSharedPreferences.getNavigationListFromSF();
   }
 
   Widget _body() {
-    print("BBBBBBBBBBBB");
     if (QuizData.questionIndex == questionsWidgets.length - 1) {
       setState(() {
         nextButtonisAvailibaleToPress = false;
@@ -151,7 +285,6 @@ class _QuizPageState extends State<QuizPage> {
         previousButtonisAvailibaleToPress = true;
       });
     }
-    print("QUESTION INDEX ${QuizData.questionIndex}");
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -164,7 +297,7 @@ class _QuizPageState extends State<QuizPage> {
             alignment: Alignment.center,
             child: Container(
               width: HW.getWidth(1200, context),
-              height: HW.getHeight(788, context),
+              height: HW.getHeight(800, context),
               decoration: BoxDecoration(
                   boxShadow: Shadows.allBorders, color: AppColors.white),
               child: Stack(
@@ -273,6 +406,9 @@ class _QuizPageState extends State<QuizPage> {
       Score(currentScore: QuizData.rightAnswersForQ5, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ6, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 6),
+      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 9),
+      Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 6),
       Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 9),
       Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
@@ -423,7 +559,7 @@ class _QuizPageState extends State<QuizPage> {
                 children: [
                   Expanded(
                     child: Text(
-                      'QUESTION ${QuizData.questionIndex + 1}/9',
+                      'QUESTION ${QuizData.questionIndex + 1}/13',
                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
                             fontSize: HW.getHeight(18, context),
                             fontWeight: FontWeight.bold,
@@ -461,13 +597,13 @@ class _QuizPageState extends State<QuizPage> {
                                           .quizMapImageKey.currentState!
                                           .resetQuiz();
                                     }
-                                    if (DragDropQuizBody
-                                            .dragDropBodyKey.currentState !=
-                                        null) {
-                                      DragDropQuizBody
-                                          .dragDropBodyKey.currentState!
-                                          .resetQuiz();
-                                    }
+                                    // if (DragDropQuizBody
+                                    //         .dragDropBodyKey.currentState !=
+                                    //     null) {
+                                    //   DragDropQuizBody
+                                    //       .dragDropBodyKey.currentState!
+                                    //       .resetQuiz();
+                                    // }
                                     if (QuizMapImage
                                             .quizMapImageKey.currentState !=
                                         null) {
@@ -476,14 +612,13 @@ class _QuizPageState extends State<QuizPage> {
                                     }
 
                                     setState(() {
-                                      setState(() {
-                                        QuizData.clearAnswers();
-                                        QuizData.showRightAnswers =
-                                            !QuizData.showRightAnswers;
-                                        QuizData.questionIndex = 0;
-                                      });
+                                      QuizData.clearAnswers();
+                                      QuizData.showRightAnswers =
+                                          !QuizData.showRightAnswers;
+                                      QuizData.questionIndex = 0;
                                     });
-                                    Navigator.of(context).pop();
+
+                                    // Navigator.of(context).pop();
                                   },
                                   onTapCancel: () {
                                     Navigator.of(context).pop();
@@ -523,21 +658,21 @@ class _QuizPageState extends State<QuizPage> {
                                           .quizMapImageKey.currentState!
                                           .checkAnswers();
                                     }
-                                    if (DragDropQuizBody
-                                            .dragDropBodyKey.currentState !=
-                                        null) {
-                                      if (DragDropQuizBody
-                                          .dragDropBodyKey
-                                          .currentState!
-                                          .rightLines
-                                          .isNotEmpty) {
-                                        Navigator.of(context).pop();
-                                        return;
-                                      }
-                                      DragDropQuizBody
-                                          .dragDropBodyKey.currentState!
-                                          .checkAnswers();
-                                    }
+                                    // if (DragDropQuizBody
+                                    //         .dragDropBodyKey.currentState !=
+                                    //     null) {
+                                    //   if (DragDropQuizBody
+                                    //       .dragDropBodyKey
+                                    //       .currentState!
+                                    //       .rightLines
+                                    //       .isNotEmpty) {
+                                    //     Navigator.of(context).pop();
+                                    //     return;
+                                    //   }
+                                    //   DragDropQuizBody
+                                    //       .dragDropBodyKey.currentState!
+                                    //       .checkAnswers();
+                                    // }
 
                                     if (QuizMapImage
                                             .quizMapImageKey.currentState !=

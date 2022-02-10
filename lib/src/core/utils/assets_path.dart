@@ -25,6 +25,7 @@ class AssetsPath {
   static const String mapTimeLineBlur =
       'assets/image_back/blur_map_timeline.png';
 
+// Quiz Images
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
 
@@ -34,6 +35,67 @@ class AssetsPath {
   static const String quizImage4 = 'assets/images_quiz/quiz4.jpg';
 
   static const String imageQuizPericles = 'assets/images_quiz/pericles.jpg';
+
+// Question 1
+  static const String democracy = 'assets/images_quiz/democracy.png';
+  static const String humours = 'assets/images_quiz/humours.png';
+  static const String ostracism = 'assets/images_quiz/ostracism.png';
+  static const String philosophy = 'assets/images_quiz/philosophy.png';
+  static const String typhus = 'assets/images_quiz/typhus.png';
+
+//Question 2
+  static const String nikos = 'assets/images_quiz/nikos.png';
+
+// Question 3
+
+  static const String backgorund1 = 'assets/images_quiz/backgorund1.png';
+  static const String phidias = 'assets/images_quiz/phidias.png';
+  static const String sophoclesAristophanes =
+      'assets/images_quiz/sophocles-aristophanes.png';
+  static const String socratesPlato = 'assets/images_quiz/socrates-plato.png';
+  static const String thucydides = 'assets/images_quiz/thucydides.png';
+  static const String pericles = 'assets/images_quiz/pericles.png';
+
+// Question 4
+
+  static const String map430 = 'assets/images_quiz/430.png';
+  static const String map461 = 'assets/images_quiz/461.png';
+  static const String map490 = 'assets/images_quiz/490.png';
+  static const String map491 = 'assets/images_quiz/491.png';
+
+// Question 5
+
+  static const String quintaEssentia = 'assets/images_quiz/quinta_essentia.png';
+
+// Question 7
+  static const String sourceAnalysis = 'assets/images_quiz/source-analysis.png';
+
+// Question 8
+  static const String thucydides1 = 'assets/images_quiz/thucydides1.png';
+
+// Question 9
+  static const String piraeusAthens = 'assets/images_quiz/piraeus-athens.png';
+
+// Question 10
+  static const String body = 'assets/images_quiz/body.png';
+  static const String bodyBG = 'assets/images_quiz/bg-body.png';
+
+// Question 11
+  static const String typhusFever = 'assets/images_quiz/typhus-fever.png';
+  static const String smallpox = 'assets/images_quiz/smallpox.png';
+  static const String plague = 'assets/images_quiz/plague.png';
+  static const String typiod = 'assets/images_quiz/typiod.png';
+  static const String ebola = 'assets/images_quiz/ebola.png';
+  static const String feverBG = 'assets/images_quiz/bg-fever.png';
+
+  // Question 12
+  static const String painting = 'assets/images_quiz/painting.png';
+
+  // Question 13
+  static const String nikosChoose1 = 'assets/images_quiz/nikos-choose1.png';
+  static const String nikosChoose2 = 'assets/images_quiz/nikos-choose2.png';
+  static const String nikosChoose3 = 'assets/images_quiz/nikos-choose3.png';
+
   static const String gifParalaxNikosGif =
       'assets/paralax_new/character_nikos_lottie.gif';
   static const String gifBackground1 =
