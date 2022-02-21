@@ -14,13 +14,13 @@ class MapImageItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          model.title,
-          style: Theme.of(context).textTheme.overline!.copyWith(
-                fontSize: HW.getHeight(18, context),
-                fontWeight: FontWeight.bold,
-              ),
-        ),
+        // Text(
+        //   model.title,
+        //   style: Theme.of(context).textTheme.overline!.copyWith(
+        //         fontSize: HW.getHeight(18, context),
+        //         fontWeight: FontWeight.bold,
+        //       ),
+        // ),
         SizedBox(
           width: HW.getWidth(16, context),
         ),

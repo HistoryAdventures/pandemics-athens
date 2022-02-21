@@ -9,7 +9,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 
 class QuizDragDropWidget extends StatefulWidget {
   final int questionIndex;
-  final String question;
+  String? question;
   final int score;
   final List<dynamic> usersAnswers;
   late List<dynamic>? listQuestionBody;
@@ -22,27 +22,33 @@ class QuizDragDropWidget extends StatefulWidget {
   double? bgHeight;
   double? imageWidth;
   double? imageHeight;
+  String? boldText;
+  String? questionPart1;
+  String? questionPart2;
 
   final List<Answers> answers;
 
-  QuizDragDropWidget({
-    Key? key,
-    required this.answers,
-    required this.score,
-    required this.question,
-    required this.questionIndex,
-    this.image,
-    this.listQuestionBody,
-    this.bgHeight,
-    this.bgWidth,
-    this.imageHeight,
-    this.imageWidth,
-    this.bgImage,
-    this.listQuestionWIthImages,
-    this.questionWithImages = false,
-    this.dragWordsList,
-    required this.usersAnswers,
-  }) : super(key: key);
+  QuizDragDropWidget(
+      {Key? key,
+      required this.answers,
+      required this.score,
+      required this.question,
+      required this.questionIndex,
+      this.image,
+      this.listQuestionBody,
+      this.bgHeight,
+      this.bgWidth,
+      this.imageHeight,
+      this.imageWidth,
+      this.bgImage,
+      this.listQuestionWIthImages,
+      this.questionWithImages = false,
+      this.dragWordsList,
+      required this.usersAnswers,
+      this.boldText,
+      this.questionPart1,
+      this.questionPart2})
+      : super(key: key);
 
   @override
   _QuizDragDropWidgetState createState() => _QuizDragDropWidgetState();
@@ -55,12 +61,38 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   }
 
   late List<dynamic> correctAnswers;
+  late int answersLengthAfterAction;
+  late int asnwersLength;
   // late List<dynamic> listQuestionBody;
   // late List<Map<String, dynamic>> listQuestionWIthImages;
   // late List<DragWordsWidget> dragWordsList;
 
   void removeAll(Answers toRemove) {
+    asnwersLength = widget.answers.length;
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
+
+    QuizData.userAnswer1ForQ11
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer2ForQ11
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer3ForQ11
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer4ForQ11
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer5ForQ11
+        .removeWhere((answer) => answer.text == toRemove.text);
+
+    QuizData.userAnswer1ForQ8
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer2ForQ8
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer3ForQ8
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer4ForQ8
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer5ForQ8
+        .removeWhere((answer) => answer.text == toRemove.text);
+
     QuizData.userAnswer1ForQ7
         .removeWhere((answer) => answer.text == toRemove.text);
     QuizData.userAnswer2ForQ7
@@ -74,27 +106,52 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
     QuizData.userAnswer6ForQ7
         .removeWhere((answer) => answer.text == toRemove.text);
 
-    // QuizData.userAnswer1ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer2ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer3ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer4ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer5ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer6ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer7ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
-    // QuizData.userAnswer8ForQ3
-    //     .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer1ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer2ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer3ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer4ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer5ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer6ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer7ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer8ForQ3
+        .removeWhere((answer) => answer.text == toRemove.text);
+
+    QuizData.userAnswer1ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer2ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer3ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer4ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer5ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer6ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer7ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    QuizData.userAnswer8ForQ5
+        .removeWhere((answer) => answer.text == toRemove.text);
+    answersLengthAfterAction = widget.answers.length;
+  }
+
+  void switchAnswers() {
+
+    if (asnwersLength == answersLengthAfterAction) {
+   
+    }
   }
 
   @override
   void didChangeDependencies() {
-    print(widget.questionIndex);
+
 
     if (widget.questionIndex == 8) {
       // correctAnswers = QuizData.correctAnswersForQ3;
@@ -139,13 +196,46 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                       Container(
                         width:
                             constraints.maxWidth - HW.getWidth(24, context) * 2,
-                        child: Text(
-                          widget.question,
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1
-                              ?.copyWith(fontSize: HW.getHeight(24, context)),
-                        ),
+                        child: widget.question == null
+                            ? RichText(
+                                text: TextSpan(children: <TextSpan>[
+                                  TextSpan(
+                                    text: widget.questionPart1,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1
+                                        ?.copyWith(
+                                            fontSize: TextFontSize.getHeight(
+                                                24, context)),
+                                  ),
+                                  TextSpan(
+                                      text: widget.boldText ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle1
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: TextFontSize.getHeight(
+                                                  24, context))),
+                                  TextSpan(
+                                    text: widget.questionPart2,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1
+                                        ?.copyWith(
+                                            fontSize: TextFontSize.getHeight(
+                                                24, context)),
+                                  ),
+                                ]),
+                              )
+                            : Text(
+                                widget.question!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    ?.copyWith(
+                                        fontSize: HW.getHeight(24, context)),
+                              ),
                       ),
                       // Text(
                       //   '*helper text',
@@ -209,11 +299,12 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                       children: [
                         !widget.questionWithImages!
                             ? Padding(
-                                padding: EdgeInsets.only(right: 30.0),
+                                padding:
+                                    EdgeInsets.only(right: 30.0, bottom: 10),
                                 child: Image.asset(
                                   widget.image!,
                                   width: HW.getWidth(350, context),
-                                  height: HW.getHeight(470, context),
+                                  height: HW.getHeight(400, context),
                                   fit: BoxFit.fill,
                                 ),
                               )
@@ -261,41 +352,66 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                                 .map((element) {
                                               if (element is DragWordsWidget) {
                                                 return buildTarget(
-                                                  borderWidth:
-                                                      widget.bgWidth ?? 100,
-                                                  questionWithImages: widget
-                                                      .questionWithImages!,
-                                                  isCorrect: element.isRight,
-                                                  context: context,
-                                                  answers: element.answers,
-                                                  onAccept: (data) =>
-                                                      setState(() {
-                                                    removeAll(data);
+                                                    borderWidth:
+                                                        widget.bgWidth ?? 100,
+                                                    questionWithImages: widget
+                                                        .questionWithImages!,
+                                                    isCorrect: element.isRight,
+                                                    context: context,
+                                                    answers: element.answers,
+                                                    onAccept: (data) {
+                                                      // widget.listQuestionBody!
+                                                      //     .forEach((element1) {
+                                                      //   if (element1.answers
+                                                      //           .first ==
+                                                      //       data) {
+                                                      //     print("+++");
+                                                      //   }
+                                                      // });
+                                                      // var k = widget
+                                                      //     .listQuestionBody!
+                                                      //     .firstWhere(
+                                                      //         (element1) =>
+                                                      //             element1
+                                                      //                 .answers
+                                                      //                 .first ==
+                                                      //             data);
 
-                                                    if (element
-                                                        .answers.isEmpty) {
-                                                      element.answers.add(data);
-                                                    } else {
-                                                      widget.answers.add(
-                                                          element.answers.last);
-                                                      element.answers
-                                                          .removeLast();
-                                                      element.answers.add(data);
-                                                    }
-                                                    if (widget
-                                                        .answers.isEmpty) {
-                                                      widget.answers
-                                                          .add(Answers(
-                                                        value: data.value,
-                                                        text: '',
-                                                      ));
-                                                    }
-                                                  }),
-                                                );
-                                              }else if (element
-                                                    is SizedBox) {
-                                                  return SizedBox(width: HW.getWidth(400, context) , height:HW.getHeight(50, context));
-                                                } 
+                                                      setState(() {
+                                                        removeAll(data);
+
+                                                        if (element
+                                                            .answers.isEmpty) {
+                                                          element.answers
+                                                              .add(data);
+                                                        } else {
+                                                          widget.answers.add(
+                                                              element.answers
+                                                                  .last);
+                                                          element.answers
+                                                              .removeLast();
+                                                          element.answers
+                                                              .add(data);
+                                                        }
+                                                        if (widget
+                                                            .answers.isEmpty) {
+                                                          widget.answers
+                                                              .add(Answers(
+                                                            value: data.value,
+                                                            text: '',
+                                                          ));
+                                                        }
+
+                                                        switchAnswers();
+                                                      });
+                                                    });
+                                              } else if (element is SizedBox) {
+                                                return SizedBox(
+                                                    width: HW.getWidth(
+                                                        400, context),
+                                                    height: HW.getHeight(
+                                                        50, context));
+                                              }
 
                                               // else if (element is SizedBox) {
                                               //   return SizedBox();
@@ -403,18 +519,25 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                                                               .answers
                                                                               .add(data);
                                                                         }
-                                                                        if (widget
-                                                                            .answers
-                                                                            .isEmpty) {
-                                                                          widget
-                                                                              .answers
-                                                                              .add(Answers(
-                                                                            value:
-                                                                                data.value,
-                                                                            text:
-                                                                                '',
-                                                                          ));
-                                                                        }
+                                                                        // if (widget
+                                                                        //     .answers
+                                                                        //     .isEmpty) {
+                                                                        //   widget
+                                                                        //       .answers
+                                                                        //       .add(Answers(
+                                                                        //     value:
+                                                                        //         data.value,
+                                                                        //     text:
+                                                                        //         '',
+                                                                        //   ));
+                                                                        // }
+                                                                        // print(
+                                                                        //     "++++");
+                                                                        // print(widget
+                                                                        //     .dragWordsList![widget.listQuestionBody!.indexOf(e)]
+                                                                        //     .answers
+                                                                        //     .first
+                                                                        //     .text);
                                                                       }),
                                                               borderWidth:
                                                                   widget
@@ -491,17 +614,24 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                                             ],
                                                           ),
                                                           buildTarget(
-                                                              isCorrect: widget
-                                                                      .usersAnswers![widget
-                                                                          .listQuestionBody!
-                                                                          .indexOf(
+                                                              isCorrect: widget.dragWordsList![widget.listQuestionBody!.indexOf(e)].answers.isEmpty
+                                                                  ? false
+                                                                  : widget.dragWordsList![widget.listQuestionBody!.indexOf(e)].answers.first.text ==
+                                                                      widget
+                                                                          .dragWordsList![widget.listQuestionBody!.indexOf(
                                                                               e)]
-                                                                      .isRight
-                                                                  as bool,
+                                                                          .correctAnswer,
                                                               context: context,
-                                                              questionWithImages:
-                                                                  widget
-                                                                      .questionWithImages!,
+                                                              correctAnswer: widget
+                                                                  .dragWordsList![widget
+                                                                      .listQuestionBody!
+                                                                      .indexOf(
+                                                                          e)]
+                                                                  .correctAnswer,
+                                                              questionWithImages: widget
+                                                                  .questionWithImages!,
+                                                              inTopContainer:
+                                                                  false,
                                                               answers: widget
                                                                   .dragWordsList![widget
                                                                       .listQuestionBody!
@@ -510,14 +640,18 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
                                                                   .answers,
                                                               onAccept:
                                                                   (data) =>
-                                                                      setState(
-                                                                          () {
+                                                                      setState(() {
+                                                                        widget
+                                                                            .dragWordsList!
+                                                                            .forEach((element) {
+                                                                          // if(element.)
+                                                                        });
+                                                                        // if(widget.questionWithImages!)
+
                                                                         removeAll(
                                                                             data);
                                                                       }),
-                                                              borderWidth:
-                                                                  widget
-                                                                      .bgWidth),
+                                                              borderWidth: widget.bgWidth),
                                                           Container(
                                                             width: HW.getWidth(
                                                                 220, context),
@@ -590,7 +724,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
 }
 
 Widget _buildCheckdTarget({
-  required Answers answers,
+  required String? answersText,
   required bool? isCorrect,
   required String? correctAnswer,
   required BuildContext context,
@@ -606,7 +740,7 @@ Widget _buildCheckdTarget({
       // color: inTopContainer ? null : AppColors.white,
     ),
     child: Container(
-        child: answers.text == ""
+        child: answersText == "" || answersText == null
             ? Column(
                 children: [
                   Text(
@@ -633,7 +767,7 @@ Widget _buildCheckdTarget({
                         fontSize: TextFontSize.getHeight(12, context)),
                   ),
                   Text(
-                    answers.text!,
+                    answersText,
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppColors.red,
                         fontSize: TextFontSize.getHeight(16, context),
@@ -657,16 +791,18 @@ Widget buildTarget({
   double? borderWidth = 100,
 }) {
   return isCorrect != null && isCorrect == false
-      ? Stack(
-          children: answers
-              .map((answer) => _buildCheckdTarget(
-                    correctAnswer: correctAnswer,
-                    answers: answer,
-                    isCorrect: isCorrect,
-                    context: context,
-                  ))
-              .toList(),
-        )
+      ? Stack(children: [
+          _buildCheckdTarget(
+            correctAnswer: correctAnswer,
+            answersText: answers.isEmpty
+                ? ""
+                : answers.first.text!.isEmpty
+                    ? ""
+                    : answers.first.text,
+            isCorrect: false,
+            context: context,
+          )
+        ])
       : Container(
           margin: !inTopContainer && questionWithImages
               ? const EdgeInsets.symmetric(vertical: 10)
@@ -712,7 +848,7 @@ Widget buildTarget({
                 onAccept(data);
               },
               onLeave: (data) {
-                //  print(data);
+             
               },
             ),
           ),

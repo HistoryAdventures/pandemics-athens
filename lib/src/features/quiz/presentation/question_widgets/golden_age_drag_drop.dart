@@ -307,7 +307,7 @@ class _GoldenAgeDragDropState extends State<GoldenAgeDragDrop> {
       initialWidth = w;
       setState(() {});
     });
-    print("INIT STATE IS CALLEDDDDDDDDD");
+
     super.initState();
   }
 

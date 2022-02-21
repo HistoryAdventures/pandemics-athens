@@ -26,11 +26,11 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
   int score = 0;
   @override
   void initState() {
-    if (QuizData.valueQ10 == 2) {
-      setState(() {
-        score = 1;
-      });
-    }
+    // if (QuizData.valueQ10 == 2) {
+    //   setState(() {
+    //     score = 1;
+    //   });
+    // }
     super.initState();
   }
 
@@ -67,7 +67,7 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                         .map((answers) => Container(
                             decoration: QuizData.showRightAnswers &&
                                     answers.answers.correctAnswers ==
-                                        CorrectAnswers.answer2
+                                        CorrectAnswers.answer1
                                 ? BoxDecoration(
                                     color: AppColors.white,
                                     boxShadow: Shadows.allBordersGreen,
@@ -79,11 +79,11 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                             child: SelectImage(
                               answers: answers,
                               image: answers.answers.text!,
-                              groupValue: QuizData.valueQ10,
+                              groupValue: QuizData.valueQ6,
                               value: answers.answers.value,
                               onTap: (val) {
                                 setState(() {
-                                  QuizData.valueQ10 = val;
+                                  QuizData.valueQ6 = val;
                                 });
                               },
                             )))

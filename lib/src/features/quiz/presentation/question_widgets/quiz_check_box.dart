@@ -75,10 +75,12 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                   AbsorbPointer(
                     absorbing: QuizData.showRightAnswers,
                     child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
+                      width: HW.getWidth(600, context),
+                      height: HW.getHeight(500, context),
+                      child: ListView(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisSize: MainAxisSize.max,
                         children: [
                           ...widget.answers
                               .map((answers) => Container(
@@ -107,7 +109,13 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                                       : null,
                                   child: CheckboxText(
                                     answers: answers,
-                                    isCorrect: answers.isRight,
+                                    isCorrect: QuizData.showRightAnswers == true
+                                        ? answers.answers.value == true
+                                            ? answers.answers.isCorrect == true
+                                                ? true
+                                                : false
+                                            : null
+                                        : null,
                                     value: answers.answers.value,
                                     text: answers.answers.text!,
                                     onTap: (val) {

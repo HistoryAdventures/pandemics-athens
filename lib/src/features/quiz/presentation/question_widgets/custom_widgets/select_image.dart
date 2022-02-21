@@ -37,13 +37,13 @@ class _SelectImageState extends State<SelectImage> {
             ? BoxDecoration(
                 color: AppColors.white,
                 boxShadow: widget.groupValue == widget.value
-                    ? widget.value == 2
+                    ? widget.value == 1
                         ? Shadows.allBordersGreen
                         : Shadows.allBordersRed
                     : null,
                 border: Border.all(
                     color: widget.groupValue == widget.value
-                        ? widget.value == 2
+                        ? widget.value == 1
                             ? AppColors.linearGradientGreenBox
                             : AppColors.linearGradientRedBox
                         : AppColors.grey))

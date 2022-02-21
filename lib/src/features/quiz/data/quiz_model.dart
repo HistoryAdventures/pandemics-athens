@@ -14,15 +14,18 @@ class QuizData {
   static int finalScore = 0;
 
   static List<Score> listScore = [
-    Score(currentScore: rightAnswersForQ1, scorsCount: 3),
-    Score(currentScore: rightAnswersForQ2, scorsCount: 6),
-    Score(currentScore: rightAnswersForQ3, scorsCount: 7),
-    Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+    Score(currentScore: rightAnswersForQ1, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ2, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ3, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ4, scorsCount: 1),
     Score(currentScore: rightAnswersForQ5, scorsCount: 1),
     Score(currentScore: rightAnswersForQ6, scorsCount: 1),
     Score(currentScore: rightAnswersForQ7, scorsCount: 1),
-    Score(currentScore: rightAnswersForQ7, scorsCount: 6),
-    Score(currentScore: rightAnswersForQ11, scorsCount: 9),
+    Score(currentScore: rightAnswersForQ8, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ9, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ10, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ11, scorsCount: 1),
+    Score(currentScore: rightAnswersForQ12, scorsCount: 1),
   ];
 
   ///[QUESTION 1]
@@ -103,9 +106,22 @@ class QuizData {
         image: AssetsPath.typhus,
         correctAnswers: CorrectAnswers.answer5),
   ];
+
+  // static final List<String> imagesForQ1 = [
+  //   AssetsPath.nikos,
+  //   AssetsPath.nikos,
+  //   AssetsPath.nikos,
+  //   AssetsPath.nikos,
+  //   AssetsPath.nikos
+  //   // AssetsPath.democracy,
+  //   // AssetsPath.humours,
+  //   // AssetsPath.ostracism,
+  //   // AssetsPath.philosophy,
+  //   // AssetsPath.typhus
+  // ];
   static final List<Answers<int>> variantsForQ1 = [
     Answers(
-      value: 3,
+      value: 5,
       globalKey: globalKeyV1Q1,
       text:
           "A infectious disease often carried by fleas, lice, or mites, which are themselves carried by small animals… and people. ",
@@ -119,7 +135,7 @@ class QuizData {
       correctAnswers: CorrectAnswers.answer4,
     ),
     Answers(
-      value: 5,
+      value: 3,
       globalKey: globalKeyV3Q1,
       text:
           "A type of politics invented in Athens in the 5th Century. It allowed citizens to decide how their city would be governed. ",
@@ -133,7 +149,7 @@ class QuizData {
       correctAnswers: CorrectAnswers.answer3,
     ),
     Answers(
-      value: 6,
+      value: 1,
       globalKey: globalKeyV5Q1,
       text:
           "Thought to determine a person’s health and temperment; an imbalance could lead a person to become ill. ",
@@ -141,6 +157,7 @@ class QuizData {
     ),
   ];
   static List<DrowLineWidget> userAnswerWithCheckForQ1 = [];
+  static List<bool> allAnswersAreRight1 = [true];
   static List<DrowLineWidget> userAnswerForQ1 = [];
   static bool valueForDrowColoredLineFor = false;
 
@@ -171,9 +188,9 @@ class QuizData {
 
   static List<Answers> answersForDD3Images = [
     Answers(value: 1, text: "PHIDIAS"),
-    Answers(value: 2, text: "ARISTOPHANES AND SOPHOCLES "),
+    Answers(value: 2, text: "ARISTOPHANES AND SOPHOCLES"),
     Answers(value: 3, text: "THUCYDIDES"),
-    Answers(value: 4, text: "SOCRATES AND PLATO "),
+    Answers(value: 4, text: "SOCRATES AND PLATO"),
     Answers(value: 5, text: "PERICLES"),
   ];
 
@@ -218,7 +235,7 @@ class QuizData {
   ];
 
   static final List<Answers<int>> answersForQ13 = [
-    Answers(value: 1, image: AssetsPath.nikosChoose1, checked: true),
+    Answers(value: 1, image: AssetsPath.nikosChoose1, checked: false),
     Answers(value: 2, image: AssetsPath.nikosChoose2, checked: true),
     Answers(value: 3, image: AssetsPath.nikosChoose3, checked: true),
   ];
@@ -655,10 +672,10 @@ class QuizData {
     Answers(value: 1, text: "bile"),
     Answers(value: 2, text: "Hippocrates"),
     Answers(value: 3, text: "phlegm"),
-    Answers(value: 4, text: "health"),
+    Answers(value: 4, text: "Health"),
     Answers(value: 5, text: "black"),
-    Answers(value: 6, text: "pain"),
-    Answers(value: 7, text: "humours"),
+    Answers(value: 6, text: "Pain"),
+    Answers(value: 7, text: "Humours"),
   ];
 
   static List<Answers> answersForDD8 = [
@@ -707,23 +724,23 @@ class QuizData {
     DragWordsWidget(
         answers: QuizData.userAnswer1ForQ11,
         isRight: null,
-        correctAnswer: 'King'),
+        correctAnswer: 'SMALLPOX'),
     DragWordsWidget(
         answers: QuizData.userAnswer2ForQ11,
         isRight: null,
-        correctAnswer: 'King'),
+        correctAnswer: 'EBOLA'),
     DragWordsWidget(
         answers: QuizData.userAnswer3ForQ11,
         isRight: null,
-        correctAnswer: 'King'),
+        correctAnswer: 'TYPHOID'),
     DragWordsWidget(
         answers: QuizData.userAnswer4ForQ11,
         isRight: null,
-        correctAnswer: 'King'),
+        correctAnswer: 'BUBONIC PLAGUE'),
     DragWordsWidget(
         answers: QuizData.userAnswer5ForQ11,
         isRight: null,
-        correctAnswer: 'King'),
+        correctAnswer: 'TYPHUS'),
   ];
   static final List<dynamic> listQuestionBody5 = [
     DragWordsWidget(
@@ -764,7 +781,7 @@ class QuizData {
         answers: QuizData.userAnswer7ForQ5,
         isRight: null,
         correctAnswer: 'Pain'),
-    "occurs when one of the substances"    ,
+    "occurs when one of the substances",
     "  presents either a deficiency or an excess,",
     " or is separated in the body and not mixed with others.” "
   ];
@@ -779,22 +796,22 @@ class QuizData {
         correctAnswer: 'lawlessness'),
     "in the city... No fear of god or human law was any constraint. Pious or impious made no difference in their view, when they could see all dying without",
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ8,
+        answers: QuizData.userAnswer2ForQ8,
         isRight: null,
         correctAnswer: 'distinction'),
     ". As for offences against the law, no one expected to live long enough to be brought to ",
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ8,
+        answers: QuizData.userAnswer3ForQ8,
         isRight: null,
         correctAnswer: 'justice'),
     "and pay the penalty: they thought that a much heavier",
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ8,
+        answers: QuizData.userAnswer4ForQ8,
         isRight: null,
         correctAnswer: 'sentence'),
     "had already been passed and was hanging over them, so that might as well have some",
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ8,
+        answers: QuizData.userAnswer5ForQ8,
         isRight: null,
         correctAnswer: 'enjoyment'),
     " of life before it fell.”",
@@ -1141,29 +1158,36 @@ class QuizData {
   /// users Answer List and Correct Answers
   ///List for question body widget
 
-  static bool valueQ5 = false;
+  // static bool valueQ5 = false;
 
   static bool valueQ13 = false;
 
   static List<bool> question2Cheking = [false, false, false, false];
+  static List<bool> question7Cheking = [false, false, false, false];
+  static List<bool> question10Cheking = [false, false, false, false];
   static int rightAnswerValueQ2 = 2;
-  static int valueQ10 = -1;
+  static int valueQ6 = -1;
+  static int valueQ5 = 1;
+
+  static int valueQ3 = 1;
+  static int valueQ11 = 1;
+  static int valueQ8 = 1;
 
   static const int correctAnswerQ5 = 4;
 
   static final List<Answers<int>> answersForQ11 = [
-    Answers(value: 1, text: "Bubonic Plague"),
-    Answers(value: 2, text: "Typhus"),
-    Answers(value: 3, text: "Typhoid"),
-    Answers(value: 4, text: "Smallpox"),
-    Answers(value: 5, text: "Ebola"),
+    Answers(value: 1, text: "BUBONIC PLAGUE"),
+    Answers(value: 2, text: "TYPHUS"),
+    Answers(value: 3, text: "SMALLPOX"),
+    Answers(value: 4, text: "TYPHOID"),
+    Answers(value: 5, text: "EBOLA"),
   ];
 
   ///[QUESTION 6]
   /// users Answer List and Correct Answers
   ///List for question body widget
   static const int correctAnswerQ6 = 4;
-  static int valueQ6 = -1;
+  // static int valueQ6 = -1;
 
   static final List<Answers<int>> answersForQ6 = [
     Answers(value: 1, text: "Thucydides"),
@@ -1173,7 +1197,7 @@ class QuizData {
   ];
 
   ///[question 10]
-  static final List<CheckBoxWidget<int>> answersForQuestion10 = [
+  static final List<CheckBoxWidget<int>> answersForQuestion6 = [
     CheckBoxWidget(
       answers: Answers(
           value: 1,
@@ -1203,7 +1227,7 @@ class QuizData {
       isRight: null,
     ),
   ];
-  static int usersAnswersForQ10 = 0;
+  static int usersAnswersForQ6 = 0;
   static final List<CorrectAnswers> correctAnswersForQ10 = [
     CorrectAnswers.answer2,
   ];
@@ -1221,35 +1245,73 @@ class QuizData {
 
   static int rightAnswersForQ1 = 0;
   static int rightAnswersForQ11 = 0;
+  static int rightAnswersForQ12 = 0;
   static int rightAnswersForQ9 = 0;
   static int rightAnswersForQ10 = 0;
 
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
-    for (var i = 0; i < userAnswerWithCheckForQ1.length; i++) {
-      if (userAnswerWithCheckForQ1[i].isRight == true) {
-        rightAnswersForQ1++;
-      }
-    }
+    // for (var i = 0; i < userAnswerWithCheckForQ1.length; i++) {
+    //   if (userAnswerWithCheckForQ1[i].isRight == true) {
+    //     rightAnswersForQ1++;
+    //   }
+    // }
+    // if (allAnswersAreRight1[0] == true) {
+    //   rightAnswersForQ1 = 1;
+    // }
 
-    for (var i = 0; i < userAnswerWithCheckForQ4.length; i++) {
-      if (userAnswerWithCheckForQ4[i].isRight == true) {
-        rightAnswersForQ4++;
-      }
-    }
+    // print("rightAnswersForQ1     " + rightAnswersForQ1.toString());
+    // int t = 0;
+    // for (var i = 0; i < userAnswerWithCheckForQ4.length; i++) {
+    //   if (userAnswerWithCheckForQ4[i].isRight == true) {
+    //     t++;
+    //   }
+    // }
+    // if (t == 4) {
+    //   rightAnswersForQ4 = 1;
+    // }
 
-    for (var i = 0; i < userAnswerWithCheckForQ9.length; i++) {
-      if (userAnswerWithCheckForQ9[i].isRight == true) {
-        rightAnswersForQ9++;
-      }
-    }
-    rightAnswersForQ1 += QuizData.firstDragDropResult;
-    rightAnswersForQ4 += QuizData.secondDragDropResult;
+    // for (var i = 0; i < userAnswerWithCheckForQ9.length; i++) {
+    //   if (userAnswerWithCheckForQ9[i].isRight == true) {
+    //     rightAnswersForQ9++;
+    //   }
+    // }
+    
+    rightAnswersForQ1 = QuizData.firstDragDropResult == 5 ? 1 : 0;
+    rightAnswersForQ4 = QuizData.secondDragDropResult == 4 ? 0 : 0;
     rightAnswersForQ11 += QuizData.thirdDragResult;
+
+    if (question2Cheking[1] == true) {
+      rightAnswersForQ2 = 1;
+    }
+
+    if (question7Cheking[1] == true) {
+      rightAnswersForQ7 = 1;
+    }
+
+    if (question10Cheking[3] == true) {
+      rightAnswersForQ10 = 1;
+    }
+
+    if (answersForQuestion9[0].answers.value == true &&
+        answersForQuestion9[2].answers.value == true &&
+        answersForQuestion9[4].answers.value == true) {
+      rightAnswersForQ9 = 1;
+    }
+
+    if (answersForQuestion12[1].answers.value == true &&
+        answersForQuestion12[4].answers.value == true) {
+      rightAnswersForQ12 = 1;
+    }
+
+    if (valueQ6 == 1) {
+      rightAnswersForQ6 = 1;
+    }
 
     listQuestionBody5.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
+          valueQ5 = 0;
           userAnswerForQ5.add(DragWordsWidget(
               answers: [Answers(value: 0, text: '')],
               isRight: false,
@@ -1257,6 +1319,7 @@ class QuizData {
           //  print('add null');
         } else {
           if (element.answers.first.text != element.correctAnswer) {
+            valueQ5 = 0;
             element.isRight = false;
           }
           // print("EditText::::: ${element.controller.text}");
@@ -1267,25 +1330,46 @@ class QuizData {
         userAnswerForQ5.add(element);
       }
     });
+    rightAnswersForQ5 = valueQ5;
 
     dragWordsWidget3.forEach((element) {
       if (element.answers.isEmpty) {
-        
+        valueQ3 = 0;
         usersAnswersForQ3.add(DragWordsWidget(
             answers: [Answers(value: 0, text: '')],
             isRight: false,
             correctAnswer: element.correctAnswer));
       } else {
         if (element.answers.first.text != element.correctAnswer) {
+          valueQ3 = 0;
           element.isRight = false;
           usersAnswersForQ3.add(element);
         }
       }
     });
+    rightAnswersForQ3 = valueQ3;
+
+    dragWordsWidget11.forEach((element) {
+      if (element.answers.isEmpty) {
+        valueQ11 = 0;
+        usersAnswersForQ11.add(DragWordsWidget(
+            answers: [Answers(value: 0, text: '')],
+            isRight: false,
+            correctAnswer: element.correctAnswer));
+      } else {
+        if (element.answers.first.text != element.correctAnswer) {
+          valueQ11 = 0;
+          element.isRight = false;
+          usersAnswersForQ11.add(element);
+        }
+      }
+    });
+    rightAnswersForQ11 = valueQ11;
 
     listQuestionBody8.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
+          valueQ8 = 0;
           userAnswerForQ8.add(DragWordsWidget(
               answers: [Answers(value: 0, text: '')],
               isRight: false,
@@ -1294,6 +1378,7 @@ class QuizData {
         } else {
           if (element.answers.first.text != element.correctAnswer) {
             element.isRight = false;
+            valueQ8 = 0;
           }
           // print("EditText::::: ${element.controller.text}");
           userAnswerForQ8.add(element);
@@ -1303,6 +1388,7 @@ class QuizData {
         userAnswerForQ8.add(element);
       }
     });
+    rightAnswersForQ8 = valueQ8;
 
     // listQuestionBody3.forEach((element) {
     //   if (element is DragWordsWidget) {
@@ -1322,7 +1408,7 @@ class QuizData {
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
-          print("correctAnswer in ${element.correctAnswer}");
+          // print("correctAnswer in ${element.correctAnswer}");
           usersAnswersForQ7.add(DragWordsWidget(
               correctAnswer: element.correctAnswer,
               answers: [Answers(value: 0, text: '')],
@@ -1335,26 +1421,26 @@ class QuizData {
       }
     });
 
-    if (valueQ5 == correctAnswerQ5) {
-      rightAnswersForQ5++;
-    }
+    // if (valueQ5 == correctAnswerQ5) {
+    //   rightAnswersForQ5++;
+    // }
 
-    if (valueQ6 == correctAnswerQ6) {
-      rightAnswersForQ6++;
-    }
+    // if (valueQ6 == correctAnswerQ6) {
+    //   rightAnswersForQ6++;
+    // }
 
-    for (var i = 0; i < usersAnswersForQ2.length; i++) {
-      if (usersAnswersForQ2[i] is DragWordsWidget &&
-          correctAnswersForQ2[i] is List<String>) {
-        if (correctAnswersForQ2[i].first ==
-            usersAnswersForQ2[i].answers.first.text) {
-          usersAnswersForQ2[i].isRight = true;
-          rightAnswersForQ2++;
-        } else {
-          usersAnswersForQ2[i].isRight = false;
-        }
-      }
-    }
+    // for (var i = 0; i < usersAnswersForQ2.length; i++) {
+    //   if (usersAnswersForQ2[i] is DragWordsWidget &&
+    //       correctAnswersForQ2[i] is List<String>) {
+    //     if (correctAnswersForQ2[i].first ==
+    //         usersAnswersForQ2[i].answers.first.text) {
+    //       usersAnswersForQ2[i].isRight = true;
+    //       rightAnswersForQ2++;
+    //     } else {
+    //       usersAnswersForQ2[i].isRight = false;
+    //     }
+    //   }
+    // }
 
     // for (var i = 0; i < usersAnswersForQ3.length; i++) {
     //   if (usersAnswersForQ3[i] is DragWordsWidget &&
@@ -1369,18 +1455,18 @@ class QuizData {
     //   }
     // }
 
-    for (var i = 0; i < usersAnswersForQ7.length; i++) {
-      if (usersAnswersForQ7[i] is DragWordsWidget &&
-          correctAnswersForQ7[i] is List<String>) {
-        if (correctAnswersForQ7[i].first ==
-            usersAnswersForQ7[i].answers.first.text) {
-          usersAnswersForQ7[i].isRight = true;
-          rightAnswersForQ7++;
-        } else {
-          usersAnswersForQ7[i].isRight = false;
-        }
-      }
-    }
+    // for (var i = 0; i < usersAnswersForQ7.length; i++) {
+    //   if (usersAnswersForQ7[i] is DragWordsWidget &&
+    //       correctAnswersForQ7[i] is List<String>) {
+    //     if (correctAnswersForQ7[i].first ==
+    //         usersAnswersForQ7[i].answers.first.text) {
+    //       usersAnswersForQ7[i].isRight = true;
+    //       rightAnswersForQ7++;
+    //     } else {
+    //       usersAnswersForQ7[i].isRight = false;
+    //     }
+    //   }
+    // }
 
     // for (var i = 0; i < usersAnswersForQ8.length; i++) {
     //   if (correctAnswersForQ8
@@ -1393,17 +1479,6 @@ class QuizData {
     //   }
     // }
 
-    print("Score Question 2 $rightAnswersForQ2");
-    print('Score Question 3 $rightAnswersForQ3');
-    print("Score Question 5 $rightAnswersForQ5");
-    print("Score Question 6 $rightAnswersForQ6");
-    print('Score Question 7 $rightAnswersForQ7');
-    print("Score Question 8 $rightAnswersForQ8");
-    print("Score Question 1 $rightAnswersForQ1");
-    print('Score Question 4 $rightAnswersForQ4');
-    print("Score Question 9 $rightAnswersForQ9");
-    print("Score Question 9 $rightAnswersForQ10");
-
     finalScore = rightAnswersForQ1 +
         rightAnswersForQ2 +
         rightAnswersForQ3 +
@@ -1413,17 +1488,23 @@ class QuizData {
         rightAnswersForQ7 +
         rightAnswersForQ8 +
         rightAnswersForQ9 +
-        rightAnswersForQ10;
+        rightAnswersForQ10 +
+        rightAnswersForQ11 +
+        rightAnswersForQ12;
 
     listScore = [
-      Score(currentScore: rightAnswersForQ1, scorsCount: 3),
-      Score(currentScore: rightAnswersForQ2, scorsCount: 6),
-      Score(currentScore: rightAnswersForQ3, scorsCount: 7),
-      Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: rightAnswersForQ1, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ2, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ3, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ4, scorsCount: 1),
       Score(currentScore: rightAnswersForQ5, scorsCount: 1),
       Score(currentScore: rightAnswersForQ6, scorsCount: 1),
       Score(currentScore: rightAnswersForQ7, scorsCount: 1),
       Score(currentScore: rightAnswersForQ8, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ9, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ10, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ11, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ12, scorsCount: 1),
     ];
   }
 
@@ -1434,6 +1515,11 @@ class QuizData {
     QuizData.secondDragDropResult = 0;
     QuizData.thirdDragResult = 0;
     listCorrectrAnswersQuestion9 = [];
+
+    valueQ3 = 1;
+    valueQ11 = 1;
+    valueQ5 = 1;
+    valueQ8 = 1;
 
     finalScore = 0;
     rightAnswersForQ3 = 0;
@@ -1456,7 +1542,7 @@ class QuizData {
 
     usersAnswersForQ3 = [];
 
-    usersAnswersForQ10 = 0;
+    // usersAnswersForQ10 = 0;
 
     answersForQuestion8.forEach((element) {
       if (element is CheckBoxWidget) {
@@ -1465,11 +1551,11 @@ class QuizData {
       }
     });
 
-    answersForQuestion10.forEach((element) {
-      if (element is CheckBoxWidget) {
-        element.isRight = null;
-      }
-    });
+    // answersForQuestion10.forEach((element) {
+    //   if (element is CheckBoxWidget) {
+    //     element.isRight = null;
+    //   }
+    // });
 
     listQuestionBody5.forEach((element) {
       if (element is DragWordsWidget) {
@@ -1480,12 +1566,12 @@ class QuizData {
       }
     });
 
-    dragWordsWidget3.forEach((element) {
-      if (element.answers.isNotEmpty) {
-        answersForDD3Images.add(element.answers.first);
-        element.answers.removeLast();
-      }
-    });
+    // dragWordsWidget3.forEach((element) {
+    //   if (element.answers.isNotEmpty) {
+    //     answersForDD3Images.add(element.answers.first);
+    //     element.answers.removeLast();
+    //   }
+    // });
 
     // listQuestionBody3.forEach((element) {
     //   if (element is DragWordsWidget) {
@@ -1505,9 +1591,9 @@ class QuizData {
       }
     });
 
-    valueQ5 = false;
+    // valueQ5 = false;
+    // valueQ6 = -1;
     valueQ6 = -1;
-    valueQ10 = -1;
     answerTextController1.clear();
     answerTextController2.clear();
     answerTextController3.clear();
@@ -1524,10 +1610,10 @@ class QuizData {
     userAnswerWithCheckForQ9.clear();
     userAnswerForQ9.clear();
     listScore = [
-      Score(currentScore: rightAnswersForQ1, scorsCount: 3),
-      Score(currentScore: rightAnswersForQ2, scorsCount: 6),
-      Score(currentScore: rightAnswersForQ3, scorsCount: 7),
-      Score(currentScore: rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: rightAnswersForQ1, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ2, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ3, scorsCount: 1),
+      Score(currentScore: rightAnswersForQ4, scorsCount: 1),
       Score(currentScore: rightAnswersForQ5, scorsCount: 1),
       Score(currentScore: rightAnswersForQ6, scorsCount: 1),
       Score(currentScore: rightAnswersForQ7, scorsCount: 1),

@@ -66,34 +66,31 @@ class _QuizPageState extends State<QuizPage> {
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     questionsWidgets = [
-
-      
       QuizDragDropCirclesWidget(
         variants: QuizData.variantsForQ1,
         answers: QuizData.answersForQ1,
-        question: 'Match the Glossary Term to the Definition',
         questionIndex: 1,
-        score: 1,
-        quizItemList: QuizData.quizItemListQ1,
+        score: 0,
         userAnswer: QuizData.userAnswerForQ1,
         userAnswerWithCheck: QuizData.userAnswerWithCheckForQ1,
         listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion1,
-        imageWidth: 105,
-        imageHeight: 105,
       ),
-
       QuizRadioBottonWidget(
+        quizDataChecking: QuizData.question2Cheking,
         quizWithImage: true,
         image: AssetsPath.nikos,
         answers: QuizData.answersForQ2,
         questionIndex: 2,
         boldWords: true,
         question:
-            'Nikos of Athens had vowed to serve the sick within the city during the Plague of Athens. He made this vow to all of the following, EXCEPT:',
+            'Nikos of Athens had vowed to serve the sick within the city during the Plague of Athens. He made this vow to all of the following,',
+        boldQuestionText: " EXCEPT:",
       ),
       QuizDragDropWidget(
-        question:
-            'For these Key People of the Age, drag and drop the name that goes with their portrait and description. ',
+        boldText: 'Key People of the Age,',
+        questionPart1: 'For these  ',
+        questionPart2:
+            '  drag and drop the name that goes with their portrait and description. ',
         questionIndex: 3,
         answers: QuizData.answersForDD3Images,
         questionWithImages: true,
@@ -108,23 +105,9 @@ class _QuizPageState extends State<QuizPage> {
         bgWidth: 218,
         imageHeight: 320,
         imageWidth: 180,
+        question: null,
       ),
-
-      QuizDragDropCirclesWidget(
-        variants: QuizData.variantsForQ4,
-        answers: QuizData.answersForQ4,
-        question:
-            'What Happend Where? Match the Description to the Correct Map',
-        questionIndex: 4,
-        score: 4,
-        quizItemList: QuizData.quizItemListQ4,
-        userAnswer: QuizData.userAnswerForQ4,
-        userAnswerWithCheck: QuizData.userAnswerWithCheckForQ4,
-        listCorrectrAnswers: QuizData.listCorrectrAnswersQuestion4,
-        imageHeight: 125,
-        imageWidth: 200,
-      ),
-
+      QuizMapImage(),
       QuizDragDropWidget(
           question:
               'Read the following passage and drag the correct words into place',
@@ -135,34 +118,31 @@ class _QuizPageState extends State<QuizPage> {
           score: 1,
           image: AssetsPath.quintaEssentia,
           questionWithImages: false),
-
       QuizSelectImage(
         questionIndex: 6,
         question:
             "The Greek god of healing, Asclepius, is easily identifiable in artworks, because he is usually holding an 'askelpeian'. The askelpian is a symbol still associated with medicine and healing to this day. Which of the below images best represents an askelpian?",
-        answers: QuizData.answersForQuestion10,
-        userAnswers: QuizData.usersAnswersForQ10,
+        answers: QuizData.answersForQuestion6,
+        userAnswers: QuizData.usersAnswersForQ6,
       ),
-
       QuizRadioBottonWidget(
         quizWithImage: true,
         image: AssetsPath.sourceAnalysis,
         answers: QuizData.answersForQ7,
         questionIndex: 7,
         question: 'Which of the following annotations is NOT accurate?',
+        quizDataChecking: QuizData.question7Cheking,
       ),
-
       QuizDragDropWidget(
           question:
               'Read the following passage and drag the correct words into place',
           listQuestionBody: QuizData.listQuestionBody8,
           questionIndex: 8,
-          answers: QuizData.answersForDD5,
+          answers: QuizData.answersForDD8,
           usersAnswers: QuizData.userAnswerForQ8,
           score: 1,
           image: AssetsPath.thucydides1,
           questionWithImages: false),
-
       QuizCheckBox(
         answers: QuizData.answersForQuestion9,
         question:
@@ -171,7 +151,6 @@ class _QuizPageState extends State<QuizPage> {
         userAnswers: QuizData.usersAnswersForQ9,
         image: AssetsPath.piraeusAthens,
       ),
-
       QuizRadioBottonWidget(
         quizWithImage: true,
         image: AssetsPath.body,
@@ -179,11 +158,14 @@ class _QuizPageState extends State<QuizPage> {
         answers: QuizData.answersForQ10,
         questionIndex: 10,
         question: 'Which of the following annotations is NOT accurate?',
+        quizDataChecking: QuizData.question10Cheking,
       ),
-
       QuizDragDropWidget(
-        question:
-            'For these Pathogens, drag and drop the name that goes with their portrait and description.  ',
+        question: null,
+        boldText: 'Pathogens,',
+        questionPart1: 'For these  ',
+        questionPart2:
+            '  drag and drop the name that goes with their portrait and description. ',
         questionIndex: 11,
         answers: QuizData.answersForQ11,
         questionWithImages: true,
@@ -199,7 +181,6 @@ class _QuizPageState extends State<QuizPage> {
         imageHeight: 150,
         imageWidth: 320,
       ),
-
       QuizCheckBox(
         answers: QuizData.answersForQuestion12,
         question:
@@ -208,53 +189,11 @@ class _QuizPageState extends State<QuizPage> {
         userAnswers: QuizData.usersAnswersForQ12,
         image: AssetsPath.painting,
       ),
-
-      // option2,
       RadioButtonModel(
         question: "If you were Nikos, what would you have done?",
         answers: QuizData.answersForQ13,
         questionIndex: 13,
       ),
-
-      // QuizRadioBottonWidget(
-      //   quizWithImage: true,
-      //   image: AssetsPath.sourceAnalysis,
-      //   answers: QuizData.answersForQ7,
-      //   questionIndex: 2,
-      //   question: 'Which of the following annotations is not accurate?',
-
-      // ),
-
-      // QuizEditTextWidget(
-      //   questionIndex: 2,
-      //   question: 'Hippocrates is famous for his theory of the Four Humours...',
-      //   answers: QuizData.answersForDD2,
-      //   score: 6,
-      // ),
-
-      // QuizMapImage(),
-      // QuizRadioBottonWidget(
-      //   quizWithImage: false,
-      //   answers: QuizData.answersForQ5,
-      //   questionIndex: 5,
-      //   question:
-      //       'Which of the pathogens is thought to be the most likely cause of the Plague of Athens?',
-      // ),
-      // QuizRadioBottonWidget(
-      //   quizWithImage: true,
-      //   answers: QuizData.answersForQ6,
-      //   questionIndex: 6,
-      //   question: 'Who is the prominent Athenian?',
-      // ),
-      // QuizDragDropWidget(
-      //   question:
-      //       'Much of what we know about Hippocrates and his approach to medicine is because of the works of Galen. Fill in the correct responses below.',
-      //   questionIndex: 7,
-      //   answers: QuizData.answersForDD7,
-      //   score: 6,
-      // ),
-
-      // GoldenAgeDragDrop(),
     ];
     super.didChangeDependencies();
   }
@@ -262,8 +201,8 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void initState() {
     super.initState();
-    var listQuestion3WithImages = QuizData.listQuestion3WithImages;
-     NavigationSharedPreferences.getNavigationListFromSF();
+
+    NavigationSharedPreferences.getNavigationListFromSF();
   }
 
   Widget _body() {
@@ -297,7 +236,7 @@ class _QuizPageState extends State<QuizPage> {
             alignment: Alignment.center,
             child: Container(
               width: HW.getWidth(1200, context),
-              height: HW.getHeight(800, context),
+              height: HW.getHeight(788, context),
               decoration: BoxDecoration(
                   boxShadow: Shadows.allBorders, color: AppColors.white),
               child: Stack(
@@ -317,7 +256,6 @@ class _QuizPageState extends State<QuizPage> {
                           child: Container(
                             key: ValueKey(QuizData.questionIndex),
                             child: IndexedStack(
-                              // index: QuizData.questionIndex,
                               index: QuizData.questionIndex,
                               children: [
                                 ...questionsWidgets,
@@ -368,15 +306,19 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget get _menu => SoundAndMenuWidget(
-        widget: AppUpButton(
-          onTap: () {
+        widget: IconButtonWidget(
+          onPressed: () {
             LeafDetails.currentVertex = 15;
-            LeafDetails.visitedVertexes.add(15);
             NavigationSharedPreferences.upDateShatedPreferences();
-            context.router.replace(DeadOfSocratesPageToBottom(
-              fromKeepGoing: false,
-            ));
+
+            if (kIsWeb) {
+              html.window.history.back();
+              context.router.pop();
+            } else {
+              context.router.pop();
+            }
           },
+          icon: const Icon(Icons.arrow_upward),
         ),
         icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
         onTapVolume: isSoundOn
@@ -396,22 +338,21 @@ class _QuizPageState extends State<QuizPage> {
           scaffoldkey.currentState!.openEndDrawer();
         },
       );
-
   Widget get _score {
     QuizData.listScore = [
-      Score(currentScore: QuizData.rightAnswersForQ1, scorsCount: 3),
-      Score(currentScore: QuizData.rightAnswersForQ2, scorsCount: 6),
-      Score(currentScore: QuizData.rightAnswersForQ3, scorsCount: 7),
-      Score(currentScore: QuizData.rightAnswersForQ4, scorsCount: 5),
+      Score(currentScore: QuizData.rightAnswersForQ1, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ2, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ3, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ4, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ5, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ6, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 6),
-      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 9),
+      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 6),
-      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 9),
-      Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ12, scorsCount: 1),
     ];
     return Visibility(
       visible: QuizData.showRightAnswers,
@@ -452,7 +393,7 @@ class _QuizPageState extends State<QuizPage> {
                             ),
                       ),
                       Text(
-                        '${QuizData.finalScore} / 50'.toUpperCase(),
+                        '${QuizData.finalScore} / 12'.toUpperCase(),
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
                               fontSize: TextFontSize.getHeight(14, context),
                               color: AppColors.white,
@@ -590,20 +531,13 @@ class _QuizPageState extends State<QuizPage> {
                                   accept: 'Yes',
                                   cancel: 'No',
                                   onTapAccept: () {
-                                    if (GoldenAgeDragDrop
-                                            .quizMapImageKey.currentState !=
+                                    if (DragDropQuizBody
+                                            .dragDropBodyKey.currentState !=
                                         null) {
-                                      GoldenAgeDragDrop
-                                          .quizMapImageKey.currentState!
+                                      DragDropQuizBody
+                                          .dragDropBodyKey.currentState!
                                           .resetQuiz();
                                     }
-                                    // if (DragDropQuizBody
-                                    //         .dragDropBodyKey.currentState !=
-                                    //     null) {
-                                    //   DragDropQuizBody
-                                    //       .dragDropBodyKey.currentState!
-                                    //       .resetQuiz();
-                                    // }
                                     if (QuizMapImage
                                             .quizMapImageKey.currentState !=
                                         null) {
@@ -612,13 +546,14 @@ class _QuizPageState extends State<QuizPage> {
                                     }
 
                                     setState(() {
-                                      QuizData.clearAnswers();
-                                      QuizData.showRightAnswers =
-                                          !QuizData.showRightAnswers;
-                                      QuizData.questionIndex = 0;
+                                      setState(() {
+                                        QuizData.clearAnswers();
+                                        QuizData.showRightAnswers =
+                                            !QuizData.showRightAnswers;
+                                        QuizData.questionIndex = 0;
+                                      });
                                     });
-
-                                    // Navigator.of(context).pop();
+                                    Navigator.of(context).pop();
                                   },
                                   onTapCancel: () {
                                     Navigator.of(context).pop();
@@ -642,42 +577,25 @@ class _QuizPageState extends State<QuizPage> {
                                   accept: 'Yes',
                                   cancel: 'No',
                                   onTapAccept: () {
-                                    if (GoldenAgeDragDrop
-                                            .quizMapImageKey.currentState !=
+                                    if (DragDropQuizBody
+                                            .dragDropBodyKey.currentState !=
                                         null) {
-                                      print("not null");
-                                      if (GoldenAgeDragDrop
-                                          .quizMapImageKey
+                                      if (DragDropQuizBody
+                                          .dragDropBodyKey
                                           .currentState!
                                           .rightLines
                                           .isNotEmpty) {
                                         Navigator.of(context).pop();
                                         return;
                                       }
-                                      GoldenAgeDragDrop
-                                          .quizMapImageKey.currentState!
+                                      DragDropQuizBody
+                                          .dragDropBodyKey.currentState!
                                           .checkAnswers();
                                     }
-                                    // if (DragDropQuizBody
-                                    //         .dragDropBodyKey.currentState !=
-                                    //     null) {
-                                    //   if (DragDropQuizBody
-                                    //       .dragDropBodyKey
-                                    //       .currentState!
-                                    //       .rightLines
-                                    //       .isNotEmpty) {
-                                    //     Navigator.of(context).pop();
-                                    //     return;
-                                    //   }
-                                    //   DragDropQuizBody
-                                    //       .dragDropBodyKey.currentState!
-                                    //       .checkAnswers();
-                                    // }
 
                                     if (QuizMapImage
                                             .quizMapImageKey.currentState !=
                                         null) {
-                                      print("not null");
                                       if (QuizMapImage
                                           .quizMapImageKey
                                           .currentState!
@@ -689,10 +607,7 @@ class _QuizPageState extends State<QuizPage> {
                                       QuizMapImage.quizMapImageKey.currentState!
                                           .checkAnswers();
                                     }
-                                    print(
-                                        "FIRST DRAG RESUL ${QuizData.firstDragDropResult}");
-                                    print(
-                                        "FIRST second RESUL ${QuizData.secondDragDropResult}");
+
                                     setState(() {
                                       QuizData.checkUerAnswers();
                                       QuizData.showRightAnswers =

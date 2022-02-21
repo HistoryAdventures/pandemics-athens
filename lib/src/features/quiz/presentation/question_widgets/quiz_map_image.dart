@@ -72,19 +72,19 @@ class _QuizMapImageState extends State<QuizMapImage> {
     });
     int a = savedLines.indexWhere((element) =>
         element.line.startKey == questions[0].question.key &&
-        element.line.endKey == questions[1].target.key);
+        element.line.endKey == questions[2].target.key);
     int b = savedLines.indexWhere((element) =>
         element.line.startKey == questions[1].question.key &&
-        element.line.endKey == questions[4].target.key);
+        element.line.endKey == questions[3].target.key);
     int c = savedLines.indexWhere((element) =>
         element.line.startKey == questions[2].question.key &&
-        element.line.endKey == questions[2].target.key);
+        element.line.endKey == questions[0].target.key);
     int d = savedLines.indexWhere((element) =>
         element.line.startKey == questions[3].question.key &&
-        element.line.endKey == questions[0].target.key);
-    int e = savedLines.indexWhere((element) =>
-        element.line.startKey == questions[4].question.key &&
-        element.line.endKey == questions[3].target.key);
+        element.line.endKey == questions[1].target.key);
+    // int e = savedLines.indexWhere((element) =>
+    //     element.line.startKey == questions[4].question.key &&
+    //     element.line.endKey == questions[3].target.key);
     if (a > -1) {
       print("code is here a");
 
@@ -108,12 +108,12 @@ class _QuizMapImageState extends State<QuizMapImage> {
 
       savedLines[d].color = Colors.green;
     }
-    if (e > -1) {
-      print("code is here b");
-      QuizData.secondDragDropResult += 1;
+    // if (e > -1) {
+    //   print("code is here b");
+    //   QuizData.secondDragDropResult += 1;
 
-      savedLines[e].color = Colors.green;
-    }
+    //   savedLines[e].color = Colors.green;
+    // }
     checked = true;
     startOffset = Offset.zero;
     offset = Offset.zero;
@@ -130,8 +130,8 @@ class _QuizMapImageState extends State<QuizMapImage> {
     RightLine a = RightLine(
       startKey: questions[0].question.key,
       start: offsetForKey(questions[0].question.key),
-      endKey: questions[1].target.key,
-      end: offsetForKey(questions[1].target.key),
+      endKey: questions[2].target.key,
+      end: offsetForKey(questions[2].target.key),
     );
 
     //a
@@ -139,8 +139,8 @@ class _QuizMapImageState extends State<QuizMapImage> {
     RightLine b = RightLine(
       startKey: questions[1].question.key,
       start: offsetForKey(questions[1].question.key),
-      endKey: questions[4].target.key,
-      end: offsetForKey(questions[4].target.key),
+      endKey: questions[3].target.key,
+      end: offsetForKey(questions[3].target.key),
     );
 
     // //b
@@ -148,26 +148,21 @@ class _QuizMapImageState extends State<QuizMapImage> {
     RightLine c = RightLine(
       startKey: questions[2].question.key,
       start: offsetForKey(questions[2].question.key),
-      endKey: questions[2].target.key,
-      end: offsetForKey(questions[2].target.key),
+      endKey: questions[0].target.key,
+      end: offsetForKey(questions[0].target.key),
     );
     RightLine d = RightLine(
       startKey: questions[3].question.key,
       start: offsetForKey(questions[3].question.key),
-      endKey: questions[0].target.key,
-      end: offsetForKey(questions[0].target.key),
+      endKey: questions[1].target.key,
+      end: offsetForKey(questions[1].target.key),
     );
-    RightLine e = RightLine(
-      startKey: questions[4].question.key,
-      start: offsetForKey(questions[4].question.key),
-      endKey: questions[3].target.key,
-      end: offsetForKey(questions[3].target.key),
-    );
+
     rightLines.add(a);
     rightLines.add(b);
     rightLines.add(c);
     rightLines.add(d);
-    rightLines.add(e);
+    // rightLines.add(e);
 
     checked = true;
     //c
@@ -212,23 +207,13 @@ class _QuizMapImageState extends State<QuizMapImage> {
         ),
       ),
     );
-    questions.add(
-      QuizItem(
-        question: Question(
-          key: GlobalKey(),
-        ),
-        target: Target(
-          key: GlobalKey(),
-        ),
-      ),
-    );
 
     quizImages.addAll([
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage1, title: "A"),
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage2, title: "B"),
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage3, title: "C"),
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage4, title: "D"),
-      const MapQuizItemModel(assets: AssetsPath.mapQuizImage5, title: "E"),
+      // const MapQuizItemModel(assets: AssetsPath.mapQuizImage5, title: "E"),
     ]);
     Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
@@ -237,7 +222,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
       initialWidth = w;
       setState(() {});
     });
-    print("INIT STATE IS CALLEDDDDDDDDD");
+
     super.initState();
   }
 
@@ -277,7 +262,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  "What happened where?",
+                  "What happened where? Match the Description to the Correct Map",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
@@ -286,20 +271,20 @@ class _QuizMapImageState extends State<QuizMapImage> {
                   maxLines: 1,
                   textAlign: TextAlign.start,
                 ),
-                AutoSizeText(
-                  "*drag nodes from one column to another, to match the anwsers",
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: HW.getHeight(12, context),
-                      ),
-                  maxLines: 1,
-                ),
+                // AutoSizeText(
+                //   "*drag nodes from one column to another, to match the anwsers",
+                //   textAlign: TextAlign.start,
+                //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.w400,
+                //         fontSize: HW.getHeight(12, context),
+                //       ),
+                //   maxLines: 1,
+                // ),
               ],
             ),
           ),
-          _imagesView,
+          // _imagesView,
           SizedBox(
             height: HW.getHeight(20, context),
           ),
@@ -325,74 +310,86 @@ class _QuizMapImageState extends State<QuizMapImage> {
                 ),
                 child: Column(
                   children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                _draggable(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: HW.getWidth(500, context),
+                          height: HW.getHeight(500, context),
+                          child: ListView(
+                            children: [
+                              _draggable(
                                   questions[0].question,
                                   0,
-                                  "Battle of Thermopylae",
-                                ),
-                                _draggable(
-                                  questions[1].question,
-                                  1,
-                                  "Birth of Socrates",
-                                ),
-                                _draggable(
-                                  questions[2].question,
-                                  2,
-                                  "The Plague arrives in Athens",
-                                ),
-                                _draggable(
-                                  questions[3].question,
-                                  3,
-                                  "Herodotus writes his ‘Histories’",
-                                ),
-                                _draggable(
-                                  questions[4].question,
-                                  4,
-                                  "End of Peloponnesian War",
-                                ),
-                              ],
-                            ),
+                                  "490 BC Battle of Marathon",
+                                  AssetsPath.map490),
+                              _draggable(
+                                questions[1].question,
+                                1,
+                                "399 BC City of Athens",
+                                AssetsPath.map491,
+                              ),
+                              _draggable(
+                                questions[2].question,
+                                2,
+                                "430 BC Port of Piraeus",
+                                AssetsPath.map430,
+                              ),
+                              _draggable(
+                                questions[3].question,
+                                3,
+                                "461 BC Battle of Oenoe’",
+                                AssetsPath.map461,
+                              ),
+                              // SizedBox(
+                              //   height: 400,
+                              // ),
+                              // SizedBox(
+                              //   height: 400,
+                              // ),
+
+                              // _draggable(
+                              //   questions[4].question,
+                              //   4,
+                              //   "End of Peloponnesian War",
+                              // ),
+                            ],
                           ),
-                          SizedBox(
-                            width: HW.getWidth(210, context),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                _target(
+                        ),
+                        SizedBox(
+                          width: HW.getWidth(50, context),
+                        ),
+                        Container(
+                          width: HW.getWidth(600, context),
+                          height: HW.getHeight(500, context),
+                          child: ListView(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: HW.getHeight(30, context)),
+                                child: _target(
                                   questions[0].target,
-                                  "A",
+                                  "Combined Greek forces defeat the Persian invaders, led by Darius, at this location. Famous for the myth of Athenian runner, Pheidippides, who ran from the battleground to Athens to announce the Greek victory.",
                                 ),
-                                _target(
-                                  questions[1].target,
-                                  "B",
-                                ),
-                                _target(
-                                  questions[2].target,
-                                  "C",
-                                ),
-                                _target(
-                                  questions[3].target,
-                                  "D",
-                                ),
-                                _target(
-                                  questions[4].target,
-                                  "E",
-                                ),
-                              ],
-                            ),
+                              ),
+                              _target(
+                                questions[1].target,
+                                "First Peloponnesian War begins here. Spartan forces are defeated by an alliance of two city states. Pericles emerges as leading political figure. ",
+                              ),
+                              _target(
+                                questions[2].target,
+                                "The malady spread quickly from here. In a matter of weeks, the disease had spread to the heart of the city and was affecting people of all ages and backgrounds in alarmingly high numbers.",
+                              ),
+                              _target(
+                                questions[3].target,
+                                "The trial and death of Socrates occurs here; the philosopher was convicted of corrupting the minds of the youth; rather than renounce his beliefs, he died willingly, discoursing on the immortality of the soul before drinking poisonous hemlock. ",
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Expanded(child: Container()),
+                    // Expanded(child: Container()),
                   ],
                 ),
               ),
@@ -403,37 +400,39 @@ class _QuizMapImageState extends State<QuizMapImage> {
     );
   }
 
-  Widget get _imagesView => Expanded(
-        flex: 10,
-        child: Container(
-          height: double.maxFinite,
-          padding: EdgeInsets.only(
-            right: HW.getWidth(76, context),
-            left: HW.getWidth(76, context),
-          ),
-          child: Row(
-            children: quizImages
-                .map((e) => Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: MapImageItem(
-                              model: e,
-                            ),
-                          ),
-                          Container(width: 10,)
-                          // Expanded(
-                          //   flex: 1,
-                          //   child: Container(),
-                          // ),
-                        ],
-                      ),
-                    ))
-                .toList(),
-          ),
-        ),
-      );
+  // Widget get _imagesView => Expanded(
+  //       flex: 10,
+  //       child: Container(
+  //         height: double.maxFinite,
+  //         padding: EdgeInsets.only(
+  //           right: HW.getWidth(76, context),
+  //           left: HW.getWidth(76, context),
+  //         ),
+  //         child: Row(
+  //           children: quizImages
+  //               .map((e) => Expanded(
+  //                     child: Row(
+  //                       children: [
+  //                         Expanded(
+  //                           flex: 2,
+  //                           child: MapImageItem(
+  //                             model: e,
+  //                           ),
+  //                         ),
+  //                         Container(
+  //                           width: 10,
+  //                         )
+  //                         // Expanded(
+  //                         //   flex: 1,
+  //                         //   child: Container(),
+  //                         // ),
+  //                       ],
+  //                     ),
+  //                   ))
+  //               .toList(),
+  //         ),
+  //       ),
+  //     );
 
   void onDragUpdate(DragUpdateDetails d) {
     offset = Offset(
@@ -488,68 +487,93 @@ class _QuizMapImageState extends State<QuizMapImage> {
     Question question,
     int index,
     String questionText,
+    String image,
   ) =>
       Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            flex: 5,
-            child: Container(),
-          ),
-          Expanded(
-            flex: 60,
-            child: Container(
-              alignment: Alignment.centerLeft,
-              height: HW.getHeight(40, context),
-              padding: EdgeInsets.only(left: HW.getWidth(24, context)),
-              child: AutoSizeText(
-                questionText,
-                maxLines: 1,
-                textAlign: TextAlign.left,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Expanded(
+              //   flex: 5,
+              //   child: Container(),
+              // ),
+              Container(
+                padding: EdgeInsets.only(left: HW.getHeight(24, context)),
+                width: HW.getWidth(200, context),
+                height: HW.getHeight(110, context),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
+              SizedBox(
+                height: HW.getHeight(120, context),
+              )
+
+              // Expanded(
+              //   flex: 15,
+              //   child: Container(),
+              // ),
+            ],
           ),
-          Expanded(
-            flex: 15,
-            child: Container(),
-          ),
-          Draggable(
-            data: "data",
-            onDragUpdate: onDragUpdate,
-            onDragStarted: () {
-              curentIndex = index;
-              onDragStart();
-            },
-            onDragEnd: (_) {
-              startOffset = Offset.zero;
-              offset = Offset.zero;
-              setState(() {});
-            },
-            onDraggableCanceled: (_, o) {},
-            dragAnchorStrategy: (_, c, o) {
-              return Offset(
-                  0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
-            },
-            feedback: CircleButton(
-              color: Colors.white,
-              width: circleButtonWidth,
-            ),
-            child: CircleButton(
-              key: question.key,
-              color: savedLines.indexWhere(
-                        (element) => element.line.startKey == question.key,
-                      ) ==
-                      -1
-                  ? Colors.white
-                  : Colors.orange[800]!,
-              width: circleButtonWidth,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                height: HW.getHeight(50, context),
+                width: HW.getWidth(200, context),
+                padding: EdgeInsets.only(left: HW.getWidth(24, context)),
+                child: AutoSizeText(
+                  questionText,
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Draggable(
+                data: "data",
+                onDragUpdate: onDragUpdate,
+                onDragStarted: () {
+                  curentIndex = index;
+                  onDragStart();
+                },
+                onDragEnd: (_) {
+                  startOffset = Offset.zero;
+                  offset = Offset.zero;
+                  setState(() {});
+                },
+                onDraggableCanceled: (_, o) {},
+                dragAnchorStrategy: (_, c, o) {
+                  return Offset(
+                      0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
+                },
+                feedback: CircleButton(
+                  color: Colors.white,
+                  width: circleButtonWidth,
+                ),
+                child: CircleButton(
+                  key: question.key,
+                  color: savedLines.indexWhere(
+                            (element) => element.line.startKey == question.key,
+                          ) ==
+                          -1
+                      ? Colors.white
+                      : Colors.orange[800]!,
+                  width: circleButtonWidth,
+                ),
+              ),
+            ],
           ),
         ],
       );
 
   Widget _target(Target target, String answerText) => Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DragTarget(
             onMove: (_) {
@@ -609,24 +633,28 @@ class _QuizMapImageState extends State<QuizMapImage> {
           ),
           Expanded(
             child: Container(),
-            flex: 3,
+            flex: 1,
           ),
-          Expanded(
-            flex: 70,
-            child: Container(
-              alignment: Alignment.centerLeft,
-              height: HW.getHeight(40, context),
-              padding: EdgeInsets.only(left: HW.getWidth(24, context)),
-              child: AutoSizeText(
-                answerText,
-                maxLines: 1,
-                textAlign: TextAlign.left,
-              ),
+          Container(
+            alignment: Alignment.centerLeft,
+            height: HW.getHeight(105, context),
+            width: HW.getWidth(500, context),
+            padding: EdgeInsets.only(left: HW.getWidth(10, context)),
+            child: Text(
+              answerText!,
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.black,
+                    fontSize: HW.getHeight(18, context),
+                  ),
+              // minFontSize: 10,
+              maxLines: 4,
+              // maxFontSize: 16,
+              textAlign: TextAlign.left,
             ),
           ),
           Expanded(
             child: Container(),
-            flex: 30,
+            flex: 5,
           ),
         ],
       );
