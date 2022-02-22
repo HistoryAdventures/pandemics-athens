@@ -23,10 +23,10 @@ import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../modesl/socrates_info_model.dart';
 
 class DeadOfSocratesPage extends StatefulWidget {
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
   const DeadOfSocratesPage({
     Key? key,
-    required this.fromKeepGoing,
+    this.fromKeepGoing,
   }) : super(key: key);
 
   @override
@@ -148,7 +148,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     LeafDetails.currentVertex = 17;
                     LeafDetails.visitedVertexes.add(17);
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(const QuizPageRoute());
+                    context.router.replace(const QuizPageRoute());
                   },
                   icon: const Icon(Icons.arrow_downward),
                   color: AppColors.black100,
@@ -171,7 +171,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                   onTap: () {
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    if (widget.fromKeepGoing) {
+                    if (widget.fromKeepGoing!) {
                       context.router.replace(KeepGoingPageBottomRoute());
                     } else {
                       context.router.replace(QuitMedicinePageToBottom());

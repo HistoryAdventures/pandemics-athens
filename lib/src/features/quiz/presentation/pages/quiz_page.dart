@@ -43,7 +43,7 @@ class _QuizPageState extends State<QuizPage> {
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
 
-  late List<Widget> questionsWidgets;
+  // late List<Widget> questionsWidgets;
   late AppLocalizations locals;
   bool nextButtonisAvailibaleToPress = true;
   bool previousButtonisAvailibaleToPress = false;
@@ -52,6 +52,9 @@ class _QuizPageState extends State<QuizPage> {
   List<Widget> history = [];
   double lastIndex = 0;
   Widget? lastWidget;
+
+  late List<Answers<int>> variantsQ1;
+  late List<Answers<int>> answerQ1;
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +68,23 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
-    questionsWidgets = [
+
+    super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    variantsQ1 = QuizData.variantsForQ1;
+    answerQ1 = QuizData.answersForQ1;
+    NavigationSharedPreferences.getNavigationListFromSF();
+  }
+
+  Widget _body() {
+    final questionsWidgets = [
       QuizDragDropCirclesWidget(
-        variants: QuizData.variantsForQ1,
-        answers: QuizData.answersForQ1,
+        variants: variantsQ1,
+        answers: answerQ1,
         questionIndex: 1,
         score: 0,
         userAnswer: QuizData.userAnswerForQ1,
@@ -195,17 +211,7 @@ class _QuizPageState extends State<QuizPage> {
         questionIndex: 13,
       ),
     ];
-    super.didChangeDependencies();
-  }
 
-  @override
-  void initState() {
-    super.initState();
-
-    NavigationSharedPreferences.getNavigationListFromSF();
-  }
-
-  Widget _body() {
     if (QuizData.questionIndex == questionsWidgets.length - 1) {
       setState(() {
         nextButtonisAvailibaleToPress = false;
@@ -257,9 +263,7 @@ class _QuizPageState extends State<QuizPage> {
                             key: ValueKey(QuizData.questionIndex),
                             child: IndexedStack(
                               index: QuizData.questionIndex,
-                              children: [
-                                ...questionsWidgets,
-                              ],
+                              children: questionsWidgets,
                             ),
                           ),
                         ),
@@ -269,7 +273,60 @@ class _QuizPageState extends State<QuizPage> {
                   Positioned(
                     right: HW.getWidth(24, context),
                     bottom: HW.getHeight(24, context),
-                    child: _indicator,
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: previousButtonisAvailibaleToPress
+                                ? () {
+                                    if (mounted) {
+                                      setState(() {
+                                        QuizData.questionIndex--;
+                                      });
+                                    }
+                                  }
+                                : null,
+                            child: const Icon(Icons.chevron_left_sharp),
+                          ),
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: List.generate(questionsWidgets.length,
+                                  (index) {
+                                return Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  height: HW.getWidth(16, context),
+                                  width: HW.getWidth(16, context),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: QuizData.questionIndex == index
+                                              ? AppColors.transpatent
+                                              : AppColors.grey35),
+                                      shape: BoxShape.circle,
+                                      color: QuizData.questionIndex == index
+                                          ? AppColors.orange
+                                          : AppColors.transpatent),
+                                );
+                              })),
+                          IconButton(
+                            onPressed: nextButtonisAvailibaleToPress
+                                ? () {
+                                    if (mounted) {
+                                      setState(() {
+                                        QuizData.questionIndex++;
+                                      });
+                                    }
+                                  }
+                                : null,
+                            icon: const Icon(
+                              Icons.chevron_right_sharp,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   Positioned(
                     left: 0,
@@ -290,10 +347,10 @@ class _QuizPageState extends State<QuizPage> {
               height: HW.getHeight(111, context),
               child: ArrowTextBottomWidget(
                 onPressed: () {
-                  LeafDetails.currentVertex = 18;
-                  LeafDetails.visitedVertexes.add(18);
+                  LeafDetails.currentVertex = 21;
+                  LeafDetails.visitedVertexes.add(21);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const IrlNikosPageRoute());
+                  context.router.replace(const IrlNikosPageRoute());
                 },
                 textChapter: locals.chapter1,
                 textChapterName: locals.todoNoHarm,
@@ -308,12 +365,14 @@ class _QuizPageState extends State<QuizPage> {
   Widget get _menu => SoundAndMenuWidget(
         widget: IconButtonWidget(
           onPressed: () {
-            LeafDetails.currentVertex = 15;
-            NavigationSharedPreferences.upDateShatedPreferences();
-
             if (kIsWeb) {
-              html.window.history.back();
-              context.router.pop();
+              LeafDetails.currentVertex = 15;
+              LeafDetails.visitedVertexes.add(15);
+              NavigationSharedPreferences.upDateShatedPreferences();
+              // html.window.history.back();
+              // context.router.pop();
+              context.router
+                  .replace(DeadOfSocratesPageToBottom(fromKeepGoing: false));
             } else {
               context.router.pop();
             }
@@ -430,61 +489,6 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  Widget get _indicator => Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: previousButtonisAvailibaleToPress
-                  ? () {
-                      if (mounted) {
-                        setState(() {
-                          QuizData.questionIndex--;
-                        });
-                      }
-                    }
-                  : null,
-              child: const Icon(Icons.chevron_left_sharp),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: questionsWidgets.asMap().entries.map((entry) {
-                final int index = entry.key;
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: HW.getWidth(16, context),
-                  width: HW.getWidth(16, context),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: QuizData.questionIndex == index
-                              ? AppColors.transpatent
-                              : AppColors.grey35),
-                      shape: BoxShape.circle,
-                      color: QuizData.questionIndex == index
-                          ? AppColors.orange
-                          : AppColors.transpatent),
-                );
-              }).toList(),
-            ),
-            IconButton(
-              onPressed: nextButtonisAvailibaleToPress
-                  ? () {
-                      if (mounted) {
-                        setState(() {
-                          QuizData.questionIndex++;
-                        });
-                      }
-                    }
-                  : null,
-              icon: const Icon(
-                Icons.chevron_right_sharp,
-              ),
-            ),
-          ],
-        ),
-      );
-
   Widget get _header => Container(
         padding: EdgeInsets.symmetric(
           horizontal: HW.getWidth(24, context),
@@ -532,10 +536,10 @@ class _QuizPageState extends State<QuizPage> {
                                   cancel: 'No',
                                   onTapAccept: () {
                                     if (DragDropQuizBody
-                                            .dragDropBodyKey.currentState !=
+                                            .dragDropBodyKey!.currentState !=
                                         null) {
                                       DragDropQuizBody
-                                          .dragDropBodyKey.currentState!
+                                          .dragDropBodyKey!.currentState!
                                           .resetQuiz();
                                     }
                                     if (QuizMapImage
@@ -578,10 +582,10 @@ class _QuizPageState extends State<QuizPage> {
                                   cancel: 'No',
                                   onTapAccept: () {
                                     if (DragDropQuizBody
-                                            .dragDropBodyKey.currentState !=
+                                            .dragDropBodyKey!.currentState !=
                                         null) {
                                       if (DragDropQuizBody
-                                          .dragDropBodyKey
+                                          .dragDropBodyKey!
                                           .currentState!
                                           .rightLines
                                           .isNotEmpty) {
@@ -589,7 +593,7 @@ class _QuizPageState extends State<QuizPage> {
                                         return;
                                       }
                                       DragDropQuizBody
-                                          .dragDropBodyKey.currentState!
+                                          .dragDropBodyKey!.currentState!
                                           .checkAnswers();
                                     }
 

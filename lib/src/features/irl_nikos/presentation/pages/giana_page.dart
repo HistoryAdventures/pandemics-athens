@@ -55,7 +55,9 @@ class _GianaPageState extends State<GianaPage> {
                   fit: BoxFit.cover,
                 )),
             SoundAndMenuWidget(
-                      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+              icons: isSoundOn
+                  ? AssetsPath.iconVolumeOn
+                  : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
                       setState(() {
@@ -99,8 +101,11 @@ class _GianaPageState extends State<GianaPage> {
               child: ArrowRightTextWidget(
                 onTap: () {
                   if (kIsWeb) {
-                    html.window.history.back();
-                    context.router.pop();
+                    // html.window.history.back();
+                    LeafDetails.currentVertex = 17;
+                    LeafDetails.visitedVertexes.add(17);
+                    NavigationSharedPreferences.upDateShatedPreferences();
+                    context.router.replace(const QuizPageRoute());
                   } else {
                     context.router.pop();
                   }

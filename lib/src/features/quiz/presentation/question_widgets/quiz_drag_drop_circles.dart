@@ -8,6 +8,7 @@ import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/widgets.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
+import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/circle_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
@@ -47,6 +48,9 @@ class QuizDragDropCirclesWidget extends StatefulWidget {
 }
 
 class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
+  late List<Answers<int>> answers;
+  late List<Answers<int>> variants;
+
   void removeAll(Answers toRemove) {
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
   }
@@ -66,6 +70,11 @@ class _QuizDragDropCirclesWidgetState extends State<QuizDragDropCirclesWidget> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant QuizDragDropCirclesWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -140,9 +149,10 @@ class DrowLineWidget {
 class DragDropQuizBody extends StatefulWidget {
   final List<Answers<int>> answers;
   final List<Answers<int>> variants;
-
-  static final GlobalKey<__DragDropQuizBodyState> dragDropBodyKey =
+   
+  static  GlobalKey<__DragDropQuizBodyState> dragDropBodyKey =
       GlobalKey<__DragDropQuizBodyState>();
+
   DragDropQuizBody({
     Key? key,
     required this.answers,
@@ -192,7 +202,6 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     //   return;
     // }
     setUpRightLines();
-
 
     savedLines.forEach((element) {
       element.color = Colors.red;
@@ -309,7 +318,16 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
 
   @override
   void initState() {
+    print("init state");
+    Future.delayed(Duration(milliseconds: 1000)).then((v) {
+      h = dropKey.currentContext!.size!.height;
+      w = dropKey.currentContext!.size!.width;
+      initalHeight = h;
+      initialWidth = w;
+      setState(() {});
+    });
     for (var i = 0; i < widget.answers.length; i++) {
+      // final key = GlobalKey();
       questions.add(
         QuizItem(
           question: Question(key: GlobalKey()),
@@ -348,18 +366,34 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     // );
 
     super.initState();
-    Future.delayed(Duration(milliseconds: 1000)).then((v) {
-      h = dropKey.currentContext!.size!.height;
-      w = dropKey.currentContext!.size!.width;
-      initalHeight = h;
-      initialWidth = w;
-      setState(() {});
-    });
+  }
+
+  @override
+  void dispose() {
+    questions = [];
+    super.dispose();
+  }
+
+  @override
+  Future<void> didChangeDependencies() async {
+    h = await dropKey.currentContext!.size!.height;
+    w = await dropKey.currentContext!.size!.width;
+    initalHeight = h;
+    initialWidth = w;
+    setState(() {});
+
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant DragDropQuizBody oldWidget) {
+
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
       if (initialWidth != w || initalHeight != h) {
@@ -367,6 +401,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
       }
       initalHeight = h;
       initialWidth = w;
+      setState(() {});
     });
 
     screenHeight = MediaQuery.of(context).size.height;
@@ -398,8 +433,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                 //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
                 //         color: Colors.black,
                 //         fontWeight: FontWeight.w400,
-                //         fontSize: HW.getHeight(24, context),
-                //       ),
+                //         fontSize: HW.getHeight(24, con     //       ),
                 //   maxLines: 1,
                 //   textAlign: TextAlign.start,
                 // ),
@@ -763,7 +797,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                   //     :
 
                   Text(
-                answerText!,
+                answerText,
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: Colors.black,
                       fontSize: HW.getHeight(18, context),

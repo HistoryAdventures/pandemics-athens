@@ -524,14 +524,16 @@ class _QuizMapImageState extends State<QuizMapImage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 height: HW.getHeight(50, context),
                 width: HW.getWidth(200, context),
-                padding: EdgeInsets.only(left: HW.getWidth(24, context)),
-                child: AutoSizeText(
+                //padding: EdgeInsets.only(left: HW.getWidth(24, context)),
+                child: Text(
                   questionText,
+                  style:
+                      TextStyle(fontSize: TextFontSize.getHeight(16, context)),
                   maxLines: 1,
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                 ),
               ),
               Draggable(
@@ -641,7 +643,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
             width: HW.getWidth(500, context),
             padding: EdgeInsets.only(left: HW.getWidth(10, context)),
             child: Text(
-              answerText!,
+              answerText,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: Colors.black,
                     fontSize: HW.getHeight(18, context),

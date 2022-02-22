@@ -84,7 +84,7 @@ class _CheckboxTextState extends State<CheckboxText> {
           ),
           Container(
             width: HW.getWidth(450, context),
-            child: AutoSizeText(
+            child: Text(
               widget.text,
               maxLines: 4,
               style: widget.isCorrect == null
