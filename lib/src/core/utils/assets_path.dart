@@ -25,6 +25,27 @@ class AssetsPath {
   static const String mapTimeLineBlur =
       'assets/image_back/blur_map_timeline.png';
 
+  // Sounds Paths
+  // Change path assets/asdasd into assets/assets/asdasd before creating build
+  static const String parallaxVideoSound =
+      'assets/assets/audios/parallax-page/mus_flythrough_r1.ogg';
+  static const String windSound =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration1.ogg';
+  static const String nikosPartSound =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration2.ogg';
+  static const String peopleSound1 =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration3.ogg';
+  static const String peopleSound2 =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration4.ogg';
+  static const String footsteps =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration5.ogg';
+  static const String cough =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration6.ogg';
+  static const String water =
+      'assets/assets/audios/parallax-page/sfx_amb_illustration7.ogg';
+  static const String parallaxBgSound =
+      'assets/assets/audios/parallax-page/mus_story_r1a.ogg';
+
 // Quiz Images
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
@@ -95,6 +116,9 @@ class AssetsPath {
   static const String nikosChoose1 = 'assets/images_quiz/nikos-choose1.png';
   static const String nikosChoose2 = 'assets/images_quiz/nikos-choose2.png';
   static const String nikosChoose3 = 'assets/images_quiz/nikos-choose3.png';
+  static const String nikosKeepGoing = 'assets/images_quiz/keep_going.png';
+  static const String nikosQuitMedicine =
+      'assets/images_quiz/quit_medicine.png';
 
   static const String gifParalaxNikosGif =
       'assets/paralax_new/character_nikos_lottie.gif';
@@ -447,6 +471,8 @@ class AssetsPath {
 
   static const String mapLottie477 =
       'assets/assets/map_lottie/map_10/index.html';
+
+  // Change
   static const String paralaxHtml = 'assets/assets/paralax/index.html';
 
   static const String mapLottie495 =
