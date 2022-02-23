@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
@@ -6,7 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:just_audio/just_audio.dart';
+
 import 'package:universal_html/html.dart';
 
 import '../../../../core/colors.dart';
@@ -30,8 +31,7 @@ class LeandingPage extends StatefulWidget {
 
 class _LeandingPageState extends State<LeandingPage> {
   late AppLocalizations locales;
-  bool isSoundOn = false;
-  final backgroundplayer = AudioPlayer();
+  bool isSoundOn = true;
   bool isImageloaded = true;
   Offset offset = const Offset(0, 0);
   String? loadingCount = '0';
@@ -42,6 +42,9 @@ class _LeandingPageState extends State<LeandingPage> {
   double mouseY = 100;
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
+
+  AudioPlayer leandingBgSound = AudioPlayer();
+  PlayerState audioPlayerState = PlayerState.PAUSED;
 
   @override
   void initState() {
@@ -64,16 +67,20 @@ class _LeandingPageState extends State<LeandingPage> {
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     if (widget.navigateFromNavigatorPage != null) {
-      isImageloaded = widget.navigateFromNavigatorPage!;
     } else if (loadingCount == '0') {
       precacheImages();
     }
+    if (isImageloaded && audioPlayerState != PlayerState.PLAYING) {
+      playSound();
+    }
+
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
     animatedParticlesBS.close();
+    // leandingBgSound.dispose();
     super.dispose();
   }
 
@@ -198,6 +205,7 @@ class _LeandingPageState extends State<LeandingPage> {
                           LeafDetails.currentVertex = 1;
                           // print(LeafDetails.visitedVertexes);
                           NavigationSharedPreferences.upDateShatedPreferences();
+                          leandingBgSound.setVolume(0.5);
                           context.router.push(const GlossaryPageRoute());
                         },
                       ),
@@ -211,9 +219,10 @@ class _LeandingPageState extends State<LeandingPage> {
                           isSoundOn = !isSoundOn;
 
                           if (isSoundOn) {
-                            backgroundplayer.pause();
+                            leandingBgSound.resume();
+                            ;
                           } else {
-                            backgroundplayer.play();
+                            leandingBgSound.pause();
                           }
                         });
                       },
@@ -233,7 +242,12 @@ class _LeandingPageState extends State<LeandingPage> {
   }
 
   Future<void> precacheImages() async {
-    if (window.sessionStorage.containsKey('allImagesAreCached')) return;
+    if (window.sessionStorage.containsKey('allImagesAreCached')) {
+      setState(() {
+        playSound();
+      });
+      return;
+    }
 
     setState(() {
       isImageloaded = false;
@@ -254,6 +268,16 @@ class _LeandingPageState extends State<LeandingPage> {
 
     setState(() {
       isImageloaded = true;
+      playSound();
     });
+  }
+
+  Future<void> playSound() async {
+    final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
+    if (result == 1) {
+      audioPlayerState = PlayerState.PLAYING;
+    }
+    leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
+    // await leandingBgSound.play();
   }
 }

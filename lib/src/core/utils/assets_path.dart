@@ -25,8 +25,13 @@ class AssetsPath {
   static const String mapTimeLineBlur =
       'assets/image_back/blur_map_timeline.png';
 
-  // Sounds Paths
+  // Sounds Paths //
+  /////////////////
+
+
   // Change path assets/asdasd into assets/assets/asdasd before creating build
+
+  //Parallax 
   static const String parallaxVideoSound =
       'assets/assets/audios/parallax-page/mus_flythrough_r1.ogg';
   static const String windSound =
@@ -46,6 +51,13 @@ class AssetsPath {
   static const String parallaxBgSound =
       'assets/assets/audios/parallax-page/mus_story_r1a.ogg';
 
+ //Leanding
+static const String leandingBgSound =  'assets/assets/audios/title-screen/mus_titlescreen_r2.ogg';
+
+
+
+
+  
 // Quiz Images
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
