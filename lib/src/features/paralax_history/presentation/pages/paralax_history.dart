@@ -61,14 +61,24 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   late VideoPlayerController _videoController;
   AudioPlayer audioPlayerforParallaxVideo = AudioPlayer();
-  AudioPlayer audioPlayerforWind = AudioPlayer();
-  AudioPlayer nikosPart = AudioPlayer();
   AudioPlayer backgroundSound = AudioPlayer();
-  AudioPlayer audioPlayerforPeople1 = AudioPlayer();
-  AudioPlayer audioPlayerforPeople2 = AudioPlayer();
-  AudioPlayer footsteps = AudioPlayer();
-  AudioPlayer cough = AudioPlayer();
-  AudioPlayer water = AudioPlayer();
+
+  final AudioPlayer _currentPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
+  final AudioPlayer _nextPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
+
+  double currentPlayerVol = 0.0;
+  double nextPlayerVol = 0.0;
+
+  List<String> audioAssets = [
+    AssetsPath.windSound,
+    AssetsPath.nikosPartSound,
+    AssetsPath.peopleSound1,
+    AssetsPath.peopleSound2,
+    AssetsPath.footsteps,
+    AssetsPath.cough,
+    AssetsPath.water,
+  ];
+
   bool isImageloaded = false;
   bool _lernMoreVisibility = false;
   bool _bottomFieldVizibility = false;
@@ -100,13 +110,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     return y;
   }
 
-
   double getHeight(globalKey) {
     RenderBox box = globalKey.currentContext!.findRenderObject() as RenderBox;
     Size size = box.size;
     return size.height;
   }
-
 
   @override
   void didChangeDependencies() {
@@ -143,6 +151,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       _videoController.play();
 
       Future.delayed(Duration(milliseconds: 500)).then((value) => init());
+    }
+
+    if(_mustScrollToEnd == true && _mustScrollToMiddle == false){
+      Future.delayed(Duration(milliseconds: 500)).then((value) => bGSound());
+      playIt(audioAssets.length - 1);
     }
 
     if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
@@ -206,7 +219,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     super.initState();
 
-
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         'paralax',
@@ -218,53 +230,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   Future init() async {
-   
     await audioPlayerforParallaxVideo.play(AssetsPath.parallaxVideoSound);
-  }
-
-  Future plaWindSound() async {
-    final int? result = await audioPlayerforWind.play(AssetsPath.windSound);
-    await audioPlayerforWind.setReleaseMode(ReleaseMode.LOOP);
-  }
-
-  Future playNikosPartSound() async {
-    final int? result = await nikosPart.play(AssetsPath.nikosPartSound);
-    await nikosPart.setReleaseMode(ReleaseMode.LOOP);
-    nikosPart.stop();
-  }
-
-  Future playPeople1Sound() async {
-    final int? result = await audioPlayerforPeople1.play(
-      AssetsPath.peopleSound1,
-    );
-
-    await audioPlayerforPeople1.setReleaseMode(ReleaseMode.LOOP);
-    audioPlayerforPeople1.stop();
-  }
-
-  Future playPeople2Sound() async {
-    final int? result = await audioPlayerforPeople2.play(
-      AssetsPath.peopleSound2,
-    );
-    await audioPlayerforPeople2.setReleaseMode(ReleaseMode.LOOP);
-    audioPlayerforPeople2.stop();
-  }
-
-  Future footSteps() async {
-    final int? result = await footsteps.play(AssetsPath.footsteps);
-    await footsteps.setReleaseMode(ReleaseMode.LOOP);
-    footsteps.stop();
-  }
-
-  Future coughSound() async {
-    final int? result = await cough.play(AssetsPath.cough, volume: 0.0);
-    await cough.setReleaseMode(ReleaseMode.LOOP);
-    footsteps.stop();
-  }
-
-  Future waterSound() async {
-    final int? result = await water.play(AssetsPath.water, volume: 0.0);
-    await water.setReleaseMode(ReleaseMode.LOOP);
   }
 
   Future bGSound() async {
@@ -276,14 +242,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void dispose() {
     audioPlayerforParallaxVideo.dispose();
-    audioPlayerforWind.dispose();
-    nikosPart.dispose();
+
     backgroundSound.dispose();
-    audioPlayerforPeople1.dispose();
-    audioPlayerforPeople2.dispose();
-    water.dispose();
-    footsteps.dispose();
-    cough.dispose();
+    _currentPlayer.dispose();
+    _nextPlayer.dispose();
+
     super.dispose();
   }
 
@@ -312,6 +275,79 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   bool scrolled = false;
   bool showLoading = true;
 
+  Future<void> turnOffVolume(AudioPlayer player) async {
+    if (!isSoundOn) {
+      player.setVolume(0);
+    } else {
+      await player.setVolume(0.9);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.7);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.5);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.3);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.1);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0);
+    }
+
+    player.pause();
+  }
+
+  Future<void> turnOnVolume(AudioPlayer player) async {
+    if (!isSoundOn) {
+      await player.setVolume(0);
+    } else {
+      await player.setVolume(0.1);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.3);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.5);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.7);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(0.9);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await player.setVolume(1);
+    }
+  }
+
+  void mute() {
+    _currentPlayer.setVolume(0);
+    _nextPlayer.setVolume(0);
+  }
+
+  void unmute() {
+    _currentPlayer.setVolume(currentPlayerVol);
+    _nextPlayer.setVolume(nextPlayerVol);
+  }
+
+  Future<void> playIt(int index) async {
+    if (index.isOdd) {
+      turnOffVolume(_nextPlayer);
+
+      await _currentPlayer.setVolume(0.0);
+      await _currentPlayer.play(audioAssets[index]);
+      _currentPlayer.setReleaseMode(ReleaseMode.LOOP);
+
+      turnOnVolume(_currentPlayer);
+
+      currentPlayerVol = 1.0;
+      nextPlayerVol = 0.0;
+    } else {
+      turnOffVolume(_currentPlayer);
+
+      await _nextPlayer.setVolume(0.0);
+      await _nextPlayer.play(audioAssets[index]);
+      _nextPlayer.setReleaseMode(ReleaseMode.LOOP);
+      turnOnVolume(_nextPlayer);
+
+      currentPlayerVol = 0.0;
+      nextPlayerVol = 1.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
@@ -334,432 +370,124 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     return NotificationListener<UserScrollNotification>(
       onNotification: (notification) {
+        if (getObjectPositionByKey(_nikosGifKey) - getHeight(_nikosGifKey) * 5 >
+            20) {
+          if (!played0) {
+            played0 = true;
+            played1 = false;
+            played2 = false;
+            played3 = false;
+            played4 = false;
+            played5 = false;
+            played6 = false;
 
-        final ScrollDirection direction = notification.direction;
-
-        if (direction == ScrollDirection.reverse) {
-          if (getObjectPositionByKey(_nikosGifKey) -
-                  getHeight(_nikosGifKey) * 5 <
-              20) {
-            if (!played1) {
-              played1 = true;
-
-              if (audioPlayerforWind.state == PlayerState.PAUSED) {
-                audioPlayerforWind.resume();
-              }
-              audioPlayerforWind.setVolume(0.8);
-              audioPlayerforWind.setVolume(0.7);
-              audioPlayerforWind.setVolume(0.6);
-              audioPlayerforWind.setVolume(0.4);
-              // cough.setVolume(0.0);
-
-              Future.delayed(Duration(seconds: 1)).then((value) {
-                // nikosPart.seek(Duration(milliseconds: 0));
-                // nikosPart.setVolume(1.0);
-                nikosPart.seek(Duration(milliseconds: 0));
-                nikosPart.setVolume(1.0);
-                nikosPart.resume();
-              });
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                audioPlayerforWind.setVolume(0.2);
-                audioPlayerforWind.setVolume(0.0);
-                audioPlayerforWind.stop();
-              });
-            }
-          }
-
-          if (getObjectPositionByKey(_nikosText2Key) -
-                  getHeight(_nikosText2Key) * 2 <
-              20) {
-            if (!played2) {
-              played2 = true;
-              if (nikosPart.state == PlayerState.PAUSED) {
-                nikosPart.resume();
-              }
-              nikosPart.setVolume(0.8);
-              nikosPart.setVolume(0.6);
-              nikosPart.setVolume(0.4);
-              if (audioPlayerforPeople1.state == PlayerState.STOPPED) {
-                audioPlayerforPeople1.resume();
-              }
-              audioPlayerforPeople1.seek(Duration(milliseconds: 0));
-              audioPlayerforPeople1.setVolume(1.0);
-
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                nikosPart.setVolume(0.2);
-                nikosPart.setVolume(0.0);
-                nikosPart.stop();
-              });
-            }
-          }
-
-          if (getObjectPositionByKey(_nikosText3Key) -
-                  getHeight(_nikosText3Key) * 2 <
-              20) {
-            if (!played3) {
-              played3 = true;
-              if (audioPlayerforPeople1.state == PlayerState.STOPPED) {
-                audioPlayerforPeople1.resume();
-                audioPlayerforPeople1.setVolume(1.0);
-              }
-
-              audioPlayerforPeople1.setVolume(0.8);
-              audioPlayerforPeople1.setVolume(0.6);
-              audioPlayerforPeople1.setVolume(0.4);
-
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                if (audioPlayerforPeople2.state == PlayerState.STOPPED) {
-                  audioPlayerforPeople2.seek(Duration(milliseconds: 0));
-                  audioPlayerforPeople2.setVolume(1.0);
-                  audioPlayerforPeople2.resume();
-                }
-              });
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                audioPlayerforPeople1.setVolume(0.2);
-                audioPlayerforPeople1.setVolume(0.0);
-                audioPlayerforPeople1.stop();
-              });
-
-
-            }
-          }
-
-          if (getObjectPositionByKey(_nikosText4Key) -
-                  getHeight(_nikosText4Key) * 1.5 <
-              20) {
-            if (!played4) {
-              played4 = true;
-    
-
-              if (audioPlayerforPeople2.state == PlayerState.STOPPED) {
-                audioPlayerforPeople2.resume();
-              }
-              audioPlayerforPeople2.setVolume(0.8);
-              audioPlayerforPeople2.setVolume(0.6);
-              audioPlayerforPeople2.setVolume(0.4);
-
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                if (footsteps.state == PlayerState.STOPPED) {
-                  footsteps.seek(Duration(milliseconds: 0));
-                  footsteps.setVolume(1.0);
-                  footsteps.resume();
-                }
-              });
-    
-              Future.delayed(Duration(seconds: 2)).then((value) {
-                audioPlayerforPeople2.setVolume(0.2);
-                audioPlayerforPeople2.setVolume(0.0);
-                audioPlayerforPeople2.stop();
-              });
-
-            }
-          }
-
-          if (getObjectPositionByKey(_nikosText5Key) -
-                  getHeight(_nikosText5Key) * 4.5 <
-              10) {
-            if (!played5) {
-              played5 = true;
-
-              if (footsteps.state == PlayerState.STOPPED) {
-                footsteps.resume();
-              }
-              footsteps.setVolume(0.8);
-              footsteps.setVolume(0.6);
-              footsteps.setVolume(0.4);
-
-              Future.delayed(Duration(seconds: 1)).then((value) {
-                if (cough.state == PlayerState.PAUSED) {
-                  cough.seek(Duration(milliseconds: 0));
-                  cough.setVolume(1.0);
-                  cough.resume();
-                }
-              });
-
-              Future.delayed(Duration(seconds: 1)).then((value) {
-                footsteps.setVolume(0.2);
-                footsteps.setVolume(0.0);
-                footsteps.stop();
-              });
-
-            }
-          }
-
-          if (getObjectPositionByKey(_nikosText5Key) < 0) {
-            if (!played6) {
-              played6 = true;
-
-              cough.setVolume(1.0);
-              if (cough.state == PlayerState.STOPPED) {
-                cough.resume();
-              }
-              cough.setVolume(0.8);
-              cough.setVolume(0.6);
-              cough.setVolume(0.4);
-
-              Future.delayed(Duration(seconds: 1)).then((value) {
-                water.seek(Duration(milliseconds: 0));
-                water.setVolume(1.0);
-
-                if (water.state == PlayerState.STOPPED) {
-                  water.resume();
-                }
-              });
-             
-              Future.delayed(Duration(seconds: 1)).then((value) {
-                cough.setVolume(0.2);
-                cough.setVolume(0.0);
-                cough.stop();
-              });
-            }
-            // }
+            playIt(0);
           }
         }
-  
-        if (direction == ScrollDirection.forward) {
-          if (getObjectPositionByKey(_nikosGifKey) -
-                      getHeight(_nikosGifKey) * 5 >
-                  20 &&
-              getObjectPositionByKey(_nikosGifKey) -
-                      getHeight(_nikosGifKey) * 5 <
-                  200) {
+
+        if (getObjectPositionByKey(_nikosGifKey) - getHeight(_nikosGifKey) * 5 <
+                20 &&
+            getObjectPositionByKey(_nikosText2Key) -
+                    getHeight(_nikosText2Key) * 2 >
+                20) {
+          if (!played1) {
+            played1 = true;
             played0 = false;
-            played1 = false;
             played2 = false;
             played3 = false;
             played4 = false;
             played5 = false;
             played6 = false;
-            played7 = false;
 
-            if (audioPlayerforPeople1.state == PlayerState.PLAYING) {
-              audioPlayerforPeople1.stop();
-            }
-            if (audioPlayerforPeople2.state == PlayerState.PLAYING) {
-              audioPlayerforPeople2.stop();
-            }
-            if (water.state == PlayerState.PLAYING) {
-              water.stop();
-            }
-            if (footsteps.state == PlayerState.PLAYING) {
-              footsteps.stop();
-            }
-            if (cough.state == PlayerState.PLAYING) {
-              cough.stop();
-            }
-            if (nikosPart.state == PlayerState.STOPPED) {
-              nikosPart.resume();
-            }
-
-            nikosPart.setVolume(0.8);
-            nikosPart.setVolume(0.6);
-            nikosPart.setVolume(0.4);
-
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              if (audioPlayerforWind.state == PlayerState.STOPPED) {
-                audioPlayerforWind.resume();
-              }
-              audioPlayerforWind.seek(Duration(milliseconds: 0));
-              audioPlayerforWind.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              nikosPart.setVolume(0.2);
-              nikosPart.setVolume(0.0);
-            });
+            playIt(1);
           }
+        }
 
-          if (getObjectPositionByKey(_nikosText2Key) -
-                      getHeight(_nikosText2Key) * 2 >
-                  50 &&
-              getObjectPositionByKey(_nikosText2Key) -
-                      getHeight(_nikosText2Key) * 2 <
-                  150) {
-
+        if (getObjectPositionByKey(_nikosText2Key) -
+                    getHeight(_nikosText2Key) * 2 <
+                20 &&
+            getObjectPositionByKey(_nikosText3Key) -
+                    getHeight(_nikosText3Key) * 2 >
+                20) {
+          if (!played2) {
+            played2 = true;
             played0 = false;
             played1 = false;
-            played2 = false;
             played3 = false;
             played4 = false;
             played5 = false;
             played6 = false;
-            played7 = false;
 
-            if (audioPlayerforPeople2.state == PlayerState.PLAYING) {
-              audioPlayerforPeople2.stop();
-            }
-            if (water.state == PlayerState.PLAYING) {
-              water.stop();
-            }
-            if (footsteps.state == PlayerState.PLAYING) {
-              footsteps.stop();
-            }
-            if (cough.state == PlayerState.PLAYING) {
-              cough.stop();
-            }
-            if (audioPlayerforPeople1.state == PlayerState.STOPPED) {
-              audioPlayerforPeople1.resume();
-            }
-
-            audioPlayerforPeople1.setVolume(0.8);
-            audioPlayerforPeople1.setVolume(0.6);
-            audioPlayerforPeople1.setVolume(0.4);
-
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              if (nikosPart.state == PlayerState.STOPPED) {
-                nikosPart.resume();
-              }
-              nikosPart.seek(Duration(milliseconds: 0));
-              nikosPart.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              audioPlayerforPeople1.setVolume(0.2);
-              audioPlayerforPeople1.setVolume(0.0);
-            });
+            playIt(2);
           }
+        }
 
-          if (getObjectPositionByKey(_nikosText3Key) -
-                      getHeight(_nikosText3Key) * 2 >
-                  10 &&
-              getObjectPositionByKey(_nikosText3Key) -
-                      getHeight(_nikosText3Key) * 2 <
-                  50) {
+        if (getObjectPositionByKey(_nikosText3Key) -
+                    getHeight(_nikosText3Key) * 2 <
+                20 &&
+            getObjectPositionByKey(_nikosText4Key) -
+                    getHeight(_nikosText4Key) * 1.5 >
+                20) {
+          if (!played3) {
+            played3 = true;
             played0 = false;
             played1 = false;
             played2 = false;
-            played3 = false;
             played4 = false;
             played5 = false;
             played6 = false;
-            played7 = false;
 
-            if (water.state == PlayerState.PLAYING) {
-              water.stop();
-            }
-            if (footsteps.state == PlayerState.PLAYING) {
-              footsteps.stop();
-            }
-            if (cough.state == PlayerState.PLAYING) {
-              cough.stop();
-            }
-
-            if (audioPlayerforPeople2.state == PlayerState.STOPPED) {
-              audioPlayerforPeople2.resume();
-            }
-
-            audioPlayerforPeople2.setVolume(0.8);
-            audioPlayerforPeople2.setVolume(0.6);
-            audioPlayerforPeople2.setVolume(0.4);
-
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              if (audioPlayerforPeople1.state == PlayerState.STOPPED) {
-                audioPlayerforPeople1.resume();
-              }
-
-              audioPlayerforPeople1.seek(Duration(milliseconds: 0));
-              audioPlayerforPeople1.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              audioPlayerforPeople2.setVolume(0.2);
-              audioPlayerforPeople2.setVolume(0.0);
-            });
+            playIt(3);
           }
+        }
 
-          if (getObjectPositionByKey(_nikosText4Key) -
-                      getHeight(_nikosText4Key) * 1.5 >
-                  10 &&
-              getObjectPositionByKey(_nikosText4Key) -
-                      getHeight(_nikosText4Key) * 1.5 <
-                  90) {
+        if (getObjectPositionByKey(_nikosText4Key) -
+                    getHeight(_nikosText4Key) * 1.5 <
+                20 &&
+            getObjectPositionByKey(_nikosText5Key) -
+                    getHeight(_nikosText5Key) * 4.5 >
+                10) {
+          if (!played4) {
+            played4 = true;
             played0 = false;
             played1 = false;
             played2 = false;
             played3 = false;
-            played4 = false;
             played5 = false;
             played6 = false;
-            played7 = false;
-            if (audioPlayerforPeople1.state == PlayerState.PLAYING) {
-              audioPlayerforPeople1.stop();
-            }
 
-            if (water.state == PlayerState.PLAYING) {
-              water.stop();
-            }
-
-            if (cough.state == PlayerState.PLAYING) {
-              cough.stop();
-            }
-
-            footsteps.setVolume(0.8);
-            footsteps.setVolume(0.6);
-            footsteps.setVolume(0.4);
-
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              if (audioPlayerforPeople2.state == PlayerState.STOPPED) {
-                audioPlayerforPeople2.resume();
-              }
-              audioPlayerforPeople2.seek(Duration(milliseconds: 0));
-              audioPlayerforPeople2.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              if (footsteps.state == PlayerState.STOPPED) {
-                footsteps.resume();
-              }
-              footsteps.setVolume(0.2);
-              footsteps.setVolume(0.0);
-            });
+            playIt(4);
           }
+        }
 
-          if (getObjectPositionByKey(_nikosText5Key) -
-                      getHeight(_nikosText5Key) * 7 >
-                  10 &&
-              getObjectPositionByKey(_nikosText5Key) -
-                      getHeight(_nikosText5Key) * 7 <
-                  90) {
+        if (getObjectPositionByKey(_nikosText5Key) -
+                    getHeight(_nikosText5Key) * 4.5 <
+                10 &&
+            getObjectPositionByKey(_nikosText5Key) > 0) {
+          if (!played5) {
+            played5 = true;
             played0 = false;
             played1 = false;
             played2 = false;
             played3 = false;
             played4 = false;
-            played5 = false;
             played6 = false;
-            played7 = false;
-            cough.setVolume(0.8);
-            cough.setVolume(0.6);
-            cough.setVolume(0.4);
 
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              footsteps.seek(Duration(milliseconds: 0));
-              footsteps.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              cough.setVolume(0.2);
-              cough.setVolume(0.0);
-            });
+            playIt(5);
           }
+        }
 
-          if (getObjectPositionByKey(_nikosText5Key) > 10 &&
-              getObjectPositionByKey(_nikosText5Key) < 100) {
+        if (getObjectPositionByKey(_nikosText5Key) < 0) {
+          if (!played6) {
+            played6 = true;
             played0 = false;
             played1 = false;
             played2 = false;
             played3 = false;
             played4 = false;
             played5 = false;
-            played6 = false;
-            played7 = false;
-            water.setVolume(0.8);
-            water.setVolume(0.6);
-            water.setVolume(0.4);
 
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              cough.seek(Duration(milliseconds: 0));
-              cough.setVolume(1.0);
-            });
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              water.setVolume(0.2);
-              water.setVolume(0.0);
-            });
+            playIt(6);
           }
         }
 
@@ -796,21 +524,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
                           if (_mustScrollToEnd) {
                             if (!played7) {
-                              print("played7");
-                              waterSound();
-                              water.setVolume(1.0);
                               played7 = true;
                             }
                           } else if (!played) {
                             played = true;
-                            plaWindSound();
                             bGSound();
-                            playNikosPartSound();
-                            playPeople1Sound();
-                            playPeople2Sound();
-                            footSteps();
-                            coughSound();
-                            waterSound();
                           }
                         });
 
@@ -1031,14 +749,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 textTitle: '',
                 onTap: () {
                   audioPlayerforParallaxVideo.dispose();
-                  audioPlayerforWind.dispose();
-                  nikosPart.dispose();
                   backgroundSound.dispose();
-                  audioPlayerforPeople1.dispose();
-                  audioPlayerforPeople2.dispose();
-                  water.dispose();
-                  footsteps.dispose();
-                  cough.dispose();
+                  _nextPlayer.dispose();
+                  _currentPlayer.dispose();
+
                   LeafDetails.currentVertex = 8;
                   LeafDetails.visitedVertexes.add(8);
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -1065,14 +779,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 arrowColor: Colors.black,
                 onTap: () {
                   audioPlayerforParallaxVideo.dispose();
-                  audioPlayerforWind.dispose();
-                  nikosPart.dispose();
+                  _nextPlayer.dispose();
+                  _currentPlayer.dispose();
                   backgroundSound.dispose();
-                  audioPlayerforPeople1.dispose();
-                  audioPlayerforPeople2.dispose();
-                  water.dispose();
-                  footsteps.dispose();
-                  cough.dispose();
                   LeafDetails.currentVertex = 9;
                   LeafDetails.visitedVertexes.add(9);
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -1099,20 +808,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
       onTapVolume: isSoundOn
           ? () {
+              mute();
               setState(() {
                 isSoundOn = !isSoundOn;
-                // audioPlayerforParallaxVideo.setVolume(0.0);
-                audioPlayerforWind.stop();
-                nikosPart.stop();
+
                 backgroundSound.stop();
-                audioPlayerforPeople1.stop();
-                audioPlayerforPeople2.stop();
-                water.stop();
-                footsteps.stop();
-                cough.stop();
               });
             }
           : () {
+              unmute();
               setState(() {
                 isSoundOn = !isSoundOn;
                 backgroundSound.resume();
@@ -1196,14 +900,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           NavigationSharedPreferences.upDateShatedPreferences();
           context.router.push(const MapPageRoute());
           backgroundSound.stop();
-          audioPlayerforWind.stop();
-          nikosPart.stop();
-          backgroundSound.stop();
-          audioPlayerforPeople1.stop();
-          audioPlayerforPeople2.stop();
-          water.stop();
-          footsteps.stop();
-          cough.stop();
+          _currentPlayer.stop();
+
+          // backgroundSound.stop();
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
