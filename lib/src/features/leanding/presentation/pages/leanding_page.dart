@@ -70,9 +70,9 @@ class _LeandingPageState extends State<LeandingPage> {
     } else if (loadingCount == '0') {
       precacheImages();
     }
-    if (isImageloaded && audioPlayerState != PlayerState.PLAYING) {
-      playSound();
-    }
+    // if (isImageloaded && audioPlayerState != PlayerState.PLAYING) {
+    //   playSound();
+    // }
 
     super.didChangeDependencies();
   }
@@ -243,9 +243,6 @@ class _LeandingPageState extends State<LeandingPage> {
 
   Future<void> precacheImages() async {
     if (window.sessionStorage.containsKey('allImagesAreCached')) {
-      setState(() {
-        playSound();
-      });
       return;
     }
 
@@ -268,7 +265,7 @@ class _LeandingPageState extends State<LeandingPage> {
 
     setState(() {
       isImageloaded = true;
-      playSound();
+      // playSound();
     });
   }
 

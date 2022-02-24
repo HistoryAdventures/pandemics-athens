@@ -553,9 +553,9 @@ class FlutterRouter extends _i1.RootStackRouter {
           return _i12.PanaromaRightPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideTop,
-        durationInMilliseconds: 500,
+        durationInMilliseconds: 4500,
         opaque: true,
-        barrierDismissible: false),
+        barrierDismissible: true),
     PathogenProfilePageBottomRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
@@ -566,6 +566,7 @@ class FlutterRouter extends _i1.RootStackRouter {
               needJumpToPracticeMedicinePart:
                   args.needJumpToPracticeMedicinePart);
         },
+        fullscreenDialog: true,
         transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
         durationInMilliseconds: 500,
         opaque: true,
@@ -844,7 +845,8 @@ class FlutterRouter extends _i1.RootStackRouter {
     DeadOfSocratesPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageRouteArgs>();
+          final args = data.argsAs<DeadOfSocratesPageRouteArgs>(
+              orElse: () => const DeadOfSocratesPageRouteArgs());
           return _i20.DeadOfSocratesPage(
               key: args.key, fromKeepGoing: args.fromKeepGoing);
         },
@@ -855,7 +857,8 @@ class FlutterRouter extends _i1.RootStackRouter {
     DeadOfSocratesPageToLeft.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageToLeftArgs>();
+          final args = data.argsAs<DeadOfSocratesPageToLeftArgs>(
+              orElse: () => const DeadOfSocratesPageToLeftArgs());
           return _i20.DeadOfSocratesPage(
               key: args.key, fromKeepGoing: args.fromKeepGoing);
         },
@@ -866,7 +869,8 @@ class FlutterRouter extends _i1.RootStackRouter {
     DeadOfSocratesPageToRight.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageToRightArgs>();
+          final args = data.argsAs<DeadOfSocratesPageToRightArgs>(
+              orElse: () => const DeadOfSocratesPageToRightArgs());
           return _i20.DeadOfSocratesPage(
               key: args.key, fromKeepGoing: args.fromKeepGoing);
         },
@@ -877,7 +881,8 @@ class FlutterRouter extends _i1.RootStackRouter {
     DeadOfSocratesPageToTop.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageToTopArgs>();
+          final args = data.argsAs<DeadOfSocratesPageToTopArgs>(
+              orElse: () => const DeadOfSocratesPageToTopArgs());
           return _i20.DeadOfSocratesPage(
               key: args.key, fromKeepGoing: args.fromKeepGoing);
         },
@@ -888,7 +893,8 @@ class FlutterRouter extends _i1.RootStackRouter {
     DeadOfSocratesPageToBottom.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DeadOfSocratesPageToBottomArgs>();
+          final args = data.argsAs<DeadOfSocratesPageToBottomArgs>(
+              orElse: () => const DeadOfSocratesPageToBottomArgs());
           return _i20.DeadOfSocratesPage(
               key: args.key, fromKeepGoing: args.fromKeepGoing);
         },
@@ -1315,97 +1321,97 @@ class FlutterRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(LeandingPageRoute.name, path: '/home'),
+        _i1.RouteConfig(LeandingPageRoute.name, path: '/leanding-page'),
         _i1.RouteConfig(LeandingPageToLeft.name, path: '/'),
-        _i1.RouteConfig(LeandingPageToRight.name, path: '/home'),
-        _i1.RouteConfig(LeandingPageToTop.name, path: '/home'),
-        _i1.RouteConfig(LeandingPageToBottom.name, path: '/home'),
-        _i1.RouteConfig(CharacrterPageRoute.name, path: '/key-people-of-the-age'),
-        _i1.RouteConfig(CharacterPageToLeft.name, path: '/key-people-of-the-age'),
-        _i1.RouteConfig(CharacterPageToRight.name, path: '/key-people-of-the-age'),
-        _i1.RouteConfig(CharacterPageToTop.name, path: '/key-people-of-the-age'),
-        _i1.RouteConfig(CharacterPageToBottom.name, path: '/key-people-of-the-age'),
+        _i1.RouteConfig(LeandingPageToRight.name, path: '/leanding-page'),
+        _i1.RouteConfig(LeandingPageToTop.name, path: '/leanding-page'),
+        _i1.RouteConfig(LeandingPageToBottom.name, path: '/leanding-page'),
+        _i1.RouteConfig(CharacrterPageRoute.name, path: '/characrter-page'),
+        _i1.RouteConfig(CharacterPageToLeft.name, path: '/characrter-page'),
+        _i1.RouteConfig(CharacterPageToRight.name, path: '/characrter-page'),
+        _i1.RouteConfig(CharacterPageToTop.name, path: '/characrter-page'),
+        _i1.RouteConfig(CharacterPageToBottom.name, path: '/characrter-page'),
         _i1.RouteConfig(CharacterInfoPageRoute.name,
-            path: '/key-people-of-the-age/detail'),
+            path: '/character-info-page'),
         _i1.RouteConfig(CharacterInfoPageToLeft.name,
-            path: '/key-people-of-the-age/detail'),
+            path: '/character-info-page'),
         _i1.RouteConfig(CharacterInfoPageToRight.name,
-            path: '//key-people-of-the-age/detail'),
+            path: '/character-info-page'),
         _i1.RouteConfig(CharacterInfoPageToTop.name,
-            path: '//key-people-of-the-age/detail'),
+            path: '/character-info-page'),
         _i1.RouteConfig(CharacterInfoPageToBottom.name,
-            path: '//key-people-of-the-age/detail'),
-        _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/what-was-it'),
-        _i1.RouteConfig(VirusesInfoPageToLeft.name, path: '/what-was-it'),
+            path: '/character-info-page'),
+        _i1.RouteConfig(VirusesInfoPageRoute.name, path: '/viruses-info-page'),
+        _i1.RouteConfig(VirusesInfoPageToLeft.name, path: '/viruses-info-page'),
         _i1.RouteConfig(VirusesInfoPageToRight.name,
-            path: '/what-was-it'),
-        _i1.RouteConfig(VirusesInfoPageToTop.name, path: '/what-was-it'),
+            path: '/viruses-info-page'),
+        _i1.RouteConfig(VirusesInfoPageToTop.name, path: '/viruses-info-page'),
         _i1.RouteConfig(VirusesInfoPageToBottom.name,
-            path: '/what-was-it'),
-        _i1.RouteConfig(MapPageRoute.name, path: '/timeline-of-main-events'),
-        _i1.RouteConfig(MapPageToLeft.name, path: '/timeline-of-main-events'),
-        _i1.RouteConfig(MapPageToRight.name, path: '/timeline-of-main-events'),
-        _i1.RouteConfig(MapPageToTop.name, path: '/timeline-of-main-events'),
-        _i1.RouteConfig(MapPageToBottom.name, path: '/timeline-of-main-events'),
-        _i1.RouteConfig(QuizPageRoute.name, path: '/assessment'),
-        _i1.RouteConfig(QuizPageToLeft.name, path: '/assessment'),
-        _i1.RouteConfig(QuizPageToRight.name, path: '/assessment'),
-        _i1.RouteConfig(QuizPageToTop.name, path: '/assessment'),
-        _i1.RouteConfig(QuizPageToBottom.name, path: '/quiassessmentz'),
+            path: '/viruses-info-page'),
+        _i1.RouteConfig(MapPageRoute.name, path: '/map-page'),
+        _i1.RouteConfig(MapPageToLeft.name, path: '/map-page'),
+        _i1.RouteConfig(MapPageToRight.name, path: '/map-page'),
+        _i1.RouteConfig(MapPageToTop.name, path: '/map-page'),
+        _i1.RouteConfig(MapPageToBottom.name, path: '/map-page'),
+        _i1.RouteConfig(QuizPageRoute.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageToLeft.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageToRight.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageToTop.name, path: '/quiz-page'),
+        _i1.RouteConfig(QuizPageToBottom.name, path: '/quiz-page'),
         _i1.RouteConfig(ParalaxHistoryPageRoute.name,
-            path: '/to-do-no-harm'),
+            path: '/paralax-history-page'),
         _i1.RouteConfig(ParalaxHistoryPageToLeft.name,
-            path: '/to-do-no-harm'),
+            path: '/paralax-history-page'),
         _i1.RouteConfig(ParalaxHistoryPageToRight.name,
-            path: '/to-do-no-harm'),
+            path: '/paralax-history-page'),
         _i1.RouteConfig(ParalaxHistoryPageToTop.name,
-            path: '/to-do-no-harm'),
+            path: '/paralax-history-page'),
         _i1.RouteConfig(ParalaxHistoryPageToBottom.name,
-            path: '/to-do-no-harm'),
-        _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary'),
-        _i1.RouteConfig(GlossaryPageToLeft.name, path: '/glossary'),
-        _i1.RouteConfig(GlossaryPageToRight.name, path: '/glossary'),
-        _i1.RouteConfig(GlossaryPageToTop.name, path: '/glossary'),
-        _i1.RouteConfig(GlossaryPageToBottom.name, path: '/glossary'),
+            path: '/paralax-history-page'),
+        _i1.RouteConfig(GlossaryPageRoute.name, path: '/glossary-page'),
+        _i1.RouteConfig(GlossaryPageToLeft.name, path: '/glossary-page'),
+        _i1.RouteConfig(GlossaryPageToRight.name, path: '/glossary-page'),
+        _i1.RouteConfig(GlossaryPageToTop.name, path: '/glossary-page'),
+        _i1.RouteConfig(GlossaryPageToBottom.name, path: '/glossary-page'),
         _i1.RouteConfig(PanaromaLeftPageRoute.name,
-            path: '/medical-tools-and-knowledge'),
+            path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaLeftPageToLeft.name,
-            path: '/medical-tools-and-knowledge'),
+            path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaLeftPageToRight.name,
-            path: '/medical-tools-and-knowledge'),
+            path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaLeftPageToTop.name,
-            path: '/medical-tools-and-knowledge'),
+            path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaLeftPageToBottom.name,
-            path: '/medical-tools-and-knowledge'),
+            path: '/panaroma-left-page'),
         _i1.RouteConfig(PanaromaRightPageRoute.name,
-            path: '/plague-and-political-instability'),
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PanaromaRightPageToLeft.name,
-            path: '/plague-and-political-instability'),
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PanaromaRightPageToRight.name,
-            path: '/plague-and-political-instability'),
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PanaromaRightPageToTop.name,
-            path: '/plague-and-political-instability'),
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PanaromaRightPageToBottom.name,
-            path: '/plague-and-political-instability'),
+            path: '/panaroma-right-page'),
         _i1.RouteConfig(PathogenProfilePageBottomRoute.name,
-            path: '/pathogen-profile'),
+            path: '/pathogen-profile-page'),
         _i1.RouteConfig(PathogenProfilePageRightRoute.name,
-            path: '/pathogen-profile'),
+            path: '/pathogen-profile-page'),
         _i1.RouteConfig(PathogenProfilePageLeftRoute.name,
-            path: '/pathogen-profile'),
-        _i1.RouteConfig(KeepGoingPageLeftRoute.name, path: '/keep-going'),
+            path: '/pathogen-profile-page'),
+        _i1.RouteConfig(KeepGoingPageLeftRoute.name, path: '/keep-going-page'),
         _i1.RouteConfig(KeepGoingPageBottomRoute.name,
-            path: '/keep-going'),
+            path: '/keep-going-page'),
         _i1.RouteConfig(QuitMedicinePageRoute.name,
-            path: '/quit-medicine'),
+            path: '/quit-medicine-page'),
         _i1.RouteConfig(QuitMedicinePageToLeft.name,
-            path: '/quit-medicine'),
+            path: '/quit-medicine-page'),
         _i1.RouteConfig(QuitMedicinePageToRight.name,
-            path: '/quit-medicine'),
+            path: '/quit-medicine-page'),
         _i1.RouteConfig(QuitMedicinePageToTop.name,
-            path: '/quit-medicine'),
+            path: '/quit-medicine-page'),
         _i1.RouteConfig(QuitMedicinePageToBottom.name,
-            path: '/quit-medicine'),
+            path: '/quit-medicine-page'),
         _i1.RouteConfig(PracticeMedicineRoute.name, path: '/practice-medicine'),
         _i1.RouteConfig(PracticeMedicineToLeft.name,
             path: '/practice-medicine'),
@@ -1414,99 +1420,99 @@ class FlutterRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(PracticeMedicineToTop.name, path: '/practice-medicine'),
         _i1.RouteConfig(PracticeMedicineToBottom.name,
             path: '/practice-medicine'),
-        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/what-did-it-do'),
-        _i1.RouteConfig(BodyInfoPageToLeft.name, path: '/what-did-it-do'),
-        _i1.RouteConfig(BodyInfoPageToRight.name, path: '/what-did-it-do'),
-        _i1.RouteConfig(BodyInfoPageToTop.name, path: '/what-did-it-do'),
-        _i1.RouteConfig(BodyInfoPageToBottom.name, path: '/what-did-it-do'),
+        _i1.RouteConfig(BodyInfoPageRoute.name, path: '/body-info-page'),
+        _i1.RouteConfig(BodyInfoPageToLeft.name, path: '/body-info-page'),
+        _i1.RouteConfig(BodyInfoPageToRight.name, path: '/body-info-page'),
+        _i1.RouteConfig(BodyInfoPageToTop.name, path: '/body-info-page'),
+        _i1.RouteConfig(BodyInfoPageToBottom.name, path: '/body-info-page'),
         _i1.RouteConfig(VirusLocationPageRoute.name,
-            path: '/where-did-it-come-from'),
+            path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToLeft.name,
-            path: '/where-did-it-come-from'),
+            path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToRight.name,
-            path: '/where-did-it-come-from'),
+            path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToTop.name,
-            path: '/where-did-it-come-from'),
+            path: '/virus-location-page'),
         _i1.RouteConfig(VirusLocationPageToBottom.name,
-            path: '/where-did-it-come-from'),
-        _i1.RouteConfig(DocumentPageRoute.name, path: '/source-analysis'),
-        _i1.RouteConfig(DocumentPageToLeft.name, path: '/source-analysis'),
-        _i1.RouteConfig(DocumentPageToRight.name, path: '/source-analysis'),
-        _i1.RouteConfig(DocumentPageToTop.name, path: '/source-analysis'),
-        _i1.RouteConfig(DocumentPageToBottom.name, path: '/source-analysis'),
+            path: '/virus-location-page'),
+        _i1.RouteConfig(DocumentPageRoute.name, path: '/document-page'),
+        _i1.RouteConfig(DocumentPageToLeft.name, path: '/document-page'),
+        _i1.RouteConfig(DocumentPageToRight.name, path: '/document-page'),
+        _i1.RouteConfig(DocumentPageToTop.name, path: '/document-page'),
+        _i1.RouteConfig(DocumentPageToBottom.name, path: '/document-page'),
         _i1.RouteConfig(DeadOfSocratesPageRoute.name,
-            path: '/death-of-socrates'),
+            path: '/dead-of-socrates-page'),
         _i1.RouteConfig(DeadOfSocratesPageToLeft.name,
-            path: '/death-of-socrates'),
+            path: '/dead-of-socrates-page'),
         _i1.RouteConfig(DeadOfSocratesPageToRight.name,
-            path: '/death-of-socrates'),
+            path: '/dead-of-socrates-page'),
         _i1.RouteConfig(DeadOfSocratesPageToTop.name,
-            path: '/death-of-socrates'),
+            path: '/dead-of-socrates-page'),
         _i1.RouteConfig(DeadOfSocratesPageToBottom.name,
-            path: '/death-of-socrates'),
-        _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war'),
-        _i1.RouteConfig(EndOfWarPageToLeft.name, path: '/end-of-war'),
-        _i1.RouteConfig(EndOfWarPageToRight.name, path: '/end-of-war'),
-        _i1.RouteConfig(EndOfWarPageToTop.name, path: '/end-of-war'),
-        _i1.RouteConfig(EndOfWarPageToBottom.name, path: '/end-of-war'),
-        _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos'),
-        _i1.RouteConfig(IrlNikosPageToLeft.name, path: '/irl-nikos'),
-        _i1.RouteConfig(IrlNikosPageToRight.name, path: '/irl-nikos'),
-        _i1.RouteConfig(IrlNikosPageToTop.name, path: '/irl-nikos'),
-        _i1.RouteConfig(IrlNikosPageToBottom.name, path: '/irl-nikos'),
-        _i1.RouteConfig(GianaPageRoute.name, path: '/giana'),
-        _i1.RouteConfig(GianaPageToLeft.name, path: '/giana'),
-        _i1.RouteConfig(GianaPageToRight.name, path: '/giana'),
-        _i1.RouteConfig(GianaPageToTop.name, path: '/giana'),
-        _i1.RouteConfig(GianaPageToBottom.name, path: '/giana'),
-        _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book'),
-        _i1.RouteConfig(AboutBookPageToLeft.name, path: '/about-book'),
-        _i1.RouteConfig(AboutBookPageToRight.name, path: '/about-book'),
-        _i1.RouteConfig(AboutBookPageToTop.name, path: '/about-book'),
-        _i1.RouteConfig(AboutBookPageToBottom.name, path: '/about-book'),
-        _i1.RouteConfig(CreditsPageRoute.name, path: '/credits'),
-        _i1.RouteConfig(CreditsPageToLeft.name, path: '/credits'),
-        _i1.RouteConfig(CreditsPageToRight.name, path: '/credits'),
-        _i1.RouteConfig(CreditsPageToTop.name, path: '/credits'),
-        _i1.RouteConfig(CreditsPageToBottom.name, path: '/credits'),
+            path: '/dead-of-socrates-page'),
+        _i1.RouteConfig(EndOfWarPageRoute.name, path: '/end-of-war-page'),
+        _i1.RouteConfig(EndOfWarPageToLeft.name, path: '/end-of-war-page'),
+        _i1.RouteConfig(EndOfWarPageToRight.name, path: '/end-of-war-page'),
+        _i1.RouteConfig(EndOfWarPageToTop.name, path: '/end-of-war-page'),
+        _i1.RouteConfig(EndOfWarPageToBottom.name, path: '/end-of-war-page'),
+        _i1.RouteConfig(IrlNikosPageRoute.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(IrlNikosPageToLeft.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(IrlNikosPageToRight.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(IrlNikosPageToTop.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(IrlNikosPageToBottom.name, path: '/irl-nikos-page'),
+        _i1.RouteConfig(GianaPageRoute.name, path: '/giana-page'),
+        _i1.RouteConfig(GianaPageToLeft.name, path: '/giana-page'),
+        _i1.RouteConfig(GianaPageToRight.name, path: '/giana-page'),
+        _i1.RouteConfig(GianaPageToTop.name, path: '/giana-page'),
+        _i1.RouteConfig(GianaPageToBottom.name, path: '/giana-page'),
+        _i1.RouteConfig(AboutBookPageRoute.name, path: '/about-book-page'),
+        _i1.RouteConfig(AboutBookPageToLeft.name, path: '/about-book-page'),
+        _i1.RouteConfig(AboutBookPageToRight.name, path: '/about-book-page'),
+        _i1.RouteConfig(AboutBookPageToTop.name, path: '/about-book-page'),
+        _i1.RouteConfig(AboutBookPageToBottom.name, path: '/about-book-page'),
+        _i1.RouteConfig(CreditsPageRoute.name, path: '/credits-page'),
+        _i1.RouteConfig(CreditsPageToLeft.name, path: '/credits-page'),
+        _i1.RouteConfig(CreditsPageToRight.name, path: '/credits-page'),
+        _i1.RouteConfig(CreditsPageToTop.name, path: '/credits-page'),
+        _i1.RouteConfig(CreditsPageToBottom.name, path: '/credits-page'),
         _i1.RouteConfig(FurtherReadingPageRoute.name,
-            path: '/further-reading'),
+            path: '/further-reading-page'),
         _i1.RouteConfig(FurtherReadingPageToLeft.name,
-            path: '/further-reading'),
+            path: '/further-reading-page'),
         _i1.RouteConfig(FurtherReadingPageToRight.name,
-            path: '/further-reading'),
+            path: '/further-reading-page'),
         _i1.RouteConfig(FurtherReadingPageToTop.name,
-            path: '/further-reading'),
+            path: '/further-reading-page'),
         _i1.RouteConfig(FurtherReadingPageToBottom.name,
-            path: '/further-reading'),
-        _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright'),
-        _i1.RouteConfig(CopyrightPageToLeft.name, path: '/copyright'),
-        _i1.RouteConfig(CopyrightPageToRight.name, path: '/copyright'),
-        _i1.RouteConfig(CopyrightPageToTop.name, path: '/copyright'),
-        _i1.RouteConfig(CopyrightPageToBottom.name, path: '/copyright'),
-        _i1.RouteConfig(SourcePageRoute.name, path: '/sources'),
-        _i1.RouteConfig(SourcePageToLeft.name, path: '/sources'),
-        _i1.RouteConfig(SourcePageToRight.name, path: '/sources'),
-        _i1.RouteConfig(SourcePageToTop.name, path: '/sources'),
-        _i1.RouteConfig(SourcePageToBottom.name, path: '/sources'),
-        _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation'),
+            path: '/further-reading-page'),
+        _i1.RouteConfig(CopyrightPageRoute.name, path: '/copyright-page'),
+        _i1.RouteConfig(CopyrightPageToLeft.name, path: '/copyright-page'),
+        _i1.RouteConfig(CopyrightPageToRight.name, path: '/copyright-page'),
+        _i1.RouteConfig(CopyrightPageToTop.name, path: '/copyright-page'),
+        _i1.RouteConfig(CopyrightPageToBottom.name, path: '/copyright-page'),
+        _i1.RouteConfig(SourcePageRoute.name, path: '/source-page'),
+        _i1.RouteConfig(SourcePageToLeft.name, path: '/source-page'),
+        _i1.RouteConfig(SourcePageToRight.name, path: '/source-page'),
+        _i1.RouteConfig(SourcePageToTop.name, path: '/source-page'),
+        _i1.RouteConfig(SourcePageToBottom.name, path: '/source-page'),
+        _i1.RouteConfig(NavigationPageRoute.name, path: '/navigation-page'),
         _i1.RouteConfig(VirusLocationSecondPageRoute.name,
-            path: '/virus-location-second'),
+            path: '/virus-location-second-page'),
         _i1.RouteConfig(VirusLocationSecondPageToLeft.name,
-            path: '/virus-location-second'),
+            path: '/virus-location-second-page'),
         _i1.RouteConfig(VirusLocationSecondPageToRight.name,
-            path: '/virus-location-second'),
+            path: '/virus-location-second-page'),
         _i1.RouteConfig(VirusLocationSecondPageToTop.name,
-            path: '/virus-location-second'),
+            path: '/virus-location-second-page'),
         _i1.RouteConfig(VirusLocationSecondPageToBottom.name,
-            path: '/virus-location-second')
+            path: '/virus-location-second-page')
       ];
 }
 
 class LeandingPageRoute extends _i1.PageRouteInfo<LeandingPageRouteArgs> {
   LeandingPageRoute({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/home',
+            path: '/leanding-page',
             args: LeandingPageRouteArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -1538,7 +1544,7 @@ class LeandingPageToLeftArgs {
 class LeandingPageToRight extends _i1.PageRouteInfo<LeandingPageToRightArgs> {
   LeandingPageToRight({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/home',
+            path: '/leanding-page',
             args: LeandingPageToRightArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -1554,7 +1560,7 @@ class LeandingPageToRightArgs {
 class LeandingPageToTop extends _i1.PageRouteInfo<LeandingPageToTopArgs> {
   LeandingPageToTop({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/home',
+            path: '/leanding-page',
             args: LeandingPageToTopArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -1570,7 +1576,7 @@ class LeandingPageToTopArgs {
 class LeandingPageToBottom extends _i1.PageRouteInfo<LeandingPageToBottomArgs> {
   LeandingPageToBottom({bool? navigateFromNavigatorPage})
       : super(name,
-            path: '/home',
+            path: '/leanding-page',
             args: LeandingPageToBottomArgs(
                 navigateFromNavigatorPage: navigateFromNavigatorPage));
 
@@ -1584,31 +1590,31 @@ class LeandingPageToBottomArgs {
 }
 
 class CharacrterPageRoute extends _i1.PageRouteInfo {
-  const CharacrterPageRoute() : super(name, path: '/key-people-of-the-age');
+  const CharacrterPageRoute() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacrterPageRoute';
 }
 
 class CharacterPageToLeft extends _i1.PageRouteInfo {
-  const CharacterPageToLeft() : super(name, path: '/key-people-of-the-age');
+  const CharacterPageToLeft() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacterPageToLeft';
 }
 
 class CharacterPageToRight extends _i1.PageRouteInfo {
-  const CharacterPageToRight() : super(name, path: '/key-people-of-the-age');
+  const CharacterPageToRight() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacterPageToRight';
 }
 
 class CharacterPageToTop extends _i1.PageRouteInfo {
-  const CharacterPageToTop() : super(name, path: '/key-people-of-the-age');
+  const CharacterPageToTop() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacterPageToTop';
 }
 
 class CharacterPageToBottom extends _i1.PageRouteInfo {
-  const CharacterPageToBottom() : super(name, path: '/key-people-of-the-age');
+  const CharacterPageToBottom() : super(name, path: '/characrter-page');
 
   static const String name = 'CharacterPageToBottom';
 }
@@ -1619,7 +1625,7 @@ class CharacterInfoPageRoute
       {required _i31.CharacterModelNotifier photoHero,
       required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
-            path: '//key-people-of-the-age/detail',
+            path: '/character-info-page',
             args: CharacterInfoPageRouteArgs(
                 photoHero: photoHero, listCharacters: listCharacters));
 
@@ -1641,7 +1647,7 @@ class CharacterInfoPageToLeft
       {required _i31.CharacterModelNotifier photoHero,
       required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
-            path: '//key-people-of-the-age/detail',
+            path: '/character-info-page',
             args: CharacterInfoPageToLeftArgs(
                 photoHero: photoHero, listCharacters: listCharacters));
 
@@ -1663,7 +1669,7 @@ class CharacterInfoPageToRight
       {required _i31.CharacterModelNotifier photoHero,
       required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
-            path: '/key-people-of-the-age/detail',
+            path: '/character-info-page',
             args: CharacterInfoPageToRightArgs(
                 photoHero: photoHero, listCharacters: listCharacters));
 
@@ -1685,7 +1691,7 @@ class CharacterInfoPageToTop
       {required _i31.CharacterModelNotifier photoHero,
       required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
-            path: '/key-people-of-the-age/detail',
+            path: '/character-info-page',
             args: CharacterInfoPageToTopArgs(
                 photoHero: photoHero, listCharacters: listCharacters));
 
@@ -1707,7 +1713,7 @@ class CharacterInfoPageToBottom
       {required _i31.CharacterModelNotifier photoHero,
       required List<_i31.CharacterModelNotifier> listCharacters})
       : super(name,
-            path: '/key-people-of-the-age/detail',
+            path: '/character-info-page',
             args: CharacterInfoPageToBottomArgs(
                 photoHero: photoHero, listCharacters: listCharacters));
 
@@ -1724,91 +1730,91 @@ class CharacterInfoPageToBottomArgs {
 }
 
 class VirusesInfoPageRoute extends _i1.PageRouteInfo {
-  const VirusesInfoPageRoute() : super(name, path: '/what-was-it');
+  const VirusesInfoPageRoute() : super(name, path: '/viruses-info-page');
 
   static const String name = 'VirusesInfoPageRoute';
 }
 
 class VirusesInfoPageToLeft extends _i1.PageRouteInfo {
-  const VirusesInfoPageToLeft() : super(name, path: '/what-was-it');
+  const VirusesInfoPageToLeft() : super(name, path: '/viruses-info-page');
 
   static const String name = 'VirusesInfoPageToLeft';
 }
 
 class VirusesInfoPageToRight extends _i1.PageRouteInfo {
-  const VirusesInfoPageToRight() : super(name, path: '/what-was-it');
+  const VirusesInfoPageToRight() : super(name, path: '/viruses-info-page');
 
   static const String name = 'VirusesInfoPageToRight';
 }
 
 class VirusesInfoPageToTop extends _i1.PageRouteInfo {
-  const VirusesInfoPageToTop() : super(name, path: '/what-was-it');
+  const VirusesInfoPageToTop() : super(name, path: '/viruses-info-page');
 
   static const String name = 'VirusesInfoPageToTop';
 }
 
 class VirusesInfoPageToBottom extends _i1.PageRouteInfo {
-  const VirusesInfoPageToBottom() : super(name, path: '/what-was-it');
+  const VirusesInfoPageToBottom() : super(name, path: '/viruses-info-page');
 
   static const String name = 'VirusesInfoPageToBottom';
 }
 
 class MapPageRoute extends _i1.PageRouteInfo {
-  const MapPageRoute() : super(name, path: '/timeline-of-main-events');
+  const MapPageRoute() : super(name, path: '/map-page');
 
   static const String name = 'MapPageRoute';
 }
 
 class MapPageToLeft extends _i1.PageRouteInfo {
-  const MapPageToLeft() : super(name, path: '/timeline-of-main-events');
+  const MapPageToLeft() : super(name, path: '/map-page');
 
   static const String name = 'MapPageToLeft';
 }
 
 class MapPageToRight extends _i1.PageRouteInfo {
-  const MapPageToRight() : super(name, path: '/timeline-of-main-events');
+  const MapPageToRight() : super(name, path: '/map-page');
 
   static const String name = 'MapPageToRight';
 }
 
 class MapPageToTop extends _i1.PageRouteInfo {
-  const MapPageToTop() : super(name, path: '/timeline-of-main-events');
+  const MapPageToTop() : super(name, path: '/map-page');
 
   static const String name = 'MapPageToTop';
 }
 
 class MapPageToBottom extends _i1.PageRouteInfo {
-  const MapPageToBottom() : super(name, path: '/timeline-of-main-events');
+  const MapPageToBottom() : super(name, path: '/map-page');
 
   static const String name = 'MapPageToBottom';
 }
 
 class QuizPageRoute extends _i1.PageRouteInfo {
-  const QuizPageRoute() : super(name, path: '/assessment');
+  const QuizPageRoute() : super(name, path: '/quiz-page');
 
   static const String name = 'QuizPageRoute';
 }
 
 class QuizPageToLeft extends _i1.PageRouteInfo {
-  const QuizPageToLeft() : super(name, path: '/assessment');
+  const QuizPageToLeft() : super(name, path: '/quiz-page');
 
   static const String name = 'QuizPageToLeft';
 }
 
 class QuizPageToRight extends _i1.PageRouteInfo {
-  const QuizPageToRight() : super(name, path: '/assessment');
+  const QuizPageToRight() : super(name, path: '/quiz-page');
 
   static const String name = 'QuizPageToRight';
 }
 
 class QuizPageToTop extends _i1.PageRouteInfo {
-  const QuizPageToTop() : super(name, path: '/assessment');
+  const QuizPageToTop() : super(name, path: '/quiz-page');
 
   static const String name = 'QuizPageToTop';
 }
 
 class QuizPageToBottom extends _i1.PageRouteInfo {
-  const QuizPageToBottom() : super(name, path: '/assessment');
+  const QuizPageToBottom() : super(name, path: '/quiz-page');
 
   static const String name = 'QuizPageToBottom';
 }
@@ -1818,7 +1824,7 @@ class ParalaxHistoryPageRoute
   ParalaxHistoryPageRoute(
       {bool? mustScrollToEnd, bool? mustScrollToMiddle, bool? showVideo})
       : super(name,
-            path: '/to-do-no-harm',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageRouteArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle,
@@ -1843,7 +1849,7 @@ class ParalaxHistoryPageToLeft
   ParalaxHistoryPageToLeft(
       {bool? mustScrollToEnd, bool? mustScrollToMiddle, bool? showVideo})
       : super(name,
-            path: '/to-do-no-harm',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageToLeftArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle,
@@ -1868,7 +1874,7 @@ class ParalaxHistoryPageToRight
   ParalaxHistoryPageToRight(
       {bool? mustScrollToEnd, bool? mustScrollToMiddle, bool? showVideo})
       : super(name,
-            path: '/to-do-no-harm',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageToRightArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle,
@@ -1893,7 +1899,7 @@ class ParalaxHistoryPageToTop
   ParalaxHistoryPageToTop(
       {bool? mustScrollToEnd, bool? mustScrollToMiddle, bool? showVideo})
       : super(name,
-            path: '/to-do-no-harm',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageToTopArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle,
@@ -1918,7 +1924,7 @@ class ParalaxHistoryPageToBottom
   ParalaxHistoryPageToBottom(
       {bool? mustScrollToEnd, bool? mustScrollToMiddle, bool? showVideo})
       : super(name,
-            path: '/to-do-no-harm',
+            path: '/paralax-history-page',
             args: ParalaxHistoryPageToBottomArgs(
                 mustScrollToEnd: mustScrollToEnd,
                 mustScrollToMiddle: mustScrollToMiddle,
@@ -1939,91 +1945,91 @@ class ParalaxHistoryPageToBottomArgs {
 }
 
 class GlossaryPageRoute extends _i1.PageRouteInfo {
-  const GlossaryPageRoute() : super(name, path: '/glossary');
+  const GlossaryPageRoute() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageRoute';
 }
 
 class GlossaryPageToLeft extends _i1.PageRouteInfo {
-  const GlossaryPageToLeft() : super(name, path: '/glossary');
+  const GlossaryPageToLeft() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageToLeft';
 }
 
 class GlossaryPageToRight extends _i1.PageRouteInfo {
-  const GlossaryPageToRight() : super(name, path: '/glossary');
+  const GlossaryPageToRight() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageToRight';
 }
 
 class GlossaryPageToTop extends _i1.PageRouteInfo {
-  const GlossaryPageToTop() : super(name, path: '/glossary');
+  const GlossaryPageToTop() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageToTop';
 }
 
 class GlossaryPageToBottom extends _i1.PageRouteInfo {
-  const GlossaryPageToBottom() : super(name, path: '/glossary');
+  const GlossaryPageToBottom() : super(name, path: '/glossary-page');
 
   static const String name = 'GlossaryPageToBottom';
 }
 
 class PanaromaLeftPageRoute extends _i1.PageRouteInfo {
-  const PanaromaLeftPageRoute() : super(name, path: '/medical-tools-and-knowledge');
+  const PanaromaLeftPageRoute() : super(name, path: '/panaroma-left-page');
 
   static const String name = 'PanaromaLeftPageRoute';
 }
 
 class PanaromaLeftPageToLeft extends _i1.PageRouteInfo {
-  const PanaromaLeftPageToLeft() : super(name, path: '/medical-tools-and-knowledge');
+  const PanaromaLeftPageToLeft() : super(name, path: '/panaroma-left-page');
 
   static const String name = 'PanaromaLeftPageToLeft';
 }
 
 class PanaromaLeftPageToRight extends _i1.PageRouteInfo {
-  const PanaromaLeftPageToRight() : super(name, path: '/medical-tools-and-knowledge');
+  const PanaromaLeftPageToRight() : super(name, path: '/panaroma-left-page');
 
   static const String name = 'PanaromaLeftPageToRight';
 }
 
 class PanaromaLeftPageToTop extends _i1.PageRouteInfo {
-  const PanaromaLeftPageToTop() : super(name, path: '/medical-tools-and-knowledge');
+  const PanaromaLeftPageToTop() : super(name, path: '/panaroma-left-page');
 
   static const String name = 'PanaromaLeftPageToTop';
 }
 
 class PanaromaLeftPageToBottom extends _i1.PageRouteInfo {
-  const PanaromaLeftPageToBottom() : super(name, path: '/medical-tools-and-knowledge');
+  const PanaromaLeftPageToBottom() : super(name, path: '/panaroma-left-page');
 
   static const String name = 'PanaromaLeftPageToBottom';
 }
 
 class PanaromaRightPageRoute extends _i1.PageRouteInfo {
-  const PanaromaRightPageRoute() : super(name, path: '/plague-and-political-instability');
+  const PanaromaRightPageRoute() : super(name, path: '/panaroma-right-page');
 
   static const String name = 'PanaromaRightPageRoute';
 }
 
 class PanaromaRightPageToLeft extends _i1.PageRouteInfo {
-  const PanaromaRightPageToLeft() : super(name, path: '/plague-and-political-instability');
+  const PanaromaRightPageToLeft() : super(name, path: '/panaroma-right-page');
 
   static const String name = 'PanaromaRightPageToLeft';
 }
 
 class PanaromaRightPageToRight extends _i1.PageRouteInfo {
-  const PanaromaRightPageToRight() : super(name, path: '/plague-and-political-instability');
+  const PanaromaRightPageToRight() : super(name, path: '/panaroma-right-page');
 
   static const String name = 'PanaromaRightPageToRight';
 }
 
 class PanaromaRightPageToTop extends _i1.PageRouteInfo {
-  const PanaromaRightPageToTop() : super(name, path: '/plague-and-political-instability');
+  const PanaromaRightPageToTop() : super(name, path: '/panaroma-right-page');
 
   static const String name = 'PanaromaRightPageToTop';
 }
 
 class PanaromaRightPageToBottom extends _i1.PageRouteInfo {
-  const PanaromaRightPageToBottom() : super(name, path: '/plague-and-political-instability');
+  const PanaromaRightPageToBottom() : super(name, path: '/panaroma-right-page');
 
   static const String name = 'PanaromaRightPageToBottom';
 }
@@ -2033,7 +2039,7 @@ class PathogenProfilePageBottomRoute
   PathogenProfilePageBottomRoute(
       {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
       : super(name,
-            path: '/pathogen-profile',
+            path: '/pathogen-profile-page',
             args: PathogenProfilePageBottomRouteArgs(
                 key: key,
                 needJumpToPracticeMedicinePart:
@@ -2056,7 +2062,7 @@ class PathogenProfilePageRightRoute
   PathogenProfilePageRightRoute(
       {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
       : super(name,
-            path: '/pathogen-profile',
+            path: '/pathogen-profile-page',
             args: PathogenProfilePageRightRouteArgs(
                 key: key,
                 needJumpToPracticeMedicinePart:
@@ -2079,7 +2085,7 @@ class PathogenProfilePageLeftRoute
   PathogenProfilePageLeftRoute(
       {_i2.Key? key, bool? needJumpToPracticeMedicinePart})
       : super(name,
-            path: '/pathogen-profile',
+            path: '/pathogen-profile-page',
             args: PathogenProfilePageLeftRouteArgs(
                 key: key,
                 needJumpToPracticeMedicinePart:
@@ -2098,43 +2104,43 @@ class PathogenProfilePageLeftRouteArgs {
 }
 
 class KeepGoingPageLeftRoute extends _i1.PageRouteInfo {
-  const KeepGoingPageLeftRoute() : super(name, path: '/keep-going');
+  const KeepGoingPageLeftRoute() : super(name, path: '/keep-going-page');
 
   static const String name = 'KeepGoingPageLeftRoute';
 }
 
 class KeepGoingPageBottomRoute extends _i1.PageRouteInfo {
-  const KeepGoingPageBottomRoute() : super(name, path: '/keep-going');
+  const KeepGoingPageBottomRoute() : super(name, path: '/keep-going-page');
 
   static const String name = 'KeepGoingPageBottomRoute';
 }
 
 class QuitMedicinePageRoute extends _i1.PageRouteInfo {
-  const QuitMedicinePageRoute() : super(name, path: '/quit-medicine');
+  const QuitMedicinePageRoute() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageRoute';
 }
 
 class QuitMedicinePageToLeft extends _i1.PageRouteInfo {
-  const QuitMedicinePageToLeft() : super(name, path: '/quit-medicine');
+  const QuitMedicinePageToLeft() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageToLeft';
 }
 
 class QuitMedicinePageToRight extends _i1.PageRouteInfo {
-  const QuitMedicinePageToRight() : super(name, path: '/quit-medicine');
+  const QuitMedicinePageToRight() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageToRight';
 }
 
 class QuitMedicinePageToTop extends _i1.PageRouteInfo {
-  const QuitMedicinePageToTop() : super(name, path: '/quit-medicine');
+  const QuitMedicinePageToTop() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageToTop';
 }
 
 class QuitMedicinePageToBottom extends _i1.PageRouteInfo {
-  const QuitMedicinePageToBottom() : super(name, path: '/quit-medicine');
+  const QuitMedicinePageToBottom() : super(name, path: '/quit-medicine-page');
 
   static const String name = 'QuitMedicinePageToBottom';
 }
@@ -2170,100 +2176,100 @@ class PracticeMedicineToBottom extends _i1.PageRouteInfo {
 }
 
 class BodyInfoPageRoute extends _i1.PageRouteInfo {
-  const BodyInfoPageRoute() : super(name, path: '/what-did-it-do');
+  const BodyInfoPageRoute() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageRoute';
 }
 
 class BodyInfoPageToLeft extends _i1.PageRouteInfo {
-  const BodyInfoPageToLeft() : super(name, path: '/what-did-it-do');
+  const BodyInfoPageToLeft() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageToLeft';
 }
 
 class BodyInfoPageToRight extends _i1.PageRouteInfo {
-  const BodyInfoPageToRight() : super(name, path: '/what-did-it-do');
+  const BodyInfoPageToRight() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageToRight';
 }
 
 class BodyInfoPageToTop extends _i1.PageRouteInfo {
-  const BodyInfoPageToTop() : super(name, path: '/what-did-it-do');
+  const BodyInfoPageToTop() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageToTop';
 }
 
 class BodyInfoPageToBottom extends _i1.PageRouteInfo {
-  const BodyInfoPageToBottom() : super(name, path: '/what-did-it-do');
+  const BodyInfoPageToBottom() : super(name, path: '/body-info-page');
 
   static const String name = 'BodyInfoPageToBottom';
 }
 
 class VirusLocationPageRoute extends _i1.PageRouteInfo {
-  const VirusLocationPageRoute() : super(name, path: '/where-did-it-come-from');
+  const VirusLocationPageRoute() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageRoute';
 }
 
 class VirusLocationPageToLeft extends _i1.PageRouteInfo {
-  const VirusLocationPageToLeft() : super(name, path: '/where-did-it-come-from');
+  const VirusLocationPageToLeft() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageToLeft';
 }
 
 class VirusLocationPageToRight extends _i1.PageRouteInfo {
-  const VirusLocationPageToRight() : super(name, path: '/where-did-it-come-from');
+  const VirusLocationPageToRight() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageToRight';
 }
 
 class VirusLocationPageToTop extends _i1.PageRouteInfo {
-  const VirusLocationPageToTop() : super(name, path: '/where-did-it-come-from');
+  const VirusLocationPageToTop() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageToTop';
 }
 
 class VirusLocationPageToBottom extends _i1.PageRouteInfo {
-  const VirusLocationPageToBottom() : super(name, path: '/where-did-it-come-from');
+  const VirusLocationPageToBottom() : super(name, path: '/virus-location-page');
 
   static const String name = 'VirusLocationPageToBottom';
 }
 
 class DocumentPageRoute extends _i1.PageRouteInfo {
-  const DocumentPageRoute() : super(name, path: '/source-analysis');
+  const DocumentPageRoute() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageRoute';
 }
 
 class DocumentPageToLeft extends _i1.PageRouteInfo {
-  const DocumentPageToLeft() : super(name, path: '/source-analysis');
+  const DocumentPageToLeft() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageToLeft';
 }
 
 class DocumentPageToRight extends _i1.PageRouteInfo {
-  const DocumentPageToRight() : super(name, path: '/source-analysis');
+  const DocumentPageToRight() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageToRight';
 }
 
 class DocumentPageToTop extends _i1.PageRouteInfo {
-  const DocumentPageToTop() : super(name, path: '/source-analysis');
+  const DocumentPageToTop() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageToTop';
 }
 
 class DocumentPageToBottom extends _i1.PageRouteInfo {
-  const DocumentPageToBottom() : super(name, path: '/source-analysis');
+  const DocumentPageToBottom() : super(name, path: '/document-page');
 
   static const String name = 'DocumentPageToBottom';
 }
 
 class DeadOfSocratesPageRoute
     extends _i1.PageRouteInfo<DeadOfSocratesPageRouteArgs> {
-  DeadOfSocratesPageRoute({_i2.Key? key, required bool fromKeepGoing})
+  DeadOfSocratesPageRoute({_i2.Key? key, bool? fromKeepGoing})
       : super(name,
-            path: '/death-of-socrates',
+            path: '/dead-of-socrates-page',
             args: DeadOfSocratesPageRouteArgs(
                 key: key, fromKeepGoing: fromKeepGoing));
 
@@ -2271,18 +2277,18 @@ class DeadOfSocratesPageRoute
 }
 
 class DeadOfSocratesPageRouteArgs {
-  const DeadOfSocratesPageRouteArgs({this.key, required this.fromKeepGoing});
+  const DeadOfSocratesPageRouteArgs({this.key, this.fromKeepGoing});
 
   final _i2.Key? key;
 
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
 }
 
 class DeadOfSocratesPageToLeft
     extends _i1.PageRouteInfo<DeadOfSocratesPageToLeftArgs> {
-  DeadOfSocratesPageToLeft({_i2.Key? key, required bool fromKeepGoing})
+  DeadOfSocratesPageToLeft({_i2.Key? key, bool? fromKeepGoing})
       : super(name,
-            path: '/death-of-socrates',
+            path: '/dead-of-socrates-page',
             args: DeadOfSocratesPageToLeftArgs(
                 key: key, fromKeepGoing: fromKeepGoing));
 
@@ -2290,18 +2296,18 @@ class DeadOfSocratesPageToLeft
 }
 
 class DeadOfSocratesPageToLeftArgs {
-  const DeadOfSocratesPageToLeftArgs({this.key, required this.fromKeepGoing});
+  const DeadOfSocratesPageToLeftArgs({this.key, this.fromKeepGoing});
 
   final _i2.Key? key;
 
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
 }
 
 class DeadOfSocratesPageToRight
     extends _i1.PageRouteInfo<DeadOfSocratesPageToRightArgs> {
-  DeadOfSocratesPageToRight({_i2.Key? key, required bool fromKeepGoing})
+  DeadOfSocratesPageToRight({_i2.Key? key, bool? fromKeepGoing})
       : super(name,
-            path: '/death-of-socrates',
+            path: '/dead-of-socrates-page',
             args: DeadOfSocratesPageToRightArgs(
                 key: key, fromKeepGoing: fromKeepGoing));
 
@@ -2309,18 +2315,18 @@ class DeadOfSocratesPageToRight
 }
 
 class DeadOfSocratesPageToRightArgs {
-  const DeadOfSocratesPageToRightArgs({this.key, required this.fromKeepGoing});
+  const DeadOfSocratesPageToRightArgs({this.key, this.fromKeepGoing});
 
   final _i2.Key? key;
 
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
 }
 
 class DeadOfSocratesPageToTop
     extends _i1.PageRouteInfo<DeadOfSocratesPageToTopArgs> {
-  DeadOfSocratesPageToTop({_i2.Key? key, required bool fromKeepGoing})
+  DeadOfSocratesPageToTop({_i2.Key? key, bool? fromKeepGoing})
       : super(name,
-            path: '/death-of-socrates',
+            path: '/dead-of-socrates-page',
             args: DeadOfSocratesPageToTopArgs(
                 key: key, fromKeepGoing: fromKeepGoing));
 
@@ -2328,18 +2334,18 @@ class DeadOfSocratesPageToTop
 }
 
 class DeadOfSocratesPageToTopArgs {
-  const DeadOfSocratesPageToTopArgs({this.key, required this.fromKeepGoing});
+  const DeadOfSocratesPageToTopArgs({this.key, this.fromKeepGoing});
 
   final _i2.Key? key;
 
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
 }
 
 class DeadOfSocratesPageToBottom
     extends _i1.PageRouteInfo<DeadOfSocratesPageToBottomArgs> {
-  DeadOfSocratesPageToBottom({_i2.Key? key, required bool fromKeepGoing})
+  DeadOfSocratesPageToBottom({_i2.Key? key, bool? fromKeepGoing})
       : super(name,
-            path: '/death-of-socrates',
+            path: '/dead-of-socrates-page',
             args: DeadOfSocratesPageToBottomArgs(
                 key: key, fromKeepGoing: fromKeepGoing));
 
@@ -2347,292 +2353,292 @@ class DeadOfSocratesPageToBottom
 }
 
 class DeadOfSocratesPageToBottomArgs {
-  const DeadOfSocratesPageToBottomArgs({this.key, required this.fromKeepGoing});
+  const DeadOfSocratesPageToBottomArgs({this.key, this.fromKeepGoing});
 
   final _i2.Key? key;
 
-  final bool fromKeepGoing;
+  final bool? fromKeepGoing;
 }
 
 class EndOfWarPageRoute extends _i1.PageRouteInfo {
-  const EndOfWarPageRoute() : super(name, path: '/end-of-war');
+  const EndOfWarPageRoute() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageRoute';
 }
 
 class EndOfWarPageToLeft extends _i1.PageRouteInfo {
-  const EndOfWarPageToLeft() : super(name, path: '/end-of-war');
+  const EndOfWarPageToLeft() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageToLeft';
 }
 
 class EndOfWarPageToRight extends _i1.PageRouteInfo {
-  const EndOfWarPageToRight() : super(name, path: '/end-of-war');
+  const EndOfWarPageToRight() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageToRight';
 }
 
 class EndOfWarPageToTop extends _i1.PageRouteInfo {
-  const EndOfWarPageToTop() : super(name, path: '/end-of-war');
+  const EndOfWarPageToTop() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageToTop';
 }
 
 class EndOfWarPageToBottom extends _i1.PageRouteInfo {
-  const EndOfWarPageToBottom() : super(name, path: '/end-of-war');
+  const EndOfWarPageToBottom() : super(name, path: '/end-of-war-page');
 
   static const String name = 'EndOfWarPageToBottom';
 }
 
 class IrlNikosPageRoute extends _i1.PageRouteInfo {
-  const IrlNikosPageRoute() : super(name, path: '/irl-nikos');
+  const IrlNikosPageRoute() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageRoute';
 }
 
 class IrlNikosPageToLeft extends _i1.PageRouteInfo {
-  const IrlNikosPageToLeft() : super(name, path: '/irl-nikos');
+  const IrlNikosPageToLeft() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageToLeft';
 }
 
 class IrlNikosPageToRight extends _i1.PageRouteInfo {
-  const IrlNikosPageToRight() : super(name, path: '/irl-nikos');
+  const IrlNikosPageToRight() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageToRight';
 }
 
 class IrlNikosPageToTop extends _i1.PageRouteInfo {
-  const IrlNikosPageToTop() : super(name, path: '/irl-nikos');
+  const IrlNikosPageToTop() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageToTop';
 }
 
 class IrlNikosPageToBottom extends _i1.PageRouteInfo {
-  const IrlNikosPageToBottom() : super(name, path: '/irl-nikos');
+  const IrlNikosPageToBottom() : super(name, path: '/irl-nikos-page');
 
   static const String name = 'IrlNikosPageToBottom';
 }
 
 class GianaPageRoute extends _i1.PageRouteInfo {
-  const GianaPageRoute() : super(name, path: '/giana');
+  const GianaPageRoute() : super(name, path: '/giana-page');
 
   static const String name = 'GianaPageRoute';
 }
 
 class GianaPageToLeft extends _i1.PageRouteInfo {
-  const GianaPageToLeft() : super(name, path: '/giana');
+  const GianaPageToLeft() : super(name, path: '/giana-page');
 
   static const String name = 'GianaPageToLeft';
 }
 
 class GianaPageToRight extends _i1.PageRouteInfo {
-  const GianaPageToRight() : super(name, path: '/giana');
+  const GianaPageToRight() : super(name, path: '/giana-page');
 
   static const String name = 'GianaPageToRight';
 }
 
 class GianaPageToTop extends _i1.PageRouteInfo {
-  const GianaPageToTop() : super(name, path: '/giana');
+  const GianaPageToTop() : super(name, path: '/giana-page');
 
   static const String name = 'GianaPageToTop';
 }
 
 class GianaPageToBottom extends _i1.PageRouteInfo {
-  const GianaPageToBottom() : super(name, path: '/giana');
+  const GianaPageToBottom() : super(name, path: '/giana-page');
 
   static const String name = 'GianaPageToBottom';
 }
 
 class AboutBookPageRoute extends _i1.PageRouteInfo {
-  const AboutBookPageRoute() : super(name, path: '/about-book');
+  const AboutBookPageRoute() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageRoute';
 }
 
 class AboutBookPageToLeft extends _i1.PageRouteInfo {
-  const AboutBookPageToLeft() : super(name, path: '/about-book');
+  const AboutBookPageToLeft() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageToLeft';
 }
 
 class AboutBookPageToRight extends _i1.PageRouteInfo {
-  const AboutBookPageToRight() : super(name, path: '/about-book');
+  const AboutBookPageToRight() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageToRight';
 }
 
 class AboutBookPageToTop extends _i1.PageRouteInfo {
-  const AboutBookPageToTop() : super(name, path: '/about-book');
+  const AboutBookPageToTop() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageToTop';
 }
 
 class AboutBookPageToBottom extends _i1.PageRouteInfo {
-  const AboutBookPageToBottom() : super(name, path: '/about-book');
+  const AboutBookPageToBottom() : super(name, path: '/about-book-page');
 
   static const String name = 'AboutBookPageToBottom';
 }
 
 class CreditsPageRoute extends _i1.PageRouteInfo {
-  const CreditsPageRoute() : super(name, path: '/credits');
+  const CreditsPageRoute() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageRoute';
 }
 
 class CreditsPageToLeft extends _i1.PageRouteInfo {
-  const CreditsPageToLeft() : super(name, path: '/credits');
+  const CreditsPageToLeft() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageToLeft';
 }
 
 class CreditsPageToRight extends _i1.PageRouteInfo {
-  const CreditsPageToRight() : super(name, path: '/credits');
+  const CreditsPageToRight() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageToRight';
 }
 
 class CreditsPageToTop extends _i1.PageRouteInfo {
-  const CreditsPageToTop() : super(name, path: '/credits');
+  const CreditsPageToTop() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageToTop';
 }
 
 class CreditsPageToBottom extends _i1.PageRouteInfo {
-  const CreditsPageToBottom() : super(name, path: '/credits');
+  const CreditsPageToBottom() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsPageToBottom';
 }
 
 class FurtherReadingPageRoute extends _i1.PageRouteInfo {
-  const FurtherReadingPageRoute() : super(name, path: '/further-reading');
+  const FurtherReadingPageRoute() : super(name, path: '/further-reading-page');
 
   static const String name = 'FurtherReadingPageRoute';
 }
 
 class FurtherReadingPageToLeft extends _i1.PageRouteInfo {
-  const FurtherReadingPageToLeft() : super(name, path: '/further-reading');
+  const FurtherReadingPageToLeft() : super(name, path: '/further-reading-page');
 
   static const String name = 'FurtherReadingPageToLeft';
 }
 
 class FurtherReadingPageToRight extends _i1.PageRouteInfo {
   const FurtherReadingPageToRight()
-      : super(name, path: '/further-reading');
+      : super(name, path: '/further-reading-page');
 
   static const String name = 'FurtherReadingPageToRight';
 }
 
 class FurtherReadingPageToTop extends _i1.PageRouteInfo {
-  const FurtherReadingPageToTop() : super(name, path: '/further-reading');
+  const FurtherReadingPageToTop() : super(name, path: '/further-reading-page');
 
   static const String name = 'FurtherReadingPageToTop';
 }
 
 class FurtherReadingPageToBottom extends _i1.PageRouteInfo {
   const FurtherReadingPageToBottom()
-      : super(name, path: '/further-reading');
+      : super(name, path: '/further-reading-page');
 
   static const String name = 'FurtherReadingPageToBottom';
 }
 
 class CopyrightPageRoute extends _i1.PageRouteInfo {
-  const CopyrightPageRoute() : super(name, path: '/copyright');
+  const CopyrightPageRoute() : super(name, path: '/copyright-page');
 
   static const String name = 'CopyrightPageRoute';
 }
 
 class CopyrightPageToLeft extends _i1.PageRouteInfo {
-  const CopyrightPageToLeft() : super(name, path: '/copyright');
+  const CopyrightPageToLeft() : super(name, path: '/copyright-page');
 
   static const String name = 'CopyrightPageToLeft';
 }
 
 class CopyrightPageToRight extends _i1.PageRouteInfo {
-  const CopyrightPageToRight() : super(name, path: '/copyright');
+  const CopyrightPageToRight() : super(name, path: '/copyright-page');
 
   static const String name = 'CopyrightPageToRight';
 }
 
 class CopyrightPageToTop extends _i1.PageRouteInfo {
-  const CopyrightPageToTop() : super(name, path: '/copyright');
+  const CopyrightPageToTop() : super(name, path: '/copyright-page');
 
   static const String name = 'CopyrightPageToTop';
 }
 
 class CopyrightPageToBottom extends _i1.PageRouteInfo {
-  const CopyrightPageToBottom() : super(name, path: '/copyright');
+  const CopyrightPageToBottom() : super(name, path: '/copyright-page');
 
   static const String name = 'CopyrightPageToBottom';
 }
 
 class SourcePageRoute extends _i1.PageRouteInfo {
-  const SourcePageRoute() : super(name, path: '/sources');
+  const SourcePageRoute() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageRoute';
 }
 
 class SourcePageToLeft extends _i1.PageRouteInfo {
-  const SourcePageToLeft() : super(name, path: '/sources');
+  const SourcePageToLeft() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageToLeft';
 }
 
 class SourcePageToRight extends _i1.PageRouteInfo {
-  const SourcePageToRight() : super(name, path: '/sources');
+  const SourcePageToRight() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageToRight';
 }
 
 class SourcePageToTop extends _i1.PageRouteInfo {
-  const SourcePageToTop() : super(name, path: '/sources');
+  const SourcePageToTop() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageToTop';
 }
 
 class SourcePageToBottom extends _i1.PageRouteInfo {
-  const SourcePageToBottom() : super(name, path: '/sources');
+  const SourcePageToBottom() : super(name, path: '/source-page');
 
   static const String name = 'SourcePageToBottom';
 }
 
 class NavigationPageRoute extends _i1.PageRouteInfo {
-  const NavigationPageRoute() : super(name, path: '/navigation');
+  const NavigationPageRoute() : super(name, path: '/navigation-page');
 
   static const String name = 'NavigationPageRoute';
 }
 
 class VirusLocationSecondPageRoute extends _i1.PageRouteInfo {
   const VirusLocationSecondPageRoute()
-      : super(name, path: '/where-did-it-come-from-2');
+      : super(name, path: '/virus-location-second-page');
 
   static const String name = 'VirusLocationSecondPageRoute';
 }
 
 class VirusLocationSecondPageToLeft extends _i1.PageRouteInfo {
   const VirusLocationSecondPageToLeft()
-      : super(name, path: '/where-did-it-come-from-2');
+      : super(name, path: '/virus-location-second-page');
 
   static const String name = 'VirusLocationSecondPageToLeft';
 }
 
 class VirusLocationSecondPageToRight extends _i1.PageRouteInfo {
   const VirusLocationSecondPageToRight()
-      : super(name, path: '/where-did-it-come-from-2');
+      : super(name, path: '/virus-location-second-page');
 
   static const String name = 'VirusLocationSecondPageToRight';
 }
 
 class VirusLocationSecondPageToTop extends _i1.PageRouteInfo {
   const VirusLocationSecondPageToTop()
-      : super(name, path: '/where-did-it-come-from-2');
+      : super(name, path: '/virus-location-second-page');
 
   static const String name = 'VirusLocationSecondPageToTop';
 }
 
 class VirusLocationSecondPageToBottom extends _i1.PageRouteInfo {
   const VirusLocationSecondPageToBottom()
-      : super(name, path: '/where-did-it-come-from-2');
+      : super(name, path: '/virus-location-second-page');
 
   static const String name = 'VirusLocationSecondPageToBottom';
 }
