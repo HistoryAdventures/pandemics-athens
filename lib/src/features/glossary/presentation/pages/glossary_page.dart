@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
@@ -38,10 +39,18 @@ class _GlossaryPageState extends State<GlossaryPage> {
   bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   int? hoveredItemIndex;
+  bool played = false;
   @override
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
+
+    AudioPlayerUtil().playGlossaryPageSound();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -270,9 +279,16 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                   (item) => MouseRegion(
                                     onHover: (_) {
                                       hoveredItemIndex = item.index;
+                                      if (!played) {
+                                        played = true;
+                                        AudioPlayerUtil()
+                                            .playGlossaryItemHoverSound();
+                                      }
+
                                       setState(() {});
                                     },
                                     onExit: (_) {
+                                      played = false;
                                       hoveredItemIndex = null;
                                       setState(() {});
                                     },
@@ -307,6 +323,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     LeafDetails.visitedVertexes.add(2);
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();
+                    AudioPlayerUtil().playGlossaryPageCloseSound();
                     context.router.push(ParalaxHistoryPageRoute());
                   },
                   textChapter: locales.chapter1,
@@ -323,6 +340,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   // } else {
                   //   context.router.pop();
                   // }
+                  AudioPlayerUtil().playGlossaryPageCloseSound();
                   LeafDetails.currentVertex = 0;
 
                   context.router.replace(
@@ -374,6 +392,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
           ? null
           : () {
               selectedItem(cardTitele: name, text: text);
+              AudioPlayerUtil().playGlossaryItemOnTapSound();
             },
       child: Container(
         decoration: BoxDecoration(

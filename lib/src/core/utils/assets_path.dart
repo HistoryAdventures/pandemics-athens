@@ -28,10 +28,9 @@ class AssetsPath {
   // Sounds Paths //
   /////////////////
 
-
   // Change path assets/asdasd into assets/assets/asdasd before creating build
 
-  //Parallax 
+  //Parallax
   static const String parallaxVideoSound =
       'assets/assets/audios/parallax-page/mus_flythrough_r1.ogg';
   static const String windSound =
@@ -51,13 +50,24 @@ class AssetsPath {
   static const String parallaxBgSound =
       'assets/assets/audios/parallax-page/mus_story_r1a.ogg';
 
- //Leanding
-static const String leandingBgSound =  'assets/assets/audios/title-screen/mus_titlescreen_r2.ogg';
+  //Leanding
+  static const String leandingBgSound =
+      'assets/assets/audios/title-screen/mus_titlescreen_r2.ogg';
+  static const String menuOntapSound =
+      'assets/assets/audios/title-screen/sfx_ui_tocOpen.ogg';
+  static const String menuCloseSound =
+      'assets/assets/audios/title-screen/sfx_ui_infoClose.ogg';
 
+  //Glossary
+  static const String glossaryBackgoundPage =
+      'assets/assets/audios/glossary/sfx_ui_glossaryOpen.ogg';
+  static const String glossaryItemHover =
+      'assets/assets/audios/glossary/sfx_ui_glossaryHover.ogg';
+  static const String glossaryItemOnTap =
+      'assets/assets/audios/glossary/sfx_ui_interact1.ogg';
+  static const String glossaryPageClose =
+      'assets/assets/audios/glossary/sfx_ui_glossaryClose.ogg';
 
-
-
-  
 // Quiz Images
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';

@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
@@ -39,9 +40,14 @@ class _NavigationPageState extends State<NavigationPage> {
   List<Widget> chapterNavigationWidgets = [];
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
-
+    AudioPlayerUtil().playMenuOntapSound();
     chapterNavigation = [
       ChapterDetails(
           vertex: Vertex(
@@ -155,8 +161,7 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         onTap: () {
-              
-            SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
+          SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
           _sharedPrefs.setBool("showVideo", false);
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
@@ -181,7 +186,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(ParalaxHistoryPageRoute(mustScrollToMiddle: true));
+          context.router
+              .replace(ParalaxHistoryPageRoute(mustScrollToMiddle: true));
         },
         pointOffset: const Offset(330, 157),
         lineStartOffset: const Offset(5, 0),
@@ -202,9 +208,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.visitedVertexes.add(4);
           NavigationSharedPreferences.upDateShatedPreferences();
           MapPage.mapPageRestarted = false;
-            context.router.replace(const MapPageRoute());
-          
-          
+          context.router.replace(const MapPageRoute());
         },
         pointOffset: const Offset(520, 123),
         lineStartOffset: const Offset(0, 6),
@@ -223,7 +227,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(ParalaxHistoryPageRoute(mustScrollToEnd: true));
+          context.router
+              .replace(ParalaxHistoryPageRoute(mustScrollToEnd: true));
         },
         alignment: Alignment.centerLeft,
         pointOffset: const Offset(325, 209),
@@ -806,6 +811,8 @@ class _NavigationPageState extends State<NavigationPage> {
                 ),
                 onPressed: () {
                   print("on click");
+                  AudioPlayerUtil().playMenuCloseSound();
+
                   context.router.pop();
                 }),
           ],
