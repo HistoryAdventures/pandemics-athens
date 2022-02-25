@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
 
@@ -160,32 +162,25 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     super.didChangeDependencies();
   }
 
-  Future<void> init() async {
-    if (isSoundOn == true) {
-      setState(() {
-        isSoundOn = true;
-        //backgroundplayer.play();
-      });
-    } else {
-      setState(() {
-        isSoundOn = false;
-      });
-    }
+  AudioPlayer bgPlayer = AudioPlayer();
+  Future<void> playSound() async {
+    int result = await bgPlayer.play(AssetsPath.panaramaRightSound);
+    await bgPlayer.setReleaseMode(ReleaseMode.LOOP);
   }
-
-  // void setSounds() async {
-  //   backgroundSound =
-  //       await backgroundplayer.setAsset('assets/Luis_Ambience.m4a');
-  //   openInfoSoundFirst =
-  //       await openInfoPlayer.setAsset('assets/Luis_NativesWeak.m4a');
-  //   await backgroundplayer.setLoopMode(LoopMode.one);
-  // }
 
   @override
   void initState() {
-    init();
+    // init();
+
     NavigationSharedPreferences.getNavigationListFromSF();
+    playSound();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    bgPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -306,10 +301,11 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                 iconSize: HW.getHeight(37, context),
                 icon: const Icon(Icons.arrow_downward),
                 onPressed: () async {
+                  AudioPlayerUtil().playScreenTransition();
                   LeafDetails.currentVertex = 10;
                   LeafDetails.visitedVertexes.add(10);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(PathogenProfilePageBottomRoute());
+                  context.router.replace(PathogenProfilePageBottomRoute());
                 },
               ),
             ),

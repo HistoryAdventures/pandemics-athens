@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -164,98 +166,18 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     ];
     super.didChangeDependencies();
   }
-
-  //   Visibility(
-  //   visible: panelVisibility,
-  //   child: Positioned(
-  //     top: HW.getHeight(348, context),
-  //     left: HW.getWidth(180, context),
-  //     child: Container(
-  //         color: AppColors.blackG.withOpacity(0.75),
-  //         width: HW.getWidth(772, context),
-  //         height: HW.getHeight(384, context),
-  //         child: Padding(
-  //             padding: const EdgeInsets.all(14),
-  //             child: ListView(
-  //               padding: const EdgeInsets.all(14),
-  //               children: [
-  //                 Text(
-  //                   locals.panaromaLeftInfoDialogText,
-  //                   strutStyle: const StrutStyle(
-  //                     fontSize: 16.0,
-  //                     height: 2,
-  //                   ),
-  //                   style: Theme.of(context)
-  //                       .textTheme
-  //                       .bodyText2
-  //                       ?.copyWith(color: AppColors.white),
-  //                 )
-  //               ],
-  //             ))),
-  //   ),
-  // ),
-
-  //         Visibility(
-  //   visible: panelVisibility,
-  //   child: Positioned(
-  //     top: HW.getHeight(335, context),
-  //     left: HW.getWidth(180, context),
-  //     child: Container(
-  //         color: AppColors.blackG.withOpacity(0.75),
-  //         width: HW.getWidth(772, context),
-  //         height: HW.getHeight(410, context),
-  //         child: Padding(
-  //             padding: const EdgeInsets.all(14),
-  //             child: ListView(
-  //               padding: const EdgeInsets.all(14),
-  //               children: [
-  //                 Text(
-  //                   locals.panaromaRightInfoDialogText,
-  //                   strutStyle: const StrutStyle(
-  //                     fontSize: 16.0,
-  //                     height: 2,
-  //                   ),
-  //                   style: Theme.of(context)
-  //                       .textTheme
-  //                       .bodyText2
-  //                       ?.copyWith(color: AppColors.white),
-  //                 )
-  //               ],
-  //             ))),
-  //   ),
-  // ),
-
   bool onButtonInfoPressed = false;
-  bool isSoundOn = false;
-  //final backgroundplayer = AudioPlayer();
-  //final openInfoPlayer = AudioPlayer();
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
   int infoListIndex = 0;
 
-  // Future<void> init() async {
-  //   final loadedAssets = await loadContent(contentImages);
-  //   if (loadedAssets == true) {
-  //     setState(() {
-  //       isImageloaded = true;
-  //       isSoundOn = true;
-  //       //backgroundplayer.play();
-  //     });
-  //   } else {
-  //     setState(() {
-  //       isSoundOn = false;
-  //       isImageloaded = false;
-  //     });
-  //   }
-  // }
+  AudioPlayer bgPlayer = AudioPlayer();
 
-  // void setSounds() async {
-  //   backgroundSound =
-  //       await backgroundplayer.setAsset('assets/Luis_Ambience.m4a');
-  //   openInfoSoundFirst =
-  //       await openInfoPlayer.setAsset('assets/Luis_NativesWeak.m4a');
-  //   await backgroundplayer.setLoopMode(LoopMode.one);
-  // }
+  Future<void> playSound() async {
+    int result = await bgPlayer.play(AssetsPath.panaramaLeftSound);
+    bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+  }
+
 
   void onChangeView() {
     setState(() {
@@ -271,13 +193,14 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   @override
   void initState() {
     // init();
+    playSound();
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
 
   @override
   void dispose() {
-    //backgroundplayer.stop();
+    bgPlayer.dispose();
     super.dispose();
   }
 
@@ -371,7 +294,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                 LeafDetails.visitedVertexes.add(3);
                 LeafDetails.currentVertex = 3;
                 NavigationSharedPreferences.upDateShatedPreferences();
-                context.router.push(const DocumentPageRoute());
+                context.router.replace(const DocumentPageRoute());
               }),
         ),
         Align(
@@ -391,17 +314,17 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         ),
         SoundAndMenuWidget(
           color: AppColors.white,
-          icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
-          onTapVolume: isSoundOn
+          icons: AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+          onTapVolume: AudioPlayerUtil.isSoundOn
               ? () {
                   setState(() {
-                    isSoundOn = !isSoundOn;
+                    AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                     // backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
-                    isSoundOn = !isSoundOn;
+                    AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                     // backgroundplayer.play();
                   });
                 },
