@@ -99,6 +99,10 @@ flutter:
     - assets/audios/parallax-page/
     - assets/audios/title-screen/
     - assets/audios/glossary/
+    - assets/audios/nikos-choose/
+    - assets/audios/viruses/
+    - assets/audios/panaramas/
+    - assets/audios/story-pages/
     - assets/paralax/
     - assets/social/
     - assets/virusGifs/

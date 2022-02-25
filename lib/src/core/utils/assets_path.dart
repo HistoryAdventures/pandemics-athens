@@ -68,6 +68,47 @@ class AssetsPath {
   static const String glossaryPageClose =
       'assets/assets/audios/glossary/sfx_ui_glossaryClose.ogg';
 
+  //Viruses
+  static const String virusBubonic =
+      'assets/assets/audios/viruses/sfx_ui_bubonic.ogg';
+  static const String virusEbola =
+      'assets/assets/audios/viruses/sfx_ui_ebola.ogg';
+  static const String virusSmallpox =
+      'assets/assets/audios/viruses/sfx_ui_smallpox.ogg';
+  static const String virusTyphoid =
+      'assets/assets/audios/viruses/sfx_uI_typhoid.ogg';
+  static const String virusTyphus =
+      'assets/assets/audios/viruses/sfx_ui_typhus.ogg';
+
+  //Nikos chooses
+  static const String nikosChooseBG =
+      'assets/assets/audios/nikos-choose/mus_apollo_r0.ogg';
+  static const String nikoCries =
+      'assets/assets/audios/nikos-choose/sfx_amb_nikosCry.ogg';
+  static const String quitMedicinePageSound =
+      'assets/assets/audios/nikos-choose/sfx_amb_quitMedicine.ogg';
+  static const String keepGoingSound =
+      'assets/assets/audios/nikos-choose/sfx_amb_temple.ogg';
+
+  // Panaramas
+  static const String panaramaLeftSound =
+      'assets/assets/audios/panaramas/sfx_amb_temple.ogg';
+  static const String panaramaRightSound =
+      'assets/assets/audios/panaramas/sfx_amb_hill.ogg';
+
+  // Story pages
+  static const String screenTransitionSound = 'assets/assets/audios/story-pages/sfx_ui_screenTransition.ogg';
+      
+
+  static const List<String> virusSoundList = [
+    "",
+    virusBubonic,
+    virusTyphus,
+    virusTyphoid,
+    virusSmallpox,
+    virusTyphus
+  ];
+
 // Quiz Images
   static const String quizImage1 = 'assets/images_quiz/quiz1.jpg';
   static const String quizImage2 = 'assets/images_quiz/quiz2.jpg';
