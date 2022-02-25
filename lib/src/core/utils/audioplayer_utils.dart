@@ -2,6 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 class AudioPlayerUtil {
+  static bool isSoundOn = false;
+
   // Leanding page
   PlayerState audioPlayerState = PlayerState.PAUSED;
   AudioPlayer leandingBgSound = AudioPlayer();
@@ -13,12 +15,14 @@ class AudioPlayerUtil {
   AudioPlayer glossaryOnTap = AudioPlayer();
   AudioPlayer glossaryClosePage = AudioPlayer();
 
+  AudioPlayer viruses = AudioPlayer();
+
   Future<void> playSound() async {
-    // final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
+    final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
     // if (result == 1) {
     //   audioPlayerState = PlayerState.PLAYING;
     // }
-    // leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
+    leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
   }
 
   Future<void> playMenuOntapSound() async {
@@ -45,5 +49,27 @@ class AudioPlayerUtil {
   Future<void> playGlossaryPageCloseSound() async {
     final int? result =
         await glossaryClosePage.play(AssetsPath.glossaryPageClose);
+  }
+
+  Future<void> playVirusSound(String assetName) async {
+    final int? result = await viruses.play(assetName);
+  }
+
+  Future<void> mute() async {
+    menuOntapSound.pause();
+    menuClose.pause();
+    glossaryOpen.pause();
+    glossaryHover.pause();
+    glossaryOnTap.pause();
+    glossaryClosePage.pause();
+  }
+
+  Future<void> unMute() async {
+    menuOntapSound.resume();
+    menuClose.resume();
+    glossaryOpen.resume();
+    glossaryHover.resume();
+    glossaryOnTap.resume();
+    glossaryClosePage.resume();
   }
 }
