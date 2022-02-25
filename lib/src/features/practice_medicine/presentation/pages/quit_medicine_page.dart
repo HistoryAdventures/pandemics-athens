@@ -1,11 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/practice_medicine_page.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -27,11 +28,37 @@ class QuitMedicinePage extends StatefulWidget {
 class _QuitMedicinePageState extends State<QuitMedicinePage> {
   late AppLocalizations locals;
   bool isSoundOn = false;
-  final backgroundplayer = AudioPlayer();
+
+  @override
+  void initState() {
+    playSound();
+    super.initState();
+  }
+
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    pauseSound();
+    super.dispose();
+  }
+
+  AudioPlayer bgPlayer1 = AudioPlayer();
+  AudioPlayer bgPlayer2 = AudioPlayer();
+  Future<void> playSound() async {
+    int result = await bgPlayer1.play(AssetsPath.quitMedicinePageSound);
+    int result1 = await bgPlayer2.play(AssetsPath.nikosChooseBG, volume: 0.2);
+    await bgPlayer1.setReleaseMode(ReleaseMode.LOOP);
+    await bgPlayer2.setReleaseMode(ReleaseMode.LOOP);
+  }
+
+  Future<void> pauseSound() async {
+    bgPlayer1.dispose();
+    bgPlayer2.dispose();
   }
 
   @override
@@ -59,6 +86,7 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
                   onTap: () {
+                    AudioPlayerUtil().playScreenTransition();
                     LeafDetails.currentVertex = 14;
                     LeafDetails.visitedVertexes.add(14);
                     NavigationSharedPreferences.upDateShatedPreferences();
@@ -75,13 +103,11 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                   ? () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
                       });
                     },
               onTapMenu: () {
@@ -115,7 +141,7 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                     LeafDetails.visitedVertexes.add(15);
                     LeafDetails.currentVertex = 15;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    context.router.push(DeadOfSocratesPageRoute(
+                    context.router.replace(DeadOfSocratesPageRoute(
                       fromKeepGoing: false,
                     ));
                   },

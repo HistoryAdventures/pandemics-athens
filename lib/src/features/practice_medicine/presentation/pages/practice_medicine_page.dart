@@ -99,7 +99,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                         textTitle: '',
                         textColor: AppColors.white,
                         onTap: () {
-                          context.router.push(const QuitMedicinePageRoute());
+                          context.router.replace(const QuitMedicinePageRoute());
                         }),
                   ),
                 ),
@@ -129,7 +129,7 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       onTap: () {
                         ////????????
                         NavigationSharedPreferences.upDateShatedPreferences();
-                        context.router.push(const KeepGoingPageLeftRoute());
+                        context.router.replace(const KeepGoingPageLeftRoute());
                       }),
                 ),
               ],
