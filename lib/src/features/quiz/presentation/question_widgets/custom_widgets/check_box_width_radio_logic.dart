@@ -13,7 +13,8 @@ class CheckBoxTextWithRadioLogic extends StatefulWidget {
   const CheckBoxTextWithRadioLogic({
     Key? key,
     this.value,
-    this.onTap, this.isCorrect,
+    this.onTap,
+    this.isCorrect,
   }) : super(key: key);
 
   @override
@@ -35,8 +36,7 @@ class _CheckBoxTextWithRadioLogicState
         width: 16,
         decoration: !QuizData.showRightAnswers
             ? BoxDecoration(
-                color:
-                    widget.value! ? AppColors.orange : AppColors.transpatent,
+                color: widget.value! ? AppColors.orange : AppColors.transpatent,
                 border: widget.value!
                     ? null
                     : Border.all(color: Colors.black, width: 1),

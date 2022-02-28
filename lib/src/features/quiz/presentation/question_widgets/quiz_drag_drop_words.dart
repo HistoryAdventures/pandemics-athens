@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
+import 'package:history_of_adventures/src/core/widgets/clickable_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_widget.dart';
@@ -63,11 +65,13 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   late List<dynamic> correctAnswers;
   late int answersLengthAfterAction;
   late int asnwersLength;
+  bool? played = false;
   // late List<dynamic> listQuestionBody;
   // late List<Map<String, dynamic>> listQuestionWIthImages;
   // late List<DragWordsWidget> dragWordsList;
 
   void removeAll(Answers toRemove) {
+    AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
     asnwersLength = widget.answers.length;
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
 
@@ -143,32 +147,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   }
 
   void switchAnswers() {
-
-    if (asnwersLength == answersLengthAfterAction) {
-   
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-
-
-    if (widget.questionIndex == 8) {
-      // correctAnswers = QuizData.correctAnswersForQ3;
-      // usersAnswers = QuizData.usersAnswersForQ3;
-      // listQuestionBody = QuizData.listQuestionBody8;
-    } else {
-      // correctAnswers = QuizData.correctAnswersForQ7;
-      // usersAnswers = QuizData.usersAnswersForQ7;
-
-      // listQuestionBody = QuizData.listQuestionBody7;
-
-      // listQuestionWIthImages = QuizData.listQuestion11WithImages;
-      // dragWordsList = QuizData.dragWordsWidget3;
-      correctAnswers = QuizData.correctAnswersForQ7;
-
-      super.didChangeDependencies();
-    }
+    if (asnwersLength == answersLengthAfterAction) {}
   }
 
   @override
@@ -789,6 +768,7 @@ Widget buildTarget({
   List<CorrectAnswers>? correctAnswers,
   required DragTargetAccept<Answers> onAccept,
   double? borderWidth = 100,
+  bool played = false,
 }) {
   return isCorrect != null && isCorrect == false
       ? Stack(children: [
@@ -830,8 +810,11 @@ Widget buildTarget({
               ? HW.getHeight(30, context)
               : HW.getHeight(25, context),
           alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {},
+          child: GestureDetector(
+            // onPressed: () {
+
+            // },
+
             child: DragTarget<Answers>(
               builder: (context, candidateData, rejectedData) => Stack(
                 children: answers
@@ -847,8 +830,15 @@ Widget buildTarget({
                 //    print(data.text);
                 onAccept(data);
               },
+              // onMove: (a) {
+              //   if (!played) {
+              //     AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
+              //     played = true;
+              //     // AudioPlayerUtil().disposeMapSounds();
+              //   }
+              // },
               onLeave: (data) {
-             
+                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
               },
             ),
           ),

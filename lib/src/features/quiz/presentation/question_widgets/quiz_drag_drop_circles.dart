@@ -4,18 +4,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/core/widgets/widgets.dart';
-import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/circle_widget.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/dialog_map_image.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/draggable_circles_widget.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/circle_button.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_drop_models.dart';
-import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/drag_object.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/drag_drop_widgets/painter.dart';
 
 class QuizDragDropCirclesWidget extends StatefulWidget {
@@ -149,8 +144,8 @@ class DrowLineWidget {
 class DragDropQuizBody extends StatefulWidget {
   final List<Answers<int>> answers;
   final List<Answers<int>> variants;
-   
-  static  GlobalKey<__DragDropQuizBodyState> dragDropBodyKey =
+
+  static GlobalKey<__DragDropQuizBodyState> dragDropBodyKey =
       GlobalKey<__DragDropQuizBodyState>();
 
   DragDropQuizBody({
@@ -203,7 +198,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     // }
     setUpRightLines();
 
-    savedLines.forEach((element) {
+    savedLines.forEach((element) async {
       element.color = Colors.red;
       element.strokeWidth = 4;
     });
@@ -222,35 +217,28 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     int e = savedLines.indexWhere((element) =>
         element.line.startKey == questions[4].question.key &&
         element.line.endKey == questions[0].target.key);
+
     if (a > -1) {
-      print("code is here a");
       QuizData.firstDragDropResult += 1;
       savedLines[a].color = Colors.green;
     }
     if (b > -1) {
-      print("code is here b");
       QuizData.firstDragDropResult += 1;
-
       savedLines[b].color = Colors.green;
     }
     if (c > -1) {
-      print("code is here c");
       QuizData.firstDragDropResult += 1;
-
       savedLines[c].color = Colors.green;
     }
     if (d > -1) {
-      print("code is here d");
       QuizData.firstDragDropResult += 1;
-
-      savedLines[b].color = Colors.green;
+      savedLines[d].color = Colors.green;
     }
     if (e > -1) {
-      print("code is here  e");
       QuizData.firstDragDropResult += 1;
-
-      savedLines[c].color = Colors.green;
+      savedLines[e].color = Colors.green;
     }
+
     checked = true;
     startOffset = Offset.zero;
     offset = Offset.zero;
@@ -265,7 +253,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
     // if (rightLines.length == 2) {
     //   return;
     // }
-    //a
+
     shouldPaint = true;
     RightLine a = RightLine(
       startKey: questions[0].question.key,
@@ -387,7 +375,6 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
 
   @override
   void didUpdateWidget(covariant DragDropQuizBody oldWidget) {
-
     super.didUpdateWidget(oldWidget);
   }
 
@@ -682,6 +669,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
               data: "data",
               onDragUpdate: onDragUpdate,
               onDragStarted: () {
+                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
                 curentIndex = index!;
                 onDragStart();
               },
@@ -690,7 +678,9 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                 offset = Offset.zero;
                 setState(() {});
               },
-              onDraggableCanceled: (_, o) {},
+              onDraggableCanceled: (_, o) {
+                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickErase);
+              },
               dragAnchorStrategy: (_, c, o) {
                 return Offset(
                     0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
@@ -702,7 +692,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
               child: CircleButton(
                 key: question!.key,
                 color: savedLines.indexWhere(
-                          (element) => element.line.startKey == question!.key,
+                          (element) => element.line.startKey == question.key,
                         ) ==
                         -1
                     ? Colors.white
@@ -746,6 +736,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                 setState(() {});
               },
               onAccept: (d) {
+                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
                 savedLines.removeWhere(
                   (element) => element.line.endKey == drawingLine!.endKey,
                 );

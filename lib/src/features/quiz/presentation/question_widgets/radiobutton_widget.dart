@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
@@ -14,15 +15,15 @@ class RadioButtonModel extends StatefulWidget {
   final String question;
   final List<Answers<int>> answers;
   final int questionIndex;
-  static final GlobalKey<_RadioButtonModelState> radioButton =
+  static final GlobalKey<_RadioButtonModelState> radioButtonKey =
       GlobalKey<_RadioButtonModelState>();
 
-  const RadioButtonModel(
+  RadioButtonModel(
       {Key? key,
       required this.question,
       required this.answers,
       required this.questionIndex})
-      : super(key: key);
+      : super(key: radioButtonKey);
 
   @override
   _RadioButtonModelState createState() => _RadioButtonModelState();
@@ -68,63 +69,11 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
   double initalHeight = 0;
 
   void checkAnswers() {
-    if (rightLines.isNotEmpty) {
-      print("returninq");
-      return;
-    }
-    setUpRightLines();
-
-    print("Check answers ${rightLines.length}");
-
     savedLines.forEach((element) {
-      element.color = Colors.red;
+      element.color = Colors.green;
       element.strokeWidth = 4;
-      print(element.toString());
     });
-    int a = savedLines.indexWhere((element) =>
-        element.line.startKey == questions[0].question.key &&
-        element.line.endKey == questions[2].target.key);
-    int b = savedLines.indexWhere((element) =>
-        element.line.startKey == questions[1].question.key &&
-        element.line.endKey == questions[3].target.key);
-    int c = savedLines.indexWhere((element) =>
-        element.line.startKey == questions[2].question.key &&
-        element.line.endKey == questions[0].target.key);
-    int d = savedLines.indexWhere((element) =>
-        element.line.startKey == questions[3].question.key &&
-        element.line.endKey == questions[1].target.key);
-    // int e = savedLines.indexWhere((element) =>
-    //     element.line.startKey == questions[4].question.key &&
-    //     element.line.endKey == questions[3].target.key);
-    if (a > -1) {
-      print("code is here a");
 
-      savedLines[a].color = Colors.green;
-      QuizData.secondDragDropResult += 1;
-    }
-    if (b > -1) {
-      print("code is here c is right");
-      savedLines[b].color = Colors.green;
-      QuizData.secondDragDropResult += 1;
-    }
-    if (c > -1) {
-      print("code is here b");
-      QuizData.secondDragDropResult += 1;
-
-      savedLines[c].color = Colors.green;
-    }
-    if (d > -1) {
-      print("code is here b");
-      QuizData.secondDragDropResult += 1;
-
-      savedLines[d].color = Colors.green;
-    }
-    // if (e > -1) {
-    //   print("code is here b");
-    //   QuizData.secondDragDropResult += 1;
-
-    //   savedLines[e].color = Colors.green;
-    // }
     checked = true;
     startOffset = Offset.zero;
     offset = Offset.zero;
@@ -141,38 +90,38 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
     RightLine a = RightLine(
       startKey: questions[0].question.key,
       start: offsetForKey(questions[0].question.key),
-      endKey: questions[2].target.key,
-      end: offsetForKey(questions[2].target.key),
-    );
-
-    //a
-    //b
-    RightLine b = RightLine(
-      startKey: questions[1].question.key,
-      start: offsetForKey(questions[1].question.key),
-      endKey: questions[3].target.key,
-      end: offsetForKey(questions[3].target.key),
-    );
-
-    // //b
-    // //c
-    RightLine c = RightLine(
-      startKey: questions[2].question.key,
-      start: offsetForKey(questions[2].question.key),
       endKey: questions[0].target.key,
       end: offsetForKey(questions[0].target.key),
     );
-    RightLine d = RightLine(
-      startKey: questions[3].question.key,
-      start: offsetForKey(questions[3].question.key),
+
+    // //a
+    // //b
+    RightLine b = RightLine(
+      startKey: questions[0].question.key,
+      start: offsetForKey(questions[0].question.key),
       endKey: questions[1].target.key,
       end: offsetForKey(questions[1].target.key),
     );
 
+    // // //b
+    // // //c
+    // RightLine c = RightLine(
+    //   startKey: questions[2].question.key,
+    //   start: offsetForKey(questions[2].question.key),
+    //   endKey: questions[0].target.key,
+    //   end: offsetForKey(questions[0].target.key),
+    // );
+    // RightLine d = RightLine(
+    //   startKey: questions[3].question.key,
+    //   start: offsetForKey(questions[3].question.key),
+    //   endKey: questions[1].target.key,
+    //   end: offsetForKey(questions[1].target.key),
+    // );
+
     rightLines.add(a);
-    rightLines.add(b);
-    rightLines.add(c);
-    rightLines.add(d);
+    // rightLines.add(b);
+    // rightLines.add(c);
+    // rightLines.add(d);
     // rightLines.add(e);
 
     checked = true;
@@ -197,25 +146,6 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
         ),
       ),
     );
-
-    questions.add(
-      QuizItem(
-        question: Question(
-          key: GlobalKey(),
-        ),
-        target: Target(
-          key: GlobalKey(),
-        ),
-      ),
-    );
-
-    // quizImages.addAll([
-    //   const MapQuizItemModel(assets: AssetsPath.mapQuizImage1, title: "A"),
-    //   const MapQuizItemModel(assets: AssetsPath.mapQuizImage2, title: "B"),
-    //   const MapQuizItemModel(assets: AssetsPath.mapQuizImage3, title: "C"),
-    //   const MapQuizItemModel(assets: AssetsPath.mapQuizImage4, title: "D"),
-    //   // const MapQuizItemModel(assets: AssetsPath.mapQuizImage5, title: "E"),
-    // ]);
     Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
       w = dropKey.currentContext!.size!.width;
@@ -303,6 +233,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
                 data: "data",
                 onDragUpdate: onDragUpdate,
                 onDragStarted: () {
+                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
                   curentIndex = index;
                   onDragStart();
                 },
@@ -311,7 +242,9 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
                   offset = Offset.zero;
                   setState(() {});
                 },
-                onDraggableCanceled: (_, o) {},
+                onDraggableCanceled: (_, o) {
+                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickErase);
+                },
                 dragAnchorStrategy: (_, c, o) {
                   return Offset(
                       0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
@@ -369,6 +302,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
               setState(() {});
             },
             onAccept: (d) {
+              AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
               savedLines.removeWhere(
                 (element) => element.line.endKey == drawingLine!.endKey,
               );
@@ -424,7 +358,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
                       ? AssetsPath.nikosKeepGoing
                       : AssetsPath.nikosQuitMedicine,
                   width: HW.getWidth(index == 0 ? 150 : 160, context),
-                  height: HW.getHeight( index == 0 ? 20 : 23, context),
+                  height: HW.getHeight(index == 0 ? 20 : 23, context),
                   fit: BoxFit.fill,
                 ),
               )

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/check_box_width_radio_logic.dart';
@@ -105,30 +106,44 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                     Visibility(
                       visible: widget.quizWithImage!,
                       child: Container(
-                        padding:  EdgeInsets.only(
-                          bottom: HW.getHeight(20, context)
+                        padding:
+                            EdgeInsets.only(bottom: HW.getHeight(100, context)),
+                        margin: EdgeInsets.only(
+                          right: HW.getWidth(48, context),
                         ),
-                          margin: EdgeInsets.only(
-                            right: HW.getWidth(48, context),
-                          ),
-                          height: HW.getHeight(500, context),
-                          width: HW.getWidth(600, context),
-                          //  width: HW.getWidth(277, context),
-                          child: Stack(
-                              alignment: AlignmentDirectional.center,
-                              children: [
-                                widget.bgImage != null
-                                    ? Image.asset(
+                        height: HW.getHeight(560, context),
+                        width: HW.getWidth(550, context),
+                        //  width: HW.getWidth(277, context),
+                        child: widget.bgImage != null
+                            ? Stack(
+                                // alignment: AlignmentDirectional.center,
+                                children: [
+                                    Positioned.fill(
+                                      child: Image.asset(
                                         widget.bgImage!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Container(),
-                                Image.asset(
-                                  widget.image!,
-                                  fit: BoxFit.contain,
-                                  // width: HW.getWidth(600, context)
-                                ),
-                              ])),
+                                        fit: BoxFit.fitWidth,
+                                        height: HW.getHeight(500, context),
+                                        width: HW.getWidth(500, context),
+                                      ),
+                                    ),
+                                    Positioned.fill(
+                                      child: Image.asset(
+                                        widget.image!,
+                                        fit: BoxFit.fitHeight,
+                                        height: HW.getHeight(400, context),
+                                        // height: HW.getHeight(400, context),
+                                        //   width: HW.getWidth(400, context),
+
+                                        // width: HW.getWidth(600, context)
+                                      ),
+                                    ),
+                                  ])
+                            : Image.asset(
+                                widget.image!,
+                                fit: BoxFit.cover,
+                                // width: HW.getWidth(600, context)
+                              ),
+                      ),
                     ),
                     Flexible(
                       child: AbsorbPointer(
@@ -183,32 +198,43 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                                             //             },
                                             //   activeColor: AppColors.orange,
                                             // ),
-                                            CheckBoxTextWithRadioLogic(
-                                              isCorrect:
-                                                  widget.quizDataChecking[widget
-                                                              .answers
-                                                              .indexOf(e)] ==
-                                                          true
-                                                      ? e.isCorrect == true
-                                                      : null,
-                                              value: widget.quizDataChecking[
-                                                  widget.answers.indexOf(e)],
-                                              onTap: (val) {
-                                                if (val) {
-                                                  if (widget.quizDataChecking
-                                                      .contains(true)) {
+                                            AbsorbPointer(
+                                              absorbing:
+                                                  QuizData.showRightAnswers,
+                                              child: CheckBoxTextWithRadioLogic(
+                                                isCorrect:
                                                     widget.quizDataChecking[
-                                                        widget.quizDataChecking
-                                                            .indexOf(
-                                                                true)] = false;
-                                                  }
+                                                                widget
+                                                                    .answers
+                                                                    .indexOf(
+                                                                        e)] ==
+                                                            true
+                                                        ? e.isCorrect == true
+                                                        : null,
+                                                value: widget.quizDataChecking[
+                                                    widget.answers.indexOf(e)],
+                                                onTap: (val) {
+                                                  if (val) {
+                                                    AudioPlayerUtil()
+                                                        .playQuizSound(
+                                                            AssetsPath
+                                                                .quizQlick);
+                                                    if (widget.quizDataChecking
+                                                        .contains(true)) {
+                                                      widget.quizDataChecking[
+                                                          widget
+                                                              .quizDataChecking
+                                                              .indexOf(
+                                                                  true)] = false;
+                                                    }
 
-                                                  widget.quizDataChecking[widget
-                                                      .answers
-                                                      .indexOf(e)] = true;
-                                                } else {}
-                                                setState(() {});
-                                              },
+                                                    widget.quizDataChecking[
+                                                        widget.answers
+                                                            .indexOf(e)] = true;
+                                                  } else {}
+                                                  setState(() {});
+                                                },
+                                              ),
                                             ),
                                             Container(
                                                 width:

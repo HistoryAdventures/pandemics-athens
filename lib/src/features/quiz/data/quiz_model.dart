@@ -697,7 +697,7 @@ class QuizData {
   //   Answers(value: 8, text: "citizens"),
   // ];
 
-  static final List<DragWordsWidget> dragWordsWidget3 = [
+  static List<DragWordsWidget> dragWordsWidget3 = [
     DragWordsWidget(
         answers: QuizData.userAnswer1ForQ3,
         isRight: null,
@@ -720,7 +720,7 @@ class QuizData {
         correctAnswer: 'PHIDIAS'),
   ];
 
-  static final List<DragWordsWidget> dragWordsWidget11 = [
+  static List<DragWordsWidget> dragWordsWidget11 = [
     DragWordsWidget(
         answers: QuizData.userAnswer1ForQ11,
         isRight: null,
@@ -742,7 +742,7 @@ class QuizData {
         isRight: null,
         correctAnswer: 'TYPHUS'),
   ];
-  static final List<dynamic> listQuestionBody5 = [
+  static List<dynamic> listQuestionBody5 = [
     DragWordsWidget(
         answers: QuizData.userAnswer1ForQ5,
         isRight: null,
@@ -786,7 +786,7 @@ class QuizData {
     " or is separated in the body and not mixed with others.” "
   ];
 
-  static final List<dynamic> listQuestionBody8 = [
+  static List<dynamic> listQuestionBody8 = [
     "In History of the Peloponnesian War, Thucydides comments on the role of plague and political upheaval as follows:",
     "\n",
     "“In other respects too, the plague was the beginning of increased ",
@@ -794,12 +794,15 @@ class QuizData {
         answers: QuizData.userAnswer1ForQ8,
         isRight: null,
         correctAnswer: 'lawlessness'),
-    "in the city... No fear of god or human law was any constraint. Pious or impious made no difference in their view, when they could see all dying without",
+    "in the city... No fear of god or human law was any constraint.",
+    " Pious or impious made no difference in their view, when they could see all dying without",
     DragWordsWidget(
         answers: QuizData.userAnswer2ForQ8,
         isRight: null,
         correctAnswer: 'distinction'),
-    ". As for offences against the law, no one expected to live long enough to be brought to ",
+    ". As for offences against the law, no one expected",
+    " to live long enough ",
+    "to be brought to ",
     DragWordsWidget(
         answers: QuizData.userAnswer3ForQ8,
         isRight: null,
@@ -809,7 +812,8 @@ class QuizData {
         answers: QuizData.userAnswer4ForQ8,
         isRight: null,
         correctAnswer: 'sentence'),
-    "had already been passed and was hanging over them, so that might as well have some",
+    "had already been passed ",
+    "and was hanging over them, so that might as well have some",
     DragWordsWidget(
         answers: QuizData.userAnswer5ForQ8,
         isRight: null,
@@ -1067,7 +1071,7 @@ class QuizData {
     ),
   ];
 
-  static final List<CheckBoxWidget<bool>> answersForQuestion12 = [
+  static List<CheckBoxWidget<bool>> answersForQuestion12 = [
     CheckBoxWidget(
       answers: Answers(
           value: false,
@@ -1108,7 +1112,7 @@ class QuizData {
     ),
   ];
 
-  static final List<CheckBoxWidget<bool>> answersForQuestion9 = [
+  static List<CheckBoxWidget<bool>> answersForQuestion9 = [
     CheckBoxWidget(
       answers: Answers(
           value: false,
@@ -1175,7 +1179,7 @@ class QuizData {
 
   static const int correctAnswerQ5 = 4;
 
-  static final List<Answers<int>> answersForQ11 = [
+  static List<Answers<int>> answersForQ11 = [
     Answers(value: 1, text: "BUBONIC PLAGUE"),
     Answers(value: 2, text: "TYPHUS"),
     Answers(value: 3, text: "SMALLPOX"),
@@ -1251,32 +1255,6 @@ class QuizData {
 
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
-    // for (var i = 0; i < userAnswerWithCheckForQ1.length; i++) {
-    //   if (userAnswerWithCheckForQ1[i].isRight == true) {
-    //     rightAnswersForQ1++;
-    //   }
-    // }
-    // if (allAnswersAreRight1[0] == true) {
-    //   rightAnswersForQ1 = 1;
-    // }
-
-    // print("rightAnswersForQ1     " + rightAnswersForQ1.toString());
-    // int t = 0;
-    // for (var i = 0; i < userAnswerWithCheckForQ4.length; i++) {
-    //   if (userAnswerWithCheckForQ4[i].isRight == true) {
-    //     t++;
-    //   }
-    // }
-    // if (t == 4) {
-    //   rightAnswersForQ4 = 1;
-    // }
-
-    // for (var i = 0; i < userAnswerWithCheckForQ9.length; i++) {
-    //   if (userAnswerWithCheckForQ9[i].isRight == true) {
-    //     rightAnswersForQ9++;
-    //   }
-    // }
-    
     rightAnswersForQ1 = QuizData.firstDragDropResult == 5 ? 1 : 0;
     rightAnswersForQ4 = QuizData.secondDragDropResult == 4 ? 0 : 0;
     rightAnswersForQ11 += QuizData.thirdDragResult;
@@ -1510,6 +1488,47 @@ class QuizData {
 
   static void clearAnswers() {
     listCorrectrAnswersQuestion1 = [];
+    question2Cheking = [false, false, false, false];
+    question7Cheking = [false, false, false, false];
+    question10Cheking = [false, false, false, false];
+    userAnswer1ForQ3 = [];
+    userAnswer2ForQ3 = [];
+    userAnswer3ForQ3 = [];
+    userAnswer4ForQ3 = [];
+    userAnswer5ForQ3 = [];
+    userAnswer6ForQ3 = [];
+    userAnswer7ForQ3 = [];
+    userAnswer8ForQ3 = [];
+    answersForDD3Images = [
+      Answers(value: 1, text: "PHIDIAS"),
+      Answers(value: 2, text: "ARISTOPHANES AND SOPHOCLES"),
+      Answers(value: 3, text: "THUCYDIDES"),
+      Answers(value: 4, text: "SOCRATES AND PLATO"),
+      Answers(value: 5, text: "PERICLES"),
+    ];
+    dragWordsWidget3 = [
+      DragWordsWidget(
+          answers: QuizData.userAnswer1ForQ3,
+          isRight: null,
+          correctAnswer: 'PERICLES'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer2ForQ3,
+          isRight: null,
+          correctAnswer: 'THUCYDIDES'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer3ForQ3,
+          isRight: null,
+          correctAnswer: 'SOCRATES AND PLATO'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer4ForQ3,
+          isRight: null,
+          correctAnswer: 'ARISTOPHANES AND SOPHOCLES'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer5ForQ3,
+          isRight: null,
+          correctAnswer: 'PHIDIAS'),
+    ];
+
     listCorrectrAnswersQuestion4 = [];
     QuizData.firstDragDropResult = 0;
     QuizData.secondDragDropResult = 0;
@@ -1521,6 +1540,251 @@ class QuizData {
     valueQ5 = 1;
     valueQ8 = 1;
 
+    userAnswerForQ5 = [];
+    userAnswer1ForQ5 = [];
+    userAnswer2ForQ5 = [];
+    userAnswer3ForQ5 = [];
+    userAnswer4ForQ5 = [];
+    userAnswer5ForQ5 = [];
+    userAnswer6ForQ5 = [];
+    userAnswer7ForQ5 = [];
+    userAnswer8ForQ5 = [];
+    listQuestionBody5 = [
+      DragWordsWidget(
+          answers: QuizData.userAnswer1ForQ5,
+          isRight: null,
+          correctAnswer: 'Hippocrates'),
+      " is famous for his theory of the Four ",
+      DragWordsWidget(
+          answers: QuizData.userAnswer2ForQ5,
+          isRight: null,
+          correctAnswer: 'Humours'),
+      " In On the Nature of Man, ",
+      " he describes the theory as follows: ",
+      SizedBox(),
+      " “The Human body contains blood, ",
+      DragWordsWidget(
+          answers: QuizData.userAnswer3ForQ5,
+          isRight: null,
+          correctAnswer: 'phlegm'),
+      " , yellow ",
+      DragWordsWidget(
+          answers: QuizData.userAnswer4ForQ5,
+          isRight: null,
+          correctAnswer: 'bile'),
+      ", and",
+      DragWordsWidget(
+          answers: QuizData.userAnswer5ForQ5,
+          isRight: null,
+          correctAnswer: 'black'),
+      ", bile",
+      "These are the things that make up its constitution and cause its pains and health.",
+      DragWordsWidget(
+          answers: QuizData.userAnswer6ForQ5,
+          isRight: null,
+          correctAnswer: 'Health'),
+      " is primarily that state in which these... substances are in the correct proportion to each other, both in strength and quantity, and are well mixed.",
+      DragWordsWidget(
+          answers: QuizData.userAnswer7ForQ5,
+          isRight: null,
+          correctAnswer: 'Pain'),
+      "occurs when one of the substances",
+      "  presents either a deficiency or an excess,",
+      " or is separated in the body and not mixed with others.” "
+    ];
+
+    answersForDD5 = [
+      Answers(value: 1, text: "bile"),
+      Answers(value: 2, text: "Hippocrates"),
+      Answers(value: 3, text: "phlegm"),
+      Answers(value: 4, text: "Health"),
+      Answers(value: 5, text: "black"),
+      Answers(value: 6, text: "Pain"),
+      Answers(value: 7, text: "Humours"),
+    ];
+
+    userAnswer1ForQ8 = [];
+    userAnswer2ForQ8 = [];
+    userAnswer3ForQ8 = [];
+    userAnswer4ForQ8 = [];
+    userAnswer5ForQ8 = [];
+    userAnswer6ForQ8 = [];
+    userAnswer7ForQ8 = [];
+    userAnswer8ForQ8 = [];
+    listQuestionBody8 = [
+      "In History of the Peloponnesian War, Thucydides comments on the role of plague and political upheaval as follows:",
+      "\n",
+      "“In other respects too, the plague was the beginning of increased ",
+      DragWordsWidget(
+          answers: QuizData.userAnswer1ForQ8,
+          isRight: null,
+          correctAnswer: 'lawlessness'),
+      "in the city...",
+      " No fear of",
+      " god or human law ",
+      "was any constraint. Pious or impious made ",
+      "no difference in their view, when they could see all dying without",
+      DragWordsWidget(
+          answers: QuizData.userAnswer2ForQ8,
+          isRight: null,
+          correctAnswer: 'distinction'),
+      ". As for offences against the law, no one expected ",
+      "to live long enough to be brought to ",
+      DragWordsWidget(
+          answers: QuizData.userAnswer3ForQ8,
+          isRight: null,
+          correctAnswer: 'justice'),
+      "and pay the penalty: they thought that a much heavier",
+      DragWordsWidget(
+          answers: QuizData.userAnswer4ForQ8,
+          isRight: null,
+          correctAnswer: 'sentence'),
+      "had already been passed and was hanging over them, so that might as well have some",
+      DragWordsWidget(
+          answers: QuizData.userAnswer5ForQ8,
+          isRight: null,
+          correctAnswer: 'enjoyment'),
+      " of life before it fell.”",
+    ];
+
+    userAnswerForQ8 = [];
+
+    answersForDD8 = [
+      Answers(value: 1, text: "justice"),
+      Answers(value: 2, text: "sentence"),
+      Answers(value: 3, text: "lawlessness"),
+      Answers(value: 4, text: "enjoyment"),
+      Answers(value: 5, text: "distinction"),
+    ];
+
+    answersForQuestion9 = [
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            isCorrect: true,
+            text:
+                "Thucydides infers that Athens’ naval connections was the gateway through which the plague – whatever it was – entered into the city.",
+            correctAnswers: CorrectAnswers.answer1),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            text:
+                "Smallpox arrived in the Americas via the Caribbean, inadvertently carried by Spanish colonizers from Europe. Native populations, lacking immunity, were devastated by the disease. ",
+            correctAnswers: CorrectAnswers.answer2),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            isCorrect: true,
+            value: false,
+            text:
+                "The disease arrived in the port of Piraeus, connected to the city by the Long Walls, and spread to Athens from there. ",
+            correctAnswers: CorrectAnswers.answer3),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            text:
+                "The Silk Road brought goods, spices, and new ideas from China and Central Asia to Europe. The trade also carried the deadly bubonic plague that killed half of all Europeans within 7 years.",
+            correctAnswers: CorrectAnswers.answer4),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            isCorrect: true,
+            value: false,
+            text:
+                "Fearing a Spartan invasion, Athenians and people from the surrounding countryside retreated behind the city walls. The city’s population – already dense – exploded in number. An overcrowded Athens became an ideal environment for the novel disease to spread.",
+            correctAnswers: CorrectAnswers.answer5),
+        isRight: null,
+      ),
+    ];
+
+    answersForQuestion12 = [
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            text: "The painting is called the “Death of Nero”",
+            correctAnswers: CorrectAnswers.answer1),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            isCorrect: true,
+            value: false,
+            text: "It was painted by Jacques-Louis David",
+            correctAnswers: CorrectAnswers.answer2),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            text: "It was painted in real time during the trial",
+            correctAnswers: CorrectAnswers.answer3),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            value: false,
+            text: "His last words were: “what an artist dies with me”",
+            correctAnswers: CorrectAnswers.answer4),
+        isRight: null,
+      ),
+      CheckBoxWidget(
+        answers: Answers(
+            isCorrect: true,
+            value: false,
+            text:
+                "He was sentenced to death for corrupting the minds of the youth ",
+            correctAnswers: CorrectAnswers.answer5),
+        isRight: null,
+      ),
+    ];
+
+    usersAnswersForQ9 = [];
+    usersAnswersForQ12 = [];
+    userAnswer1ForQ11 = [];
+    userAnswer2ForQ11 = [];
+    userAnswer3ForQ11 = [];
+    userAnswer4ForQ11 = [];
+    userAnswer5ForQ11 = [];
+    userAnswer6ForQ11 = [];
+    userAnswer7ForQ11 = [];
+    userAnswer8ForQ11 = [];
+
+    dragWordsWidget11 = [
+      DragWordsWidget(
+          answers: QuizData.userAnswer1ForQ11,
+          isRight: null,
+          correctAnswer: 'SMALLPOX'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer2ForQ11,
+          isRight: null,
+          correctAnswer: 'EBOLA'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer3ForQ11,
+          isRight: null,
+          correctAnswer: 'TYPHOID'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer4ForQ11,
+          isRight: null,
+          correctAnswer: 'BUBONIC PLAGUE'),
+      DragWordsWidget(
+          answers: QuizData.userAnswer5ForQ11,
+          isRight: null,
+          correctAnswer: 'TYPHUS'),
+    ];
+
+    answersForQ11 = [
+      Answers(value: 1, text: "BUBONIC PLAGUE"),
+      Answers(value: 2, text: "TYPHUS"),
+      Answers(value: 3, text: "SMALLPOX"),
+      Answers(value: 4, text: "TYPHOID"),
+      Answers(value: 5, text: "EBOLA"),
+    ];
     finalScore = 0;
     rightAnswersForQ3 = 0;
     rightAnswersForQ2 = 0;
@@ -1557,14 +1821,14 @@ class QuizData {
     //   }
     // });
 
-    listQuestionBody5.forEach((element) {
-      if (element is DragWordsWidget) {
-        if (element.answers.isNotEmpty) {
-          answersForDD5.add(element.answers.first);
-          element.answers.removeLast();
-        }
-      }
-    });
+    // listQuestionBody5.forEach((element) {
+    //   if (element is DragWordsWidget) {
+    //     if (element.answers.isNotEmpty) {
+    //       answersForDD5.add(element.answers.first);
+    //       element.answers.removeLast();
+    //     }
+    //   }
+    // });
 
     // dragWordsWidget3.forEach((element) {
     //   if (element.answers.isNotEmpty) {

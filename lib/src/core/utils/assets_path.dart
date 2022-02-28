@@ -97,8 +97,24 @@ class AssetsPath {
       'assets/assets/audios/panaramas/sfx_amb_hill.ogg';
 
   // Story pages
-  static const String screenTransitionSound = 'assets/assets/audios/story-pages/sfx_ui_screenTransition.ogg';
-      
+  static const String screenTransitionSound =
+      'assets/assets/audios/story-pages/sfx_ui_screenTransition.ogg';
+  static const String tracingAnimationSound =
+      'assets/assets/audios/story-pages/sfx_ui_tracing.ogg';
+  static const String infoOpen =
+      'assets/assets/audios/story-pages/sfx_ui_infoOpen.ogg';
+  static const String infoClose =
+      'assets/assets/audios/story-pages/sfx_ui_infoClose.ogg';
+  static const String changeIndex =
+      'assets/assets/audios/story-pages/sfx_ui_interact2.ogg';
+
+  // Quiz
+  static const String quizQlick =
+      'assets/assets/audios/quiz/sfx_ui_assessmentClick.ogg';
+  static const String quizQlickErase =
+      'assets/assets/audios/quiz/sfx_ui_assessmentClickErase.ogg';
+  static const String quizQlickRelease =
+      'assets/assets/audios/quiz/sfx_ui_assessmentRelease.ogg';
 
   static const List<String> virusSoundList = [
     "",

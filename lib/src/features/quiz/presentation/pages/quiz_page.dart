@@ -536,10 +536,10 @@ class _QuizPageState extends State<QuizPage> {
                                   cancel: 'No',
                                   onTapAccept: () {
                                     if (DragDropQuizBody
-                                            .dragDropBodyKey!.currentState !=
+                                            .dragDropBodyKey.currentState !=
                                         null) {
                                       DragDropQuizBody
-                                          .dragDropBodyKey!.currentState!
+                                          .dragDropBodyKey.currentState!
                                           .resetQuiz();
                                     }
                                     if (QuizMapImage
@@ -548,12 +548,18 @@ class _QuizPageState extends State<QuizPage> {
                                       QuizMapImage.quizMapImageKey.currentState!
                                           .resetQuiz();
                                     }
+                                    if (RadioButtonModel
+                                            .radioButtonKey.currentState! !=
+                                        null) {
+                                      RadioButtonModel
+                                          .radioButtonKey.currentState!
+                                          .resetQuiz();
+                                    }
 
                                     setState(() {
                                       setState(() {
                                         QuizData.clearAnswers();
-                                        QuizData.showRightAnswers =
-                                            !QuizData.showRightAnswers;
+                                        QuizData.showRightAnswers = false;
                                         QuizData.questionIndex = 0;
                                       });
                                     });
@@ -582,10 +588,10 @@ class _QuizPageState extends State<QuizPage> {
                                   cancel: 'No',
                                   onTapAccept: () {
                                     if (DragDropQuizBody
-                                            .dragDropBodyKey!.currentState !=
+                                            .dragDropBodyKey.currentState !=
                                         null) {
                                       if (DragDropQuizBody
-                                          .dragDropBodyKey!
+                                          .dragDropBodyKey
                                           .currentState!
                                           .rightLines
                                           .isNotEmpty) {
@@ -593,7 +599,7 @@ class _QuizPageState extends State<QuizPage> {
                                         return;
                                       }
                                       DragDropQuizBody
-                                          .dragDropBodyKey!.currentState!
+                                          .dragDropBodyKey.currentState!
                                           .checkAnswers();
                                     }
 
@@ -609,6 +615,22 @@ class _QuizPageState extends State<QuizPage> {
                                         return;
                                       }
                                       QuizMapImage.quizMapImageKey.currentState!
+                                          .checkAnswers();
+                                    }
+
+                                    if (RadioButtonModel
+                                            .radioButtonKey.currentState !=
+                                        null) {
+                                      if (RadioButtonModel
+                                          .radioButtonKey
+                                          .currentState!
+                                          .rightLines
+                                          .isNotEmpty) {
+                                        Navigator.of(context).pop();
+                                        return;
+                                      }
+                                      RadioButtonModel
+                                          .radioButtonKey.currentState!
                                           .checkAnswers();
                                     }
 

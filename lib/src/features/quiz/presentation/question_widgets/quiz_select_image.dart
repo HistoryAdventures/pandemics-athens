@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/custom_widgets/select_image.dart';
@@ -82,6 +84,8 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                               groupValue: QuizData.valueQ6,
                               value: answers.answers.value,
                               onTap: (val) {
+                                AudioPlayerUtil()
+                                    .playQuizSound(AssetsPath.quizQlick);
                                 setState(() {
                                   QuizData.valueQ6 = val;
                                 });

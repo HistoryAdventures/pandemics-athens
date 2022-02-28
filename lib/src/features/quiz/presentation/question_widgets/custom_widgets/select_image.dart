@@ -51,8 +51,7 @@ class _SelectImageState extends State<SelectImage> {
                 ? BoxDecoration(
                     color: AppColors.white,
                     boxShadow: Shadows.allBordersBlue,
-                    border: Border.all(
-                        color: AppColors.linearGradientBlueBox, width: 3),
+                    border: Border.all(color: AppColors.orange, width: 3),
                   )
                 : BoxDecoration(
                     border: Border.all(color: AppColors.grey, width: 1),

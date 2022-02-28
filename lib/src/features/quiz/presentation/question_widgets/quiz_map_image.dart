@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/features/quiz/data/map_quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
@@ -72,13 +73,13 @@ class _QuizMapImageState extends State<QuizMapImage> {
     });
     int a = savedLines.indexWhere((element) =>
         element.line.startKey == questions[0].question.key &&
-        element.line.endKey == questions[2].target.key);
+        element.line.endKey == questions[0].target.key);
     int b = savedLines.indexWhere((element) =>
         element.line.startKey == questions[1].question.key &&
         element.line.endKey == questions[3].target.key);
     int c = savedLines.indexWhere((element) =>
         element.line.startKey == questions[2].question.key &&
-        element.line.endKey == questions[0].target.key);
+        element.line.endKey == questions[2].target.key);
     int d = savedLines.indexWhere((element) =>
         element.line.startKey == questions[3].question.key &&
         element.line.endKey == questions[1].target.key);
@@ -130,8 +131,8 @@ class _QuizMapImageState extends State<QuizMapImage> {
     RightLine a = RightLine(
       startKey: questions[0].question.key,
       start: offsetForKey(questions[0].question.key),
-      endKey: questions[2].target.key,
-      end: offsetForKey(questions[2].target.key),
+      endKey: questions[0].target.key,
+      end: offsetForKey(questions[0].target.key),
     );
 
     //a
@@ -148,8 +149,8 @@ class _QuizMapImageState extends State<QuizMapImage> {
     RightLine c = RightLine(
       startKey: questions[2].question.key,
       start: offsetForKey(questions[2].question.key),
-      endKey: questions[0].target.key,
-      end: offsetForKey(questions[0].target.key),
+      endKey: questions[2].target.key,
+      end: offsetForKey(questions[2].target.key),
     );
     RightLine d = RightLine(
       startKey: questions[3].question.key,
@@ -540,6 +541,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                 data: "data",
                 onDragUpdate: onDragUpdate,
                 onDragStarted: () {
+                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
                   curentIndex = index;
                   onDragStart();
                 },
@@ -548,7 +550,9 @@ class _QuizMapImageState extends State<QuizMapImage> {
                   offset = Offset.zero;
                   setState(() {});
                 },
-                onDraggableCanceled: (_, o) {},
+                onDraggableCanceled: (_, o) {
+                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickErase);
+                },
                 dragAnchorStrategy: (_, c, o) {
                   return Offset(
                       0 + circleButtonWidth / 2, 0 + circleButtonWidth / 2);
@@ -601,6 +605,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
               setState(() {});
             },
             onAccept: (d) {
+              AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
               savedLines.removeWhere(
                 (element) => element.line.endKey == drawingLine!.endKey,
               );
