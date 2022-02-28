@@ -153,7 +153,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       Future.delayed(Duration(milliseconds: 500)).then((value) => init());
     }
 
-    if(_mustScrollToEnd == true && _mustScrollToMiddle == false){
+    if (_mustScrollToEnd == true && _mustScrollToMiddle == false) {
       Future.delayed(Duration(milliseconds: 500)).then((value) => bGSound());
       playIt(audioAssets.length - 1);
     }
@@ -749,14 +749,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 textTitle: '',
                 onTap: () {
                   audioPlayerforParallaxVideo.dispose();
-                  backgroundSound.dispose();
+                  // backgroundSound.dispose();
                   _nextPlayer.dispose();
                   _currentPlayer.dispose();
 
                   LeafDetails.currentVertex = 8;
                   LeafDetails.visitedVertexes.add(8);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const PanaromaLeftPageRoute());
+                  context.router.replace(const PanaromaLeftPageRoute());
                 }),
           ),
           Flexible(
@@ -781,11 +781,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   audioPlayerforParallaxVideo.dispose();
                   _nextPlayer.dispose();
                   _currentPlayer.dispose();
-                  backgroundSound.dispose();
+                  // backgroundSound.dispose();
                   LeafDetails.currentVertex = 9;
                   LeafDetails.visitedVertexes.add(9);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const PanaromaRightPageRoute());
+                  context.router.replace(const PanaromaRightPageRoute());
                 }),
           ),
         ],
@@ -898,7 +898,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.push(const MapPageRoute());
+          context.router.replace(const MapPageRoute());
           backgroundSound.stop();
           _currentPlayer.stop();
 
