@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
@@ -519,6 +520,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whereDidItComeFrom,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
+                        AudioPlayerUtil().playScreenTransition();
                         LeafDetails.currentVertex = 11;
                         NavigationSharedPreferences.upDateShatedPreferences();
 
@@ -559,6 +561,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whatWasIt,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
+                        AudioPlayerUtil().playScreenTransition();
                         LeafDetails.currentVertex = 13;
                         LeafDetails.visitedVertexes.add(13);
                         NavigationSharedPreferences.upDateShatedPreferences();
@@ -579,6 +582,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
+            AudioPlayerUtil().playChangeIndexSound();
             setState(() {
               bodyModel.chandeState(
                   title: title, image: image, descriptiion: text);

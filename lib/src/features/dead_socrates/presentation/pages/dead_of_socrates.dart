@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/keep_going_page.dart';
@@ -160,10 +161,11 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     textSubTitle: locale.endOfThePeloponneseanWar,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
+                      AudioPlayerUtil().playScreenTransition();
                       LeafDetails.currentVertex = 16;
                       LeafDetails.visitedVertexes.add(16);
                       NavigationSharedPreferences.upDateShatedPreferences();
-                      context.router.push(const EndOfWarPageRoute());
+                      context.router.replace(const EndOfWarPageRoute());
                     }),
               ),
               SoundAndMenuWidget(

@@ -36,7 +36,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late AppLocalizations locales;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final globalKey = GlobalKey();
-  bool isSoundOn = false;
+  bool isSoundOn = true;
   final backgroundplayer = AudioPlayer();
   int? hoveredItemIndex;
   bool played = false;
@@ -281,8 +281,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                       hoveredItemIndex = item.index;
                                       if (!played) {
                                         played = true;
-                                        AudioPlayerUtil()
-                                            .playGlossaryItemHoverSound();
+                                        if (isSoundOn)
+                                          AudioPlayerUtil()
+                                              .playGlossaryItemHoverSound();
                                       }
 
                                       setState(() {});
@@ -340,7 +341,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   // } else {
                   //   context.router.pop();
                   // }
-                  AudioPlayerUtil().playGlossaryPageCloseSound();
+                  if (isSoundOn) AudioPlayerUtil().playGlossaryPageCloseSound();
                   LeafDetails.currentVertex = 0;
 
                   context.router.replace(
@@ -353,13 +354,15 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     ? () {
                         setState(() {
                           isSoundOn = !isSoundOn;
-                          backgroundplayer.pause();
+                          AudioPlayerUtil().mute();
+                          // backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
                           isSoundOn = !isSoundOn;
-                          backgroundplayer.play();
+                          AudioPlayerUtil().unMute();
+                          // backgroundplayer.play();
                         });
                       },
                 onTapMenu: () {
@@ -392,7 +395,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
           ? null
           : () {
               selectedItem(cardTitele: name, text: text);
-              AudioPlayerUtil().playGlossaryItemOnTapSound();
+              if (isSoundOn) AudioPlayerUtil().playGlossaryItemOnTapSound();
             },
       child: Container(
         decoration: BoxDecoration(

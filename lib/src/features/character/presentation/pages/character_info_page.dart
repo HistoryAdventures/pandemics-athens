@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
 import 'package:just_audio/just_audio.dart';
@@ -57,7 +58,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       key: scaffoldkey,
       endDrawer: const NavigationPage(),
       body: Stack(
@@ -171,6 +172,8 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                   Flexible(
                                       child: Clickable(
                                           onPressed: () {
+                                            AudioPlayerUtil()
+                                                .playScreenTransition();
                                             LeafDetails.currentVertex = 4;
                                             LeafDetails.visitedVertexes.add(4);
                                             NavigationSharedPreferences
@@ -282,6 +285,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 textSubTitle: locale.timelineOfMainEvents,
                 textTitle: locale.athens5thCentury,
                 onTap: () {
+                  AudioPlayerUtil().playScreenTransition();
                   LeafDetails.currentVertex = 4;
                   LeafDetails.visitedVertexes.add(4);
                   NavigationSharedPreferences.upDateShatedPreferences();

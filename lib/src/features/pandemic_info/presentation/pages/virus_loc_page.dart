@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
@@ -51,19 +52,23 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
         (int id) => html.IFrameElement()
           ..width = MediaQuery.of(context).size.width.toString()
           ..height = MediaQuery.of(context).size.height.toString()
+          // ignore: unsafe_html
           ..src = AssetsPath.virusLoc1
           ..style.border = 'none');
     super.initState();
 
     html.window.onMessage.listen((event) {
-      print("cancel loading");
       mapLoading = false;
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
 
     Future.delayed(Duration(seconds: 2)).then((value) {
       mapLoading = false;
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
   }
 
@@ -94,8 +99,10 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               onPointerSignal: (signal) {
                 if (signal is PointerScrollEvent) {
                   print(signal);
-                  if (signal.scrollDelta.dy > 0) {
-                    context.router.push(const VirusLocationSecondPageRoute());
+                  if (signal.scrollDelta.dy > 0 ) {
+                    context.router
+                        .replace(const VirusLocationSecondPageRoute());
+              
                   }
                 }
               },
@@ -211,6 +218,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.pathogenProfile,
                         textTitle: locals.chapter1,
                         onTap: () {
+                          AudioPlayerUtil().playScreenTransition();
                           LeafDetails.currentVertex = 10;
                           LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
@@ -223,8 +231,9 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.whatDidItDo,
                         textTitle: locals.pathogenProfile,
                         onTap: () {
+                          AudioPlayerUtil().playScreenTransition();
                           context.router
-                              .push(const VirusLocationSecondPageToLeft());
+                              .replace(const VirusLocationSecondPageToLeft());
                         }),
                   ),
                 ],
@@ -244,16 +253,20 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   : AssetsPath.iconVolumeOff,
               onTapVolume: isSoundOn
                   ? () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
-                      });
+                      if (mounted) {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.pause();
+                        });
+                      }
                     }
                   : () {
-                      setState(() {
-                        isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
-                      });
+                      if (mounted) {
+                        setState(() {
+                          isSoundOn = !isSoundOn;
+                          backgroundplayer.play();
+                        });
+                      }
                     },
               onTapMenu: () {
                 Scaffold.of(context).openEndDrawer();

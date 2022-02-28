@@ -103,6 +103,7 @@ flutter:
     - assets/audios/viruses/
     - assets/audios/panaramas/
     - assets/audios/story-pages/
+    - assets/audios/quiz/
     - assets/paralax/
     - assets/social/
     - assets/virusGifs/

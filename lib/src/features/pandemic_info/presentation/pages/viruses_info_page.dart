@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/router.gr.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
@@ -45,7 +46,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   String gifBubonic = AssetsPath.gif2;
   late VirusModel virusModel;
 
-  bool isSoundOn = false;
+  bool isSoundOn = true;
   final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
   double objWave = 0;
@@ -141,10 +142,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   }
 
   Future<void> precacheImages() async {
-    print(window.sessionStorage.containsKey('virusPageImagesAreCached'));
-    print("++++++++++++++++");
     if (window.sessionStorage.containsKey('virusPageImagesAreCached')) return;
-     
 
     setState(() {
       showLoading = true;
@@ -155,12 +153,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       ImagePrecache.precacheImages(AssetsPath.animatedParticles4Images, context)
     ]);
 
-  Future.delayed(const Duration(seconds: 14)).then((value) {
+    Future.delayed(const Duration(seconds: 14)).then((value) {
       setState(() {
-         showLoading = false;
+        showLoading = false;
       });
     });
- 
 
     window.sessionStorage.putIfAbsent('virusPageImagesAreCached', () => 'true');
   }
@@ -247,6 +244,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             // } else {
                             //   context.router.pop();
                             // }
+                            AudioPlayerUtil().playScreenTransition();
                             LeafDetails.currentVertex = 12;
                             LeafDetails.visitedVertexes.add(12);
 
@@ -263,13 +261,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                           ? () {
                               setState(() {
                                 isSoundOn = !isSoundOn;
-                                backgroundplayer.pause();
                               });
                             }
                           : () {
                               setState(() {
                                 isSoundOn = !isSoundOn;
-                                backgroundplayer.play();
                               });
                             },
                       onTapMenu: () {
@@ -300,6 +296,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               constraints: Size(constraints.maxWidth, constraints.maxHeight),
               // gifController: controller,
               onTapBubonik: () {
+                if (isSoundOn)
+                  AudioPlayerUtil().playVirusSound(AssetsPath.virusBubonic);
                 setState(() {
                   virusModel.changeState(
                     title: locals.bubonicPlague,
@@ -309,6 +307,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapEbola: () {
+                if (isSoundOn)
+                  AudioPlayerUtil().playVirusSound(AssetsPath.virusEbola);
                 setState(() {
                   virusModel.changeState(
                     title: locals.ebola,
@@ -318,6 +318,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapSmall: () {
+                if (isSoundOn)
+                  AudioPlayerUtil().playVirusSound(AssetsPath.virusSmallpox);
                 setState(() {
                   virusModel.changeState(
                     title: locals.smallpox,
@@ -327,6 +329,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapTiphid: () {
+                if (isSoundOn)
+                  AudioPlayerUtil().playVirusSound(AssetsPath.virusTyphoid);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhiod,
@@ -336,6 +340,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapTiphius: () {
+                if (isSoundOn)
+                  AudioPlayerUtil().playVirusSound(AssetsPath.virusTyphus);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhus,
@@ -464,6 +470,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                                     });
                                   },
                                   child: virusesNameListWidget(
+                                    index: listCharacters.indexOf(data),
                                     isHoverd: hoveredItemIndex ==
                                         data.virusModel.title,
                                     image: data.virusModel.widgets,
@@ -482,12 +489,18 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       {String? name,
       List<String>? image,
       String? text,
+      int? index,
       bool isHoverd = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
           setState(() {
+            AudioPlayerUtil().playChangeIndexSound();
+            if (isSoundOn)
+              AudioPlayerUtil()
+                  .playVirusSound(AssetsPath.virusSoundList[index!]);
+
             virusModel.changeState(
                 description: text, title: name, widgets: image);
           });

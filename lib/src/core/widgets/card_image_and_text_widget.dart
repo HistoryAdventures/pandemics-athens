@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
 import '../../features/dead_socrates/presentation/modesl/socrates_info_model.dart';
@@ -103,6 +104,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                             alignment: Alignment.bottomLeft,
                             child: Clickable(
                                 onPressed: () {
+                                  AudioPlayerUtil().playZoomInSound();
                                   showGeneralDialog(
                                       context: context,
                                       barrierColor:
@@ -290,6 +292,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
+          AudioPlayerUtil().playChangeIndexSound();
           setState(() {
             socratesInfoModel.changeCaracterInfo(
                 name: name,

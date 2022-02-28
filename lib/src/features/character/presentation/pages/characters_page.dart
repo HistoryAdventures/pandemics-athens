@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -109,7 +110,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AssetsPath.charactersBackgroundImage),
-              fit: BoxFit.cover),
+              fit: BoxFit.fill),
         ),
         child: Stack(
           children: [
@@ -205,6 +206,7 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   textSubTitle: locale.timelineOfMainEvents,
                   textTitle: locale.athens5thCentury,
                   onTap: () {
+                    AudioPlayerUtil().playScreenTransition();
                     LeafDetails.currentVertex = 4;
                     LeafDetails.visitedVertexes.add(4);
                     NavigationSharedPreferences.upDateShatedPreferences();

@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -37,8 +37,25 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
 
   @override
   void initState() {
+    playSound();
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    pauseSound();
+    super.dispose();
+  }
+
+  AudioPlayer bgPlayer1 = AudioPlayer();
+  Future<void> playSound() async {
+    int result1 = await bgPlayer1.play(AssetsPath.nikosChooseBG, volume: 0.7);
+    await bgPlayer1.setReleaseMode(ReleaseMode.LOOP);
+  }
+
+  Future<void> pauseSound() async {
+    bgPlayer1.dispose();
   }
 
   @override
@@ -77,13 +94,11 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   ? () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
                       });
                     },
               onTapMenu: () {
@@ -147,7 +162,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   LeafDetails.currentVertex = 24;
                   LeafDetails.visitedVertexes.add(24);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const AboutBookPageRoute());
+                  context.router.replace(const AboutBookPageRoute());
                 },
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -363,6 +364,7 @@ class _MapPageState extends State<MapPage> {
       _visible = true;
       setState(() {});
     });
+
     setIframElementPlatform();
 
     super.initState();
@@ -389,11 +391,6 @@ class _MapPageState extends State<MapPage> {
 
   //   });
   // }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +424,7 @@ class _MapPageState extends State<MapPage> {
                     : Container(
                         key: ValueKey(mapInfoModel?.title),
                         color: Colors.transparent,
-                       child: _iframeIgnorePointer(viewID: viewID),
+                        child: _iframeIgnorePointer(viewID: viewID),
                       ),
               ),
             ),
@@ -547,6 +544,7 @@ class _MapPageState extends State<MapPage> {
                               alignment: Alignment.bottomLeft,
                               child: Clickable(
                                   onPressed: () {
+                                    AudioPlayerUtil().playZoomInSound();
                                     showGeneralDialog(
                                         context: context,
                                         barrierColor:
@@ -802,10 +800,11 @@ class _MapPageState extends State<MapPage> {
                 bottom: 0,
                 textTitle: locals.athens5thCentury,
                 onTap: () {
+                  AudioPlayerUtil().playScreenTransition();
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.push(const CharacterPageToLeft());
+                  context.router.replace(const CharacrterPageRoute());
                 }),
           ],
         ),
@@ -827,10 +826,9 @@ class _MapPageState extends State<MapPage> {
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () async {
+          AudioPlayerUtil().playChangeIndexSound();
           _visible = false;
-          setState(() {
-            
-          });
+          setState(() {});
           //  await Future.delayed(const Duration(seconds: 1));
           //
 
@@ -840,7 +838,7 @@ class _MapPageState extends State<MapPage> {
           // });
           //
           //  setIframElementPlatform();
-        await  mapInfoModel?.chandeState(
+          await mapInfoModel?.chandeState(
             lottie: lottie,
             image: image,
             text: text,
@@ -848,8 +846,8 @@ class _MapPageState extends State<MapPage> {
             imageDescription: imageText,
             mapImage: map,
           );
-      
-       Future.delayed(const Duration(seconds: 1)).then((value) {
+
+          Future.delayed(const Duration(seconds: 1)).then((value) {
             _visible = true;
             setState(() {});
           });

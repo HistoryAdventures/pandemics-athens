@@ -1,14 +1,15 @@
 import 'dart:ui' as ui;
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/pages/virus_loc_page.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -33,7 +34,7 @@ class VirusLocationSecondPage extends StatefulWidget {
 class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   late AppLocalizations locals;
   bool isSoundOn = false;
-  final backgroundplayer = AudioPlayer();
+  AudioPlayer tracingAnimationSound = AudioPlayer();
   String viewID = "virusLocationSecondPage-view-id";
   Offset dragStartOffset = const Offset(0, 0);
   Offset dragEndOffset = const Offset(0, 0);
@@ -64,11 +65,17 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
     });
 
     Future.delayed(Duration(seconds: 2)).then((value) {
+      playTrackingSound();
       mapLoading = false;
       setState(() {});
     });
 
     super.initState();
+  }
+
+  Future<void> playTrackingSound() async {
+    final result =
+        await tracingAnimationSound.play(AssetsPath.tracingAnimationSound);
   }
 
   Widget _iframeIgnorePointer({
@@ -121,7 +128,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               onPointerSignal: (signal) {
                 if (signal is PointerScrollEvent) {
                   if (signal.scrollDelta.dy < 0) {
-                    context.router.push(const VirusLocationPageRoute());
+                    context.router.replace(const VirusLocationPageRoute());
                   }
                 }
               },
@@ -222,6 +229,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         textSubTitle: locals.pathogenProfile,
                         textTitle: locals.chapter1,
                         onTap: () {
+                          AudioPlayerUtil().playScreenTransition();
                           LeafDetails.currentVertex = 11;
                           // if (kIsWeb) {
                           //   html.window.history.back();
@@ -232,7 +240,8 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                           LeafDetails.currentVertex = 11;
                           LeafDetails.visitedVertexes.add(11);
                           NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.push(const VirusLocationPageToRight());
+                          context.router
+                              .replace(const VirusLocationPageToRight());
                         }),
                   ),
                   Flexible(
@@ -240,10 +249,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         textSubTitle: locals.whatDidItDo,
                         textTitle: locals.pathogenProfile,
                         onTap: () {
+                          AudioPlayerUtil().playScreenTransition();
                           LeafDetails.currentVertex = 12;
                           LeafDetails.visitedVertexes.add(12);
                           NavigationSharedPreferences.upDateShatedPreferences();
-                          context.router.push(const BodyInfoPageRoute());
+                          context.router.replace(const BodyInfoPageRoute());
                         }),
                   ),
                 ],
@@ -257,13 +267,11 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                   ? () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
                         isSoundOn = !isSoundOn;
-                        backgroundplayer.play();
                       });
                     },
               onTapMenu: () {
