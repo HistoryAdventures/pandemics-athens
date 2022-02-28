@@ -210,10 +210,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                             ),
                           ),
                           onPressed: () {
-                            setState(() {
-                              // openInfoPlayer.play();
-                              //print("object");
-                            });
                             showGeneralDialog(
                                 context: context,
                                 barrierColor: Colors.black.withOpacity(0.5),

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/features/paralax_history/presentation/widget/loading_video.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -127,7 +128,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                                   alignment: Alignment.bottomLeft,
                                   child: Clickable(
                                     onPressed: () {
-                                      _sharedPrefs.setBool("showPanoramaLeftLoading", true);
+                                      AudioPlayerUtil().playZoomInSound();
+                                      _sharedPrefs.setBool(
+                                          "showPanoramaLeftLoading", true);
                                       showGeneralDialog(
                                         context: context,
                                         barrierColor:
@@ -382,6 +385,7 @@ class _DialogWidgetState extends State<DialogWidget> {
       margin: const EdgeInsets.only(right: 15, bottom: 5),
       child: Clickable(
         onPressed: () {
+          AudioPlayerUtil().playChangeIndexSound();
           setState(() {
             infoDialogModel!.chandeState(
               title: title,
