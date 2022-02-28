@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -31,7 +32,7 @@ class LeandingPage extends StatefulWidget {
 
 class _LeandingPageState extends State<LeandingPage> {
   late AppLocalizations locales;
-  bool isSoundOn = true;
+  // bool isSoundOn = false;
   bool isImageloaded = true;
   Offset offset = const Offset(0, 0);
   String? loadingCount = '0';
@@ -43,8 +44,7 @@ class _LeandingPageState extends State<LeandingPage> {
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
-  AudioPlayer leandingBgSound = AudioPlayer();
-  PlayerState audioPlayerState = PlayerState.PAUSED;
+  // PlayerState audioPlayerState = PlayerState.PAUSED;
 
   @override
   void initState() {
@@ -205,24 +205,23 @@ class _LeandingPageState extends State<LeandingPage> {
                           LeafDetails.currentVertex = 1;
                           // print(LeafDetails.visitedVertexes);
                           NavigationSharedPreferences.upDateShatedPreferences();
-                          leandingBgSound.setVolume(0.5);
+                          // AudioPlayerUtil().leandingBgSound.setVolume(0.5);
                           context.router.push(const GlossaryPageRoute());
                         },
                       ),
                     ),
                     SoundAndMenuWidget(
-                      icons: isSoundOn
+                      icons: AudioPlayerUtil.isSoundOn
                           ? AssetsPath.iconVolumeOn
                           : AssetsPath.iconVolumeOff,
                       onTapVolume: () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
-
-                          if (isSoundOn) {
-                            leandingBgSound.resume();
-                            ;
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          if (AudioPlayerUtil.isSoundOn) {
+                            // AudioPlayerUtil().playSound();
                           } else {
-                            leandingBgSound.pause();
+                            // AudioPlayerUtil().stopPlaySound();
                           }
                         });
                       },
@@ -243,6 +242,9 @@ class _LeandingPageState extends State<LeandingPage> {
 
   Future<void> precacheImages() async {
     if (window.sessionStorage.containsKey('allImagesAreCached')) {
+      setState(() {
+        // playSound();
+      });
       return;
     }
 
@@ -269,12 +271,12 @@ class _LeandingPageState extends State<LeandingPage> {
     });
   }
 
-  Future<void> playSound() async {
-    final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
-    if (result == 1) {
-      audioPlayerState = PlayerState.PLAYING;
-    }
-    leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
-    // await leandingBgSound.play();
-  }
+  // Future<void> playSound() async {
+  //   final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
+  //   // if (result == 1) {
+  //   //   audioPlayerState = PlayerState.PLAYING;
+  //   // }
+  //   leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
+  //   // await leandingBgSound.play();
+  // }
 }
