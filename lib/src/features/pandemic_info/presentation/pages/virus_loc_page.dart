@@ -29,7 +29,6 @@ class VirusLocationPage extends StatefulWidget {
 
 class _VirusLocationPageState extends State<VirusLocationPage> {
   late AppLocalizations locals;
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   String viewID = "virusLocationPage-view-id";
   Offset dragStartOffset = const Offset(0, 0);
@@ -248,14 +247,14 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   child: Image.asset(AssetsPath.scrollIcon)),
             ),
             SoundAndMenuWidget(
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       if (mounted) {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           backgroundplayer.pause();
                         });
                       }
@@ -263,7 +262,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   : () {
                       if (mounted) {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           backgroundplayer.play();
                         });
                       }

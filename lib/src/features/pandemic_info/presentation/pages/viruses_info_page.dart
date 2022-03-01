@@ -46,7 +46,6 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   String gifBubonic = AssetsPath.gif2;
   late VirusModel virusModel;
 
-  bool isSoundOn = true;
   final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
   double objWave = 0;
@@ -255,18 +254,20 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                           }),
                     ),
                     SoundAndMenuWidget(
-                      icons: isSoundOn
+                      icons: AudioPlayerUtil.isSoundOn
                           ? AssetsPath.iconVolumeOn
                           : AssetsPath.iconVolumeOff,
-                      onTapVolume: isSoundOn
+                      onTapVolume: AudioPlayerUtil.isSoundOn
                           ? () {
                               setState(() {
-                                isSoundOn = !isSoundOn;
+                                AudioPlayerUtil.isSoundOn =
+                                    !AudioPlayerUtil.isSoundOn;
                               });
                             }
                           : () {
                               setState(() {
-                                isSoundOn = !isSoundOn;
+                                AudioPlayerUtil.isSoundOn =
+                                    !AudioPlayerUtil.isSoundOn;
                               });
                             },
                       onTapMenu: () {
@@ -297,8 +298,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               constraints: Size(constraints.maxWidth, constraints.maxHeight),
               // gifController: controller,
               onTapBubonik: () {
-                if (isSoundOn)
-                  AudioPlayerUtil().playSound(AssetsPath.virusBubonic);
+                AudioPlayerUtil().playSound(AssetsPath.virusBubonic);
                 setState(() {
                   virusModel.changeState(
                     title: locals.bubonicPlague,
@@ -308,8 +308,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapEbola: () {
-                if (isSoundOn)
-                  AudioPlayerUtil().playSound(AssetsPath.virusEbola);
+                AudioPlayerUtil().playSound(AssetsPath.virusEbola);
                 setState(() {
                   virusModel.changeState(
                     title: locals.ebola,
@@ -319,8 +318,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapSmall: () {
-                if (isSoundOn)
-                  AudioPlayerUtil().playSound(AssetsPath.virusSmallpox);
+                AudioPlayerUtil().playSound(AssetsPath.virusSmallpox);
                 setState(() {
                   virusModel.changeState(
                     title: locals.smallpox,
@@ -330,8 +328,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapTiphid: () {
-                if (isSoundOn)
-                  AudioPlayerUtil().playSound(AssetsPath.virusTyphoid);
+                AudioPlayerUtil().playSound(AssetsPath.virusTyphoid);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhiod,
@@ -341,8 +338,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                 });
               },
               onTapTiphius: () {
-                if (isSoundOn)
-                  AudioPlayerUtil().playSound(AssetsPath.virusTyphus);
+                AudioPlayerUtil().playSound(AssetsPath.virusTyphus);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhus,
@@ -498,8 +494,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         onPressed: () {
           setState(() {
             AudioPlayerUtil().playSound(AssetsPath.changeIndex);
-            if (isSoundOn)
-              AudioPlayerUtil().playSound(AssetsPath.virusSoundList[index!]);
+
+            AudioPlayerUtil().playSound(AssetsPath.virusSoundList[index!]);
 
             virusModel.changeState(
                 description: text, title: name, widgets: image);

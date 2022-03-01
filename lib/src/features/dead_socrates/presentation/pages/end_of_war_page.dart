@@ -35,7 +35,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   double mouseY = 100;
   Offset offset = Offset.zero;
   late List<SocratesInfoModel> socratesList;
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -151,19 +150,19 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     }),
               ),
               SoundAndMenuWidget(
-                icons: isSoundOn
+                icons: AudioPlayerUtil.isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
+                onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           //backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           //backgroundplayer.play();
                         });
                       },

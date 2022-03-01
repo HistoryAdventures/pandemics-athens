@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -25,7 +26,6 @@ class IrlNikosPage extends StatefulWidget {
 }
 
 class _IrlNikosPageState extends State<IrlNikosPage> {
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   late AppLocalizations locals;
 
@@ -87,18 +87,18 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   context.router.replace(const QuizPageToBottom());
                 },
               ),
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     },
               onTapMenu: () {

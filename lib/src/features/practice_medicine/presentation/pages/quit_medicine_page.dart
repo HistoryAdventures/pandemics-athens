@@ -27,7 +27,6 @@ class QuitMedicinePage extends StatefulWidget {
 
 class _QuitMedicinePageState extends State<QuitMedicinePage> {
   late AppLocalizations locals;
-  bool isSoundOn = false;
 
   @override
   void initState() {
@@ -97,18 +96,18 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
             ),
             SoundAndMenuWidget(
               color: AppColors.white,
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     },
               onTapMenu: () {

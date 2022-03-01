@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
@@ -28,7 +29,6 @@ class _CreditsPageState extends State<CreditsPage> {
   late AppLocalizations locale;
 
   final backgroundplayer = AudioPlayer();
-  bool isSoundOn = false;
 
   @override
   void didChangeDependencies() {
@@ -72,19 +72,19 @@ class _CreditsPageState extends State<CreditsPage> {
                       ),
                     )),
                 SoundAndMenuWidget(
-                  icons: isSoundOn
+                  icons: AudioPlayerUtil.isSoundOn
                       ? AssetsPath.iconVolumeOn
                       : AssetsPath.iconVolumeOff,
-                  onTapVolume: isSoundOn
+                  onTapVolume: AudioPlayerUtil.isSoundOn
                       ? () {
                           setState(() {
-                            isSoundOn = !isSoundOn;
+                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                             backgroundplayer.pause();
                           });
                         }
                       : () {
                           setState(() {
-                            isSoundOn = !isSoundOn;
+                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                             backgroundplayer.play();
                           });
                         },

@@ -40,7 +40,6 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   Offset offset = const Offset(0, 0);
   late List<SocratesInfoModel> socratesList;
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   double objWave = 0;
   int direction = 1;
@@ -180,19 +179,19 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     }
                   },
                 ),
-                icons: isSoundOn
+                icons: AudioPlayerUtil.isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
+                onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                           backgroundplayer.play();
                         });
                       },

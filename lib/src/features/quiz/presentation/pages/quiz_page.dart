@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -40,7 +41,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
 
   // late List<Widget> questionsWidgets;
@@ -379,17 +379,19 @@ class _QuizPageState extends State<QuizPage> {
           },
           icon: const Icon(Icons.arrow_upward),
         ),
-        icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
-        onTapVolume: isSoundOn
+        icons: AudioPlayerUtil.isSoundOn
+            ? AssetsPath.iconVolumeOn
+            : AssetsPath.iconVolumeOff,
+        onTapVolume: AudioPlayerUtil.isSoundOn
             ? () {
                 setState(() {
-                  isSoundOn = !isSoundOn;
+                  AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                   backgroundplayer.pause();
                 });
               }
             : () {
                 setState(() {
-                  isSoundOn = !isSoundOn;
+                  AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                   backgroundplayer.play();
                 });
               },

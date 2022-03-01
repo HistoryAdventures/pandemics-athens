@@ -24,7 +24,6 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
   late AppLocalizations locals;
 
   bool isImageloaded = false;
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   Offset offset = const Offset(0, 0);
   List<String> contentImages = [

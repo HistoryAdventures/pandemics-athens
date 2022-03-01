@@ -32,7 +32,6 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
   bool onButtonInfoPressed = false;
-  bool isSoundOn = false;
 
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
@@ -255,19 +254,19 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
             ),
             SoundAndMenuWidget(
               color: AppColors.white,
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         //backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         //backgroundplayer.play();
                       });
                     },

@@ -28,7 +28,6 @@ class _CharacrterPageState extends State<CharacrterPage> {
   late AppLocalizations locale;
 
   final backgroundplayer = AudioPlayer();
-  bool isSoundOn = false;
 
   @override
   void didChangeDependencies() {
@@ -115,19 +114,19 @@ class _CharacrterPageState extends State<CharacrterPage> {
         child: Stack(
           children: [
             SoundAndMenuWidget(
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         backgroundplayer.play();
                       });
                     },

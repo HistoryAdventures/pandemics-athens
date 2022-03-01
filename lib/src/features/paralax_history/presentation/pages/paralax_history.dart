@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -53,7 +54,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
   double _lernMoreOpasyty = 0;
 
-  bool isSoundOn = true;
   bool paralaxAssetsPreloaded = false;
   // final backgroundplayer = AudioPlayer();
 
@@ -276,7 +276,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   bool showLoading = true;
 
   Future<void> turnOffVolume(AudioPlayer player) async {
-    if (!isSoundOn) {
+    if (!AudioPlayerUtil.isSoundOn) {
       player.setVolume(0);
     } else {
       await player.setVolume(0.9);
@@ -296,7 +296,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   Future<void> turnOnVolume(AudioPlayer player) async {
-    if (!isSoundOn) {
+    if (!AudioPlayerUtil.isSoundOn) {
       await player.setVolume(0);
     } else {
       await player.setVolume(0.1);
@@ -805,12 +805,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 context.router.replace(const GlossaryPageToBottom());
               },
             ),
-      icons: isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
-      onTapVolume: isSoundOn
+      icons: AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+      onTapVolume: AudioPlayerUtil.isSoundOn
           ? () {
               mute();
               setState(() {
-                isSoundOn = !isSoundOn;
+                AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
 
                 backgroundSound.stop();
               });
@@ -818,7 +818,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           : () {
               unmute();
               setState(() {
-                isSoundOn = !isSoundOn;
+                AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                 backgroundSound.resume();
                 backgroundSound.setVolume(0.5);
               });

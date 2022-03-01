@@ -27,7 +27,6 @@ class KeepGoingPage extends StatefulWidget {
 
 class _KeepGoingPageState extends State<KeepGoingPage> {
   late AppLocalizations locals;
-  bool isSoundOn = false;
   @override
   void didChangeDependencies() {
     locals = AppLocalizations.of(context)!;
@@ -101,18 +100,18 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
               ),
               SoundAndMenuWidget(
                 color: AppColors.white,
-                icons: isSoundOn
+                icons: AudioPlayerUtil.isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
+                onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         });
                       }
                     : () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
+                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         });
                       },
                 onTapMenu: () {

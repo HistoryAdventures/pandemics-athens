@@ -44,7 +44,6 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   double mouseY = 100;
 
   bool isImageloaded = false;
-  bool isSoundOn = false;
   Offset offset = const Offset(0, 0);
 
   final backgroundplayer = AudioPlayer();
@@ -536,19 +535,19 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       }),
                 ),
                 SoundAndMenuWidget(
-                  icons: isSoundOn
+                  icons: AudioPlayerUtil.isSoundOn
                       ? AssetsPath.iconVolumeOn
                       : AssetsPath.iconVolumeOff,
-                  onTapVolume: isSoundOn
+                  onTapVolume: AudioPlayerUtil.isSoundOn
                       ? () {
                           setState(() {
-                            isSoundOn = !isSoundOn;
+                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                             backgroundplayer.pause();
                           });
                         }
                       : () {
                           setState(() {
-                            isSoundOn = !isSoundOn;
+                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                             backgroundplayer.play();
                           });
                         },

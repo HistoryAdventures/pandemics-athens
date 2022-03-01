@@ -33,7 +33,6 @@ class VirusLocationSecondPage extends StatefulWidget {
 
 class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   late AppLocalizations locals;
-  bool isSoundOn = false;
   AudioPlayer tracingAnimationSound = AudioPlayer();
   String viewID = "virusLocationSecondPage-view-id";
   Offset dragStartOffset = const Offset(0, 0);
@@ -260,18 +259,18 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
               ),
             ),
             SoundAndMenuWidget(
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       });
                     },
               onTapMenu: () {

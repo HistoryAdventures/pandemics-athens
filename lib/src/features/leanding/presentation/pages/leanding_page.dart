@@ -32,7 +32,6 @@ class LeandingPage extends StatefulWidget {
 
 class _LeandingPageState extends State<LeandingPage> {
   late AppLocalizations locales;
-  // bool isSoundOn = false;
   bool isImageloaded = true;
   Offset offset = const Offset(0, 0);
   String? loadingCount = '0';

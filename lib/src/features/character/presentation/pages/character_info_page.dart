@@ -32,7 +32,6 @@ class CharacterInfoPage extends StatefulWidget {
 
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late AppLocalizations locale;
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -296,17 +295,17 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
           ),
           SoundAndMenuWidget(
             icons:
-                isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
-            onTapVolume: isSoundOn
+                AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+            onTapVolume: AudioPlayerUtil.isSoundOn
                 ? () {
                     setState(() {
-                      isSoundOn = !isSoundOn;
+                      AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       backgroundplayer.pause();
                     });
                   }
                 : () {
                     setState(() {
-                      isSoundOn = !isSoundOn;
+                      AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                       backgroundplayer.play();
                     });
                   },

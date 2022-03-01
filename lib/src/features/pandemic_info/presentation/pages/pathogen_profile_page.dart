@@ -40,7 +40,6 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   Offset offset = const Offset(0, 0);
   late ScrollController _scrollController;
   final ScrollController _textPanelScrollController = ScrollController();
-  bool isSoundOn = false;
   final backgroundplayer = AudioPlayer();
   Color soundAndMewnuColor = AppColors.black100;
 
@@ -352,19 +351,19 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                         // color: soundAndMewnuColor,
                       ),
                     ),
-                    icons: isSoundOn
+                    icons: AudioPlayerUtil.isSoundOn
                         ? AssetsPath.iconVolumeOn
                         : AssetsPath.iconVolumeOff,
-                    onTapVolume: isSoundOn
+                    onTapVolume: AudioPlayerUtil.isSoundOn
                         ? () {
                             setState(() {
-                              isSoundOn = !isSoundOn;
+                              AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                               // backgroundplayer.pause();
                             });
                           }
                         : () {
                             setState(() {
-                              isSoundOn = !isSoundOn;
+                              AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                               // backgroundplayer.play();
                             });
                           },

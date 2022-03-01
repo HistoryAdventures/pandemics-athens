@@ -43,7 +43,7 @@ class _MapPageState extends State<MapPage> {
   late WebViewXController webviewController;
 
   bool isImageloaded = false;
-  bool isSoundOn = false;
+
   final backgroundplayer = AudioPlayer();
 
   OverlayEntry? overlayEntry;
@@ -431,19 +431,19 @@ class _MapPageState extends State<MapPage> {
             _yearDescriptionField(constraints),
             _timeLineWidget(constraints),
             SoundAndMenuWidget(
-              icons: isSoundOn
+              icons: AudioPlayerUtil.isSoundOn
                   ? AssetsPath.iconVolumeOn
                   : AssetsPath.iconVolumeOff,
-              onTapVolume: isSoundOn
+              onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
-                        isSoundOn = !isSoundOn;
+                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                         backgroundplayer.play();
                       });
                     },

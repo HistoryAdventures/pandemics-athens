@@ -766,7 +766,6 @@ class _NavigationPageState extends State<NavigationPage> {
     );
   }
 
-  bool isSoundOn = false;
   Widget get _menu => Container(
         height: HW.getHeight(43, context),
         margin: EdgeInsets.only(
@@ -781,14 +780,14 @@ class _NavigationPageState extends State<NavigationPage> {
             Clickable(
               onPressed: () {
                 setState(() {
-                  isSoundOn = !isSoundOn;
+                  AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                 });
               },
               child: Container(
                 height: HW.getHeight(40, context),
                 width: HW.getWidth(40, context),
                 child: Image.asset(
-                  isSoundOn
+                  AudioPlayerUtil.isSoundOn
                       ? AssetsPath.iconVolumeOn
                       : AssetsPath.iconVolumeOff,
                   color: Colors.black,
