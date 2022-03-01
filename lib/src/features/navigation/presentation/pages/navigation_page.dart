@@ -122,6 +122,7 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex,
             adjacentEdges: [1]),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 0;
 
           context.router
@@ -141,6 +142,7 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex,
             adjacentEdges: [2]),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 1;
           LeafDetails.visitedVertexes.add(1);
           NavigationSharedPreferences.upDateShatedPreferences();
@@ -161,6 +163,7 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           SharedPreferences _sharedPrefs = SharedPreferancesManagment().prefs;
           _sharedPrefs.setBool("showVideo", false);
           LeafDetails.currentVertex = 2;
@@ -183,6 +186,7 @@ class _NavigationPageState extends State<NavigationPage> {
           adjacentEdges: [4, 9, 8],
         ),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
@@ -224,6 +228,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [4, 9, 8],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 2;
           LeafDetails.visitedVertexes.add(2);
           NavigationSharedPreferences.upDateShatedPreferences();
@@ -283,6 +288,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [3],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 8;
           LeafDetails.visitedVertexes.add(8);
 
@@ -304,6 +310,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [10],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 9;
           LeafDetails.visitedVertexes.add(9);
 
@@ -461,6 +468,7 @@ class _NavigationPageState extends State<NavigationPage> {
             adjacentEdges: [18],
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 17;
           LeafDetails.visitedVertexes.add(17);
           NavigationSharedPreferences.upDateShatedPreferences();

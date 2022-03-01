@@ -107,6 +107,8 @@ class AssetsPath {
       'assets/assets/audios/story-pages/sfx_ui_infoClose.ogg';
   static const String changeIndex =
       'assets/assets/audios/story-pages/sfx_ui_interact2.ogg';
+  static const String storyBackgroundSound =
+      'assets/assets/audios/story-pages/mus_index_r2.ogg';
 
   // Quiz
   static const String quizQlick =

@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/circle_button.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import "package:universal_html/html.dart" as html;
@@ -167,6 +169,9 @@ class _DocumentPageState extends State<DocumentPage>
     _transformationController.addListener(() {
       //debugPrint('${_transformationController.value}');
     });
+
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
   }
 
   @override
@@ -273,14 +278,40 @@ class _DocumentPageState extends State<DocumentPage>
                                             children: [
                                               Flexible(
                                                 child: Clickable(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    AudioPlayerUtil.isSoundOn
+                                                        ? setState(() {
+                                                            AudioPlayerUtil
+                                                                    .isSoundOn =
+                                                                !AudioPlayerUtil
+                                                                    .isSoundOn;
+                                                            AudioPlayerUtil()
+                                                                .playSoundWithLoop(
+                                                                    AssetsPath
+                                                                        .storyBackgroundSound);
+                                                          })
+                                                        : setState(() {
+                                                            AudioPlayerUtil
+                                                                    .isSoundOn =
+                                                                !AudioPlayerUtil
+                                                                    .isSoundOn;
+                                                            AudioPlayerUtil()
+                                                                .playSoundWithLoop(
+                                                                    AssetsPath
+                                                                        .storyBackgroundSound);
+                                                          });
+                                                  },
                                                   child: SizedBox(
                                                     height: HW.getWidth(
                                                         32, context),
                                                     width: HW.getWidth(
                                                         32, context),
                                                     child: Image.asset(
-                                                      AssetsPath.iconVolumeOn,
+                                                      AudioPlayerUtil.isSoundOn
+                                                          ? AssetsPath
+                                                              .iconVolumeOn
+                                                          : AssetsPath
+                                                              .iconVolumeOff,
                                                       fit: BoxFit.contain,
                                                       color: Colors.black,
                                                     ),
@@ -436,6 +467,7 @@ class _DocumentPageState extends State<DocumentPage>
                           textSubTitle: locale.medicalToolsKnowledge,
                           textTitle: locale.chapter1,
                           onTap: () {
+                            AudioPlayerUtil.audioPlayerLoop.release();
                             LeafDetails.currentVertex = 8;
                             LeafDetails.visitedVertexes.add(8);
 
@@ -517,6 +549,7 @@ class _DocumentPageState extends State<DocumentPage>
         padding: EdgeInsets.only(right: HW.getWidth(20, context)),
         child: Clickable(
           onPressed: () {
+            AudioPlayerUtil().playSound(AssetsPath.changeIndex);
             setState(() {
               documentModel.chandeState(selected, text);
             });

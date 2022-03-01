@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:html';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -10,7 +11,6 @@ import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:rxdart/rxdart.dart';
 
@@ -46,8 +46,6 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
 
-  final backgroundplayer = AudioPlayer();
-
   String? hoveredItemIndex;
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
@@ -63,6 +61,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
         objWave: objWave,
       ),
     );
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
     super.initState();
   }
 
@@ -541,14 +541,18 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                   onTapVolume: AudioPlayerUtil.isSoundOn
                       ? () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.pause();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
+                            AudioPlayerUtil().playSoundWithLoop(
+                                AssetsPath.storyBackgroundSound);
                           });
                         }
                       : () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.play();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
+                            AudioPlayerUtil().playSoundWithLoop(
+                                AssetsPath.storyBackgroundSound);
                           });
                         },
                   onTapMenu: () {

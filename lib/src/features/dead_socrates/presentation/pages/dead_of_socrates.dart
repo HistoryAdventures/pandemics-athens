@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/features/practice_medicine/presentation/pages/keep_going_page.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -40,7 +40,6 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
   Offset offset = const Offset(0, 0);
   late List<SocratesInfoModel> socratesList;
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  final backgroundplayer = AudioPlayer();
   double objWave = 0;
   int direction = 1;
   double mouseX = 100;
@@ -59,6 +58,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
         objWave: objWave,
       ),
     );
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
 
     super.initState();
   }
@@ -160,7 +161,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     textSubTitle: locale.endOfThePeloponneseanWar,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                        AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                      AudioPlayerUtil()
+                          .playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 16;
                       LeafDetails.visitedVertexes.add(16);
                       NavigationSharedPreferences.upDateShatedPreferences();
@@ -185,14 +187,18 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                          backgroundplayer.pause();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
                         });
                       }
                     : () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                          backgroundplayer.play();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
                         });
                       },
                 onTapMenu: () {

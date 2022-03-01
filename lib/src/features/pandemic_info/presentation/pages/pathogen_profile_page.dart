@@ -53,6 +53,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   @override
   void initState() {
     _scrollController = ScrollController();
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
 
     _scrollController.addListener(() {
       print("SCROLL LISTENER");
@@ -305,7 +307,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                     textSubTitle: locals.whereDidItComeFrom,
                                     textTitle: locals.pathogenProfile,
                                     onTap: () {
-                                       AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                                      AudioPlayerUtil().playSound(
+                                          AssetsPath.screenTransitionSound);
                                       LeafDetails.currentVertex = 11;
                                       LeafDetails.visitedVertexes.add(11);
                                       NavigationSharedPreferences
@@ -340,6 +343,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                         // iconSize: HW.getHeight(50, context),
                         // icon: const Icon(Icons.arrow_upward_sharp),
                         onTap: () {
+                          AudioPlayerUtil.audioPlayerLoop.release();
                           LeafDetails.currentVertex = 9;
                           LeafDetails.visitedVertexes.add(9);
 
@@ -357,13 +361,21 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                     onTapVolume: AudioPlayerUtil.isSoundOn
                         ? () {
                             setState(() {
-                              AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                              AudioPlayerUtil.isSoundOn =
+                                  !AudioPlayerUtil.isSoundOn;
+                              AudioPlayerUtil().playSoundWithLoop(
+                                  AssetsPath.storyBackgroundSound);
+
                               // backgroundplayer.pause();
                             });
                           }
                         : () {
                             setState(() {
-                              AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                              AudioPlayerUtil.isSoundOn =
+                                  !AudioPlayerUtil.isSoundOn;
+                              AudioPlayerUtil().playSoundWithLoop(
+                                  AssetsPath.storyBackgroundSound);
+
                               // backgroundplayer.play();
                             });
                           },

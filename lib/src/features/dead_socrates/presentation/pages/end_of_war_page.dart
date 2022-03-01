@@ -1,10 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import "package:universal_html/html.dart" as html;
 import '../../../../core/router.gr.dart';
@@ -35,7 +35,6 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
   double mouseY = 100;
   Offset offset = Offset.zero;
   late List<SocratesInfoModel> socratesList;
-  final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
@@ -51,7 +50,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
         objWave: objWave,
       ),
     );
-
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
     super.initState();
   }
 
@@ -140,7 +140,8 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     textSubTitle: locale.deathOfSocrates,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                        AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                      AudioPlayerUtil()
+                          .playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();
@@ -156,13 +157,21 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                 onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
+
                           //backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
+
                           //backgroundplayer.play();
                         });
                       },

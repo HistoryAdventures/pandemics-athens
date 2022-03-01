@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:audioplayers/audioplayers_api.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:lottie/lottie.dart';
@@ -43,8 +43,6 @@ class _MapPageState extends State<MapPage> {
   late WebViewXController webviewController;
 
   bool isImageloaded = false;
-
-  final backgroundplayer = AudioPlayer();
 
   OverlayEntry? overlayEntry;
   final LayerLink layerLink = LayerLink();
@@ -364,7 +362,8 @@ class _MapPageState extends State<MapPage> {
       _visible = true;
       setState(() {});
     });
-
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
     setIframElementPlatform();
 
     super.initState();
@@ -438,13 +437,15 @@ class _MapPageState extends State<MapPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.pause();
+                        AudioPlayerUtil()
+                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.play();
+                        AudioPlayerUtil()
+                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
                       });
                     },
               onTapMenu: () {
@@ -544,7 +545,8 @@ class _MapPageState extends State<MapPage> {
                               alignment: Alignment.bottomLeft,
                               child: Clickable(
                                   onPressed: () {
-                                    AudioPlayerUtil().playSound(AssetsPath.infoOpen);
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.infoOpen);
                                     showGeneralDialog(
                                         context: context,
                                         barrierColor:
@@ -721,6 +723,7 @@ class _MapPageState extends State<MapPage> {
                 textSubTitle: locals.todoNoHarm,
                 textTitle: locals.chapter1,
                 onTap: () {
+                  AudioPlayerUtil.audioPlayerLoop.release();
                   LeafDetails.currentVertex = 2;
                   LeafDetails.visitedVertexes.add(2);
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -800,7 +803,7 @@ class _MapPageState extends State<MapPage> {
                 bottom: 0,
                 textTitle: locals.athens5thCentury,
                 onTap: () {
-                    AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -826,7 +829,7 @@ class _MapPageState extends State<MapPage> {
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () async {
-           AudioPlayerUtil().playSound(AssetsPath.changeIndex);
+          AudioPlayerUtil().playSound(AssetsPath.changeIndex);
           _visible = false;
           setState(() {});
           //  await Future.delayed(const Duration(seconds: 1));

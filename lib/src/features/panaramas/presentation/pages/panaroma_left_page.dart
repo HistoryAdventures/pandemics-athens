@@ -166,6 +166,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     ];
     super.didChangeDependencies();
   }
+
   bool onButtonInfoPressed = false;
   dynamic backgroundSound;
   dynamic openInfoSoundFirst;
@@ -174,10 +175,17 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   AudioPlayer bgPlayer = AudioPlayer();
 
   Future<void> playSound() async {
-    int result = await bgPlayer.play(AssetsPath.panaramaLeftSound);
-    bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+    if (AudioPlayerUtil.isSoundOn) {
+      if (bgPlayer.state == PlayerState.PAUSED) {
+        bgPlayer.resume();
+      } else {
+        int result = await bgPlayer.play(AssetsPath.panaramaLeftSound);
+        bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+      }
+    } else {
+      bgPlayer.pause();
+    }
   }
-
 
   void onChangeView() {
     setState(() {
@@ -314,17 +322,22 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
         ),
         SoundAndMenuWidget(
           color: AppColors.white,
-          icons: AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+          icons: AudioPlayerUtil.isSoundOn
+              ? AssetsPath.iconVolumeOn
+              : AssetsPath.iconVolumeOff,
           onTapVolume: AudioPlayerUtil.isSoundOn
               ? () {
                   setState(() {
                     AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                    playSound();
                     // backgroundplayer.pause();
                   });
                 }
               : () {
                   setState(() {
                     AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                    bgPlayer.state = PlayerState.PAUSED;
+                    playSound();
                     // backgroundplayer.play();
                   });
                 },

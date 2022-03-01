@@ -1,9 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
@@ -26,8 +26,6 @@ class CharacrterPage extends StatefulWidget {
 class _CharacrterPageState extends State<CharacrterPage> {
   late List<CharacterModelNotifier> list;
   late AppLocalizations locale;
-
-  final backgroundplayer = AudioPlayer();
 
   @override
   void didChangeDependencies() {
@@ -89,6 +87,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
 
   @override
   void initState() {
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
@@ -121,13 +121,15 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.pause();
+                        AudioPlayerUtil()
+                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.play();
+                        AudioPlayerUtil()
+                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
                       });
                     },
               onTapMenu: () {
@@ -205,7 +207,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
                   textSubTitle: locale.timelineOfMainEvents,
                   textTitle: locale.athens5thCentury,
                   onTap: () {
-                   AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.currentVertex = 4;
                     LeafDetails.visitedVertexes.add(4);
                     NavigationSharedPreferences.upDateShatedPreferences();

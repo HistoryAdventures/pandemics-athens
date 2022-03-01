@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,6 @@ import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:universal_html/html.dart';
 
@@ -132,6 +132,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       ),
     );
     precacheImages();
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
   }
 
   @override
@@ -262,12 +264,16 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                               setState(() {
                                 AudioPlayerUtil.isSoundOn =
                                     !AudioPlayerUtil.isSoundOn;
+                                AudioPlayerUtil().playSoundWithLoop(
+                                    AssetsPath.storyBackgroundSound);
                               });
                             }
                           : () {
                               setState(() {
                                 AudioPlayerUtil.isSoundOn =
                                     !AudioPlayerUtil.isSoundOn;
+                                AudioPlayerUtil().playSoundWithLoop(
+                                    AssetsPath.storyBackgroundSound);
                               });
                             },
                       onTapMenu: () {

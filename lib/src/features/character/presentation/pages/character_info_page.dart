@@ -7,7 +7,6 @@ import 'package:history_of_adventures/src/core/router.gr.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 import 'package:history_of_adventures/src/features/navigation/presentation/models/leaf_detail_model.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -32,7 +31,6 @@ class CharacterInfoPage extends StatefulWidget {
 
 class _CharacterInfoPageState extends State<CharacterInfoPage> {
   late AppLocalizations locale;
-  final backgroundplayer = AudioPlayer();
   final scaffoldkey = GlobalKey<ScaffoldState>();
 
   late CharacterModelNotifier characterModelNotifierprovider;
@@ -289,24 +287,22 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                   LeafDetails.currentVertex = 4;
                   LeafDetails.visitedVertexes.add(4);
                   NavigationSharedPreferences.upDateShatedPreferences();
-
                   context.router.replace(const MapPageToLeft());
                 }),
           ),
           SoundAndMenuWidget(
-            icons:
-                AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+            icons: AudioPlayerUtil.isSoundOn
+                ? AssetsPath.iconVolumeOn
+                : AssetsPath.iconVolumeOff,
             onTapVolume: AudioPlayerUtil.isSoundOn
                 ? () {
                     setState(() {
                       AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                      backgroundplayer.pause();
                     });
                   }
                 : () {
                     setState(() {
                       AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                      backgroundplayer.play();
                     });
                   },
             onTapMenu: () {
@@ -329,6 +325,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
         margin: EdgeInsets.only(right: HW.getWidth(16, context)),
         child: Clickable(
           onPressed: () {
+            AudioPlayerUtil().playSound(AssetsPath.changeIndex);
             setState(() {
               characterModelNotifierprovider.changeCaracterInfo(
                   name: name, image: image, bodyText: text, subTitle: subTitle);

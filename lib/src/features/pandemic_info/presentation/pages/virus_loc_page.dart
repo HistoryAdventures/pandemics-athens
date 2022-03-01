@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -29,7 +29,6 @@ class VirusLocationPage extends StatefulWidget {
 
 class _VirusLocationPageState extends State<VirusLocationPage> {
   late AppLocalizations locals;
-  final backgroundplayer = AudioPlayer();
   String viewID = "virusLocationPage-view-id";
   Offset dragStartOffset = const Offset(0, 0);
   Offset dragEndOffset = const Offset(0, 0);
@@ -69,6 +68,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
         setState(() {});
       }
     });
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
   }
 
   @override
@@ -98,10 +99,9 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
               onPointerSignal: (signal) {
                 if (signal is PointerScrollEvent) {
                   print(signal);
-                  if (signal.scrollDelta.dy > 0 ) {
+                  if (signal.scrollDelta.dy > 0) {
                     context.router
                         .replace(const VirusLocationSecondPageRoute());
-              
                   }
                 }
               },
@@ -217,7 +217,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.pathogenProfile,
                         textTitle: locals.chapter1,
                         onTap: () {
-                           AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                          AudioPlayerUtil()
+                              .playSound(AssetsPath.screenTransitionSound);
                           LeafDetails.currentVertex = 10;
                           LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
@@ -230,7 +231,8 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.whatDidItDo,
                         textTitle: locals.pathogenProfile,
                         onTap: () {
-                          AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                          AudioPlayerUtil()
+                              .playSound(AssetsPath.screenTransitionSound);
                           context.router
                               .replace(const VirusLocationSecondPageToLeft());
                         }),
@@ -254,16 +256,20 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                   ? () {
                       if (mounted) {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                          backgroundplayer.pause();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
                         });
                       }
                     }
                   : () {
                       if (mounted) {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                          backgroundplayer.play();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playSoundWithLoop(
+                              AssetsPath.storyBackgroundSound);
                         });
                       }
                     },

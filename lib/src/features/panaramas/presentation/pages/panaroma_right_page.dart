@@ -163,8 +163,16 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
 
   AudioPlayer bgPlayer = AudioPlayer();
   Future<void> playSound() async {
-    int result = await bgPlayer.play(AssetsPath.panaramaRightSound);
-    await bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+    if (AudioPlayerUtil.isSoundOn) {
+      if (bgPlayer.state == PlayerState.PAUSED) {
+        bgPlayer.resume();
+      } else {
+        int result = await bgPlayer.play(AssetsPath.panaramaRightSound);
+        await bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+      }
+    } else {
+      bgPlayer.pause();
+    }
   }
 
   @override
@@ -261,12 +269,15 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                        playSound();
                         //backgroundplayer.pause();
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                        playSound();
+                        bgPlayer.state = PlayerState.PAUSED;
                         //backgroundplayer.play();
                       });
                     },
