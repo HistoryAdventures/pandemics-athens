@@ -85,7 +85,7 @@ class _QuizSelectImageState extends State<QuizSelectImage> {
                               value: answers.answers.value,
                               onTap: (val) {
                                 AudioPlayerUtil()
-                                    .playQuizSound(AssetsPath.quizQlick);
+                                    .playSound(AssetsPath.quizQlick);
                                 setState(() {
                                   QuizData.valueQ6 = val;
                                 });

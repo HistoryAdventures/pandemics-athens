@@ -244,7 +244,8 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
                             // } else {
                             //   context.router.pop();
                             // }
-                            AudioPlayerUtil().playScreenTransition();
+                            AudioPlayerUtil()
+                                .playSound(AssetsPath.screenTransitionSound);
                             LeafDetails.currentVertex = 12;
                             LeafDetails.visitedVertexes.add(12);
 
@@ -297,7 +298,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               // gifController: controller,
               onTapBubonik: () {
                 if (isSoundOn)
-                  AudioPlayerUtil().playVirusSound(AssetsPath.virusBubonic);
+                  AudioPlayerUtil().playSound(AssetsPath.virusBubonic);
                 setState(() {
                   virusModel.changeState(
                     title: locals.bubonicPlague,
@@ -308,7 +309,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               },
               onTapEbola: () {
                 if (isSoundOn)
-                  AudioPlayerUtil().playVirusSound(AssetsPath.virusEbola);
+                  AudioPlayerUtil().playSound(AssetsPath.virusEbola);
                 setState(() {
                   virusModel.changeState(
                     title: locals.ebola,
@@ -319,7 +320,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               },
               onTapSmall: () {
                 if (isSoundOn)
-                  AudioPlayerUtil().playVirusSound(AssetsPath.virusSmallpox);
+                  AudioPlayerUtil().playSound(AssetsPath.virusSmallpox);
                 setState(() {
                   virusModel.changeState(
                     title: locals.smallpox,
@@ -330,7 +331,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               },
               onTapTiphid: () {
                 if (isSoundOn)
-                  AudioPlayerUtil().playVirusSound(AssetsPath.virusTyphoid);
+                  AudioPlayerUtil().playSound(AssetsPath.virusTyphoid);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhiod,
@@ -341,7 +342,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
               },
               onTapTiphius: () {
                 if (isSoundOn)
-                  AudioPlayerUtil().playVirusSound(AssetsPath.virusTyphus);
+                  AudioPlayerUtil().playSound(AssetsPath.virusTyphus);
                 setState(() {
                   virusModel.changeState(
                     title: locals.typhus,
@@ -496,10 +497,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
       child: Clickable(
         onPressed: () {
           setState(() {
-            AudioPlayerUtil().playChangeIndexSound();
+            AudioPlayerUtil().playSound(AssetsPath.changeIndex);
             if (isSoundOn)
-              AudioPlayerUtil()
-                  .playVirusSound(AssetsPath.virusSoundList[index!]);
+              AudioPlayerUtil().playSound(AssetsPath.virusSoundList[index!]);
 
             virusModel.changeState(
                 description: text, title: name, widgets: image);

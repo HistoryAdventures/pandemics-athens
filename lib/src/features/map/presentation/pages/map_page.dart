@@ -544,7 +544,7 @@ class _MapPageState extends State<MapPage> {
                               alignment: Alignment.bottomLeft,
                               child: Clickable(
                                   onPressed: () {
-                                    AudioPlayerUtil().playZoomInSound();
+                                    AudioPlayerUtil().playSound(AssetsPath.infoOpen);
                                     showGeneralDialog(
                                         context: context,
                                         barrierColor:
@@ -800,7 +800,7 @@ class _MapPageState extends State<MapPage> {
                 bottom: 0,
                 textTitle: locals.athens5thCentury,
                 onTap: () {
-                  AudioPlayerUtil().playScreenTransition();
+                    AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -826,7 +826,7 @@ class _MapPageState extends State<MapPage> {
       margin: EdgeInsets.only(right: HW.getWidth(50, context)),
       child: Clickable(
         onPressed: () async {
-          AudioPlayerUtil().playChangeIndexSound();
+           AudioPlayerUtil().playSound(AssetsPath.changeIndex);
           _visible = false;
           setState(() {});
           //  await Future.delayed(const Duration(seconds: 1));

@@ -306,7 +306,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                     textSubTitle: locals.whereDidItComeFrom,
                                     textTitle: locals.pathogenProfile,
                                     onTap: () {
-                                      AudioPlayerUtil().playScreenTransition();
+                                       AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                                       LeafDetails.currentVertex = 11;
                                       LeafDetails.visitedVertexes.add(11);
                                       NavigationSharedPreferences

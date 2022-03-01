@@ -121,11 +121,11 @@ class _QuizCheckBoxState extends State<QuizCheckBox> {
                                     text: answers.answers.text!,
                                     onTap: (val) {
                                       if (val) {
-                                        AudioPlayerUtil().playQuizSound(
+                                        AudioPlayerUtil().playSound(
                                             AssetsPath.quizQlickErase);
                                         widget.userAnswers.remove(answers);
                                       } else {
-                                        AudioPlayerUtil().playQuizSound(
+                                        AudioPlayerUtil().playSound(
                                             AssetsPath.quizQlick);
                                         widget.userAnswers.add(answers);
                                       }

@@ -520,7 +520,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whereDidItComeFrom,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
-                        AudioPlayerUtil().playScreenTransition();
+                        AudioPlayerUtil()
+                            .playSound(AssetsPath.screenTransitionSound);
                         LeafDetails.currentVertex = 11;
                         NavigationSharedPreferences.upDateShatedPreferences();
 
@@ -561,7 +562,8 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                       textSubTitle: locale.whatWasIt,
                       textTitle: locale.pathogenProfile,
                       onTap: () {
-                        AudioPlayerUtil().playScreenTransition();
+                        AudioPlayerUtil()
+                            .playSound(AssetsPath.screenTransitionSound);
                         LeafDetails.currentVertex = 13;
                         LeafDetails.visitedVertexes.add(13);
                         NavigationSharedPreferences.upDateShatedPreferences();
@@ -582,7 +584,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
         margin: const EdgeInsets.only(right: 30),
         child: Clickable(
           onPressed: () {
-            AudioPlayerUtil().playChangeIndexSound();
+            AudioPlayerUtil().playSound(AssetsPath.changeIndex);
             setState(() {
               bodyModel.chandeState(
                   title: title, image: image, descriptiion: text);

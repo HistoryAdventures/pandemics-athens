@@ -172,8 +172,9 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                   Flexible(
                                       child: Clickable(
                                           onPressed: () {
-                                            AudioPlayerUtil()
-                                                .playScreenTransition();
+                                            AudioPlayerUtil().playSound(
+                                                AssetsPath
+                                                    .screenTransitionSound);
                                             LeafDetails.currentVertex = 4;
                                             LeafDetails.visitedVertexes.add(4);
                                             NavigationSharedPreferences
@@ -285,7 +286,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                 textSubTitle: locale.timelineOfMainEvents,
                 textTitle: locale.athens5thCentury,
                 onTap: () {
-                  AudioPlayerUtil().playScreenTransition();
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.currentVertex = 4;
                   LeafDetails.visitedVertexes.add(4);
                   NavigationSharedPreferences.upDateShatedPreferences();

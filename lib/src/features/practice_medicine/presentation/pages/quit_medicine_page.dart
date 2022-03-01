@@ -86,7 +86,8 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
                   onTap: () {
-                    AudioPlayerUtil().playScreenTransition();
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.currentVertex = 14;
                     LeafDetails.visitedVertexes.add(14);
                     NavigationSharedPreferences.upDateShatedPreferences();

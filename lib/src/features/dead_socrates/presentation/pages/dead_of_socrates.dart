@@ -161,7 +161,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                     textSubTitle: locale.endOfThePeloponneseanWar,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                      AudioPlayerUtil().playScreenTransition();
+                        AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 16;
                       LeafDetails.visitedVertexes.add(16);
                       NavigationSharedPreferences.upDateShatedPreferences();

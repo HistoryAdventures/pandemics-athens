@@ -36,7 +36,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late AppLocalizations locales;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final globalKey = GlobalKey();
-  bool isSoundOn = true;
   final backgroundplayer = AudioPlayer();
   int? hoveredItemIndex;
   bool played = false;
@@ -44,7 +43,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
   void initState() {
     NavigationSharedPreferences.getNavigationListFromSF();
 
-    AudioPlayerUtil().playGlossaryPageSound();
+    AudioPlayerUtil().playSound(AssetsPath.glossaryBackgoundPage);
     super.initState();
   }
 
@@ -281,9 +280,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                       hoveredItemIndex = item.index;
                                       if (!played) {
                                         played = true;
-                                        if (isSoundOn)
-                                          AudioPlayerUtil()
-                                              .playGlossaryItemHoverSound();
+
+                                        AudioPlayerUtil().playSound(
+                                            AssetsPath.glossaryItemHover);
                                       }
 
                                       setState(() {});
@@ -324,7 +323,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     LeafDetails.visitedVertexes.add(2);
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();
-                    AudioPlayerUtil().playGlossaryPageCloseSound();
+                    AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
                     context.router.push(ParalaxHistoryPageRoute());
                   },
                   textChapter: locales.chapter1,
@@ -341,27 +340,29 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   // } else {
                   //   context.router.pop();
                   // }
-                  if (isSoundOn) AudioPlayerUtil().playGlossaryPageCloseSound();
+                  AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
                   LeafDetails.currentVertex = 0;
 
                   context.router.replace(
                       LeandingPageToBottom(navigateFromNavigatorPage: true));
                 }),
-                icons: isSoundOn
+                icons: AudioPlayerUtil.isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,
-                onTapVolume: isSoundOn
+                onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
-                          AudioPlayerUtil().mute();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+
                           // backgroundplayer.pause();
                         });
                       }
                     : () {
                         setState(() {
-                          isSoundOn = !isSoundOn;
-                          AudioPlayerUtil().unMute();
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
+
                           // backgroundplayer.play();
                         });
                       },
@@ -395,7 +396,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
           ? null
           : () {
               selectedItem(cardTitele: name, text: text);
-              if (isSoundOn) AudioPlayerUtil().playGlossaryItemOnTapSound();
+              AudioPlayerUtil().playSound(AssetsPath.glossaryItemOnTap);
             },
       child: Container(
         decoration: BoxDecoration(

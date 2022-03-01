@@ -141,7 +141,7 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
                     textSubTitle: locale.deathOfSocrates,
                     textTitle: locale.plagueAndPersecution,
                     onTap: () {
-                      AudioPlayerUtil().playScreenTransition();
+                        AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();

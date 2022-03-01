@@ -216,7 +216,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                                                 onTap: (val) {
                                                   if (val) {
                                                     AudioPlayerUtil()
-                                                        .playQuizSound(
+                                                        .playSound(
                                                             AssetsPath
                                                                 .quizQlick);
                                                     if (widget.quizDataChecking

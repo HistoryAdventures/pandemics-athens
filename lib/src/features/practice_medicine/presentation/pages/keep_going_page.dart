@@ -143,7 +143,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                 child: IconButtonWidget(
                     iconSize: HW.getHeight(37, context),
                     onPressed: () {
-                      AudioPlayerUtil().playScreenTransition();
+                      AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();

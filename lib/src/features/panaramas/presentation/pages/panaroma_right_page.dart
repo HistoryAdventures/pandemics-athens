@@ -297,7 +297,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                 iconSize: HW.getHeight(37, context),
                 icon: const Icon(Icons.arrow_downward),
                 onPressed: () async {
-                  AudioPlayerUtil().playScreenTransition();
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.currentVertex = 10;
                   LeafDetails.visitedVertexes.add(10);
                   NavigationSharedPreferences.upDateShatedPreferences();

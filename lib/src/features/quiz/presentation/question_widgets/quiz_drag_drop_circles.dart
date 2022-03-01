@@ -669,7 +669,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
               data: "data",
               onDragUpdate: onDragUpdate,
               onDragStarted: () {
-                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
+                AudioPlayerUtil().playSound(AssetsPath.quizQlick);
                 curentIndex = index!;
                 onDragStart();
               },
@@ -679,7 +679,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                 setState(() {});
               },
               onDraggableCanceled: (_, o) {
-                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickErase);
+                AudioPlayerUtil().playSound(AssetsPath.quizQlickErase);
               },
               dragAnchorStrategy: (_, c, o) {
                 return Offset(
@@ -736,7 +736,7 @@ class __DragDropQuizBodyState extends State<DragDropQuizBody> {
                 setState(() {});
               },
               onAccept: (d) {
-                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
+                AudioPlayerUtil().playSound(AssetsPath.quizQlickRelease);
                 savedLines.removeWhere(
                   (element) => element.line.endKey == drawingLine!.endKey,
                 );

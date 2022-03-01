@@ -71,7 +71,7 @@ class _QuizDragDropWidgetState extends State<QuizDragDropWidget> {
   // late List<DragWordsWidget> dragWordsList;
 
   void removeAll(Answers toRemove) {
-    AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
+    AudioPlayerUtil().playSound(AssetsPath.quizQlickRelease);
     asnwersLength = widget.answers.length;
     widget.answers.removeWhere((answer) => answer.text == toRemove.text);
 
@@ -832,13 +832,13 @@ Widget buildTarget({
               },
               // onMove: (a) {
               //   if (!played) {
-              //     AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
+              //     AudioPlayerUtil().playSound(AssetsPath.quizQlick);
               //     played = true;
               //     // AudioPlayerUtil().disposeMapSounds();
               //   }
               // },
               onLeave: (data) {
-                AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
+                AudioPlayerUtil().playSound(AssetsPath.quizQlick);
               },
             ),
           ),

@@ -128,7 +128,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                   alignment: Alignment.bottomLeft,
                                   child: Clickable(
                                     onPressed: () {
-                                      AudioPlayerUtil().playZoomInSound();
+                                      AudioPlayerUtil().playSound(AssetsPath.infoOpen);
                                       _sharedPrefs.setBool(
                                           "showPanoramaLeftLoading", true);
                                       showGeneralDialog(
@@ -385,7 +385,7 @@ class _DialogWidgetState extends State<DialogWidget> {
       margin: const EdgeInsets.only(right: 15, bottom: 5),
       child: Clickable(
         onPressed: () {
-          AudioPlayerUtil().playChangeIndexSound();
+           AudioPlayerUtil().playSound(AssetsPath.changeIndex);
           setState(() {
             infoDialogModel!.chandeState(
               title: title,

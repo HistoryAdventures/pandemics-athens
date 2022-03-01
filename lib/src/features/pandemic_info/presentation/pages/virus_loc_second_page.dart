@@ -229,7 +229,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         textSubTitle: locals.pathogenProfile,
                         textTitle: locals.chapter1,
                         onTap: () {
-                          AudioPlayerUtil().playScreenTransition();
+                          AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                           LeafDetails.currentVertex = 11;
                           // if (kIsWeb) {
                           //   html.window.history.back();
@@ -249,7 +249,7 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         textSubTitle: locals.whatDidItDo,
                         textTitle: locals.pathogenProfile,
                         onTap: () {
-                          AudioPlayerUtil().playScreenTransition();
+                         AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                           LeafDetails.currentVertex = 12;
                           LeafDetails.visitedVertexes.add(12);
                           NavigationSharedPreferences.upDateShatedPreferences();

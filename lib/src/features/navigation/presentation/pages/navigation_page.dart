@@ -47,7 +47,7 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   void initState() {
     super.initState();
-    AudioPlayerUtil().playMenuOntapSound();
+    AudioPlayerUtil().playSound(AssetsPath.menuOntapSound);
     chapterNavigation = [
       ChapterDetails(
           vertex: Vertex(
@@ -811,7 +811,7 @@ class _NavigationPageState extends State<NavigationPage> {
                 ),
                 onPressed: () {
                   print("on click");
-                  AudioPlayerUtil().playMenuCloseSound();
+                  AudioPlayerUtil().playSound(AssetsPath.menuCloseSound);
 
                   context.router.pop();
                 }),

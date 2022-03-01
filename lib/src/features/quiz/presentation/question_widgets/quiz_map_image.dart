@@ -541,7 +541,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                 data: "data",
                 onDragUpdate: onDragUpdate,
                 onDragStarted: () {
-                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlick);
+                  AudioPlayerUtil().playSound(AssetsPath.quizQlick);
                   curentIndex = index;
                   onDragStart();
                 },
@@ -551,7 +551,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                   setState(() {});
                 },
                 onDraggableCanceled: (_, o) {
-                  AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickErase);
+                  AudioPlayerUtil().playSound(AssetsPath.quizQlickErase);
                 },
                 dragAnchorStrategy: (_, c, o) {
                   return Offset(
@@ -605,7 +605,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
               setState(() {});
             },
             onAccept: (d) {
-              AudioPlayerUtil().playQuizSound(AssetsPath.quizQlickRelease);
+              AudioPlayerUtil().playSound(AssetsPath.quizQlickRelease);
               savedLines.removeWhere(
                 (element) => element.line.endKey == drawingLine!.endKey,
               );

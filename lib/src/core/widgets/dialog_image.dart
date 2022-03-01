@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -79,7 +80,8 @@ class _DialogImageWidgetState extends State<DialogImageWidget> {
                                 ),
                                 onPressed: () {
                                   context.router.pop();
-                                  AudioPlayerUtil().playZoomCloseSound();
+                                  AudioPlayerUtil()
+                                      .playSound(AssetsPath.infoClose);
                                 })
                           ],
                         ),

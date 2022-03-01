@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
 
@@ -104,7 +105,8 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
                             alignment: Alignment.bottomLeft,
                             child: Clickable(
                                 onPressed: () {
-                                  AudioPlayerUtil().playZoomInSound();
+                                  AudioPlayerUtil()
+                                      .playSound(AssetsPath.infoOpen);
                                   showGeneralDialog(
                                       context: context,
                                       barrierColor:
@@ -292,7 +294,7 @@ class _CardTextAndImageWidgetState extends State<CardTextAndImageWidget> {
       margin: const EdgeInsets.only(right: 30),
       child: Clickable(
         onPressed: () {
-          AudioPlayerUtil().playChangeIndexSound();
+          AudioPlayerUtil().playSound(AssetsPath.changeIndex);
           setState(() {
             socratesInfoModel.changeCaracterInfo(
                 name: name,

@@ -218,7 +218,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.pathogenProfile,
                         textTitle: locals.chapter1,
                         onTap: () {
-                          AudioPlayerUtil().playScreenTransition();
+                           AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                           LeafDetails.currentVertex = 10;
                           LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
@@ -231,7 +231,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                         textSubTitle: locals.whatDidItDo,
                         textTitle: locals.pathogenProfile,
                         onTap: () {
-                          AudioPlayerUtil().playScreenTransition();
+                          AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                           context.router
                               .replace(const VirusLocationSecondPageToLeft());
                         }),
