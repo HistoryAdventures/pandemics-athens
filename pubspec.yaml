@@ -50,7 +50,6 @@ dependencies:
   # date and number formatting and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
 
-  just_audio: ^0.9.11
 
   # Render After Effects animations natively on Flutter.
   # This package is a pure Dart implementation of a Lottie player.
@@ -73,6 +72,7 @@ dependencies:
   restart_app: ^1.1.0
   url_strategy: ^0.2.0
   audioplayers: ^0.20.1
+  # firebase_core: ^1.13.1
 
   #Flutter plugin for displaying inline video with other Flutter widgets on Android, iOS, and web.
 
