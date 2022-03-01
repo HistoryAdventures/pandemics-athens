@@ -76,8 +76,9 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   }
 
   Future<void> playTrackingSound() async {
-    final result =
-        await tracingAnimationSound.play(AssetsPath.tracingAnimationSound);
+    if (AudioPlayerUtil.isSoundOn)
+      final result =
+          await tracingAnimationSound.play(AssetsPath.tracingAnimationSound);
   }
 
   Widget _iframeIgnorePointer({
