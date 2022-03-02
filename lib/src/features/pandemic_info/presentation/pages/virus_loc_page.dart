@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
@@ -29,7 +30,7 @@ class VirusLocationPage extends StatefulWidget {
 
 class _VirusLocationPageState extends State<VirusLocationPage> {
   late AppLocalizations locals;
-  String viewID = "virusLocationPage-view-id";
+  String viewID = "virusLocationPage-view-id = ${Random().nextInt(100)}";
   Offset dragStartOffset = const Offset(0, 0);
   Offset dragEndOffset = const Offset(0, 0);
 

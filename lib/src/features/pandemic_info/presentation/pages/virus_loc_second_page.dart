@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
@@ -34,7 +35,7 @@ class VirusLocationSecondPage extends StatefulWidget {
 class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
   late AppLocalizations locals;
   AudioPlayer tracingAnimationSound = AudioPlayer();
-  String viewID = "virusLocationSecondPage-view-id";
+  String viewID = "virusLocationSecondPage-view-id = ${Random().nextInt(100)}";
   Offset dragStartOffset = const Offset(0, 0);
   Offset dragEndOffset = const Offset(0, 0);
   @override
@@ -262,6 +263,17 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
                         }),
                   ),
                 ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Transform.rotate(
+                angle: 180 * pi / 180,
+                child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: const EdgeInsets.all(24),
+                    child: Image.asset(AssetsPath.scrollIcon)),
               ),
             ),
             SoundAndMenuWidget(
