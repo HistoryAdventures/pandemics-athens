@@ -6,11 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
-import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
+import 'package:history_of_adventures/src/core/utils/parallax_backgroud_sound.dart';
 import 'package:history_of_adventures/src/features/panaramas/presentation/widgets/panarama_panel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:just_audio/just_audio.dart';
-// import 'package:panorama/panorama.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -202,6 +199,16 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   void initState() {
     // init();
     playSound();
+
+    BackgroundSound(
+      assetName: AssetsPath.parallaxBgSound,
+      pageName: 'panorama_left',
+    );
+
+    BackgroundSound.doAction(
+      PlayerAction.play,
+    );
+
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
   }
@@ -209,6 +216,13 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   @override
   void dispose() {
     bgPlayer.dispose();
+
+    print('dispose + panorama_left');
+
+    BackgroundSound.doAction(
+      PlayerAction.pause,
+      pageName: 'panorama_left',
+    );
     super.dispose();
   }
 
@@ -329,6 +343,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
               : AssetsPath.iconVolumeOff,
           onTapVolume: AudioPlayerUtil.isSoundOn
               ? () {
+                  BackgroundSound.doAction(PlayerAction.mute);
                   setState(() {
                     AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                     playSound();
@@ -336,6 +351,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                   });
                 }
               : () {
+                  BackgroundSound.doAction(PlayerAction.unmute);
                   setState(() {
                     AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                     bgPlayer.state = PlayerState.PAUSED;
