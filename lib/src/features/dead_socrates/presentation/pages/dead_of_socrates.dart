@@ -146,6 +146,7 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 child: IconButtonWidget(
                   iconSize: HW.getHeight(37, context),
                   onPressed: () {
+                    AudioPlayerUtil.audioPlayerLoop.release();
                     AudioPlayerUtil()
                         .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.currentVertex = 17;

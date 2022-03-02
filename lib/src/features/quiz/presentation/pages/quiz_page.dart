@@ -280,6 +280,8 @@ class _QuizPageState extends State<QuizPage> {
                           GestureDetector(
                             onTap: previousButtonisAvailibaleToPress
                                 ? () {
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.quizQlick);
                                     if (mounted) {
                                       setState(() {
                                         QuizData.questionIndex--;
@@ -312,6 +314,8 @@ class _QuizPageState extends State<QuizPage> {
                           IconButton(
                             onPressed: nextButtonisAvailibaleToPress
                                 ? () {
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.quizQlick);
                                     if (mounted) {
                                       setState(() {
                                         QuizData.questionIndex++;
@@ -529,6 +533,7 @@ class _QuizPageState extends State<QuizPage> {
                         ImageButton(
                           asset: AssetsPath.restartIcon,
                           onTap: () {
+                            AudioPlayerUtil().playSound(AssetsPath.quizQlick);
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -567,6 +572,8 @@ class _QuizPageState extends State<QuizPage> {
                                     Navigator.of(context).pop();
                                   },
                                   onTapCancel: () {
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.menuCloseSound);
                                     Navigator.of(context).pop();
                                   },
                                   subTitle:
@@ -581,6 +588,7 @@ class _QuizPageState extends State<QuizPage> {
                         ImageButton(
                           asset: AssetsPath.checkIcon,
                           onTap: () {
+                            AudioPlayerUtil().playSound(AssetsPath.quizQlick);
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -588,6 +596,8 @@ class _QuizPageState extends State<QuizPage> {
                                   accept: 'Yes',
                                   cancel: 'No',
                                   onTapAccept: () {
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.quizQlick);
                                     if (DragDropQuizBody
                                             .dragDropBodyKey.currentState !=
                                         null) {
@@ -644,6 +654,8 @@ class _QuizPageState extends State<QuizPage> {
                                     Navigator.of(context).pop();
                                   },
                                   onTapCancel: () {
+                                    AudioPlayerUtil()
+                                        .playSound(AssetsPath.menuCloseSound);
                                     Navigator.of(context).pop();
                                   },
                                   subTitle:
