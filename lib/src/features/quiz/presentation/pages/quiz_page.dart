@@ -22,7 +22,7 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_edit_text.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/quiz_widget_radio_button.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/radiobutton_widget.dart';
-import 'package:just_audio/just_audio.dart';
+
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
@@ -41,7 +41,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  final backgroundplayer = AudioPlayer();
 
   // late List<Widget> questionsWidgets;
   late AppLocalizations locals;
@@ -347,6 +346,7 @@ class _QuizPageState extends State<QuizPage> {
               height: HW.getHeight(111, context),
               child: ArrowTextBottomWidget(
                 onPressed: () {
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.currentVertex = 21;
                   LeafDetails.visitedVertexes.add(21);
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -366,6 +366,7 @@ class _QuizPageState extends State<QuizPage> {
         widget: IconButtonWidget(
           onPressed: () {
             if (kIsWeb) {
+              AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
               LeafDetails.currentVertex = 15;
               LeafDetails.visitedVertexes.add(15);
               NavigationSharedPreferences.upDateShatedPreferences();
@@ -386,13 +387,11 @@ class _QuizPageState extends State<QuizPage> {
             ? () {
                 setState(() {
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                  backgroundplayer.pause();
                 });
               }
             : () {
                 setState(() {
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                  backgroundplayer.play();
                 });
               },
         onTapMenu: () {

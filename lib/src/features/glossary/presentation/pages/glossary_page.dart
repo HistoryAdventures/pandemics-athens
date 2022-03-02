@@ -8,7 +8,6 @@ import 'package:history_of_adventures/src/core/utils/shared_preferances_managmen
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/arrow_text_bottom.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import "package:universal_html/html.dart" as html;
 
@@ -36,7 +35,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
   late AppLocalizations locales;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final globalKey = GlobalKey();
-  final backgroundplayer = AudioPlayer();
   int? hoveredItemIndex;
   bool played = false;
   @override

@@ -7,7 +7,6 @@ import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
 import 'package:history_of_adventures/src/features/about_book/models/url_luncher.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/router.gr.dart';
@@ -27,8 +26,6 @@ class CreditsPage extends StatefulWidget {
 
 class _CreditsPageState extends State<CreditsPage> {
   late AppLocalizations locale;
-
-  final backgroundplayer = AudioPlayer();
 
   @override
   void didChangeDependencies() {
@@ -78,14 +75,14 @@ class _CreditsPageState extends State<CreditsPage> {
                   onTapVolume: AudioPlayerUtil.isSoundOn
                       ? () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.pause();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
                           });
                         }
                       : () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.play();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
                           });
                         },
                   onTapMenu: () {
@@ -102,6 +99,8 @@ class _CreditsPageState extends State<CreditsPage> {
                             textSubTitle: locale.meetTheTeam,
                             textTitle: locale.aboutTheBook,
                             onTap: () {
+                              AudioPlayerUtil()
+                                  .playSound(AssetsPath.screenTransitionSound);
                               LeafDetails.currentVertex = 23;
                               LeafDetails.visitedVertexes.add(23);
                               NavigationSharedPreferences
@@ -127,6 +126,8 @@ class _CreditsPageState extends State<CreditsPage> {
                             textSubTitle: locale.sources,
                             textTitle: locale.aboutTheBook,
                             onTap: () {
+                              AudioPlayerUtil()
+                                  .playSound(AssetsPath.screenTransitionSound);
                               LeafDetails.currentVertex = 25;
                               LeafDetails.visitedVertexes.add(25);
                               NavigationSharedPreferences
@@ -157,7 +158,8 @@ class _CreditsPageState extends State<CreditsPage> {
                                   children: [
                                     AuthorWidget(
                                       textDecoration: TextDecoration.none,
-                                      profession: 'CREATOR, DESIGN DIRECTOR, PRODUCER',
+                                      profession:
+                                          'CREATOR, DESIGN DIRECTOR, PRODUCER',
                                       urlModeles: [
                                         UrlLuncherModel(
                                             title: 'Spencer Striker, PhD')
@@ -170,7 +172,7 @@ class _CreditsPageState extends State<CreditsPage> {
                                         UrlLuncherModel(
                                             title: 'Julius Krunglevičius '),
                                         //  UrlLuncherModel(
-                                        //     title: 'Spencer Striker '),    
+                                        //     title: 'Spencer Striker '),
                                       ],
                                     ),
                                     AuthorWidget(

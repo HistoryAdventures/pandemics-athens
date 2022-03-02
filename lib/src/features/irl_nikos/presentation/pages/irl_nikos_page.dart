@@ -26,7 +26,6 @@ class IrlNikosPage extends StatefulWidget {
 }
 
 class _IrlNikosPageState extends State<IrlNikosPage> {
-  final backgroundplayer = AudioPlayer();
   late AppLocalizations locals;
 
   @override
@@ -81,6 +80,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
               widget: AppUpButton(
                 iconColor: Colors.white,
                 onTap: () {
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.currentVertex = 17;
                   LeafDetails.visitedVertexes.add(17);
                   NavigationSharedPreferences.upDateShatedPreferences();
@@ -159,6 +159,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                 color: AppColors.white,
                 icon: const Icon(Icons.arrow_downward),
                 onPressed: () {
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   LeafDetails.currentVertex = 24;
                   LeafDetails.visitedVertexes.add(24);
                   NavigationSharedPreferences.upDateShatedPreferences();

@@ -299,6 +299,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
               textSubTitle: locals.sourceAnalysis,
               textTitle: locals.medicalToolsKnowledge,
               onTap: () {
+                AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                 LeafDetails.visitedVertexes.add(3);
                 LeafDetails.currentVertex = 3;
                 NavigationSharedPreferences.upDateShatedPreferences();
@@ -312,6 +313,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
               textSubTitle: locals.todoNoHarm,
               textTitle: locals.chapter1,
               onTap: () {
+                AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                 LeafDetails.currentVertex = 2;
                 LeafDetails.visitedVertexes.add(2);
                 NavigationSharedPreferences.upDateShatedPreferences();

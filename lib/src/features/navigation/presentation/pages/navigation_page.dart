@@ -39,9 +39,19 @@ class _NavigationPageState extends State<NavigationPage> {
   List<ChapterDetails> chapterNavigation = [];
   List<Widget> chapterNavigationWidgets = [];
 
+  List<String> getRouteName(String? routeName) {
+    return routeName!.split('Page');
+  }
+
   @override
   void dispose() {
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print(getRouteName(ModalRoute.of(context)!.settings.name));
+    super.didChangeDependencies();
   }
 
   @override

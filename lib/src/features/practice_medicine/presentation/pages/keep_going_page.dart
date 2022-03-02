@@ -91,6 +91,8 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                     textSubTitle: locals.todoNoHarm,
                     textTitle: locals.chapter1,
                     onTap: () {
+                      AudioPlayerUtil()
+                          .playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 14;
                       LeafDetails.visitedVertexes.add(14);
                       NavigationSharedPreferences.upDateShatedPreferences();
@@ -106,12 +108,14 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                 onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
                         });
                       }
                     : () {
                         setState(() {
-                          AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil.isSoundOn =
+                              !AudioPlayerUtil.isSoundOn;
                         });
                       },
                 onTapMenu: () {
@@ -142,7 +146,8 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                 child: IconButtonWidget(
                     iconSize: HW.getHeight(37, context),
                     onPressed: () {
-                      AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                      AudioPlayerUtil()
+                          .playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 15;
                       LeafDetails.visitedVertexes.add(15);
                       NavigationSharedPreferences.upDateShatedPreferences();

@@ -8,7 +8,6 @@ import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -28,9 +27,6 @@ class AboutBookPage extends StatefulWidget {
 
 class _AboutBookPageState extends State<AboutBookPage> {
   late AppLocalizations locale;
-
-  final backgroundplayer = AudioPlayer();
-
 
   @override
   void didChangeDependencies() {
@@ -121,6 +117,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                       textSubTitle: locale.credits,
                       textTitle: locale.aboutTheBook,
                       onTap: () {
+                        AudioPlayerUtil()
+                            .playSound(AssetsPath.screenTransitionSound);
                         LeafDetails.currentVertex = 24;
                         LeafDetails.visitedVertexes.add(24);
                         NavigationSharedPreferences.upDateShatedPreferences();
@@ -131,6 +129,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   widget: AppUpButton(
                     // iconSize: HW.getHeight(55, context),
                     onTap: () {
+                      AudioPlayerUtil()
+                          .playSound(AssetsPath.screenTransitionSound);
                       LeafDetails.currentVertex = 18;
                       LeafDetails.visitedVertexes.add(18);
                       NavigationSharedPreferences.upDateShatedPreferences();
@@ -143,14 +143,14 @@ class _AboutBookPageState extends State<AboutBookPage> {
                   onTapVolume: AudioPlayerUtil.isSoundOn
                       ? () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.pause();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
                           });
                         }
                       : () {
                           setState(() {
-                            AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.play();
+                            AudioPlayerUtil.isSoundOn =
+                                !AudioPlayerUtil.isSoundOn;
                           });
                         },
                   onTapMenu: () {

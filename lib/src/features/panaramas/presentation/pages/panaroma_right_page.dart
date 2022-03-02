@@ -292,6 +292,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                   textSubTitle: locals.todoNoHarm,
                   textTitle: locals.chapter1,
                   onTap: () {
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.currentVertex = 2;
                     LeafDetails.visitedVertexes.add(2);
                     NavigationSharedPreferences.upDateShatedPreferences();

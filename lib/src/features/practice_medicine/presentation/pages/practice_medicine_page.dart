@@ -3,8 +3,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -24,7 +24,6 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
   late AppLocalizations locals;
 
   bool isImageloaded = false;
-  final backgroundplayer = AudioPlayer();
   Offset offset = const Offset(0, 0);
   List<String> contentImages = [
     AssetsPath.medicine,
@@ -98,6 +97,8 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                         textTitle: '',
                         textColor: AppColors.white,
                         onTap: () {
+                          AudioPlayerUtil()
+                              .playSound(AssetsPath.screenTransitionSound);
                           context.router.replace(const QuitMedicinePageRoute());
                         }),
                   ),
@@ -126,7 +127,8 @@ class _PracticeMedicineState extends State<PracticeMedicine> {
                       textTitle: '',
                       arrowColor: AppColors.white,
                       onTap: () {
-                        ////????????
+                        AudioPlayerUtil()
+                            .playSound(AssetsPath.screenTransitionSound);
                         NavigationSharedPreferences.upDateShatedPreferences();
                         context.router.replace(const KeepGoingPageLeftRoute());
                       }),

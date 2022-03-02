@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/social_media_icons.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -27,8 +26,6 @@ class CopyrightPage extends StatefulWidget {
 
 class _CopyrightPageState extends State<CopyrightPage> {
   late AppLocalizations locale;
-
-  final backgroundplayer = AudioPlayer();
 
   @override
   void didChangeDependencies() {
@@ -77,13 +74,13 @@ class _CopyrightPageState extends State<CopyrightPage> {
                       ? () {
                           setState(() {
                             AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.pause();
+                   
                           });
                         }
                       : () {
                           setState(() {
                             AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                            backgroundplayer.play();
+                      
                           });
                         },
                   onTapMenu: () {

@@ -468,6 +468,8 @@ class _DocumentPageState extends State<DocumentPage>
                           textTitle: locale.chapter1,
                           onTap: () {
                             AudioPlayerUtil.audioPlayerLoop.release();
+                            AudioPlayerUtil()
+                                .playSound(AssetsPath.screenTransitionSound);
                             LeafDetails.currentVertex = 8;
                             LeafDetails.visitedVertexes.add(8);
 

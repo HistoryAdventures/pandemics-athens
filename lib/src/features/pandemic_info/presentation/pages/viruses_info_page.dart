@@ -46,7 +46,6 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   String gifBubonic = AssetsPath.gif2;
   late VirusModel virusModel;
 
-  final backgroundplayer = AudioPlayer();
   final skaffoldKey = GlobalKey<ScaffoldState>();
   double objWave = 0;
   int direction = 1;

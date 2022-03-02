@@ -46,6 +46,7 @@ class _BodyInfoPageState extends State<BodyInfoPage>
   bool isImageloaded = false;
   Offset offset = const Offset(0, 0);
 
+
   String? hoveredItemIndex;
 
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
@@ -543,16 +544,17 @@ class _BodyInfoPageState extends State<BodyInfoPage>
                           setState(() {
                             AudioPlayerUtil.isSoundOn =
                                 !AudioPlayerUtil.isSoundOn;
-                            AudioPlayerUtil().playSoundWithLoop(
-                                AssetsPath.storyBackgroundSound);
+                                   AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+             
                           });
                         }
                       : () {
                           setState(() {
                             AudioPlayerUtil.isSoundOn =
                                 !AudioPlayerUtil.isSoundOn;
-                            AudioPlayerUtil().playSoundWithLoop(
-                                AssetsPath.storyBackgroundSound);
+                                   AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+ 
+                    
                           });
                         },
                   onTapMenu: () {

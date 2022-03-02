@@ -749,6 +749,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 textTitle: '',
                 onTap: () {
                   audioPlayerforParallaxVideo.dispose();
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   // backgroundSound.dispose();
                   _nextPlayer.dispose();
                   _currentPlayer.dispose();
@@ -779,6 +780,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 arrowColor: Colors.black,
                 onTap: () {
                   audioPlayerforParallaxVideo.dispose();
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
                   _nextPlayer.dispose();
                   _currentPlayer.dispose();
                   // backgroundSound.dispose();
@@ -805,7 +807,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 context.router.replace(const GlossaryPageToBottom());
               },
             ),
-      icons: AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+      icons: AudioPlayerUtil.isSoundOn
+          ? AssetsPath.iconVolumeOn
+          : AssetsPath.iconVolumeOff,
       onTapVolume: AudioPlayerUtil.isSoundOn
           ? () {
               mute();

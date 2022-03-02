@@ -28,7 +28,7 @@ class AudioPlayerUtil {
           print("Playing");
         } else {
           final int? result = await audioPlayerLoop.play(asset, volume: 0.5);
-          audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+          audioPlayerLoop.setReleaseMode(ReleaseMode.LOOP);
         }
       }
     } else {

@@ -40,7 +40,6 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   Offset offset = const Offset(0, 0);
   late ScrollController _scrollController;
   final ScrollController _textPanelScrollController = ScrollController();
-  final backgroundplayer = AudioPlayer();
   Color soundAndMewnuColor = AppColors.black100;
 
   double objWave = 0;

@@ -146,6 +146,8 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
                 child: IconButtonWidget(
                   iconSize: HW.getHeight(37, context),
                   onPressed: () {
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.currentVertex = 17;
                     LeafDetails.visitedVertexes.add(17);
                     NavigationSharedPreferences.upDateShatedPreferences();
@@ -172,6 +174,9 @@ class _DeadOfSocratesPageState extends State<DeadOfSocratesPage> {
               SoundAndMenuWidget(
                 widget: AppUpButton(
                   onTap: () {
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
+                    AudioPlayerUtil.audioPlayerLoop.release();
                     LeafDetails.currentVertex = 14;
                     NavigationSharedPreferences.upDateShatedPreferences();
                     if (widget.fromKeepGoing!) {

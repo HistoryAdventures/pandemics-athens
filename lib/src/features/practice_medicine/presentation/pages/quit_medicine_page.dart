@@ -138,6 +138,8 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
               child: IconButtonWidget(
                   iconSize: HW.getHeight(40, context),
                   onPressed: () {
+                    AudioPlayerUtil()
+                        .playSound(AssetsPath.screenTransitionSound);
                     LeafDetails.visitedVertexes.add(15);
                     LeafDetails.currentVertex = 15;
                     NavigationSharedPreferences.upDateShatedPreferences();

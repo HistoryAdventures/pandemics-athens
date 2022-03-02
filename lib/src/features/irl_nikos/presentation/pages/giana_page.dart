@@ -6,7 +6,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
-import 'package:just_audio/just_audio.dart';
 import "package:universal_html/html.dart" as html;
 
 import '../../../../core/colors.dart';
@@ -25,7 +24,7 @@ class GianaPage extends StatefulWidget {
 }
 
 class _GianaPageState extends State<GianaPage> {
-  final backgroundplayer = AudioPlayer();
+
   late AppLocalizations locals;
 
   @override
@@ -62,13 +61,13 @@ class _GianaPageState extends State<GianaPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.pause();
+                   
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        backgroundplayer.play();
+                  
                       });
                     },
               onTapMenu: () {
