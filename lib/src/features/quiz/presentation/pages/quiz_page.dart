@@ -351,8 +351,8 @@ class _QuizPageState extends State<QuizPage> {
               child: ArrowTextBottomWidget(
                 onPressed: () {
                   AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
-                  LeafDetails.currentVertex = 21;
-                  LeafDetails.visitedVertexes.add(21);
+                  LeafDetails.currentVertex = 18;
+                  LeafDetails.visitedVertexes.add(18);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   context.router.replace(const IrlNikosPageRoute());
                 },
