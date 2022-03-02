@@ -52,8 +52,11 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   @override
   void initState() {
     _scrollController = ScrollController();
-    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
-    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+    // if (widget.needJumpToPracticeMedicinePart! == true) {
+    // } else {
+    //   AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    //   AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+    // }
 
     _scrollController.addListener(() {
       print("SCROLL LISTENER");
@@ -65,6 +68,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
         NavigationSharedPreferences.upDateShatedPreferences();
         soundAndMewnuColor = AppColors.white;
         playSound();
+        AudioPlayerUtil.audioPlayerLoop.release();
         setState(() {});
       } else {
         LeafDetails.currentVertex = 10;
@@ -101,8 +105,16 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
 
   AudioPlayer bgPlayer = AudioPlayer();
   Future<void> playSound() async {
-    int result = await bgPlayer.play(AssetsPath.nikoCries);
-    await bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+    if (AudioPlayerUtil.isSoundOn) {
+      if (bgPlayer.state == PlayerState.PAUSED) {
+        bgPlayer.resume();
+      } else {
+        int result = await bgPlayer.play(AssetsPath.nikoCries);
+        bgPlayer.setReleaseMode(ReleaseMode.LOOP);
+      }
+    } else {
+      bgPlayer.pause();
+    }
   }
 
   Future<void> pauseSound() async {
@@ -128,6 +140,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
 
         if (_scrollController.offset ==
             _scrollController.position.minScrollExtent) {
+          AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+          AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
           pauseSound();
         }
 
@@ -364,6 +378,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                   !AudioPlayerUtil.isSoundOn;
                               AudioPlayerUtil().playSoundWithLoop(
                                   AssetsPath.storyBackgroundSound);
+                              playSound();
 
                               // backgroundplayer.pause();
                             });
@@ -374,6 +389,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                                   !AudioPlayerUtil.isSoundOn;
                               AudioPlayerUtil().playSoundWithLoop(
                                   AssetsPath.storyBackgroundSound);
+                              playSound();
 
                               // backgroundplayer.play();
                             });
