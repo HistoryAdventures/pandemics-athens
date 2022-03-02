@@ -1,15 +1,14 @@
 import 'dart:html' as htm;
-import 'dart:math';
+
 import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
+import 'package:history_of_adventures/src/core/utils/parallax_backgroud_sound.dart';
 import 'package:history_of_adventures/src/core/utils/shared_preferances_managment.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
 import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
@@ -20,6 +19,7 @@ import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:video_player/video_player.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../core/router.gr.dart';
@@ -29,7 +29,6 @@ import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 class ParalaxHistoryPage extends StatefulWidget {
   final bool? mustScrollToMiddle;
@@ -136,12 +135,18 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   bool played6 = false;
   bool played7 = false;
 
+  late BackgroundSound _bgSound;
+
   @override
   void initState() {
+    print('initState + history');
+
     _videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
       ..initialize().then((_) {
         if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
-          setState(() {});
+          if (mounted) {
+            setState(() {});
+          }
         }
       });
 
@@ -155,7 +160,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     if (_mustScrollToEnd == true && _mustScrollToMiddle == false) {
       Future.delayed(Duration(milliseconds: 500)).then((value) => bGSound());
-      playIt(audioAssets.length - 1);
+      // playIt(audioAssets.length - 1);
     }
 
     if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
@@ -163,9 +168,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         if (_videoController.value.isInitialized &&
             _videoController.value.position ==
                 _videoController.value.duration) {
-          setState(() {
-            _videoEnded = true;
-          });
+          if (mounted) {
+            setState(() {
+              _videoEnded = true;
+            });
+          }
         }
       });
     } else {
@@ -180,7 +187,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
         return;
       }
       if (_scrollController.offset > 10) {
-        print("code is here");
         _topTextOpasyty = 0;
       } else {
         _topTextOpasyty = 1;
@@ -211,10 +217,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     htm.window.onMessage.listen((event) {
       if (event.data == "paralaxAssetsLoaded") {}
-      print("receied message from js ${event.data}");
-      setState(() {
-        paralaxAssetsPreloaded = true;
-      });
+      // print("receied message from js ${event.data}");
+      if (mounted) {
+        setState(() {
+          paralaxAssetsPreloaded = true;
+        });
+      }
     });
 
     super.initState();
@@ -234,14 +242,23 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   Future bGSound() async {
-    final int? bgResult =
-        await backgroundSound.play(AssetsPath.parallaxBgSound, volume: 0.5);
-    await backgroundSound.setReleaseMode(ReleaseMode.LOOP);
+    BackgroundSound(
+        assetName: AssetsPath.parallaxBgSound, pageName: 'paralax_history');
+    BackgroundSound.doAction(
+      PlayerAction.play,
+    );
   }
 
   @override
   void dispose() {
-    audioPlayerforParallaxVideo.dispose();
+    print('dispose + history');
+    if (mounted) {
+      BackgroundSound.doAction(
+        PlayerAction.pause,
+        pageName: 'paralax_history',
+      );
+      audioPlayerforParallaxVideo.dispose();
+    }
 
     backgroundSound.dispose();
     _currentPlayer.dispose();
@@ -314,11 +331,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   void mute() {
+    BackgroundSound.doAction(PlayerAction.mute);
     _currentPlayer.setVolume(0);
     _nextPlayer.setVolume(0);
   }
 
   void unmute() {
+    BackgroundSound.doAction(PlayerAction.unmute);
     _currentPlayer.setVolume(currentPlayerVol);
     _nextPlayer.setVolume(nextPlayerVol);
   }
@@ -516,10 +535,11 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                 ? 2
                                 : 10;
                         Future.delayed(Duration(seconds: seconds)).then((v) {
-                          setState(() {
-                            paralaxAssetsPreloaded = true;
-                          });
-
+                          if (mounted) {
+                            setState(() {
+                              paralaxAssetsPreloaded = true;
+                            });
+                          }
                           _sharedPrefs.setBool("showLongLoading", false);
 
                           if (_mustScrollToEnd) {
@@ -689,12 +709,14 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       child: IconButtonWidget(
                         iconSize: HW.getHeight(40, context),
                         onPressed: () {
-                          setState(() {
-                            _videoController.pause();
-                            audioPlayerforParallaxVideo.dispose();
+                          if (mounted) {
+                            setState(() {
+                              _videoController.pause();
+                              audioPlayerforParallaxVideo.dispose();
 
-                            _videoEnded = true;
-                          });
+                              _videoEnded = true;
+                            });
+                          }
                         },
                         icon: Icon(
                           Icons.arrow_downward,
@@ -785,7 +807,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   LeafDetails.currentVertex = 9;
                   LeafDetails.visitedVertexes.add(9);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.replace(const PanaromaRightPageRoute());
+                  // context.router.replace(const PanaromaRightPageRoute());
+                  context.router.push(const PanaromaRightPageRoute());
                 }),
           ),
         ],
@@ -805,23 +828,29 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 context.router.replace(const GlossaryPageToBottom());
               },
             ),
-      icons: AudioPlayerUtil.isSoundOn ? AssetsPath.iconVolumeOn : AssetsPath.iconVolumeOff,
+      icons: AudioPlayerUtil.isSoundOn
+          ? AssetsPath.iconVolumeOn
+          : AssetsPath.iconVolumeOff,
       onTapVolume: AudioPlayerUtil.isSoundOn
           ? () {
               mute();
-              setState(() {
-                AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+              if (mounted) {
+                setState(() {
+                  AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
 
-                backgroundSound.stop();
-              });
+                  backgroundSound.stop();
+                });
+              }
             }
           : () {
               unmute();
-              setState(() {
-                AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                backgroundSound.resume();
-                backgroundSound.setVolume(0.5);
-              });
+              if (mounted) {
+                setState(() {
+                  AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                  backgroundSound.resume();
+                  backgroundSound.setVolume(0.5);
+                });
+              }
             },
       onTapMenu: () {
         scaffoldkey.currentState!.openEndDrawer();
