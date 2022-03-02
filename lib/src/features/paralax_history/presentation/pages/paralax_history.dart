@@ -238,7 +238,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   }
 
   Future init() async {
-    await audioPlayerforParallaxVideo.play(AssetsPath.parallaxVideoSound);
+    await audioPlayerforParallaxVideo.play(AssetsPath.parallaxVideoSound,
+        volume: AudioPlayerUtil.isSoundOn ? 1.0 : 0.0);
   }
 
   Future bGSound() async {
@@ -814,7 +815,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   LeafDetails.visitedVertexes.add(9);
                   NavigationSharedPreferences.upDateShatedPreferences();
                   // context.router.replace(const PanaromaRightPageRoute());
-                  context.router.push(const PanaromaRightPageRoute());
+                  context.router.replace(const PanaromaRightPageRoute());
                 }),
           ),
         ],
@@ -843,6 +844,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
               if (mounted) {
                 setState(() {
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                  audioPlayerforParallaxVideo.setVolume(0.0);
 
                   backgroundSound.stop();
                 });
@@ -855,6 +857,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                   backgroundSound.resume();
                   backgroundSound.setVolume(0.5);
+                  audioPlayerforParallaxVideo.setVolume(1.0);
                 });
               }
             },
