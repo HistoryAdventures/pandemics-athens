@@ -30,7 +30,7 @@ class BackgroundSound {
     asset = assetName;
     currentPageName = pageName;
 
-    _debouncer = Debouncer(milliseconds: 1500);
+    _debouncer = Debouncer(milliseconds: 100);
   }
 
   static void doAction(PlayerAction action, {String? pageName}) {
