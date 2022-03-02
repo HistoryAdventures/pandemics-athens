@@ -247,6 +247,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     BackgroundSound.doAction(
       PlayerAction.play,
     );
+
+    BackgroundSound.doAction(
+      AudioPlayerUtil.isSoundOn ? PlayerAction.unmute : PlayerAction.mute,
+    );
   }
 
   @override

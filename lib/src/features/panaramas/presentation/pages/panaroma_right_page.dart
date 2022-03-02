@@ -190,6 +190,9 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     BackgroundSound.doAction(
       PlayerAction.play,
     );
+    BackgroundSound.doAction(
+      AudioPlayerUtil.isSoundOn ? PlayerAction.unmute : PlayerAction.mute,
+    );
 
     NavigationSharedPreferences.getNavigationListFromSF();
     playSound();

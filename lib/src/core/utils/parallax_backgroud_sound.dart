@@ -19,6 +19,7 @@ class BackgroundSound {
 
   static PlayerAction? lastAction;
   static String? currentPageName;
+  static bool isMuted = false;
 
   BackgroundSound({
     required String assetName,
@@ -47,7 +48,7 @@ class BackgroundSound {
 
             await _player.setReleaseMode(mode);
             await _player.play(asset);
-            _player.setVolume(0.5);
+            _player.setVolume(isMuted ? 0 : 0.5);
           });
         }
         break;
@@ -60,10 +61,16 @@ class BackgroundSound {
         }
         break;
       case PlayerAction.mute:
+        isMuted = true;
         _player.setVolume(0);
+
+        print('muted... ${_player.hashCode}');
         break;
       case PlayerAction.unmute:
+        isMuted = false;
         _player.setVolume(0.5);
+
+        print('unmuted... ${_player.hashCode}');
         break;
       default:
     }

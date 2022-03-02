@@ -208,6 +208,9 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     BackgroundSound.doAction(
       PlayerAction.play,
     );
+    BackgroundSound.doAction(
+      AudioPlayerUtil.isSoundOn ? PlayerAction.unmute : PlayerAction.mute,
+    );
 
     NavigationSharedPreferences.getNavigationListFromSF();
     super.initState();
