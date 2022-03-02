@@ -48,10 +48,19 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
   AudioPlayer bgPlayer1 = AudioPlayer();
   AudioPlayer bgPlayer2 = AudioPlayer();
   Future<void> playSound() async {
-    int result = await bgPlayer1.play(AssetsPath.keepGoingSound);
-    int result1 = await bgPlayer2.play(AssetsPath.nikosChooseBG, volume: 0.2);
-    await bgPlayer1.setReleaseMode(ReleaseMode.LOOP);
-    await bgPlayer2.setReleaseMode(ReleaseMode.LOOP);
+    if (AudioPlayerUtil.isSoundOn) {
+      if (bgPlayer1.state == PlayerState.PAUSED) {
+        bgPlayer1.resume();
+        bgPlayer2.resume();
+      } else {
+        int result = await bgPlayer1.play(AssetsPath.keepGoingSound);
+        int result1 =
+            await bgPlayer2.play(AssetsPath.nikosChooseBG, volume: 0.2);
+      }
+    } else {
+      bgPlayer1.pause();
+      bgPlayer2.pause();
+    }
   }
 
   Future<void> pauseSound() async {
@@ -111,12 +120,14 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
                         });
+                        playSound();
                       }
                     : () {
                         setState(() {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
                         });
+                        playSound();
                       },
                 onTapMenu: () {
                   Scaffold.of(context).openEndDrawer();
