@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -24,12 +25,14 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>History Adventures - Global Pandemics</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -39,11 +42,38 @@
         navigator.serviceWorker.register('flutter_service_worker.js');
       });
     }
-    window.addEventListener("scroll",(event)=>{
-    console.log("listener in mainjs");
-    window.postMessage("hellow");
-  })
+    window.addEventListener("scroll", (event) => {
+      console.log("listener in mainjs");
+      window.postMessage("hellow");
+    })
   </script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCNI2XZ8bEcNMrPBedOYCXHgKpN31Ks064",
+    authDomain: "history-adventures.firebaseapp.com",
+    projectId: "history-adventures",
+    storageBucket: "history-adventures.appspot.com",
+    messagingSenderId: "265636777603",
+    appId: "1:265636777603:web:294d52c3901dd24cb2d5b6",
+    measurementId: "G-77JJTW3KH5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
   <script src="main.dart.js" type="application/javascript"></script>
+
 </body>
+
 </html>

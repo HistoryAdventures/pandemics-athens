@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -42,7 +45,12 @@ class _GlossaryPageState extends State<GlossaryPage> {
     NavigationSharedPreferences.getNavigationListFromSF();
 
     AudioPlayerUtil().playSound(AssetsPath.glossaryBackgoundPage);
+    firebaseScreenTracking();
     super.initState();
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
   }
 
   @override

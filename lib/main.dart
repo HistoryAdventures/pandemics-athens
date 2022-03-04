@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +8,6 @@ import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'src/core/router.gr.dart';
 import 'src/core/theme.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,13 +57,26 @@ class MyApp extends StatelessWidget {
               ),
             ),
           )
-        : MaterialApp.router(
-            title: "History Adventures - Global Pandemics",
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            routerDelegate: _appRouter.delegate(),
-            routeInformationParser: _appRouter.defaultRouteParser(),
-            theme: DefaultTheme.standard,
-            debugShowCheckedModeBanner: false,
+        : FutureBuilder(
+            future: Firebase.initializeApp(
+                options: const FirebaseOptions(
+                    apiKey: "AIzaSyCNI2XZ8bEcNMrPBedOYCXHgKpN31Ks064",
+                    authDomain: "history-adventures.firebaseapp.com",
+                    projectId: "history-adventures",
+                    storageBucket: "history-adventures.appspot.com",
+                    messagingSenderId: "265636777603",
+                    appId: "1:265636777603:web:294d52c3901dd24cb2d5b6",
+                    measurementId: "G-77JJTW3KH5")),
+            builder: (context, state) {
+              return MaterialApp.router(
+                title: "History Adventures - Global Pandemics",
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                routerDelegate: _appRouter.delegate(),
+                routeInformationParser: _appRouter.defaultRouteParser(),
+                theme: DefaultTheme.standard,
+                debugShowCheckedModeBanner: false,
+              );
+            },
           );
   }
 }
