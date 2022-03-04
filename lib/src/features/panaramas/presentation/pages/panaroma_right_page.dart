@@ -238,6 +238,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                             ),
                           ),
                           onPressed: () {
+                            AudioPlayerUtil().playSound(AssetsPath.changeIndex);
                             showGeneralDialog(
                                 context: context,
                                 barrierColor: Colors.black.withOpacity(0.5),

@@ -94,6 +94,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                         if (kIsWeb) {
                           html.window.history.back();
                           context.router.pop();
+                          AudioPlayerUtil().playSound(AssetsPath.infoClose);
                         } else {
                           context.router.pop();
                         }
@@ -170,8 +171,7 @@ class _CharacterInfoPageState extends State<CharacterInfoPage> {
                                       child: Clickable(
                                           onPressed: () {
                                             AudioPlayerUtil().playSound(
-                                                AssetsPath
-                                                    .screenTransitionSound);
+                                                AssetsPath.infoClose);
                                             LeafDetails.currentVertex = 4;
                                             LeafDetails.visitedVertexes.add(4);
                                             NavigationSharedPreferences

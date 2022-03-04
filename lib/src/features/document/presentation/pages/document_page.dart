@@ -223,6 +223,8 @@ class _DocumentPageState extends State<DocumentPage>
                               left: data.left,
                               child: Clickable(
                                 onPressed: () {
+                                  AudioPlayerUtil()
+                                      .playSound(AssetsPath.changeIndex);
                                   setState(() {
                                     documentModel.chandeState(
                                         data.name, data.text);

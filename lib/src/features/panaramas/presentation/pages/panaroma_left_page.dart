@@ -263,6 +263,8 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                     ),
                     onPressed: () async {
                       setState(() {
+                          AudioPlayerUtil()
+                        .playSound(AssetsPath.changeIndex);
                         // openInfoPlayer.play();
                         //print("object");
                       });

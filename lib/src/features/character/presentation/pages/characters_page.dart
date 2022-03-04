@@ -189,6 +189,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
                                 photo: photo.image,
                                 description: photo.bodyText,
                                 onTap: () {
+                                  AudioPlayerUtil()
+                                      .playSound(AssetsPath.infoOpen);
                                   context.router
                                       .push(CharacterInfoPageRoute(
                                         listCharacters: list,
