@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
@@ -176,6 +177,14 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
     }
   }
 
+  Future<void> firebaseScreenTracking() async {
+    await FirebaseAnalytics.instance
+        .logEvent(name: "views_by_url", parameters: {
+      "page_url":
+          "https://pandemics.historyadventures.app/plague-and-political-instability"
+    });
+  }
+
   late BackgroundSound _bgSound;
 
   @override
@@ -196,6 +205,7 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
 
     NavigationSharedPreferences.getNavigationListFromSF();
     playSound();
+    firebaseScreenTracking();
     super.initState();
   }
 

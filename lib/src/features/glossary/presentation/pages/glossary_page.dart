@@ -50,7 +50,12 @@ class _GlossaryPageState extends State<GlossaryPage> {
   }
 
   Future<void> firebaseScreenTracking() async {
-    await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
+    // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url": "https://pandemics.historyadventures.app/glossary"
+        });
   }
 
   @override

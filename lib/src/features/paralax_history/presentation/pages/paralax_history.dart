@@ -3,6 +3,7 @@ import 'dart:html' as htm;
 import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
@@ -240,6 +241,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   Future init() async {
     await audioPlayerforParallaxVideo.play(AssetsPath.parallaxVideoSound,
         volume: AudioPlayerUtil.isSoundOn ? 1.0 : 0.0);
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url": "https://pandemics.historyadventures.app/to-do-no-harm"
+        });
   }
 
   Future bGSound() async {

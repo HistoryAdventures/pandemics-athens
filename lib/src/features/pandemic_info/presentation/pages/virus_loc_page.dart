@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,17 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
     });
     AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
     AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+
+    firebaseScreenTracking();
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url":
+              "https://pandemics.historyadventures.app/where-did-it-come-from"
+        });
   }
 
   @override

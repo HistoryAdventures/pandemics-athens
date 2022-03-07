@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/services.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/image_precache.dart';
@@ -72,7 +73,7 @@ class _LeandingPageState extends State<LeandingPage> {
     // if (isImageloaded && audioPlayerState != PlayerState.PLAYING) {
     //   playSound();
     // }
-
+    firebaseScreenTracking();
     super.didChangeDependencies();
   }
 
@@ -81,6 +82,15 @@ class _LeandingPageState extends State<LeandingPage> {
     animatedParticlesBS.close();
     // leandingBgSound.dispose();
     super.dispose();
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url": "https://pandemics.historyadventures.app/home"
+        });
   }
 
   @override

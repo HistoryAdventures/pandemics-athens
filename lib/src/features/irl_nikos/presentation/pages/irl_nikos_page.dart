@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -38,6 +39,7 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
   void initState() {
     playSound();
     NavigationSharedPreferences.getNavigationListFromSF();
+    firebaseScreenTracking();
     super.initState();
   }
 
@@ -45,6 +47,14 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
   void dispose() {
     pauseSound();
     super.dispose();
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url": "https://pandemics.historyadventures.app/irl-nikos"
+        });
   }
 
   AudioPlayer bgPlayer1 = AudioPlayer();

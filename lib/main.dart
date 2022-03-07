@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                     measurementId: "G-77JJTW3KH5")),
             builder: (context, state) {
               return MaterialApp.router(
-                title: "History Adventures - Global Pandemics",
+                 title: "History Adventures - Global Pandemics",
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 routerDelegate: _appRouter.delegate(),
                 routeInformationParser: _appRouter.defaultRouteParser(),

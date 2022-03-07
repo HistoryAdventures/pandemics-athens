@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/packages/panorama-0.4.1/lib/panorama.dart';
@@ -195,6 +196,15 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     });
   }
 
+  Future<void> firebaseScreenTracking() async {
+    // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
+    await FirebaseAnalytics.instance
+        .logEvent(name: "views_by_url", parameters: {
+      "page_url":
+          "https://pandemics.historyadventures.app/medical-tools-and-knowledge"
+    });
+  }
+
   @override
   void initState() {
     // init();
@@ -213,6 +223,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
     );
 
     NavigationSharedPreferences.getNavigationListFromSF();
+    firebaseScreenTracking();
     super.initState();
   }
 
@@ -263,8 +274,7 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
                     ),
                     onPressed: () async {
                       setState(() {
-                          AudioPlayerUtil()
-                        .playSound(AssetsPath.changeIndex);
+                        AudioPlayerUtil().playSound(AssetsPath.changeIndex);
                         // openInfoPlayer.play();
                         //print("object");
                       });

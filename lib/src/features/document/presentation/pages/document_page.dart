@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
@@ -172,6 +173,16 @@ class _DocumentPageState extends State<DocumentPage>
 
     AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
     AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+
+    firebaseScreenTracking();
+  }
+
+  Future<void> firebaseScreenTracking() async {
+    await FirebaseAnalytics.instance.logEvent(
+        name: "views_by_url",
+        parameters: {
+          "page_url": "https://pandemics.historyadventures.app/source-analysis"
+        });
   }
 
   @override
