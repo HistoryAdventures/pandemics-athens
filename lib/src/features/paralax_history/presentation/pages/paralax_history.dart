@@ -152,11 +152,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       });
 
     if (!_mustScrollToEnd && !_mustScrollToMiddle && _showVideo!) {
-      _videoController.setVolume(0.0);
+      if (!AudioPlayerUtil.isSoundOn) _videoController.setVolume(0.0);
+      // _videoController.setVolume(0.0);
 
       _videoController.play();
 
-      Future.delayed(Duration(milliseconds: 500)).then((value) => init());
+      // Future.delayed(Duration(milliseconds: 500)).then((value) => init());
     }
 
     if (_mustScrollToEnd == true && _mustScrollToMiddle == false) {
@@ -855,6 +856,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                 setState(() {
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
                   audioPlayerforParallaxVideo.setVolume(0.0);
+                  _videoController.setVolume(0.0);
 
                   backgroundSound.stop();
                 });
@@ -868,6 +870,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                   backgroundSound.resume();
                   backgroundSound.setVolume(0.5);
                   audioPlayerforParallaxVideo.setVolume(1.0);
+                  _videoController.setVolume(1.0);
                 });
               }
             },
