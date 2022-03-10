@@ -1256,7 +1256,7 @@ class QuizData {
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
     rightAnswersForQ1 = QuizData.firstDragDropResult == 5 ? 1 : 0;
-    rightAnswersForQ4 = QuizData.secondDragDropResult == 4 ? 0 : 0;
+    rightAnswersForQ4 = QuizData.secondDragDropResult == 4 ? 1 : 0;
     rightAnswersForQ11 += QuizData.thirdDragResult;
 
     if (question2Cheking[1] == true) {
@@ -1368,21 +1368,6 @@ class QuizData {
     });
     rightAnswersForQ8 = valueQ8;
 
-    // listQuestionBody3.forEach((element) {
-    //   if (element is DragWordsWidget) {
-    //     if (element.answers.isEmpty) {
-    //       usersAnswersForQ3.add(DragWordsWidget(
-    //           correctAnswer: element.correctAnswer,
-    //           answers: [Answers(value: 0, text: '')],
-    //           isRight: false));
-    //     } else {
-    //       usersAnswersForQ3.add(element);
-    //     }
-    //   } else {
-    //     usersAnswersForQ3.add(element);
-    //   }
-    // });
-
     listQuestionBody7.forEach((element) {
       if (element is DragWordsWidget) {
         if (element.answers.isEmpty) {
@@ -1399,63 +1384,6 @@ class QuizData {
       }
     });
 
-    // if (valueQ5 == correctAnswerQ5) {
-    //   rightAnswersForQ5++;
-    // }
-
-    // if (valueQ6 == correctAnswerQ6) {
-    //   rightAnswersForQ6++;
-    // }
-
-    // for (var i = 0; i < usersAnswersForQ2.length; i++) {
-    //   if (usersAnswersForQ2[i] is DragWordsWidget &&
-    //       correctAnswersForQ2[i] is List<String>) {
-    //     if (correctAnswersForQ2[i].first ==
-    //         usersAnswersForQ2[i].answers.first.text) {
-    //       usersAnswersForQ2[i].isRight = true;
-    //       rightAnswersForQ2++;
-    //     } else {
-    //       usersAnswersForQ2[i].isRight = false;
-    //     }
-    //   }
-    // }
-
-    // for (var i = 0; i < usersAnswersForQ3.length; i++) {
-    //   if (usersAnswersForQ3[i] is DragWordsWidget &&
-    //       correctAnswersForQ3[i] is List<String>) {
-    //     if (correctAnswersForQ3[i].first ==
-    //         usersAnswersForQ3[i].answers.first.text) {
-    //       usersAnswersForQ3[i].isRight = true;
-    //       rightAnswersForQ3++;
-    //     } else {
-    //       usersAnswersForQ3[i].isRight = false;
-    //     }
-    //   }
-    // }
-
-    // for (var i = 0; i < usersAnswersForQ7.length; i++) {
-    //   if (usersAnswersForQ7[i] is DragWordsWidget &&
-    //       correctAnswersForQ7[i] is List<String>) {
-    //     if (correctAnswersForQ7[i].first ==
-    //         usersAnswersForQ7[i].answers.first.text) {
-    //       usersAnswersForQ7[i].isRight = true;
-    //       rightAnswersForQ7++;
-    //     } else {
-    //       usersAnswersForQ7[i].isRight = false;
-    //     }
-    //   }
-    // }
-
-    // for (var i = 0; i < usersAnswersForQ8.length; i++) {
-    //   if (correctAnswersForQ8
-    //       .contains(usersAnswersForQ8[i].answers.correctAnswers)) {
-    //     print('answwer is true  correctAnswersForQ8');
-    //     usersAnswersForQ8[i].isRight = true;
-    //     rightAnswersForQ8++;
-    //   } else {
-    //     usersAnswersForQ8[i].isRight = false;
-    //   }
-    // }
 
     finalScore = rightAnswersForQ1 +
         rightAnswersForQ2 +

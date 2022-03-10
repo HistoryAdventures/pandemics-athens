@@ -59,12 +59,11 @@ class _QuizMapImageState extends State<QuizMapImage> {
 
   void checkAnswers() {
     if (rightLines.isNotEmpty) {
-      print("returninq");
+   
       return;
     }
     setUpRightLines();
 
-    print("Check answers ${rightLines.length}");
 
     savedLines.forEach((element) {
       element.color = Colors.red;
@@ -83,9 +82,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
     int d = savedLines.indexWhere((element) =>
         element.line.startKey == questions[3].question.key &&
         element.line.endKey == questions[1].target.key);
-    // int e = savedLines.indexWhere((element) =>
-    //     element.line.startKey == questions[4].question.key &&
-    //     element.line.endKey == questions[3].target.key);
+
     if (a > -1) {
       print("code is here a");
 
@@ -109,12 +106,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
 
       savedLines[d].color = Colors.green;
     }
-    // if (e > -1) {
-    //   print("code is here b");
-    //   QuizData.secondDragDropResult += 1;
-
-    //   savedLines[e].color = Colors.green;
-    // }
+   
     checked = true;
     startOffset = Offset.zero;
     offset = Offset.zero;
@@ -214,7 +206,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage2, title: "B"),
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage3, title: "C"),
       const MapQuizItemModel(assets: AssetsPath.mapQuizImage4, title: "D"),
-      // const MapQuizItemModel(assets: AssetsPath.mapQuizImage5, title: "E"),
+     
     ]);
     Future.delayed(Duration(milliseconds: 1000)).then((v) {
       h = dropKey.currentContext!.size!.height;
@@ -272,16 +264,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                   maxLines: 1,
                   textAlign: TextAlign.start,
                 ),
-                // AutoSizeText(
-                //   "*drag nodes from one column to another, to match the anwsers",
-                //   textAlign: TextAlign.start,
-                //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                //         color: Colors.black,
-                //         fontWeight: FontWeight.w400,
-                //         fontSize: HW.getHeight(12, context),
-                //       ),
-                //   maxLines: 1,
-                // ),
+            
               ],
             ),
           ),
@@ -342,18 +325,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                                 "461 BC Battle of Oenoe’",
                                 AssetsPath.map461,
                               ),
-                              // SizedBox(
-                              //   height: 400,
-                              // ),
-                              // SizedBox(
-                              //   height: 400,
-                              // ),
-
-                              // _draggable(
-                              //   questions[4].question,
-                              //   4,
-                              //   "End of Peloponnesian War",
-                              // ),
+                        
                             ],
                           ),
                         ),
@@ -390,7 +362,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
                         ),
                       ],
                     ),
-                    // Expanded(child: Container()),
+               
                   ],
                 ),
               ),
@@ -401,39 +373,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
     );
   }
 
-  // Widget get _imagesView => Expanded(
-  //       flex: 10,
-  //       child: Container(
-  //         height: double.maxFinite,
-  //         padding: EdgeInsets.only(
-  //           right: HW.getWidth(76, context),
-  //           left: HW.getWidth(76, context),
-  //         ),
-  //         child: Row(
-  //           children: quizImages
-  //               .map((e) => Expanded(
-  //                     child: Row(
-  //                       children: [
-  //                         Expanded(
-  //                           flex: 2,
-  //                           child: MapImageItem(
-  //                             model: e,
-  //                           ),
-  //                         ),
-  //                         Container(
-  //                           width: 10,
-  //                         )
-  //                         // Expanded(
-  //                         //   flex: 1,
-  //                         //   child: Container(),
-  //                         // ),
-  //                       ],
-  //                     ),
-  //                   ))
-  //               .toList(),
-  //         ),
-  //       ),
-  //     );
+ 
 
   void onDragUpdate(DragUpdateDetails d) {
     offset = Offset(
@@ -497,10 +437,7 @@ class _QuizMapImageState extends State<QuizMapImage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Expanded(
-              //   flex: 5,
-              //   child: Container(),
-              // ),
+          
               Container(
                 padding: EdgeInsets.only(left: HW.getHeight(24, context)),
                 width: HW.getWidth(200, context),
