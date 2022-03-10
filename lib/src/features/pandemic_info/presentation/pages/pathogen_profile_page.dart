@@ -95,10 +95,13 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "pathogen-profile",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/pathogen-profile"
         });
+
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "pathogen-profile");
   }
 
   @override

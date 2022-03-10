@@ -179,10 +179,13 @@ class _DocumentPageState extends State<DocumentPage>
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "source-analysis",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/source-analysis"
         });
+
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "source-analysis");
   }
 
   @override

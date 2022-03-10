@@ -43,10 +43,11 @@ class _CopyrightPageState extends State<CopyrightPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "copyright",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/copyright"
         });
+    await FirebaseAnalytics.instance.logScreenView(screenName: "copyright");
   }
 
   @override

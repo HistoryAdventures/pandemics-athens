@@ -50,10 +50,12 @@ class _FurtherReadingPageState extends State<FurtherReadingPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "further-reading",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/further-reading"
         });
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "further-reading");
   }
 
   @override

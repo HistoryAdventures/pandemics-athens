@@ -67,10 +67,11 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "keep-going",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/keep-going"
         });
+    await FirebaseAnalytics.instance.logScreenView(screenName: "keep-going");
   }
 
   Future<void> pauseSound() async {

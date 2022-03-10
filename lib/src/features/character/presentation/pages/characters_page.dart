@@ -106,11 +106,13 @@ class _CharacrterPageState extends State<CharacrterPage> {
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "key-people-of-the-age",
         parameters: {
           "page_url":
               "https://pandemics.historyadventures.app/key-people-of-the-age"
         });
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "key-people-of-the-age");     
   }
 
   Widget _body() {

@@ -44,10 +44,11 @@ class _AboutBookPageState extends State<AboutBookPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "about-book",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/about-book"
         });
+  
   }
 
   @override

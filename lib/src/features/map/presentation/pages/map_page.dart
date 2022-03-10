@@ -386,11 +386,13 @@ class _MapPageState extends State<MapPage> {
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "timeline-of-main-events",
         parameters: {
           "page_url":
               "https://pandemics.historyadventures.app/timeline-of-main-events"
         });
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "timeline-of-main-events");
   }
 
   // bool mapScreenLoading = true;

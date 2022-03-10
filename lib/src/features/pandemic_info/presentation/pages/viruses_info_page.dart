@@ -166,10 +166,12 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "what-was-it",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/what-was-it"
         });
+
+    await FirebaseAnalytics.instance.logScreenView(screenName: "what-was-it");
   }
 
   @override

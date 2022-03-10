@@ -48,10 +48,11 @@ class _SourcePageState extends State<SourcePage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "sources",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/sources"
         });
+    await FirebaseAnalytics.instance.logScreenView(screenName: "sources");
   }
 
   List<String> characters = [

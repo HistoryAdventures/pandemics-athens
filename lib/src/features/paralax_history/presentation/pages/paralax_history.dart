@@ -247,10 +247,12 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "to-do-no-harm",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/to-do-no-harm"
         });
+
+    await FirebaseAnalytics.instance.logScreenView(screenName: "to-do-no-harm");
   }
 
   Future bGSound() async {
@@ -279,6 +281,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     backgroundSound.dispose();
     _currentPlayer.dispose();
     _nextPlayer.dispose();
+    _videoController.dispose();
 
     super.dispose();
   }

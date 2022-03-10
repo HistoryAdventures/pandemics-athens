@@ -60,10 +60,12 @@ class _EndOfWarPageState extends State<EndOfWarPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "end-of-war",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/end-of-war"
         });
+
+    await FirebaseAnalytics.instance.logScreenView(screenName: "end-of-war");
   }
 
   @override

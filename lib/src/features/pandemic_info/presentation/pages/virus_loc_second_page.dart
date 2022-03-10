@@ -81,11 +81,14 @@ class _VirusLocationSecondPageState extends State<VirusLocationSecondPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "where-did-it-come-from-2",
         parameters: {
           "page_url":
               "https://pandemics.historyadventures.app/where-did-it-come-from-2"
         });
+
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "where-did-it-come-from-2");
   }
 
   Future<void> playTrackingSound() async {

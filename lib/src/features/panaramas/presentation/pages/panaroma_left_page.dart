@@ -199,10 +199,12 @@ class _PanaromaLeftPageState extends State<PanaromaLeftPage> {
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
     await FirebaseAnalytics.instance
-        .logEvent(name: "views_by_url", parameters: {
+        .logEvent(name: "medical-tools-and-knowledge", parameters: {
       "page_url":
           "https://pandemics.historyadventures.app/medical-tools-and-knowledge"
     });
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "medical-tools-and-knowledge");
   }
 
   @override

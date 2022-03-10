@@ -179,10 +179,13 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance
-        .logEvent(name: "views_by_url", parameters: {
+        .logEvent(name: "plague-and-political-instability", parameters: {
       "page_url":
           "https://pandemics.historyadventures.app/plague-and-political-instability"
     });
+
+    await FirebaseAnalytics.instance
+        .logScreenView(screenName: "plague-and-political-instability");
   }
 
   late BackgroundSound _bgSound;
