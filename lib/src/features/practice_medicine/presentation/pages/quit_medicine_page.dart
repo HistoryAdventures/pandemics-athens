@@ -50,10 +50,12 @@ class _QuitMedicinePageState extends State<QuitMedicinePage> {
 
   Future<void> firebaseScreenTracking() async {
     await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
+        name: "quit-medicine",
         parameters: {
           "page_url": "https://pandemics.historyadventures.app/quit-medicine"
         });
+
+    await FirebaseAnalytics.instance.logScreenView(screenName: "quit-medicine");
   }
 
   AudioPlayer bgPlayer1 = AudioPlayer();
