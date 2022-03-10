@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -42,6 +43,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
   bool played = false;
   @override
   void initState() {
+    AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
+    AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
+    AudioPlayerUtil.audioPlayerLoopLeanding.setVolume(0.5);
     NavigationSharedPreferences.getNavigationListFromSF();
 
     AudioPlayerUtil().playSound(AssetsPath.glossaryBackgoundPage);
@@ -51,11 +55,10 @@ class _GlossaryPageState extends State<GlossaryPage> {
 
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
-    await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/glossary"
-        });
+    await FirebaseAnalytics.instance.logEvent(name: "glossary", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/glossary"
+    });
+    await FirebaseAnalytics.instance.logScreenView(screenName: "glossary");
   }
 
   @override
@@ -267,8 +270,9 @@ class _GlossaryPageState extends State<GlossaryPage> {
                               Expanded(
                                   child: SingleChildScrollView(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 18.0, top: 16),
+                                  padding: EdgeInsets.only(
+                                      right: HW.getWidth(18, context),
+                                      top: HW.getHeight(18, context)),
                                   child: Text(
                                     _selectedtText,
                                     style:
@@ -306,7 +310,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                                     child: InkWell(
                                       child: SizedBox(
                                         height: HW.getHeight(100, context),
-                                        width: HW.getWidth(100, context),
+                                        width: HW.getWidth(99.99, context),
                                         child: gridViewCard(
                                             isHovered:
                                                 hoveredItemIndex == item.index,
@@ -335,6 +339,7 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();
                     AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
+                    AudioPlayerUtil.audioPlayerLoopLeanding.release();
                     context.router.push(ParalaxHistoryPageRoute());
                   },
                   textChapter: locales.chapter1,
@@ -365,6 +370,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         setState(() {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playLeandingPageSound(
+                              AssetsPath.leandingBgSound);
 
                           // backgroundplayer.pause();
                         });
@@ -373,6 +380,8 @@ class _GlossaryPageState extends State<GlossaryPage> {
                         setState(() {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
+                          AudioPlayerUtil().playLeandingPageSound(
+                              AssetsPath.leandingBgSound);
 
                           // backgroundplayer.play();
                         });

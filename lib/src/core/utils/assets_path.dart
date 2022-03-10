@@ -221,6 +221,8 @@ class AssetsPath {
   static const String gifBackground6 =
       'assets/assets/animated_backgrounds/6/liquid.gif';
 
+  // leanding page
+
   static const String animatedBack1Vbody0 =
       'assets/animated_backgrounds/1/virus/vbody_0.png';
   static const String animatedBack1Vbody1 =
@@ -239,6 +241,12 @@ class AssetsPath {
       'assets/animated_backgrounds/1/virus/vbody_7.png';
   static const String animatedBack1Vbody8 =
       'assets/animated_backgrounds/1/virus/vbody_8.png';
+  static const String loadingVirus1 =
+      'assets/animated_backgrounds/1/virus/loading_virus_1.png';
+  static const String loadingVirus2 =
+      'assets/animated_backgrounds/1/virus/loading_virus_2.png';
+  static const String loadingVirus3 =
+      'assets/animated_backgrounds/1/virus/loading_virus_3.png';
 
   static const String animatedBack2Vbody0 =
       'assets/animated_backgrounds/2/virus/vbody_0.png';
@@ -874,20 +882,6 @@ class AssetsPath {
   ];
 
   static const List<String> allImages = [
-    AssetsPath.periclesImage,
-    AssetsPath.gradient,
-    AssetsPath.mapTimeLineBlur,
-    AssetsPath.mapDialogBlur,
-    AssetsPath.irlGiana,
-    AssetsPath.gifParalaxNikosGif,
-    AssetsPath.irlNikos,
-    AssetsPath.socratesPlatoImage,
-    AssetsPath.aristophanesSophoclesImage,
-    AssetsPath.phidiasImage,
-    AssetsPath.thucydidesImage,
-    AssetsPath.paralaxBackground,
-    AssetsPath.gifBackground1,
-    AssetsPath.aboutBookMap,
     AssetsPath.animatedBack1Vbody0,
     AssetsPath.animatedBack1Vbody1,
     AssetsPath.animatedBack1Vbody2,
@@ -920,6 +914,21 @@ class AssetsPath {
     AssetsPath.animatedBack3Vbody11,
     AssetsPath.animatedBack3Vbody12,
     AssetsPath.animatedBack3Vbody13,
+    AssetsPath.paralaxBackground,
+    AssetsPath.gifBackground1,
+    AssetsPath.mapImage438,
+    AssetsPath.mapImage441,
+    AssetsPath.mapImage443,
+    AssetsPath.mapImage446,
+    AssetsPath.mapImage447_432,
+    AssetsPath.mapImage399,
+    AssetsPath.mapImage414,
+    AssetsPath.mapImage415,
+    AssetsPath.mapImage416,
+    AssetsPath.mapImage427,
+    AssetsPath.mapImage430,
+    AssetsPath.mapImage431,
+    AssetsPath.gifVirus,
     AssetsPath.animatedBack4Vbody0,
     AssetsPath.animatedBack4Vbody1,
     AssetsPath.animatedBack4Vbody2,
@@ -951,7 +960,6 @@ class AssetsPath {
     AssetsPath.animatedBack6Vbody5,
     AssetsPath.animatedBack6Vbody6,
     AssetsPath.animatedBack6Vbody7,
-    AssetsPath.gifVirus,
     AssetsPath.animatedBack6Vbody8,
     AssetsPath.animatedBack6Vbody9,
     AssetsPath.animatedBack6Vbody10,
@@ -965,18 +973,10 @@ class AssetsPath {
     AssetsPath.panaramaImage8,
     AssetsPath.panaramaImage9,
     AssetsPath.panaramaImage10,
-    AssetsPath.mapImage399,
-    AssetsPath.mapImage414,
-    AssetsPath.mapImage415,
-    AssetsPath.mapImage416,
-    AssetsPath.mapImage427,
-    AssetsPath.mapImage430,
-    AssetsPath.mapImage431,
-    AssetsPath.mapImage438,
-    AssetsPath.mapImage441,
-    AssetsPath.mapImage443,
-    AssetsPath.mapImage446,
-    AssetsPath.mapImage447_432,
+    AssetsPath.deadOfSocrates1,
+    AssetsPath.deadOfSocrates2,
+    AssetsPath.deadOfSocrates3,
+    AssetsPath.periclesImage,
     AssetsPath.mapImage450,
     AssetsPath.mapImage451,
     AssetsPath.mapImage454,
@@ -984,6 +984,23 @@ class AssetsPath {
     AssetsPath.mapImage458,
     AssetsPath.mapImage461,
     AssetsPath.mapImage462,
+    AssetsPath.gradient,
+    AssetsPath.mapTimeLineBlur,
+    AssetsPath.mapDialogBlur,
+    AssetsPath.irlGiana,
+    AssetsPath.gifParalaxNikosGif,
+    AssetsPath.irlNikos,
+    AssetsPath.socratesPlatoImage,
+    AssetsPath.aristophanesSophoclesImage,
+    AssetsPath.phidiasImage,
+    AssetsPath.thucydidesImage,
+    AssetsPath.aboutBookMap,
+    AssetsPath.endOfWar1,
+    AssetsPath.endOfWar2,
+    AssetsPath.endOfWar3,
+    AssetsPath.poitButtonArrowRight,
+    AssetsPath.socilaIcons,
+    AssetsPath.paralaxBuilding,
     AssetsPath.mapImage469,
     AssetsPath.mapImage471,
     AssetsPath.mapImage477,
@@ -991,15 +1008,6 @@ class AssetsPath {
     AssetsPath.mapImage480,
     AssetsPath.mapImage490,
     AssetsPath.mapImage495,
-    AssetsPath.deadOfSocrates1,
-    AssetsPath.deadOfSocrates2,
-    AssetsPath.deadOfSocrates3,
-    AssetsPath.endOfWar1,
-    AssetsPath.endOfWar2,
-    AssetsPath.endOfWar3,
-    AssetsPath.poitButtonArrowRight,
-    AssetsPath.socilaIcons,
-    AssetsPath.paralaxBuilding,
     AssetsPath.gifBackground1,
     AssetsPath.gifBackground2,
     AssetsPath.gifBackground3,

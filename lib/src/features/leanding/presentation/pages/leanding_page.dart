@@ -2,7 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/services.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
-import 'package:history_of_adventures/src/core/utils/image_precache.dart';
 import 'package:history_of_adventures/src/features/pandemic_info/presentation/models/animated_particle_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:auto_route/auto_route.dart';
@@ -67,6 +66,8 @@ class _LeandingPageState extends State<LeandingPage> {
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     if (widget.navigateFromNavigatorPage != null) {
+      AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
+      AudioPlayerUtil.audioPlayerLoopLeanding.setVolume(1.0);
     } else if (loadingCount == '0') {
       precacheImages();
     }
@@ -86,11 +87,10 @@ class _LeandingPageState extends State<LeandingPage> {
 
   Future<void> firebaseScreenTracking() async {
     // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
-    await FirebaseAnalytics.instance.logEvent(
-        name: "views_by_url",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/home"
-        });
+    await FirebaseAnalytics.instance.logEvent(name: "home", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/home"
+    });
+    await FirebaseAnalytics.instance.logScreenView(screenName: "home");
   }
 
   @override
@@ -228,8 +228,16 @@ class _LeandingPageState extends State<LeandingPage> {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
                           if (AudioPlayerUtil.isSoundOn) {
+                            AudioPlayerUtil().playLeandingPageSound(
+                                AssetsPath.leandingBgSound);
+                            AudioPlayerUtil.audioPlayerLoop.state =
+                                PlayerState.PLAYING;
                             // AudioPlayerUtil().playSound();
                           } else {
+                            AudioPlayerUtil().playLeandingPageSound(
+                                AssetsPath.leandingBgSound);
+                            AudioPlayerUtil.audioPlayerLoop.state =
+                                PlayerState.PAUSED;
                             // AudioPlayerUtil().stopPlaySound();
                           }
                         });
@@ -244,7 +252,22 @@ class _LeandingPageState extends State<LeandingPage> {
             },
           ),
         ),
-        if (isImageloaded == false) LoadingWidget(loadingCound: loadingCount)
+        if (isImageloaded == false ||
+            ShowLoadingSharedPreferences.userClickedOnLeandingPage == false)
+          AbsorbPointer(
+            absorbing: loadingCount != "99",
+            child: Clickable(
+              onPressed: () {
+                setState(() {
+                  ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
+                  AudioPlayerUtil()
+                      .playLeandingPageSound(AssetsPath.leandingBgSound);
+                  AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+                });
+              },
+              child: LoadingWidget(loadingCound: loadingCount),
+            ),
+          )
       ],
     );
   }
@@ -252,8 +275,10 @@ class _LeandingPageState extends State<LeandingPage> {
   Future<void> precacheImages() async {
     if (window.sessionStorage.containsKey('allImagesAreCached')) {
       setState(() {
+        ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
         // playSound();
       });
+
       return;
     }
 
@@ -279,13 +304,4 @@ class _LeandingPageState extends State<LeandingPage> {
       // playSound();
     });
   }
-
-  // Future<void> playSound() async {
-  //   final int? result = await leandingBgSound.play(AssetsPath.leandingBgSound);
-  //   // if (result == 1) {
-  //   //   audioPlayerState = PlayerState.PLAYING;
-  //   // }
-  //   leandingBgSound.setReleaseMode(ReleaseMode.LOOP);
-  //   // await leandingBgSound.play();
-  // }
 }

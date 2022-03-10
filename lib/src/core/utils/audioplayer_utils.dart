@@ -6,6 +6,7 @@ class AudioPlayerUtil {
 
   AudioPlayer audioPlayer = AudioPlayer();
   static AudioPlayer audioPlayerLoop = AudioPlayer();
+  static AudioPlayer audioPlayerLoopLeanding = AudioPlayer();
 
   Future<void> playSound(String assetName) async {
     if (isSoundOn) {
@@ -34,6 +35,24 @@ class AudioPlayerUtil {
     } else {
       audioPlayerLoop.pause();
       audioPlayerLoop.state = PlayerState.PAUSED;
+    }
+  }
+
+  Future<void> playLeandingPageSound(String asset) async {
+    if (isSoundOn) {
+      if (audioPlayerLoopLeanding.state == PlayerState.PAUSED) {
+        audioPlayerLoopLeanding.resume();
+      } else {
+        if (audioPlayerLoopLeanding.state == PlayerState.PLAYING) {
+        } else {
+          final int? result =
+              await audioPlayerLoopLeanding.play(asset, volume: 0.5);
+          audioPlayerLoopLeanding.setReleaseMode(ReleaseMode.LOOP);
+        }
+      }
+    } else {
+      audioPlayerLoopLeanding.pause();
+      audioPlayerLoopLeanding.state = PlayerState.PAUSED;
     }
   }
 }

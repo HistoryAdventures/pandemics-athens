@@ -56,3 +56,12 @@ class NavigationSharedPreferences {
     await prefs.clear();
   }
 }
+
+class ShowLoadingSharedPreferences {
+  static bool userClickedOnLeandingPage = false;
+
+  // static Future<void> addListToSF(bool userClicked) async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setBool(userClickedOnLeandingPage, userClicked);
+  // }
+}
