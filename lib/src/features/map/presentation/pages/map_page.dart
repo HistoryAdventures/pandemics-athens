@@ -450,18 +450,10 @@ class _MapPageState extends State<MapPage> {
                   : AssetsPath.iconVolumeOff,
               onTapVolume: AudioPlayerUtil.isSoundOn
                   ? () {
-                      setState(() {
-                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        AudioPlayerUtil()
-                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
-                      });
+                      onTapSoundIcon();
                     }
                   : () {
-                      setState(() {
-                        AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        AudioPlayerUtil()
-                            .playSoundWithLoop(AssetsPath.storyBackgroundSound);
-                      });
+                      onTapSoundIcon();
                     },
               onTapMenu: () {
                 Scaffold.of(context).openEndDrawer();
@@ -471,6 +463,14 @@ class _MapPageState extends State<MapPage> {
         );
       }),
     );
+  }
+
+  /// Configure sounds when clicking on Sound Icon
+  void onTapSoundIcon() {
+    setState(() {
+      AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+      AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    });
   }
 
   Widget _iframeIgnorePointer({
@@ -648,9 +648,6 @@ class _MapPageState extends State<MapPage> {
                               ],
                             ),
                           ),
-                          // SizedBox(
-                          //   height: HW.getHeight(20, context),
-                          // ),
                           Expanded(
                             flex: 3,
                             child: Container(
@@ -818,10 +815,15 @@ class _MapPageState extends State<MapPage> {
                 bottom: 0,
                 textTitle: locals.athens5thCentury,
                 onTap: () {
-                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+                  // Update SharedPreferences for updating navigation tree view
                   LeafDetails.visitedVertexes.add(5);
                   LeafDetails.currentVertex = 5;
                   NavigationSharedPreferences.upDateShatedPreferences();
+
+                  // Configure sounds when lefting page
+                  AudioPlayerUtil().playSound(AssetsPath.screenTransitionSound);
+
+                  // Change page
                   context.router.replace(const CharacrterPageRoute());
                 }),
           ],
@@ -847,15 +849,7 @@ class _MapPageState extends State<MapPage> {
           AudioPlayerUtil().playSound(AssetsPath.changeIndex);
           _visible = false;
           setState(() {});
-          //  await Future.delayed(const Duration(seconds: 1));
-          //
 
-          // setState(() {
-          //   additionalLoading = true;
-          //   mapScreenLoading = true;
-          // });
-          //
-          //  setIframElementPlatform();
           await mapInfoModel?.chandeState(
             lottie: lottie,
             image: image,
@@ -869,21 +863,6 @@ class _MapPageState extends State<MapPage> {
             _visible = true;
             setState(() {});
           });
-          // Future.delayed(Duration(milliseconds: 400)).then((value) {
-          //   setIframElementPlatform();
-          // });
-          // Future.delayed(Duration(milliseconds: 400)).then((value) {
-          //   setState(() {});
-          // });
-
-          // setIframElementPlatform();
-
-          // Future.delayed(Duration(milliseconds: 200)).then((value) {
-          //   setState(() {
-          //     additionalLoading = false;
-          //     mapScreenLoading = false;
-          //   });
-          // });
         },
         child: AutoSizeText(
           year!,
