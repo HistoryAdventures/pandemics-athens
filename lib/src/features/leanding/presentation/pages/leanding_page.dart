@@ -71,9 +71,6 @@ class _LeandingPageState extends State<LeandingPage> {
     } else if (loadingCount == '0') {
       precacheImages();
     }
-    // if (isImageloaded && audioPlayerState != PlayerState.PLAYING) {
-    //   playSound();
-    // }
     firebaseScreenTracking();
     super.didChangeDependencies();
   }
@@ -214,6 +211,8 @@ class _LeandingPageState extends State<LeandingPage> {
                           LeafDetails.currentVertex = 1;
                           // print(LeafDetails.visitedVertexes);
                           NavigationSharedPreferences.upDateShatedPreferences();
+                          turnMiddle
+                          (  AudioPlayerUtil.audioPlayerLoopLeanding);
                           // AudioPlayerUtil().leandingBgSound.setVolume(0.5);
                           context.router.push(const GlossaryPageRoute());
                         },
@@ -230,13 +229,13 @@ class _LeandingPageState extends State<LeandingPage> {
                           if (AudioPlayerUtil.isSoundOn) {
                             AudioPlayerUtil().playLeandingPageSound(
                                 AssetsPath.leandingBgSound);
-                            AudioPlayerUtil.audioPlayerLoop.state =
+                            AudioPlayerUtil.audioPlayerLoopLeanding.state =
                                 PlayerState.PLAYING;
                             // AudioPlayerUtil().playSound();
                           } else {
                             AudioPlayerUtil().playLeandingPageSound(
                                 AssetsPath.leandingBgSound);
-                            AudioPlayerUtil.audioPlayerLoop.state =
+                            AudioPlayerUtil.audioPlayerLoopLeanding.state =
                                 PlayerState.PAUSED;
                             // AudioPlayerUtil().stopPlaySound();
                           }
@@ -304,4 +303,26 @@ class _LeandingPageState extends State<LeandingPage> {
       // playSound();
     });
   }
+
+
+
+
+
+
+ Future<void> turnMiddle
+ (AudioPlayer player) async {
+    if (!AudioPlayerUtil.isSoundOn) {
+      player.setVolume(0);
+    } else {
+      await player.setVolume(0.9);
+      await Future.delayed(const Duration(milliseconds: 500));
+      await player.setVolume(0.7);
+      await Future.delayed(const Duration(milliseconds: 500));
+      await player.setVolume(0.5);
+
+    }
+  }
+
+
+
 }
