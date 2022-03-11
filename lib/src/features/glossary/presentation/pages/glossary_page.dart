@@ -216,7 +216,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
           ),
           child: Stack(
             children: [
-              // const BackgroundWidget(),
               Align(
                   alignment: Alignment.topCenter,
                   child: Container(
@@ -332,14 +331,21 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 alignment: Alignment.bottomCenter,
                 child: ArrowTextBottomWidget(
                   onPressed: () {
-                    SharedPreferences _sharedPrefs =
+                    // Update SharedPreferences for showing video
+                    final SharedPreferences _sharedPrefs =
                         SharedPreferancesManagment().prefs;
                     _sharedPrefs.setBool("showVideo", true);
+
+                    // Update SharedPreferences for updating navigation tree view
                     LeafDetails.visitedVertexes.add(2);
                     LeafDetails.currentVertex = 2;
                     NavigationSharedPreferences.upDateShatedPreferences();
+
+                    // Configure sounds when lefting page
                     AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
                     AudioPlayerUtil.audioPlayerLoopLeanding.release();
+
+                    // Change page
                     context.router.push(ParalaxHistoryPageRoute());
                   },
                   textChapter: locales.chapter1,
@@ -348,17 +354,15 @@ class _GlossaryPageState extends State<GlossaryPage> {
               ),
               SoundAndMenuWidget(
                 widget: AppUpButton(onTap: () {
-                  LeafDetails.currentVertex = 0;
+
+                  // Update SharedPreferences for updating navigation tree view
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  // if (kIsWeb) {
-                  //   html.window.history.back();
-                  //   context.router.pop();
-                  // } else {
-                  //   context.router.pop();
-                  // }
-                  AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
                   LeafDetails.currentVertex = 0;
 
+                  // Configure sounds when lefting page
+                  AudioPlayerUtil().playSound(AssetsPath.glossaryPageClose);
+
+                  // Change page
                   context.router.replace(
                       LeandingPageToBottom(navigateFromNavigatorPage: true));
                 }),
@@ -367,24 +371,10 @@ class _GlossaryPageState extends State<GlossaryPage> {
                     : AssetsPath.iconVolumeOff,
                 onTapVolume: AudioPlayerUtil.isSoundOn
                     ? () {
-                        setState(() {
-                          AudioPlayerUtil.isSoundOn =
-                              !AudioPlayerUtil.isSoundOn;
-                          AudioPlayerUtil().playLeandingPageSound(
-                              AssetsPath.leandingBgSound);
-
-                          // backgroundplayer.pause();
-                        });
+                        onTapSoundIcon();
                       }
                     : () {
-                        setState(() {
-                          AudioPlayerUtil.isSoundOn =
-                              !AudioPlayerUtil.isSoundOn;
-                          AudioPlayerUtil().playLeandingPageSound(
-                              AssetsPath.leandingBgSound);
-
-                          // backgroundplayer.play();
-                        });
+                        onTapSoundIcon();
                       },
                 onTapMenu: () {
                   scaffoldKey.currentState!.openEndDrawer();
@@ -395,6 +385,14 @@ class _GlossaryPageState extends State<GlossaryPage> {
         );
       }),
     );
+  }
+
+  /// Configure sounds when clicking on Sound Icon
+  void onTapSoundIcon() {
+    setState(() {
+      AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+      AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
+    });
   }
 
   void selectedItem({required String cardTitele, required String text}) {
