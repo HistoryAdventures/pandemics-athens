@@ -6,13 +6,12 @@ import '../colors.dart';
 import 'assets_path.dart';
 
 class ImageFill extends StatefulWidget {
-  final TextAlign textAlign;
   final Duration loadDuration;
   final Duration waveDuration;
 
-  final double boxHeight;
+  final double? boxHeight;
 
-  final double boxWidth;
+  final double? boxWidth;
 
   final Color boxBackgroundColor;
 
@@ -23,11 +22,10 @@ class ImageFill extends StatefulWidget {
 
   ImageFill({
     Key? key,
-    this.textAlign = TextAlign.left,
     this.loadDuration = const Duration(seconds: 27),
     this.waveDuration = const Duration(seconds: 2),
-    this.boxHeight = 250,
-    this.boxWidth = 400,
+    this.boxHeight,
+    this.boxWidth,
     this.boxBackgroundColor = Colors.black,
     this.waveColor = Colors.orange,
     this.loadUntil = 1.0,
@@ -35,13 +33,12 @@ class ImageFill extends StatefulWidget {
   })  : assert(loadUntil > 0 && loadUntil <= 1.0),
         super(key: key);
 
-  /// Creates the mutable state for this widget. See [StatefulWidget.createState].
   @override
   _ImageFillState createState() => _ImageFillState();
 }
 
 class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
-  final _textKey = GlobalKey();
+  final _imageKey = GlobalKey();
 
   late AnimationController _waveController, _loadController;
 
@@ -61,7 +58,6 @@ class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
       duration: widget.loadDuration,
     );
 
-    // _loadController.duration = const Duration(seconds: 10);
     _loadValue = Tween<double>(
       begin: 0.0,
       end: widget.loadUntil,
@@ -88,12 +84,6 @@ class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.loadingCount == 30) {
-      widget.loadUntil = 1.0;
-      _loadController =
-          AnimationController(vsync: this, duration: Duration(seconds: 2));
-    }
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(180),
       child: Stack(
@@ -110,9 +100,9 @@ class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
               builder: (BuildContext context, Widget? child) {
                 return CustomPaint(
                   painter: _WavePainter(
-                      textKey: _textKey,
+                      imageKey: _imageKey,
                       loadValue: _loadValue.value,
-                      boxHeight: widget.boxHeight,
+                      boxHeight: widget.boxHeight!,
                       waveColor: widget.waveColor,
                       loadingCount: widget.loadingCount),
                 );
@@ -133,7 +123,7 @@ class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
               ).createShader(bounds),
               child: Image.asset(
                 AssetsPath.loadingVirus1,
-                key: _textKey,
+                key: _imageKey,
                 fit: BoxFit.contain,
                 // color: Colors.transparent,
                 colorBlendMode: BlendMode.src,
@@ -147,14 +137,14 @@ class _ImageFillState extends State<ImageFill> with TickerProviderStateMixin {
 }
 
 class _WavePainter extends CustomPainter {
-  final GlobalKey textKey;
+  final GlobalKey imageKey;
   final double loadValue;
   final double boxHeight;
   final Color waveColor;
   final int loadingCount;
 
   _WavePainter({
-    required this.textKey,
+    required this.imageKey,
     required this.loadValue,
     required this.boxHeight,
     required this.waveColor,
@@ -163,15 +153,17 @@ class _WavePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final RenderBox textBox =
-        textKey.currentContext!.findRenderObject() as RenderBox;
-    final textHeight = textBox.size.height;
-    final baseHeight = 
-      (boxHeight / 2) + (textHeight / 2) - (loadingCount * 0.01 * textHeight + 1);
+    final RenderBox imageBox =
+        imageKey.currentContext!.findRenderObject() as RenderBox;
+    final imageHeight = imageBox.size.height;
+    final baseHeight = (boxHeight / 2) +
+        (imageHeight / 2) -
+        (loadingCount * 0.01 * imageHeight + 1);
 
     final width = size.width;
     final height = size.height;
     final path = Path();
+    
     path.moveTo(0.0, baseHeight);
     for (var i = 0.0; i < width; i++) {
       path.lineTo(i, baseHeight);
@@ -181,11 +173,10 @@ class _WavePainter extends CustomPainter {
     path.lineTo(0.0, height);
 
     path.close();
-     final wavePaint = Paint()..color = waveColor;
+    final wavePaint = Paint()..color = waveColor;
     final backgroundPaint = Paint()..color = Colors.white;
     canvas.drawPaint(backgroundPaint);
-    //  canvas.drawColor(Colors.red, BlendMode.color);//.drawPath(path, backgroundPaint);
-     canvas.drawPath(path, wavePaint);
+    canvas.drawPath(path, wavePaint);
   }
 
   @override
