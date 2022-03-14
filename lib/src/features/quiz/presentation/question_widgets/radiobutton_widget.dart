@@ -1,12 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:history_of_adventures/src/core/colors.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
-import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
 import 'package:history_of_adventures/src/features/quiz/presentation/question_widgets/answer_model.dart';
-
 import 'drag_drop_widgets/circle_button.dart';
 import 'drag_drop_widgets/drag_drop_models.dart';
 import 'drag_drop_widgets/painter.dart';
@@ -54,8 +50,6 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
   double w = 0;
   bool checked = false;
   List<RightLine> rightLines = [];
-  // List<MapQuizItemModel> quizImages = [];
-  Size get _screenSize => Size(screenWidth, screenHeight);
 
   void resetQuiz() {
     savedLines.clear();
@@ -85,7 +79,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
     if (rightLines.length == 4) {
       return;
     }
-    //a
+  
     shouldPaint = true;
     RightLine a = RightLine(
       startKey: questions[0].question.key,
@@ -94,8 +88,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
       end: offsetForKey(questions[0].target.key),
     );
 
-    // //a
-    // //b
+
     RightLine b = RightLine(
       startKey: questions[0].question.key,
       start: offsetForKey(questions[0].question.key),
@@ -103,29 +96,12 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
       end: offsetForKey(questions[1].target.key),
     );
 
-    // // //b
-    // // //c
-    // RightLine c = RightLine(
-    //   startKey: questions[2].question.key,
-    //   start: offsetForKey(questions[2].question.key),
-    //   endKey: questions[0].target.key,
-    //   end: offsetForKey(questions[0].target.key),
-    // );
-    // RightLine d = RightLine(
-    //   startKey: questions[3].question.key,
-    //   start: offsetForKey(questions[3].question.key),
-    //   endKey: questions[1].target.key,
-    //   end: offsetForKey(questions[1].target.key),
-    // );
+    
 
     rightLines.add(a);
-    // rightLines.add(b);
-    // rightLines.add(c);
-    // rightLines.add(d);
-    // rightLines.add(e);
 
     checked = true;
-    //c
+
   }
 
   @override
@@ -265,10 +241,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
                 ),
               ),
 
-              // Expanded(
-              //   flex: 15,
-              //   child: Container(),
-              // ),
+      
             ],
           ),
         ],
@@ -375,6 +348,7 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
         height: HW.getHeight(38, context),
       );
 
+  @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       h = dropKey.currentContext!.size!.height;
@@ -458,7 +432,6 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
                                   widget.answers[1].image!, 0),
                               _target(questions[1].target,
                                   widget.answers[2].image!, 1),
-                              // SizedBox(height: HW.getHeight(100, context),)
                             ],
                           ),
                         ),

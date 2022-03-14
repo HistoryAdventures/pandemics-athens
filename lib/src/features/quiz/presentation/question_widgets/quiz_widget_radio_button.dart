@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/features/quiz/data/quiz_model.dart';
@@ -8,7 +7,6 @@ import 'package:history_of_adventures/src/features/quiz/presentation/question_wi
 import '../../../../core/colors.dart';
 import '../../../../core/utils/assets_path.dart';
 import '../../../../core/utils/styles.dart';
-import 'custom_widgets/check_box.dart';
 
 class QuizRadioBottonWidget extends StatefulWidget {
   bool? quizWithImage = false;
@@ -62,7 +60,6 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
     });
     super.initState();
   }
-  // bool _value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -131,17 +128,14 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                                         widget.image!,
                                         fit: BoxFit.fitHeight,
                                         height: HW.getHeight(400, context),
-                                        // height: HW.getHeight(400, context),
-                                        //   width: HW.getWidth(400, context),
 
-                                        // width: HW.getWidth(600, context)
                                       ),
                                     ),
                                   ])
                             : Image.asset(
                                 widget.image!,
                                 fit: BoxFit.cover,
-                                // width: HW.getWidth(600, context)
+            
                               ),
                       ),
                     ),
@@ -152,9 +146,6 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                           width: HW.getWidth(600, context),
                           height: HW.getHeight(500, context),
                           child: ListView(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              // mainAxisSize: MainAxisSize.min,
                               children: widget.answers
                                   .map((e) => Container(
                                         padding: EdgeInsets.only(
@@ -173,31 +164,7 @@ class _QuizRadioBottonWidgetState extends State<QuizRadioBottonWidget> {
                                               )
                                             : null,
                                         child: Row(
-                                          // mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            // Radio(
-
-                                            //   value: e.value,
-                                            //   groupValue:
-                                            //       widget.questionIndex == 5
-                                            //           ? QuizData.valueQ5
-                                            //           : QuizData.valueQ6,
-                                            //   onChanged:
-                                            //       widget.questionIndex == 5
-                                            //           ? (int? value) {
-                                            //               setState(() {
-                                            //                 QuizData.valueQ5 =
-                                            //                     value!;
-                                            //               });
-                                            //             }
-                                            //           : (int? value) {
-                                            //               setState(() {
-                                            //                 QuizData.valueQ6 =
-                                            //                     value!;
-                                            //               });
-                                            //             },
-                                            //   activeColor: AppColors.orange,
-                                            // ),
                                             AbsorbPointer(
                                               absorbing:
                                                   QuizData.showRightAnswers,

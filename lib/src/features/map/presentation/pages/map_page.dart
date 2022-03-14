@@ -10,10 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/widgets/custom_scroolbar.dart';
-import 'package:history_of_adventures/src/core/widgets/icon_button_widget.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:lottie/lottie.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:webviewx/webviewx.dart';
 
@@ -27,7 +24,6 @@ import '../../../../core/widgets/zoom_in_notes_widget.dart';
 import '../../../navigation/presentation/models/leaf_detail_model.dart';
 import '../../../navigation/presentation/pages/navigation_page.dart';
 import '../models/year_info_model.dart';
-import 'package:restart_app/restart_app.dart';
 
 class MapPage extends StatefulWidget {
   static bool mapPageRestarted = false;
@@ -356,7 +352,6 @@ class _MapPageState extends State<MapPage> {
     super.didChangeDependencies();
   }
 
-  // bool additionalLoading = true;
 
   @override
   void initState() {
@@ -384,7 +379,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   Future<void> firebaseScreenTracking() async {
-    // await FirebaseAnalytics.instance.setCurrentScreen(screenName: '/glossary-pageeeee');
     await FirebaseAnalytics.instance.logEvent(
         name: "timeline-of-main-events",
         parameters: {
@@ -395,25 +389,11 @@ class _MapPageState extends State<MapPage> {
         .logScreenView(screenName: "timeline-of-main-events");
   }
 
-  // bool mapScreenLoading = true;
-  // String reloadKey = "mapPageReload";
-  // void setLoading() {
-  //   Future.delayed(Duration(milliseconds: 10)).then((value)async {
-  //    SharedPreferences _sharedPrefs =await  SharedPreferences.getInstance();
-  //    _sharedPrefs.setBool(reloadKey, true);
-  //    Restart.restartApp(webOrigin: '/map-page');
-
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
       body:
-          // mapScreenLoading || additionalLoading
-          //     ? const LoadingWidget()
-          //:
           LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [

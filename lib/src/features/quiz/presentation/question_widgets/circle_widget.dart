@@ -60,7 +60,7 @@ class _CircleWidgetState extends State<CircleWidget> {
                       },
                       getEndLineOffset: (mouseOffset) {
                         widget.getEndLineOffset!(mouseOffset);
-                        print("object1121212");
+                  
                         setState(() {
                           answer.circleColor = AppColors.orange;
                         });
@@ -80,7 +80,7 @@ class _CircleWidgetState extends State<CircleWidget> {
                       },
                       getEndLineOffset: (mouseOffset) {
                         widget.getEndLineOffset!(mouseOffset);
-                        print("object1121212");
+                    
                         setState(() {
                           answer.circleColor = AppColors.orange;
                         });
