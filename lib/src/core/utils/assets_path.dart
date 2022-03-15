@@ -38,7 +38,7 @@ class AssetsPath {
   static const String nikosPartSound =
       'assets/assets/audios/parallax-page/sfx_amb_illustration2.ogg';
   static const String peopleSound1 =
-      'assets/assets/audios/parallax-page/sfx_amb_illustration3.ogg';
+      'assets/assets/audios/parallax-page/sfx_amb_illustration3.wav';
   static const String peopleSound2 =
       'assets/assets/audios/parallax-page/sfx_amb_illustration4.ogg';
   static const String footsteps =
