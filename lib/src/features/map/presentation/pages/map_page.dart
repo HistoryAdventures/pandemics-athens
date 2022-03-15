@@ -352,15 +352,15 @@ class _MapPageState extends State<MapPage> {
     super.didChangeDependencies();
   }
 
-
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       _visible = true;
+      AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+      AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
       setState(() {});
     });
-    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
-    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+
     setIframElementPlatform();
     firebaseScreenTracking();
 
@@ -393,8 +393,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const NavigationPage(),
-      body:
-          LayoutBuilder(builder: (context, constraints) {
+      body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
           children: [
             IgnorePointer(

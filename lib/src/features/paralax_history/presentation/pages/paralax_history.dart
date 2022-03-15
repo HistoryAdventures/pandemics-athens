@@ -998,9 +998,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
           LeafDetails.currentVertex = 4;
           LeafDetails.visitedVertexes.add(4);
           NavigationSharedPreferences.upDateShatedPreferences();
+          // backgroundSound.stop();
+          // _currentPlayer.stop();
           context.router.replace(const MapPageRoute());
-          backgroundSound.stop();
-          _currentPlayer.stop();
 
           // backgroundSound.stop();
         },

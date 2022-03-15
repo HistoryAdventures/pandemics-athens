@@ -211,8 +211,7 @@ class _LeandingPageState extends State<LeandingPage> {
                           LeafDetails.currentVertex = 1;
                           // print(LeafDetails.visitedVertexes);
                           NavigationSharedPreferences.upDateShatedPreferences();
-                          turnMiddle
-                          (  AudioPlayerUtil.audioPlayerLoopLeanding);
+                          turnMiddle(AudioPlayerUtil.audioPlayerLoopLeanding);
                           // AudioPlayerUtil().leandingBgSound.setVolume(0.5);
                           context.router.push(const GlossaryPageRoute());
                         },
@@ -261,7 +260,7 @@ class _LeandingPageState extends State<LeandingPage> {
                   ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
                   AudioPlayerUtil()
                       .playLeandingPageSound(AssetsPath.leandingBgSound);
-                  AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+                  AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
                 });
               },
               child: LoadingWidget(loadingCound: loadingCount),
@@ -272,9 +271,13 @@ class _LeandingPageState extends State<LeandingPage> {
   }
 
   Future<void> precacheImages() async {
+    print(widget.navigateFromNavigatorPage);
+    print("  +++++");
     if (window.sessionStorage.containsKey('allImagesAreCached')) {
       setState(() {
         ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
+        AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
+        AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
         // playSound();
       });
 
@@ -304,13 +307,7 @@ class _LeandingPageState extends State<LeandingPage> {
     });
   }
 
-
-
-
-
-
- Future<void> turnMiddle
- (AudioPlayer player) async {
+  Future<void> turnMiddle(AudioPlayer player) async {
     if (!AudioPlayerUtil.isSoundOn) {
       player.setVolume(0);
     } else {
@@ -319,10 +316,6 @@ class _LeandingPageState extends State<LeandingPage> {
       await player.setVolume(0.7);
       await Future.delayed(const Duration(milliseconds: 500));
       await player.setVolume(0.5);
-
     }
   }
-
-
-
 }
