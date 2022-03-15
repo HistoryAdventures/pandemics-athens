@@ -69,6 +69,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double currentPlayerVol = 0.0;
   double nextPlayerVol = 0.0;
 
+  bool firstSoundCalledWithInitState = false;
+  bool middleSoundCalledWithoutScrolling = false;
+  bool lastSoundCalledWithoutScrolling = false;
+
   List<String> audioAssets = [
     AssetsPath.windSound,
     AssetsPath.nikosPartSound,
@@ -136,11 +140,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   bool played6 = false;
   bool played7 = false;
 
+  bool playMiddle = false;
+  bool playEnd = false;
+  int seconds = 1;
+
   late BackgroundSound _bgSound;
 
   @override
   void initState() {
     print('initState + history');
+
+    seconds = _sharedPrefs.getBool("showLongLoading") == false ? 1 : 10;
 
     _videoController = VideoPlayerController.asset('assets/paralax_video.mp4')
       ..initialize().then((_) {
@@ -286,6 +296,16 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     super.dispose();
   }
 
+  String loadingCount = "0";
+
+  void getLoadingNumber() {
+    for (int i = 0; i < 100; i++) {
+      setState(() {
+        loadingCount = '$i';
+      });
+    }
+  }
+
   Widget get _paralax {
     return HtmlElementView(viewType: "paralax");
   }
@@ -316,15 +336,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       player.setVolume(0);
     } else {
       await player.setVolume(0.9);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.7);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.5);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.3);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.1);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0);
     }
 
@@ -336,15 +356,15 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
       await player.setVolume(0);
     } else {
       await player.setVolume(0.1);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.3);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.5);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.7);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(0.9);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 200));
       await player.setVolume(1);
     }
   }
@@ -408,18 +428,21 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     return NotificationListener<UserScrollNotification>(
       onNotification: (notification) {
-        if (getObjectPositionByKey(_nikosGifKey) - getHeight(_nikosGifKey) * 5 >
-            20) {
-          if (!played0) {
-            played0 = true;
-            played1 = false;
-            played2 = false;
-            played3 = false;
-            played4 = false;
-            played5 = false;
-            played6 = false;
+        if (firstSoundCalledWithInitState == false) {
+          if (getObjectPositionByKey(_nikosGifKey) -
+                  getHeight(_nikosGifKey) * 5 >
+              20) {
+            if (!played0) {
+              played0 = true;
+              played1 = false;
+              played2 = false;
+              played3 = false;
+              played4 = false;
+              played5 = false;
+              played6 = false;
 
-            playIt(0);
+              playIt(0);
+            }
           }
         }
 
@@ -436,6 +459,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             played4 = false;
             played5 = false;
             played6 = false;
+            firstSoundCalledWithInitState = false;
 
             playIt(1);
           }
@@ -455,27 +479,33 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             played4 = false;
             played5 = false;
             played6 = false;
+            firstSoundCalledWithInitState = false;
+            middleSoundCalledWithoutScrolling = false;
 
             playIt(2);
           }
         }
 
-        if (getObjectPositionByKey(_nikosText3Key) -
-                    getHeight(_nikosText3Key) * 2 <
-                20 &&
-            getObjectPositionByKey(_nikosText4Key) -
-                    getHeight(_nikosText4Key) * 1.5 >
-                20) {
-          if (!played3) {
-            played3 = true;
-            played0 = false;
-            played1 = false;
-            played2 = false;
-            played4 = false;
-            played5 = false;
-            played6 = false;
+        if (middleSoundCalledWithoutScrolling == false) {
+          if (getObjectPositionByKey(_nikosText3Key) -
+                      getHeight(_nikosText3Key) * 2 <
+                  20 &&
+              getObjectPositionByKey(_nikosText4Key) -
+                      getHeight(_nikosText4Key) * 1.5 >
+                  20) {
+            if (!played3) {
+              played3 = true;
+              played0 = false;
+              played1 = false;
+              played2 = false;
+              played4 = false;
+              played5 = false;
+              played6 = false;
+              firstSoundCalledWithInitState = false;
+              lastSoundCalledWithoutScrolling = false;
 
-            playIt(3);
+              playIt(3);
+            }
           }
         }
 
@@ -493,6 +523,9 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             played3 = false;
             played5 = false;
             played6 = false;
+            firstSoundCalledWithInitState = false;
+            middleSoundCalledWithoutScrolling = false;
+            lastSoundCalledWithoutScrolling = false;
 
             playIt(4);
           }
@@ -510,22 +543,29 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
             played3 = false;
             played4 = false;
             played6 = false;
+            firstSoundCalledWithInitState = false;
+            middleSoundCalledWithoutScrolling = false;
+            lastSoundCalledWithoutScrolling = false;
 
             playIt(5);
           }
         }
 
-        if (getObjectPositionByKey(_nikosText5Key) < 0) {
-          if (!played6) {
-            played6 = true;
-            played0 = false;
-            played1 = false;
-            played2 = false;
-            played3 = false;
-            played4 = false;
-            played5 = false;
+        if (lastSoundCalledWithoutScrolling == false) {
+          if (getObjectPositionByKey(_nikosText5Key) < 0) {
+            if (!played6) {
+              played6 = true;
+              played0 = false;
+              played1 = false;
+              played2 = false;
+              played3 = false;
+              played4 = false;
+              played5 = false;
+              firstSoundCalledWithInitState = false;
+              middleSoundCalledWithoutScrolling = false;
 
-            playIt(6);
+              playIt(6);
+            }
           }
         }
 
@@ -549,10 +589,6 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                       !_showVideo!)
                     Builder(
                       builder: (c) {
-                        int seconds =
-                            _sharedPrefs.getBool("showLongLoading") == false
-                                ? 2
-                                : 10;
                         Future.delayed(Duration(seconds: seconds)).then((v) {
                           if (mounted) {
                             setState(() {
@@ -560,14 +596,24 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                             });
                           }
                           _sharedPrefs.setBool("showLongLoading", false);
+                          if (_mustScrollToMiddle && !playMiddle) {
+                            playIt(3);
+                            playMiddle = true;
+                            middleSoundCalledWithoutScrolling = true;
+                          }
 
-                          if (_mustScrollToEnd) {
-                            if (!played7) {
-                              played7 = true;
-                            }
+                          if (_mustScrollToEnd && !playEnd) {
+                            playIt(6);
+                            playEnd = true;
+                            lastSoundCalledWithoutScrolling = true;
                           } else if (!played) {
                             played = true;
                             bGSound();
+                            if (_mustScrollToEnd != true &&
+                                _mustScrollToMiddle != true) {
+                              playIt(0);
+                              firstSoundCalledWithInitState = true;
+                            }
                           }
                         });
 
@@ -629,7 +675,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                                               _title,
                                               SizedBox(
                                                 height:
-                                                    HW.getHeight(1700, context),
+                                                    HW.getHeight(1500, context),
                                               ),
                                               ParalaxTextWidget(
                                                 key: _nikosGifKey,
