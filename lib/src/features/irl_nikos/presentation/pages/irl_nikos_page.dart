@@ -50,12 +50,10 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
   }
 
   Future<void> firebaseScreenTracking() async {
-    await FirebaseAnalytics.instance.logEvent(
-        name: "irl-nikos",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/irl-nikos"
-        });
-    await FirebaseAnalytics.instance.logScreenView(screenName: "irl-nikos");
+    await FirebaseAnalytics.instance.logEvent(name: "irl-nikos", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/irl-nikos"
+    });
+    // await FirebaseAnalytics.instance.logScreenView(screenName: "irl-nikos");
   }
 
   AudioPlayer bgPlayer1 = AudioPlayer();
@@ -105,11 +103,13 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                        bgPlayer1.setVolume(0.0);
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                        bgPlayer1.setVolume(1.0);
                       });
                     },
               onTapMenu: () {
