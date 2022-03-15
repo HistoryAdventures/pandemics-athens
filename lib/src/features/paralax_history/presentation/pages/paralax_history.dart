@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html' as htm;
 
 import 'dart:ui' as ui;
@@ -69,6 +70,8 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   double currentPlayerVol = 0.0;
   double nextPlayerVol = 0.0;
 
+  String? loadingCount;
+
   bool firstSoundCalledWithInitState = false;
   bool middleSoundCalledWithoutScrolling = false;
   bool lastSoundCalledWithoutScrolling = false;
@@ -127,6 +130,10 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
 
     _scrollLearnMoreText = height * 3.8;
 
+    if (loadingCount != "100") {
+      getLoadingNumber();
+    }
+
     super.didChangeDependencies();
   }
 
@@ -149,6 +156,7 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
   @override
   void initState() {
     print('initState + history');
+    loadingCount = '0';
 
     seconds = _sharedPrefs.getBool("showLongLoading") == false ? 1 : 10;
 
@@ -296,14 +304,17 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
     super.dispose();
   }
 
-  String loadingCount = "0";
-
   void getLoadingNumber() {
-    for (int i = 0; i < 100; i++) {
+    Timer.periodic(const Duration(milliseconds: 100), (t) {
+      if (int.parse(loadingCount!) == 100) {
+        t.cancel();
+        return;
+      }
+
       setState(() {
-        loadingCount = '$i';
+        loadingCount = (int.parse(loadingCount!) + 1).toString();
       });
-    }
+    });
   }
 
   Widget get _paralax {
@@ -759,9 +770,13 @@ class _ParalaxHistoryPageState extends State<ParalaxHistoryPage>
                               ),
                             ),
                             if (!paralaxAssetsPreloaded)
-                              const Align(
+                              Align(
                                 alignment: Alignment.center,
-                                child: LoadingVideoWidget(),
+                                child: seconds == 1
+                                    ? const LoadingVideoWidget()
+                                    : LoadingWidget(
+                                        loadingCound: loadingCount,
+                                        userIteract: false),
                               ),
                           ],
                         );
