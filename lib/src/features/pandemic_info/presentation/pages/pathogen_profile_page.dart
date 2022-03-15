@@ -53,11 +53,11 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   @override
   void initState() {
     _scrollController = ScrollController();
-    // if (widget.needJumpToPracticeMedicinePart! == true) {
-    // } else {
-    //   AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
-    //   AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
-    // }
+    if (widget.needJumpToPracticeMedicinePart! == true) {
+    } else {
+      AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+      AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+    }
 
     _scrollController.addListener(() {
       print("SCROLL LISTENER");
@@ -150,7 +150,9 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
     });
     return NotificationListener<UserScrollNotification>(
       onNotification: (notification) {
-        if (notification.direction == ScrollDirection.reverse) {}
+        // if (notification.direction == ScrollDirection.reverse) {
+        //   soundAndMewnuColor = AppColors.black100;
+        // }
 
         if (_scrollController.offset ==
             _scrollController.position.minScrollExtent) {
@@ -369,6 +371,7 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                       child: AppUpButton(
                         // iconSize: HW.getHeight(50, context),
                         // icon: const Icon(Icons.arrow_upward_sharp),
+
                         onTap: () {
                           AudioPlayerUtil.audioPlayerLoop.release();
                           LeafDetails.currentVertex = 9;
