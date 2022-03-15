@@ -239,7 +239,7 @@ class _VirusLocationPageState extends State<VirusLocationPage> {
                           LeafDetails.visitedVertexes.add(10);
                           NavigationSharedPreferences.upDateShatedPreferences();
                           context.router
-                              .replace(PathogenProfilePageRightRoute());
+                              .replace(PathogenProfilePageRightRoute(needJumpToPracticeMedicinePart: false));
                         }),
                   ),
                   Flexible(

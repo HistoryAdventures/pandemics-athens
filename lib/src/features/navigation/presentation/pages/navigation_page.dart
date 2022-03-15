@@ -356,7 +356,7 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(PathogenProfilePageBottomRoute());
+          context.router.replace(PathogenProfilePageBottomRoute(needJumpToPracticeMedicinePart: false));
         },
         pointOffset: const Offset(425, 375),
         lineStartOffset: const Offset(5, 0),

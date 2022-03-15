@@ -350,7 +350,8 @@ class _PanaromaRightPageState extends State<PanaromaRightPage> {
                   LeafDetails.currentVertex = 10;
                   LeafDetails.visitedVertexes.add(10);
                   NavigationSharedPreferences.upDateShatedPreferences();
-                  context.router.replace(PathogenProfilePageBottomRoute());
+                  context.router.replace(PathogenProfilePageBottomRoute(
+                      needJumpToPracticeMedicinePart: false));
                 },
               ),
             ),
