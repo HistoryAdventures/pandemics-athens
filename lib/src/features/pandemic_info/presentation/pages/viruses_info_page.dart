@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -56,6 +58,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   late BehaviorSubject<AnimatedParticleModel> animatedParticlesBS;
 
   bool showLoading = false;
+  String? loadingCount;
 
   @override
   void didChangeDependencies() {
@@ -111,6 +114,10 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
         ),
       ),
     ];
+
+    if (loadingCount != "100") {
+      getLoadingNumber();
+    }
     precacheImages();
     super.didChangeDependencies();
   }
@@ -118,6 +125,7 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   @override
   void initState() {
     super.initState();
+    loadingCount = "0";
     NavigationSharedPreferences.getNavigationListFromSF();
     // virusModel = VirusModel(
     //   description: "locals.introVirusText",
@@ -143,6 +151,19 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
     super.dispose();
   }
 
+  void getLoadingNumber() {
+    Timer.periodic(const Duration(milliseconds: 120), (t) {
+      if (int.parse(loadingCount!) == 100) {
+        t.cancel();
+        return;
+      }
+
+      setState(() {
+        loadingCount = (int.parse(loadingCount!) + 1).toString();
+      });
+    });
+  }
+
   Future<void> precacheImages() async {
     if (window.sessionStorage.containsKey('virusPageImagesAreCached')) return;
 
@@ -165,11 +186,9 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
   }
 
   Future<void> firebaseScreenTracking() async {
-    await FirebaseAnalytics.instance.logEvent(
-        name: "what-was-it",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/what-was-it"
-        });
+    await FirebaseAnalytics.instance.logEvent(name: "what-was-it", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/what-was-it"
+    });
 
     await FirebaseAnalytics.instance.logScreenView(screenName: "what-was-it");
   }
@@ -297,7 +316,11 @@ class _VirusesInfoPageState extends State<VirusesInfoPage>
             ),
           );
         }),
-        if (showLoading) const LoadingWidget(),
+        if (showLoading)
+          LoadingWidget(
+            loadingCound: loadingCount,
+            userIteract: false,
+          ),
       ],
     );
   }

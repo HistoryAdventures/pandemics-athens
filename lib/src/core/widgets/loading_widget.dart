@@ -9,9 +9,11 @@ import 'animated_widgets/pulsing_widget.dart';
 class LoadingWidget extends StatelessWidget {
   final String? loadingCound;
   final Color? color;
+  final bool? userIteract;
   const LoadingWidget({
     Key? key,
     this.loadingCound,
+    this.userIteract,
     this.color,
   }) : super(key: key);
 
@@ -41,7 +43,7 @@ class LoadingWidget extends StatelessWidget {
                               style:
                                   TextStyle(fontSize: 30, color: Colors.white),
                             ),
-                          if (int.parse(loadingCound!) == 99)
+                          if (int.parse(loadingCound!) == 99 && userIteract == null)
                             const Text(
                               "  Click anywhere to start",
                               style:
