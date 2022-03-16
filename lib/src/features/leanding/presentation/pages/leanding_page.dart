@@ -225,19 +225,9 @@ class _LeandingPageState extends State<LeandingPage> {
                         setState(() {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
-                          if (AudioPlayerUtil.isSoundOn) {
-                            AudioPlayerUtil().playLeandingPageSound(
-                                AssetsPath.leandingBgSound);
-                            AudioPlayerUtil.audioPlayerLoopLeanding.state =
-                                PlayerState.PLAYING;
-                            // AudioPlayerUtil().playSound();
-                          } else {
-                            AudioPlayerUtil().playLeandingPageSound(
-                                AssetsPath.leandingBgSound);
-                            AudioPlayerUtil.audioPlayerLoopLeanding.state =
-                                PlayerState.PAUSED;
-                            // AudioPlayerUtil().stopPlaySound();
-                          }
+                          AudioPlayerUtil().soundPlayingControll(
+                              isSoundOn: AudioPlayerUtil.isSoundOn,
+                              routeName: 'Leanding');
                         });
                       },
                       onTapMenu: () {
@@ -260,7 +250,8 @@ class _LeandingPageState extends State<LeandingPage> {
                   ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
                   AudioPlayerUtil()
                       .playLeandingPageSound(AssetsPath.leandingBgSound);
-                  AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
+                  AudioPlayerUtil.audioPlayerLoopLeanding.state =
+                      PlayerState.PLAYING;
                 });
               },
               child: LoadingWidget(loadingCound: loadingCount),

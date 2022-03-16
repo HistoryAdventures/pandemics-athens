@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
@@ -356,7 +357,8 @@ class _NavigationPageState extends State<NavigationPage> {
           LeafDetails.currentVertex = 10;
           LeafDetails.visitedVertexes.add(10);
           NavigationSharedPreferences.upDateShatedPreferences();
-          context.router.replace(PathogenProfilePageBottomRoute(needJumpToPracticeMedicinePart: false));
+          context.router.replace(PathogenProfilePageBottomRoute(
+              needJumpToPracticeMedicinePart: false));
         },
         pointOffset: const Offset(425, 375),
         lineStartOffset: const Offset(5, 0),
@@ -516,6 +518,7 @@ class _NavigationPageState extends State<NavigationPage> {
             currentVertex: LeafDetails.currentVertex),
         onTap: () {
           AudioPlayerUtil.audioPlayerLoopLeanding.release();
+          AudioPlayerUtil.audioPlayerLoop.release();
           LeafDetails.currentVertex = 18;
           LeafDetails.visitedVertexes.add(18);
           NavigationSharedPreferences.upDateShatedPreferences();
@@ -825,6 +828,10 @@ class _NavigationPageState extends State<NavigationPage> {
               onPressed: () {
                 setState(() {
                   AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                  AudioPlayerUtil().soundPlayingControll(
+                      isSoundOn: AudioPlayerUtil.isSoundOn,
+                      routeName: getRouteName(
+                          ModalRoute.of(context)!.settings.name)[0]);
                 });
               },
               child: Container(

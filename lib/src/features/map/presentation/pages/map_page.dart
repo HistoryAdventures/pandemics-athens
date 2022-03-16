@@ -356,13 +356,16 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       _visible = true;
-      AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
-      AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
-      setState(() {});
+
+      // setState(() {});
+
+      print("MAP INIT");
     });
 
     setIframElementPlatform();
     firebaseScreenTracking();
+    AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+    AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
 
     super.initState();
   }
@@ -714,13 +717,17 @@ class _MapPageState extends State<MapPage> {
                 textSubTitle: locals.todoNoHarm,
                 textTitle: locals.chapter1,
                 onTap: () {
-                  AudioPlayerUtil.audioPlayerLoop.release();
+                  // AudioPlayerUtil.audioPlayerLoop.release();
                   LeafDetails.currentVertex = 2;
                   LeafDetails.visitedVertexes.add(2);
                   NavigationSharedPreferences.upDateShatedPreferences();
+                  AudioPlayerUtil.audioPlayerLoop.release();
+                  AudioPlayerUtil.audioPlayerLoop.state = PlayerState.COMPLETED;
+                  // AudioPlayerUtil.audioPlayerLoop.seek(Duration(seconds: 0));
                   context.router.replace(ParalaxHistoryPageToRight(
                     mustScrollToMiddle: true,
                   ));
+                  print("Dispose  audioPlayerLoop");
                 }),
             Container(
               width: HW.getWidth(980, context),

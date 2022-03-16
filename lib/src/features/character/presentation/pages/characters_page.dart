@@ -111,8 +111,8 @@ class _CharacrterPageState extends State<CharacrterPage> {
           "page_url":
               "https://pandemics.historyadventures.app/key-people-of-the-age"
         });
-    await FirebaseAnalytics.instance
-        .logScreenView(screenName: "key-people-of-the-age");     
+    // await FirebaseAnalytics.instance
+    //     .logScreenView(screenName: "key-people-of-the-age");     
   }
 
   Widget _body() {

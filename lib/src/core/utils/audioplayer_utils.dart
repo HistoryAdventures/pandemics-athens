@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
 import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 class AudioPlayerUtil {
@@ -7,6 +8,7 @@ class AudioPlayerUtil {
   AudioPlayer audioPlayer = AudioPlayer();
   static AudioPlayer audioPlayerLoop = AudioPlayer();
   static AudioPlayer audioPlayerLoopLeanding = AudioPlayer();
+
 
   Future<void> playSound(String assetName) async {
     if (isSoundOn) {
@@ -53,6 +55,38 @@ class AudioPlayerUtil {
     } else {
       audioPlayerLoopLeanding.pause();
       audioPlayerLoopLeanding.state = PlayerState.PAUSED;
+    }
+  }
+
+
+  String getCurrentRouteName(String? routeSetting) {
+    return routeSetting!.split('Page')[0];
+  }
+
+  Future<void> soundPlayingControll(
+      {bool? isSoundOn, String? routeName}) async {
+    if (routeName == "Leanding") {
+      playLeandingPageSound(AssetsPath.leandingBgSound);
+      audioPlayerLoopLeanding.state =
+          isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
+    } else if (routeName == "Glossary") {
+      playLeandingPageSound(AssetsPath.leandingBgSound);
+      audioPlayerLoopLeanding.state =
+          isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
+    } else if (routeName == "Map" ||
+        routeName == "Characrter" ||
+        routeName == "Document" ||
+        routeName == "PathogenProfile" ||
+        routeName == "DeadOfSocrates" ||
+        routeName == "VirusLocation" ||
+        routeName == "VirusLocationSecond" ||
+        routeName == "BodyInfo" ||
+        routeName == "VirusesInfo") {
+      playSoundWithLoop(AssetsPath.storyBackgroundSound);
+      audioPlayerLoop.state =
+          isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
+    } else if (routeName == "KeepGoing" || routeName == "QuitMedicine") {
+      isSoundOn = !isSoundOn!;
     }
   }
 }

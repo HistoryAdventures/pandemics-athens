@@ -326,7 +326,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
                   ),
                 ),
               ),
-
               Align(
                 alignment: Alignment.bottomCenter,
                 child: ArrowTextBottomWidget(
@@ -354,7 +353,6 @@ class _GlossaryPageState extends State<GlossaryPage> {
               ),
               SoundAndMenuWidget(
                 widget: AppUpButton(onTap: () {
-
                   // Update SharedPreferences for updating navigation tree view
                   NavigationSharedPreferences.upDateShatedPreferences();
                   LeafDetails.currentVertex = 0;
@@ -369,13 +367,15 @@ class _GlossaryPageState extends State<GlossaryPage> {
                 icons: AudioPlayerUtil.isSoundOn
                     ? AssetsPath.iconVolumeOn
                     : AssetsPath.iconVolumeOff,
-                onTapVolume: AudioPlayerUtil.isSoundOn
-                    ? () {
-                        onTapSoundIcon();
-                      }
-                    : () {
-                        onTapSoundIcon();
-                      },
+                onTapVolume: () {
+                  setState(() {
+                    AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
+                    AudioPlayerUtil().soundPlayingControll(
+                        isSoundOn: AudioPlayerUtil.isSoundOn,
+                        routeName: AudioPlayerUtil().getCurrentRouteName(
+                            ModalRoute.of(context)!.settings.name));
+                  });
+                },
                 onTapMenu: () {
                   scaffoldKey.currentState!.openEndDrawer();
                 },
