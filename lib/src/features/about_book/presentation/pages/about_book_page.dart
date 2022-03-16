@@ -96,7 +96,8 @@ class _AboutBookPageState extends State<AboutBookPage> {
                         padding:
                             EdgeInsets.only(top: HW.getHeight(15, context)),
                         child: AutoSizeText(
-                          "meet the international team of History Adventures!"
+                          "meet the team behind global pandemics: plague of athens"
+                          
                               .toLowerCase(),
                           maxLines: 1,
                           style: Theme.of(context)

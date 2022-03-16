@@ -295,6 +295,8 @@ class _CreditsPageState extends State<CreditsPage> {
                                             title: 'Karen Ghazaryan'),
                                         UrlLuncherModel(
                                             title: 'Gohar Movsisyan'),
+                                         UrlLuncherModel(
+                                            title: 'Tsovinar Vardanyan'),    
                                         UrlLuncherModel(
                                             title: 'Ellen Ghandilyan'),
                                       ],
