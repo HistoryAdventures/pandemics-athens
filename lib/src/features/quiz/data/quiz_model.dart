@@ -668,15 +668,7 @@ class QuizData {
   static List<Answers> userAnswer7ForQ11 = [];
   static List<Answers> userAnswer8ForQ11 = [];
 
-  static List<Answers> answersForDD5 = [
-    Answers(value: 1, text: "bile"),
-    Answers(value: 2, text: "Hippocrates"),
-    Answers(value: 3, text: "phlegm"),
-    Answers(value: 4, text: "Health"),
-    Answers(value: 5, text: "black"),
-    Answers(value: 6, text: "Pain"),
-    Answers(value: 7, text: "Humours"),
-  ];
+
 
   static List<Answers> answersForDD8 = [
     Answers(value: 1, text: "justice"),
@@ -699,57 +691,71 @@ class QuizData {
 
   static List<DragWordsWidget> dragWordsWidget3 = [
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ3,
+        answers: userAnswer1ForQ3,
         isRight: null,
         correctAnswer: 'PERICLES'),
     DragWordsWidget(
-        answers: QuizData.userAnswer2ForQ3,
+        answers: userAnswer2ForQ3,
         isRight: null,
         correctAnswer: 'THUCYDIDES'),
     DragWordsWidget(
-        answers: QuizData.userAnswer3ForQ3,
+        answers: userAnswer3ForQ3,
         isRight: null,
         correctAnswer: 'SOCRATES AND PLATO'),
     DragWordsWidget(
-        answers: QuizData.userAnswer4ForQ3,
+        answers: userAnswer4ForQ3,
         isRight: null,
         correctAnswer: 'ARISTOPHANES AND SOPHOCLES'),
     DragWordsWidget(
-        answers: QuizData.userAnswer5ForQ3,
+        answers: userAnswer5ForQ3,
         isRight: null,
         correctAnswer: 'PHIDIAS'),
   ];
 
   static List<DragWordsWidget> dragWordsWidget11 = [
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ11,
+        answers: userAnswer1ForQ11,
         isRight: null,
         correctAnswer: 'SMALLPOX'),
     DragWordsWidget(
-        answers: QuizData.userAnswer2ForQ11,
+        answers: userAnswer2ForQ11,
         isRight: null,
         correctAnswer: 'EBOLA'),
     DragWordsWidget(
-        answers: QuizData.userAnswer3ForQ11,
+        answers: userAnswer3ForQ11,
         isRight: null,
         correctAnswer: 'TYPHOID'),
     DragWordsWidget(
-        answers: QuizData.userAnswer4ForQ11,
+        answers: userAnswer4ForQ11,
         isRight: null,
         correctAnswer: 'BUBONIC PLAGUE'),
     DragWordsWidget(
-        answers: QuizData.userAnswer5ForQ11,
+        answers: userAnswer5ForQ11,
         isRight: null,
         correctAnswer: 'TYPHUS'),
   ];
+
+
+
+
+    static List<Answers> answersForDD5 = [
+    Answers(value: 1, text: "bile"),
+    Answers(value: 2, text: "Hippocrates"),
+    Answers(value: 3, text: "phlegm"),
+    Answers(value: 4, text: "Health"),
+    Answers(value: 5, text: "black"),
+    Answers(value: 6, text: "Pain"),
+    Answers(value: 7, text: "Humours"),
+  ];
+  
   static List<dynamic> listQuestionBody5 = [
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ5,
+        answers: userAnswer1ForQ5,
         isRight: null,
         correctAnswer: 'Hippocrates'),
     " is famous for his theory of the Four ",
     DragWordsWidget(
-        answers: QuizData.userAnswer2ForQ5,
+        answers: userAnswer2ForQ5,
         isRight: null,
         correctAnswer: 'Humours'),
     " In On the Nature of Man, ",
@@ -757,28 +763,28 @@ class QuizData {
     SizedBox(),
     " “The Human body contains blood, ",
     DragWordsWidget(
-        answers: QuizData.userAnswer3ForQ5,
+        answers: userAnswer3ForQ5,
         isRight: null,
         correctAnswer: 'phlegm'),
     " , yellow ",
     DragWordsWidget(
-        answers: QuizData.userAnswer4ForQ5,
+        answers: userAnswer4ForQ5,
         isRight: null,
         correctAnswer: 'bile'),
     ", and",
     DragWordsWidget(
-        answers: QuizData.userAnswer5ForQ5,
+        answers: userAnswer5ForQ5,
         isRight: null,
         correctAnswer: 'black'),
-    ", bile",
+    " bile",
     "These are the things that make up its constitution and cause its pains and health.",
     DragWordsWidget(
-        answers: QuizData.userAnswer6ForQ5,
+        answers: userAnswer6ForQ5,
         isRight: null,
         correctAnswer: 'Health'),
     " is primarily that state in which these... substances are in the correct proportion to each other, both in strength and quantity, and are well mixed.",
     DragWordsWidget(
-        answers: QuizData.userAnswer7ForQ5,
+        answers: userAnswer7ForQ5,
         isRight: null,
         correctAnswer: 'Pain'),
     "occurs when one of the substances",
@@ -791,31 +797,31 @@ class QuizData {
     "\n",
     "“In other respects too, the plague was the beginning of increased ",
     DragWordsWidget(
-        answers: QuizData.userAnswer1ForQ8,
+        answers: userAnswer1ForQ8,
         isRight: null,
         correctAnswer: 'lawlessness'),
     "in the city... No fear of god or human law was any constraint.",
     " Pious or impious made no difference in their view, when they could see all dying without",
     DragWordsWidget(
-        answers: QuizData.userAnswer2ForQ8,
+        answers: userAnswer2ForQ8,
         isRight: null,
         correctAnswer: 'distinction'),
     ". As for offences against the law, no one expected",
     " to live long enough ",
     "to be brought to ",
     DragWordsWidget(
-        answers: QuizData.userAnswer3ForQ8,
+        answers: userAnswer3ForQ8,
         isRight: null,
         correctAnswer: 'justice'),
     "and pay the penalty: they thought that a much heavier",
     DragWordsWidget(
-        answers: QuizData.userAnswer4ForQ8,
+        answers: userAnswer4ForQ8,
         isRight: null,
         correctAnswer: 'sentence'),
     "had already been passed ",
     "and was hanging over them, so that might as well have some",
     DragWordsWidget(
-        answers: QuizData.userAnswer5ForQ8,
+        answers: userAnswer5ForQ8,
         isRight: null,
         correctAnswer: 'enjoyment'),
     " of life before it fell.”",
@@ -964,38 +970,38 @@ class QuizData {
     'Galen was a  ',
     DragWordsWidget(
       correctAnswer: "Roman",
-      answers: QuizData.userAnswer1ForQ7,
+      answers: userAnswer1ForQ7,
       isRight: null,
     ),
     ' doctor who was influenced by and developed the theories of ',
     DragWordsWidget(
       correctAnswer: "Hippocrates",
-      answers: QuizData.userAnswer2ForQ7,
+      answers: userAnswer2ForQ7,
       isRight: null,
     ),
     '. He studied the body through ',
     DragWordsWidget(
       correctAnswer: "dissection",
-      answers: QuizData.userAnswer3ForQ7,
+      answers: userAnswer3ForQ7,
       isRight: null,
     ),
     '. Because this was illegal, he encouraged his students to investigate the corpses of ',
     DragWordsWidget(
       correctAnswer: "gladiators",
-      answers: QuizData.userAnswer4ForQ7,
+      answers: userAnswer4ForQ7,
       isRight: null,
     ),
     "'!\n'",
     'Galen also lived through a ',
     DragWordsWidget(
       correctAnswer: "plague",
-      answers: QuizData.userAnswer5ForQ7,
+      answers: userAnswer5ForQ7,
       isRight: null,
     ),
     "  . His ideas were very influential, and were only challenged and developed during the ",
     DragWordsWidget(
       correctAnswer: "Renaissance",
-      answers: QuizData.userAnswer6ForQ7,
+      answers: userAnswer6ForQ7,
       isRight: null,
     ),
   ];
@@ -1255,9 +1261,9 @@ class QuizData {
 
   /// [CHECK ALL ANSWERS]
   static void checkUerAnswers() {
-    rightAnswersForQ1 = QuizData.firstDragDropResult == 5 ? 1 : 0;
-    rightAnswersForQ4 = QuizData.secondDragDropResult == 4 ? 1 : 0;
-    rightAnswersForQ11 += QuizData.thirdDragResult;
+    rightAnswersForQ1 = firstDragDropResult == 5 ? 1 : 0;
+    rightAnswersForQ4 = secondDragDropResult == 4 ? 1 : 0;
+    rightAnswersForQ11 += thirdDragResult;
 
     if (question2Cheking[1] == true) {
       rightAnswersForQ2 = 1;
@@ -1436,31 +1442,31 @@ class QuizData {
     ];
     dragWordsWidget3 = [
       DragWordsWidget(
-          answers: QuizData.userAnswer1ForQ3,
+          answers: userAnswer1ForQ3,
           isRight: null,
           correctAnswer: 'PERICLES'),
       DragWordsWidget(
-          answers: QuizData.userAnswer2ForQ3,
+          answers: userAnswer2ForQ3,
           isRight: null,
           correctAnswer: 'THUCYDIDES'),
       DragWordsWidget(
-          answers: QuizData.userAnswer3ForQ3,
+          answers: userAnswer3ForQ3,
           isRight: null,
           correctAnswer: 'SOCRATES AND PLATO'),
       DragWordsWidget(
-          answers: QuizData.userAnswer4ForQ3,
+          answers: userAnswer4ForQ3,
           isRight: null,
           correctAnswer: 'ARISTOPHANES AND SOPHOCLES'),
       DragWordsWidget(
-          answers: QuizData.userAnswer5ForQ3,
+          answers: userAnswer5ForQ3,
           isRight: null,
           correctAnswer: 'PHIDIAS'),
     ];
 
     listCorrectrAnswersQuestion4 = [];
-    QuizData.firstDragDropResult = 0;
-    QuizData.secondDragDropResult = 0;
-    QuizData.thirdDragResult = 0;
+    firstDragDropResult = 0;
+    secondDragDropResult = 0;
+    thirdDragResult = 0;
     listCorrectrAnswersQuestion9 = [];
 
     valueQ3 = 1;
@@ -1477,14 +1483,15 @@ class QuizData {
     userAnswer6ForQ5 = [];
     userAnswer7ForQ5 = [];
     userAnswer8ForQ5 = [];
+    
     listQuestionBody5 = [
       DragWordsWidget(
-          answers: QuizData.userAnswer1ForQ5,
+          answers: userAnswer1ForQ5,
           isRight: null,
           correctAnswer: 'Hippocrates'),
       " is famous for his theory of the Four ",
       DragWordsWidget(
-          answers: QuizData.userAnswer2ForQ5,
+          answers: userAnswer2ForQ5,
           isRight: null,
           correctAnswer: 'Humours'),
       " In On the Nature of Man, ",
@@ -1492,28 +1499,28 @@ class QuizData {
       SizedBox(),
       " “The Human body contains blood, ",
       DragWordsWidget(
-          answers: QuizData.userAnswer3ForQ5,
+          answers: userAnswer3ForQ5,
           isRight: null,
           correctAnswer: 'phlegm'),
       " , yellow ",
       DragWordsWidget(
-          answers: QuizData.userAnswer4ForQ5,
+          answers: userAnswer4ForQ5,
           isRight: null,
           correctAnswer: 'bile'),
       ", and",
       DragWordsWidget(
-          answers: QuizData.userAnswer5ForQ5,
+          answers: userAnswer5ForQ5,
           isRight: null,
           correctAnswer: 'black'),
-      ", bile",
+      " bile",
       "These are the things that make up its constitution and cause its pains and health.",
       DragWordsWidget(
-          answers: QuizData.userAnswer6ForQ5,
+          answers: userAnswer6ForQ5,
           isRight: null,
           correctAnswer: 'Health'),
       " is primarily that state in which these... substances are in the correct proportion to each other, both in strength and quantity, and are well mixed.",
       DragWordsWidget(
-          answers: QuizData.userAnswer7ForQ5,
+          answers: userAnswer7ForQ5,
           isRight: null,
           correctAnswer: 'Pain'),
       "occurs when one of the substances",
@@ -1544,7 +1551,7 @@ class QuizData {
       "\n",
       "“In other respects too, the plague was the beginning of increased ",
       DragWordsWidget(
-          answers: QuizData.userAnswer1ForQ8,
+          answers: userAnswer1ForQ8,
           isRight: null,
           correctAnswer: 'lawlessness'),
       "in the city...",
@@ -1553,23 +1560,23 @@ class QuizData {
       "was any constraint. Pious or impious made ",
       "no difference in their view, when they could see all dying without",
       DragWordsWidget(
-          answers: QuizData.userAnswer2ForQ8,
+          answers: userAnswer2ForQ8,
           isRight: null,
           correctAnswer: 'distinction'),
       ". As for offences against the law, no one expected ",
       "to live long enough to be brought to ",
       DragWordsWidget(
-          answers: QuizData.userAnswer3ForQ8,
+          answers: userAnswer3ForQ8,
           isRight: null,
           correctAnswer: 'justice'),
       "and pay the penalty: they thought that a much heavier",
       DragWordsWidget(
-          answers: QuizData.userAnswer4ForQ8,
+          answers: userAnswer4ForQ8,
           isRight: null,
           correctAnswer: 'sentence'),
       "had already been passed and was hanging over them, so that might as well have some",
       DragWordsWidget(
-          answers: QuizData.userAnswer5ForQ8,
+          answers: userAnswer5ForQ8,
           isRight: null,
           correctAnswer: 'enjoyment'),
       " of life before it fell.”",
@@ -1685,23 +1692,23 @@ class QuizData {
 
     dragWordsWidget11 = [
       DragWordsWidget(
-          answers: QuizData.userAnswer1ForQ11,
+          answers: userAnswer1ForQ11,
           isRight: null,
           correctAnswer: 'SMALLPOX'),
       DragWordsWidget(
-          answers: QuizData.userAnswer2ForQ11,
+          answers: userAnswer2ForQ11,
           isRight: null,
           correctAnswer: 'EBOLA'),
       DragWordsWidget(
-          answers: QuizData.userAnswer3ForQ11,
+          answers: userAnswer3ForQ11,
           isRight: null,
           correctAnswer: 'TYPHOID'),
       DragWordsWidget(
-          answers: QuizData.userAnswer4ForQ11,
+          answers: userAnswer4ForQ11,
           isRight: null,
           correctAnswer: 'BUBONIC PLAGUE'),
       DragWordsWidget(
-          answers: QuizData.userAnswer5ForQ11,
+          answers: userAnswer5ForQ11,
           isRight: null,
           correctAnswer: 'TYPHUS'),
     ];

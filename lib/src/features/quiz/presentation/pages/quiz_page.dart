@@ -82,11 +82,9 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Future<void> firebaseScreenTracking() async {
-    await FirebaseAnalytics.instance.logEvent(
-        name: "assessment",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/assessment"
-        });
+    await FirebaseAnalytics.instance.logEvent(name: "assessment", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/assessment"
+    });
 
     await FirebaseAnalytics.instance.logScreenView(screenName: "assessment");
   }
@@ -423,12 +421,12 @@ class _QuizPageState extends State<QuizPage> {
       Score(currentScore: QuizData.rightAnswersForQ5, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ6, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ8, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ7, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ9, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ10, scorsCount: 1),
       Score(currentScore: QuizData.rightAnswersForQ11, scorsCount: 1),
-      Score(currentScore: QuizData.rightAnswersForQ12, scorsCount: 1),
+      Score(currentScore: QuizData.rightAnswersForQ2, scorsCount: 1),
+      Score(currentScore: 0, scorsCount: 0),
     ];
     return Visibility(
       visible: QuizData.showRightAnswers,
