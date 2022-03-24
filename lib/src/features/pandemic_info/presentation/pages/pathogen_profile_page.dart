@@ -68,14 +68,24 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
         LeafDetails.visitedVertexes.add(14);
         NavigationSharedPreferences.upDateShatedPreferences();
         soundAndMewnuColor = AppColors.white;
-        playSound();
-        AudioPlayerUtil.audioPlayerLoop.release();
+        AudioPlayerUtil().playSoundForSinglePages(AssetsPath.nikoCries);
+        AudioPlayerUtil.pathogenSecondPage = true;
+        // AudioPlayerUtil.audioPlayerSinglePage.state = PlayerState.PLAYING;
+        AudioPlayerUtil.audioPlayerLoop.pause();
         setState(() {});
       } else {
         LeafDetails.currentVertex = 10;
         NavigationSharedPreferences.upDateShatedPreferences();
         soundAndMewnuColor = AppColors.black100;
         setState(() {});
+
+        if (_scrollController.offset ==
+            _scrollController.position.minScrollExtent) {
+          AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
+          AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
+          AudioPlayerUtil.audioPlayerSinglePage.pause();
+          AudioPlayerUtil.pathogenSecondPage = false;
+        }
         // bgPlayer.dispose();
       }
     });
@@ -113,26 +123,8 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
   @override
   void dispose() {
     animatedParticlesBS.close();
-    pauseSound();
+    AudioPlayerUtil.audioPlayerSinglePage.release();
     super.dispose();
-  }
-
-  AudioPlayer bgPlayer = AudioPlayer();
-  Future<void> playSound() async {
-    if (AudioPlayerUtil.isSoundOn) {
-      if (bgPlayer.state == PlayerState.PAUSED) {
-        bgPlayer.resume();
-      } else {
-        int result = await bgPlayer.play(AssetsPath.nikoCries);
-        bgPlayer.setReleaseMode(ReleaseMode.LOOP);
-      }
-    } else {
-      bgPlayer.pause();
-    }
-  }
-
-  Future<void> pauseSound() async {
-    bgPlayer.dispose();
   }
 
   @override
@@ -141,26 +133,13 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
       if (widget.needJumpToPracticeMedicinePart!) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
         widget.needJumpToPracticeMedicinePart = false;
-        playSound();
+        //  AudioPlayerUtil().playSound(AssetsPath.nikoCries, looping: true);
+      } else {
+        // AudioPlayerUtil.audioPlayer.pause();
       }
-
-      // else {
-      //   pauseSound();
-      // }
     });
     return NotificationListener<UserScrollNotification>(
       onNotification: (notification) {
-        // if (notification.direction == ScrollDirection.reverse) {
-        //   soundAndMewnuColor = AppColors.black100;
-        // }
-
-        if (_scrollController.offset ==
-            _scrollController.position.minScrollExtent) {
-          AudioPlayerUtil().playSoundWithLoop(AssetsPath.storyBackgroundSound);
-          AudioPlayerUtil.audioPlayerLoop.state = PlayerState.PLAYING;
-          pauseSound();
-        }
-
         return true;
       },
       child: Scaffold(
@@ -393,22 +372,27 @@ class _PathogenProfilePageState extends State<PathogenProfilePage> {
                             setState(() {
                               AudioPlayerUtil.isSoundOn =
                                   !AudioPlayerUtil.isSoundOn;
+
+                              AudioPlayerUtil().playSoundForSinglePages(
+                                AssetsPath.nikoCries,
+                              );
+
                               AudioPlayerUtil().playSoundWithLoop(
                                   AssetsPath.storyBackgroundSound);
-                              playSound();
-
-                              // backgroundplayer.pause();
                             });
                           }
                         : () {
                             setState(() {
                               AudioPlayerUtil.isSoundOn =
                                   !AudioPlayerUtil.isSoundOn;
-                              AudioPlayerUtil().playSoundWithLoop(
-                                  AssetsPath.storyBackgroundSound);
-                              playSound();
-
-                              // backgroundplayer.play();
+                              if (soundAndMewnuColor == AppColors.white) {
+                                AudioPlayerUtil().playSoundForSinglePages(
+                                  AssetsPath.nikoCries,
+                                );
+                              } else {
+                                AudioPlayerUtil().playSoundWithLoop(
+                                    AssetsPath.storyBackgroundSound);
+                              }
                             });
                           },
                     onTapMenu: () {

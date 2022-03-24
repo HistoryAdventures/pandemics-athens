@@ -36,7 +36,7 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
 
   @override
   void initState() {
-    playSound();
+    AudioPlayerUtil().playSoundForNikosChoose("KeepGoing");
     firebaseScreenTracking();
     super.initState();
   }
@@ -47,36 +47,16 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
     super.dispose();
   }
 
-  AudioPlayer bgPlayer1 = AudioPlayer();
-  AudioPlayer bgPlayer2 = AudioPlayer();
-  Future<void> playSound() async {
-    if (AudioPlayerUtil.isSoundOn) {
-      if (bgPlayer1.state == PlayerState.PAUSED) {
-        bgPlayer1.resume();
-        bgPlayer2.resume();
-      } else {
-        int result = await bgPlayer1.play(AssetsPath.keepGoingSound);
-        int result1 =
-            await bgPlayer2.play(AssetsPath.nikosChooseBG, volume: 0.2);
-      }
-    } else {
-      bgPlayer1.pause();
-      bgPlayer2.pause();
-    }
-  }
-
   Future<void> firebaseScreenTracking() async {
-    await FirebaseAnalytics.instance.logEvent(
-        name: "keep-going",
-        parameters: {
-          "page_url": "https://pandemics.historyadventures.app/keep-going"
-        });
+    await FirebaseAnalytics.instance.logEvent(name: "keep-going", parameters: {
+      "page_url": "https://pandemics.historyadventures.app/keep-going"
+    });
     await FirebaseAnalytics.instance.logScreenView(screenName: "keep-going");
   }
 
   Future<void> pauseSound() async {
-    bgPlayer1.dispose();
-    bgPlayer2.dispose();
+   await AudioPlayerUtil.bgPlayer1.release();
+   await AudioPlayerUtil.bgPlayer2.release();
   }
 
   @override
@@ -131,14 +111,18 @@ class _KeepGoingPageState extends State<KeepGoingPage> {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
                         });
-                        playSound();
+                        AudioPlayerUtil().playSoundForNikosChoose(
+                            AudioPlayerUtil().getCurrentRouteName(
+                                ModalRoute.of(context)!.settings.name));
                       }
                     : () {
                         setState(() {
                           AudioPlayerUtil.isSoundOn =
                               !AudioPlayerUtil.isSoundOn;
                         });
-                        playSound();
+                        AudioPlayerUtil().playSoundForNikosChoose(
+                            AudioPlayerUtil().getCurrentRouteName(
+                                ModalRoute.of(context)!.settings.name));
                       },
                 onTapMenu: () {
                   Scaffold.of(context).openEndDrawer();

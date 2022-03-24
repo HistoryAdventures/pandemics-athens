@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
+import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 import 'package:history_of_adventures/src/core/utils/audioplayer_utils.dart';
 import 'package:history_of_adventures/src/core/utils/styles.dart';
 import 'package:history_of_adventures/src/core/widgets/app_up_button.dart';
@@ -37,7 +38,8 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
 
   @override
   void initState() {
-    playSound();
+    AudioPlayerUtil().playSoundForSinglePages(AssetsPath.nikosChooseBG);
+    AudioPlayerUtil.audioPlayerSinglePage.state = PlayerState.PLAYING;
     NavigationSharedPreferences.getNavigationListFromSF();
     firebaseScreenTracking();
     super.initState();
@@ -53,17 +55,10 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
     await FirebaseAnalytics.instance.logEvent(name: "irl-nikos", parameters: {
       "page_url": "https://pandemics.historyadventures.app/irl-nikos"
     });
-    // await FirebaseAnalytics.instance.logScreenView(screenName: "irl-nikos");
-  }
-
-  AudioPlayer bgPlayer1 = AudioPlayer();
-  Future<void> playSound() async {
-    int result1 = await bgPlayer1.play(AssetsPath.nikosChooseBG, volume: 0.7);
-    await bgPlayer1.setReleaseMode(ReleaseMode.LOOP);
   }
 
   Future<void> pauseSound() async {
-    bgPlayer1.dispose();
+    AudioPlayerUtil.audioPlayerSinglePage.dispose();
   }
 
   @override
@@ -103,13 +98,13 @@ class _IrlNikosPageState extends State<IrlNikosPage> {
                   ? () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        bgPlayer1.setVolume(0.0);
+                        AudioPlayerUtil.audioPlayerSinglePage.setVolume(0.0);
                       });
                     }
                   : () {
                       setState(() {
                         AudioPlayerUtil.isSoundOn = !AudioPlayerUtil.isSoundOn;
-                        bgPlayer1.setVolume(1.0);
+                        AudioPlayerUtil.audioPlayerSinglePage.setVolume(1.0);
                       });
                     },
               onTapMenu: () {

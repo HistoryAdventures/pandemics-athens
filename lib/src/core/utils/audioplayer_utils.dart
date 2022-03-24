@@ -4,13 +4,17 @@ import 'package:history_of_adventures/src/core/utils/assets_path.dart';
 
 class AudioPlayerUtil {
   static bool isSoundOn = true;
+  static bool pathogenSecondPage = false;
 
-  AudioPlayer audioPlayer = AudioPlayer();
+  static AudioPlayer audioPlayer = AudioPlayer();
   static AudioPlayer audioPlayerLoop = AudioPlayer();
+  static AudioPlayer audioPlayerSinglePage = AudioPlayer();
   static AudioPlayer audioPlayerLoopLeanding = AudioPlayer();
 
+  static AudioPlayer bgPlayer1 = AudioPlayer();
+  static AudioPlayer bgPlayer2 = AudioPlayer();
 
-  Future<void> playSound(String assetName) async {
+  Future<void> playSound(String assetName, {bool? looping}) async {
     if (isSoundOn) {
       if (audioPlayer.state == PlayerState.PAUSED) {
         audioPlayer.resume();
@@ -19,6 +23,23 @@ class AudioPlayerUtil {
       }
     } else {
       audioPlayer.state = PlayerState.PAUSED;
+    }
+  }
+
+  Future<void> playSoundForSinglePages(String assetName) async {
+    if (isSoundOn) {
+      if (audioPlayerSinglePage.state == PlayerState.PAUSED) {
+        audioPlayerSinglePage.resume();
+      } else {
+        if (audioPlayerSinglePage.state == PlayerState.PLAYING) {
+        } else {
+          final int? result = await audioPlayerSinglePage.play(assetName);
+          audioPlayerSinglePage.setReleaseMode(ReleaseMode.LOOP);
+        }
+      }
+    } else {
+      audioPlayerSinglePage.pause();
+      audioPlayerSinglePage.state = PlayerState.PAUSED;
     }
   }
 
@@ -58,6 +79,27 @@ class AudioPlayerUtil {
     }
   }
 
+  Future<void> playSoundForNikosChoose(routeName) async {
+    if (isSoundOn) {
+      if (bgPlayer1.state == PlayerState.PAUSED &&
+          bgPlayer2.state == PlayerState.PAUSED) {
+        print("PAUSED");
+        bgPlayer1.resume();
+        bgPlayer2.resume();
+      } else {
+        int result = await bgPlayer1.play(routeName == "KeepGoing"
+            ? AssetsPath.keepGoingSound
+            : AssetsPath.quitMedicinePageSound);
+        int result1 =
+            await bgPlayer2.play(AssetsPath.nikosChooseBG, volume: 0.2);
+
+        print("PLAYING");
+      }
+    } else {
+      bgPlayer1.pause();
+      bgPlayer2.pause();
+    }
+  }
 
   String getCurrentRouteName(String? routeSetting) {
     return routeSetting!.split('Page')[0];
@@ -76,9 +118,9 @@ class AudioPlayerUtil {
     } else if (routeName == "Map" ||
         routeName == "Characrter" ||
         routeName == "Document" ||
-        routeName == "PathogenProfile" ||
         routeName == "DeadOfSocrates" ||
         routeName == "VirusLocation" ||
+        (routeName == "PathogenProfile" && !pathogenSecondPage) ||
         routeName == "VirusLocationSecond" ||
         routeName == "BodyInfo" ||
         routeName == "VirusesInfo") {
@@ -86,7 +128,20 @@ class AudioPlayerUtil {
       audioPlayerLoop.state =
           isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
     } else if (routeName == "KeepGoing" || routeName == "QuitMedicine") {
-      isSoundOn = !isSoundOn!;
+      print("QuitMedicine");
+      playSoundForNikosChoose(routeName);
+      bgPlayer1.state = isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
+      bgPlayer2.state = isSoundOn ? PlayerState.PLAYING : PlayerState.PAUSED;
+    } else if (routeName == "PathogenProfile") {
+      AudioPlayerUtil().playSoundForSinglePages(
+        AssetsPath.nikoCries,
+      );
+      audioPlayerSinglePage.state =
+          isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
+    } else if (routeName == "IrlNikos") {
+      playSoundForSinglePages(AssetsPath.nikosChooseBG);
+      audioPlayerSinglePage.state =
+          isSoundOn! ? PlayerState.PLAYING : PlayerState.PAUSED;
     }
   }
 }
