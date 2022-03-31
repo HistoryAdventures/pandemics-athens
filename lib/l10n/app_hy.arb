@@ -15,6 +15,12 @@
     "@globalPandemicsName": {
       "description": " global pandemics"
     },
+
+      "plagueOfAthens": "  Plague of Athens",
+    "@plagueOfAthens": {
+      "description": " Plague of Athens"
+    },
+
     "chapter1Name": "Chapter 1 / Plague & Political Instability",
     "@chapter1Name": {
       "description": "Chapter 1 / Plague & Political Instability"

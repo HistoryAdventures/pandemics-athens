@@ -8,8 +8,10 @@ import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'src/core/router.gr.dart';
 import 'src/core/theme.dart';
+import 'dart:html' as html;
 
 Future<void> main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferancesManagment().init();
   await SystemChrome.setPreferredOrientations(
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
   bool deviceIsMobileForWeb = false;
 
   bool checkTargetPlatform() {
+ 
     if (kIsWeb) {
       if ((defaultTargetPlatform == TargetPlatform.iOS) ||
           (defaultTargetPlatform == TargetPlatform.android)) {
@@ -51,9 +54,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return checkTargetPlatform()
         ? const MaterialApp(
+          
+          
             home: Scaffold(
               body: Center(
-                child: Text("OPEN IN MOBILE BROWSER"),
+                child: Text("Open in Desktop Chrome Browser"),
               ),
             ),
           )
@@ -69,12 +74,15 @@ class MyApp extends StatelessWidget {
                     measurementId: "G-77JJTW3KH5")),
             builder: (context, state) {
               return MaterialApp.router(
-                 title: "History Adventures - Global Pandemics",
+                
+                title: "History Adventures Global Pandemics Plague of Athens",
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 routerDelegate: _appRouter.delegate(),
                 routeInformationParser: _appRouter.defaultRouteParser(),
                 theme: DefaultTheme.standard,
                 debugShowCheckedModeBanner: false,
+                
+                
               );
             },
           );
