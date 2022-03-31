@@ -66,6 +66,8 @@ class _LeandingPageState extends State<LeandingPage> {
   void didChangeDependencies() {
     locales = AppLocalizations.of(context)!;
     if (widget.navigateFromNavigatorPage != null) {
+      print(widget.navigateFromNavigatorPage);
+      print("-----");
       AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
       AudioPlayerUtil.audioPlayerLoopLeanding.setVolume(1.0);
     } else if (loadingCount == '0') {
@@ -161,7 +163,7 @@ class _LeandingPageState extends State<LeandingPage> {
                                       height: 1),
                             ),
                             Text(
-                              locales.worldOfCharacters.toUpperCase(),
+                              locales.globalPandemicsName.toUpperCase(),
                               maxLines: 1,
                               style: Theme.of(context)
                                   .textTheme
@@ -183,7 +185,7 @@ class _LeandingPageState extends State<LeandingPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 5),
                                 child: Text(
-                                  locales.globalPandemicsName,
+                                  "  Plague of Athens",
                                   maxLines: 1,
                                   style: Theme.of(context)
                                       .textTheme
@@ -240,8 +242,8 @@ class _LeandingPageState extends State<LeandingPage> {
             },
           ),
         ),
-        if (isImageloaded == false ||
-            ShowLoadingSharedPreferences.userClickedOnLeandingPage == false)
+        if (ShowLoadingSharedPreferences.userClickedOnLeandingPage == false &&
+            widget.navigateFromNavigatorPage == null)
           AbsorbPointer(
             absorbing: loadingCount != "99",
             child: Clickable(
@@ -266,15 +268,24 @@ class _LeandingPageState extends State<LeandingPage> {
     print("  +++++");
     if (window.sessionStorage.containsKey('allImagesAreCached')) {
       setState(() {
-        ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
-        AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
-        AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
+        if (widget.navigateFromNavigatorPage == null) {
+          showLoading(refreshedPage: true);
+        } else {
+          ShowLoadingSharedPreferences.userClickedOnLeandingPage = true;
+          AudioPlayerUtil().playLeandingPageSound(AssetsPath.leandingBgSound);
+          AudioPlayerUtil.audioPlayerLoopLeanding.state = PlayerState.PLAYING;
+        }
+
         // playSound();
       });
 
       return;
     }
 
+    showLoading(refreshedPage: false);
+  }
+
+  Future<void> showLoading({bool? refreshedPage}) async {
     setState(() {
       isImageloaded = false;
     });
@@ -283,8 +294,11 @@ class _LeandingPageState extends State<LeandingPage> {
       await precacheImage(AssetImage(AssetsPath.allImages[i]), context);
 
       setState(() {
-        loadingCount = ((i * 100).toDouble() / AssetsPath.allImages.length)
-            .toStringAsFixed(0);
+        loadingCount = refreshedPage!
+            ? ((i * 100).toDouble() / AssetsPath.allImages.length)
+                .toStringAsFixed(0)
+            : ((i * 100).toDouble() / AssetsPath.allImages.length)
+                .toStringAsFixed(0);
       });
     }
 
