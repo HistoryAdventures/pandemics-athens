@@ -199,8 +199,10 @@ class _RadioButtonModelState extends State<RadioButtonModel> {
               //   child: Container(),
               // ),
               Image.asset(
+            
                 image,
                 fit: BoxFit.cover,
+                    width:  HW.getWidth(500, context),
               ),
               SizedBox(
                 width: HW.getWidth(20, context),

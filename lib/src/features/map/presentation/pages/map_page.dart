@@ -357,7 +357,7 @@ class _MapPageState extends State<MapPage> {
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       _visible = true;
 
-      // setState(() {});
+      setState(() {});
 
       print("MAP INIT");
     });
