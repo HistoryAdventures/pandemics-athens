@@ -41,7 +41,7 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
   void initState() {
     widget.virusModel.widgets.forEach((element) async {
       // ignore: undefined_prefixed_name
-    await  ui.platformViewRegistry.registerViewFactory(
+      await ui.platformViewRegistry.registerViewFactory(
         element,
         (int id) => html.ImageElement()
           // ignore: unsafe_html
@@ -52,6 +52,7 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
           ..style.objectFit = 'contain',
       );
     });
+
     super.initState();
   }
 
@@ -68,8 +69,10 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                 height: widget.constraints!.height * 0.7,
                 width: widget.constraints!.height * 0.8,
                 child: IgnorePointer(
-                  child: HtmlElementView(
-                    viewType: widget.virusModel.widgets[0],
+                  child: Image.asset(
+                    widget.virusModel.widgets[0].substring(7),
+                    height: widget.constraints!.height * 0.4,
+                    width: widget.constraints!.width * 0.4,
                   ),
                 ),
               )
@@ -83,8 +86,10 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                       child: SizedBox(
                         width: widget.constraints!.height * 0.4,
                         child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[0],
+                          child: Image.asset(
+                            widget.virusModel.widgets[0].substring(7),
+                            height: widget.constraints!.height * 0.4,
+                            width: widget.constraints!.width * 0.4,
                           ),
                         ),
                       ),
@@ -98,8 +103,10 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                       child: SizedBox(
                         width: widget.constraints!.height * 0.4,
                         child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[4],
+                          child: Image.asset(
+                            widget.virusModel.widgets[4].substring(7),
+                            height: widget.constraints!.height * 0.4,
+                            width: widget.constraints!.width * 0.4,
                           ),
                         ),
                       ),
@@ -113,8 +120,10 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                       child: SizedBox(
                         width: widget.constraints!.width * 0.24,
                         child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[1],
+                          child: Image.asset(
+                            widget.virusModel.widgets[1].substring(7),
+                            height: widget.constraints!.height * 0.4,
+                            width: widget.constraints!.width * 0.4,
                           ),
                         ),
                       ),
@@ -128,8 +137,10 @@ class _VirusModelWidgetState extends State<VirusModelWidget> {
                       child: SizedBox(
                         width: widget.constraints!.height * 0.3,
                         child: IgnorePointer(
-                          child: HtmlElementView(
-                            viewType: widget.virusModel.widgets[3],
+                          child: Image.asset(
+                            widget.virusModel.widgets[3].substring(7),
+                            height: widget.constraints!.height * 0.4,
+                            width: widget.constraints!.width * 0.4,
                           ),
                         ),
                       ),

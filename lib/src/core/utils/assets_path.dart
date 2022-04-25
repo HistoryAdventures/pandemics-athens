@@ -824,11 +824,11 @@ class AssetsPath {
   ];
 
   static const List<String> virusesInfoPageImages = [
-    AssetsPath.gif1,
-    AssetsPath.gif2,
-    AssetsPath.gif3,
-    AssetsPath.gif4,
-    AssetsPath.gif5
+    // AssetsPath.gif1,
+    // AssetsPath.gif2,
+    // AssetsPath.gif3,
+    // AssetsPath.gif4,
+    // AssetsPath.gif5
   ];
 
   static const List<String> bodyInfoPageImages = [
